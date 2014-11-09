@@ -1,0 +1,22 @@
+.marker{
+    font-size:20px;
+}
+.marker marker-danger{
+    background-color: #d9534f;
+}
+
+.marker .marker-primary{
+    background-color: #428bca;
+}
+.marker .marker-success{
+    background-color: #5cb85c;
+}
+.marker .marker-info{
+    background-color: #5bc0de;
+}
+.marker .marker-warning{
+    background-color: #f0ad4e;
+}
+.marker .marker-danger{
+    background-color: #d9534f;
+}

@@ -1,0 +1,11 @@
+{
+    "title":"modulesequence",
+    "modules":[
+        {
+            "type":"gapfull",
+            "title":"a gapfull module",
+            "context":"",
+            "directive":"do this"
+        }
+    ]
+}
