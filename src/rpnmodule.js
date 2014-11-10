@@ -55,6 +55,8 @@ var RpnModule = (function () {
             RpnMqcModule.init(mod,mainContent);
         }else if(mod.type=='gapsimple'){
             RpnGapSimpleModule.init(mod,mainContent);
+        }else if(mod.type=='gapfull'){
+            RpnGapFullModule.init(mod,mainContent);
         }
 
     };
@@ -139,7 +141,7 @@ var RpnMarkerModule = (function() {
             });
         });
         //build validation button
-        validationButton=$('<button>',{'class':'btn btn-primary',text:'Valider'}).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
+        validationButton=$('<button>',{'class':'btn btn-primary',text:' Valider'}).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
         domelem.append(validationButton);
 
         bindUiEvents();
@@ -244,10 +246,10 @@ var RpnGapSimpleModule = (function() {
         $.each($('#sentences b'),function(idx,tofill){
             responses[idx]=-1; //initialize all responses to unmark
             var t=$(tofill);
-            t.replaceWith($('<input type="text" id="'+idx+'" class="gapsimple form-control"> <strong>('+t.text()+')</strong>'));
+            t.replaceWith($('<input type="text" id="'+idx+'" class="rpnmodule-input gapsimple form-control"> <strong>('+t.text()+')</strong>'));
         });
         //build validation button
-        validationButton=$('<button>',{'class':'btn btn-primary',text:'Valider'}).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
+        validationButton=$('<button>',{'class':'btn btn-primary',text:' Valider'}).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
         domelem.append(validationButton);
 
         bindUiEvents();
@@ -264,6 +266,47 @@ var RpnGapSimpleModule = (function() {
                     score+=res[idx]==val?1:0;
                 });
                 return score;
+            });
+        });
+    }
+
+    return {
+        init:init
+    };
+
+})();
+
+//gapfull
+var RpnGapFullModule = (function() {
+    var datas;
+    var domelem;
+    var validationButton;
+    var init = function(_datas,_domelem){
+        datas=_datas;
+        domelem=_domelem;
+        buildUi();
+    };
+
+    var buildUi = function (){
+        //build marker toolbar
+        domelem.addClass('rpnmodule_gapfull');
+
+        //build panel with sentences
+        domelem.append($('<div id="sentences" class="well"><p>'+datas.sentence+'</p><input type="text" id="gapfullresponse" class="rpnmodule-input form-control"></div>'));
+        $('#gapfullresponse').val(datas.sentence);
+        
+        //build validation button
+        validationButton=$('<button>',{'class':'btn btn-primary',text:' Valider'}).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
+        domelem.append(validationButton);
+
+        bindUiEvents();
+    };
+
+    var bindUiEvents = function(){
+        validationButton.click(function(){
+            RpnModule.handleEndOfModule($('#gapfullresponse').val(),function(res,sol){
+                //Try to trim and do automatic corrections here.
+                return res==sol?1:0;
             });
         });
     }

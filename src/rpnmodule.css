@@ -1,3 +1,9 @@
+#mainContent{
+    line-height:30px;
+}
+.rpnmodule-input{
+    font-size: 20px;
+}
 .rpnmodule_marker{
     font-size:20px;
 }
@@ -24,5 +30,11 @@
 }
 .rpnmodule_gapsimple{
     font-size:20px;
+}
+.rpnmodule_gapfull{
+    font-size:20px;
+}
+.rpnmodule_gapfull #sentences p{
+    padding: 0px 12px;
 }
 
