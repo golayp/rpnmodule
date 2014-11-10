@@ -43,8 +43,8 @@ var RpnModule = (function () {
 
     var displayCurrentModule=function(){
         var mod=sequencedatas.modules[currentmod];
-        mainContent.removeClass().addClass('col-md-12');
         mainContent.empty();
+        mainContent.removeClass().addClass('col-md-12');
         $('#moduleTitle').text(mod.title);
         $('#moduleContext').text(mod.context);
         $('#moduleDirective').text(mod.directive);
@@ -53,7 +53,10 @@ var RpnModule = (function () {
             RpnMarkerModule.init(mod,mainContent);
         }else if(mod.type=='mqc'){
             RpnMqcModule.init(mod,mainContent);
+        }else if(mod.type=='gapsimple'){
+            RpnGapSimpleModule.init(mod,mainContent);
         }
+
     };
     
     var handleEndOfModule = function(res,correctionFct){
@@ -203,6 +206,58 @@ var RpnMqcModule = (function() {
     
     var bindUiEvents = function(){
         validationButton.click(function(){
+            RpnModule.handleEndOfModule(responses,function(res,sol){
+                var score=0;
+                _.each(sol,function(val,idx){
+                    score+=res[idx]==val?1:0;
+                });
+                return score;
+            });
+        });
+    }
+
+    return {
+        init:init
+    };
+
+})();
+
+//gapsimple
+var RpnGapSimpleModule = (function() {
+    var datas;
+    var domelem;
+    var validationButton;
+    var responses;
+    var init = function(_datas,_domelem){
+        datas=_datas;
+        domelem=_domelem;
+        responses=[];
+        buildUi();
+    };
+
+    var buildUi = function (){
+        //build marker toolbar
+        domelem.addClass('rpnmodule_gapsimple');
+
+        //build panel with sentences
+        domelem.append($('<div id="sentences" class="form-inline">'+datas.tofill+'</div>'));
+        $.each($('#sentences b'),function(idx,tofill){
+            responses[idx]=-1; //initialize all responses to unmark
+            var t=$(tofill);
+            t.replaceWith($('<input type="text" id="'+idx+'" class="gapsimple form-control"> <strong>('+t.text()+')</strong>'));
+        });
+        //build validation button
+        validationButton=$('<button>',{'class':'btn btn-primary',text:'Valider'}).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
+        domelem.append(validationButton);
+
+        bindUiEvents();
+    };
+
+    var bindUiEvents = function(){
+        validationButton.click(function(){
+            $.each($('.gapsimple'),function(idx,gap){
+                responses[idx]=$(gap).val();
+            });
             RpnModule.handleEndOfModule(responses,function(res,sol){
                 var score=0;
                 _.each(sol,function(val,idx){

@@ -4,7 +4,6 @@
 .rpnmodule_marker marker-danger{
     background-color: #d9534f;
 }
-
 .rpnmodule_marker .marker-primary{
     background-color: #428bca;
 }
@@ -23,3 +22,7 @@
 .rpnmodule_mqc{
     font-size:20px;
 }
+.rpnmodule_gapsimple{
+    font-size:20px;
+}
+
