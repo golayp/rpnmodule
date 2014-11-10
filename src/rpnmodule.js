@@ -43,7 +43,7 @@ var RpnModule = (function () {
 
     var displayCurrentModule=function(){
         var mod=sequencedatas.modules[currentmod];
-        mainContent.removeClass();
+        mainContent.removeClass().addClass('col-md-12');
         mainContent.empty();
         $('#moduleTitle').text(mod.title);
         $('#moduleContext').text(mod.context);
@@ -178,7 +178,7 @@ var RpnMqcModule = (function() {
         domelem.addClass('rpnmodule_mqc');
 
         //build panel with sentences
-        var uilist=$('<ul>');
+        var uilist=$('<ul>',{'class':'list-unstyled'});
         $.each(datas.questions,function(idq,question){
             responses[idq]=-1; //initialize all responses to uncheck
             var li=$('<li>');
