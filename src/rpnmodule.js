@@ -13,12 +13,12 @@ var RpnModule = (function () {
     var warnexit;
 
     var init = function (opts) {
-        _.defaults(opts,{modurl:"seq.json",solurl:"sol.json",mediaurl:"medias",returnurl:"../",warnonexit:false});
+        _.defaults(opts,{sequrl:"seq.json",solurl:"sol.json",mediaurl:"medias",returnurl:"../",warnonexit:false});
         responses=[];
         warnexit=opts.warnonexit;
         backurl=opts.returnurl;
         solurl=opts.solurl;
-        $.getJSON(opts.modurl,function(datas){
+        $.getJSON(opts.sequrl,function(datas){
             sequencedatas=datas;
             currentmod=0;
             buildUi();
@@ -51,6 +51,8 @@ var RpnModule = (function () {
         $('#waitModal').modal('hide');
         if(mod.type=='marker'){
             RpnMarkerModule.init(mod,mainContent);
+        }else if(mod.type=='mqc'){
+            RpnMqcModule.init(mod,mainContent);
         }
     };
     
@@ -90,7 +92,7 @@ var RpnModule = (function () {
 
 })();
 
-
+//marker module
 var RpnMarkerModule = (function() {
     var datas;
     var domelem;
@@ -107,7 +109,7 @@ var RpnMarkerModule = (function() {
 
     var buildUi = function (){
         //build marker toolbar
-        domelem.addClass('marker');
+        domelem.addClass('rpnmodule_marker');
         var toolbar=$('<div>',{'class':'btn-group'});
         var availableColors=_.shuffle(['primary','success','info','warning','danger']);
         toolbar.append($('<button class="btn btn-default"><i class="glyphicon glyphicon-pencil"></i> Eraser</button>').click(function(){
@@ -134,7 +136,66 @@ var RpnMarkerModule = (function() {
             });
         });
         //build validation button
-        validationButton=$('<button>',{'class':'btn btn-primary',text:'Valider'})
+        validationButton=$('<button>',{'class':'btn btn-primary',text:'Valider'}).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
+        domelem.append(validationButton);
+
+        bindUiEvents();
+    };
+
+    var bindUiEvents = function(){
+        validationButton.click(function(){
+            RpnModule.handleEndOfModule(responses,function(res,sol){
+                var score=0;
+                _.each(sol,function(val,idx){
+                    score+=res[idx]==val?1:0;
+                });
+                return score;
+            });
+        });
+    }
+
+    return {
+        init:init
+    };
+
+})();
+
+//mqc module
+var RpnMqcModule = (function() {
+    var datas;
+    var domelem;
+    var validationButton;
+    var responses;
+    var init = function(_datas,_domelem){
+        datas=_datas;
+        domelem=_domelem;
+        responses=[];
+        buildUi();
+    };
+
+    var buildUi = function (){
+        //build marker toolbar
+        domelem.addClass('rpnmodule_mqc');
+
+        //build panel with sentences
+        var uilist=$('<ul>');
+        $.each(datas.questions,function(idq,question){
+            responses[idq]=-1; //initialize all responses to uncheck
+            var li=$('<li>');
+            li.append($('<p>'+question.label+'</p>'));
+            var answerGroup=$('<div class="btn-group" data-toggle="buttons">');
+            $.each(datas.answers,function(ida,answer){
+                answerGroup.append($('<label class="btn btn-default"><input type="radio" name="question_'+idq+'" id="answer_'+idq+'_'+ida+'" autocomplete="off">' +answer.label+'</label>').click(function(){
+                    responses[idq]=ida;
+                }));
+                li.append(answerGroup);
+            });
+            uilist.append(li);
+        });
+        domelem.append(uilist);
+
+        //build validation button
+        validationButton=$('<button>',{'class':'btn btn-primary',text:' Valider'}).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
         domelem.append(validationButton);
         
         bindUiEvents();

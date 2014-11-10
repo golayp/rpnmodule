@@ -4,8 +4,56 @@
         {
             "type":"mqc",
             "title":"a mqc module",
-            "context":"",
-            "directive":"do this"
+            "context":"context",
+            "directive":"do this",
+            "questions":[
+                {
+                    "val":0,
+                    "label" : "Why <strong>doing</strong> this ?"
+                },
+                {
+                    "val":1,
+                    "label" : "Who <i>is</i> it ?"
+                },
+                {
+                    "val":2,
+                    "label" : "When <u>or</u> what ?"
+                },
+                {
+                    "val":3,
+                    "label" : "What ?"
+                },
+                {
+                    "val":4,
+                    "label" : "Where ?"
+                },
+                {
+                    "val":5,
+                    "label" : "How ?"
+                },
+                {
+                    "val":6,
+                    "label" : "Which ?"
+                },
+                {
+                    "val":7,
+                    "label" : "Whose ?"
+                }
+            ],
+            "answers":[
+                {
+                    "val":0,
+                    "label":"Yes"
+                },
+                {
+                    "val":1,
+                    "label":"No"
+                },
+                {
+                    "val":2,
+                    "label":"Maybe"
+                }
+            ]
         }
     ]
 }

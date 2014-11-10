@@ -5,7 +5,7 @@
         {
             "type":"marker",
             "title":"a marker module",
-            "context":"",
+            "context":"context",
             "directive":"try to mark words",
             "markers":[
                 {
@@ -26,7 +26,7 @@
          {
             "type":"marker",
             "title":"a second marker module",
-            "context":"",
+            "context":"context",
             "directive":"try to mark words",
             "markers":[
                 {

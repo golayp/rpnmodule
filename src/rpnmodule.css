@@ -1,22 +1,25 @@
-.marker{
+.rpnmodule_marker{
     font-size:20px;
 }
-.marker marker-danger{
+.rpnmodule_marker marker-danger{
     background-color: #d9534f;
 }
 
-.marker .marker-primary{
+.rpnmodule_marker .marker-primary{
     background-color: #428bca;
 }
-.marker .marker-success{
+.rpnmodule_marker .marker-success{
     background-color: #5cb85c;
 }
-.marker .marker-info{
+.rpnmodule_marker .marker-info{
     background-color: #5bc0de;
 }
-.marker .marker-warning{
+.rpnmodule_marker .marker-warning{
     background-color: #f0ad4e;
 }
-.marker .marker-danger{
+.rpnmodule_marker .marker-danger{
     background-color: #d9534f;
+}
+
+.rpnmodule_mqc{
 }
