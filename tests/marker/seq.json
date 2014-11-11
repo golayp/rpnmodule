@@ -5,7 +5,7 @@
         {
             "type":"marker",
             "title":"a marker module",
-            "context":"context",
+
             "directive":"try to mark words",
             "markers":[
                 {

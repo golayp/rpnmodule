@@ -45,9 +45,9 @@ var RpnModule = (function () {
         var mod=sequencedatas.modules[currentmod];
         mainContent.empty();
         mainContent.removeClass().addClass('col-md-12');
-        $('#moduleTitle').text(mod.title);
-        $('#moduleContext').text(mod.context);
-        $('#moduleDirective').text(mod.directive);
+        _.isUndefined(mod.title)?$('#moduleTitle').hide():$('#moduleTitle').show().text(mod.title);
+        _.isUndefined(mod.context)?$('#moduleContext').hide():$('#moduleContext').show().text(mod.context);
+        _.isUndefined(mod.directive)?$('#moduleDirective').hide():$('#moduleDirective').show().text(mod.directive);
         $('#waitModal').modal('hide');
         if(mod.type=='marker'){
             RpnMarkerModule.init(mod,mainContent);
@@ -385,10 +385,10 @@ var RpnBlackBoxModule = (function() {
         domelem.append(blackboxwell);
 
         $.each(datas.left,function(idx,value){
-            blackboxwell.append($('<div class="row"><div class="col-xs-2"><span>'+value + '</span></div><div class="col-xs-2 blackbox-fct"><i class="glyphicon glyphicon-minus"></i> ('+datas.fct+') <i class="glyphicon glyphicon-arrow-right"></i></div><div class="col-xs-2"><input type="text" id="'+idx+'" class="rpnmodule-input blackbox-left form-control"></div></div>'));
+            blackboxwell.append($('<div class="row"><div class="col-xs-2"><span>'+value + '</span></div><div class="col-xs-2 blackbox-fct"><i class="glyphicon glyphicon-minus"></i> ('+datas.fct+') <i class="glyphicon glyphicon-arrow-right"></i></div><div class="col-xs-2"><input type="text" id="'+idx+'" class="rpnmodule-input blackbox-left form-control" style="text-align: center;"></div></div>'));
         });
          $.each(datas.right,function(idx,value){
-            blackboxwell.append($('<div class="row"><div class="col-xs-2"><input type="text" id="'+idx+'" class="rpnmodule-input blackbox-right form-control"></div><div class="col-xs-2 blackbox-fct"><i class="glyphicon glyphicon-minus"></i> ('+datas.fct+') <i class="glyphicon glyphicon-arrow-right"></i></div><div class="col-xs-2"><span>'+value + '</span></div></div>'));
+            blackboxwell.append($('<div class="row"><div class="col-xs-2"><input type="text" id="'+idx+'" class="rpnmodule-input blackbox-right form-control" style="text-align: center;"></div><div class="col-xs-2 blackbox-fct"><i class="glyphicon glyphicon-minus"></i> ('+datas.fct+') <i class="glyphicon glyphicon-arrow-right"></i></div><div class="col-xs-2"><span>'+value + '</span></div></div>'));
         });
 
         //build validation button
@@ -426,8 +426,8 @@ var RpnBlackBoxModule = (function() {
 })();
 
 
-
-function ClockSelector ( e, params ) {
+function ClockSelector ( e, params )
+{
 	var defaults = {
 		auto_dt:       1000,
 		automate:      true,
@@ -441,10 +441,10 @@ function ClockSelector ( e, params ) {
 		draw_second:   null,
 		highlight:     '#f93',
 		manual:        true,
-		stroke_border: 5,
-		stroke_hour:   5,
-		stroke_minute: 4,
-		scale_hour:    0.40,
+		stroke_border: 3,
+		stroke_hour:   2,
+		stroke_minute: 0.75,
+		scale_hour:    0.50,
 		scale_border:  0.80,
 		scale_minute:  0.65
 	};
@@ -726,6 +726,5 @@ function ClockSelector ( e, params ) {
 
 	this.reset();
 }
-
 
 
