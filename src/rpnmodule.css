@@ -41,4 +41,11 @@
     height:400px;
 }
 
+.rpnmodule_blackbox .blackbox{
+    text-align: center;
+}
+.rpnmodule_blackbox .blackbox-fct{
+    white-space: nowrap;
+}
+
 
