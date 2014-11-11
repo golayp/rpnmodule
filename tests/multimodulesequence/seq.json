@@ -1,0 +1,138 @@
+{
+    "title":"modulesequence",
+    "modules":[
+        {
+            "type":"mqc",
+            "title":"a mqc module",
+            "context":"context",
+            "directive":"do this",
+            "questions":[
+                {
+                    "val":0,
+                    "label" : "Why <strong>doing</strong> this ?"
+                },
+                {
+                    "val":1,
+                    "label" : "Who <i>is</i> it ?"
+                },
+                {
+                    "val":2,
+                    "label" : "When <u>or</u> what ?"
+                },
+                {
+                    "val":3,
+                    "label" : "What ?"
+                },
+                {
+                    "val":4,
+                    "label" : "Where ?"
+                },
+                {
+                    "val":5,
+                    "label" : "How ?"
+                },
+                {
+                    "val":6,
+                    "label" : "Which ?"
+                },
+                {
+                    "val":7,
+                    "label" : "Whose ?"
+                }
+            ],
+            "answers":[
+                {
+                    "val":0,
+                    "label":"Yes"
+                },
+                {
+                    "val":1,
+                    "label":"No"
+                },
+                {
+                    "val":2,
+                    "label":"Maybe"
+                }
+            ]
+        },
+         {
+            "type":"marker",
+            "title":"a marker module",
+            "context":"context",
+            "directive":"try to mark words",
+            "markers":[
+                {
+                    "val":0,
+                    "label":"marker1"
+                },
+                {
+                    "val":1,
+                    "label":"marker2"
+                },
+                {
+                    "val":2,
+                    "label":"marker3"
+                }
+            ],
+            "tomark":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <b>Etiam</b> rutrum convallis maximus. Nulla faucibus mi ante, sed efficitur mi <b>ultrices</b> vel.</p><p>Class aptent taciti sociosqu ad litora torquent per <b>conubia</b> nostra, per inceptos himenaeos. Maecenas sem sapien, dictum lobortis malesuada at, pulvinar ac tortor. Donec vitae quam massa. Mauris eu ante nibh. Donec eu dapibus est, id vestibulum urna. Suspendisse eu arcu neque. Mauris sed placerat orci, vel lobortis augue.</p><p>Suspendisse nisi tellus, finibus sit amet rutrum et, molestie quis dolor. Duis pretium ipsum eu sem <b>lobortis</b>, eget varius urna sagittis.</p><p><b>Etiam</b> et dolor sit amet quam finibus faucibus ac porttitor dui. Vestibulum et erat ac nulla cursus gravida et a dui. Nunc egestas purus dui, ac lobortis turpis rhoncus a. Sed ac accumsan eros. Vivamus eget vestibulum augue, vel lacinia orci. Duis vitae leo vel dolor lacinia volutpat fermentum et leo. Sed ac efficitur tellus. Quisque eget commodo ligula.</p><p>In mollis convallis turpis, sit amet luctus purus tempor a. Integer vel convallis arcu, porttitor laoreet mauris. Sed porttitor pharetra purus nec sagittis. Curabitur ac purus finibus, blandit lectus ac, laoreet est. Ut lobortis nisl sit amet <b>fringilla</b> gravida. Donec arcu lectus, porttitor sed vestibulum vitae, vestibulum ut justo. Duis maximus viverra risus, ac finibus enim pellentesque ac. Cras interdum posuere orci, ut ultricies elit ullamcorper ut.</p>"
+        },
+        {
+            "type":"marker",
+            "title":"a second marker module",
+            "context":"context",
+            "directive":"try to mark words",
+            "markers":[
+                {
+                    "val":0,
+                    "label":"marker4"
+                },
+                {
+                    "val":1,
+                    "label":"marker5"
+                },
+                {
+                    "val":2,
+                    "label":"marker6"
+                }
+            ],
+            "tomark":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <b>Etiam</b> rutrum convallis maximus. Nulla faucibus mi ante, sed efficitur mi <b>ultrices</b> vel.</p><p>Class aptent taciti sociosqu ad litora torquent per <b>conubia</b> nostra, per inceptos himenaeos. Maecenas sem sapien, dictum lobortis malesuada at, pulvinar ac tortor. Donec vitae quam massa. Mauris eu ante nibh. Donec eu dapibus est, id vestibulum urna. Suspendisse eu arcu neque. Mauris sed placerat orci, vel lobortis augue.</p><p>Suspendisse nisi tellus, finibus sit amet rutrum et, molestie quis dolor. Duis pretium ipsum eu sem <b>lobortis</b>, eget varius urna sagittis.</p><p><b>Etiam</b> et dolor sit amet quam finibus faucibus ac porttitor dui. Vestibulum et erat ac nulla cursus gravida et a dui. Nunc egestas purus dui, ac lobortis turpis rhoncus a. Sed ac accumsan eros. Vivamus eget vestibulum augue, vel lacinia orci. Duis vitae leo vel dolor lacinia volutpat fermentum et leo. Sed ac efficitur tellus. Quisque eget commodo ligula.</p><p>In mollis convallis turpis, sit amet luctus purus tempor a. Integer vel convallis arcu, porttitor laoreet mauris. Sed porttitor pharetra purus nec sagittis. Curabitur ac purus finibus, blandit lectus ac, laoreet est. Ut lobortis nisl sit amet <b>fringilla</b> gravida. Donec arcu lectus, porttitor sed vestibulum vitae, vestibulum ut justo. Duis maximus viverra risus, ac finibus enim pellentesque ac. Cras interdum posuere orci, ut ultricies elit ullamcorper ut.</p>"
+        },
+        {
+            "type":"gapsimple",
+            "title":"a gapsimple module",
+            "context":"",
+            "directive":"do this",
+            "tofill":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <b>Etiam</b> rutrum convallis maximus. Nulla faucibus mi ante, sed efficitur mi <b>ultrices</b> vel.</p><p>Class aptent taciti sociosqu ad litora torquent per <b>conubia</b> nostra, per inceptos himenaeos. Maecenas sem sapien, dictum lobortis malesuada at, pulvinar ac tortor. Donec vitae quam massa. Mauris eu ante nibh. Donec eu dapibus est, id vestibulum urna. Suspendisse eu arcu neque. Mauris sed placerat orci, vel lobortis augue.</p><p>Suspendisse nisi tellus, finibus sit amet rutrum et, molestie quis dolor. Duis pretium ipsum eu sem <b>lobortis</b>, eget varius urna sagittis.</p><p><b>Etiam</b> et dolor sit amet quam finibus faucibus ac porttitor dui. Vestibulum et erat ac nulla cursus gravida et a dui. Nunc egestas purus dui, ac lobortis turpis rhoncus a. Sed ac accumsan eros. Vivamus eget vestibulum augue, vel lacinia orci. Duis vitae leo vel dolor lacinia volutpat fermentum et leo. Sed ac efficitur tellus. Quisque eget commodo ligula.</p><p>In mollis convallis turpis, sit amet luctus purus tempor a. Integer vel convallis arcu, porttitor laoreet mauris. Sed porttitor pharetra purus nec sagittis. Curabitur ac purus finibus, blandit lectus ac, laoreet est. Ut lobortis nisl sit amet <b>fringilla</b> gravida. Donec arcu lectus, porttitor sed vestibulum vitae, vestibulum ut justo. Duis maximus viverra risus, ac finibus enim pellentesque ac. Cras interdum posuere orci, ut ultricies elit ullamcorper ut.</p>"
+        },
+        {
+            "type":"gapfull",
+            "title":"a first gapfull module",
+            "context":"",
+            "directive":"Replace bad with good and adapt sentence.",
+            "sentence":"A \"bad\" job."
+        },
+        {
+            "type":"gapfull",
+            "title":"a second gapfull module",
+            "context":"",
+            "directive":"Replace small with big and adapt sentence.",
+            "sentence":"The small mountain."
+        },
+        {
+            "type":"clock",
+            "title":"a clock module",
+            "context":"",
+            "directive":"do this"
+        },
+        {
+            "type":"blackbox",
+            "title":"a blackbox module",
+            "context":"test",
+            "directive":"fill in the black box below",
+            "fct":"x8",
+            "left":[5,10,6,11],
+            "right":[56,72,32]
+        }
+
+    ]
+}
