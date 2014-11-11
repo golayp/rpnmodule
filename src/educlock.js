@@ -1,3 +1,6 @@
+$(document).ready(function(){
+	EduClock.init({},$('body'));
+});
 var EduClock = (function() {
 
     var domelem;
@@ -33,261 +36,439 @@ var EduClock = (function() {
     var buildUi = function (){
         //build canvas
         var size=Math.min( domelem.width, domelem.height );
-        canvas=$('<canvas>',{width:size,height:size});
+        canvas=$('<canvas>').width(500).height(500);
         domelem.append(canvas);
         canvas.css('background-color',opts.background);
-        context=canvas.getContext( '2d' );
+        context=canvas[0].getContext( '2d' );
+        drawClockBackground();
         bindUiEvents();
     };
+    
+    var drawClockBackground= function(){
+    	
+			context.save();
+			context.beginPath();
+			context.moveTo(0,0);
+			context.lineTo(430.71875,0);
+			context.lineTo(430.71875,430.71875);
+			context.lineTo(0,430.71875);
+			context.closePath();
+			context.clip();
+			context.strokeStyle = 'rgba(0,0,0,0)';
+			context.lineCap = 'butt';
+			context.lineJoin = 'miter';
+			context.miterLimit = 4;
+			context.save();
+			context.restore();
+			context.save();
+			context.restore();
+			context.save();
+			context.translate(-189.65625,-249.875);
+			context.save();
+			context.fillStyle = "#000000";
+			context.strokeStyle = "rgba(0, 0, 0, 0)";
+			context.beginPath();
+			context.moveTo(395.71875,249.875);
+			context.lineTo(395.71875,300.9375);
+			context.lineTo(414.3125,300.9375);
+			context.lineTo(414.3125,249.875);
+			context.lineTo(406.5625,249.875);
+			context.lineTo(403.4375,249.875);
+			context.lineTo(395.71875,249.875);
+			context.closePath();
+			context.moveTo(384.03125,250.875);
+			context.lineTo(380.9375,251.21875);
+			context.lineTo(383.25,273.34375);
+			context.lineTo(386.375,273.03125);
+			context.lineTo(384.03125,250.875);
+			context.closePath();
+			context.moveTo(425.96875,250.875);
+			context.lineTo(423.625,273.03125);
+			context.lineTo(426.75,273.34375);
+			context.lineTo(429.0625,251.21875);
+			context.lineTo(425.96875,250.875);
+			context.closePath();
+			context.moveTo(361.75,254.25);
+			context.lineTo(358.6875,254.90625);
+			context.lineTo(363.34375,276.6875);
+			context.lineTo(366.375,276.03125);
+			context.lineTo(361.75,254.25);
+			context.closePath();
+			context.moveTo(448.25,254.25);
+			context.lineTo(443.625,276.03125);
+			context.lineTo(446.6875,276.6875);
+			context.lineTo(451.3125,254.90625);
+			context.lineTo(448.25,254.25);
+			context.closePath();
+			context.moveTo(339.9375,259.90625);
+			context.lineTo(336.96875,260.875);
+			context.lineTo(343.84375,282.0625);
+			context.lineTo(346.8125,281.09375);
+			context.lineTo(339.9375,259.90625);
+			context.closePath();
+			context.moveTo(470.0625,259.90625);
+			context.lineTo(463.1875,281.09375);
+			context.lineTo(466.15625,282.0625);
+			context.lineTo(473.03125,260.875);
+			context.lineTo(470.0625,259.90625);
+			context.closePath();
+			context.moveTo(318.84375,267.84375);
+			context.lineTo(315.96875,269.125);
+			context.lineTo(325.03125,289.46875);
+			context.lineTo(327.90625,288.1875);
+			context.lineTo(318.84375,267.84375);
+			context.closePath();
+			context.moveTo(491.15625,267.84375);
+			context.lineTo(482.125,288.1875);
+			context.lineTo(484.96875,289.46875);
+			context.lineTo(494.03125,269.125);
+			context.lineTo(491.15625,267.84375);
+			context.closePath();
+			context.moveTo(301.65625,276.21875);
+			context.lineTo(298.6875,277.9375);
+			context.lineTo(295.96875,279.5);
+			context.lineTo(292.96875,281.21875);
+			context.lineTo(318.5,325.4375);
+			context.lineTo(327.1875,320.4375);
+			context.lineTo(301.65625,276.21875);
+			context.closePath();
+			context.moveTo(508.34375,276.21875);
+			context.lineTo(482.8125,320.4375);
+			context.lineTo(491.5,325.4375);
+			context.lineTo(517.03125,281.21875);
+			context.lineTo(514.03125,279.5);
+			context.lineTo(512.6875,278.71875);
+			context.lineTo(508.34375,276.21875);
+			context.closePath();
+			context.moveTo(279.6875,290.0625);
+			context.lineTo(277.15625,291.90625);
+			context.lineTo(290.25,309.9375);
+			context.lineTo(292.78125,308.09375);
+			context.lineTo(279.6875,290.0625);
+			context.closePath();
+			context.moveTo(530.3125,290.0625);
+			context.lineTo(517.21875,308.09375);
+			context.lineTo(519.75,309.9375);
+			context.lineTo(532.84375,291.90625);
+			context.lineTo(530.3125,290.0625);
+			context.closePath();
+			context.moveTo(262.0625,304.125);
+			context.lineTo(259.75,306.21875);
+			context.lineTo(274.625,322.78125);
+			context.lineTo(276.96875,320.6875);
+			context.lineTo(262.0625,304.125);
+			context.closePath();
+			context.moveTo(547.9375,304.125);
+			context.lineTo(533.03125,320.6875);
+			context.lineTo(535.375,322.78125);
+			context.lineTo(550.28125,306.21875);
+			context.lineTo(547.9375,304.125);
+			context.closePath();
+			context.moveTo(246,319.96875);
+			context.lineTo(243.90625,322.28125);
+			context.lineTo(260.46875,337.1875);
+			context.lineTo(262.5625,334.84375);
+			context.lineTo(246,319.96875);
+			context.closePath();
+			context.moveTo(564,319.96875);
+			context.lineTo(547.4375,334.84375);
+			context.lineTo(549.53125,337.1875);
+			context.lineTo(566.09375,322.28125);
+			context.lineTo(564,319.96875);
+			context.closePath();
+			context.moveTo(231.6875,337.375);
+			context.lineTo(229.84375,339.90625);
+			context.lineTo(247.875,353);
+			context.lineTo(249.71875,350.46875);
+			context.lineTo(231.6875,337.375);
+			context.closePath();
+			context.moveTo(578.3125,337.375);
+			context.lineTo(560.28125,350.46875);
+			context.lineTo(562.125,353);
+			context.lineTo(580.15625,339.90625);
+			context.lineTo(578.3125,337.375);
+			context.closePath();
+			context.moveTo(221,353.1875);
+			context.lineTo(219.28125,356.1875);
+			context.lineTo(217.71875,358.90625);
+			context.lineTo(216,361.875);
+			context.lineTo(260.21875,387.40625);
+			context.lineTo(265.21875,378.71875);
+			context.lineTo(221,353.1875);
+			context.closePath();
+			context.moveTo(589,353.1875);
+			context.lineTo(544.78125,378.71875);
+			context.lineTo(549.78125,387.40625);
+			context.lineTo(594,361.875);
+			context.lineTo(592.28125,358.90625);
+			context.lineTo(590.71875,356.1875);
+			context.lineTo(589,353.1875);
+			context.closePath();
+			context.moveTo(208.90625,376.1875);
+			context.lineTo(207.625,379.0625);
+			context.lineTo(227.96875,388.125);
+			context.lineTo(229.25,385.25);
+			context.lineTo(208.90625,376.1875);
+			context.closePath();
+			context.moveTo(601.09375,376.1875);
+			context.lineTo(580.75,385.25);
+			context.lineTo(582.03125,388.125);
+			context.lineTo(602.375,379.0625);
+			context.lineTo(601.09375,376.1875);
+			context.closePath();
+			context.moveTo(200.65625,397.1875);
+			context.lineTo(199.6875,400.15625);
+			context.lineTo(220.875,407.03125);
+			context.lineTo(221.84375,404.0625);
+			context.lineTo(200.65625,397.1875);
+			context.closePath();
+			context.moveTo(609.34375,397.1875);
+			context.lineTo(588.15625,404.0625);
+			context.lineTo(589.125,407.03125);
+			context.lineTo(610.3125,400.15625);
+			context.lineTo(609.34375,397.1875);
+			context.closePath();
+			context.moveTo(194.6875,418.90625);
+			context.lineTo(194.03125,421.96875);
+			context.lineTo(215.8125,426.59375);
+			context.lineTo(216.46875,423.5625);
+			context.lineTo(194.6875,418.90625);
+			context.closePath();
+			context.moveTo(615.34375,418.90625);
+			context.lineTo(593.53125,423.5625);
+			context.lineTo(594.1875,426.59375);
+			context.lineTo(615.96875,421.96875);
+			context.lineTo(615.34375,418.90625);
+			context.closePath();
+			context.moveTo(191,441.15625);
+			context.lineTo(190.65625,444.25);
+			context.lineTo(212.8125,446.59375);
+			context.lineTo(213.125,443.46875);
+			context.lineTo(191,441.15625);
+			context.closePath();
+			context.moveTo(619.03125,441.15625);
+			context.lineTo(596.875,443.46875);
+			context.lineTo(597.1875,446.59375);
+			context.lineTo(619.34375,444.25);
+			context.lineTo(619.03125,441.15625);
+			context.closePath();
+			context.moveTo(189.65625,455.9375);
+			context.lineTo(189.65625,463.65625);
+			context.lineTo(189.65625,466.78125);
+			context.lineTo(189.65625,474.53125);
+			context.lineTo(240.71875,474.53125);
+			context.lineTo(240.71875,455.9375);
+			context.lineTo(189.65625,455.9375);
+			context.closePath();
+			context.moveTo(569.3125,455.9375);
+			context.lineTo(569.3125,474.53125);
+			context.lineTo(620.375,474.53125);
+			context.lineTo(620.375,466.78125);
+			context.lineTo(620.375,463.65625);
+			context.lineTo(620.375,455.9375);
+			context.lineTo(569.3125,455.9375);
+			context.closePath();
+			context.moveTo(212.8125,483.84375);
+			context.lineTo(190.65625,486.1875);
+			context.lineTo(191,489.28125);
+			context.lineTo(213.125,486.96875);
+			context.lineTo(212.8125,483.84375);
+			context.closePath();
+			context.moveTo(597.1875,483.84375);
+			context.lineTo(596.875,486.96875);
+			context.lineTo(619.03125,489.28125);
+			context.lineTo(619.34375,486.1875);
+			context.lineTo(597.1875,483.84375);
+			context.closePath();
+			context.moveTo(215.8125,503.84375);
+			context.lineTo(194.03125,508.46875);
+			context.lineTo(194.6875,511.53125);
+			context.lineTo(216.46875,506.90625);
+			context.lineTo(215.8125,503.84375);
+			context.closePath();
+			context.moveTo(594.1875,503.84375);
+			context.lineTo(593.53125,506.90625);
+			context.lineTo(615.34375,511.53125);
+			context.lineTo(615.96875,508.46875);
+			context.lineTo(594.1875,503.84375);
+			context.closePath();
+			context.moveTo(220.875,523.40625);
+			context.lineTo(199.6875,530.28125);
+			context.lineTo(200.65625,533.25);
+			context.lineTo(221.84375,526.375);
+			context.lineTo(220.875,523.40625);
+			context.closePath();
+			context.moveTo(589.125,523.40625);
+			context.lineTo(588.15625,526.375);
+			context.lineTo(609.34375,533.25);
+			context.lineTo(610.3125,530.28125);
+			context.lineTo(589.125,523.40625);
+			context.closePath();
+			context.moveTo(227.96875,542.34375);
+			context.lineTo(207.625,551.375);
+			context.lineTo(208.90625,554.25);
+			context.lineTo(229.25,545.1875);
+			context.lineTo(227.96875,542.34375);
+			context.closePath();
+			context.moveTo(582.03125,542.34375);
+			context.lineTo(580.75,545.1875);
+			context.lineTo(601.09375,554.25);
+			context.lineTo(602.375,551.375);
+			context.lineTo(582.03125,542.34375);
+			context.closePath();
+			context.moveTo(260.21875,543.03125);
+			context.lineTo(216,568.5625);
+			context.lineTo(217.71875,571.5625);
+			context.lineTo(219.28125,574.25);
+			context.lineTo(221,577.25);
+			context.lineTo(265.21875,551.71875);
+			context.lineTo(260.21875,543.03125);
+			context.closePath();
+			context.moveTo(549.78125,543.03125);
+			context.lineTo(544.78125,551.71875);
+			context.lineTo(589,577.25);
+			context.lineTo(590.71875,574.25);
+			context.lineTo(591.5,572.90625);
+			context.lineTo(594,568.5625);
+			context.lineTo(549.78125,543.03125);
+			context.closePath();
+			context.moveTo(247.875,577.4375);
+			context.lineTo(229.84375,590.53125);
+			context.lineTo(231.6875,593.0625);
+			context.lineTo(249.71875,579.96875);
+			context.lineTo(247.875,577.4375);
+			context.closePath();
+			context.moveTo(562.125,577.4375);
+			context.lineTo(560.28125,579.96875);
+			context.lineTo(578.3125,593.0625);
+			context.lineTo(580.15625,590.53125);
+			context.lineTo(562.125,577.4375);
+			context.closePath();
+			context.moveTo(260.46875,593.25);
+			context.lineTo(243.90625,608.15625);
+			context.lineTo(246,610.5);
+			context.lineTo(262.5625,595.59375);
+			context.lineTo(260.46875,593.25);
+			context.closePath();
+			context.moveTo(549.53125,593.25);
+			context.lineTo(547.4375,595.59375);
+			context.lineTo(564,610.5);
+			context.lineTo(566.09375,608.15625);
+			context.lineTo(549.53125,593.25);
+			context.closePath();
+			context.moveTo(318.5,605);
+			context.lineTo(292.96875,649.21875);
+			context.lineTo(295.96875,650.9375);
+			context.lineTo(298.6875,652.5);
+			context.lineTo(301.65625,654.21875);
+			context.lineTo(327.1875,610);
+			context.lineTo(318.5,605);
+			context.closePath();
+			context.moveTo(491.5,605);
+			context.lineTo(482.8125,610);
+			context.lineTo(508.34375,654.21875);
+			context.lineTo(512.6875,651.71875);
+			context.lineTo(514.03125,650.9375);
+			context.lineTo(517.03125,649.21875);
+			context.lineTo(491.5,605);
+			context.closePath();
+			context.moveTo(274.625,607.65625);
+			context.lineTo(259.75,624.21875);
+			context.lineTo(262.0625,626.3125);
+			context.lineTo(276.96875,609.75);
+			context.lineTo(274.625,607.65625);
+			context.closePath();
+			context.moveTo(535.375,607.65625);
+			context.lineTo(533.03125,609.75);
+			context.lineTo(547.9375,626.3125);
+			context.lineTo(550.28125,624.21875);
+			context.lineTo(535.375,607.65625);
+			context.closePath();
+			context.moveTo(290.25,620.5);
+			context.lineTo(277.15625,638.53125);
+			context.lineTo(279.6875,640.375);
+			context.lineTo(292.78125,622.34375);
+			context.lineTo(290.25,620.5);
+			context.closePath();
+			context.moveTo(519.75,620.5);
+			context.lineTo(517.21875,622.34375);
+			context.lineTo(530.3125,640.375);
+			context.lineTo(532.84375,638.53125);
+			context.lineTo(519.75,620.5);
+			context.closePath();
+			context.moveTo(395.71875,629.53125);
+			context.lineTo(395.71875,680.59375);
+			context.lineTo(414.3125,680.59375);
+			context.lineTo(414.3125,629.53125);
+			context.lineTo(395.71875,629.53125);
+			context.closePath();
+			context.moveTo(325.03125,640.96875);
+			context.lineTo(315.96875,661.3125);
+			context.lineTo(318.84375,662.59375);
+			context.lineTo(327.90625,642.25);
+			context.lineTo(325.03125,640.96875);
+			context.closePath();
+			context.moveTo(484.96875,640.96875);
+			context.lineTo(482.125,642.25);
+			context.lineTo(491.15625,662.59375);
+			context.lineTo(494.03125,661.3125);
+			context.lineTo(484.96875,640.96875);
+			context.closePath();
+			context.moveTo(343.84375,648.375);
+			context.lineTo(336.96875,669.5625);
+			context.lineTo(339.9375,670.53125);
+			context.lineTo(346.8125,649.34375);
+			context.lineTo(343.84375,648.375);
+			context.closePath();
+			context.moveTo(466.15625,648.375);
+			context.lineTo(463.1875,649.34375);
+			context.lineTo(470.0625,670.53125);
+			context.lineTo(473.03125,669.5625);
+			context.lineTo(466.15625,648.375);
+			context.closePath();
+			context.moveTo(363.34375,653.75);
+			context.lineTo(358.6875,675.5625);
+			context.lineTo(361.75,676.1875);
+			context.lineTo(366.375,654.40625);
+			context.lineTo(363.34375,653.75);
+			context.closePath();
+			context.moveTo(446.6875,653.75);
+			context.lineTo(443.625,654.40625);
+			context.lineTo(448.25,676.1875);
+			context.lineTo(451.3125,675.5625);
+			context.lineTo(446.6875,653.75);
+			context.closePath();
+			context.moveTo(383.25,657.09375);
+			context.lineTo(380.9375,679.25);
+			context.lineTo(384.03125,679.5625);
+			context.lineTo(386.375,657.40625);
+			context.lineTo(383.25,657.09375);
+			context.closePath();
+			context.moveTo(426.75,657.09375);
+			context.lineTo(423.625,657.40625);
+			context.lineTo(425.96875,679.5625);
+			context.lineTo(429.0625,679.25);
+			context.lineTo(426.75,657.09375);
+			context.closePath();
+			context.fill();
+			context.stroke();
+			context.restore();
+			context.restore();
+			context.restore();
+    };
 
-    var bindUiEvents() = function(){
-        canvas.on('mousedown',makeSetTime( false ));
-        canvas.on('mouseup',makeEndDrag());
-        canvas.on('mouseout',makeEndDrag());
-        canvas.on('mousemove',makeSetTime( true ));
+    var bindUiEvents = function(){
+        canvas.on('mousedown',function(){});
+        canvas.on('mouseup',function(){});
+        canvas.on('mouseout',function(){});
+        canvas.on('mousemove',function(){});
     };
 
 
-    var makeSetTime = function ( d ){
-		if ( !this.manual ) { return; }
-
-		var _ = this;
-		return function ()
-		{
-			var e = window.event;
-			var o = _.getCanvasOffset();
-			var x = e.pageX - o[0] - _.size / 2;
-			var y = _.size / 2 - ( e.pageY - o[1] );
-
-			if ( _.manual )
-			{
-				_.canvas.style.cursor = Math.sqrt( x * x + y * y ) <= ( _.size * _.scale_border + _.stroke_border ) / 2 ? 'pointer' : 'default';
-			}
-
-			if ( _.dragging != d )
-			{
-				if ( d && !_.dragging )
-				{
-					var T = Math.atan2( x, y );
-					var m = ( T + 2 * Math.PI ) * 30 / Math.PI;
-					var mb = [ ( m + 57.5 ) % 60, ( m + 2.5 ) % 60 ];
-
-					m = _.clockTime().getMinutes() + _.clockTime().getSeconds() / 60;
-					if ( Math.sqrt( x * x + y * y ) < _.size / 2 * _.scale_border && (
-					     ( mb[0] < m && m < mb[1] ) || ( m < mb[0] && mb[1] < mb[0] && m < mb[1] ) || ( mb[0] < m && mb[1] < m && mb[1] < mb[0] )
-					) )
-					{
-						if ( _.color_minute != _.highlight )
-						{
-							_.color_minute = _.highlight;
-							_.drag_minute  = true;
-							_.setTime( _.clockTime() );
-						}
-					}
-					else
-					{
-						if ( _.color_minute != _.color_mindef )
-						{
-							_.color_minute = _.color_mindef;
-							_.drag_minute  = false;
-							_.setTime( _.clockTime() );
-						}
-					}
-				}
-
-				return;
-			}
-
-			if ( !_.dragging && !d )
-			{
-				if ( _.timeout )
-				{
-					clearTimeout( _.timeout );
-					_.timeout = null;
-				}
-
-				_.dragging = true;
-			}
-
-			_.setTimeFromEvent( window.event );
-		};
-	};
+    
 
     return {
         init:init
     };
 
 })();
-function EduClock ( e, params ) {
-
-
-
-	EduClock.prototype.clockTime = function ()
-	{
-		return this.time;
-	}
-
-
-
-	EduClock.prototype.drawHand = function ( c, w, s )
-	{
-		var x = this.context;
-
-		x.strokeStyle = c;
-		x.fillStyle   = c;
-		x.lineWidth   = w;
-		x.beginPath();
-		x.moveTo( 0, 0 );
-		x.lineTo( 0, 100 * s );
-		x.closePath();
-		x.stroke();
-		x.arc( 0, 0, w / 2, 0, 2 * Math.PI );
-		x.fill();
-	};
-
-
-
-	EduClock.prototype.getCanvasOffset = function ()
-	{
-		var o = [ 0, 0 ];
-		var e = this.canvas;
-
-		while ( e.offsetParent )
-		{
-			o[0] += e.offsetLeft;
-			o[1] += e.offsetTop;
-			e = e.offsetParent;
-		}
-
-		return o;
-	};
-
-
-
-	EduClock.prototype.reset = function ()
-	{
-		this.setTime( new Date() );
-		if ( this.automate )
-		{
-			this.timeout = setInterval( this.setTimeRecurring(), this.auto_dt );
-		}
-	};
-
-
-
-	EduClock.prototype.setParam = function ( k, v )
-	{
-		if ( k in this ) { this[k] = v; }
-	}
-
-
-
-	EduClock.prototype.setTime = function ( t )
-	{
-		this.canvas.width = this.canvas.width;
-		this.time         = t;
-		t                 = t.getTime() / 1000 - t.getTimezoneOffset() * 60;
-
-		var x  = this.context;
-		var s  = this.size / 200;
-		var Ts = t % 60 / 30 * Math.PI;
-		var Tm = t % 3600 / 1800 * Math.PI;
-		var Th = t / ( 6 * 3600 ) * Math.PI;
-		this.setTransform( x, Ts, s );
-		if ( this.draw_second ) { var f = this.draw_second; f( x ); }
-		this.setTransform( x, Tm, s );
-		if ( this.draw_minute ) { var f = this.draw_minute; f( x ); } else { this.drawHand( this.color_minute, this.stroke_minute * 2, this.scale_minute ); }
-		this.setTransform( x, Th, s );
-		if ( this.draw_hour ) { var f = this.drawHour; f( x ); } else { this.drawHand( this.color_hour, this.stroke_hour * 2, this.scale_hour ); }
-
-		x.setTransform( s, 0, 0, s, 100 * s, 100 * s );
-		x.strokeStyle = this.color_border;
-		x.lineWidth   = this.stroke_border * 2;
-		x.beginPath();
-		x.arc( 0, 0, 100 * this.scale_border, 0, 2 * Math.PI );
-		x.stroke();
-		x.closePath();
-
-		if ( this.callback ) { this.callback( this ); }
-	};
-
-
-
-	EduClock.prototype.setTimeFromEvent = function ( e )
-	{
-		var o = this.getCanvasOffset();
-		var x = e.pageX - o[0] - this.size / 2;
-		var y = this.size / 2 - ( e.pageY - o[1] );
-
-		if ( x == 0 && y == 0 )
-		{
-			return;
-		}
-
-		var T  = Math.atan2( y, x );
-		var h, m;
-		if ( this.drag_minute )
-		{
-			var m1 = ( 75 - T * 30 / Math.PI ) % 60;
-			var m0 = this.time.getMinutes() + this.time.getSeconds() / 60;
-			h      = this.time.getHours();
-			m      = m1;
-
-			if ( m1 < m0 && m0 - m1 <= 30 ) { /**/ }
-			else if ( m1 < m0 && m0 - m1 > 30 ) { h += 1; }
-			else if ( m1 > m0 && m1 - m0 <= 30 ) { /**/ }
-			else if ( m1 > m0 && m1 - m0 > 30 ) { h -= 1; }
-			h = ( h + 24 ) % 24;
-		}
-		else
-		{
-			var h1 = 3 - T * 6 / Math.PI;
-			var h0 = this.time.getHours() + this.time.getMinutes() / 60 + this.time.getSeconds() / 3600;
-			h1    += h1 < h0 ? 24 : 0;
-
-			if ( h1 < h0 + 6 ) { h = h1; }
-			else if ( h1 < h0 + 12 ) { h = h1 - 12; }
-			else if ( h1 < h0 + 18 ) { h = h1 + 12; }
-			else { h = h1; }
-			h = ( h + 24 ) % 24;
-			m = ( ( ( 3 - T * 6 / Math.PI ) * 60 ) % 60 + 60 ) % 60;
-		}
-
-		var t = new Date();
-		t.setHours( h );
-		t.setMinutes( m );
-		t.setSeconds( ( ( ( 3 - T * 6 / Math.PI ) * 3600 ) % 60 + 60 ) % 60 );
-
-		this.setTime( t );
-	};
-
-
-
-	EduClock.prototype.setTimeRecurring = function ()
-	{
-		var _ = this;
-		return function () { _.setTime( new Date() ); };
-	};
-
-
-
-	EduClock.prototype.setTransform = function ( x, T, s )
-	{
-		x.setTransform( -s * Math.cos( T ), -s * Math.sin( T ), s * Math.sin( T ), -s * Math.cos( T ), 100 * s, 100 * s );
-	};
-
-
-
-	EduClock.prototype.makeEndDrag = function ()
-	{
-		var _ = this;
-		return function () { _.color_minute = _.color_mindef; _.dragging = false; _.setTime( _.clockTime() ); };
-	};
-
-
-
-
-
-
-	this.reset();
-}
