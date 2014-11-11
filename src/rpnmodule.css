@@ -37,4 +37,8 @@
 .rpnmodule_gapfull #sentences p{
     padding: 0px 12px;
 }
+.rpnmodule_clock #rpnclock{
+    height:400px;
+}
+
 
