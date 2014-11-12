@@ -1,474 +1,184 @@
 $(document).ready(function(){
-	EduClock.init({},$('body'));
+	EduClock.init({},$('#clock'));
+	//alert(EduClock.getCurrentTime().hour + ' '  + EduClock.getCurrentTime().minute);
 });
 var EduClock = (function() {
 
     var domelem;
     var opts;
-    var canvas;
-    var context;
-
+    var dialCanvas;
+    var handCanvas;
+    var changeState=false;
+    var size;
+    var ctxDial;
+    var ctxHands;
+    var radius;
+    var handradius;
+    var currentHours;
+    var currentMinutes;
+    var actuallyMoving;
+    var angleHour;
+    var angleMinutes;
+    
     var init = function(_opts,_domelem){
         _.defaults(_opts,{
-            automate:      true,
-            background:    'white',
-            callback:      function () {},
-            color_border:  '#fff',
-            color_hour:    '#fff',
-            color_minute:  '#aaa',
-            draw_hour:     null,
-            draw_minute:   null,
-            draw_second:   null,
-            highlight:     '#f93',
-            manual:        true,
-            stroke_border: 5,
-            stroke_hour:   5,
-            stroke_minute: 4,
-            scale_hour:    0.40,
-            scale_border:  0.80,
-            scale_minute:  0.65
+            margin: 10,
+            marginnumbers:-30,
+            fontheight:15,
+            hour:12,
+            minute:0,
+            callback:      function () {}
         });
         opts=_opts;
         domelem=_domelem;
+        actuallyMoving='nothing';
         buildUi();
     };
 
     var buildUi = function (){
-        //build canvas
-        var size=Math.min( domelem.width, domelem.height );
-        canvas=$('<canvas>').width(500).height(500);
-        domelem.append(canvas);
-        canvas.css('background-color',opts.background);
-        context=canvas[0].getContext( '2d' );
-        drawClockBackground();
+        //build dialCanvas
+        dialCanvas=$('<canvas>',{style:"position: absolute; left: 0; top: 0; z-index: 0;"});
+        handCanvas=$('<canvas>',{style:"position: absolute; left: 0; top: 0; z-index: 1;"})
+        domelem.append([dialCanvas,handCanvas]);
+        dialCanvas=dialCanvas[0];
+        handCanvas=handCanvas[0];
+        size=Math.min(domelem.width(),domelem.height());
+        dialCanvas.width=size;
+        dialCanvas.height=size;
+        handCanvas.width=size;
+        handCanvas.height=size;
+        
+        radius=size/2 - opts.margin;
+        handradius=radius + opts.marginnumbers;
+        
+        ctxDial=dialCanvas.getContext( '2d' );
+        ctxHands=handCanvas.getContext( '2d' );
+        
+        
+        currentHours=opts.hour;
+        currentMinutes=opts.minute;
+        drawDial();
+        drawHands();
+        
         bindUiEvents();
     };
     
-    var drawClockBackground= function(){
-    	
-			context.save();
-			context.beginPath();
-			context.moveTo(0,0);
-			context.lineTo(430.71875,0);
-			context.lineTo(430.71875,430.71875);
-			context.lineTo(0,430.71875);
-			context.closePath();
-			context.clip();
-			context.strokeStyle = 'rgba(0,0,0,0)';
-			context.lineCap = 'butt';
-			context.lineJoin = 'miter';
-			context.miterLimit = 4;
-			context.save();
-			context.restore();
-			context.save();
-			context.restore();
-			context.save();
-			context.translate(-189.65625,-249.875);
-			context.save();
-			context.fillStyle = "#000000";
-			context.strokeStyle = "rgba(0, 0, 0, 0)";
-			context.beginPath();
-			context.moveTo(395.71875,249.875);
-			context.lineTo(395.71875,300.9375);
-			context.lineTo(414.3125,300.9375);
-			context.lineTo(414.3125,249.875);
-			context.lineTo(406.5625,249.875);
-			context.lineTo(403.4375,249.875);
-			context.lineTo(395.71875,249.875);
-			context.closePath();
-			context.moveTo(384.03125,250.875);
-			context.lineTo(380.9375,251.21875);
-			context.lineTo(383.25,273.34375);
-			context.lineTo(386.375,273.03125);
-			context.lineTo(384.03125,250.875);
-			context.closePath();
-			context.moveTo(425.96875,250.875);
-			context.lineTo(423.625,273.03125);
-			context.lineTo(426.75,273.34375);
-			context.lineTo(429.0625,251.21875);
-			context.lineTo(425.96875,250.875);
-			context.closePath();
-			context.moveTo(361.75,254.25);
-			context.lineTo(358.6875,254.90625);
-			context.lineTo(363.34375,276.6875);
-			context.lineTo(366.375,276.03125);
-			context.lineTo(361.75,254.25);
-			context.closePath();
-			context.moveTo(448.25,254.25);
-			context.lineTo(443.625,276.03125);
-			context.lineTo(446.6875,276.6875);
-			context.lineTo(451.3125,254.90625);
-			context.lineTo(448.25,254.25);
-			context.closePath();
-			context.moveTo(339.9375,259.90625);
-			context.lineTo(336.96875,260.875);
-			context.lineTo(343.84375,282.0625);
-			context.lineTo(346.8125,281.09375);
-			context.lineTo(339.9375,259.90625);
-			context.closePath();
-			context.moveTo(470.0625,259.90625);
-			context.lineTo(463.1875,281.09375);
-			context.lineTo(466.15625,282.0625);
-			context.lineTo(473.03125,260.875);
-			context.lineTo(470.0625,259.90625);
-			context.closePath();
-			context.moveTo(318.84375,267.84375);
-			context.lineTo(315.96875,269.125);
-			context.lineTo(325.03125,289.46875);
-			context.lineTo(327.90625,288.1875);
-			context.lineTo(318.84375,267.84375);
-			context.closePath();
-			context.moveTo(491.15625,267.84375);
-			context.lineTo(482.125,288.1875);
-			context.lineTo(484.96875,289.46875);
-			context.lineTo(494.03125,269.125);
-			context.lineTo(491.15625,267.84375);
-			context.closePath();
-			context.moveTo(301.65625,276.21875);
-			context.lineTo(298.6875,277.9375);
-			context.lineTo(295.96875,279.5);
-			context.lineTo(292.96875,281.21875);
-			context.lineTo(318.5,325.4375);
-			context.lineTo(327.1875,320.4375);
-			context.lineTo(301.65625,276.21875);
-			context.closePath();
-			context.moveTo(508.34375,276.21875);
-			context.lineTo(482.8125,320.4375);
-			context.lineTo(491.5,325.4375);
-			context.lineTo(517.03125,281.21875);
-			context.lineTo(514.03125,279.5);
-			context.lineTo(512.6875,278.71875);
-			context.lineTo(508.34375,276.21875);
-			context.closePath();
-			context.moveTo(279.6875,290.0625);
-			context.lineTo(277.15625,291.90625);
-			context.lineTo(290.25,309.9375);
-			context.lineTo(292.78125,308.09375);
-			context.lineTo(279.6875,290.0625);
-			context.closePath();
-			context.moveTo(530.3125,290.0625);
-			context.lineTo(517.21875,308.09375);
-			context.lineTo(519.75,309.9375);
-			context.lineTo(532.84375,291.90625);
-			context.lineTo(530.3125,290.0625);
-			context.closePath();
-			context.moveTo(262.0625,304.125);
-			context.lineTo(259.75,306.21875);
-			context.lineTo(274.625,322.78125);
-			context.lineTo(276.96875,320.6875);
-			context.lineTo(262.0625,304.125);
-			context.closePath();
-			context.moveTo(547.9375,304.125);
-			context.lineTo(533.03125,320.6875);
-			context.lineTo(535.375,322.78125);
-			context.lineTo(550.28125,306.21875);
-			context.lineTo(547.9375,304.125);
-			context.closePath();
-			context.moveTo(246,319.96875);
-			context.lineTo(243.90625,322.28125);
-			context.lineTo(260.46875,337.1875);
-			context.lineTo(262.5625,334.84375);
-			context.lineTo(246,319.96875);
-			context.closePath();
-			context.moveTo(564,319.96875);
-			context.lineTo(547.4375,334.84375);
-			context.lineTo(549.53125,337.1875);
-			context.lineTo(566.09375,322.28125);
-			context.lineTo(564,319.96875);
-			context.closePath();
-			context.moveTo(231.6875,337.375);
-			context.lineTo(229.84375,339.90625);
-			context.lineTo(247.875,353);
-			context.lineTo(249.71875,350.46875);
-			context.lineTo(231.6875,337.375);
-			context.closePath();
-			context.moveTo(578.3125,337.375);
-			context.lineTo(560.28125,350.46875);
-			context.lineTo(562.125,353);
-			context.lineTo(580.15625,339.90625);
-			context.lineTo(578.3125,337.375);
-			context.closePath();
-			context.moveTo(221,353.1875);
-			context.lineTo(219.28125,356.1875);
-			context.lineTo(217.71875,358.90625);
-			context.lineTo(216,361.875);
-			context.lineTo(260.21875,387.40625);
-			context.lineTo(265.21875,378.71875);
-			context.lineTo(221,353.1875);
-			context.closePath();
-			context.moveTo(589,353.1875);
-			context.lineTo(544.78125,378.71875);
-			context.lineTo(549.78125,387.40625);
-			context.lineTo(594,361.875);
-			context.lineTo(592.28125,358.90625);
-			context.lineTo(590.71875,356.1875);
-			context.lineTo(589,353.1875);
-			context.closePath();
-			context.moveTo(208.90625,376.1875);
-			context.lineTo(207.625,379.0625);
-			context.lineTo(227.96875,388.125);
-			context.lineTo(229.25,385.25);
-			context.lineTo(208.90625,376.1875);
-			context.closePath();
-			context.moveTo(601.09375,376.1875);
-			context.lineTo(580.75,385.25);
-			context.lineTo(582.03125,388.125);
-			context.lineTo(602.375,379.0625);
-			context.lineTo(601.09375,376.1875);
-			context.closePath();
-			context.moveTo(200.65625,397.1875);
-			context.lineTo(199.6875,400.15625);
-			context.lineTo(220.875,407.03125);
-			context.lineTo(221.84375,404.0625);
-			context.lineTo(200.65625,397.1875);
-			context.closePath();
-			context.moveTo(609.34375,397.1875);
-			context.lineTo(588.15625,404.0625);
-			context.lineTo(589.125,407.03125);
-			context.lineTo(610.3125,400.15625);
-			context.lineTo(609.34375,397.1875);
-			context.closePath();
-			context.moveTo(194.6875,418.90625);
-			context.lineTo(194.03125,421.96875);
-			context.lineTo(215.8125,426.59375);
-			context.lineTo(216.46875,423.5625);
-			context.lineTo(194.6875,418.90625);
-			context.closePath();
-			context.moveTo(615.34375,418.90625);
-			context.lineTo(593.53125,423.5625);
-			context.lineTo(594.1875,426.59375);
-			context.lineTo(615.96875,421.96875);
-			context.lineTo(615.34375,418.90625);
-			context.closePath();
-			context.moveTo(191,441.15625);
-			context.lineTo(190.65625,444.25);
-			context.lineTo(212.8125,446.59375);
-			context.lineTo(213.125,443.46875);
-			context.lineTo(191,441.15625);
-			context.closePath();
-			context.moveTo(619.03125,441.15625);
-			context.lineTo(596.875,443.46875);
-			context.lineTo(597.1875,446.59375);
-			context.lineTo(619.34375,444.25);
-			context.lineTo(619.03125,441.15625);
-			context.closePath();
-			context.moveTo(189.65625,455.9375);
-			context.lineTo(189.65625,463.65625);
-			context.lineTo(189.65625,466.78125);
-			context.lineTo(189.65625,474.53125);
-			context.lineTo(240.71875,474.53125);
-			context.lineTo(240.71875,455.9375);
-			context.lineTo(189.65625,455.9375);
-			context.closePath();
-			context.moveTo(569.3125,455.9375);
-			context.lineTo(569.3125,474.53125);
-			context.lineTo(620.375,474.53125);
-			context.lineTo(620.375,466.78125);
-			context.lineTo(620.375,463.65625);
-			context.lineTo(620.375,455.9375);
-			context.lineTo(569.3125,455.9375);
-			context.closePath();
-			context.moveTo(212.8125,483.84375);
-			context.lineTo(190.65625,486.1875);
-			context.lineTo(191,489.28125);
-			context.lineTo(213.125,486.96875);
-			context.lineTo(212.8125,483.84375);
-			context.closePath();
-			context.moveTo(597.1875,483.84375);
-			context.lineTo(596.875,486.96875);
-			context.lineTo(619.03125,489.28125);
-			context.lineTo(619.34375,486.1875);
-			context.lineTo(597.1875,483.84375);
-			context.closePath();
-			context.moveTo(215.8125,503.84375);
-			context.lineTo(194.03125,508.46875);
-			context.lineTo(194.6875,511.53125);
-			context.lineTo(216.46875,506.90625);
-			context.lineTo(215.8125,503.84375);
-			context.closePath();
-			context.moveTo(594.1875,503.84375);
-			context.lineTo(593.53125,506.90625);
-			context.lineTo(615.34375,511.53125);
-			context.lineTo(615.96875,508.46875);
-			context.lineTo(594.1875,503.84375);
-			context.closePath();
-			context.moveTo(220.875,523.40625);
-			context.lineTo(199.6875,530.28125);
-			context.lineTo(200.65625,533.25);
-			context.lineTo(221.84375,526.375);
-			context.lineTo(220.875,523.40625);
-			context.closePath();
-			context.moveTo(589.125,523.40625);
-			context.lineTo(588.15625,526.375);
-			context.lineTo(609.34375,533.25);
-			context.lineTo(610.3125,530.28125);
-			context.lineTo(589.125,523.40625);
-			context.closePath();
-			context.moveTo(227.96875,542.34375);
-			context.lineTo(207.625,551.375);
-			context.lineTo(208.90625,554.25);
-			context.lineTo(229.25,545.1875);
-			context.lineTo(227.96875,542.34375);
-			context.closePath();
-			context.moveTo(582.03125,542.34375);
-			context.lineTo(580.75,545.1875);
-			context.lineTo(601.09375,554.25);
-			context.lineTo(602.375,551.375);
-			context.lineTo(582.03125,542.34375);
-			context.closePath();
-			context.moveTo(260.21875,543.03125);
-			context.lineTo(216,568.5625);
-			context.lineTo(217.71875,571.5625);
-			context.lineTo(219.28125,574.25);
-			context.lineTo(221,577.25);
-			context.lineTo(265.21875,551.71875);
-			context.lineTo(260.21875,543.03125);
-			context.closePath();
-			context.moveTo(549.78125,543.03125);
-			context.lineTo(544.78125,551.71875);
-			context.lineTo(589,577.25);
-			context.lineTo(590.71875,574.25);
-			context.lineTo(591.5,572.90625);
-			context.lineTo(594,568.5625);
-			context.lineTo(549.78125,543.03125);
-			context.closePath();
-			context.moveTo(247.875,577.4375);
-			context.lineTo(229.84375,590.53125);
-			context.lineTo(231.6875,593.0625);
-			context.lineTo(249.71875,579.96875);
-			context.lineTo(247.875,577.4375);
-			context.closePath();
-			context.moveTo(562.125,577.4375);
-			context.lineTo(560.28125,579.96875);
-			context.lineTo(578.3125,593.0625);
-			context.lineTo(580.15625,590.53125);
-			context.lineTo(562.125,577.4375);
-			context.closePath();
-			context.moveTo(260.46875,593.25);
-			context.lineTo(243.90625,608.15625);
-			context.lineTo(246,610.5);
-			context.lineTo(262.5625,595.59375);
-			context.lineTo(260.46875,593.25);
-			context.closePath();
-			context.moveTo(549.53125,593.25);
-			context.lineTo(547.4375,595.59375);
-			context.lineTo(564,610.5);
-			context.lineTo(566.09375,608.15625);
-			context.lineTo(549.53125,593.25);
-			context.closePath();
-			context.moveTo(318.5,605);
-			context.lineTo(292.96875,649.21875);
-			context.lineTo(295.96875,650.9375);
-			context.lineTo(298.6875,652.5);
-			context.lineTo(301.65625,654.21875);
-			context.lineTo(327.1875,610);
-			context.lineTo(318.5,605);
-			context.closePath();
-			context.moveTo(491.5,605);
-			context.lineTo(482.8125,610);
-			context.lineTo(508.34375,654.21875);
-			context.lineTo(512.6875,651.71875);
-			context.lineTo(514.03125,650.9375);
-			context.lineTo(517.03125,649.21875);
-			context.lineTo(491.5,605);
-			context.closePath();
-			context.moveTo(274.625,607.65625);
-			context.lineTo(259.75,624.21875);
-			context.lineTo(262.0625,626.3125);
-			context.lineTo(276.96875,609.75);
-			context.lineTo(274.625,607.65625);
-			context.closePath();
-			context.moveTo(535.375,607.65625);
-			context.lineTo(533.03125,609.75);
-			context.lineTo(547.9375,626.3125);
-			context.lineTo(550.28125,624.21875);
-			context.lineTo(535.375,607.65625);
-			context.closePath();
-			context.moveTo(290.25,620.5);
-			context.lineTo(277.15625,638.53125);
-			context.lineTo(279.6875,640.375);
-			context.lineTo(292.78125,622.34375);
-			context.lineTo(290.25,620.5);
-			context.closePath();
-			context.moveTo(519.75,620.5);
-			context.lineTo(517.21875,622.34375);
-			context.lineTo(530.3125,640.375);
-			context.lineTo(532.84375,638.53125);
-			context.lineTo(519.75,620.5);
-			context.closePath();
-			context.moveTo(395.71875,629.53125);
-			context.lineTo(395.71875,680.59375);
-			context.lineTo(414.3125,680.59375);
-			context.lineTo(414.3125,629.53125);
-			context.lineTo(395.71875,629.53125);
-			context.closePath();
-			context.moveTo(325.03125,640.96875);
-			context.lineTo(315.96875,661.3125);
-			context.lineTo(318.84375,662.59375);
-			context.lineTo(327.90625,642.25);
-			context.lineTo(325.03125,640.96875);
-			context.closePath();
-			context.moveTo(484.96875,640.96875);
-			context.lineTo(482.125,642.25);
-			context.lineTo(491.15625,662.59375);
-			context.lineTo(494.03125,661.3125);
-			context.lineTo(484.96875,640.96875);
-			context.closePath();
-			context.moveTo(343.84375,648.375);
-			context.lineTo(336.96875,669.5625);
-			context.lineTo(339.9375,670.53125);
-			context.lineTo(346.8125,649.34375);
-			context.lineTo(343.84375,648.375);
-			context.closePath();
-			context.moveTo(466.15625,648.375);
-			context.lineTo(463.1875,649.34375);
-			context.lineTo(470.0625,670.53125);
-			context.lineTo(473.03125,669.5625);
-			context.lineTo(466.15625,648.375);
-			context.closePath();
-			context.moveTo(363.34375,653.75);
-			context.lineTo(358.6875,675.5625);
-			context.lineTo(361.75,676.1875);
-			context.lineTo(366.375,654.40625);
-			context.lineTo(363.34375,653.75);
-			context.closePath();
-			context.moveTo(446.6875,653.75);
-			context.lineTo(443.625,654.40625);
-			context.lineTo(448.25,676.1875);
-			context.lineTo(451.3125,675.5625);
-			context.lineTo(446.6875,653.75);
-			context.closePath();
-			context.moveTo(383.25,657.09375);
-			context.lineTo(380.9375,679.25);
-			context.lineTo(384.03125,679.5625);
-			context.lineTo(386.375,657.40625);
-			context.lineTo(383.25,657.09375);
-			context.closePath();
-			context.moveTo(426.75,657.09375);
-			context.lineTo(423.625,657.40625);
-			context.lineTo(425.96875,679.5625);
-			context.lineTo(429.0625,679.25);
-			context.lineTo(426.75,657.09375);
-			context.closePath();
-			context.fill();
-			context.stroke();
-			context.restore();
-			context.restore();
-			context.restore();
+    var drawDial = function(){
+      
+        ctxDial.font = '15px Arial';
+        
+        //circle
+        ctxDial.lineWidth=3;
+        ctxDial.beginPath();
+   		ctxDial.arc(size/2, size/2,
+   		size/2-opts.margin, 0, Math.PI*2, true);
+   		ctxDial.stroke();
+   		
+   		//center
+   		ctxDial.beginPath();
+		ctxDial.arc(size/2, size/2, 10, 0, Math.PI*2, true);
+		ctxDial.fill();
+		
+		//numbers 1 to 12
+		var numerals = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ];
+		var angle = 0;
+		var numeralWidth = 0;
+		ctxDial.font= opts.fontheight + 'px Arial';
+		$.each(numerals,function(idx,numeral) {
+			angle = Math.PI/6 * (numeral-3);
+			numeralWidth = ctxDial.measureText(numeral).width;
+			ctxDial.fillText(
+			    numeral,
+                dialCanvas.width/2 + Math.cos(angle)*(handradius) -
+                numeralWidth/2,
+                dialCanvas.height/2 + Math.sin(angle)*(handradius) +
+                opts.fontheight/3);
+		});
+		//tiles
+		ctxDial.translate(size/2,size/2);
+		angle=Math.PI/30;
+		for(var til=1;til<=60;til++){
+		    var isbig=(til%5==0);
+		    ctxDial.rotate(angle);
+		    var rectWidth=isbig?8:2;
+		    var rectHeight=isbig?15:8;
+            ctxDial.fillRect(radius-rectHeight, -rectWidth/2, rectHeight,rectWidth);
+		}
+		ctxDial.translate(-size/2,-size/2);
+		ctxDial.restore();
     };
-
-    var bindUiEvents = function(){
-        canvas.on('mousedown',function(){});
-        canvas.on('mouseup',function(){});
-        canvas.on('mouseout',function(){});
-        canvas.on('mousemove',function(){});
-    };
-
 
     
+	
+	var drawHands = function () {
+	    
+	    angleHour=(((currentHours*60)+currentMinutes) * 0.5)%360 * Math.PI/180 - (Math.PI/2);
+	    angleMinutes=(currentMinutes * 6)%360 * Math.PI/180 - (Math.PI/2);
+	    ctxHands.save();
+	    //Hours
+	    ctxHands.translate(size/2,size/2);
+	    ctxHands.rotate(angleHour);
+	    ctxHands.fillRect(5, -4, 100,8);
+	    ctxHands.restore();
+	    //Minutes
+	    ctxHands.translate(size/2,size/2);
+	    ctxHands.fillStyle="#f00";
+	    ctxHands.rotate(angleMinutes);
+	    ctxHands.fillRect(5, -2, 150,4);
+	    ctxHands.restore();
+	};
+    
+    var getAngleFromCoordinates=function(x,y){
+        return Math.atan2(y-(size/2),x-(size/2));
+    };
+    
+    var findWhatToChange = function(x,y){
+        //Based on coordinates, try to find if we move minutes or hours or nothing
+        actuallyMoving='nothing';
+        var angle=getAngleFromCoordinates(x,y);
+        console.log('angle clicked '+angle + ' angle minutes ' + angleMinutes+ ' angle hours'+angleHour);
+        if(angle>(angleMinutes-(Math.PI/12)) && angle<(angleMinutes+(Math.PI/12))){
+            console.log('try to move minutes');
+            actuallyMoving = 'minutes';
+        }else if(angle>(angleHour-(Math.PI/6)) && angle<(angleHour+(Math.PI/6))){
+            console.log('try to move hours');
+            actuallyMoving ='hours';
+        }else{
+            actuallyMoving ='nothing';
+        }
+        
+    };
+	var  changeTime = function(x,y) {
+	    console.log(x + ","+y);
+		
+		drawHands();
+	};
+	
 
+    var bindUiEvents = function(){
+        $(handCanvas).on('mousedown',function(e){
+            findWhatToChange(e.offsetX,e.offsetY);
+            if(actuallyMoving!='nothing'){
+                changeState=true;
+            }
+        });
+        $(handCanvas).on('mouseup',function(){changeState=false;});
+        $(handCanvas).on('mouseout',function(){changeState=false;});
+        $(handCanvas).on('mousemove',function(e){
+            //if(changeState && actuallyMoving!='nothing'){
+                //changeTime(e.offsetX,e.offsetY);
+                console.log(e.offsetX+ " "+ e.offsetY)
+            //}
+        });
+    };
+    
+    var getCurrentTime = function(){
+        return {hour:currentHours,minute:currentMinutes};
+    };
+    
     return {
-        init:init
+        init:init,
+        getCurrentTime:getCurrentTime
     };
 
 })();
