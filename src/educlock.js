@@ -25,8 +25,8 @@ var EduClock = (function() {
             margin: 10,
             marginnumbers:-30,
             fontheight:15,
-            hour:12,
-            minute:0,
+            hour:7,
+            minute:55,
             callback:      function () {}
         });
         opts=_opts;
@@ -53,7 +53,7 @@ var EduClock = (function() {
         
         ctxDial=dialCanvas.getContext( '2d' );
         ctxHands=handCanvas.getContext( '2d' );
-        
+        ctxHands.translate(size/2,size/2);
         
         currentHours=opts.hour;
         currentMinutes=opts.minute;
@@ -111,21 +111,27 @@ var EduClock = (function() {
     
 	
 	var drawHands = function () {
+	    console.log(currentHours + ":"+currentMinutes);
+	    
+	    ctxHands.save();
+	    ctxHands.clearRect(-size/2, -size/2, size, size);
 	    
 	    angleHour=(((currentHours*60)+currentMinutes) * 0.5)%360 * Math.PI/180 - (Math.PI/2);
-	    angleMinutes=(currentMinutes * 6)%360 * Math.PI/180 - (Math.PI/2);
-	    ctxHands.save();
+	    angleMinutes=angleHour+(currentMinutes * 6)%360 * Math.PI/180 - (Math.PI/2);
+	    
 	    //Hours
-	    ctxHands.translate(size/2,size/2);
 	    ctxHands.rotate(angleHour);
+	    ctxHands.fillStyle="#000";
 	    ctxHands.fillRect(5, -4, 100,8);
 	    ctxHands.restore();
+	    ctxHands.rotate(-angleHour);
+	    
 	    //Minutes
-	    ctxHands.translate(size/2,size/2);
 	    ctxHands.fillStyle="#f00";
 	    ctxHands.rotate(angleMinutes);
 	    ctxHands.fillRect(5, -2, 150,4);
 	    ctxHands.restore();
+	    ctxHands.rotate(-angleMinutes);
 	};
     
     var getAngleFromCoordinates=function(x,y){
@@ -136,21 +142,25 @@ var EduClock = (function() {
         //Based on coordinates, try to find if we move minutes or hours or nothing
         actuallyMoving='nothing';
         var angle=getAngleFromCoordinates(x,y);
-        console.log('angle clicked '+angle + ' angle minutes ' + angleMinutes+ ' angle hours'+angleHour);
         if(angle>(angleMinutes-(Math.PI/12)) && angle<(angleMinutes+(Math.PI/12))){
-            console.log('try to move minutes');
             actuallyMoving = 'minutes';
         }else if(angle>(angleHour-(Math.PI/6)) && angle<(angleHour+(Math.PI/6))){
-            console.log('try to move hours');
             actuallyMoving ='hours';
         }else{
             actuallyMoving ='nothing';
         }
+        console.log(actuallyMoving);
         
     };
-	var  changeTime = function(x,y) {
-	    console.log(x + ","+y);
-		
+	var changeTime = function(x,y) {
+	    var angle=getAngleFromCoordinates(x,y);
+	    while(angle>2*Math.PI)
+	        angle=angle-2*Math.PI;
+	    if(actuallyMoving=='minutes'){
+	        currentMinutes  =  Math.round(30/Math.PI * angle)+15;
+	    }else if(actuallyMoving=='hours'){
+	        
+	    }
 		drawHands();
 	};
 	
@@ -165,12 +175,17 @@ var EduClock = (function() {
         $(handCanvas).on('mouseup',function(){changeState=false;});
         $(handCanvas).on('mouseout',function(){changeState=false;});
         $(handCanvas).on('mousemove',function(e){
-            //if(changeState && actuallyMoving!='nothing'){
-                //changeTime(e.offsetX,e.offsetY);
-                console.log(e.offsetX+ " "+ e.offsetY)
-            //}
+            if(changeState && actuallyMoving!='nothing'){
+                changeTime(e.offsetX,e.offsetY);
+            }
         });
     };
+    
+    var test=function(){
+        currentHours=11;
+        currentMinutes=15;
+        drawHands();
+    }
     
     var getCurrentTime = function(){
         return {hour:currentHours,minute:currentMinutes};
@@ -178,7 +193,8 @@ var EduClock = (function() {
     
     return {
         init:init,
-        getCurrentTime:getCurrentTime
+        getCurrentTime:getCurrentTime,
+        test:test
     };
 
 })();
