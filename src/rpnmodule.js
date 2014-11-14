@@ -85,27 +85,30 @@ var rpnmodule = (function () {
     };
 
     var displayCurrentModule=function(){
-        var mod=sequencedatas.modules[currentmod];
-        _.defaults(mod,{title:"title"});
+        var moduleDatas=sequencedatas.modules[currentmod];
+        _.defaults(moduleDatas,{title:"title"});
         mainContent.empty();
         mainContent.removeClass().addClass('col-md-12');
-        $('#moduleTitle').show().text(mod.title);
-        _.isUndefined(mod.context)?$('#moduleContext').hide():$('#moduleContext').show().text(mod.context);
-        _.isUndefined(mod.directive)?$('#moduleDirective').hide():$('#moduleDirective').show().text(mod.directive);
+        $('#moduleTitle').show().text(moduleDatas.title);
+        _.isUndefined(moduleDatas.context)?$('#moduleContext').hide():$('#moduleContext').show().text(moduleDatas.context);
+        _.isUndefined(moduleDatas.directive)?$('#moduleDirective').hide():$('#moduleDirective').show().text(moduleDatas.directive);
         $('#waitModal').modal('hide');
-        if(mod.type=='marker'){
-            rpnmarkermodule.init(mod,mainContent);
-        }else if(mod.type=='mqc'){
-            rpnmqcmodule.init(mod,mainContent);
-        }else if(mod.type=='gapsimple'){
-            rpngapsimplemodule.init(mod,mainContent);
-        }else if(mod.type=='gapfull'){
-            rpngapfullmodule.init(mod,mainContent);
-        }else if(mod.type=='clock'){
-            rpnclockmodule.init(mod,mainContent);
-        }else if(mod.type=='blackbox'){
-            rpnblackboxmodule.init(mod,mainContent);
+        if(moduleDatas.type=='marker'){
+            rpnmarkermodule.init(moduleDatas,mainContent);
+        }else if(moduleDatas.type=='mqc'){
+            rpnmqcmodule.init(moduleDatas,mainContent);
+        }else if(moduleDatas.type=='gapsimple'){
+            rpngapsimplemodule.init(moduleDatas,mainContent);
+        }else if(moduleDatas.type=='gapfull'){
+            rpngapfullmodule.init(moduleDatas,mainContent);
+        }else if(moduleDatas.type=='clock'){
+            rpnclockmodule.init(moduleDatas,mainContent);
+        }else if(moduleDatas.type=='blackbox'){
+            rpnblackboxmodule.init(moduleDatas,mainContent);
+        }else if(moduleDatas.type=='rpndraganddropsorting'){
+            rpndraganddropsorting.init(moduleDatas,mainContent);
         }
+        
 
     };
     
@@ -472,6 +475,71 @@ var rpnblackboxmodule = (function() {
         init:init
     };
 
+})();
+
+var rpndraganddropsorting = (function(){
+    var datas;
+    var domelem;
+    var validationButton;
+    var responses;
+    
+    var init = function(_datas,_domelem){
+        _.defaults(_datas,{
+            inputtype:"number",
+            fct:"x1",
+            left:[1],
+            right:[1]});
+        datas=_datas;
+        domelem=_domelem;
+        responses={left:[],right:[]};
+        buildUi();
+    };
+
+    var buildUi = function (){
+        //build marker toolbar
+        domelem.addClass('rpnmodule_blackbox');
+
+        var blackboxwell=$('<div class="blackbox">');
+        domelem.append(blackboxwell);
+
+        $.each(datas.left,function(idx,value){
+            blackboxwell.append($('<div class="row"><div class="col-md-3 hidden-xs hidden-sm"></div><div class="col-xs-2"><span>'+value + '</span></div><div class="col-xs-2 blackbox-fct"><i class="glyphicon glyphicon-minus"></i> ('+datas.operation+') <i class="glyphicon glyphicon-arrow-right"></i></div><div class="col-xs-2"><input type="text" id="'+idx+'" class="rpnmodule-input blackbox-left form-control" style="text-align: center;"></div></div>'));
+        });
+         $.each(datas.right,function(idx,value){
+            blackboxwell.append($('<div class="row"><div class="col-md-3 hidden-xs hidden-sm"></div><div class="col-xs-2"><input type="text" id="'+idx+'" class="rpnmodule-input blackbox-right form-control" style="text-align: center;"></div><div class="col-xs-2 blackbox-fct"><i class="glyphicon glyphicon-minus"></i> ('+datas.operation+') <i class="glyphicon glyphicon-arrow-right"></i></div><div class="col-xs-2"><span>'+value + '</span></div></div>'));
+        });
+
+        //build validation button
+        validationButton=$('<button>',{'class':'btn btn-primary',text:' '+ rpnmoduleSelectedLabels.Validate}).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
+        domelem.append(validationButton);
+
+        bindUiEvents();
+    };
+
+    var bindUiEvents = function(){
+        validationButton.click(function(){
+            $.each($('.blackbox-left'),function(idx,gap){
+                responses.left[idx]=$(gap).val();
+            });
+            $.each($('.blackbox-right'),function(idx,gap){
+                responses.right[idx]=$(gap).val();
+            });
+            rpnmodule.handleEndOfModule(responses,function(res,sol){
+                var score=0;
+                _.each(sol.right,function(val,idx){
+                    score+=res.right[idx]==val?1:0;
+                });
+                _.each(sol.left,function(val,idx){
+                    score+=res.left[idx]==val?1:0;
+                });
+                return score;
+            });
+        });
+    };
+
+    return {
+        init:init
+    };
 })();
 
 
