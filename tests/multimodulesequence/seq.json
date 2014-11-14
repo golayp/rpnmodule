@@ -129,7 +129,7 @@
             "title":"a blackbox module",
             "context":"test",
             "directive":"fill in the black box below",
-            "fct":"x8",
+            "operation":"x8",
             "left":[5,10,6,11],
             "right":[56,72,32]
         }

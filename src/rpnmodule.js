@@ -1,8 +1,8 @@
 $(document).ready(function(){
-    RpnModule.init({moduleend:function(res){alert('module neded!'+res);}});
+    rpnmodule.init({moduleend:function(res){alert('module ended!'+res);}});
 });
 
-var RpnModuleLabels = {
+var rpnmoduleLabels = {
     en:{
         Recall:"Recall",
         Order:"Order",
@@ -23,9 +23,9 @@ var RpnModuleLabels = {
     }
 };
 
-var RpnModuleSelectedLabels;
+var rpnmoduleSelectedLabels;
 
-var RpnModule = (function () {
+var rpnmodule = (function () {
 
     var sequencedatas;
     var currentmod;
@@ -37,7 +37,6 @@ var RpnModule = (function () {
     var sequenceendHandler;
     var moduleendHandler;
     
-   
 
     var init = function (opts) {
         _.defaults(opts,{
@@ -48,10 +47,10 @@ var RpnModule = (function () {
                 warnonexit:false,
                 onsequenceend:function(){},
                 onmoduleend:function(){},
-                language:"fr"
+                language:"en"
             }
         );
-        RpnModuleSelectedLabels=RpnModuleLabels[opts.language];
+        rpnmoduleSelectedLabels=rpnmoduleLabels[opts.language];
         responses=[];
         warnexit=opts.warnonexit;
         backurl=opts.returnurl;
@@ -59,6 +58,10 @@ var RpnModule = (function () {
         sequenceendHandler=opts.onsequenceend;
         moduleendHandler=opts.onmoduleend;
         $.getJSON(opts.sequrl,function(datas){
+            _.defaults(datas,{
+                title:"mqc",
+                modules:[]
+            });
             sequencedatas=datas;
             currentmod=0;
             buildUi();
@@ -66,16 +69,16 @@ var RpnModule = (function () {
     };
 
     var buildUi = function () {
-        $('body').append($('<div class="container"><div class="row"><div class="col-md-12"><h1 id="sequenceTitle"></h1></div></div><div class="row"><div class="col-xs-8"><h2 id="moduleTitle"></h2><h3 id="moduleContext"></h3><h4 id="moduleDirective"></h4></div><div class="col-xs-4"><button class="btn btn-link" id="recallLink" data-toggle="modal" data-target="#recallModal">'+RpnModuleSelectedLabels.Recall+'</button> <button class="btn btn-link"  id="orderLink" data-toggle="modal" data-target="#orderModal">'+RpnModuleSelectedLabels.Order+'</button></div></div><div class="row"><div id="mainContent" class="col-md-12"></div></div></div>'));
-        $('body').append($('<div id="recallModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+RpnModuleSelectedLabels.Recall+'</h4></div><div class="modal-body" id="recallModalContent"></div></div></div></div>'));
-        $('body').append($('<div id="orderModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+RpnModuleSelectedLabels.Order+'</h4></div><div class="modal-body" id="orderModalContent"></div></div></div></div>'));
-        $('body').append($('<div id="alertModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+RpnModuleSelectedLabels.Warning+'</h4></div><div class="modal-body" id="orderModalContent"></div></div></div></div>'));
-        $('body').append($('<div id="waitModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">'+RpnModuleSelectedLabels.Wait+'</h4></div><div class="modal-body" id="orderModalContent"><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% completed</span></div></div></div></div></div></div>'));
+        $('body').append($('<div class="container"><div class="row"><div class="col-md-12"><h1 id="sequenceTitle"></h1></div></div><div class="row"><div class="col-xs-8"><h2 id="moduleTitle"></h2><h3 id="moduleContext"></h3><h4 id="moduleDirective"></h4></div><div class="col-xs-4"><button class="btn btn-link" id="recallLink" data-toggle="modal" data-target="#recallModal">'+rpnmoduleSelectedLabels.Recall+'</button> <button class="btn btn-link"  id="orderLink" data-toggle="modal" data-target="#orderModal">'+rpnmoduleSelectedLabels.Order+'</button></div></div><div class="row"><div id="mainContent" class="col-md-12"></div></div></div>'));
+        $('body').append($('<div id="recallModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Recall+'</h4></div><div class="modal-body" id="recallModalContent"></div></div></div></div>'));
+        $('body').append($('<div id="orderModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Order+'</h4></div><div class="modal-body" id="orderModalContent"></div></div></div></div>'));
+        $('body').append($('<div id="alertModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Warning+'</h4></div><div class="modal-body" id="orderModalContent"></div></div></div></div>'));
+        $('body').append($('<div id="waitModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">'+rpnmoduleSelectedLabels.Wait+'</h4></div><div class="modal-body" id="orderModalContent"><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% completed</span></div></div></div></div></div></div>'));
         $('#sequenceTitle').html(sequencedatas.title);
         mainContent=$('#mainContent');
         if(warnexit){
             $(window).bind('beforeunload', function(e) {
-                return RpnModuleSelectedLabels.BeforeUnloadMsg;
+                return rpnmoduleSelectedLabels.BeforeUnloadMsg;
             });
         }
         displayCurrentModule();
@@ -83,24 +86,25 @@ var RpnModule = (function () {
 
     var displayCurrentModule=function(){
         var mod=sequencedatas.modules[currentmod];
+        _.defaults(mod,{title:"title"});
         mainContent.empty();
         mainContent.removeClass().addClass('col-md-12');
-        _.isUndefined(mod.title)?$('#moduleTitle').hide():$('#moduleTitle').show().text(mod.title);
+        $('#moduleTitle').show().text(mod.title);
         _.isUndefined(mod.context)?$('#moduleContext').hide():$('#moduleContext').show().text(mod.context);
         _.isUndefined(mod.directive)?$('#moduleDirective').hide():$('#moduleDirective').show().text(mod.directive);
         $('#waitModal').modal('hide');
         if(mod.type=='marker'){
-            RpnMarkerModule.init(mod,mainContent);
+            rpnmarkermodule.init(mod,mainContent);
         }else if(mod.type=='mqc'){
-            RpnMqcModule.init(mod,mainContent);
+            rpnmqcmodule.init(mod,mainContent);
         }else if(mod.type=='gapsimple'){
-            RpnGapSimpleModule.init(mod,mainContent);
+            rpngapsimplemodule.init(mod,mainContent);
         }else if(mod.type=='gapfull'){
-            RpnGapFullModule.init(mod,mainContent);
+            rpngapfullmodule.init(mod,mainContent);
         }else if(mod.type=='clock'){
-            RpnClockModule.init(mod,mainContent);
+            rpnclockmodule.init(mod,mainContent);
         }else if(mod.type=='blackbox'){
-            RpnBlackBoxModule.init(mod,mainContent);
+            rpnblackboxmodule.init(mod,mainContent);
         }
 
     };
@@ -139,11 +143,10 @@ var RpnModule = (function () {
         buildUi:buildUi,
         handleEndOfModule:handleEndOfModule
     };
-
 })();
 
 //marker
-var RpnMarkerModule = (function() {
+var rpnmarkermodule = (function() {
     var datas;
     var domelem;
     var selectedMarker;
@@ -163,7 +166,7 @@ var RpnMarkerModule = (function() {
         var toolbar=$('<div>',{'class':'btn-group','data-toggle':'buttons'});
         var availableColors=_.shuffle(['primary','success','info','warning','danger']);
 
-        toolbar.append($('<label class="btn btn-default active"><input type="radio" name="options" id="option1" autocomplete="off" checked><i class="glyphicon glyphicon-pencil"></i> '+RpnModuleSelectedLabels.Eraser+'</label>').click(function(){
+        toolbar.append($('<label class="btn btn-default active"><input type="radio" name="options" id="option1" autocomplete="off" checked><i class="glyphicon glyphicon-pencil"></i> '+rpnmoduleSelectedLabels.Eraser+'</label>').click(function(){
                 selectedMarker=-1;
 
         }));
@@ -188,7 +191,7 @@ var RpnMarkerModule = (function() {
             });
         });
         //build validation button
-        validationButton=$('<button>',{'class':'btn btn-primary',text:' '+ RpnModuleSelectedLabels.Validate}).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
+        validationButton=$('<button>',{'class':'btn btn-primary',text:' '+ rpnmoduleSelectedLabels.Validate}).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
         domelem.append(validationButton);
 
         bindUiEvents();
@@ -196,7 +199,7 @@ var RpnMarkerModule = (function() {
 
     var bindUiEvents = function(){
         validationButton.click(function(){
-            RpnModule.handleEndOfModule(responses,function(res,sol){
+            rpnmodule.handleEndOfModule(responses,function(res,sol){
                 var score=0;
                 _.each(sol,function(val,idx){
                     score+=res[idx]==val?1:0;
@@ -213,7 +216,7 @@ var RpnMarkerModule = (function() {
 })();
 
 //mqc
-var RpnMqcModule = (function() {
+var rpnmqcmodule = (function() {
     var datas;
     var domelem;
     var validationButton;
@@ -247,7 +250,7 @@ var RpnMqcModule = (function() {
         domelem.append(uilist);
 
         //build validation button
-        validationButton=$('<button>',{'class':'btn btn-primary',text:' '+ RpnModuleSelectedLabels.Validate}).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
+        validationButton=$('<button>',{'class':'btn btn-primary',text:' '+ rpnmoduleSelectedLabels.Validate}).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
         domelem.append(validationButton);
         
         bindUiEvents();
@@ -255,7 +258,7 @@ var RpnMqcModule = (function() {
     
     var bindUiEvents = function(){
         validationButton.click(function(){
-            RpnModule.handleEndOfModule(responses,function(res,sol){
+            rpnmodule.handleEndOfModule(responses,function(res,sol){
                 var score=0;
                 _.each(sol,function(val,idx){
                     score+=res[idx]==val?1:0;
@@ -272,7 +275,7 @@ var RpnMqcModule = (function() {
 })();
 
 //gapsimple
-var RpnGapSimpleModule = (function() {
+var rpngapsimplemodule = (function() {
     var datas;
     var domelem;
     var validationButton;
@@ -296,7 +299,7 @@ var RpnGapSimpleModule = (function() {
             t.replaceWith($('<input type="text" id="'+idx+'" class="rpnmodule-input gapsimple form-control"> <strong>('+t.text()+')</strong>'));
         });
         //build validation button
-        validationButton=$('<button>',{'class':'btn btn-primary',text:' '+ RpnModuleSelectedLabels.Validate}).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
+        validationButton=$('<button>',{'class':'btn btn-primary',text:' '+ rpnmoduleSelectedLabels.Validate}).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
         domelem.append(validationButton);
 
         bindUiEvents();
@@ -307,7 +310,7 @@ var RpnGapSimpleModule = (function() {
             $.each($('.gapsimple'),function(idx,gap){
                 responses[idx]=$(gap).val();
             });
-            RpnModule.handleEndOfModule(responses,function(res,sol){
+            rpnmodule.handleEndOfModule(responses,function(res,sol){
                 var score=0;
                 _.each(sol,function(val,idx){
                     score+=res[idx]==val?1:0;
@@ -324,7 +327,7 @@ var RpnGapSimpleModule = (function() {
 })();
 
 //gapfull
-var RpnGapFullModule = (function() {
+var rpngapfullmodule = (function() {
     var datas;
     var domelem;
     var validationButton;
@@ -343,7 +346,7 @@ var RpnGapFullModule = (function() {
         $('#gapfullresponse').val(datas.sentence);
         
         //build validation button
-        validationButton=$('<button>',{'class':'btn btn-primary',text:' '+ RpnModuleSelectedLabels.Validate}).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
+        validationButton=$('<button>',{'class':'btn btn-primary',text:' '+ rpnmoduleSelectedLabels.Validate}).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
         domelem.append(validationButton);
 
         bindUiEvents();
@@ -351,7 +354,7 @@ var RpnGapFullModule = (function() {
 
     var bindUiEvents = function(){
         validationButton.click(function(){
-            RpnModule.handleEndOfModule($('#gapfullresponse').val(),function(res,sol){
+            rpnmodule.handleEndOfModule($('#gapfullresponse').val(),function(res,sol){
                 //Try to trim and do automatic corrections here.
                 return res==sol?1:0;
             });
@@ -365,7 +368,7 @@ var RpnGapFullModule = (function() {
 })();
 
 //clock
-var RpnClockModule = (function(){
+var rpnclockmodule = (function(){
     
     var datas;
     var domelem;
@@ -385,7 +388,7 @@ var RpnClockModule = (function(){
         new ClockSelector( 'rpnclock',{background:'white',color_hour:'#333',color_minute:'#666',color_border:'#eee',highlight:'#357ebd'} );
         
         //build validation button
-        validationButton=$('<button>',{'class':'btn btn-primary',text:' '+ RpnModuleSelectedLabels.Validate}).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
+        validationButton=$('<button>',{'class':'btn btn-primary',text:' '+ rpnmoduleSelectedLabels.Validate}).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
         domelem.append(validationButton);
 
         bindUiEvents();
@@ -393,7 +396,7 @@ var RpnClockModule = (function(){
 
     var bindUiEvents = function(){
         validationButton.click(function(){
-            RpnModule.handleEndOfModule($('#gapfullresponse').val(),function(res,sol){
+            rpnmodule.handleEndOfModule($('#gapfullresponse').val(),function(res,sol){
                 //Try to trim and do automatic corrections here.
                 return res==sol?1:0;
             });
@@ -406,12 +409,17 @@ var RpnClockModule = (function(){
 })();
 
 //blackbox
-var RpnBlackBoxModule = (function() {
+var rpnblackboxmodule = (function() {
     var datas;
     var domelem;
     var validationButton;
     var responses;
     var init = function(_datas,_domelem){
+        _.defaults(_datas,{
+            inputtype:"number",
+            fct:"x1",
+            left:[1],
+            right:[1]});
         datas=_datas;
         domelem=_domelem;
         responses={left:[],right:[]};
@@ -422,18 +430,18 @@ var RpnBlackBoxModule = (function() {
         //build marker toolbar
         domelem.addClass('rpnmodule_blackbox');
 
-        var blackboxwell=$('<div class="well blackbox">');
+        var blackboxwell=$('<div class="blackbox">');
         domelem.append(blackboxwell);
 
         $.each(datas.left,function(idx,value){
-            blackboxwell.append($('<div class="row"><div class="col-xs-2"><span>'+value + '</span></div><div class="col-xs-2 blackbox-fct"><i class="glyphicon glyphicon-minus"></i> ('+datas.fct+') <i class="glyphicon glyphicon-arrow-right"></i></div><div class="col-xs-2"><input type="text" id="'+idx+'" class="rpnmodule-input blackbox-left form-control" style="text-align: center;"></div></div>'));
+            blackboxwell.append($('<div class="row"><div class="col-md-3 hidden-xs hidden-sm"></div><div class="col-xs-2"><span>'+value + '</span></div><div class="col-xs-2 blackbox-fct"><i class="glyphicon glyphicon-minus"></i> ('+datas.operation+') <i class="glyphicon glyphicon-arrow-right"></i></div><div class="col-xs-2"><input type="text" id="'+idx+'" class="rpnmodule-input blackbox-left form-control" style="text-align: center;"></div></div>'));
         });
          $.each(datas.right,function(idx,value){
-            blackboxwell.append($('<div class="row"><div class="col-xs-2"><input type="text" id="'+idx+'" class="rpnmodule-input blackbox-right form-control" style="text-align: center;"></div><div class="col-xs-2 blackbox-fct"><i class="glyphicon glyphicon-minus"></i> ('+datas.fct+') <i class="glyphicon glyphicon-arrow-right"></i></div><div class="col-xs-2"><span>'+value + '</span></div></div>'));
+            blackboxwell.append($('<div class="row"><div class="col-md-3 hidden-xs hidden-sm"></div><div class="col-xs-2"><input type="text" id="'+idx+'" class="rpnmodule-input blackbox-right form-control" style="text-align: center;"></div><div class="col-xs-2 blackbox-fct"><i class="glyphicon glyphicon-minus"></i> ('+datas.operation+') <i class="glyphicon glyphicon-arrow-right"></i></div><div class="col-xs-2"><span>'+value + '</span></div></div>'));
         });
 
         //build validation button
-        validationButton=$('<button>',{'class':'btn btn-primary',text:' '+ RpnModuleSelectedLabels.Validate}).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
+        validationButton=$('<button>',{'class':'btn btn-primary',text:' '+ rpnmoduleSelectedLabels.Validate}).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
         domelem.append(validationButton);
 
         bindUiEvents();
@@ -447,7 +455,7 @@ var RpnBlackBoxModule = (function() {
             $.each($('.blackbox-right'),function(idx,gap){
                 responses.right[idx]=$(gap).val();
             });
-            RpnModule.handleEndOfModule(responses,function(res,sol){
+            rpnmodule.handleEndOfModule(responses,function(res,sol){
                 var score=0;
                 _.each(sol.right,function(val,idx){
                     score+=res.right[idx]==val?1:0;
