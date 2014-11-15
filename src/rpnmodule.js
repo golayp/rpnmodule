@@ -10,7 +10,8 @@ var rpnmoduleLabels = {
         BeforeUnloadMsg:"Module running!",
         Wait:"Wait please...",
         Validate:"Validate",
-        Eraser:"Eraser"
+        Eraser:"Eraser",
+        DragDropNotEmpty:"There are still some items to sort!"
     },
     fr:{
         Recall:"Rappel",
@@ -19,7 +20,8 @@ var rpnmoduleLabels = {
         BeforeUnloadMsg:"Exercice en cours!",
         Wait:"Veuillez patienter...",
         Validate:"Valider",
-        Eraser:"Effaceur"
+        Eraser:"Effaceur",
+        DragDropNotEmpty:"Il y a encore des éléments à trier!"
     }
 };
 
@@ -36,6 +38,7 @@ var rpnmodule = (function () {
     var warnexit;
     var sequenceendHandler;
     var moduleendHandler;
+    var alertModal;
     
 
     var init = function (opts) {
@@ -72,10 +75,11 @@ var rpnmodule = (function () {
         $('body').append($('<div class="container"><div class="row"><div class="col-md-12"><h1 id="sequenceTitle"></h1></div></div><div class="row"><div class="col-xs-8"><h2 id="moduleTitle"></h2><h3 id="moduleContext"></h3><h4 id="moduleDirective"></h4></div><div class="col-xs-4"><button class="btn btn-link" id="recallLink" data-toggle="modal" data-target="#recallModal">'+rpnmoduleSelectedLabels.Recall+'</button> <button class="btn btn-link"  id="orderLink" data-toggle="modal" data-target="#orderModal">'+rpnmoduleSelectedLabels.Order+'</button></div></div><div class="row"><div id="mainContent" class="col-md-12"></div></div></div>'));
         $('body').append($('<div id="recallModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Recall+'</h4></div><div class="modal-body" id="recallModalContent"></div></div></div></div>'));
         $('body').append($('<div id="orderModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Order+'</h4></div><div class="modal-body" id="orderModalContent"></div></div></div></div>'));
-        $('body').append($('<div id="alertModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Warning+'</h4></div><div class="modal-body" id="orderModalContent"></div></div></div></div>'));
+        $('body').append($('<div id="alertModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Warning+'</h4></div><div class="modal-body" id="alertModalContent"></div></div></div></div>'));
         $('body').append($('<div id="waitModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">'+rpnmoduleSelectedLabels.Wait+'</h4></div><div class="modal-body" id="orderModalContent"><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% completed</span></div></div></div></div></div></div>'));
         $('#sequenceTitle').html(sequencedatas.title);
         mainContent=$('#mainContent');
+        alertModal=$('#alertModal');
         if(warnexit){
             $(window).bind('beforeunload', function(e) {
                 return rpnmoduleSelectedLabels.BeforeUnloadMsg;
@@ -145,12 +149,23 @@ var rpnmodule = (function () {
         label=_.isUndefined(label)?rpnmoduleSelectedLabels.Validate:label
         return $('<button>',{'class':'btn btn-primary',text:' '+ rpnmoduleSelectedLabels.Validate}).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
     }
+    
+    var displayAlert = function(text,onclose){
+        $('#alertModalContent').text(text);
+        alertModal.modal();
+        alertModal.on('hidden.bs.modal', function () {
+            if(!_.isUndefined(onclose)){
+                onclose();
+            }
+        });
+    };
 
     return {
         init:init,
         buildUi:buildUi,
         handleEndOfModule:handleEndOfModule,
-        genericValidateButton: genericValidateButton
+        genericValidateButton: genericValidateButton,
+        displayAlert:displayAlert
     };
 })();
 
@@ -520,21 +535,16 @@ var rpndragdropsortingmodule = (function(){
     var buildUi = function (){
         //build marker toolbar
         domelem.addClass('rpnmodule_dnds');
-        domelem.append($('<div class="row"><div class="container"><div class="col-md-12"><ul id="dragthis" class="simple_with_drop  list-unstyled"></ul></div></div><div class="row"><div class="container" id="dropzonecontainer"></div></div>'));
-        
-        $.each(datas.todrag,function(idx,drag){
-            $('#dragthis').append('<li>'+drag+'</li>');
-        });
+        domelem.append($('<div class="row"><div class="container"><div class="col-md-12"><ul id="dragthis" class="list-unstyled"></ul></div></div><div class="row"><div class="container" id="dropzonecontainer"></div></div>'));
         
         $.each(datas.todrop,function(idx,drop){
-            $('#dropzonecontainer').append($('<div class="col-md-2"><ul class="simple_with_drop list-unstyled"><lh>'+drop+'</lh></ul></div>'))
+            $('#dropzonecontainer').append($('<div class="col-md-2"><ul class="droppable list-unstyled"><lh>'+drop+'</lh></ul></div>'))
         });
         
-        $("ul.simple_with_drop").sortable({
-            group: 'no-drop'
+        $("ul.droppable").sortable({
+            group: 'no-drop',
+            onDrop: function(){nextDraggable()}
         });
-        
-        
         
         //build validation button
         validationButton=rpnmodule.genericValidateButton();
@@ -545,29 +555,32 @@ var rpndragdropsortingmodule = (function(){
     };
     
     var nextDraggable = function(){
-       
+        if($('#dragthis li').length==0 && datas.todrag.length>0){
+            var itemToDrag=datas.todrag.pop();    
+            $('#dragthis').append($('<li>'+itemToDrag+'</li>'))
+            $("#dragthis").sortable({
+                group: 'no-drop',
+                drop:false
+            });
+        }
     };
 
     var bindUiEvents = function(){
-        
-       
         validationButton.click(function(){
-            $.each($('.blackbox-left'),function(idx,gap){
-                responses.left[idx]=$(gap).val();
-            });
-            $.each($('.blackbox-right'),function(idx,gap){
-                responses.right[idx]=$(gap).val();
-            });
-            rpnmodule.handleEndOfModule(responses,function(res,sol){
-                var score=0;
-                _.each(sol.right,function(val,idx){
-                    score+=res.right[idx]==val?1:0;
+            if(datas.todrag.length>0){
+                rpnmodule.displayAlert(rpnmoduleSelectedLabels.DragDropNotEmpty);
+            }else{
+                _.each($('.droppable'),function(elem,idx){
+                    var txts=[];
+                    $.each($(elem).find('li'),function(idx,txt){txts.push($(txt).text());});
+                    responses[$(elem).find('lh').text()]=txts;
+                })
+                rpnmodule.handleEndOfModule(responses,function(res,sol){
+                    var score=0;
+                    
+                    return score;
                 });
-                _.each(sol.left,function(val,idx){
-                    score+=res.left[idx]==val?1:0;
-                });
-                return score;
-            });
+            }
         });
     };
 

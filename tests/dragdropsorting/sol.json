@@ -1,3 +1,9 @@
 {
-    "sol":""
+    "solutions":[
+        {
+            "letters":["A","C","Z"],
+            "colors":["green","blue","yellow"],
+            "numbers":["1","3"]
+        }
+    ]
 }
