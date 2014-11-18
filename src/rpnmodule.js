@@ -577,7 +577,9 @@ var rpndragdropsortingmodule = (function(){
                 })
                 rpnmodule.handleEndOfModule(responses,function(res,sol){
                     var score=0;
-                    
+                    _.each(sol,function(elem,idx){
+                       
+                    });
                     return score;
                 });
             }

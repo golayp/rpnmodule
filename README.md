@@ -1,4 +1,12 @@
-<h1>rpnmodule</h1>
+                                      _       _      
+                                     | |     | |     
+ _ __ _ __  _ __  _ __ ___   ___   __| |_   _| | ___ 
+| '__| '_ \| '_ \| '_ ` _ \ / _ \ / _` | | | | |/ _ \
+| |  | |_) | | | | | | | | | (_) | (_| | |_| | |  __/
+|_|  | .__/|_| |_|_| |_| |_|\___/ \__,_|\__,_|_|\___|
+     | |                                             
+     |_|                                             
+
 <p>rpnmodule is a project aiming to provide a base library for running educational sequences of modules.
 It'll provide common features for 8 base module types (maybe more in the future) that can be arranged in a sequence of work:</p>
 <ul>
@@ -54,7 +62,10 @@ no options yet :'(
 no options yet :'(
 
 <h3>dargdropsorting options</h3>
-no options yet :'(
+<ul>
+    <li>todrag - a list of items to sort in containers</li>
+    <li>todrop - a list of containers where to drag and drop items</li>
+</ul>
 
 <h3>gapfull options</h3>
 <ul>
@@ -80,7 +91,7 @@ no options yet :'(
 <h2>sample seq json</h2>
 ```json
 {
-    "title":"<i class=\"edicons-visualidentity-rpn\"></i> modulesequence",
+    "title":"<i class=\"eventually an icon\"></i> modulesequence",
     "modules":[
         {
             "type":"mqc",
@@ -158,27 +169,6 @@ no options yet :'(
             "tomark":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <b>Etiam</b> rutrum convallis maximus. Nulla faucibus mi ante, sed efficitur mi <b>ultrices</b> vel.</p><p>Class aptent taciti sociosqu ad litora torquent per <b>conubia</b> nostra, per inceptos himenaeos. Maecenas sem sapien, dictum lobortis malesuada at, pulvinar ac tortor. Donec vitae quam massa. Mauris eu ante nibh. Donec eu dapibus est, id vestibulum urna. Suspendisse eu arcu neque. Mauris sed placerat orci, vel lobortis augue.</p><p>Suspendisse nisi tellus, finibus sit amet rutrum et, molestie quis dolor. Duis pretium ipsum eu sem <b>lobortis</b>, eget varius urna sagittis.</p><p><b>Etiam</b> et dolor sit amet quam finibus faucibus ac porttitor dui. Vestibulum et erat ac nulla cursus gravida et a dui. Nunc egestas purus dui, ac lobortis turpis rhoncus a. Sed ac accumsan eros. Vivamus eget vestibulum augue, vel lacinia orci. Duis vitae leo vel dolor lacinia volutpat fermentum et leo. Sed ac efficitur tellus. Quisque eget commodo ligula.</p><p>In mollis convallis turpis, sit amet luctus purus tempor a. Integer vel convallis arcu, porttitor laoreet mauris. Sed porttitor pharetra purus nec sagittis. Curabitur ac purus finibus, blandit lectus ac, laoreet est. Ut lobortis nisl sit amet <b>fringilla</b> gravida. Donec arcu lectus, porttitor sed vestibulum vitae, vestibulum ut justo. Duis maximus viverra risus, ac finibus enim pellentesque ac. Cras interdum posuere orci, ut ultricies elit ullamcorper ut.</p>"
         },
         {
-            "type":"marker",
-            "title":"a second marker module",
-            "context":"context",
-            "directive":"try to mark words",
-            "markers":[
-                {
-                    "val":0,
-                    "label":"marker4"
-                },
-                {
-                    "val":1,
-                    "label":"marker5"
-                },
-                {
-                    "val":2,
-                    "label":"marker6"
-                }
-            ],
-            "tomark":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <b>Etiam</b> rutrum convallis maximus. Nulla faucibus mi ante, sed efficitur mi <b>ultrices</b> vel.</p><p>Class aptent taciti sociosqu ad litora torquent per <b>conubia</b> nostra, per inceptos himenaeos. Maecenas sem sapien, dictum lobortis malesuada at, pulvinar ac tortor. Donec vitae quam massa. Mauris eu ante nibh. Donec eu dapibus est, id vestibulum urna. Suspendisse eu arcu neque. Mauris sed placerat orci, vel lobortis augue.</p><p>Suspendisse nisi tellus, finibus sit amet rutrum et, molestie quis dolor. Duis pretium ipsum eu sem <b>lobortis</b>, eget varius urna sagittis.</p><p><b>Etiam</b> et dolor sit amet quam finibus faucibus ac porttitor dui. Vestibulum et erat ac nulla cursus gravida et a dui. Nunc egestas purus dui, ac lobortis turpis rhoncus a. Sed ac accumsan eros. Vivamus eget vestibulum augue, vel lacinia orci. Duis vitae leo vel dolor lacinia volutpat fermentum et leo. Sed ac efficitur tellus. Quisque eget commodo ligula.</p><p>In mollis convallis turpis, sit amet luctus purus tempor a. Integer vel convallis arcu, porttitor laoreet mauris. Sed porttitor pharetra purus nec sagittis. Curabitur ac purus finibus, blandit lectus ac, laoreet est. Ut lobortis nisl sit amet <b>fringilla</b> gravida. Donec arcu lectus, porttitor sed vestibulum vitae, vestibulum ut justo. Duis maximus viverra risus, ac finibus enim pellentesque ac. Cras interdum posuere orci, ut ultricies elit ullamcorper ut.</p>"
-        },
-        {
             "type":"gapsimple",
             "title":"a gapsimple module",
             "context":"",
@@ -193,13 +183,6 @@ no options yet :'(
             "sentence":"A \"bad\" job."
         },
         {
-            "type":"gapfull",
-            "title":"a second gapfull module",
-            "context":"",
-            "directive":"Replace small with big and adapt sentence.",
-            "sentence":"The small mountain."
-        },
-        {
             "type":"clock",
             "title":"a clock module",
             "context":"",
@@ -210,9 +193,17 @@ no options yet :'(
             "title":"a blackbox module",
             "context":"test",
             "directive":"fill in the black box below",
-            "fct":"x8",
+            "operation":"x8",
             "left":[5,10,6,11],
             "right":[56,72,32]
+        },
+        {
+            "type":"dragdropsorting",
+            "title":"a dragdropsorting module",
+            "context":"",
+            "directive":"do this",
+            "todrag":["1","green","blue","A","3","yellow","C","Z"],
+            "todrop":["letters","colors","numbers"]
         }
 
     ]
