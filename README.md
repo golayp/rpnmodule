@@ -1,11 +1,4 @@
-                                      _       _      
-                                     | |     | |     
- _ __ _ __  _ __  _ __ ___   ___   __| |_   _| | ___ 
-| '__| '_ \| '_ \| '_ ` _ \ / _ \ / _` | | | | |/ _ \
-| |  | |_) | | | | | | | | | (_) | (_| | |_| | |  __/
-|_|  | .__/|_| |_|_| |_| |_|\___/ \__,_|\__,_|_|\___|
-     | |                                             
-     |_|                                             
+<h1>rpnmodule</h1>                                   
 
 <p>rpnmodule is a project aiming to provide a base library for running educational sequences of modules.
 It'll provide common features for 8 base module types (maybe more in the future) that can be arranged in a sequence of work:</p>
