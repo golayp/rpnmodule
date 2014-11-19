@@ -575,10 +575,10 @@ var rpndragdropsortingmodule = (function(){
                     $.each($(elem).find('li'),function(idx,txt){txts.push($(txt).text());});
                     responses[$(elem).find('lh').text()]=txts;
                 })
-                rpnmodule.handleEndOfModule(responses,function(res,sol){
+                rpnmodule.handleEndOfModule(responses,function(res,sols){
                     var score=0;
-                    _.each(sol,function(elem,idx){
-                       
+                    _.map(sols,function(sol,drop){
+                      score+=_.intersection(res[drop],sol).length;
                     });
                     return score;
                 });
