@@ -49,7 +49,11 @@ By default a sequence json datas has to handle thoses values:
 </ul>
 
 <h3>cardmaze options</h3>
-no options yet :'(
+<ul>
+    <li>mazewidth - the card maze width (in number of cards) [2-6]</li>
+    <li>mazeheight - the card maze height (in number of cards) [2-4]</li>
+    <li>cards - an array of cards to be displayed (described with label and clue)</li>
+</ul>
 
 <h3>clock options</h3>
 no options yet :'(
@@ -197,9 +201,57 @@ no options yet :'(
             "directive":"do this",
             "todrag":["1","green","blue","A","3","yellow","C","Z"],
             "todrop":["letters","colors","numbers"]
+        },
+        {
+            "type":"cardmaze",
+            "title":"a cardmaze module",
+            "context":"",
+            "directive":"do this",
+            "mazewidth":2,
+            "mazeheight":2,
+            "cards":[
+                {
+                    "label":"A",
+                    "clue":"B"
+                },
+                {
+                    "label":"A",
+                    "clue":"B"
+                },
+                {
+                    "label":"A",
+                    "clue":"B"
+                },
+                {
+                    "label":"A",
+                    "clue":"B"
+                }
+            ]
         }
 
     ]
 }
 ```
-
+<h2>sample sol json</h2>
+```json
+{
+    "solutions":[
+        [0,-1,2,1,-1,0],
+        [-1,-1,-1,-1,-1,-1],
+        ["a","b","c","d","e","f"],
+        "",
+        "",
+        {
+            "left":[40,80,48,88],
+            "right":[7,9,4]
+        },
+        {
+            "letters":["A","C","Z"],
+            "colors":["green","blue","yellow"],
+            "numbers":["1","3"]
+        },
+        [0,5,11,17]
+        
+    ]
+}
+```

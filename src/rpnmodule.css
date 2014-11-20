@@ -46,6 +46,35 @@
 .rpnmodule_blackbox .blackbox-fct{
     white-space: nowrap;
 }
+.rpnmodule_cardmaze .card{
+    text-align: center;
+}
+.rpnmodule_cardmaze .card.selected{
+    background-color:#f00;
+    cursor:not-allowed;
+}
+.rpnmodule_cardmaze .card.selectable{
+    background-color:#ccc;
+    cursor:pointer;
+}
+.rpnmodule_cardmaze .card.selected.selectable{
+    background-color:#f00;
+    cursor:pointer;
+}
+.rpnmodule_cardmaze .card.start, .rpnmodule_cardmaze .card.selected.selectable.start{
+    background-color:#0f0;
+}
+.rpnmodule_cardmaze .card.selected.selectable.start{
+    background-color:#0f0;
+    cursor:pointer;
+}
+
+.rpnmodule_cardmaze .card.end{
+    background-color:#eee;
+}
+.rpnmodule_cardmaze .card.end.selected.snakehead{
+    background-color:#0f0;
+}
 
 
 /* Prevent the text contents of draggable elements from being selectable. */

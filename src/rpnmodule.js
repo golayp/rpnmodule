@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    rpnmodule.init({moduleend:function(res){alert('module ended!'+res);}});
+    rpnmodule.init({debug:true});
 });
 
 var rpnmoduleLabels = {
@@ -11,7 +11,8 @@ var rpnmoduleLabels = {
         Wait:"Wait please...",
         Validate:"Validate",
         Eraser:"Eraser",
-        DragDropNotEmpty:"There are still some items to sort!"
+        DragDropNotEmpty:"There are still some items to sort!",
+        CardMazeNotEnded:"You have not finished the maze!"
     },
     fr:{
         Recall:"Rappel",
@@ -21,7 +22,8 @@ var rpnmoduleLabels = {
         Wait:"Veuillez patienter...",
         Validate:"Valider",
         Eraser:"Effaceur",
-        DragDropNotEmpty:"Il y a encore des éléments à trier!"
+        DragDropNotEmpty:"Il y a encore des éléments à trier!",
+        CardMazeNotEnded:"Vous n'avez pas terminé le labyrinthe!"
     }
 };
 
@@ -39,9 +41,13 @@ var rpnmodule = (function () {
     var sequenceendHandler;
     var moduleendHandler;
     var alertModal;
+    var debug;
     
 
     var init = function (opts) {
+        if(_.isUndefined(opts)){
+            opts={};
+        }
         _.defaults(opts,{
                 sequrl:"seq.json",
                 solurl:"sol.json",
@@ -50,7 +56,8 @@ var rpnmodule = (function () {
                 warnonexit:false,
                 onsequenceend:function(){},
                 onmoduleend:function(){},
-                language:"en"
+                language:"en",
+                debug:false
             }
         );
         rpnmoduleSelectedLabels=rpnmoduleLabels[opts.language];
@@ -58,6 +65,7 @@ var rpnmodule = (function () {
         warnexit=opts.warnonexit;
         backurl=opts.returnurl;
         solurl=opts.solurl;
+        debug=opts.debug;
         sequenceendHandler=opts.onsequenceend;
         moduleendHandler=opts.onmoduleend;
         $.getJSON(opts.sequrl,function(datas){
@@ -111,12 +119,13 @@ var rpnmodule = (function () {
             rpnblackboxmodule.init(moduleDatas,mainContent);
         }else if(moduleDatas.type=='dragdropsorting'){
             rpndragdropsortingmodule.init(moduleDatas,mainContent);
+        }else if(moduleDatas.type=='cardmaze'){
+            rpncardmazemodule.init(moduleDatas,mainContent);
         }
-        
-
     };
     
     var handleEndOfModule = function(res,correctionFct){
+        log('End of module');
         //store result locally
         responses[currentmod]={responses:res,correctionFct:correctionFct};
         $('#waitModal').modal('show');
@@ -130,7 +139,7 @@ var rpnmodule = (function () {
     };
     
     var handleEndOfSequence = function(){
-        
+        log('End of sequence');
         sequenceendHandler(responses);
         //retrieve solutions and use correction function to make score
         $.getJSON(solurl,function(ssol){
@@ -138,6 +147,7 @@ var rpnmodule = (function () {
             _.each(ssol.solutions,function(sol,idx){
                 score+=_.isUndefined(responses[idx])?0:responses[idx].correctionFct(responses[idx].responses,sol);
             });
+            log('Calculated total score for sequence '+score);
             if(warnexit){
                $(window).unbind('beforeunload');
             }
@@ -159,13 +169,20 @@ var rpnmodule = (function () {
             }
         });
     };
+    
+    var log = function (msg){
+        if(debug){
+            console.log(msg);
+        }
+    }
 
     return {
         init:init,
         buildUi:buildUi,
         handleEndOfModule:handleEndOfModule,
         genericValidateButton: genericValidateButton,
-        displayAlert:displayAlert
+        displayAlert:displayAlert,
+        log:log
     };
 })();
 
@@ -515,6 +532,7 @@ var rpnblackboxmodule = (function() {
 
 })();
 
+//dragdropsorting
 var rpndragdropsortingmodule = (function(){
     var datas;
     var domelem;
@@ -578,8 +596,115 @@ var rpndragdropsortingmodule = (function(){
                 rpnmodule.handleEndOfModule(responses,function(res,sols){
                     var score=0;
                     _.map(sols,function(sol,drop){
-                      score+=_.intersection(res[drop],sol).length;
+                        score+=_.intersection(res[drop],sol).length;
                     });
+                    return score;
+                });
+            }
+        });
+    };
+
+    return {
+        init:init
+    };
+})();
+
+//cardmaze
+var rpncardmazemodule = (function(){
+    var datas;
+    var domelem;
+    var validationButton;
+    var responses;
+    var currentHead;
+    var height;
+    var width;
+    var snake;
+    var startid;
+    var endid;
+    var init = function(_datas,_domelem){
+        _.defaults(_datas,{
+            mazewidth:6,
+            mazeheight:4,
+            cards:[{
+                    label:"label",
+                    clue:"clue"
+                }]
+        });
+        datas=_datas;
+        height=datas.mazeheight;
+        width=datas.mazewidth;
+        domelem=_domelem;
+        responses=[];
+        buildUi();
+        snake=[];
+    };
+
+    var buildUi = function (){
+        //build card maze
+        domelem.addClass('rpnmodule_cardmaze');
+        domelem.append($('<div class="row"><div class="container" id="maze"></div></div>'));
+        _.each(datas.cards,function(card, idx){
+            $('#maze').append($('<div class="col-xs-2"><div class="card'+(card.start?' start selectable':'')+(card.end?' end':'')+'"><p>'+card.label+'</p><p>'+card.clue+'</p></div></div>'));
+            if(card.start){
+                currentHead=idx;
+                startid=idx;
+            }
+            if(card.end)
+            {
+                endid=idx;
+            }
+            
+        });
+        //build validation button
+        validationButton=rpnmodule.genericValidateButton();
+        domelem.append(validationButton);
+        bindUiEvents();
+        
+    };
+    
+
+    var bindUiEvents = function(){
+        _.each($('.card'),function(card,idx){
+            $(card).click(function(){
+                if($(card).hasClass('selectable')){
+                    if((idx==currentHead ||idx==currentHead+width || idx==currentHead-width || idx==currentHead-1 || idx==currentHead+1) &&  !$(card).hasClass('selected')){
+                        if(currentHead!=idx){
+                            snake.push(card);
+                        }
+                        currentHead=idx;
+                        $('.snakehead').removeClass('snakehead');
+                        $(card).addClass('selected snakehead');
+                        $('.selectable').removeClass('selectable');
+                        if(idx!=endid){
+                            if(!((idx+width)>(width*height))){
+                                $($('.card')[idx+width]).addClass('selectable');
+                            }
+                            if(!((idx-width)<0)){
+                                $($('.card')[idx-width]).addClass('selectable');
+                            }
+                            if(idx%width!=0){
+                                $($('.card')[idx-1]).addClass('selectable');
+                            }
+                            if((idx+1)%width!=0){
+                                $($('.card')[idx+1]).addClass('selectable');
+                            }    
+                        }
+                        responses.push(idx);
+                    }
+                }
+                
+                
+            });
+        });
+        validationButton.click(function(){
+            if(!$(snake[snake.length-1]).hasClass('end')){
+                rpnmodule.displayAlert(rpnmoduleSelectedLabels.CardMazeNotEnded);
+            }else{
+                rpnmodule.handleEndOfModule(responses,function(res,sol){
+                    var score=0;
+                    _.each(sol,function(cardIdx,idx){
+                        score+=(res[idx]==cardIdx?1:0);
+                    })
                     return score;
                 });
             }
