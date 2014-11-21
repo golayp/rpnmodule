@@ -9,7 +9,7 @@
             "questions":[
                 {
                     "val":0,
-                    "label" : "Why <strong>doing</strong> this ?"
+                    "label" : "Why <strong>doing</strong> this <img src=\"logo2.png\" /> ?"
                 },
                 {
                     "val":1,

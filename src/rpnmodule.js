@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    rpnmodule.init({debug:true});
+    rpnmodule.init({debug:true,mediapathformatter:function(url){return '/tests/medias/'+url;}});
 });
 
 var rpnmoduleLabels = {
@@ -35,6 +35,7 @@ var rpnmodule = (function () {
 
     var sequencedatas;
     var currentmod;
+    var moduleWrapper;
     var mainContent;
     var source;
     var solurl;
@@ -43,6 +44,7 @@ var rpnmodule = (function () {
     var warnexit;
     var sequenceendHandler;
     var moduleendHandler;
+    var mediapathHandler;
     var alertModal;
     var debug;
     
@@ -54,11 +56,11 @@ var rpnmodule = (function () {
         _.defaults(opts,{
                 sequrl:"seq.json",
                 solurl:"sol.json",
-                mediaurl:"medias",
                 returnurl:"../",
                 warnonexit:false,
                 onsequenceend:function(){},
                 onmoduleend:function(){},
+                mediapathformatter:function(val){return 'medias/'+val;},
                 language:"en",
                 debug:false
             }
@@ -71,6 +73,7 @@ var rpnmodule = (function () {
         debug=opts.debug;
         sequenceendHandler=opts.onsequenceend;
         moduleendHandler=opts.onmoduleend;
+        mediapathHandler=opts.mediapathformatter;
         $.getJSON(opts.sequrl,function(datas){
             _.defaults(datas,{
                 title:"mqc",
@@ -83,12 +86,13 @@ var rpnmodule = (function () {
     };
 
     var buildUi = function () {
-        $('body').append($('<div class="container"><div class="row"><div class="col-md-12"><h1 id="sequenceTitle"></h1></div></div><div class="row"><div class="col-xs-8"><h2 id="moduleTitle"></h2><h3 id="moduleContext"></h3><h4 id="moduleDirective"></h4></div><div class="col-xs-4"><button class="btn btn-link" id="recallLink" data-toggle="modal" data-target="#recallModal">'+rpnmoduleSelectedLabels.Recall+'</button> <button class="btn btn-link"  id="orderLink" data-toggle="modal" data-target="#orderModal">'+rpnmoduleSelectedLabels.Order+'</button></div></div><div class="row"><div id="mainContent" class="col-md-12"></div></div></div><div class="container"><div class="row"><div class="col-md-12"><em id="rpnsource" class="pull-right"></em></div></div>'));
+        $('body').append($('<div class="container" id="rpnmodulewrapper"><div class="row"><div class="col-md-12"><h1 id="sequenceTitle"></h1></div></div><div class="row"><div class="col-xs-8"><h2 id="moduleTitle"></h2><h3 id="moduleContext"></h3><h4 id="moduleDirective"></h4></div><div class="col-xs-4"><button class="btn btn-link" id="recallLink" data-toggle="modal" data-target="#recallModal">'+rpnmoduleSelectedLabels.Recall+'</button> <button class="btn btn-link"  id="orderLink" data-toggle="modal" data-target="#orderModal">'+rpnmoduleSelectedLabels.Order+'</button></div></div><div class="row"><div id="mainContent" class="col-md-12"></div></div></div><div class="container"><div class="row"><div class="col-md-12"><em id="rpnsource" class="pull-right"></em></div></div>'));
         $('body').append($('<div id="recallModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Recall+'</h4></div><div class="modal-body" id="recallModalContent"></div></div></div></div>'));
         $('body').append($('<div id="orderModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Order+'</h4></div><div class="modal-body" id="orderModalContent"></div></div></div></div>'));
         $('body').append($('<div id="alertModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Warning+'</h4></div><div class="modal-body" id="alertModalContent"></div></div></div></div>'));
         $('body').append($('<div id="waitModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">'+rpnmoduleSelectedLabels.Wait+'</h4></div><div class="modal-body" id="orderModalContent"><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% completed</span></div></div></div></div></div></div>'));
         $('#sequenceTitle').html(sequencedatas.title);
+        moduleWrapper=$('#rpnmodulewrapper');
         source=$('#rpnsource');
         mainContent=$('#mainContent');
         alertModal=$('#alertModal');
@@ -101,6 +105,7 @@ var rpnmodule = (function () {
     };
 
     var displayCurrentModule=function(){
+        $('#waitModal').modal('show');
         var moduleDatas=sequencedatas.modules[currentmod];
         _.defaults(moduleDatas,{title:"title"});
         
@@ -115,17 +120,14 @@ var rpnmodule = (function () {
             $('#recallLink').hide();  
         }else{
             $('#recallLink').show();
-            $('#recallModalContent').html(moduleDatas.recall);
+            $('#recallModalContent').append(moduleDatas.recall);
         }
-        
         if(_.isUndefined(moduleDatas.order)){
             $('#orderLink').hide();  
         }else{
             $('#orderLink').show();
             $('#orderModalContent').html(moduleDatas.order);
         }
-        _.isUndefined(moduleDatas.order)?$('#orderLink').hide():$('#orderLink').show();
-        $('#waitModal').modal('hide');
         if(moduleDatas.type=='marker'){
             rpnmarkermodule.init(moduleDatas,mainContent);
         }else if(moduleDatas.type=='mqc'){
@@ -143,6 +145,8 @@ var rpnmodule = (function () {
         }else if(moduleDatas.type=='cardmaze'){
             rpncardmazemodule.init(moduleDatas,mainContent);
         }
+        handleMediaPath();
+        $('#waitModal').modal('hide');
     };
     
     var handleEndOfModule = function(res,correctionFct){
@@ -195,6 +199,18 @@ var rpnmodule = (function () {
         if(debug){
             console.log(msg);
         }
+    }
+    
+    var handleMediaPath = function(){
+        //Images paths
+        _.each($('img:not(.rpnmoduleimg)'),function(elem,idx){
+            var img=$(elem);
+            img.attr('src',mediapathHandler($(elem).attr('src')))
+            if(img.is('.modal-body img')){
+                img.addClass('img-responsive img-rounded');
+            }
+        });
+        
     }
 
     return {
