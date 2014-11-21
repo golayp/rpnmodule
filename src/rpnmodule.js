@@ -12,7 +12,8 @@ var rpnmoduleLabels = {
         Validate:"Validate",
         Eraser:"Eraser",
         DragDropNotEmpty:"There are still some items to sort!",
-        CardMazeNotEnded:"You have not finished the maze!"
+        CardMazeNotEnded:"You have not finished the maze!",
+        Sources:"Sources"
     },
     fr:{
         Recall:"Rappel",
@@ -23,7 +24,8 @@ var rpnmoduleLabels = {
         Validate:"Valider",
         Eraser:"Effaceur",
         DragDropNotEmpty:"Il y a encore des éléments à trier!",
-        CardMazeNotEnded:"Vous n'avez pas terminé le labyrinthe!"
+        CardMazeNotEnded:"Vous n'avez pas terminé le labyrinthe!",
+        Sources:"Sources"
     }
 };
 
@@ -34,6 +36,7 @@ var rpnmodule = (function () {
     var sequencedatas;
     var currentmod;
     var mainContent;
+    var source;
     var solurl;
     var backurl;
     var responses;
@@ -80,12 +83,13 @@ var rpnmodule = (function () {
     };
 
     var buildUi = function () {
-        $('body').append($('<div class="container"><div class="row"><div class="col-md-12"><h1 id="sequenceTitle"></h1></div></div><div class="row"><div class="col-xs-8"><h2 id="moduleTitle"></h2><h3 id="moduleContext"></h3><h4 id="moduleDirective"></h4></div><div class="col-xs-4"><button class="btn btn-link" id="recallLink" data-toggle="modal" data-target="#recallModal">'+rpnmoduleSelectedLabels.Recall+'</button> <button class="btn btn-link"  id="orderLink" data-toggle="modal" data-target="#orderModal">'+rpnmoduleSelectedLabels.Order+'</button></div></div><div class="row"><div id="mainContent" class="col-md-12"></div></div></div>'));
+        $('body').append($('<div class="container"><div class="row"><div class="col-md-12"><h1 id="sequenceTitle"></h1></div></div><div class="row"><div class="col-xs-8"><h2 id="moduleTitle"></h2><h3 id="moduleContext"></h3><h4 id="moduleDirective"></h4></div><div class="col-xs-4"><button class="btn btn-link" id="recallLink" data-toggle="modal" data-target="#recallModal">'+rpnmoduleSelectedLabels.Recall+'</button> <button class="btn btn-link"  id="orderLink" data-toggle="modal" data-target="#orderModal">'+rpnmoduleSelectedLabels.Order+'</button></div></div><div class="row"><div id="mainContent" class="col-md-12"></div></div></div><div class="container"><div class="row"><div class="col-md-12"><em id="rpnsource" class="pull-right"></em></div></div>'));
         $('body').append($('<div id="recallModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Recall+'</h4></div><div class="modal-body" id="recallModalContent"></div></div></div></div>'));
         $('body').append($('<div id="orderModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Order+'</h4></div><div class="modal-body" id="orderModalContent"></div></div></div></div>'));
         $('body').append($('<div id="alertModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Warning+'</h4></div><div class="modal-body" id="alertModalContent"></div></div></div></div>'));
         $('body').append($('<div id="waitModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">'+rpnmoduleSelectedLabels.Wait+'</h4></div><div class="modal-body" id="orderModalContent"><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% completed</span></div></div></div></div></div></div>'));
         $('#sequenceTitle').html(sequencedatas.title);
+        source=$('#rpnsource');
         mainContent=$('#mainContent');
         alertModal=$('#alertModal');
         if(warnexit){
@@ -99,11 +103,28 @@ var rpnmodule = (function () {
     var displayCurrentModule=function(){
         var moduleDatas=sequencedatas.modules[currentmod];
         _.defaults(moduleDatas,{title:"title"});
+        
+        source.html(_.isUndefined(moduleDatas.sources)?"":(rpnmoduleSelectedLabels.Sources+": "+ moduleDatas.sources));
+        
         mainContent.empty();
         mainContent.removeClass().addClass('col-md-12');
         $('#moduleTitle').show().text(moduleDatas.title);
         _.isUndefined(moduleDatas.context)?$('#moduleContext').hide():$('#moduleContext').show().text(moduleDatas.context);
         _.isUndefined(moduleDatas.directive)?$('#moduleDirective').hide():$('#moduleDirective').show().text(moduleDatas.directive);
+        if(_.isUndefined(moduleDatas.recall)){
+            $('#recallLink').hide();  
+        }else{
+            $('#recallLink').show();
+            $('#recallModalContent').html(moduleDatas.recall);
+        }
+        
+        if(_.isUndefined(moduleDatas.order)){
+            $('#orderLink').hide();  
+        }else{
+            $('#orderLink').show();
+            $('#orderModalContent').html(moduleDatas.order);
+        }
+        _.isUndefined(moduleDatas.order)?$('#orderLink').hide():$('#orderLink').show();
         $('#waitModal').modal('hide');
         if(moduleDatas.type=='marker'){
             rpnmarkermodule.init(moduleDatas,mainContent);

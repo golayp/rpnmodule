@@ -3,6 +3,7 @@
     "modules":[
         {
             "type":"cardmaze",
+            "sources":"Dictionnary article #24.13",
             "title":"a cardmaze module",
             "context":"",
             "directive":"do this",
