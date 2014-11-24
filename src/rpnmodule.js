@@ -201,7 +201,7 @@ var rpnsequence = (function () {
     
     var handleMediaPath = function(){
         //Images paths
-        _.each($('img:not(.rpnmoduleimg)'),function(elem,idx){
+        _.each($('img:not(.rpnm-img)'),function(elem,idx){
             var img=$(elem);
             img.attr('src',mediapathHandler($(elem).attr('src')))
             if(img.is('.modal-body img')){
