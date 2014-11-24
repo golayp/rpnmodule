@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    rpnmodule.init({debug:true,mediapathformatter:function(url){return '/tests/medias/'+url;}});
+    rpnsequence.init({debug:true,mediapathformatter:function(url){return '/tests/medias/'+url;}});
 });
 
 var rpnmoduleLabels = {
@@ -31,11 +31,10 @@ var rpnmoduleLabels = {
 
 var rpnmoduleSelectedLabels;
 
-var rpnmodule = (function () {
+var rpnsequence = (function () {
 
     var sequencedatas;
     var currentmod;
-    var moduleWrapper;
     var mainContent;
     var source;
     var solurl;
@@ -76,7 +75,7 @@ var rpnmodule = (function () {
         mediapathHandler=opts.mediapathformatter;
         $.getJSON(opts.sequrl,function(datas){
             _.defaults(datas,{
-                title:"mqc",
+                title:"sequencetitle",
                 modules:[]
             });
             sequencedatas=datas;
@@ -86,16 +85,15 @@ var rpnmodule = (function () {
     };
 
     var buildUi = function () {
-        $('body').append($('<div class="container" id="rpnmodulewrapper"><div class="row"><div class="col-md-12"><h1 id="sequenceTitle"></h1></div></div><div class="row"><div class="col-xs-8"><h2 id="moduleTitle"></h2><h3 id="moduleContext"></h3><h4 id="moduleDirective"></h4></div><div class="col-xs-4"><button class="btn btn-link" id="recallLink" data-toggle="modal" data-target="#recallModal">'+rpnmoduleSelectedLabels.Recall+'</button> <button class="btn btn-link"  id="orderLink" data-toggle="modal" data-target="#orderModal">'+rpnmoduleSelectedLabels.Order+'</button></div></div><div class="row"><div id="mainContent" class="col-md-12"></div></div></div><div class="container"><div class="row"><div class="col-md-12"><em id="rpnsource" class="pull-right"></em></div></div>'));
-        $('body').append($('<div id="recallModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Recall+'</h4></div><div class="modal-body" id="recallModalContent"></div></div></div></div>'));
-        $('body').append($('<div id="orderModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Order+'</h4></div><div class="modal-body" id="orderModalContent"></div></div></div></div>'));
-        $('body').append($('<div id="alertModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Warning+'</h4></div><div class="modal-body" id="alertModalContent"></div></div></div></div>'));
-        $('body').append($('<div id="waitModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">'+rpnmoduleSelectedLabels.Wait+'</h4></div><div class="modal-body" id="orderModalContent"><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% completed</span></div></div></div></div></div></div>'));
-        $('#sequenceTitle').html(sequencedatas.title);
-        moduleWrapper=$('#rpnmodulewrapper');
-        source=$('#rpnsource');
-        mainContent=$('#mainContent');
-        alertModal=$('#alertModal');
+        $('body').append($('<div class="container" id="rpnm"><div class="row"><div class="col-md-12"><h1 id="rpnm_seq_title"></h1></div></div><div class="row"><div class="col-xs-8"><h2 id="rpnm_title"></h2><h3 id="rpn_context"></h3><h4 id="rpnm_directive"></h4></div><div class="col-xs-4"><button class="btn btn-link" id="rpnm_recall_link" data-toggle="modal" data-target="#rpnm_recall_modal">'+rpnmoduleSelectedLabels.Recall+'</button> <button class="btn btn-link"  id="rpnm_order_link" data-toggle="modal" data-target="#rpnm_order_modal">'+rpnmoduleSelectedLabels.Order+'</button></div></div><div class="row"><div id="rpnm_module_content" class="col-md-12"></div></div></div><div class="container"><div class="row"><div class="col-md-12"><em id="rpnm_source" class="pull-right"></em></div></div>'));
+        $('body').append($('<div id="rpnm_recall_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Recall+'</h4></div><div class="modal-body"></div></div></div></div>'));
+        $('body').append($('<div id="rpnm_order_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Order+'</h4></div><div class="modal-body"></div></div></div></div>'));
+        $('body').append($('<div id="rpnm_alert_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Warning+'</h4></div><div class="modal-body"></div></div></div></div>'));
+        $('body').append($('<div id="rpnm_wait_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">'+rpnmoduleSelectedLabels.Wait+'</h4></div><div class="modal-body"><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% completed</span></div></div></div></div></div></div>'));
+        $('#rpnm_seq_title').html(sequencedatas.title);
+        source=$('#rpnm_source');
+        mainContent=$('#rpnm_module_content');
+        alertModal=$('#rpnm_alert_modal');
         if(warnexit){
             $(window).bind('beforeunload', function(e) {
                 return rpnmoduleSelectedLabels.BeforeUnloadMsg;
@@ -105,7 +103,7 @@ var rpnmodule = (function () {
     };
 
     var displayCurrentModule=function(){
-        $('#waitModal').modal('show');
+        $('#rpnm_wait_modal').modal('show');
         var moduleDatas=sequencedatas.modules[currentmod];
         _.defaults(moduleDatas,{title:"title"});
         
@@ -113,20 +111,20 @@ var rpnmodule = (function () {
         
         mainContent.empty();
         mainContent.removeClass().addClass('col-md-12');
-        $('#moduleTitle').show().text(moduleDatas.title);
-        _.isUndefined(moduleDatas.context)?$('#moduleContext').hide():$('#moduleContext').show().text(moduleDatas.context);
-        _.isUndefined(moduleDatas.directive)?$('#moduleDirective').hide():$('#moduleDirective').show().text(moduleDatas.directive);
+        $('#rpnm_title').show().text(moduleDatas.title);
+        _.isUndefined(moduleDatas.context)?$('#rpnm_context').hide():$('#rpnm_context').show().text(moduleDatas.context);
+        _.isUndefined(moduleDatas.directive)?$('#rpnm_directive').hide():$('#rpnm_directive').show().text(moduleDatas.directive);
         if(_.isUndefined(moduleDatas.recall)){
-            $('#recallLink').hide();  
+            $('#rpnm_recall_link').hide();  
         }else{
-            $('#recallLink').show();
-            $('#recallModalContent').append(moduleDatas.recall);
+            $('#rpnm_recall_link').show();
+            $('#rpnm_recall_modal .modal-body').append(moduleDatas.recall);
         }
         if(_.isUndefined(moduleDatas.order)){
-            $('#orderLink').hide();  
+            $('#rpnm_order_link').hide();  
         }else{
-            $('#orderLink').show();
-            $('#orderModalContent').html(moduleDatas.order);
+            $('#rpnm_order_link').show();
+            $('#rpnm_order_modal .modal-body').html(moduleDatas.order);
         }
         if(moduleDatas.type=='marker'){
             rpnmarkermodule.init(moduleDatas,mainContent);
@@ -146,14 +144,14 @@ var rpnmodule = (function () {
             rpncardmazemodule.init(moduleDatas,mainContent);
         }
         handleMediaPath();
-        $('#waitModal').modal('hide');
+        $('#rpnm_wait_modal').modal('hide');
     };
     
     var handleEndOfModule = function(res,correctionFct){
         log('End of module');
         //store result locally
         responses[currentmod]={responses:res,correctionFct:correctionFct};
-        $('#waitModal').modal('show');
+        $('#rpnm_wait_modal').modal('show');
         currentmod++;
         moduleendHandler(res);
         if(_.isUndefined(sequencedatas.modules[currentmod])){
@@ -186,7 +184,7 @@ var rpnmodule = (function () {
     }
     
     var displayAlert = function(text,onclose){
-        $('#alertModalContent').text(text);
+        $('#rpnm_alert_modal .modal-body').text(text);
         alertModal.modal();
         alertModal.on('hidden.bs.modal', function () {
             if(!_.isUndefined(onclose)){
@@ -244,7 +242,7 @@ var rpnmarkermodule = (function() {
 
     var buildUi = function (){
         //build marker toolbar
-        domelem.addClass('rpnmodule_marker');
+        domelem.addClass('marker');
         var toolbar=$('<div>',{'class':'btn-group','data-toggle':'buttons'});
         var availableColors=_.shuffle(['primary','success','info','warning','danger']);
 
@@ -281,7 +279,7 @@ var rpnmarkermodule = (function() {
 
     var bindUiEvents = function(){
         validationButton.click(function(){
-            rpnmodule.handleEndOfModule(responses,function(res,sol){
+            rpnsequence.handleEndOfModule(responses,function(res,sol){
                 var score=0;
                 _.each(sol,function(val,idx){
                     score+=res[idx]==val?1:0;
@@ -318,7 +316,7 @@ var rpnmqcmodule = (function() {
 
     var buildUi = function (){
         //build marker toolbar
-        domelem.addClass('rpnmodule_mqc');
+        domelem.addClass('mqc');
 
         //build panel with sentences
         var uilist=$('<ul>',{'class':'list-unstyled'});
@@ -338,7 +336,7 @@ var rpnmqcmodule = (function() {
         domelem.append(uilist);
 
         //build validation button
-        validationButton=rpnmodule.genericValidateButton();
+        validationButton=rpnsequence.genericValidateButton();
         domelem.append(validationButton);
         
         bindUiEvents();
@@ -346,7 +344,7 @@ var rpnmqcmodule = (function() {
     
     var bindUiEvents = function(){
         validationButton.click(function(){
-            rpnmodule.handleEndOfModule(responses,function(res,sol){
+            rpnsequence.handleEndOfModule(responses,function(res,sol){
                 var score=0;
                 _.each(sol,function(val,idx){
                     score+=res[idx]==val?1:0;
@@ -381,17 +379,17 @@ var rpngapsimplemodule = (function() {
 
     var buildUi = function (){
         //build marker toolbar
-        domelem.addClass('rpnmodule_gapsimple');
+        domelem.addClass('gapsimple');
 
         //build panel with sentences
         domelem.append($('<div id="sentences" class="form-inline">'+datas.tofill+'</div>'));
         $.each($('#sentences b'),function(idx,tofill){
             responses[idx]=-1; //initialize all responses to unmark
             var t=$(tofill);
-            t.replaceWith($('<input type="text" id="'+idx+'" class="rpnmodule-input gapsimple form-control"> <strong>('+t.text()+')</strong>'));
+            t.replaceWith($('<input type="text" id="'+idx+'" class="rpnm_input gapsimple form-control"> <strong>('+t.text()+')</strong>'));
         });
         //build validation button
-        validationButton=rpnmodule.genericValidateButton();
+        validationButton=rpnsequence.genericValidateButton();
         domelem.append(validationButton);
 
         bindUiEvents();
@@ -402,7 +400,7 @@ var rpngapsimplemodule = (function() {
             $.each($('.gapsimple'),function(idx,gap){
                 responses[idx]=$(gap).val();
             });
-            rpnmodule.handleEndOfModule(responses,function(res,sol){
+            rpnsequence.handleEndOfModule(responses,function(res,sol){
                 var score=0;
                 _.each(sol,function(val,idx){
                     score+=res[idx]==val?1:0;
@@ -434,14 +432,14 @@ var rpngapfullmodule = (function() {
 
     var buildUi = function (){
         //build marker toolbar
-        domelem.addClass('rpnmodule_gapfull');
+        domelem.addClass('gapfull');
 
         //build panel with sentences
-        domelem.append($('<div id="sentences"><p>'+datas.sentence+'</p><input type="text" id="gapfullresponse" class="rpnmodule-input form-control"></div>'));
+        domelem.append($('<div id="sentences"><p>'+datas.sentence+'</p><input type="text" id="gapfullresponse" class="rpnm_input form-control"></div>'));
         $('#gapfullresponse').val(datas.sentence);
         
         //build validation button
-        validationButton=rpnmodule.genericValidateButton();
+        validationButton=rpnsequence.genericValidateButton();
         domelem.append(validationButton);
 
         bindUiEvents();
@@ -449,7 +447,7 @@ var rpngapfullmodule = (function() {
 
     var bindUiEvents = function(){
         validationButton.click(function(){
-            rpnmodule.handleEndOfModule($('#gapfullresponse').val(),function(res,sol){
+            rpnsequence.handleEndOfModule($('#gapfullresponse').val(),function(res,sol){
                 //Try to trim and do automatic corrections here.
                 return res==sol?1:0;
             });
@@ -476,14 +474,14 @@ var rpnclockmodule = (function(){
 
     var buildUi = function (){
         //build marker toolbar
-        domelem.addClass('rpnmodule_clock');
+        domelem.addClass('clock');
 
         //build panel with sentences
         domelem.append($('<div id="rpnclock"></div>'));
         new ClockSelector( 'rpnclock',{background:'white',color_hour:'#333',color_minute:'#666',color_border:'#eee',highlight:'#357ebd'} );
         
         //build validation button
-        validationButton=rpnmodule.genericValidateButton();
+        validationButton=rpnsequence.genericValidateButton();
         domelem.append(validationButton);
 
         bindUiEvents();
@@ -491,7 +489,7 @@ var rpnclockmodule = (function(){
 
     var bindUiEvents = function(){
         validationButton.click(function(){
-            rpnmodule.handleEndOfModule($('#gapfullresponse').val(),function(res,sol){
+            rpnsequence.handleEndOfModule($('#gapfullresponse').val(),function(res,sol){
                 //Try to trim and do automatic corrections here.
                 return res==sol?1:0;
             });
@@ -523,20 +521,20 @@ var rpnblackboxmodule = (function() {
 
     var buildUi = function (){
         //build marker toolbar
-        domelem.addClass('rpnmodule_blackbox');
+        domelem.addClass('blackbox');
 
         var blackboxwell=$('<div class="blackbox">');
         domelem.append(blackboxwell);
 
         $.each(datas.left,function(idx,value){
-            blackboxwell.append($('<div class="row"><div class="col-md-3 hidden-xs hidden-sm"></div><div class="col-xs-2"><span>'+value + '</span></div><div class="col-xs-2 blackbox-fct"><i class="glyphicon glyphicon-minus"></i> ('+datas.operation+') <i class="glyphicon glyphicon-arrow-right"></i></div><div class="col-xs-2"><input type="text" id="'+idx+'" class="rpnmodule-input blackbox-left form-control" style="text-align: center;"></div></div>'));
+            blackboxwell.append($('<div class="row"><div class="col-md-3 hidden-xs hidden-sm"></div><div class="col-xs-2"><span>'+value + '</span></div><div class="col-xs-2 blackbox-fct"><i class="glyphicon glyphicon-minus"></i> ('+datas.operation+') <i class="glyphicon glyphicon-arrow-right"></i></div><div class="col-xs-2"><input type="text" id="'+idx+'" class="rpnm_input blackbox-left form-control" style="text-align: center;"></div></div>'));
         });
          $.each(datas.right,function(idx,value){
-            blackboxwell.append($('<div class="row"><div class="col-md-3 hidden-xs hidden-sm"></div><div class="col-xs-2"><input type="text" id="'+idx+'" class="rpnmodule-input blackbox-right form-control" style="text-align: center;"></div><div class="col-xs-2 blackbox-fct"><i class="glyphicon glyphicon-minus"></i> ('+datas.operation+') <i class="glyphicon glyphicon-arrow-right"></i></div><div class="col-xs-2"><span>'+value + '</span></div></div>'));
+            blackboxwell.append($('<div class="row"><div class="col-md-3 hidden-xs hidden-sm"></div><div class="col-xs-2"><input type="text" id="'+idx+'" class="rpnm_input blackbox-right form-control" style="text-align: center;"></div><div class="col-xs-2 blackbox-fct"><i class="glyphicon glyphicon-minus"></i> ('+datas.operation+') <i class="glyphicon glyphicon-arrow-right"></i></div><div class="col-xs-2"><span>'+value + '</span></div></div>'));
         });
 
         //build validation button
-        validationButton=rpnmodule.genericValidateButton();
+        validationButton=rpnsequence.genericValidateButton();
         domelem.append(validationButton);
 
         bindUiEvents();
@@ -550,7 +548,7 @@ var rpnblackboxmodule = (function() {
             $.each($('.blackbox-right'),function(idx,gap){
                 responses.right[idx]=$(gap).val();
             });
-            rpnmodule.handleEndOfModule(responses,function(res,sol){
+            rpnsequence.handleEndOfModule(responses,function(res,sol){
                 var score=0;
                 _.each(sol.right,function(val,idx){
                     score+=res.right[idx]==val?1:0;
@@ -589,7 +587,7 @@ var rpndragdropsortingmodule = (function(){
 
     var buildUi = function (){
         //build marker toolbar
-        domelem.addClass('rpnmodule_dnds');
+        domelem.addClass('dragdropsorting');
         domelem.append($('<div class="row"><div class="container"><div class="col-md-12"><ul id="dragthis" class="list-unstyled"></ul></div></div><div class="row"><div class="container" id="dropzonecontainer"></div></div>'));
         
         $.each(datas.todrop,function(idx,drop){
@@ -602,7 +600,7 @@ var rpndragdropsortingmodule = (function(){
         });
         
         //build validation button
-        validationButton=rpnmodule.genericValidateButton();
+        validationButton=rpnsequence.genericValidateButton();
         domelem.append(validationButton);
 
         bindUiEvents();
@@ -623,14 +621,14 @@ var rpndragdropsortingmodule = (function(){
     var bindUiEvents = function(){
         validationButton.click(function(){
             if(datas.todrag.length>0){
-                rpnmodule.displayAlert(rpnmoduleSelectedLabels.DragDropNotEmpty);
+                rpnsequence.displayAlert(rpnmoduleSelectedLabels.DragDropNotEmpty);
             }else{
                 _.each($('.droppable'),function(elem,idx){
                     var txts=[];
                     $.each($(elem).find('li'),function(idx,txt){txts.push($(txt).text());});
                     responses[$(elem).find('lh').text()]=txts;
                 })
-                rpnmodule.handleEndOfModule(responses,function(res,sols){
+                rpnsequence.handleEndOfModule(responses,function(res,sols){
                     var score=0;
                     _.map(sols,function(sol,drop){
                         score+=_.intersection(res[drop],sol).length;
@@ -678,7 +676,7 @@ var rpncardmazemodule = (function(){
 
     var buildUi = function (){
         //build card maze
-        domelem.addClass('rpnmodule_cardmaze');
+        domelem.addClass('cardmaze');
         domelem.append($('<div class="row"><div class="container" id="maze"></div></div>'));
         _.each(datas.cards,function(card, idx){
             $('#maze').append($('<div class="col-xs-2"><div class="card'+(card.start?' start selectable':'')+(card.end?' end':'')+'"><p>'+card.label+'</p><p>'+card.clue+'</p></div></div>'));
@@ -693,7 +691,7 @@ var rpncardmazemodule = (function(){
             
         });
         //build validation button
-        validationButton=rpnmodule.genericValidateButton();
+        validationButton=rpnsequence.genericValidateButton();
         domelem.append(validationButton);
         bindUiEvents();
         
@@ -735,9 +733,9 @@ var rpncardmazemodule = (function(){
         });
         validationButton.click(function(){
             if(!$(snake[snake.length-1]).hasClass('end')){
-                rpnmodule.displayAlert(rpnmoduleSelectedLabels.CardMazeNotEnded);
+                rpnsequence.displayAlert(rpnmoduleSelectedLabels.CardMazeNotEnded);
             }else{
-                rpnmodule.handleEndOfModule(responses,function(res,sol){
+                rpnsequence.handleEndOfModule(responses,function(res,sol){
                     var score=0;
                     _.each(sol,function(cardIdx,idx){
                         score+=(res[idx]==cardIdx?1:0);
