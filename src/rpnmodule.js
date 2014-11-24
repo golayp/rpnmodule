@@ -79,13 +79,17 @@ var rpnsequence = (function () {
                 modules:[]
             });
             sequencedatas=datas;
+            //add dynamically status of module to each modules to handle the status (init->started->ended)
+            _.each(sequencedatas.modules,function(elem,idx){
+                elem["status"]="init";
+            });
             currentmod=0;
             buildUi();
         });
     };
 
     var buildUi = function () {
-        $('body').append($('<div class="container" id="rpnm"><div class="row"><div class="col-md-12"><h1 id="rpnm_seq_title"></h1></div></div><div class="row"><div class="col-xs-8"><h2 id="rpnm_title"></h2><h3 id="rpn_context"></h3><h4 id="rpnm_directive"></h4></div><div class="col-xs-4"><button class="btn btn-link" id="rpnm_recall_link" data-toggle="modal" data-target="#rpnm_recall_modal">'+rpnmoduleSelectedLabels.Recall+'</button> <button class="btn btn-link"  id="rpnm_order_link" data-toggle="modal" data-target="#rpnm_order_modal">'+rpnmoduleSelectedLabels.Order+'</button></div></div><div class="row"><div id="rpnm_module_content" class="col-md-12"></div></div></div><div class="container"><div class="row"><div class="col-md-12"><em id="rpnm_source" class="pull-right"></em></div></div>'));
+        $('body').append($('<div class="container" id="rpnm"><div class="row"><div class="col-md-12"><h1 id="rpnm_seq_title"></h1></div></div><div class="row"><div class="col-xs-8"><h2 id="rpnm_title"></h2><h3 id="rpnm_context"></h3><h4 id="rpnm_directive"></h4></div><div class="col-xs-4"><button class="btn btn-link" id="rpnm_recall_link" data-toggle="modal" data-target="#rpnm_recall_modal">'+rpnmoduleSelectedLabels.Recall+'</button> <button class="btn btn-link"  id="rpnm_order_link" data-toggle="modal" data-target="#rpnm_order_modal">'+rpnmoduleSelectedLabels.Order+'</button></div></div><div class="row"><div id="rpnm_module_content" class="col-md-12"></div></div></div><div class="container"><div class="row"><div class="col-md-12"><em id="rpnm_source" class="pull-right"></em></div></div>'));
         $('body').append($('<div id="rpnm_recall_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Recall+'</h4></div><div class="modal-body"></div></div></div></div>'));
         $('body').append($('<div id="rpnm_order_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Order+'</h4></div><div class="modal-body"></div></div></div></div>'));
         $('body').append($('<div id="rpnm_alert_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Warning+'</h4></div><div class="modal-body"></div></div></div></div>'));
@@ -94,6 +98,30 @@ var rpnsequence = (function () {
         source=$('#rpnm_source');
         mainContent=$('#rpnm_module_content');
         alertModal=$('#rpnm_alert_modal');
+        
+        _.each(sequencedatas.modules,function(elem,idx){
+            var div=$('<div class="rpnm_instance" id="rpnm_inst_'+idx+'">');
+            mainContent.append(div);
+            if(elem.type=='marker'){
+                rpnmarkermodule().init(elem,div);
+            }else if(elem.type=='mqc'){
+                rpnmqcmodule().init(elem,div);
+            }else if(elem.type=='gapsimple'){
+                rpngapsimplemodule().init(elem,div);
+            }else if(elem.type=='gapfull'){
+                rpngapfullmodule().init(elem,div);
+            }else if(elem.type=='clock'){
+                rpnclockmodule().init(elem,div);
+            }else if(elem.type=='blackbox'){
+                rpnblackboxmodule().init(elem,div);
+            }else if(elem.type=='dragdropsorting'){
+                rpndragdropsortingmodule().init(elem,div);
+            }else if(elem.type=='cardmaze'){
+                rpncardmazemodule().init(elem,div);
+            }
+            div.hide();
+        });
+        handleMediaPath();
         if(warnexit){
             $(window).bind('beforeunload', function(e) {
                 return rpnmoduleSelectedLabels.BeforeUnloadMsg;
@@ -106,46 +134,49 @@ var rpnsequence = (function () {
         $('#rpnm_wait_modal').modal('show');
         var moduleDatas=sequencedatas.modules[currentmod];
         _.defaults(moduleDatas,{title:"title"});
+        $('.rpnm_instance').hide();
+        var moduleDiv=$('#rpnm_inst_'+currentmod);
+        bindModuleSharedDatas(moduleDatas);
         
-        source.html(_.isUndefined(moduleDatas.sources)?"":(rpnmoduleSelectedLabels.Sources+": "+ moduleDatas.sources));
+        if(moduleDatas.status!='ended'){
+           moduleDiv.show();
+        }else{
+            //module already ended... try another one or finish the sequence
+            currentmod=nextNotEndedModuleIdx;
+            if(currentmod>=0){
+                displayCurrentModule();
+            }else{
+                handleEndOfSequence();
+            }
+        }
         
-        mainContent.empty();
-        mainContent.removeClass().addClass('col-md-12');
-        $('#rpnm_title').show().text(moduleDatas.title);
-        _.isUndefined(moduleDatas.context)?$('#rpnm_context').hide():$('#rpnm_context').show().text(moduleDatas.context);
-        _.isUndefined(moduleDatas.directive)?$('#rpnm_directive').hide():$('#rpnm_directive').show().text(moduleDatas.directive);
-        if(_.isUndefined(moduleDatas.recall)){
+        $('#rpnm_wait_modal').modal('hide');
+    };
+    
+    var nextNotEndedModuleIdx = function(){
+        var nextNotEnded=_.find(sequencedatas.modules,function(mod){return mod.status!='ended';});
+        return _.indexOf(sequencedatas.modules,nextNotEnded);
+    };
+    
+    var bindModuleSharedDatas = function(datas){
+        $('#rpnm_title').show().text(datas.title);
+        _.isUndefined(datas.context)?$('#rpnm_context').hide():$('#rpnm_context').show().text(datas.context);
+        _.isUndefined(datas.directive)?$('#rpnm_directive').hide():$('#rpnm_directive').show().text(datas.directive);
+        
+        if(_.isUndefined(datas.recall)){
             $('#rpnm_recall_link').hide();  
         }else{
             $('#rpnm_recall_link').show();
-            $('#rpnm_recall_modal .modal-body').append(moduleDatas.recall);
+            $('#rpnm_recall_modal .modal-body').append(datas.recall);
         }
-        if(_.isUndefined(moduleDatas.order)){
+        if(_.isUndefined(datas.order)){
             $('#rpnm_order_link').hide();  
         }else{
             $('#rpnm_order_link').show();
-            $('#rpnm_order_modal .modal-body').html(moduleDatas.order);
+            $('#rpnm_order_modal .modal-body').html(datas.order);
         }
-        if(moduleDatas.type=='marker'){
-            rpnmarkermodule.init(moduleDatas,mainContent);
-        }else if(moduleDatas.type=='mqc'){
-            rpnmqcmodule.init(moduleDatas,mainContent);
-        }else if(moduleDatas.type=='gapsimple'){
-            rpngapsimplemodule.init(moduleDatas,mainContent);
-        }else if(moduleDatas.type=='gapfull'){
-            rpngapfullmodule.init(moduleDatas,mainContent);
-        }else if(moduleDatas.type=='clock'){
-            rpnclockmodule.init(moduleDatas,mainContent);
-        }else if(moduleDatas.type=='blackbox'){
-            rpnblackboxmodule.init(moduleDatas,mainContent);
-        }else if(moduleDatas.type=='dragdropsorting'){
-            rpndragdropsortingmodule.init(moduleDatas,mainContent);
-        }else if(moduleDatas.type=='cardmaze'){
-            rpncardmazemodule.init(moduleDatas,mainContent);
-        }
-        handleMediaPath();
-        $('#rpnm_wait_modal').modal('hide');
-    };
+        source.html(_.isUndefined(datas.sources)?"":(rpnmoduleSelectedLabels.Sources+": "+ datas.sources));
+    }
     
     var handleEndOfModule = function(res,correctionFct){
         log('End of module');
@@ -222,7 +253,7 @@ var rpnsequence = (function () {
 })();
 
 //marker
-var rpnmarkermodule = (function() {
+var rpnmarkermodule = function() {
     var datas;
     var domelem;
     var selectedMarker;
@@ -247,7 +278,7 @@ var rpnmarkermodule = (function() {
         var availableColors=_.shuffle(['primary','success','info','warning','danger']);
 
         toolbar.append($('<label class="btn btn-default active"><input type="radio" name="options" id="option1" autocomplete="off" checked><i class="glyphicon glyphicon-pencil"></i> '+rpnmoduleSelectedLabels.Eraser+'</label>').click(function(){
-                selectedMarker=-1;
+            selectedMarker=-1;
 
         }));
         $.each(datas.markers,function(idx,marker){
@@ -259,7 +290,7 @@ var rpnmarkermodule = (function() {
 
         //build panel with sentences
         domelem.append($('<div id="sentences">'+datas.tomark+'</div>'));
-        $.each($('#sentences b'),function(idx,tomark){
+        $.each($('#sentences b',domelem),function(idx,tomark){
             responses[idx]=-1; //initialize all responses to unmark
             var t=$(tomark);
             t.css('cursor','pointer').click(function(){
@@ -294,10 +325,10 @@ var rpnmarkermodule = (function() {
         
     };
 
-})();
+};
 
 //mqc
-var rpnmqcmodule = (function() {
+var rpnmqcmodule = function() {
     var datas;
     var domelem;
     var validationButton;
@@ -358,10 +389,10 @@ var rpnmqcmodule = (function() {
         init:init
     };
 
-})();
+};
 
 //gapsimple
-var rpngapsimplemodule = (function() {
+var rpngapsimplemodule = function() {
     var datas;
     var domelem;
     var validationButton;
@@ -383,7 +414,7 @@ var rpngapsimplemodule = (function() {
 
         //build panel with sentences
         domelem.append($('<div id="sentences" class="form-inline">'+datas.tofill+'</div>'));
-        $.each($('#sentences b'),function(idx,tofill){
+        $.each($('#sentences b',domelem),function(idx,tofill){
             responses[idx]=-1; //initialize all responses to unmark
             var t=$(tofill);
             t.replaceWith($('<input type="text" id="'+idx+'" class="rpnm_input gapsimple form-control"> <strong>('+t.text()+')</strong>'));
@@ -414,10 +445,10 @@ var rpngapsimplemodule = (function() {
         init:init
     };
 
-})();
+};
 
 //gapfull
-var rpngapfullmodule = (function() {
+var rpngapfullmodule = function() {
     var datas;
     var domelem;
     var validationButton;
@@ -458,10 +489,10 @@ var rpngapfullmodule = (function() {
         init:init
     };
 
-})();
+};
 
 //clock
-var rpnclockmodule = (function(){
+var rpnclockmodule = function(){
     
     var datas;
     var domelem;
@@ -499,10 +530,10 @@ var rpnclockmodule = (function(){
     return {
         init:init
     };
-})();
+};
 
 //blackbox
-var rpnblackboxmodule = (function() {
+var rpnblackboxmodule = function() {
     var datas;
     var domelem;
     var validationButton;
@@ -565,10 +596,10 @@ var rpnblackboxmodule = (function() {
         init:init
     };
 
-})();
+};
 
 //dragdropsorting
-var rpndragdropsortingmodule = (function(){
+var rpndragdropsortingmodule = function(){
     var datas;
     var domelem;
     var validationButton;
@@ -642,10 +673,10 @@ var rpndragdropsortingmodule = (function(){
     return {
         init:init
     };
-})();
+};
 
 //cardmaze
-var rpncardmazemodule = (function(){
+var rpncardmazemodule = function(){
     var datas;
     var domelem;
     var validationButton;
@@ -749,7 +780,7 @@ var rpncardmazemodule = (function(){
     return {
         init:init
     };
-})();
+};
 
 
 function ClockSelector ( e, params ){
@@ -1052,7 +1083,6 @@ function ClockSelector ( e, params ){
 	this.reset();
 }
 
-
 /* ===================================================
  *  jquery-sortable.js v0.9.12
  *  http://johnny.github.com/jquery-sortable/
@@ -1081,8 +1111,6 @@ function ClockSelector ( e, params ){
  *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * ========================================================== */
-
-
 !function ( $, window, pluginName, undefined){
   var eventNames,
   containerDefaults = {
