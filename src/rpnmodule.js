@@ -45,6 +45,7 @@ var rpnsequence = (function () {
     var moduleendHandler;
     var mediapathHandler;
     var alertModal;
+    var domelem;
     var navigationEnabled;
     var debug;
     
@@ -58,6 +59,7 @@ var rpnsequence = (function () {
                 solurl:"sol.json",
                 returnurl:"../",
                 warnonexit:false,
+                domelem:$('body'),
                 onsequenceend:function(){},
                 onmoduleend:function(){},
                 mediapathformatter:function(val){return 'medias/'+val;},
@@ -72,6 +74,7 @@ var rpnsequence = (function () {
         backurl=opts.returnurl;
         solurl=opts.solurl;
         debug=opts.debug;
+        domelem=opts.domelem;
         navigationEnabled=opts.navigationEnabled;
         sequenceendHandler=opts.onsequenceend;
         moduleendHandler=opts.onmoduleend;
@@ -92,11 +95,11 @@ var rpnsequence = (function () {
     };
 
     var buildUi = function () {
-        $('body').append($('<div class="container" id="rpnm"><div class="row"><div class="col-md-12"><h1 id="rpnm_seq_title"></h1></div></div><div class="row"><div class="col-xs-4"><h2 id="rpnm_title"></h2><h3 id="rpnm_context"></h3><h4 id="rpnm_directive"></h4></div><div class="col-md-4" id="rpnm_modulenav"><nav><ul class="pagination"></ul></nav></div><div class="col-xs-4"><button class="btn btn-link" id="rpnm_recall_link" data-toggle="modal" data-target="#rpnm_recall_modal">'+rpnmoduleSelectedLabels.Recall+'</button> <button class="btn btn-link"  id="rpnm_order_link" data-toggle="modal" data-target="#rpnm_order_modal">'+rpnmoduleSelectedLabels.Order+'</button></div></div><div class="row"><div id="rpnm_module_content" class="col-md-12"></div></div></div><div class="container"><div class="row"><div class="col-md-12"><em id="rpnm_source" class="pull-right"></em></div></div>'));
-        $('body').append($('<div id="rpnm_recall_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Recall+'</h4></div><div class="modal-body"></div></div></div></div>'));
-        $('body').append($('<div id="rpnm_order_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Order+'</h4></div><div class="modal-body"></div></div></div></div>'));
-        $('body').append($('<div id="rpnm_alert_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Warning+'</h4></div><div class="modal-body"></div></div></div></div>'));
-        $('body').append($('<div id="rpnm_wait_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">'+rpnmoduleSelectedLabels.Wait+'</h4></div><div class="modal-body"><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% completed</span></div></div></div></div></div></div>'));
+        domelem.append($('<div class="container" id="rpnm"><div class="row"><div class="col-md-12"><h1 id="rpnm_seq_title"></h1></div></div><div class="row"><div class="col-xs-4"><h2 id="rpnm_title"></h2><h3 id="rpnm_context"></h3><h4 id="rpnm_directive"></h4></div><div class="col-md-4" id="rpnm_modulenav"><nav><ul class="pagination"></ul></nav></div><div class="col-xs-4"><button class="btn btn-link" id="rpnm_recall_link" data-toggle="modal" data-target="#rpnm_recall_modal">'+rpnmoduleSelectedLabels.Recall+'</button> <button class="btn btn-link"  id="rpnm_order_link" data-toggle="modal" data-target="#rpnm_order_modal">'+rpnmoduleSelectedLabels.Order+'</button></div></div><div class="row"><div id="rpnm_module_content" class="col-md-12"></div></div></div><div class="container"><div class="row"><div class="col-md-12"><em id="rpnm_source" class="pull-right"></em></div></div>'));
+        domelem.append($('<div id="rpnm_recall_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Recall+'</h4></div><div class="modal-body"></div></div></div></div>'));
+        domelem.append($('<div id="rpnm_order_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Order+'</h4></div><div class="modal-body"></div></div></div></div>'));
+        domelem.append($('<div id="rpnm_alert_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Warning+'</h4></div><div class="modal-body"></div></div></div></div>'));
+        domelem.append($('<div id="rpnm_wait_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">'+rpnmoduleSelectedLabels.Wait+'</h4></div><div class="modal-body"><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% completed</span></div></div></div></div></div></div>'));
         $('#rpnm_seq_title').html(sequencedatas.title);
         source=$('#rpnm_source');
         mainContent=$('#rpnm_module_content');
@@ -173,8 +176,15 @@ var rpnsequence = (function () {
     };
     
     var nextNotEndedModuleIdx = function(){
-        var nextNotEnded=_.find(sequencedatas.modules,function(mod){return mod.status!='ended';});
-        return _.indexOf(sequencedatas.modules,nextNotEnded);
+        var nextNotEnded=_.find(sequencedatas.modules,function(mod,idx){return mod.status!='ended' && idx>=currentmod;});
+        var previousNotEnded=_.find(sequencedatas.modules,function(mod,idx){return mod.status!='ended' &&  idx<currentmod;;});
+        if(!_.isUndefined(nextNotEnded)){
+            return _.indexOf(sequencedatas.modules,nextNotEnded); 
+        }else if(!_.isUndefined(previousNotEnded)){
+            return _.indexOf(sequencedatas.modules,previousNotEnded); 
+        }else{
+           return -1;
+        }
     };
     
     var bindModuleSharedDatas = function(datas){
