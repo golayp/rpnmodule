@@ -2,35 +2,6 @@ $(document).ready(function(){
     rpnsequence.init({debug:true,mediapathformatter:function(url){return '/tests/medias/'+url;},navigationEnabled:false});
 });
 
-var rpnmoduleLabels = {
-    en:{
-        Recall:"Recall",
-        Order:"Order",
-        Warning:"Warning",
-        BeforeUnloadMsg:"Module running!",
-        Wait:"Wait please...",
-        Validate:"Validate",
-        Eraser:"Eraser",
-        DragDropNotEmpty:"There are still some items to sort!",
-        CardMazeNotEnded:"You have not finished the maze!",
-        Sources:"Sources"
-    },
-    fr:{
-        Recall:"Rappel",
-        Order:"Consignes",
-        Warning:"Attention",
-        BeforeUnloadMsg:"Exercice en cours!",
-        Wait:"Veuillez patienter...",
-        Validate:"Valider",
-        Eraser:"Effaceur",
-        DragDropNotEmpty:"Il y a encore des éléments à trier!",
-        CardMazeNotEnded:"Vous n'avez pas terminé le labyrinthe!",
-        Sources:"Sources"
-    }
-};
-
-var rpnmoduleSelectedLabels;
-
 var rpnsequence = (function () {
 
     var sequencedatas;
@@ -48,6 +19,33 @@ var rpnsequence = (function () {
     var domelem;
     var navigationEnabled;
     var debug;
+    var labels = {
+        en:{
+            Recall:"Recall",
+            Order:"Order",
+            Warning:"Warning",
+            BeforeUnloadMsg:"Module running!",
+            Wait:"Wait please...",
+            Validate:"Validate",
+            Eraser:"Eraser",
+            DragDropNotEmpty:"There are still some items to sort!",
+            CardMazeNotEnded:"You have not finished the maze!",
+            Sources:"Sources"
+        },
+        fr:{
+            Recall:"Rappel",
+            Order:"Consignes",
+            Warning:"Attention",
+            BeforeUnloadMsg:"Exercice en cours!",
+            Wait:"Veuillez patienter...",
+            Validate:"Valider",
+            Eraser:"Effaceur",
+            DragDropNotEmpty:"Il y a encore des éléments à trier!",
+            CardMazeNotEnded:"Vous n'avez pas terminé le labyrinthe!",
+            Sources:"Sources"
+        }
+    };
+    var selectedLabels;
     
 
     var init = function (opts) {
@@ -68,7 +66,7 @@ var rpnsequence = (function () {
                 navigationEnabled:false
             }
         );
-        rpnmoduleSelectedLabels=rpnmoduleLabels[opts.language];
+        selectedLabels=labels[opts.language];
         responses=[];
         warnexit=opts.warnonexit;
         backurl=opts.returnurl;
@@ -95,11 +93,11 @@ var rpnsequence = (function () {
     };
 
     var buildUi = function () {
-        domelem.append($('<div class="container" id="rpnm"><div class="row"><div class="col-md-12"><h1 id="rpnm_seq_title"></h1></div></div><div class="row"><div class="col-md-4"><h2 id="rpnm_title"></h2><h3 id="rpnm_context"></h3><h4 id="rpnm_directive"></h4></div><div class="col-md-4" id="rpnm_modulenav"><nav><ul class="pagination"></ul></nav></div><div class="col-md-4"><a href="#" id="rpnm_recall_link" data-toggle="modal" data-target="#rpnm_recall_modal">'+rpnmoduleSelectedLabels.Recall+'</a> <a href="#" id="rpnm_order_link" data-toggle="modal" data-target="#rpnm_order_modal">'+rpnmoduleSelectedLabels.Order+'</a></div></div><div class="row"><div id="rpnm_module_content" class="col-md-12"></div></div></div><div class="container"><div class="row"><div class="col-md-12"><em id="rpnm_source" class="pull-right"></em></div></div>'));
-        domelem.append($('<div id="rpnm_recall_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Recall+'</h4></div><div class="modal-body"></div></div></div></div>'));
-        domelem.append($('<div id="rpnm_order_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Order+'</h4></div><div class="modal-body"></div></div></div></div>'));
-        domelem.append($('<div id="rpnm_alert_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Warning+'</h4></div><div class="modal-body"></div></div></div></div>'));
-        domelem.append($('<div id="rpnm_wait_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">'+rpnmoduleSelectedLabels.Wait+'</h4></div><div class="modal-body"><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% completed</span></div></div></div></div></div></div>'));
+        domelem.append($('<div class="container" id="rpnm"><div class="row"><div class="col-md-12"><h1 id="rpnm_seq_title"></h1></div></div><div class="row"><div class="col-md-4"><h2 id="rpnm_title"></h2><h3 id="rpnm_context"></h3><h4 id="rpnm_directive"></h4></div><div class="col-md-4" id="rpnm_modulenav"><nav><ul class="pagination"></ul></nav></div><div class="col-md-4"><a href="#" id="rpnm_recall_link" data-toggle="modal" data-target="#rpnm_recall_modal">'+selectedLabels.Recall+'</a> <a href="#" id="rpnm_order_link" data-toggle="modal" data-target="#rpnm_order_modal">'+selectedLabels.Order+'</a></div></div><div class="row"><div id="rpnm_module_content" class="col-md-12"></div></div></div><div class="container"><div class="row"><div class="col-md-12"><em id="rpnm_source" class="pull-right"></em></div></div>'));
+        domelem.append($('<div id="rpnm_recall_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+selectedLabels.Recall+'</h4></div><div class="modal-body"></div></div></div></div>'));
+        domelem.append($('<div id="rpnm_order_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+selectedLabels.Order+'</h4></div><div class="modal-body"></div></div></div></div>'));
+        domelem.append($('<div id="rpnm_alert_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+selectedLabels.Warning+'</h4></div><div class="modal-body"></div></div></div></div>'));
+        domelem.append($('<div id="rpnm_wait_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">'+selectedLabels.Wait+'</h4></div><div class="modal-body"><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% completed</span></div></div></div></div></div></div>'));
         $('#rpnm_seq_title').html(sequencedatas.title);
         source=$('#rpnm_source');
         mainContent=$('#rpnm_module_content');
@@ -142,7 +140,7 @@ var rpnsequence = (function () {
         
         if(warnexit){
             $(window).bind('beforeunload', function(e) {
-                return rpnmoduleSelectedLabels.BeforeUnloadMsg;
+                return selectedLabels.BeforeUnloadMsg;
             });
         }
         displayCurrentModule();
@@ -206,8 +204,8 @@ var rpnsequence = (function () {
             $('#rpnm_order_link').show();
             $('#rpnm_order_modal .modal-body').html(datas.order);
         }
-        source.html(_.isUndefined(datas.sources)?"":(rpnmoduleSelectedLabels.Sources+": "+ datas.sources));
-    }
+        source.html(_.isUndefined(datas.sources)?"":(selectedLabels.Sources+": "+ datas.sources));
+    };
     
     var handleEndOfModule = function(res,correctionFct){
         log('End of module');
@@ -247,9 +245,9 @@ var rpnsequence = (function () {
     };
     
     var genericValidateButton = function(label){
-        label=_.isUndefined(label)?rpnmoduleSelectedLabels.Validate:label
-        return $('<button>',{'class':'btn btn-primary',text:' '+ rpnmoduleSelectedLabels.Validate}).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
-    }
+        label=_.isUndefined(label)?selectedLabels.Validate:label
+        return $('<button>',{'class':'btn btn-primary',text:' '+ selectedLabels.Validate}).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
+    };
     
     var displayAlert = function(text,onclose){
         $('#rpnm_alert_modal .modal-body').text(text);
@@ -278,6 +276,10 @@ var rpnsequence = (function () {
         });
         
     }
+    
+    var getLabels = function(){
+        return selectedLabels;
+    };
 
     return {
         init:init,
@@ -285,17 +287,20 @@ var rpnsequence = (function () {
         handleEndOfModule:handleEndOfModule,
         genericValidateButton: genericValidateButton,
         displayAlert:displayAlert,
-        log:log
+        log:log,
+        getLabels:getLabels
     };
 })();
 
 //marker
 var rpnmarkermodule = function() {
+    
     var datas;
     var domelem;
     var selectedMarker;
     var validationButton;
     var responses;
+    
     var init = function(_datas,_domelem){
         _.defaults(_datas,{
             markers:[],
@@ -314,7 +319,7 @@ var rpnmarkermodule = function() {
         var toolbar=$('<div>',{'class':'btn-group','data-toggle':'buttons'});
         var availableColors=_.shuffle(['primary','success','info','warning','danger']);
 
-        toolbar.append($('<label class="btn btn-default active"><input type="radio" name="options" id="option1" autocomplete="off" checked><i class="glyphicon glyphicon-pencil"></i> '+rpnmoduleSelectedLabels.Eraser+'</label>').click(function(){
+        toolbar.append($('<label class="btn btn-default active"><input type="radio" name="options" id="option1" autocomplete="off" checked><i class="glyphicon glyphicon-pencil"></i> '+rpnsequence.getLabels().Eraser+'</label>').click(function(){
             selectedMarker=-1;
 
         }));
@@ -339,7 +344,7 @@ var rpnmarkermodule = function() {
             });
         });
         //build validation button
-        validationButton=$('<button>',{'class':'btn btn-primary',text:' '+ rpnmoduleSelectedLabels.Validate}).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
+        validationButton=$('<button>',{'class':'btn btn-primary',text:' '+ rpnsequence.getLabels().Validate}).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
         domelem.append(validationButton);
 
         bindUiEvents();
@@ -355,7 +360,7 @@ var rpnmarkermodule = function() {
                 return score;
             });
         });
-    }
+    };
 
     return {
         init:init
@@ -366,10 +371,12 @@ var rpnmarkermodule = function() {
 
 //mqc
 var rpnmqcmodule = function() {
+    
     var datas;
     var domelem;
     var validationButton;
     var responses;
+    
     var init = function(_datas,_domelem){
          _.defaults(_datas,{
             questions:["No questions!"],
@@ -420,7 +427,7 @@ var rpnmqcmodule = function() {
                 return score;
             });
         });
-    }
+    };
 
     return {
         init:init
@@ -430,10 +437,12 @@ var rpnmqcmodule = function() {
 
 //gapsimple
 var rpngapsimplemodule = function() {
+    
     var datas;
     var domelem;
     var validationButton;
     var responses;
+    
     var init = function(_datas,_domelem){
          _.defaults(_datas,{
             tofill:"tofill not set!<b>Read</b> documentation please!"
@@ -476,7 +485,7 @@ var rpngapsimplemodule = function() {
                 return score;
             });
         });
-    }
+    };
 
     return {
         init:init
@@ -486,9 +495,11 @@ var rpngapsimplemodule = function() {
 
 //gapfull
 var rpngapfullmodule = function() {
+    
     var datas;
     var domelem;
     var validationButton;
+    
     var init = function(_datas,_domelem){
         _.defaults(_datas,{
             sentence:"sentence not set!"
@@ -534,6 +545,7 @@ var rpnclockmodule = function(){
     var datas;
     var domelem;
     var validationButton;
+    
     var init = function(_datas,_domelem){
         datas=_datas;
         domelem=_domelem;
@@ -637,6 +649,7 @@ var rpnblackboxmodule = function() {
 
 //dragdropsorting
 var rpndragdropsortingmodule = function(){
+    
     var datas;
     var domelem;
     var validationButton;
@@ -689,7 +702,7 @@ var rpndragdropsortingmodule = function(){
     var bindUiEvents = function(){
         validationButton.click(function(){
             if(datas.todrag.length>0){
-                rpnsequence.displayAlert(rpnmoduleSelectedLabels.DragDropNotEmpty);
+                rpnsequence.displayAlert(rpnsequence.getLabels().DragDropNotEmpty);
             }else{
                 _.each($('.droppable'),function(elem,idx){
                     var txts=[];
@@ -714,6 +727,7 @@ var rpndragdropsortingmodule = function(){
 
 //cardmaze
 var rpncardmazemodule = function(){
+    
     var datas;
     var domelem;
     var validationButton;
@@ -724,6 +738,7 @@ var rpncardmazemodule = function(){
     var snake;
     var startid;
     var endid;
+    
     var init = function(_datas,_domelem){
         _.defaults(_datas,{
             mazewidth:6,
@@ -801,7 +816,7 @@ var rpncardmazemodule = function(){
         });
         validationButton.click(function(){
             if(!$(snake[snake.length-1]).hasClass('end')){
-                rpnsequence.displayAlert(rpnmoduleSelectedLabels.CardMazeNotEnded);
+                rpnsequence.displayAlert(rpnsequence.getLabels().CardMazeNotEnded);
             }else{
                 rpnsequence.handleEndOfModule(responses,function(res,sol){
                     var score=0;
