@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    rpnsequence.init({debug:true,mediapathformatter:function(url){return '/tests/medias/'+url;},navigationEnabled:true});
+    rpnsequence.init({debug:true,mediapathformatter:function(url){return '/tests/medias/'+url;},navigationEnabled:false});
 });
 
 var rpnmoduleLabels = {
@@ -75,7 +75,6 @@ var rpnsequence = (function () {
         solurl=opts.solurl;
         debug=opts.debug;
         domelem=opts.domelem;
-        navigationEnabled=opts.navigationEnabled;
         sequenceendHandler=opts.onsequenceend;
         moduleendHandler=opts.onmoduleend;
         mediapathHandler=opts.mediapathformatter;
@@ -90,12 +89,13 @@ var rpnsequence = (function () {
                 elem["status"]="init";
             });
             currentmod=0;
+            navigationEnabled=opts.navigationEnabled && sequencedatas.modules.length>1;
             buildUi();
         });
     };
 
     var buildUi = function () {
-        domelem.append($('<div class="container" id="rpnm"><div class="row"><div class="col-md-12"><h1 id="rpnm_seq_title"></h1></div></div><div class="row"><div class="col-xs-4"><h2 id="rpnm_title"></h2><h3 id="rpnm_context"></h3><h4 id="rpnm_directive"></h4></div><div class="col-md-4" id="rpnm_modulenav"><nav><ul class="pagination"></ul></nav></div><div class="col-xs-4"><button class="btn btn-link" id="rpnm_recall_link" data-toggle="modal" data-target="#rpnm_recall_modal">'+rpnmoduleSelectedLabels.Recall+'</button> <button class="btn btn-link"  id="rpnm_order_link" data-toggle="modal" data-target="#rpnm_order_modal">'+rpnmoduleSelectedLabels.Order+'</button></div></div><div class="row"><div id="rpnm_module_content" class="col-md-12"></div></div></div><div class="container"><div class="row"><div class="col-md-12"><em id="rpnm_source" class="pull-right"></em></div></div>'));
+        domelem.append($('<div class="container" id="rpnm"><div class="row"><div class="col-md-12"><h1 id="rpnm_seq_title"></h1></div></div><div class="row"><div class="col-md-4"><h2 id="rpnm_title"></h2><h3 id="rpnm_context"></h3><h4 id="rpnm_directive"></h4></div><div class="col-md-4" id="rpnm_modulenav"><nav><ul class="pagination"></ul></nav></div><div class="col-md-4"><a href="#" id="rpnm_recall_link" data-toggle="modal" data-target="#rpnm_recall_modal">'+rpnmoduleSelectedLabels.Recall+'</a> <a href="#" id="rpnm_order_link" data-toggle="modal" data-target="#rpnm_order_modal">'+rpnmoduleSelectedLabels.Order+'</a></div></div><div class="row"><div id="rpnm_module_content" class="col-md-12"></div></div></div><div class="container"><div class="row"><div class="col-md-12"><em id="rpnm_source" class="pull-right"></em></div></div>'));
         domelem.append($('<div id="rpnm_recall_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Recall+'</h4></div><div class="modal-body"></div></div></div></div>'));
         domelem.append($('<div id="rpnm_order_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Order+'</h4></div><div class="modal-body"></div></div></div></div>'));
         domelem.append($('<div id="rpnm_alert_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title">'+rpnmoduleSelectedLabels.Warning+'</h4></div><div class="modal-body"></div></div></div></div>'));
@@ -105,7 +105,8 @@ var rpnsequence = (function () {
         mainContent=$('#rpnm_module_content');
         alertModal=$('#rpnm_alert_modal');
         if(!navigationEnabled){
-            $('#rpnm_modulenav').hide();
+            $('#rpnm_modulenav').remove();
+            $('#rpnm_title').parent().removeClass('col-md-4').addClass('col-md-8');
         }
         
         _.each(sequencedatas.modules,function(elem,idx){
@@ -131,14 +132,14 @@ var rpnsequence = (function () {
             div.hide();
             
             //navigation
-            if(navigationEnabled){
+            if(navigationEnabled && sequencedatas.modules.length>1){
                 $('#rpnm_modulenav ul').append($('<li><a href="#">'+(idx+1)+'</a></li>').click(function(){
                     currentmod=idx;
                     displayCurrentModule();
                 }));
             }
         });
-        handleMediaPath();
+        
         if(warnexit){
             $(window).bind('beforeunload', function(e) {
                 return rpnmoduleSelectedLabels.BeforeUnloadMsg;
@@ -155,6 +156,7 @@ var rpnsequence = (function () {
         
         var moduleDiv=$('#rpnm_inst_'+currentmod);
         bindModuleSharedDatas(moduleDatas);
+        handleMediaPath();
         //navigation
         if(navigationEnabled){
             $('#rpnm_modulenav ul li').removeClass('active');
@@ -589,14 +591,14 @@ var rpnblackboxmodule = function() {
         //build marker toolbar
         domelem.addClass('blackbox');
 
-        var blackboxwell=$('<div class="blackbox">');
-        domelem.append(blackboxwell);
+        
+        
 
         $.each(datas.left,function(idx,value){
-            blackboxwell.append($('<div class="row"><div class="col-md-3 hidden-xs hidden-sm"></div><div class="col-xs-2"><span>'+value + '</span></div><div class="col-xs-2 blackbox-fct"><i class="glyphicon glyphicon-minus"></i> ('+datas.operation+') <i class="glyphicon glyphicon-arrow-right"></i></div><div class="col-xs-2"><input type="text" id="'+idx+'" class="rpnm_input blackbox-left form-control" style="text-align: center;"></div></div>'));
+            domelem.append($('<div class="row"><div class="col-md-3 hidden-xs hidden-sm"></div><div class="col-xs-2"><span>'+value + '</span></div><div class="col-xs-2 blackbox-fct"><i class="glyphicon glyphicon-minus"></i> ('+datas.operation+') <i class="glyphicon glyphicon-arrow-right"></i></div><div class="col-xs-2"><input type="text" id="'+idx+'" class="rpnm_input blackbox-left form-control" style="text-align: center;"></div></div>'));
         });
          $.each(datas.right,function(idx,value){
-            blackboxwell.append($('<div class="row"><div class="col-md-3 hidden-xs hidden-sm"></div><div class="col-xs-2"><input type="text" id="'+idx+'" class="rpnm_input blackbox-right form-control" style="text-align: center;"></div><div class="col-xs-2 blackbox-fct"><i class="glyphicon glyphicon-minus"></i> ('+datas.operation+') <i class="glyphicon glyphicon-arrow-right"></i></div><div class="col-xs-2"><span>'+value + '</span></div></div>'));
+            domelem.append($('<div class="row"><div class="col-md-3 hidden-xs hidden-sm"></div><div class="col-xs-2"><input type="text" id="'+idx+'" class="rpnm_input blackbox-right form-control" style="text-align: center;"></div><div class="col-xs-2 blackbox-fct"><i class="glyphicon glyphicon-minus"></i> ('+datas.operation+') <i class="glyphicon glyphicon-arrow-right"></i></div><div class="col-xs-2"><span>'+value + '</span></div></div>'));
         });
 
         //build validation button
