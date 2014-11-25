@@ -49,6 +49,7 @@ By default a sequence json datas has to handle thoses values:
     <li>inputtype - the type of input to use (number|text). Default: number</li>
     <li>left - list of values displayed on the left side of the black box</li>
     <li>right - list of values displayed on the right side of the black box</li>
+    <li>shuffle - shuffle items? default: false (right items asked first, then left items)</li>
 </ul>
 
 <h3>cardmaze options</h3>
@@ -195,7 +196,8 @@ no options yet :'(
             "directive":"fill in the black box below",
             "operation":"x8",
             "left":[5,10,6,11],
-            "right":[56,72,32]
+            "right":[56,72,32],
+            "shuffle":true
         },
         {
             "type":"dragdropsorting",
