@@ -221,7 +221,7 @@ var rpnsequence = (function() {
         }
         else {
             $('#rpnm_recall_link').show();
-            $('#rpnm_recall_modal .modal-body').append(datas.recall);
+            $('#rpnm_recall_modal .modal-body').html(datas.recall);
         }
         if (_.isUndefined(datas.order)) {
             $('#rpnm_order_link').hide();
@@ -304,7 +304,7 @@ var rpnsequence = (function() {
         //Images paths
         _.each($('img:not(.rpnm-img)'), function(elem, idx) {
             var img = $(elem);
-            img.attr('src', mediapathHandler($(elem).attr('src')))
+            img.attr('src', mediapathHandler($(elem).attr('src')));
             if (img.is('.modal-body img')) {
                 img.addClass('img-responsive img-rounded');
             }
