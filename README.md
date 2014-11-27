@@ -8,7 +8,7 @@
     <li>bootstrap 3.3.1</li>
     <li>underscore 1.7.0</li>
 </ul>
-<h2>Intorduction</h2>
+<h2>Introduction</h2>
 <ul>
     <li>blackbox - a mathematical module to calculate values back and forth 4 -(x4)-> 16 (sample: http://www.rpn.ch/hosting/iclasse/html5/integrationHTML5/nombres/9_sequNbBN_8.html)</li>
     <li>cardmaze - a maze of card in which you can navigate using questions on card and response on adjacent card (sample: http://www.rpn.ch/hosting/iclasse/MMF/6_html/L1_26_6_Indicatif_Laby_Sequ_1.html)</li>
