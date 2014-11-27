@@ -1,7 +1,14 @@
-<h1>rpnmodule <small>alpha</small></h1>                                   
-
-<p>rpnmodule is a project aiming to provide a base library for running educational sequences of modules.
-It'll provide common features for 8 base module types (maybe more in the future) that can be arranged in a sequence of work:</p>
+<h1>rpnmodule</h1>
+<strong>v0.0.1</strong>
+<p>rpnmodule is a project aiming to provide a base library for running educational sequences of modules. It'll provide common features for 8 base module types (maybe more in the future) that can be arranged in a sequence of work:</p>
+<p>As the project evolves the main module in the library is rpnsequence, but project name is still rpnmodule... Sorry for confusion!!!!</p>
+<h2>Dependencies</h2>
+<ul>
+    <li>jquery 2.1.1</li>
+    <li>bootstrap 3.3.1</li>
+    <li>underscore 1.7.0</li>
+</ul>
+<h2>Intorduction</h2>
 <ul>
     <li>blackbox - a mathematical module to calculate values back and forth 4 -(x4)-> 16 (sample: http://www.rpn.ch/hosting/iclasse/html5/integrationHTML5/nombres/9_sequNbBN_8.html)</li>
     <li>cardmaze - a maze of card in which you can navigate using questions on card and response on adjacent card (sample: http://www.rpn.ch/hosting/iclasse/MMF/6_html/L1_26_6_Indicatif_Laby_Sequ_1.html)</li>
@@ -12,7 +19,7 @@ It'll provide common features for 8 base module types (maybe more in the future)
     <li>marker - (sample: http://www.rpn.ch/hosting/iclasse/html5/Fra_9_html/L1_36_9_JO_Indicatif_Present_3.html)</li>
     <li>mqc - a multiple question choice (mqc) (samples: http://www.rpn.ch/hosting/iclasse/AideEval/10/html/AE_FonctGramm_1_3.html http://www.rpn.ch/hosting/iclasse/AideEval/10/html/AE_LectureDico_2_1.html http://www.rpn.ch/hosting/iclasse/AideEval/10/html/AE_NuancesSem_3.html)</li>
 </ul>
-<h2>main options for rpnmodule init</h2>
+<h2>main options for rpnsequence init</h2>
 <ul>
     <li>sequrl - the url where to find json module sequence datas. Default: seq.json</li>
     <li>solurl - the url where to find json module sequence solutions. Default: sol.json</li>
@@ -40,6 +47,8 @@ By default a sequence json datas has to handle thoses values:
     <li>title - a title diplay on top of module (second level title)</li>
     <li>context - a context short description (third level title)</li>
     <li>directive - a directive (fourth level title)</li>
+    <li>recall - a recall for student (displayed actually as a modal dialog toggled by a link)</li>
+    <li>order - an order for student (displayed actually as a modal dialog toggled by a link) </li>
 </ul>
 
 <h2>module specific options</h2>
@@ -60,7 +69,7 @@ By default a sequence json datas has to handle thoses values:
 </ul>
 
 <h3>clock options</h3>
-no options yet :'(
+<p>no options yet :'(</p>
 
 <h3>dargdropsorting options</h3>
 <ul>
