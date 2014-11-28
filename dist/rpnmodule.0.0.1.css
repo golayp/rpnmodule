@@ -43,10 +43,16 @@
 .blackbox .operation {
   white-space: nowrap;
 }
+.cardmaze .nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
+}
 .cardmaze .card {
   text-align: center;
+  height: 70px;
 }
-.cardmaze .selected {
+.cardmaze .selected,
+.cardmaze .selected.selectable:hover {
   background-color: #5bc0de;
   cursor: pointer;
 }

@@ -863,7 +863,7 @@ var rpncardmazemodule = function() {
         domelem.addClass('cardmaze');
         domelem.append($('<div class="row"><div class="container maze"></div></div>'));
         _.each(datas.cards, function(card, idx) {
-            $('.maze',domelem).append($('<div class="col-xs-2"></div>').append($('<div class="card' + (card.start ? ' start selectable' : '') + (card.end ? ' end' : '') + '"><p>' + card.label + '</p><p>' + card.clue + '</p></div>').data('cardId',idx)));
+            $('.maze',domelem).append($('<div class="col-xs-2 nopadding"></div>').append($('<div class="card' + (card.start ? ' start selectable' : '') + (card.end ? ' end' : '') + '"><p>' + card.label + '</p><p>' + card.clue + '</p></div>').data('cardId',idx)));
             if (card.start) {
                 currentHead = idx;
                 startid = idx;
