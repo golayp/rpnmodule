@@ -863,7 +863,7 @@ var rpncardmazemodule = function() {
         domelem.addClass('cardmaze');
         domelem.append($('<div class="row"><div class="container maze"></div></div>'));
         _.each(datas.cards, function(card, idx) {
-            $('.maze',domelem).append($('<div class="col-xs-2"><div id="card_'+idx+'" class="card' + (card.start ? ' start selectable' : '') + (card.end ? ' end' : '') + '"><p>' + card.label + '</p><p>' + card.clue + '</p></div></div>'));
+            $('.maze',domelem).append($('<div class="col-xs-2"></div>').append($('<div class="card' + (card.start ? ' start selectable' : '') + (card.end ? ' end' : '') + '"><p>' + card.label + '</p><p>' + card.clue + '</p></div>').data('cardId',idx)));
             if (card.start) {
                 currentHead = idx;
                 startid = idx;
@@ -884,24 +884,19 @@ var rpncardmazemodule = function() {
     var bindUiEvents = function() {
         _.each($('.card'), function(card, idx) {
             $(card).click(function() {
-                if ($(card).hasClass('selectable') || $(card).hasClass('selected')) {
-                    if ((idx == currentHead || idx == currentHead + width || idx == currentHead - width || idx == currentHead - 1 || idx == currentHead + 1) && !$(card).hasClass('selected')) {
-                        if (currentHead != idx) {
-                            snake.push(card);
-                        }
-                        currentHead = idx;
-                        responses.push(idx);
+                if ($(card).hasClass('start') || $(card).hasClass('selectable') || $(card).hasClass('selected')) {
+                    if (((idx == currentHead && $(card).hasClass('start') ) ||idx == currentHead + width || idx == currentHead - width || idx == currentHead - 1 || idx == currentHead + 1) && !$(card).hasClass('selected')) {
+                        snake.push(card);
+
                     }else if($(card).hasClass('selected')){
                         snake=snake.slice(0,_.indexOf(snake,card)+1);
-                        currentHead = idx;
                     }
+                    currentHead = idx;
                     $('.selected').removeClass('selected');
-                    $('.snakehead').removeClass('snakehead');
-                    $(card).addClass('snakehead');
+                    $('.selectable').removeClass('selectable');
                     _.each(snake,function(icard,ii){
                         $(icard).addClass('selected');
                     });
-                    $('.selectable').removeClass('selectable');
                     if (idx != endid) {
                         if (!((idx + width) > (width * height))) {
                             $($('.card')[idx + width]).addClass('selectable');
@@ -922,8 +917,10 @@ var rpncardmazemodule = function() {
         validationButton.click(function() {
             if (!$(snake[snake.length - 1]).hasClass('end')) {
                 rpnsequence.displayAlert(rpnsequence.getLabels().CardMazeNotEnded);
-            }
-            else {
+            } else {
+                _.each(snake,function(card,idx){
+                    responses[idx]=$(card).data("cardId");
+                });
                 rpnsequence.handleEndOfModule(responses, function(res, sol) {
                     var score = 0;
                     _.each(sol, function(cardIdx, idx) {

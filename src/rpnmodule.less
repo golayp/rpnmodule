@@ -45,35 +45,29 @@
 .blackbox .operation{
     white-space: nowrap;
 }
+
 .cardmaze .card{
     text-align: center;
 }
-.cardmaze .card.selected{
+.cardmaze .selected{
     background-color:#f00;
     cursor:pointer;
 }
-.cardmaze .card.selectable{
-    background-color:#ccc;
+.cardmaze .selectable{
     cursor:pointer;
 }
-.cardmaze .card.selected.selectable{
+.cardmaze .selectable:hover{
     background-color:#f00;
-    cursor:pointer;
-}
-.cardmaze .card.start, .cardmaze .card.selected.selectable.start{
-    background-color:#0f0;
-}
-.cardmaze .card.selected.selectable.start{
-    background-color:#0f0;
-    cursor:pointer;
 }
 
-.cardmaze .card.end{
-    background-color:#eee;
-}
-.cardmaze .card.end.selected.snakehead{
+.cardmaze .card.selected.end, .cardmaze .selected.start{
     background-color:#0f0;
 }
+
+.cardmaze .end, .cardmaze .start{
+    background-color:#eee;
+}
+
 
 
 /* Prevent the text contents of draggable elements from being selectable. */
