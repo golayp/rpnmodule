@@ -277,7 +277,7 @@ var rpnsequence = (function() {
     };
 
     var genericValidateButton = function(label) {
-        label = _.isUndefined(label) ? selectedLabels.Validate : label
+        label = _.isUndefined(label) ? selectedLabels.Validate : label;
         return $('<button>', {
             'class': 'btn btn-primary',
             text: ' ' + selectedLabels.Validate
@@ -298,19 +298,18 @@ var rpnsequence = (function() {
         if (debug) {
             console.log(msg);
         }
-    }
+    };
 
     var handleMediaPath = function() {
         //Images paths
-        _.each($('img:not(.rpnm-img)'), function(elem, idx) {
+        _.each($('img:not(.rpnm-img, .rpnm-mediapath)'), function(elem, idx) {
             var img = $(elem);
-            img.attr('src', mediapathHandler($(elem).attr('src')));
+            img.attr('src', mediapathHandler($(elem).attr('src'))).addClass('rpnm-mediapath');
             if (img.is('.modal-body img')) {
                 img.addClass('img-responsive img-rounded');
             }
         });
-
-    }
+    };
 
     var getLabels = function() {
         return selectedLabels;
@@ -407,7 +406,6 @@ var rpnmarkermodule = function() {
         init: init
 
     };
-
 };
 
 //mqc
