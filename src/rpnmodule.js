@@ -861,9 +861,9 @@ var rpncardmazemodule = function() {
     var buildUi = function() {
         //build card maze
         domelem.addClass('cardmaze');
-        domelem.append($('<div class="row"><div class="container" id="maze"></div></div>'));
+        domelem.append($('<div class="row"><div class="container maze"></div></div>'));
         _.each(datas.cards, function(card, idx) {
-            $('#maze').append($('<div class="col-xs-2"><div class="card' + (card.start ? ' start selectable' : '') + (card.end ? ' end' : '') + '"><p>' + card.label + '</p><p>' + card.clue + '</p></div></div>'));
+            $('.maze',domelem).append($('<div class="col-xs-2"><div id="card_'+idx+'" class="card' + (card.start ? ' start selectable' : '') + (card.end ? ' end' : '') + '"><p>' + card.label + '</p><p>' + card.clue + '</p></div></div>'));
             if (card.start) {
                 currentHead = idx;
                 startid = idx;
@@ -884,34 +884,39 @@ var rpncardmazemodule = function() {
     var bindUiEvents = function() {
         _.each($('.card'), function(card, idx) {
             $(card).click(function() {
-                if ($(card).hasClass('selectable')) {
+                if ($(card).hasClass('selectable') || $(card).hasClass('selected')) {
                     if ((idx == currentHead || idx == currentHead + width || idx == currentHead - width || idx == currentHead - 1 || idx == currentHead + 1) && !$(card).hasClass('selected')) {
                         if (currentHead != idx) {
                             snake.push(card);
                         }
                         currentHead = idx;
-                        $('.snakehead').removeClass('snakehead');
-                        $(card).addClass('selected snakehead');
-                        $('.selectable').removeClass('selectable');
-                        if (idx != endid) {
-                            if (!((idx + width) > (width * height))) {
-                                $($('.card')[idx + width]).addClass('selectable');
-                            }
-                            if (!((idx - width) < 0)) {
-                                $($('.card')[idx - width]).addClass('selectable');
-                            }
-                            if (idx % width != 0) {
-                                $($('.card')[idx - 1]).addClass('selectable');
-                            }
-                            if ((idx + 1) % width != 0) {
-                                $($('.card')[idx + 1]).addClass('selectable');
-                            }
-                        }
                         responses.push(idx);
+                    }else if($(card).hasClass('selected')){
+                        snake=snake.slice(0,_.indexOf(snake,card)+1);
+                        currentHead = idx;
+                    }
+                    $('.selected').removeClass('selected');
+                    $('.snakehead').removeClass('snakehead');
+                    $(card).addClass('snakehead');
+                    _.each(snake,function(icard,ii){
+                        $(icard).addClass('selected');
+                    });
+                    $('.selectable').removeClass('selectable');
+                    if (idx != endid) {
+                        if (!((idx + width) > (width * height))) {
+                            $($('.card')[idx + width]).addClass('selectable');
+                        }
+                        if (!((idx - width) < 0)) {
+                            $($('.card')[idx - width]).addClass('selectable');
+                        }
+                        if (idx % width != 0) {
+                            $($('.card')[idx - 1]).addClass('selectable');
+                        }
+                        if ((idx + 1) % width != 0) {
+                            $($('.card')[idx + 1]).addClass('selectable');
+                        }
                     }
                 }
-
-
             });
         });
         validationButton.click(function() {
