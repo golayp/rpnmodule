@@ -1,4 +1,15 @@
 @fontsize:20px;
+@brand-primary: #428bca;
+@brand-success: #5cb85c;
+@brand-info:    #5bc0de;
+@brand-warning: #f0ad4e;
+@brand-danger:  #d9534f;
+@gray-darker:  lighten(#000, 13.5%); // #222
+@gray-dark:    lighten(#000, 20%);   // #333
+@gray:         lighten(#000, 33.5%); // #555
+@gray-light:   lighten(#000, 46.7%); // #777
+@gray-lighter: lighten(#000, 93.5%); // #eee
+
 
 #rpnm_module_content{
     line-height:30px;
@@ -50,22 +61,34 @@
     text-align: center;
 }
 .cardmaze .selected{
-    background-color:#f00;
+    background-color:@brand-info;
     cursor:pointer;
 }
 .cardmaze .selectable{
     cursor:pointer;
 }
 .cardmaze .selectable:hover{
-    background-color:#f00;
+    background-color:@gray-lighter;
 }
 
 .cardmaze .card.selected.end, .cardmaze .selected.start{
-    background-color:#0f0;
+    background-color:@brand-success;
 }
 
 .cardmaze .end, .cardmaze .start{
-    background-color:#eee;
+    background-color:@gray-lighter;
+}
+.cardmaze .fromtop{
+    
+}
+.cardmaze .frombottom{
+    
+}
+.cardmaze .fromright{
+    
+}
+.cardmaze .fromleft{
+    
 }
 
 

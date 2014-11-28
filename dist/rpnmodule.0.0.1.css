@@ -46,31 +46,23 @@
 .cardmaze .card {
   text-align: center;
 }
-.cardmaze .card.selected {
-  background-color: #f00;
-  cursor: not-allowed;
-}
-.cardmaze .card.selectable {
-  background-color: #ccc;
+.cardmaze .selected {
+  background-color: #5bc0de;
   cursor: pointer;
 }
-.cardmaze .card.selected.selectable {
-  background-color: #f00;
+.cardmaze .selectable {
   cursor: pointer;
 }
-.cardmaze .card.start,
-.cardmaze .card.selected.selectable.start {
-  background-color: #0f0;
+.cardmaze .selectable:hover {
+  background-color: #eeeeee;
 }
-.cardmaze .card.selected.selectable.start {
-  background-color: #0f0;
-  cursor: pointer;
+.cardmaze .card.selected.end,
+.cardmaze .selected.start {
+  background-color: #5cb85c;
 }
-.cardmaze .card.end {
-  background-color: #eee;
-}
-.cardmaze .card.end.selected.snakehead {
-  background-color: #0f0;
+.cardmaze .end,
+.cardmaze .start {
+  background-color: #eeeeee;
 }
 /* Prevent the text contents of draggable elements from being selectable. */
 [draggable] {

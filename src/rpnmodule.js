@@ -894,7 +894,20 @@ var rpncardmazemodule = function() {
                     currentHead = idx;
                     $('.selected').removeClass('selected');
                     $('.selectable').removeClass('selectable');
+                    $('.card').removeClass('fromtop frombottom fromleft fromright');
                     _.each(snake,function(icard,ii){
+                        if(ii>0){
+                            var dif=$(icard).data('cardId')-$(snake[ii-1]).data('cardId');
+                            if(dif==width){
+                                $(icard).addClass('fromtop');
+                            }else if(dif==-width){
+                                $(icard).addClass('frombottom');
+                            }else if(dif==1){
+                                $(icard).addClass('fromleft');
+                            }else if(dif==-1){
+                                $(icard).addClass('fromright');
+                            }
+                        }
                         $(icard).addClass('selected');
                     });
                     if (idx != endid) {
