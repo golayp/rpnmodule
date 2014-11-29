@@ -765,16 +765,16 @@ var rpndragdropsortingmodule = function() {
     var buildUi = function() {
         //build marker toolbar
         domelem.addClass('dragdropsorting');
-        domelem.append($('<div class="row"><div class="container"><div class="col-md-12"><ul id="dragthis" class="list-unstyled"></ul></div></div><div class="row"><div class="container" id="dropzonecontainer"></div></div>'));
+        domelem.append($('<div class="row"><div class="container"><div class="col-md-2"><ul class="dragthis list-unstyled"></ul></div></div><div class="row"><div class="container" id="dropzonecontainer"></div></div>'));
 
         $.each(datas.todrop, function(idx, drop) {
-            $('#dropzonecontainer').append($('<div class="col-md-2"><ul class="droppable list-unstyled"><lh>' + drop + '</lh></ul></div>'))
+            $('#dropzonecontainer').append($('<div class="col-md-2"><div class="droppable"><span class="lead">' + drop + '</span><ul class="list-unstyled"></ul></div></div>'))
         });
-
-        $("ul.droppable").sortable({
-            group: 'no-drop',
-            onDrop: function() {
-                nextDraggable()
+        $(".droppable ul").sortable({
+            group: 'drop',
+            onDrop:function  (item, targetContainer, _super) {
+                nextDraggable();
+                _super(item);
             }
         });
 
@@ -787,11 +787,11 @@ var rpndragdropsortingmodule = function() {
     };
 
     var nextDraggable = function() {
-        if ($('#dragthis li').length == 0 && datas.todrag.length > 0) {
+        if ($('.dragthis li').length == 0 && datas.todrag.length > 0) {
             var itemToDrag = datas.todrag.pop();
-            $('#dragthis').append($('<li>' + itemToDrag + '</li>'))
-            $("#dragthis").sortable({
-                group: 'no-drop',
+            $('.dragthis').append($('<li class="draggable">' + itemToDrag + '</li>'))
+            $(".dragthis").sortable({
+                group: 'drop',
                 drop: false
             });
         }
@@ -894,7 +894,7 @@ var rpncardmazemodule = function() {
                     currentHead = idx;
                     $('.selected').removeClass('selected');
                     $('.selectable').removeClass('selectable');
-                    $('.card').removeClass('fromtop frombottom fromleft fromright');
+                    $('.card').removeClass('fromtop frombottom fromleft fromright totop tobottom toleft toright');
                     _.each(snake,function(icard,ii){
                         if(ii>0){
                             var dif=$(icard).data('cardId')-$(snake[ii-1]).data('cardId');
@@ -906,6 +906,18 @@ var rpncardmazemodule = function() {
                                 $(icard).addClass('fromleft');
                             }else if(dif==-1){
                                 $(icard).addClass('fromright');
+                            }
+                        }
+                        if(ii<snake.length-1){
+                            var dif=$(icard).data('cardId')-$(snake[ii+1]).data('cardId');
+                            if(dif==-width){
+                                $(icard).addClass('tobottom');
+                            }else if(dif==width){
+                                $(icard).addClass('totop');
+                            }else if(dif==-1){
+                                $(icard).addClass('toright');
+                            }else if(dif==1){
+                                $(icard).addClass('toleft');
                             }
                         }
                         $(icard).addClass('selected');

@@ -17,6 +17,8 @@
 .rpnm_input{
     font-size: @fontsize;
 }
+
+/*marker*/
 .marker{
     font-size:@fontsize;
 }
@@ -35,27 +37,39 @@
 .marker .marker-danger{
     background-color: #d9534f;
 }
+
+/*mqc*/
 .mqc{
     font-size:@fontsize;
 }
+
+/*gapsimple*/
 .gapsimple{
     font-size:@fontsize;
 }
+
+/*gapfull*/
 .gapfull{
     font-size:@fontsize;
 }
 .gapfull #sentences p{
     padding: 0px 12px;
 }
+
+/*clock*/
 .clock #rpnclock{
     height:400px;
 }
+
+/*blackbox*/
 .blackbox .blackbox{
     text-align: center;
 }
 .blackbox .operation{
     white-space: nowrap;
 }
+
+/*cardmaze*/
 .cardmaze .nopadding {
    padding: 0 !important;
    margin: 0 !important;
@@ -74,30 +88,45 @@
 .cardmaze .selectable:hover{
     background-color:@gray-lighter;
 }
-
 .cardmaze .card.selected.end, .cardmaze .selected.start{
     background-color:@brand-success;
 }
-
 .cardmaze .end, .cardmaze .start{
     background-color:@gray-lighter;
 }
-.cardmaze .fromtop{
-    
-}
-.cardmaze .frombottom{
-    
-}
-.cardmaze .fromright{
-    
-}
-.cardmaze .fromleft{
-    
+
+/*dragdropsorting*/
+.draggable{
+    background-color:@brand-info;
+    text-align:center;
+    height:30px;
+    cursor:pointer;
 }
 
-
-
-/* Prevent the text contents of draggable elements from being selectable. */
+body.dragging, body.dragging * {
+  cursor: move !important;
+}
+.dragthis{
+    height:100px;
+}
+.dragged {
+  position: absolute;
+  opacity: 0.5;
+  z-index: 2000;
+}
+.droppable{
+    text-align:center;
+    min-height:100px;
+    background-color: @gray-lighter;
+}
+.dragdropsorting ul li.placeholder {
+  position: relative;
+  /** More li styles **/
+}
+.dragdropsorting ul li.placeholder:before {
+  position: absolute;
+  /** Define arrowhead **/
+}
 [draggable] {
     -moz-user-select: none;
     -khtml-user-select: none;
@@ -107,46 +136,5 @@
     -khtml-user-drag: element;
     -webkit-user-drag: element;
 }
-.column {
-    height: 150px;
-    width: 150px;
-    float: left;
-    border: 2px solid #666666;
-    background-color: #ccc;
-    margin-right: 5px;
-    -webkit-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 3px #000;
-    -ms-box-shadow: inset 0 0 3px #000;
-    box-shadow: inset 0 0 3px #000;
-    text-align: center;
-    cursor: move;
-}
-.column header {
-    color: #fff;
-    text-shadow: #000 0 1px;
-    box-shadow: 5px;
-    padding: 5px;
-    background: -moz-linear-gradient(left center, rgb(0,0,0), rgb(79,79,79), rgb(21,21,21));
-    background: -webkit-gradient(linear, left top, right top,
-                               color-stop(0, rgb(0,0,0)),
-                               color-stop(0.50, rgb(79,79,79)),
-                               color-stop(1, rgb(21,21,21)));
-    background: -webkit-linear-gradient(left center, rgb(0,0,0), rgb(79,79,79), rgb(21,21,21));
-    background: -ms-linear-gradient(left center, rgb(0,0,0), rgb(79,79,79), rgb(21,21,21));
-    border-bottom: 1px solid #ddd;
-    -webkit-border-top-left-radius: 10px;
-    -moz-border-radius-topleft: 10px;
-    -ms-border-radius-topleft: 10px;
-    border-top-left-radius: 10px;
-    -webkit-border-top-right-radius: 10px;
-    -ms-border-top-right-radius: 10px;
-    -moz-border-radius-topright: 10px;
-    border-top-right-radius: 10px;
-}
-.column.over {
-    border: 2px dashed #000;
-}
+
 
