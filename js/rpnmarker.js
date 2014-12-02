@@ -33,8 +33,8 @@ var rpnmarkermodule = function() {
 
         }));
         $.each(datas.markers, function(idx, marker) {
-            toolbar.append($('<label class="btn btn-' + (availableColors[idx] || 'default') + '"><input type="radio" name="options" id="option3" autocomplete="off"><i class="glyphicon glyphicon-pencil"></i> ' + marker.label + '</label>').click(function() {
-                selectedMarker = marker.val;
+            toolbar.append($('<label class="btn btn-' + (availableColors[idx] || 'default') + '"><input type="radio" name="options" id="option3" autocomplete="off"><i class="glyphicon glyphicon-pencil"></i> ' + marker + '</label>').click(function() {
+                selectedMarker = marker;
             }));
         });
         domelem.append(toolbar);
@@ -47,7 +47,7 @@ var rpnmarkermodule = function() {
             t.css('cursor', 'pointer').click(function() {
                 t.removeClass();
                 if (selectedMarker != -1) {
-                    t.addClass('marker-' + availableColors[selectedMarker]);
+                    t.addClass('marker-' + availableColors[_.indexOf(datas.markers,selectedMarker)]);
                 }
                 responses[idx] = selectedMarker;
             });

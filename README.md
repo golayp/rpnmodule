@@ -90,7 +90,7 @@ By default a sequence json datas has to handle thoses values:
 
 <h3>marker options</h3>
 <ul>
-    <li>markers - a list of markers (described with val and label)</li>
+    <li>markers - a list of markers</li>
     <li>tomark - a text where words tagged with b can be marked</li>
 </ul>
 
@@ -102,7 +102,7 @@ By default a sequence json datas has to handle thoses values:
 <h2>sample seq json</h2>
 ```json
 {
-    "title":"<i class=\"eventually an icon\"></i> modulesequence",
+    "title":"modulesequence",
     "modules":[
         {
             "type":"mqc",
@@ -163,20 +163,7 @@ By default a sequence json datas has to handle thoses values:
             "title":"a marker module",
             "context":"context",
             "directive":"try to mark words",
-            "markers":[
-                {
-                    "val":0,
-                    "label":"marker1"
-                },
-                {
-                    "val":1,
-                    "label":"marker2"
-                },
-                {
-                    "val":2,
-                    "label":"marker3"
-                }
-            ],
+            "markers":["marker 1","marker 2","marker 3"],
             "tomark":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <b>Etiam</b> rutrum convallis maximus. Nulla faucibus mi ante, sed efficitur mi <b>ultrices</b> vel.</p><p>Class aptent taciti sociosqu ad litora torquent per <b>conubia</b> nostra, per inceptos himenaeos. Maecenas sem sapien, dictum lobortis malesuada at, pulvinar ac tortor. Donec vitae quam massa. Mauris eu ante nibh. Donec eu dapibus est, id vestibulum urna. Suspendisse eu arcu neque. Mauris sed placerat orci, vel lobortis augue.</p><p>Suspendisse nisi tellus, finibus sit amet rutrum et, molestie quis dolor. Duis pretium ipsum eu sem <b>lobortis</b>, eget varius urna sagittis.</p><p><b>Etiam</b> et dolor sit amet quam finibus faucibus ac porttitor dui. Vestibulum et erat ac nulla cursus gravida et a dui. Nunc egestas purus dui, ac lobortis turpis rhoncus a. Sed ac accumsan eros. Vivamus eget vestibulum augue, vel lacinia orci. Duis vitae leo vel dolor lacinia volutpat fermentum et leo. Sed ac efficitur tellus. Quisque eget commodo ligula.</p><p>In mollis convallis turpis, sit amet luctus purus tempor a. Integer vel convallis arcu, porttitor laoreet mauris. Sed porttitor pharetra purus nec sagittis. Curabitur ac purus finibus, blandit lectus ac, laoreet est. Ut lobortis nisl sit amet <b>fringilla</b> gravida. Donec arcu lectus, porttitor sed vestibulum vitae, vestibulum ut justo. Duis maximus viverra risus, ac finibus enim pellentesque ac. Cras interdum posuere orci, ut ultricies elit ullamcorper ut.</p>"
         },
         {
@@ -260,7 +247,7 @@ By default a sequence json datas has to handle thoses values:
 {
     "solutions":[
         [0,-1,2,1,-1,0],
-        [-1,-1,-1,-1,-1,-1],
+        [-1,"marker 1","marker 2",-1,"marker 3","marker 1"],
         ["a","b","c","d","e","f"],
         ["dream","day","dream","day","dream","day","dream","day","dream","day"],
         "",
