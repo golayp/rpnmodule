@@ -28,11 +28,11 @@ var rpnmqcmodule = function() {
         $.each(datas.questions, function(idq, question) {
             responses[idq] = -1; //initialize all responses to uncheck
             var li = $('<li>');
-            li.append($('<p>' + question.label + '</p>'));
+            li.append($('<p>' + question + '</p>'));
             var answerGroup = $('<div class="btn-group" data-toggle="buttons">');
             $.each(datas.answers, function(ida, answer) {
-                answerGroup.append($('<label class="btn btn-default"><input type="radio" name="question_' + idq + '" id="answer_' + idq + '_' + ida + '" autocomplete="off">' + answer.label + '</label>').click(function() {
-                    responses[idq] = ida;
+                answerGroup.append($('<label class="btn btn-default"><input type="radio" name="question_' + idq + '" id="answer_' + idq + '_' + ida + '" autocomplete="off">' + answer + '</label>').click(function() {
+                    responses[idq] = answer;
                 }));
                 li.append(answerGroup);
             });

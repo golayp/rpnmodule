@@ -96,8 +96,8 @@ By default a sequence json datas has to handle thoses values:
 
 <h3>mqc options</h3>
 <ul>
-    <li>questions - a list of questions (described with val and label)</li>
-    <li>answers - a list of answers common to all questions (described with val and label)</li>
+    <li>questions - a list of questions</li>
+    <li>answers - a list of answers common to all questions</li>
 </ul>
 <h2>sample seq json</h2>
 ```json

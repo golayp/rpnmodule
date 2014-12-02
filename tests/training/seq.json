@@ -6,116 +6,16 @@
             "title":"Exercice 1",
             "context":"Lis les phrases ci-dessous. Retrouve la suite de fonctions correspondant à chaque phrase.",
             "directive":"Sélectionnes la case qui convient.",
-            "questions":[
-                {
-                    "val":0,
-                    "label" : "Ralph se reposait chaque soir, à proximité du rivage."
-                },
-                {
-                    "val":1,
-                    "label" : "A sa droite, sur la plage, se trouvait un groupe d'enfants."
-                },
-                {
-                    "val":2,
-                    "label" : "Devant lui, des petits attendaient dans l’herbe."
-                },
-                {
-                    "val":3,
-                    "label" : "Porcinet, dans la pénombre, n’offrait aucune suggestion."
-                },
-                {
-                    "val":4,
-                    "label" : "Dans la soirée, tout le monde parlait pour se rassurer."
-                }
-            ],
-            "answers":[
-                {
-                    "val":0,
-                    "label":"CP–S–V–CP"
-                },
-                {
-                    "val":1,
-                    "label":"S–V–CP–CP"
-                },
-                {
-                    "val":2,
-                    "label":"S–CP–V–CV"
-                },
-                {
-                    "val":3,
-                    "label":"CP–S–V–CV"
-                },
-                {
-                    "val":4,
-                    "label":"CP–CP–V–S"
-                }
-            ]
+            "questions":["Ralph se reposait chaque soir, à proximité du rivage.","A sa droite, sur la plage, se trouvait un groupe d'enfants.","Devant lui, des petits attendaient dans l’herbe.","Porcinet, dans la pénombre, n’offrait aucune suggestion.","Dans la soirée, tout le monde parlait pour se rassurer."],
+            "answers":["CP–S–V–CP","S–V–CP–CP","S–CP–V–CV","CP–S–V–CV","CP–CP–V–S"]
         },
 		{
             "type":"mqc",
             "title":"Exercice 2",
             "context":"Lis les phrases ci-dessous. Retrouve la suite de fonctions correspondant à chaque phrase.",
             "directive":"Sélectionnes la case qui convient.",
-            "questions":[
-                {
-                    "val":0,
-                    "label" : "Simon sortit <u>brusquement</u> de la chambre."
-                },
-                {
-                    "val":1,
-                    "label" : "<u>A l'intérieur de la glace</u>, se trouvait une galerie de cent mètres de long."
-                },
-								{
-                    "val":2,
-                    "label" : "<u>A gauche et à droite de la galerie</u> s'ouvraient de courtes ruelles."
-                },
-				{
-                    "val":3,
-                    "label" : "<u>Pour ne pas polluer l'air de ces galeries</u>, on s'y déplaçait avec de petites plates-formes électriques."
-                },
-				{
-                    "val":4,
-                    "label" : "<u>Durant la journée</u>, elles servaient aussi à transporter le matériel."
-                },
-				{
-                    "val":5,
-                    "label" : "<u>Près de l'infirmerie</u>, Simon trouva une plate-forme abandonnée."
-                },
-				{
-                    "val":6,
-                    "label" : "Le véhicule s'ébranla <u>en ronronnant comme un gros chat</u>."
-                },
-				{
-                    "val":7,
-                    "label" : "<u>Comme le véhicule se déplaçait trop lentement</u>, Simon sauta à terre et se mit à courir."
-                },
-				{
-                    "val":8,
-                    "label" : "Il se dirigeait vers la Traductrice, ordinateur surpuissant, <u>afin de trouver quel langage lui permettrait d'entrer en communication avec Eléa</u>."
-                }
-            ],
-            "answers":[
-                {
-                    "val":0,
-                    "label":"Temps"
-                },
-                {
-                    "val":1,
-                    "label":"Lieu"
-                },
-                {
-                    "val":2,
-                    "label":"But"
-                },
-                {
-                    "val":3,
-                    "label":"Manière"
-                },
-                {
-                    "val":4,
-                    "label":"Cause"
-                }
-            ]
+            "questions":["Simon sortit <u>brusquement</u> de la chambre.","<u>A l'intérieur de la glace</u>, se trouvait une galerie de cent mètres de long.","<u>A gauche et à droite de la galerie</u> s'ouvraient de courtes ruelles.","<u>Pour ne pas polluer l'air de ces galeries</u>, on s'y déplaçait avec de petites plates-formes électriques.","<u>Durant la journée</u>, elles servaient aussi à transporter le matériel.","<u>Près de l'infirmerie</u>, Simon trouva une plate-forme abandonnée.","Le véhicule s'ébranla <u>en ronronnant comme un gros chat</u>.","<u>Comme le véhicule se déplaçait trop lentement</u>, Simon sauta à terre et se mit à courir.","Il se dirigeait vers la Traductrice, ordinateur surpuissant, <u>afin de trouver quel langage lui permettrait d'entrer en communication avec Eléa</u>."],
+            "answers":["Temps","Lieu","But","Manière","Cause"]
         },
         {
             "type":"marker",
