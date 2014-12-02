@@ -1035,7 +1035,6 @@ var rpnblackboxmodule = function() {
     };
 
     var buildUi = function() {
-        //build marker toolbar
         domelem.addClass('blackbox');
 
         domelem.append($('<div class="row header"><div class="col-md-3 hidden-xs hidden-sm"></div><div class="col-xs-2"><p class="text-center">x</p></div><div class="col-xs-2 operation"></div><div class="col-xs-2"><p class="text-center">y</p></div></div>'));
@@ -1250,7 +1249,6 @@ var rpnclockmodule = function() {
     };
 
     var buildUi = function() {
-        //build marker toolbar
         domelem.addClass('clock');
 
         //build panel with sentences
@@ -1303,7 +1301,6 @@ var rpndragdropsortingmodule = function() {
     };
 
     var buildUi = function() {
-        //build marker toolbar
         domelem.addClass('dragdropsorting');
         domelem.append($('<div class="row"><div class="container"><div class="col-md-2"><ul class="dragthis list-unstyled"></ul></div></div><div class="row"><div class="container" id="dropzonecontainer"></div></div>'));
 
@@ -1382,7 +1379,6 @@ var rpngapfullmodule = function() {
     };
 
     var buildUi = function() {
-        //build marker toolbar
         domelem.addClass('gapfull');
 
         //build panel with sentence
@@ -1417,6 +1413,7 @@ var rpngapsimplemodule = function() {
     var domelem;
     var validationButton;
     var responses;
+    var ddmode;
 
     var init = function(_datas, _domelem) {
         _.defaults(_datas, {
@@ -1424,21 +1421,62 @@ var rpngapsimplemodule = function() {
         });
 
         datas = _datas;
+        ddmode= !_.isUndefined(_datas.fillers);
         domelem = _domelem;
         responses = [];
         buildUi();
     };
 
     var buildUi = function() {
-        //build marker toolbar
         domelem.addClass('gapsimple');
+        var availableColors = _.shuffle(['primary', 'success', 'info', 'warning', 'danger']);
 
+        if(ddmode){
+            var toolbar = $('<div class="gapsimpleddtoolbar">');
+            $.each(datas.fillers, function(idx, filler) {
+                toolbar.append($('<span class="draggable">'+filler+'</span> '));
+            });
+            domelem.append(toolbar.sortable({
+                    group: 'drop',
+                    drop: false,
+                    itemSelector:'span',
+                    containerSelector:'div',
+                    placeholder:'<span class="placeholder"/>',
+                    onDragStart: function (item, container, _super) {
+                        if(!container.options.drop){
+                            // Clone item
+                            item.clone().insertAfter(item);
+                        }else{
+                            // Remove item and restore white space
+                            $('<span>______</span>').insertAfter(item);
+                        }
+                        _super(item);
+                    },
+                    onDrop:function($item, container, _super, event){
+                        $item.parent().empty().append($item);
+                        _super($item);
+                    }
+                })
+            );
+        }
+        
         //build panel with sentences
         domelem.append($('<div id="sentences" class="form-inline">' + datas.tofill + '</div>'));
         $.each($('#sentences b', domelem), function(idx, tofill) {
             responses[idx] = -1; //initialize all responses to unmark
             var t = $(tofill);
-            t.replaceWith($('<input type="text" id="' + idx + '" class="rpnm_input gapsimple form-control"> <strong>(' + t.text() + ')</strong>'));
+            if(ddmode){
+                //add a white space for drag and drop
+                t.replaceWith($('<b class="gapsimpleddresponse">').append('<span>______</span>').sortable({
+                    group: 'drop',
+                    itemSelector:'span',
+                    containerSelector:'b',
+                    vertical:false
+                }));
+            }else{
+                t.replaceWith($('<input type="text" id="' + idx + '" class="rpnm_input gapsimple form-control"> <strong>(' + t.text() + ')</strong>'));    
+            }
+            
         });
         //build validation button
         validationButton = rpnsequence.genericValidateButton();
@@ -1449,9 +1487,16 @@ var rpngapsimplemodule = function() {
 
     var bindUiEvents = function() {
         validationButton.click(function() {
-            $.each($('.gapsimple'), function(idx, gap) {
-                responses[idx] = $(gap).val();
-            });
+            if(ddmode){
+                _.each($('.gapsimpleddresponse',$('#sentences',domelem)),function(elem,idx){
+                    responses[idx] = $('.draggable',$(elem)).text();
+                });
+                
+            }else{
+                $.each($('.gapsimple',domelem), function(idx, gap) {
+                    responses[idx] = $(gap).val();
+                });
+            }
             rpnsequence.handleEndOfModule(responses, function(res, sol) {
                 var score = 0;
                 _.each(sol, function(val, idx) {
@@ -1502,8 +1547,8 @@ var rpnmarkermodule = function() {
 
         }));
         $.each(datas.markers, function(idx, marker) {
-            toolbar.append($('<label class="btn btn-' + (availableColors[idx] || 'default') + '"><input type="radio" name="options" id="option3" autocomplete="off"><i class="glyphicon glyphicon-pencil"></i> ' + marker.label + '</label>').click(function() {
-                selectedMarker = marker.val;
+            toolbar.append($('<label class="btn btn-' + (availableColors[idx] || 'default') + '"><input type="radio" name="options" id="option3" autocomplete="off"><i class="glyphicon glyphicon-pencil"></i> ' + marker + '</label>').click(function() {
+                selectedMarker = marker;
             }));
         });
         domelem.append(toolbar);
@@ -1516,7 +1561,7 @@ var rpnmarkermodule = function() {
             t.css('cursor', 'pointer').click(function() {
                 t.removeClass();
                 if (selectedMarker != -1) {
-                    t.addClass('marker-' + availableColors[selectedMarker]);
+                    t.addClass('marker-' + availableColors[_.indexOf(datas.markers,selectedMarker)]);
                 }
                 responses[idx] = selectedMarker;
             });
@@ -1569,7 +1614,6 @@ var rpnmqcmodule = function() {
     };
 
     var buildUi = function() {
-        //build marker toolbar
         domelem.addClass('mqc');
 
         //build panel with sentences
@@ -1579,11 +1623,11 @@ var rpnmqcmodule = function() {
         $.each(datas.questions, function(idq, question) {
             responses[idq] = -1; //initialize all responses to uncheck
             var li = $('<li>');
-            li.append($('<p>' + question.label + '</p>'));
+            li.append($('<p>' + question + '</p>'));
             var answerGroup = $('<div class="btn-group" data-toggle="buttons">');
             $.each(datas.answers, function(ida, answer) {
-                answerGroup.append($('<label class="btn btn-default"><input type="radio" name="question_' + idq + '" id="answer_' + idq + '_' + ida + '" autocomplete="off">' + answer.label + '</label>').click(function() {
-                    responses[idq] = ida;
+                answerGroup.append($('<label class="btn btn-default"><input type="radio" name="question_' + idq + '" id="answer_' + idq + '_' + ida + '" autocomplete="off">' + answer + '</label>').click(function() {
+                    responses[idq] = answer;
                 }));
                 li.append(answerGroup);
             });

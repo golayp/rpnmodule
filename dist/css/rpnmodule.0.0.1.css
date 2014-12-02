@@ -31,6 +31,19 @@
 .gapsimple {
   font-size: 20px;
 }
+.gapsimpleddtoolbar span {
+  margin-right: 10px;
+  background-color: #5bc0de;
+}
+.gapsimpleddresponse div {
+  display: inline-block;
+  width: 70px;
+  height: 20px;
+}
+.gapsimpleddresponse {
+  display: inline-block;
+  min-width: 20px;
+}
 /*gapfull*/
 .gapfull {
   font-size: 20px;

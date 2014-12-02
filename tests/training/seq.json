@@ -76,8 +76,8 @@
         {
             "type":"blackbox",
             "title":"Exercice 11",
-            "context":"test",
-            "directive":"fill in the black box below",
+            "context":"Livrets du 8",
+            "directive":"Complète la boite noire.",
             "operation":"x8",
             "left":[5,10,6,11],
             "right":[56,72,32]
@@ -92,102 +92,102 @@
             "mazeheight":4,
             "cards":[
                 {
-                    "label":"A",
-                    "clue":"B"
+                	"start":true,
+                	"label":"ENTREE",
+                	"clue":"ind. imparf. nous"
                 },
                 {
-                    "label":"A",
-                    "clue":"B"
+                	"label":"nous avions",
+                	"clue":"ind. imparf. tu"
                 },
                 {
-                    "start":true,
-                    "label":"A",
-                    "clue":"B"
+                	"label":"tu avaies",
+                	"clue":"ind. prés. je"
                 },
                 {
-                    "label":"A",
-                    "clue":"B"
+                	"label":"vous avez",
+                	"clue":"ind. passé comp. il"
                 },
                 {
-                    "label":"A",
-                    "clue":"B"
+                	"label":"il a eu",
+                	"clue":"ind. imparf. vous"
                 },
                 {
-                    "label":"A",
-                    "clue":"B"
+                	"label":"vous saviez",
+                	"clue":"ind. prés. tu"
                 },
                 {
-                    "label":"A",
-                    "clue":"B"
+                	"label":"nous avons",
+                	"clue":"ind. passé comp. elle"
                 },
                 {
-                    "label":"A",
-                    "clue":"B"
+                	"label":"tu avais",
+                	"clue":"ind. imparf. ils"
                 },
                 {
-                    "label":"A",
-                    "clue":"B"
+                	"label":"ils avaient",
+                	"clue":"ind. futur simple je"
                 },
                 {
-                    "label":"A",
-                    "clue":"B"
+                	"label":"j'aurai",
+                	"clue":"ind. prés. vous"
                 },
                 {
-                    "label":"A",
-                    "clue":"B"
+                	"label":"vous aviez",
+                	"clue":"ind. prés. il"
                 },
                 {
-                    "label":"A",
-                    "clue":"B"
+                	"label":"il ait",
+                	"clue":"ind. futur simple elles"
                 },
                 {
-                    "label":"A",
-                    "clue":"B"
+                	"label":"elle a eu",
+                	"clue":"ind. prés. nous"
                 },
                 {
-                    "label":"A",
-                    "clue":"B"
+                	"label":"ils avait",
+                	"clue":"ind. futur simple tu"
                 },
                 {
-                    "label":"A",
-                    "clue":"B"
+                	"label":"j'aurais",
+                	"clue":"ind. passé comp. ils"
                 },
                 {
-                    "label":"A",
-                    "clue":"B"
+                	"label":"nous avons eu",
+                	"clue":"ind. futur simple il"
                 },
                 {
-                    "label":"A",
-                    "clue":"B"
+                	"label":"il a",
+                	"clue":"ind. passé comp. nous"
                 },
                 {
-                    "label":"A",
-                    "clue":"B"
+                	"label":"nous avont eu",
+                	"clue":"ind. futur simple vous"
                 },
                 {
-                    "end":true,
-                    "label":"A",
-                    "clue":"B"
+                	"label":"nous avons",
+                	"clue":"ind. passé comp. tu"
                 },
                 {
-                    "label":"A",
-                    "clue":"B"
+                	"label":"tu as eu",
+                	"clue":"ind. prés. elles"
                 },
                 {
-                    "label":"A",
-                    "clue":"B"
+                	"label":"elles ont",
+                	"clue":"ind. imparf. elle"
                 },
                 {
-                    "label":"A",
-                    "clue":"B"
+                	"end":true,
+                	"label":"il aura",
+                	"clue":"SORTIE"
                 },
                 {
-                    "label":"A",
-                    "clue":"B"
+                	"label":"nous avons eu",
+                	"clue":"ind. passé comp. je"
                 },
                 {
-                    "label":"A",
-                    "clue":"B"
+                	"label":"j'ai eu",
+                	"clue":"ind. passé comp. vous"
                 }
             ]
         }
