@@ -1,5 +1,10 @@
 require.config({
     "baseUrl": "/js",
+    "shim" : {
+        "bootstrap" : { "deps" :['jquery'] },
+        "ext/jquery-sortable":{ "deps" :['jquery'] }
+    },
+    
     "paths": {
         "jquery": "https://code.jquery.com/jquery-2.1.1",
         "bootstrap":"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min",
@@ -9,7 +14,7 @@ require.config({
     }
 });
 
-require(['jquery','bootstrap','swfobject','underscore','less','rpnsequence','rpnblackbox','rpncardmaze','rpnclock','rpndragdropsorting','rpngapfull','rpngapsimple','rpnmarker','rpnmqc','ext/jquery-sortable','ext/ClockSelector'], function($) {
+require(['jquery','bootstrap','swfobject','underscore','less','ext/jquery-sortable','ext/ClockSelector','rpnsequence','rpnblackbox','rpncardmaze','rpnclock','rpndragdropsorting','rpngapfull','rpngapsimple','rpnmarker','rpnmqc'], function($) {
     $(document).ready(function(){
         rpnsequence.init({
             debug:true,

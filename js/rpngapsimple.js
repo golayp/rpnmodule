@@ -5,6 +5,7 @@ var rpngapsimplemodule = function() {
     var domelem;
     var validationButton;
     var responses;
+    var ddmode;
 
     var init = function(_datas, _domelem) {
         _.defaults(_datas, {
@@ -12,6 +13,7 @@ var rpngapsimplemodule = function() {
         });
 
         datas = _datas;
+        ddmode= !_.isUndefined(_datas.fillers);
         domelem = _domelem;
         responses = [];
         buildUi();
@@ -20,13 +22,54 @@ var rpngapsimplemodule = function() {
     var buildUi = function() {
         //build marker toolbar
         domelem.addClass('gapsimple');
+        var availableColors = _.shuffle(['primary', 'success', 'info', 'warning', 'danger']);
 
+        if(ddmode){
+            var toolbar = $('<div class="gapsimpleddtoolbar">');
+            $.each(datas.fillers, function(idx, filler) {
+                toolbar.append($('<span class="draggable">'+filler+'</span> '));
+            });
+            domelem.append(toolbar.sortable({
+                    group: 'drop',
+                    drop: false,
+                    itemSelector:'span',
+                    containerSelector:'div',
+                    placeholder:'<span class="placeholder"/>',
+                    onDragStart: function (item, container, _super) {
+                        if(!container.options.drop){
+                            // Clone item
+                            item.clone().insertAfter(item);
+                        }else{
+                            // Remove item and restore white space
+                            $('<span>______</span>').insertAfter(item);
+                        }
+                        _super(item);
+                    },
+                    onDrop:function($item, container, _super, event){
+                        $item.parent().empty().append($item);
+                        _super($item);
+                    }
+                })
+            );
+        }
+        
         //build panel with sentences
         domelem.append($('<div id="sentences" class="form-inline">' + datas.tofill + '</div>'));
         $.each($('#sentences b', domelem), function(idx, tofill) {
             responses[idx] = -1; //initialize all responses to unmark
             var t = $(tofill);
-            t.replaceWith($('<input type="text" id="' + idx + '" class="rpnm_input gapsimple form-control"> <strong>(' + t.text() + ')</strong>'));
+            if(ddmode){
+                //add a white space for drag and drop
+                t.replaceWith($('<b class="gapsimpleddresponse">').append('<span>______</span>').sortable({
+                    group: 'drop',
+                    itemSelector:'span',
+                    containerSelector:'b',
+                    vertical:false
+                }));
+            }else{
+                t.replaceWith($('<input type="text" id="' + idx + '" class="rpnm_input gapsimple form-control"> <strong>(' + t.text() + ')</strong>'));    
+            }
+            
         });
         //build validation button
         validationButton = rpnsequence.genericValidateButton();
@@ -37,9 +80,16 @@ var rpngapsimplemodule = function() {
 
     var bindUiEvents = function() {
         validationButton.click(function() {
-            $.each($('.gapsimple'), function(idx, gap) {
-                responses[idx] = $(gap).val();
-            });
+            if(ddmode){
+                _.each($('.gapsimpleddresponse',$('#sentences',domelem)),function(elem,idx){
+                    responses[idx] = $('.draggable',$(elem)).text();
+                });
+                
+            }else{
+                $.each($('.gapsimple',domelem), function(idx, gap) {
+                    responses[idx] = $(gap).val();
+                });
+            }
             rpnsequence.handleEndOfModule(responses, function(res, sol) {
                 var score = 0;
                 _.each(sol, function(val, idx) {

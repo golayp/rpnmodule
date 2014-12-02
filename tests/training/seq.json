@@ -136,7 +136,7 @@
                     "label":"Impératif présent"
                 }
             ],
-            "tomark":"<p>Aujourd'hui, nous |allons</b><b>faire</b>le dernier entraînement. <b>Soyez</b>tous au maximum de vos possibilités !</p><p>Pour que tout le monde <b>ait</b>une chance de <b>gagner</b>, il <b>faut</b>que chacun <b>donne</b>le meilleur de lui.</p><p><b>Faites</b>-lui un massage des jambes et <b>préparez</b>-lui un bain d’eau glacée : il <b>faut</b>que ses courbatures <b>disparaissent</b>rapidement.</p><p>Les sportifs <b>devraient</b>se <b>concentrer</b>pour qu’ils <b>arrivent</b>au départ prêts à <b>gagner</b>.</p><p>Tous les entraîneurs <b>veulent</b>que leurs protégés <b>remportent</b>une médaille !</p><p>Le public <b>souhaite</b>que les sportifs <b>fassent</b>de leur mieux.</p><p>Ne <b>pense</b>pas aux autres concurrents : <b>reste</b><b>concentré</b>sur ta course.</p>"
+            "tomark":"<p>Aujourd'hui, nous allons <b>faire</b> le dernier entraînement. <b>Soyez</b> tous au maximum de vos possibilités !</p><p>Pour que tout le monde <b>ait</b> une chance de <b>gagner</b>, il <b>faut</b> que chacun <b>donne</b> le meilleur de lui.</p><p><b>Faites</b>-lui un massage des jambes et <b>préparez</b>-lui un bain d’eau glacée : il <b>faut</b> que ses courbatures <b>disparaissent</b> rapidement.</p><p>Les sportifs <b>devraient</b> se <b>concentrer</b> pour qu’ils <b>arrivent</b> au départ prêts à <b>gagner</b>.</p><p>Tous les entraîneurs <b>veulent</b> que leurs protégés <b>remportent</b> une médaille !</p><p>Le public <b>souhaite</b> que les sportifs <b>fassent</b> de leur mieux.</p><p>Ne <b>pense</b> pas aux autres concurrents : <b>reste</b><b>concentré</b>sur ta course.</p>"
         },
         {
             "type":"gapsimple",
