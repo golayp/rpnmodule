@@ -12,7 +12,6 @@ var rpnclockmodule = function() {
     };
 
     var buildUi = function() {
-        //build marker toolbar
         domelem.addClass('clock');
 
         //build panel with sentences

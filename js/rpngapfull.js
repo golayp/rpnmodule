@@ -15,7 +15,6 @@ var rpngapfullmodule = function() {
     };
 
     var buildUi = function() {
-        //build marker toolbar
         domelem.addClass('gapfull');
 
         //build panel with sentence

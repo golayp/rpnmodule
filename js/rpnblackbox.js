@@ -46,7 +46,6 @@ var rpnblackboxmodule = function() {
     };
 
     var buildUi = function() {
-        //build marker toolbar
         domelem.addClass('blackbox');
 
         domelem.append($('<div class="row header"><div class="col-md-3 hidden-xs hidden-sm"></div><div class="col-xs-2"><p class="text-center">x</p></div><div class="col-xs-2 operation"></div><div class="col-xs-2"><p class="text-center">y</p></div></div>'));

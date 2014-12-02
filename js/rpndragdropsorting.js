@@ -18,7 +18,6 @@ var rpndragdropsortingmodule = function() {
     };
 
     var buildUi = function() {
-        //build marker toolbar
         domelem.addClass('dragdropsorting');
         domelem.append($('<div class="row"><div class="container"><div class="col-md-2"><ul class="dragthis list-unstyled"></ul></div></div><div class="row"><div class="container" id="dropzonecontainer"></div></div>'));
 

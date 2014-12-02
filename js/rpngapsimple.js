@@ -20,7 +20,6 @@ var rpngapsimplemodule = function() {
     };
 
     var buildUi = function() {
-        //build marker toolbar
         domelem.addClass('gapsimple');
         var availableColors = _.shuffle(['primary', 'success', 'info', 'warning', 'danger']);
 

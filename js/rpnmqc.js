@@ -19,7 +19,6 @@ var rpnmqcmodule = function() {
     };
 
     var buildUi = function() {
-        //build marker toolbar
         domelem.addClass('mqc');
 
         //build panel with sentences
