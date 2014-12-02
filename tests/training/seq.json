@@ -30,7 +30,7 @@
             "title":"Exercice 4",
             "context":"Lis le texte ci-dessous et écris dans chacune des lacunes la forme qui convient.",
 			"sources":"D'après Anibal, roman d'Anne Bragance, Laffont, 1991.",
-            "tofill":"<p>Mes parents ont oublié qu'ils ne sont pas responsables si l'Inca a une belle petite gueule. <b>Arriver</b> tout droit du Pérou, l'Inca attirait tous les regards ; on avait l'impression que mes parents ne l'avaient <b>adopter</b> que pour en faire une attraction. Ils étaient [flattés] (flatter</b> de constater que leur réputation avait <b>augmenter). Les enfants adoptés font souvent cet effet-là. Ils l'avaient <b>transformer</b> en singe savant. Mais leur ambition était <b>exagérer</b> : l'Anibal, malgré tous les efforts <b>mener), n'avait pas beaucoup <b>progresser).</p> <p>Sur les cinq cents mots couramment <b>utiliser</b> dans la langue française, il n'avait <b>retenir</b> que dix exclamations.</p>"
+            "tofill":"<p>Mes parents ont oublié qu'ils ne sont pas responsables si l'Inca a une belle petite gueule. <b>Arriver</b> tout droit du Pérou, l'Inca attirait tous les regards ; on avait l'impression que mes parents ne l'avaient <b>adopter</b> que pour en faire une attraction. Ils étaient <b>flatter</b> de constater que leur réputation avait <b>augmenter</b>. Les enfants adoptés font souvent cet effet-là. Ils l'avaient <b>transformer</b> en singe savant. Mais leur ambition était <b>exagérer</b> : l'Anibal, malgré tous les efforts <b>mener</b>, n'avait pas beaucoup <b>progresser</b>.</p> <p>Sur les cinq cents mots couramment <b>utiliser</b> dans la langue française, il n'avait <b>retenir</b> que dix exclamations.</p>"
         },
         {
             "type":"gapfull",
