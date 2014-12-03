@@ -1,7 +1,3 @@
-$(document).ready(function(){
-	EduClock.init({},$('#clock'));
-	//alert(EduClock.getCurrentTime().hour + ' '  + EduClock.getCurrentTime().minute);
-});
 var EduClock = (function() {
 
     var domelem;
@@ -25,8 +21,8 @@ var EduClock = (function() {
             margin: 10,
             marginnumbers:-30,
             fontheight:15,
-            hour:7,
-            minute:55,
+            hour:10,
+            minute:10,
             callback:      function () {}
         });
         opts=_opts;
@@ -66,12 +62,14 @@ var EduClock = (function() {
     var drawDial = function(){
       
         ctxDial.font = '15px Arial';
-        
+        //background
+        //ctxDial.fillStyle = 'blue';
+        //ctxDial.fillRect(0,0,size,size);
+        //ctxDial.fillStyle = 'black';
         //circle
         ctxDial.lineWidth=3;
         ctxDial.beginPath();
-   		ctxDial.arc(size/2, size/2,
-   		size/2-opts.margin, 0, Math.PI*2, true);
+   		ctxDial.arc(size/2, size/2, size/2-opts.margin, 0, Math.PI*2, true);
    		ctxDial.stroke();
    		
    		//center
@@ -111,57 +109,88 @@ var EduClock = (function() {
     
 	
 	var drawHands = function () {
-	    console.log(currentHours + ":"+currentMinutes);
+//	    console.log(currentHours + ":"+currentMinutes);
 	    
 	    ctxHands.save();
 	    ctxHands.clearRect(-size/2, -size/2, size, size);
 	    
 	    angleHour=(((currentHours*60)+currentMinutes) * 0.5)%360 * Math.PI/180 - (Math.PI/2);
-	    angleMinutes=angleHour+(currentMinutes * 6)%360 * Math.PI/180 - (Math.PI/2);
+	    if(angleHour<0){
+	        angleHour+=(2*Math.PI);
+	    }
+	    angleMinutes=(currentMinutes * 6)%360 * Math.PI/180 - (Math.PI/2);
+	    if(angleMinutes<0){
+	        angleMinutes+=(2*Math.PI);
+	    }
 	    
 	    //Hours
 	    ctxHands.rotate(angleHour);
 	    ctxHands.fillStyle="#000";
 	    ctxHands.fillRect(5, -4, 100,8);
-	    ctxHands.restore();
 	    ctxHands.rotate(-angleHour);
 	    
 	    //Minutes
 	    ctxHands.fillStyle="#f00";
 	    ctxHands.rotate(angleMinutes);
 	    ctxHands.fillRect(5, -2, 150,4);
-	    ctxHands.restore();
 	    ctxHands.rotate(-angleMinutes);
+	    ctxHands.restore();
 	};
     
     var getAngleFromCoordinates=function(x,y){
-        return Math.atan2(y-(size/2),x-(size/2));
+        //return Math.tan((x-(size/2))/(y-(size/2)));
+        var angl= Math.atan2(y-(size/2),x-(size/2));
+        if(angl<0){
+            angl= angl+(2*Math.PI);
+        }
+        return angl
     };
     
     var findWhatToChange = function(x,y){
         //Based on coordinates, try to find if we move minutes or hours or nothing
         actuallyMoving='nothing';
         var angle=getAngleFromCoordinates(x,y);
-        if(angle>(angleMinutes-(Math.PI/12)) && angle<(angleMinutes+(Math.PI/12))){
-            actuallyMoving = 'minutes';
-        }else if(angle>(angleHour-(Math.PI/6)) && angle<(angleHour+(Math.PI/6))){
-            actuallyMoving ='hours';
-        }else{
-            actuallyMoving ='nothing';
+        //console.log('Coordinates: x='+ x + ', y='+y+', angle='+angle + ', actualAngleMinute='+angleMinutes + ', actualAngleHour='+angleHour);
+        var radiusAsked=Math.sqrt(Math.pow(y-(size/2),2)+Math.pow(x-(size/2),2));
+        if(radiusAsked<=(size/2-opts.margin)){
+            if(angle>(angleMinutes-(Math.PI/12)) && angle<(angleMinutes+(Math.PI/12))){
+                actuallyMoving = 'minutes';
+            }else if(angle>(angleHour-(Math.PI/6)) && angle<(angleHour+(Math.PI/6))){
+                actuallyMoving ='hours';
+            }else{
+                actuallyMoving ='nothing';
+            }
         }
-        console.log(actuallyMoving);
+        //console.log(actuallyMoving);
         
     };
 	var changeTime = function(x,y) {
-	    var angle=getAngleFromCoordinates(x,y);
-	    while(angle>2*Math.PI)
-	        angle=angle-2*Math.PI;
-	    if(actuallyMoving=='minutes'){
-	        currentMinutes  =  Math.round(30/Math.PI * angle)+15;
-	    }else if(actuallyMoving=='hours'){
-	        
+	    var radiusAsked=Math.sqrt(Math.pow(y-(size/2),2)+Math.pow(x-(size/2),2));
+	    if(radiusAsked<=(size/2-opts.margin)){
+    	    var angle=getAngleFromCoordinates(x,y);
+    	    angle=angle+(Math.PI/2)
+    	    if(angle>(2*Math.PI)){
+    	        angle=angle-(2*Math.PI);
+    	    }
+    	    if(actuallyMoving=='minutes'){
+    	        var storedCM=currentMinutes;
+    	        currentMinutes  =  Math.round(30/Math.PI * angle);
+    	        if(currentMinutes>=60){
+    	            currentMinutes=0;
+    	        }
+    	        if(currentMinutes<=15 && storedCM>=45){
+    	            currentHours++;
+    	        }else if(currentMinutes>=45 && storedCM<=15){
+    	            currentHours--;
+    	        }
+    	    }else if(actuallyMoving=='hours'){
+    	        var step=Math.round(360/Math.PI * angle);
+    	        currentMinutes=step%60;
+    	        currentHours=Math.floor((step-currentMinutes)/60);
+    	    }
+    	    //console.log(currentHours+':'+currentMinutes + ', angle: '+angle+', step='+step);
+    		drawHands();
 	    }
-		drawHands();
 	};
 	
 
@@ -181,20 +210,13 @@ var EduClock = (function() {
         });
     };
     
-    var test=function(){
-        currentHours=11;
-        currentMinutes=15;
-        drawHands();
-    }
-    
     var getCurrentTime = function(){
         return {hour:currentHours,minute:currentMinutes};
     };
     
     return {
         init:init,
-        getCurrentTime:getCurrentTime,
-        test:test
+        getCurrentTime:getCurrentTime
     };
 
-})();
+});
