@@ -69,7 +69,10 @@ By default a sequence json datas has to handle thoses values:
 </ul>
 
 <h3>clock options</h3>
-<p>no options yet :'(</p>
+<ul>
+    <li>hour - hour to show on clock dial (00:00 to 23:59)</li>
+    <li>random - ask for a random hour (true/false). Default true</li>
+</ul>
 
 <h3>dargdropsorting options</h3>
 <ul>

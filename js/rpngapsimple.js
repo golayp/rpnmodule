@@ -6,6 +6,7 @@ var rpngapsimplemodule = function() {
     var validationButton;
     var responses;
     var ddmode;
+    var maxfillength;
 
     var init = function(_datas, _domelem) {
         _.defaults(_datas, {
@@ -28,6 +29,7 @@ var rpngapsimplemodule = function() {
             $.each(datas.fillers, function(idx, filler) {
                 toolbar.append($('<span class="draggable">'+filler+'</span> '));
             });
+            maxfillength=_.max(datas.fillers, function(filler){ return filler.length; }).length;
             domelem.append(toolbar.sortable({
                     group: 'drop',
                     drop: false,
@@ -40,7 +42,7 @@ var rpngapsimplemodule = function() {
                             item.clone().insertAfter(item);
                         }else{
                             // Remove item and restore white space
-                            $('<span>______</span>').insertAfter(item);
+                            $('<span>'+Array(maxfillength).join("_")+'</span>').insertAfter(item);
                         }
                         _super(item);
                     },
@@ -59,7 +61,7 @@ var rpngapsimplemodule = function() {
             var t = $(tofill);
             if(ddmode){
                 //add a white space for drag and drop
-                t.replaceWith($('<b class="gapsimpleddresponse">').append('<span>______</span>').sortable({
+                t.replaceWith($('<b class="gapsimpleddresponse">').append('<span>'+Array(maxfillength).join("_")+'</span>').sortable({
                     group: 'drop',
                     itemSelector:'span',
                     containerSelector:'b',
