@@ -314,7 +314,42 @@ var rpnsequence = (function() {
     var getLabels = function() {
         return selectedLabels;
     };
-
+    var addvalidation = function(inputs,validationoptions){
+        _.defaults(validationoptions,{
+            mode:"lock",
+            type:"integer"
+        });
+        _.each(inputs,function(input,idx){
+            $(input).on('keyup change paste',function(){
+                 // store current positions in variables
+                var inp=$(input);
+                inp.val(inp.val().trim());
+                if(validationoptions.mode=='lock'){
+                    var start = inp[0].selectionStart,
+                    end = inp[0].selectionEnd;
+                    if(validationoptions.type='integer'){
+                        var val=/(\d+)/.exec(inp.val());
+                        if(val=='' || val==null){
+                            inp.val('');
+                        }else{
+                            inp.val(parseInt(val));
+                        }
+                    }
+                    inp[0].setSelectionRange(start, end);
+                }else if(validationoptions.mode=='display'){
+                    if(validationoptions.type='integer'){
+                        if(!$.isNumeric(inp.val())){
+                            inp.tooltip({title:'integer needed'});
+                            inp.tooltip('show');
+                        }else{
+                            inp.tooltip('destroy');
+                        }
+                    }
+                }
+                
+            });
+        });
+    };
     return {
         init: init,
         buildUi: buildUi,
@@ -322,6 +357,7 @@ var rpnsequence = (function() {
         genericValidateButton: genericValidateButton,
         displayAlert: displayAlert,
         log: log,
-        getLabels: getLabels
+        getLabels: getLabels,
+        addvalidation:addvalidation
     };
 })();

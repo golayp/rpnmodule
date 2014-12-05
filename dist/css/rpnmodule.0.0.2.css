@@ -53,7 +53,7 @@
 }
 /*clock*/
 .clock #rpnclock {
-  height: 400px;
+  height: 600px;
 }
 /*blackbox*/
 .blackbox .blackbox {
@@ -61,6 +61,12 @@
 }
 .blackbox .operation {
   white-space: nowrap;
+}
+.pop-Add {
+  font-size: 10px;
+  background-color: red;
+  color: white;
+  display: none;
 }
 /*cardmaze*/
 .cardmaze .nopadding {

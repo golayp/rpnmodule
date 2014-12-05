@@ -1,313 +1,3 @@
-//src: http://shabkyle.com/js/ClockSelector.js
-//doc: http://1.618034.com/current.php
-function ClockSelector(e, params) {
-    var defaults = {
-        auto_dt: 1000,
-        automate: true,
-        background: 'black',
-        callback: function() {},
-        color_border: '#fff',
-        color_hour: '#fff',
-        color_minute: '#aaa',
-        draw_hour: null,
-        draw_minute: null,
-        draw_second: null,
-        highlight: '#f93',
-        manual: true,
-        stroke_border: 3,
-        stroke_hour: 2,
-        stroke_minute: 0.75,
-        scale_hour: 0.50,
-        scale_border: 0.80,
-        scale_minute: 0.65
-    };
-
-    for (var k in defaults) {
-        this[k] = params && k in params ? params[k] : defaults[k];
-    }
-
-    e = document.getElementById(e);
-    this.size = Math.min(e.width, e.height);
-    if (!this.size) {
-        var style = window.getComputedStyle(e);
-        this.size = Math.min(parseInt(style.width), parseInt(style.height));
-    }
-
-    if (e.tagName != 'CANVAS') {
-        e.appendChild(document.createElement('canvas'));
-        e = e.childNodes[e.childNodes.length - 1];
-        e.width = this.size;
-        e.height = this.size;
-    }
-
-    this.canvas = e;
-    this.context = e.getContext('2d');
-    this.dragging = false;
-    this.time = null;
-    this.color_mindef = this.color_minute;
-
-    e.style.backgroundColor = this.background;
-
-
-
-    ClockSelector.prototype.clockTime = function() {
-        return this.time;
-    }
-
-
-
-    ClockSelector.prototype.drawHand = function(c, w, s) {
-        var x = this.context;
-
-        x.strokeStyle = c;
-        x.fillStyle = c;
-        x.lineWidth = w;
-        x.beginPath();
-        x.moveTo(0, 0);
-        x.lineTo(0, 100 * s);
-        x.closePath();
-        x.stroke();
-        x.arc(0, 0, w / 2, 0, 2 * Math.PI);
-        x.fill();
-    };
-
-
-
-    ClockSelector.prototype.getCanvasOffset = function() {
-        var o = [0, 0];
-        var e = this.canvas;
-
-        while (e.offsetParent) {
-            o[0] += e.offsetLeft;
-            o[1] += e.offsetTop;
-            e = e.offsetParent;
-        }
-
-        return o;
-    };
-
-
-
-    ClockSelector.prototype.reset = function() {
-        this.setTime(new Date());
-        if (this.automate) {
-            this.timeout = setInterval(this.setTimeRecurring(), this.auto_dt);
-        }
-    };
-
-
-
-    ClockSelector.prototype.setParam = function(k, v) {
-        if (k in this) {
-            this[k] = v;
-        }
-    }
-
-
-
-    ClockSelector.prototype.setTime = function(t) {
-        this.canvas.width = this.canvas.width;
-        this.time = t;
-        t = t.getTime() / 1000 - t.getTimezoneOffset() * 60;
-
-        var x = this.context;
-        var s = this.size / 200;
-        var Ts = t % 60 / 30 * Math.PI;
-        var Tm = t % 3600 / 1800 * Math.PI;
-        var Th = t / (6 * 3600) * Math.PI;
-        this.setTransform(x, Ts, s);
-        if (this.draw_second) {
-            var f = this.draw_second;
-            f(x);
-        }
-        this.setTransform(x, Tm, s);
-        if (this.draw_minute) {
-            var f = this.draw_minute;
-            f(x);
-        }
-        else {
-            this.drawHand(this.color_minute, this.stroke_minute * 2, this.scale_minute);
-        }
-        this.setTransform(x, Th, s);
-        if (this.draw_hour) {
-            var f = this.drawHour;
-            f(x);
-        }
-        else {
-            this.drawHand(this.color_hour, this.stroke_hour * 2, this.scale_hour);
-        }
-
-        x.setTransform(s, 0, 0, s, 100 * s, 100 * s);
-        x.strokeStyle = this.color_border;
-        x.lineWidth = this.stroke_border * 2;
-        x.beginPath();
-        x.arc(0, 0, 100 * this.scale_border, 0, 2 * Math.PI);
-        x.stroke();
-        x.closePath();
-
-        if (this.callback) {
-            this.callback(this);
-        }
-    };
-
-
-
-    ClockSelector.prototype.setTimeFromEvent = function(e) {
-        var o = this.getCanvasOffset();
-        var x = e.pageX - o[0] - this.size / 2;
-        var y = this.size / 2 - (e.pageY - o[1]);
-
-        if (x == 0 && y == 0) {
-            return;
-        }
-
-        var T = Math.atan2(y, x);
-        var h, m;
-        if (this.drag_minute) {
-            var m1 = (75 - T * 30 / Math.PI) % 60;
-            var m0 = this.time.getMinutes() + this.time.getSeconds() / 60;
-            h = this.time.getHours();
-            m = m1;
-
-            if (m1 < m0 && m0 - m1 <= 30) { /**/ }
-            else if (m1 < m0 && m0 - m1 > 30) {
-                h += 1;
-            }
-            else if (m1 > m0 && m1 - m0 <= 30) { /**/ }
-            else if (m1 > m0 && m1 - m0 > 30) {
-                h -= 1;
-            }
-            h = (h + 24) % 24;
-        }
-        else {
-            var h1 = 3 - T * 6 / Math.PI;
-            var h0 = this.time.getHours() + this.time.getMinutes() / 60 + this.time.getSeconds() / 3600;
-            h1 += h1 < h0 ? 24 : 0;
-
-            if (h1 < h0 + 6) {
-                h = h1;
-            }
-            else if (h1 < h0 + 12) {
-                h = h1 - 12;
-            }
-            else if (h1 < h0 + 18) {
-                h = h1 + 12;
-            }
-            else {
-                h = h1;
-            }
-            h = (h + 24) % 24;
-            m = (((3 - T * 6 / Math.PI) * 60) % 60 + 60) % 60;
-        }
-
-        var t = new Date();
-        t.setHours(h);
-        t.setMinutes(m);
-        t.setSeconds((((3 - T * 6 / Math.PI) * 3600) % 60 + 60) % 60);
-
-        this.setTime(t);
-    };
-
-
-
-    ClockSelector.prototype.setTimeRecurring = function() {
-        var _ = this;
-        return function() {
-            _.setTime(new Date());
-        };
-    };
-
-
-
-    ClockSelector.prototype.setTransform = function(x, T, s) {
-        x.setTransform(-s * Math.cos(T), -s * Math.sin(T), s * Math.sin(T), -s * Math.cos(T), 100 * s, 100 * s);
-    };
-
-
-
-    ClockSelector.prototype.makeEndDrag = function() {
-        var _ = this;
-        return function() {
-            _.color_minute = _.color_mindef;
-            _.dragging = false;
-            _.setTime(_.clockTime());
-        };
-    };
-
-
-
-    ClockSelector.prototype.makeSetTime = function(d) {
-        if (!this.manual) {
-            return;
-        }
-
-        var _ = this;
-        return function() {
-            var e = window.event;
-            var o = _.getCanvasOffset();
-            var x = e.pageX - o[0] - _.size / 2;
-            var y = _.size / 2 - (e.pageY - o[1]);
-
-            if (_.manual) {
-                _.canvas.style.cursor = Math.sqrt(x * x + y * y) <= (_.size * _.scale_border + _.stroke_border) / 2 ? 'pointer' : 'default';
-            }
-
-            if (_.dragging != d) {
-                if (d && !_.dragging) {
-                    var T = Math.atan2(x, y);
-                    var m = (T + 2 * Math.PI) * 30 / Math.PI;
-                    var mb = [(m + 57.5) % 60, (m + 2.5) % 60];
-
-                    m = _.clockTime().getMinutes() + _.clockTime().getSeconds() / 60;
-                    if (Math.sqrt(x * x + y * y) < _.size / 2 * _.scale_border && (
-                            (mb[0] < m && m < mb[1]) || (m < mb[0] && mb[1] < mb[0] && m < mb[1]) || (mb[0] < m && mb[1] < m && mb[1] < mb[0])
-                        )) {
-                        if (_.color_minute != _.highlight) {
-                            _.color_minute = _.highlight;
-                            _.drag_minute = true;
-                            _.setTime(_.clockTime());
-                        }
-                    }
-                    else {
-                        if (_.color_minute != _.color_mindef) {
-                            _.color_minute = _.color_mindef;
-                            _.drag_minute = false;
-                            _.setTime(_.clockTime());
-                        }
-                    }
-                }
-
-                return;
-            }
-
-            if (!_.dragging && !d) {
-                if (_.timeout) {
-                    clearTimeout(_.timeout);
-                    _.timeout = null;
-                }
-
-                _.dragging = true;
-            }
-
-            _.setTimeFromEvent(window.event);
-        };
-    };
-
-
-
-    if (this.manual) {
-        this.canvas.onmousedown = this.makeSetTime(false);
-        this.canvas.onmouseup = this.makeEndDrag();
-        this.canvas.onmouseout = this.makeEndDrag();
-        this.canvas.onmousemove = this.makeSetTime(true);
-
-        //this.canvas.style.cursor = 'pointer';
-    }
-
-
-
-    this.reset();
-}
 /* ===================================================
  *  jquery-sortable.js v0.9.12
  *  http://johnny.github.com/jquery-sortable/
@@ -997,10 +687,297 @@ var rpnblackboxmodule = function() {
     var boxes;
     var shuffle;
     var toggleViewButton;
+    
+    var addComment=function(inputId, classDiv, buttonId, position, t1, t2, t3, t4, t5, t6, t7, t8, t9){
+    	
+    	var chooseTest=function(arg, idInput,divClass, idButton){
+    		switch(arg){
+    		case 'isNumberN':
+    			isNumberN(idInput, divClass, idButton);
+    		break;
+    		case 'isNumberZ':
+    			isNumberZ(idInput, divClass, idButton);
+    		break;
+    		case 'isNumberD':
+    			isNumberD(idInput, divClass, idButton);
+    		break;
+    		case 'isNumberQ':
+    			isNumberQ(idInput, divClass, idButton);
+    		break;
+    		case 'isNumber':
+    			isNumber(idInput, divClass, idButton);
+    		break;
+    		case 'withComma':
+    			withComma(idInput);
+    		break;
+    		case 'firstPoint':
+    			firstPoint(idInput);
+    		break;
+    		case 'firstComma':
+    			firstComma(idInput);
+    		break;
+    		case 'firstPointComma':
+    			firstPointComma(idInput);
+    		break;
+    		default:
+    		break;
+    		}
+    	}
+    	$(inputId).bind('input propertychange', function(){
+    		chooseTest(t1, inputId,classDiv, buttonId);
+    		chooseTest(t2, inputId,classDiv, buttonId);
+    		chooseTest(t3, inputId,classDiv, buttonId);
+    		chooseTest(t4, inputId,classDiv, buttonId);
+    		chooseTest(t5, inputId,classDiv, buttonId);
+    		chooseTest(t6, inputId,classDiv, buttonId);
+    		chooseTest(t7, inputId,classDiv, buttonId);
+    		chooseTest(t8, inputId,classDiv, buttonId);
+    		chooseTest(t9, inputId,classDiv, buttonId);
+    	});
+    }
+    var isNumberN=function(str, myClass, myButton){
+    	var rep=$(str).val(),
+    		lastOfRep=rep.charAt(rep.length-1),
+    		prevOfRep=rep.substring(0,rep.length-1),
+    		monTexte="Il faut entrer un nombre entier positif";
+    	if(/[0-9]/.test(lastOfRep)){
+    		if(/0/.test(prevOfRep)&&prevOfRep.length==1){
+    			$(str).val(lastOfRep);
+    		}
+    		$(myClass).css("display", "none");
+    	}else if(/,/.test(lastOfRep)){
+    		$(str).val(rep.substring(0,rep.length-1));
+    		$(myButton).text(monTexte);
+    		$(myClass).css("display", "block");
+    	}
+    	else if(/\./.test(lastOfRep)){
+    		$(str).val(rep.substring(0,rep.length-1));
+    		$(myButton).text(monTexte);
+    		$(myClass).css("display", "block");		
+    	}
+    	else if(/-/.test(lastOfRep)){
+    		$(myButton).text(monTexte);
+    		$(myClass).css("display", "block");	
+    		$(str).val(rep.substring(0,rep.length-1));	
+    	}else{
+    		$(str).val(prevOfRep);
+    		$(myButton).text("Il faut entrer un chiffre");
+    		$(myClass).css("display", "block");
+    	}
+    }
+    var isNumberZ=function(str, myClass, myButton){
+    	var rep=$(str).val(),
+    		lastOfRep=rep.charAt(rep.length-1),
+    		prevOfRep=rep.substring(0,rep.length-1),
+    		monTexte="Il faut entrer un nombre entier";;
+    	if(/[0-9]/.test(lastOfRep)){//On test si le chiffre d'avant est un 0
+    		if(/0/.test(prevOfRep)&&prevOfRep.length==1){
+    			$(str).val(lastOfRep);
+    		}
+    		if(/-0/.test(prevOfRep)&&prevOfRep.length==2){
+    			$(str).val('-'+lastOfRep);
+    		}
+    		$(myClass).css("display", "none");
+    	}else if(/,/.test(lastOfRep)){
+    		$(str).val(rep.substring(0,rep.length-1));
+    		$(myButton).text(monTexte);
+    		$(myClass).css("display", "block");
+    	}
+    	else if(/\./.test(lastOfRep)){
+    		$(str).val(rep.substring(0,rep.length-1));
+    		$(myButton).text(monTexte);
+    		$(myClass).css("display", "block");		
+    	}
+    	else if(/-/.test(lastOfRep)){//On teste s'il y a un - seulement au début
+    		if(rep.length>1){
+    			$(str).val(rep.substring(0,rep.length-1));
+    		}else{
+    			$(myClass).css("display", "none");
+    		}		
+    	}else if(rep.length===0){
+    		$(myButton).text("Il faut entrer un nombre");
+    		$(myClass).css("display", "block");
+    	}
+    	else{
+    		$(str).val(prevOfRep);
+    		$(myButton).text("Il faut entrer un chiffre");
+    		$(myClass).css("display", "block");
+    	}
+    }
+    var isNumberQ=function(str, myClass, myButton){//à Faire
+    	var rep=$(str).val(),
+    		lastOfRep=rep.charAt(rep.length-1),
+    		prevOfRep=rep.substring(0,rep.length-1),
+    		monTexte="Il faut entrer un nombre entier";;
+    	if(/[0-9]/.test(lastOfRep)){//On test si le chiffre d'avant est un 0
+    		if(/0/.test(prevOfRep)&&prevOfRep.length==1){
+    			$(str).val(lastOfRep);
+    		}
+    		if(/-0/.test(prevOfRep)&&prevOfRep.length==2){
+    			$(str).val('-'+lastOfRep);
+    		}
+    		$(myClass).css("display", "none");
+    	}else if(/,/.test(lastOfRep)){
+    		$(str).val(rep.substring(0,rep.length-1));
+    		$(myButton).text(monTexte);
+    		$(myClass).css("display", "block");
+    	}
+    	else if(/\./.test(lastOfRep)){
+    		$(str).val(rep.substring(0,rep.length-1));
+    		$(myButton).text(monTexte);
+    		$(myClass).css("display", "block");		
+    	}
+    	else if(/-/.test(lastOfRep)){//On teste s'il y a un - seulement au début
+    		if(rep.length>1){
+    			$(str).val(rep.substring(0,rep.length-1));
+    		}else{
+    			$(myClass).css("display", "none");
+    		}		
+    	}else if(rep.length==0){
+    		$(myButton).text("Il faut entrer un nombre");
+    		$(myClass).css("display", "block");
+    	}
+    	else{
+    		$(str).val(prevOfRep);
+    		$(myButton).text("Il faut entrer un chiffre");
+    		$(myClass).css("display", "block");
+    	}
+    }
+    var isNumberD=function(str, myClass, myButton){
+    	var rep=$(str).val(),
+    		lastOfRep=rep.charAt(rep.length-1),
+    		prevOfRep=rep.substring(0,rep.length-1);
+    	if(/[0-9]/.test(lastOfRep)){//On test si le chiffre d'avant est un 0
+    		if(/0/.test(prevOfRep)&&prevOfRep.length==1){
+    			$(str).val(lastOfRep);
+    		}
+    		if(/-0/.test(prevOfRep)&&prevOfRep.length==2){
+    			$(str).val('-'+lastOfRep);
+    		}
+    		$(myClass).css("display", "none");
+    	}else if(/,/.test(lastOfRep)){//On teste s'il y a plusieurs virgules
+    		if(/,/.test(prevOfRep.substring(0,rep.length-1))){
+    			$(str).val(rep.substring(0,rep.length-1));
+    		}
+    	}
+    	else if(/\./.test(lastOfRep)){//On teste s'il y a plusieurs points
+    		if(/,/.test(prevOfRep.substring(0,rep.length-1))){
+    			$(str).val(rep.substring(0,rep.length-1));
+    		}	
+    	}
+    	else if(/-/.test(lastOfRep)){//On teste s'il y a un - seulement au début
+    		if(rep.length>1){
+    			$(str).val(rep.substring(0,rep.length-1));
+    		}else{
+    			$(myClass).css("display", "none");
+    		}		
+    	}else if(rep.length==0){
+    		$(myButton).text("Il faut entrer un nombre");
+    		$(myClass).css("display", "block");
+    	}
+    	else{
+    		$(str).val(prevOfRep);
+    		$(myButton).text("Il faut entrer un chiffre");
+    		$(myClass).css("display", "block");
+    	}
+    }
+    var isNumber=function(str, myClass, myButton){//Il faut encore faire si on met une puisance de 10
+    	var rep=$(str).val(),
+    		lastOfRep=rep.charAt(rep.length-1),
+    		prevOfRep=rep.substring(0,rep.length-1);
+    	if(/[0-9]/.test(lastOfRep)){//On test si le chiffre d'avant est un 0
+    		if(/0/.test(prevOfRep)&&prevOfRep.length==1){
+    			$(str).val(lastOfRep);
+    		}
+    		if(/-0/.test(prevOfRep)&&prevOfRep.length==2){
+    			$(str).val('-'+lastOfRep);
+    		}
+    		$(myClass).css("display", "none");
+    	}else if(/,/.test(lastOfRep)){//On teste s'il y a plusieurs virgules
+    		if(/,/.test(prevOfRep.substring(0,rep.length-1))){
+    			$(str).val(rep.substring(0,rep.length-1));
+    		}
+    	}
+    	else if(/\./.test(lastOfRep)){//On teste s'il y a plusieurs points
+    		if(/,/.test(prevOfRep.substring(0,rep.length-1))){
+    			$(str).val(rep.substring(0,rep.length-1));
+    		}	
+    	}
+    	else if(/-/.test(lastOfRep)){//On teste s'il y a un - seulement au début
+    		if(rep.length>1){
+    			$(str).val(rep.substring(0,rep.length-1));
+    		}else{
+    			$(myClass).css("display", "none");
+    		}		
+    	}else if(rep.length==0){
+    		$(myButton).text("Il faut entrer un nombre");
+    		$(myClass).css("display", "block");
+    	}
+    	else{
+    		$(str).val(prevOfRep);
+    		$(myButton).text("Il faut entrer un chiffre");
+    		$(myClass).css("display", "block");
+    	}
+    }
+    var withComma=function(str){
+    	var rep=$(str).val(),
+    		lastOfRep=rep.charAt(rep.length-1),
+    		prevOfRep=rep.substring(0,rep.length-1);
+    		if(/,/.test(lastOfRep)){
+    			if(/,/.test(prevOfRep.substring(0,rep.length-1))){
+    				$(str).val(rep.substring(0,rep.length-1));
+    			}
+    		}
+    		if(/\./.test(lastOfRep)){//On remplace le . par une , s'il n'y en pas déjà une
+    			if(/,/.test(prevOfRep)){
+    				$(str).val(prevOfRep.substring(0,prevOfRep.length-1));
+    			}else{//Sinon on l'efface
+    				$(str).val(rep.substring(0,rep.length-1).concat(','));
+    			}	
+    		}
+    }
+    var firstPoint=function(str){
+    	var rep=$(str).val(),
+    		lastOfRep=rep.charAt(rep.length-1),
+    		prevOfRep=rep.substring(0,rep.length-1);
+    	if(/-/.test(prevOfRep)&&/^\./.test(lastOfRep)){
+    		$(str).val("-0.");
+    	}
+    	if(/^\./.test(rep)){//On remplace le . 0.
+    		$(str).val("0.");
+    	}
+    }
+    var firstComma=function(str){
+    	var rep=$(str).val(),
+    		lastOfRep=rep.charAt(rep.length-1),
+    		prevOfRep=rep.substring(0,rep.length-1);
+    	if(/-/.test(prevOfRep)&&/^,/.test(lastOfRep)){
+    		$(str).val("-0,");
+    	}
+    	if(/^,/.test(rep)){//On remplace le , 0,
+    		$(str).val("0,");
+    	}		
+    }
+    var firstPointComma=function(str){
+    	var rep=$(str).val(),
+    		lastOfRep=rep.charAt(rep.length-1),
+    		prevOfRep=rep.substring(0,rep.length-1);
+    	if(/-/.test(prevOfRep)&&/^\./.test(lastOfRep)){
+    		$(str).val("-0,");
+    	}
+    	if(/^\./.test(rep)){//On remplace le . 0.
+    		$(str).val("0,");
+    	}
+    }
+    
+    
 
     var init = function(_datas, _domelem) {
         _.defaults(_datas, {
-            inputtype: "number",
+            validation: {
+                type:"integer",
+                mode:"lock"
+            },
             operation: "x1",
             left: [1],
             right: [1],
@@ -1042,10 +1019,10 @@ var rpnblackboxmodule = function() {
 
         _.each(boxes, function(box, idx) {
             if (box.position == 'left') {
-                domelem.append($('<div class="row"><div class="col-md-3 hidden-xs hidden-sm"></div><div class="col-xs-2"><p class="text-center">' + box.value + '</p></div><div class="col-xs-2 operation"><p class="text-center"><i class="glyphicon glyphicon-minus"></i>' + datas.operation + '<i class="glyphicon glyphicon-arrow-right"></i></p></div><div class="col-xs-2"><input type="text" id="' + idx + '" class="rpnm_input form-control" style="text-align: center;"></div></div>'));
+                domelem.append($('<div class="row"><div class="col-md-3 hidden-xs hidden-sm"></div><div class="col-xs-2"><p class="text-center">' + box.value + '</p></div><div class="col-xs-2 operation"><p class="text-center"><i class="glyphicon glyphicon-minus"></i>' + datas.operation + '<i class="glyphicon glyphicon-arrow-right"></i></p></div><div class="col-xs-2"><input type="text" class="rpnm_input form-control" style="text-align: center;"></div></div>'));
             }
             else {
-                domelem.append($('<div class="row"><div class="col-md-3 hidden-xs hidden-sm"></div><div class="col-xs-2"><input type="text" id="' + idx + '" class="rpnm_input form-control" style="text-align: center;"></div><div class="col-xs-2 operation"><p class="text-center"><i class="glyphicon glyphicon-minus"></i>' + datas.operation + '<i class="glyphicon glyphicon-arrow-right"></i></p></div><div class="col-xs-2"><p class="text-center">' + box.value + '</p></div></div>'));
+                domelem.append($('<div class="row"><div class="col-md-3 hidden-xs hidden-sm"></div><div class="col-xs-2"><input type="text" class="rpnm_input form-control" style="text-align: center;"></div><div class="col-xs-2 operation"><p class="text-center"><i class="glyphicon glyphicon-minus"></i>' + datas.operation + '<i class="glyphicon glyphicon-arrow-right"></i></p></div><div class="col-xs-2"><p class="text-center">' + box.value + '</p></div></div>'));
             }
         });
         toggleViewButton = $('<button>', {
@@ -1067,6 +1044,7 @@ var rpnblackboxmodule = function() {
     };
 
     var bindUiEvents = function() {
+        //Change view mode
         toggleViewButton.click(function() {
             var $el = $(this),
                 textNode = this.lastChild;
@@ -1076,6 +1054,11 @@ var rpnblackboxmodule = function() {
             $el.toggleClass('showArchieved');
             toggleView();
         });
+        
+        //Input validation
+        //rpnsequence.addvalidation($('.rpnm_input',domelem),datas.validation);
+        
+        //Validation
         validationButton.click(function() {
             $.each($('.rpnm_input', domelem), function(idx, gap) {
                 var t = boxes[idx];
@@ -1241,9 +1224,18 @@ var rpnclockmodule = function() {
     var datas;
     var domelem;
     var validationButton;
+    var clock;
 
     var init = function(_datas, _domelem) {
+        _.defaults(_datas, {
+            random: true,
+            hour:'10:10'
+        });
         datas = _datas;
+        if(datas.random){
+            datas.hour=Math.floor((Math.random() * 24) + 1)+':'+Math.floor(Math.random() * 59);
+        }
+        
         domelem = _domelem;
         buildUi();
     };
@@ -1253,13 +1245,8 @@ var rpnclockmodule = function() {
 
         //build panel with sentences
         domelem.append($('<div id="rpnclock"></div>'));
-        new ClockSelector('rpnclock', {
-            background: 'white',
-            color_hour: '#333',
-            color_minute: '#666',
-            color_border: '#eee',
-            highlight: '#357ebd'
-        });
+        clock=EduClock();
+        clock.init({},$('#rpnclock'));
 
         //build validation button
         validationButton = rpnsequence.genericValidateButton();
@@ -1270,8 +1257,8 @@ var rpnclockmodule = function() {
 
     var bindUiEvents = function() {
         validationButton.click(function() {
-            rpnsequence.handleEndOfModule($('#gapfullresponse').val(), function(res, sol) {
-                //Try to trim and do automatic corrections here.
+            var time=clock.getCurrentTime()
+            rpnsequence.handleEndOfModule(time.hour+':'+time.minute, function(res, sol) {
                 return res == sol ? 1 : 0;
             });
         });
@@ -1280,6 +1267,402 @@ var rpnclockmodule = function() {
     return {
         init: init
     };
+};
+
+var EduClock = function() {
+
+    var domelem;
+    var opts;
+    var sunCanvas;
+    var dialCanvas;
+    var handCanvas;
+    var changeState=false;
+    var size;
+    var ctxSun;
+    var ctxDial;
+    var ctxHands;
+    var radius;
+    var handradius;
+    var currentHours;
+    var currentMinutes;
+    var actuallyMoving;
+    var angleHour;
+    var angleMinutes;
+    var PM;
+    
+    var init = function(_opts,_domelem){
+        _.defaults(_opts,{
+            margin: 10,
+            marginnumbers:-30,
+            fontheight:15,
+            hour:10,
+            minute:10
+        });
+        opts=_opts;
+        PM=opts.hour>12;
+        domelem=_domelem;
+        actuallyMoving='nothing';
+        buildUi();
+    };
+
+    var buildUi = function (){
+        //build dialCanvas
+        sunCanvas=$('<canvas>',{style:"position: absolute; left: 0; top: 0; z-index: 0;"})
+        dialCanvas=$('<canvas>',{style:"position: absolute; left: 0; top: 0; z-index: 1;"});
+        handCanvas=$('<canvas>',{style:"position: absolute; left: 0; top: 0; z-index: 2;"})
+        domelem.append([sunCanvas, dialCanvas,handCanvas]);
+        sunCanvas=sunCanvas[0];
+        dialCanvas=dialCanvas[0];
+        handCanvas=handCanvas[0];
+        size=Math.min(domelem.width(),domelem.height());
+        
+        
+        sunCanvas.width=size;
+        sunCanvas.height=size;
+        dialCanvas.width=size;
+        dialCanvas.height=size;
+        handCanvas.width=size;
+        handCanvas.height=size;
+        
+        radius=size/2 - opts.margin;
+        handradius=radius + opts.marginnumbers;
+        
+        ctxSun=sunCanvas.getContext( '2d' );
+        ctxDial=dialCanvas.getContext( '2d' );
+        ctxHands=handCanvas.getContext( '2d' );
+        ctxHands.translate(size/2,size/2);
+        
+        currentHours=opts.hour;
+        currentMinutes=opts.minute;
+        drawDial();
+        drawHands();
+        
+        bindUiEvents();
+    };
+    
+    var drawDial = function(){
+        ctxDial.save();
+        ctxDial.font = '15px Arial';
+        ctxDial.lineWidth=3;
+        ctxDial.beginPath();
+   		ctxDial.arc(size/2, size/2, size/2-opts.margin, 0, Math.PI*2, true);
+   		ctxDial.stroke();
+   		
+   		//center
+   		ctxDial.beginPath();
+		ctxDial.arc(size/2, size/2, 10, 0, Math.PI*2, true);
+		ctxDial.fill();
+		
+		//moon
+		ctxDial.fillStyle='#fff';
+		ctxDial.beginPath();
+		ctxDial.arc(size/2, size/2 + radius/2,radius/4,0,Math.PI*2,true);
+		ctxDial.fill();
+		
+		ctxDial.fillStyle='#000';
+		//numbers 1 to 12
+		var numerals = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ];
+		var angle = 0;
+		var numeralWidth = 0;
+		ctxDial.font= opts.fontheight + 'px Arial';
+		$.each(numerals,function(idx,numeral) {
+			angle = Math.PI/6 * (numeral-3);
+			numeralWidth = ctxDial.measureText(numeral).width;
+			ctxDial.fillText(
+			    numeral,
+                dialCanvas.width/2 + Math.cos(angle)*(handradius) -
+                numeralWidth/2,
+                dialCanvas.height/2 + Math.sin(angle)*(handradius) +
+                opts.fontheight/3);
+		});
+		
+		//tiles
+		ctxDial.translate(size/2,size/2);
+		angle=Math.PI/30;
+		for(var til=1;til<=60;til++){
+		    var isbig=(til%5==0);
+		    ctxDial.rotate(angle);
+		    var rectWidth=isbig?8:2;
+		    var rectHeight=isbig?15:8;
+            ctxDial.fillRect(radius-rectHeight, -rectWidth/2, rectHeight,rectWidth);
+		}
+		ctxDial.translate(-size/2,-size/2);
+		ctxDial.restore();
+    };
+	
+	var drawHands = function () {
+	    ctxHands.save();
+	    ctxHands.clearRect(-size/2, -size/2, size, size);
+	    
+	    angleHour=(((currentHours*60)+currentMinutes) * 0.5)%360 * Math.PI/180 - (Math.PI/2);
+	    if(angleHour<0){
+	        angleHour+=(2*Math.PI);
+	    }
+	    angleMinutes=(currentMinutes * 6)%360 * Math.PI/180 - (Math.PI/2);
+	    if(angleMinutes<0){
+	        angleMinutes+=(2*Math.PI);
+	    }
+	    
+	    //Hours
+	    ctxHands.rotate(angleHour);
+	    ctxHands.fillStyle="#000";
+	    ctxHands.fillRect(5, -4, radius*0.6,8);
+	    ctxHands.rotate(-angleHour);
+	    
+	    //Minutes
+	    ctxHands.fillStyle="#f00";
+	    ctxHands.rotate(angleMinutes);
+	    ctxHands.fillRect(5, -2, radius*0.85,4);
+	    ctxHands.rotate(-angleMinutes);
+	    ctxHands.restore();
+	    
+	    drawMoon();
+	};
+	
+	var drawMoon = function(){
+	    //background
+	    //from #ffffff to #428bca in percent
+	    var time=getCurrentTime();
+	    //console.log(time.hour+':'+time.minute + (PM?'PM':'AM'));
+	    var minutes=time.hour*60 + time.minute;
+	    var weight=0;
+	    if(minutes>960 && minutes<1200){
+	        weight=(1200-minutes)/2.4;
+	    }
+	    if(minutes>240 && minutes<480){
+	        weight=Math.abs((minutes - 480)/2.4);
+	        weight=100-weight;
+	    }
+	    if(minutes>=480 && minutes<=960){
+	        weight=100;
+	    }
+	    var col=mixColors(new Color('ffffff'),new Color('428bca'),weight);
+        ctxSun.fillStyle =  col.toRGB();
+        ctxSun.fillRect(0,0,size,size);
+        
+	};
+	
+	var mixColors = function (color1, color2, weight) {
+        var p = weight / 100.0;
+        var w = p * 2 - 1;
+        var a = color1.toHSL().a - color2.toHSL().a;
+
+        var w1 = (((w * a == -1) ? w : (w + a) / (1 + w * a)) + 1) / 2.0;
+        var w2 = 1 - w1;
+
+        var rgb = [color1.rgb[0] * w1 + color2.rgb[0] * w2,
+            color1.rgb[1] * w1 + color2.rgb[1] * w2,
+            color1.rgb[2] * w1 + color2.rgb[2] * w2];
+
+        var alpha = color1.alpha * p + color2.alpha * (1 - p);
+
+        return new Color(rgb, alpha);
+    };
+    
+    var getAngleFromCoordinates=function(x,y){
+        var a= Math.atan2(y-(size/2),x-(size/2));
+        if(a<0){
+            a= a+(2*Math.PI);
+        }
+        return a
+    };
+    
+    var findWhatToChange = function(x,y){
+        //Based on coordinates, try to find if we move minutes or hours or nothing
+        actuallyMoving='nothing';
+        var angle=getAngleFromCoordinates(x,y);
+        var radiusAsked=Math.sqrt(Math.pow(y-(size/2),2)+Math.pow(x-(size/2),2));
+        if(radiusAsked<=(size/2-opts.margin)){
+            if(angle>(angleMinutes-(Math.PI/12)) && angle<(angleMinutes+(Math.PI/12))){
+                actuallyMoving = 'minutes';
+            }else if(angle>(angleHour-(Math.PI/6)) && angle<(angleHour+(Math.PI/6))){
+                actuallyMoving ='hours';
+            }else{
+                actuallyMoving ='nothing';
+            }
+        }
+    };
+    
+	var changeTime = function(x,y) {
+	    var radiusAsked=Math.sqrt(Math.pow(y-(size/2),2)+Math.pow(x-(size/2),2));
+	    if(radiusAsked<=(size/2-opts.margin)){
+    	    var angle=getAngleFromCoordinates(x,y);
+    	    angle=angle+(Math.PI/2)
+    	    if(angle>(2*Math.PI)){
+    	        angle=angle-(2*Math.PI);
+    	    }
+    	    if(actuallyMoving=='minutes'){
+    	        var storedCM=currentMinutes;
+    	        currentMinutes  =  Math.round(30/Math.PI * angle);
+    	        if(currentMinutes>=60){
+    	            currentMinutes=0;
+    	        }
+    	        if(currentMinutes<=15 && storedCM>=45){
+    	            currentHours++;
+    	        }else if(currentMinutes>=45 && storedCM<=15){
+    	            currentHours--;
+    	        }
+    	        if(currentHours>11){
+    	            console.log('currentHours:'+currentHours+', PM:'+PM);
+                    PM=!PM;
+                    currentHours=0;
+        	    }else if(currentHours<0){
+        	        console.log('currentHours:'+currentHours+', PM:'+PM);
+        	        PM=!PM;
+        	        currentHours=11;
+        	    }
+    	    }else if(actuallyMoving=='hours'){
+    	        var storedCH=currentHours;
+    	        var step=Math.round(360/Math.PI * angle);
+    	        currentMinutes=step%60;
+    	        var newHour=Math.floor((step-currentMinutes)/60);
+    	        if(newHour==12){
+    	            newHour=0;
+    	        }
+    	        //PM if storedCH<=11 and newHour==0
+    	        if((storedCH<=11 && storedCH>=9 && newHour>=0 && newHour<=3) || (storedCH>=0 && storedCH<=3 && newHour>=9 && newHour<=11)){
+    	            PM=!PM;
+    	        }
+    	        //console.log(newHour);
+    	        currentHours=newHour;
+    	    }
+    	    
+    		drawHands();
+	    }
+	};
+	
+
+    var bindUiEvents = function(){
+        $(handCanvas).on('mousedown',function(e){
+            findWhatToChange(e.offsetX,e.offsetY);
+            if(actuallyMoving!='nothing'){
+                changeState=true;
+            }
+        });
+        $(handCanvas).on('mouseup',function(){changeState=false;});
+        $(handCanvas).on('mouseout',function(){changeState=false;});
+        $(handCanvas).on('mousemove',function(e){
+            if(changeState && actuallyMoving!='nothing'){
+                changeTime(e.offsetX,e.offsetY);
+            }
+        });
+    };
+    
+    var getCurrentTime = function(){
+        return {hour:currentHours + (PM?12:0),minute:currentMinutes};
+    };
+    
+    return {
+        init:init,
+        getCurrentTime:getCurrentTime
+    };
+
+};
+
+//
+// RGB Colors - #ff0014, #eee
+//
+var Color = function (rgb, a) {
+    //
+    // The end goal here, is to parse the arguments
+    // into an integer triplet, such as `128, 255, 0`
+    //
+    // This facilitates operations and conversions.
+    //
+    if (Array.isArray(rgb)) {
+        this.rgb = rgb;
+    } else if (rgb.length == 6) {
+        this.rgb = rgb.match(/.{2}/g).map(function (c) {
+            return parseInt(c, 16);
+        });
+    } else {
+        this.rgb = rgb.split('').map(function (c) {
+            return parseInt(c + c, 16);
+        });
+    }
+    this.alpha = typeof(a) === 'number' ? a : 1;
+};
+Color.prototype.type = "Color";
+function toHex(v) {
+    return '#' + v.map(function (c) {
+        c = Math.min(Math.max(Math.round(c), 0), 255);
+        return (c < 16 ? '0' : '') + c.toString(16);
+    }).join('');
+}
+Color.prototype.luma = function () {
+    var r = this.rgb[0] / 255,
+        g = this.rgb[1] / 255,
+        b = this.rgb[2] / 255;
+
+    r = (r <= 0.03928) ? r / 12.92 : Math.pow(((r + 0.055) / 1.055), 2.4);
+    g = (g <= 0.03928) ? g / 12.92 : Math.pow(((g + 0.055) / 1.055), 2.4);
+    b = (b <= 0.03928) ? b / 12.92 : Math.pow(((b + 0.055) / 1.055), 2.4);
+
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+};
+Color.prototype.toRGB = function () {
+    return toHex(this.rgb);
+};
+Color.prototype.toHSL = function () {
+    var r = this.rgb[0] / 255,
+        g = this.rgb[1] / 255,
+        b = this.rgb[2] / 255,
+        a = this.alpha;
+
+    var max = Math.max(r, g, b), min = Math.min(r, g, b);
+    var h, s, l = (max + min) / 2, d = max - min;
+
+    if (max === min) {
+        h = s = 0;
+    } else {
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+
+        switch (max) {
+            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+            case g: h = (b - r) / d + 2;               break;
+            case b: h = (r - g) / d + 4;               break;
+        }
+        h /= 6;
+    }
+    return { h: h * 360, s: s, l: l, a: a };
+};
+Color.prototype.toHSV = function () {
+    var r = this.rgb[0] / 255,
+        g = this.rgb[1] / 255,
+        b = this.rgb[2] / 255,
+        a = this.alpha;
+
+    var max = Math.max(r, g, b), min = Math.min(r, g, b);
+    var h, s, v = max;
+
+    var d = max - min;
+    if (max === 0) {
+        s = 0;
+    } else {
+        s = d / max;
+    }
+
+    if (max === min) {
+        h = 0;
+    } else {
+        switch(max){
+            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+            case g: h = (b - r) / d + 2; break;
+            case b: h = (r - g) / d + 4; break;
+        }
+        h /= 6;
+    }
+    return { h: h * 360, s: s, v: v, a: a };
+};
+Color.prototype.toARGB = function () {
+    return toHex([this.alpha * 255].concat(this.rgb));
+};
+Color.prototype.compare = function (x) {
+    return (x.rgb &&
+        x.rgb[0] === this.rgb[0] &&
+        x.rgb[1] === this.rgb[1] &&
+        x.rgb[2] === this.rgb[2] &&
+        x.alpha  === this.alpha) ? 0 : undefined;
 };
 //dragdropsorting
 var rpndragdropsortingmodule = function() {
@@ -1414,6 +1797,7 @@ var rpngapsimplemodule = function() {
     var validationButton;
     var responses;
     var ddmode;
+    var maxfillength;
 
     var init = function(_datas, _domelem) {
         _.defaults(_datas, {
@@ -1436,6 +1820,7 @@ var rpngapsimplemodule = function() {
             $.each(datas.fillers, function(idx, filler) {
                 toolbar.append($('<span class="draggable">'+filler+'</span> '));
             });
+            maxfillength=_.max(datas.fillers, function(filler){ return filler.length; }).length;
             domelem.append(toolbar.sortable({
                     group: 'drop',
                     drop: false,
@@ -1448,7 +1833,7 @@ var rpngapsimplemodule = function() {
                             item.clone().insertAfter(item);
                         }else{
                             // Remove item and restore white space
-                            $('<span>______</span>').insertAfter(item);
+                            $('<span>'+Array(maxfillength).join("_")+'</span>').insertAfter(item);
                         }
                         _super(item);
                     },
@@ -1467,7 +1852,7 @@ var rpngapsimplemodule = function() {
             var t = $(tofill);
             if(ddmode){
                 //add a white space for drag and drop
-                t.replaceWith($('<b class="gapsimpleddresponse">').append('<span>______</span>').sortable({
+                t.replaceWith($('<b class="gapsimpleddresponse">').append('<span>'+Array(maxfillength).join("_")+'</span>').sortable({
                     group: 'drop',
                     itemSelector:'span',
                     containerSelector:'b',
@@ -1975,7 +2360,42 @@ var rpnsequence = (function() {
     var getLabels = function() {
         return selectedLabels;
     };
-
+    var addvalidation = function(inputs,validationoptions){
+        _.defaults(validationoptions,{
+            mode:"lock",
+            type:"integer"
+        });
+        _.each(inputs,function(input,idx){
+            $(input).on('keyup change paste',function(){
+                 // store current positions in variables
+                var inp=$(input);
+                inp.val(inp.val().trim());
+                if(validationoptions.mode=='lock'){
+                    var start = inp[0].selectionStart,
+                    end = inp[0].selectionEnd;
+                    if(validationoptions.type='integer'){
+                        var val=/(\d+)/.exec(inp.val());
+                        if(val=='' || val==null){
+                            inp.val('');
+                        }else{
+                            inp.val(parseInt(val));
+                        }
+                    }
+                    inp[0].setSelectionRange(start, end);
+                }else if(validationoptions.mode=='display'){
+                    if(validationoptions.type='integer'){
+                        if(!$.isNumeric(inp.val())){
+                            inp.tooltip({title:'integer needed'});
+                            inp.tooltip('show');
+                        }else{
+                            inp.tooltip('destroy');
+                        }
+                    }
+                }
+                
+            });
+        });
+    };
     return {
         init: init,
         buildUi: buildUi,
@@ -1983,6 +2403,7 @@ var rpnsequence = (function() {
         genericValidateButton: genericValidateButton,
         displayAlert: displayAlert,
         log: log,
-        getLabels: getLabels
+        getLabels: getLabels,
+        addvalidation:addvalidation
     };
 })();
