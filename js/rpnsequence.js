@@ -142,7 +142,7 @@ var rpnsequence = (function() {
                 rpncardmazemodule().init(elem, div);
             }
             div.hide();
-
+            div.disableSelection();
             //navigation
             if (navigationEnabled && sequencedatas.modules.length > 1) {
                 $('#rpnm_modulenav ul').append($('<li><a href="#">' + (idx + 1) + '</a></li>').click(function() {
