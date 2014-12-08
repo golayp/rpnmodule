@@ -22,13 +22,15 @@ var rpnsequence = (function() {
     var domelem;
     var navigationEnabled;
     var debug;
+    var selectedLabels;
+
     var labels = {
         en: {
             Recall: "Recall",
             Order: "Order",
             Warning: "Warning",
             BeforeUnloadMsg: "Module running!",
-            Wait: "Wait please...",
+            Wait: "Please wait...",
             Validate: "Validate",
             Eraser: "Eraser",
             DragDropNotEmpty: "There are still some items to sort!",
@@ -52,8 +54,6 @@ var rpnsequence = (function() {
             BlackboxView: "Boîte noire"
         }
     };
-    var selectedLabels;
-
 
     var init = function(opts) {
         if (_.isUndefined(opts)) {
@@ -314,42 +314,50 @@ var rpnsequence = (function() {
     var getLabels = function() {
         return selectedLabels;
     };
+    
     var addvalidation = function(inputs,validationoptions){
         _.defaults(validationoptions,{
             mode:"lock",
             type:"integer"
         });
-        _.each(inputs,function(input,idx){
-            $(input).on('keyup change paste',function(){
-                 // store current positions in variables
-                var inp=$(input);
-                inp.val(inp.val().trim());
-                if(validationoptions.mode=='lock'){
-                    var start = inp[0].selectionStart,
-                    end = inp[0].selectionEnd;
-                    if(validationoptions.type='integer'){
-                        var val=/(\d+)/.exec(inp.val());
-                        if(val=='' || val==null){
-                            inp.val('');
-                        }else{
-                            inp.val(parseInt(val));
-                        }
-                    }
-                    inp[0].setSelectionRange(start, end);
-                }else if(validationoptions.mode=='display'){
-                    if(validationoptions.type='integer'){
-                        if(!$.isNumeric(inp.val())){
-                            inp.tooltip({title:'integer needed'});
-                            inp.tooltip('show');
-                        }else{
-                            inp.tooltip('destroy');
-                        }
+        //prevent copy paste cut
+        $(inputs).bind("cut copy paste",function(e) {
+            e.preventDefault();
+        });
+        if(validationoptions.mode=='lock'){
+            $(inputs).keydown(function(e){
+                if(validationoptions.type=='integer'){
+                    /*Authorize:
+                    backspace, tab, shift, arrow-left, arrow-right, delete, 
+                    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 
+                    numpad-0, numpad-1, numpad-2, numpad-3, numpad-4, numpad-5, numpad-6, numpad-7, numpad-8, numpad-9, 
+                    subtract, dash*/
+                    //if subtract or dash try to know if we're at the begining of the input
+                    if(!_.contains([8,9,16,37,39,46,48,49,50,51,52,53,54,55,56,57,96,97,98,99,100,101,102,103,104,105,109,189],e.keyCode) || ((e.keyCode==109 || e.keyCode==189) && $(this).getSelection().start!=0)){
+                        log(e.keyCode);
+                        e.preventDefault();    
                     }
                 }
+            });
+            $(inputs).keyup(function(){
                 
             });
-        });
+            $(inputs).change(function(){
+                if(validationoptions.type=='integer'){
+                    var val=/(^-?[1-9]\d*)/.exec($(this).val());
+                    if(val=='' || val==null){
+                        $(this).val('');
+                    }else{
+                        $(this).val(parseInt(val));
+                    }
+                }
+            });
+        }else{
+            
+        }
+        
     };
+    
     return {
         init: init,
         buildUi: buildUi,

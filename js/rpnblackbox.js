@@ -56,11 +56,12 @@ var rpnblackboxmodule = function() {
     		chooseTest(t9, inputId,classDiv, buttonId);
     	});
     }
+    
     var isNumberN=function(str, myClass, myButton){
-    	var rep=$(str).val(),
-    		lastOfRep=rep.charAt(rep.length-1),
-    		prevOfRep=rep.substring(0,rep.length-1),
-    		monTexte="Il faut entrer un nombre entier positif";
+    	var rep=$(str).val();
+    	var lastOfRep=rep.charAt(rep.length-1);
+    	var prevOfRep=rep.substring(0,rep.length-1);
+    		
     	if(/[0-9]/.test(lastOfRep)){
     		if(/0/.test(prevOfRep)&&prevOfRep.length==1){
     			$(str).val(lastOfRep);
@@ -68,29 +69,21 @@ var rpnblackboxmodule = function() {
     		$(myClass).css("display", "none");
     	}else if(/,/.test(lastOfRep)){
     		$(str).val(rep.substring(0,rep.length-1));
-    		$(myButton).text(monTexte);
-    		$(myClass).css("display", "block");
     	}
     	else if(/\./.test(lastOfRep)){
     		$(str).val(rep.substring(0,rep.length-1));
-    		$(myButton).text(monTexte);
-    		$(myClass).css("display", "block");		
     	}
     	else if(/-/.test(lastOfRep)){
-    		$(myButton).text(monTexte);
-    		$(myClass).css("display", "block");	
     		$(str).val(rep.substring(0,rep.length-1));	
     	}else{
     		$(str).val(prevOfRep);
-    		$(myButton).text("Il faut entrer un chiffre");
-    		$(myClass).css("display", "block");
     	}
     }
+    
     var isNumberZ=function(str, myClass, myButton){
-    	var rep=$(str).val(),
-    		lastOfRep=rep.charAt(rep.length-1),
-    		prevOfRep=rep.substring(0,rep.length-1),
-    		monTexte="Il faut entrer un nombre entier";;
+    	var rep=$(str).val();
+    	var lastOfRep=rep.charAt(rep.length-1);
+    	var prevOfRep=rep.substring(0,rep.length-1);
     	if(/[0-9]/.test(lastOfRep)){//On test si le chiffre d'avant est un 0
     		if(/0/.test(prevOfRep)&&prevOfRep.length==1){
     			$(str).val(lastOfRep);
@@ -101,35 +94,25 @@ var rpnblackboxmodule = function() {
     		$(myClass).css("display", "none");
     	}else if(/,/.test(lastOfRep)){
     		$(str).val(rep.substring(0,rep.length-1));
-    		$(myButton).text(monTexte);
-    		$(myClass).css("display", "block");
+
     	}
     	else if(/\./.test(lastOfRep)){
     		$(str).val(rep.substring(0,rep.length-1));
-    		$(myButton).text(monTexte);
-    		$(myClass).css("display", "block");		
     	}
     	else if(/-/.test(lastOfRep)){//On teste s'il y a un - seulement au début
     		if(rep.length>1){
     			$(str).val(rep.substring(0,rep.length-1));
-    		}else{
-    			$(myClass).css("display", "none");
-    		}		
-    	}else if(rep.length===0){
-    		$(myButton).text("Il faut entrer un nombre");
-    		$(myClass).css("display", "block");
+    		}
     	}
     	else{
     		$(str).val(prevOfRep);
-    		$(myButton).text("Il faut entrer un chiffre");
-    		$(myClass).css("display", "block");
     	}
     }
+    
     var isNumberQ=function(str, myClass, myButton){//à Faire
-    	var rep=$(str).val(),
-    		lastOfRep=rep.charAt(rep.length-1),
-    		prevOfRep=rep.substring(0,rep.length-1),
-    		monTexte="Il faut entrer un nombre entier";;
+    	var rep=$(str).val();
+    	var lastOfRep=rep.charAt(rep.length-1);
+    	var prevOfRep=rep.substring(0,rep.length-1);
     	if(/[0-9]/.test(lastOfRep)){//On test si le chiffre d'avant est un 0
     		if(/0/.test(prevOfRep)&&prevOfRep.length==1){
     			$(str).val(lastOfRep);
@@ -145,25 +128,17 @@ var rpnblackboxmodule = function() {
     	}
     	else if(/\./.test(lastOfRep)){
     		$(str).val(rep.substring(0,rep.length-1));
-    		$(myButton).text(monTexte);
-    		$(myClass).css("display", "block");		
     	}
     	else if(/-/.test(lastOfRep)){//On teste s'il y a un - seulement au début
     		if(rep.length>1){
     			$(str).val(rep.substring(0,rep.length-1));
-    		}else{
-    			$(myClass).css("display", "none");
-    		}		
-    	}else if(rep.length==0){
-    		$(myButton).text("Il faut entrer un nombre");
-    		$(myClass).css("display", "block");
+    		}
     	}
     	else{
     		$(str).val(prevOfRep);
-    		$(myButton).text("Il faut entrer un chiffre");
-    		$(myClass).css("display", "block");
     	}
     }
+    
     var isNumberD=function(str, myClass, myButton){
     	var rep=$(str).val(),
     		lastOfRep=rep.charAt(rep.length-1),
@@ -189,19 +164,13 @@ var rpnblackboxmodule = function() {
     	else if(/-/.test(lastOfRep)){//On teste s'il y a un - seulement au début
     		if(rep.length>1){
     			$(str).val(rep.substring(0,rep.length-1));
-    		}else{
-    			$(myClass).css("display", "none");
-    		}		
-    	}else if(rep.length==0){
-    		$(myButton).text("Il faut entrer un nombre");
-    		$(myClass).css("display", "block");
+    		}
     	}
     	else{
     		$(str).val(prevOfRep);
-    		$(myButton).text("Il faut entrer un chiffre");
-    		$(myClass).css("display", "block");
     	}
     }
+    
     var isNumber=function(str, myClass, myButton){//Il faut encore faire si on met une puisance de 10
     	var rep=$(str).val(),
     		lastOfRep=rep.charAt(rep.length-1),
@@ -227,19 +196,13 @@ var rpnblackboxmodule = function() {
     	else if(/-/.test(lastOfRep)){//On teste s'il y a un - seulement au début
     		if(rep.length>1){
     			$(str).val(rep.substring(0,rep.length-1));
-    		}else{
-    			$(myClass).css("display", "none");
-    		}		
-    	}else if(rep.length==0){
-    		$(myButton).text("Il faut entrer un nombre");
-    		$(myClass).css("display", "block");
+    		}
     	}
     	else{
     		$(str).val(prevOfRep);
-    		$(myButton).text("Il faut entrer un chiffre");
-    		$(myClass).css("display", "block");
     	}
     }
+    
     var withComma=function(str){
     	var rep=$(str).val(),
     		lastOfRep=rep.charAt(rep.length-1),
@@ -257,6 +220,7 @@ var rpnblackboxmodule = function() {
     			}	
     		}
     }
+    
     var firstPoint=function(str){
     	var rep=$(str).val(),
     		lastOfRep=rep.charAt(rep.length-1),
@@ -268,6 +232,7 @@ var rpnblackboxmodule = function() {
     		$(str).val("0.");
     	}
     }
+    
     var firstComma=function(str){
     	var rep=$(str).val(),
     		lastOfRep=rep.charAt(rep.length-1),
@@ -279,6 +244,7 @@ var rpnblackboxmodule = function() {
     		$(str).val("0,");
     	}		
     }
+    
     var firstPointComma=function(str){
     	var rep=$(str).val(),
     		lastOfRep=rep.charAt(rep.length-1),
@@ -295,10 +261,6 @@ var rpnblackboxmodule = function() {
 
     var init = function(_datas, _domelem) {
         _.defaults(_datas, {
-            validation: {
-                type:"integer",
-                mode:"lock"
-            },
             operation: "x1",
             left: [1],
             right: [1],
@@ -354,7 +316,9 @@ var rpnblackboxmodule = function() {
         domelem.append($('<p class="text-center"></p>').append(toggleViewButton));
 
         //build validation button
-        validationButton = rpnsequence.genericValidateButton();
+        if(!_.isUndefined(datas.validation)){
+            validationButton = rpnsequence.genericValidateButton();
+        }
         domelem.append(validationButton);
         bindUiEvents();
     };
@@ -371,13 +335,13 @@ var rpnblackboxmodule = function() {
                 textNode = this.lastChild;
             $el.find('i').toggleClass('glyphicon-resize-small glyphicon-resize-full');
             textNode.nodeValue = ' ';
-            textNode.nodeValue = ' ' + ($el.hasClass('showArchieved') ? rpnsequence.getLabels().BlackboxTableView : rpnsequence.getLabels().BlackboxView)
+            textNode.nodeValue = ' ' + ($el.hasClass('showArchieved') ? rpnsequence.getLabels().BlackboxTableView : rpnsequence.getLabels().BlackboxView);
             $el.toggleClass('showArchieved');
             toggleView();
         });
         
         //Input validation
-        //rpnsequence.addvalidation($('.rpnm_input',domelem),datas.validation);
+        rpnsequence.addvalidation($('.rpnm_input',domelem),datas.validation);
         
         //Validation
         validationButton.click(function() {

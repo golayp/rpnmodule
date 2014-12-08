@@ -8,8 +8,7 @@
             "order":"<h1>First do this</h1><h2>then that</h2><p>and finally this!</p>",
             "operation":"x8",
             "validation":{
-                "type":"integer",
-                "mode":"display"
+                "mode":"lock"
             },
             "left":[5,10,6,11],
             "right":[56,72,32],
