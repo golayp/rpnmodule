@@ -7,7 +7,8 @@
             "context":"",
             "directive":"do this",
             "todrag":["1","green","blue","A","3","yellow","C","Z"],
-            "todrop":["letters","colors","numbers"]
+            "todrop":["letters","colors","numbers"],
+            "state":{"todrag":["yellow","Z"],"letters":["A","C"],"colors":["green","blue"],"numbers":["1","3"]}
         }
     ]
 }

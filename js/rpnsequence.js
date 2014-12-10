@@ -233,11 +233,11 @@ var rpnsequence = (function() {
         source.html(_.isUndefined(datas.sources) ? "" : (selectedLabels.Sources + ": " + datas.sources));
     };
 
-    var handleEndOfModule = function(res, correctionFct) {
+    var handleEndOfModule = function(state, correctionFct) {
         log('End of module');
         //store result locally
         responses[currentmod] = {
-            responses: res,
+            state:state,
             correctionFct: correctionFct
         };
         //Save status of module
@@ -250,7 +250,7 @@ var rpnsequence = (function() {
 
         $('#rpnm_wait_modal').modal('show');
         currentmod = nextNotEndedModuleIdx();
-        moduleendHandler(res);
+        moduleendHandler(state);
         if (_.isUndefined(sequencedatas.modules[currentmod])) {
             handleEndOfSequence();
         }
@@ -266,7 +266,7 @@ var rpnsequence = (function() {
         $.getJSON(solurl, function(ssol) {
             var score = 0;
             _.each(ssol.solutions, function(sol, idx) {
-                score += _.isUndefined(responses[idx]) ? 0 : responses[idx].correctionFct(responses[idx].responses, sol);
+                score += _.isUndefined(responses[idx]) ? 0 : responses[idx].correctionFct(responses[idx].state, sol);
             });
             log('Calculated total score for sequence ' + score);
             if (warnexit) {

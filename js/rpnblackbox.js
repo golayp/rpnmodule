@@ -4,10 +4,9 @@ var rpnblackboxmodule = function() {
     var datas;
     var domelem;
     var validationButton;
-    var responses;
-    var boxes;
     var shuffle;
     var toggleViewButton;
+    var state;
     
     var addComment=function(inputId, classDiv, buttonId, position, t1, t2, t3, t4, t5, t6, t7, t8, t9){
     	
@@ -269,28 +268,29 @@ var rpnblackboxmodule = function() {
         datas = _datas;
         domelem = _domelem;
         shuffle = _datas.shuffle;
-        boxes = [];
-        responses = {
-            left: [],
-            right: []
-        };
-
-        _.each(datas.right, function(val, idx) {
-            boxes.push({
-                position: "right",
-                originalposition: idx,
-                value: val
-            })
-        });
-        _.each(datas.left, function(val, idx) {
-            boxes.push({
-                position: "left",
-                originalposition: idx,
-                value: val
-            })
-        });
-        if (shuffle)
-            boxes = _.shuffle(boxes);
+        if(!_.isUndefined(datas.state)){
+            state=datas.state;
+        }else{
+            state = [];
+            _.each(datas.right, function(val, idx) {
+                state.push({
+                    position: "right",
+                    originalposition: idx,
+                    value: val,
+                    response:null
+                })
+            });
+            _.each(datas.left, function(val, idx) {
+                state.push({
+                    position: "left",
+                    originalposition: idx,
+                    value: val,
+                    response:null
+                })
+            });
+            if (shuffle)
+                state = _.shuffle(state);
+        }
         buildUi();
     };
 
@@ -300,14 +300,20 @@ var rpnblackboxmodule = function() {
         domelem.append($('<div class="row header"><div class="col-md-3 hidden-xs hidden-sm"></div><div class="col-xs-2"><p class="text-center">x</p></div><div class="col-xs-2 operation"></div><div class="col-xs-2"><p class="text-center">y</p></div></div>'));
         $('.header', domelem).hide();
 
-        _.each(boxes, function(box, idx) {
+        _.each(state, function(box, idx) {
             if (box.position == 'left') {
-                domelem.append($('<div class="row"><div class="col-md-3 hidden-xs hidden-sm"></div><div class="col-xs-2"><p class="text-center">' + box.value + '</p></div><div class="col-xs-2 operation"><p class="text-center"><i class="glyphicon glyphicon-minus"></i>' + datas.operation + '<i class="glyphicon glyphicon-arrow-right"></i></p></div><div class="col-xs-2"><input type="text" class="rpnm_input form-control" style="text-align: center;"></div></div>'));
+                domelem.append($('<div class="row"><div class="col-md-3 hidden-xs hidden-sm"></div><div class="col-xs-2"><p class="text-center">' + box.value + '</p></div><div class="col-xs-2 operation"><p class="text-center"><i class="glyphicon glyphicon-minus"></i>' + datas.operation + '<i class="glyphicon glyphicon-arrow-right"></i></p></div><div class="col-xs-2"><input type="text" data-bind="" class="rpnm_input form-control" style="text-align: center;"></div></div>'));
             }
             else {
                 domelem.append($('<div class="row"><div class="col-md-3 hidden-xs hidden-sm"></div><div class="col-xs-2"><input type="text" class="rpnm_input form-control" style="text-align: center;"></div><div class="col-xs-2 operation"><p class="text-center"><i class="glyphicon glyphicon-minus"></i>' + datas.operation + '<i class="glyphicon glyphicon-arrow-right"></i></p></div><div class="col-xs-2"><p class="text-center">' + box.value + '</p></div></div>'));
             }
         });
+       
+        $.each($('.rpnm_input', domelem),function(idx, gap){
+            $(gap).val(state[idx].response);
+        });
+        
+        
         toggleViewButton = $('<button>', {
             'data-toggle': 'button',
             'class': 'btn btn-link btn-xs',
@@ -319,6 +325,7 @@ var rpnblackboxmodule = function() {
         if(!_.isUndefined(datas.validation)){
             validationButton = rpnsequence.genericValidateButton();
         }
+        
         domelem.append(validationButton);
         bindUiEvents();
     };
@@ -346,19 +353,19 @@ var rpnblackboxmodule = function() {
         //Validation
         validationButton.click(function() {
             $.each($('.rpnm_input', domelem), function(idx, gap) {
-                var t = boxes[idx];
-                responses[t.position][t.originalposition] = $(gap).val();
+                state[idx].response = $(gap).val();
             });
 
-            rpnsequence.handleEndOfModule(responses, function(res, sol) {
+            rpnsequence.handleEndOfModule(state, function(saved_state, sol) {
                 var score = 0;
+                
                 _.each(sol.right, function(val, idx) {
-                    score += res.right[idx] == val ? 1 : 0;
+                    score+=(_.findWhere(saved_state, {position: "right", originalposition: idx}).response==val?1:0);
                 });
                 _.each(sol.left, function(val, idx) {
-                    score += res.left[idx] == val ? 1 : 0;
+                    score+=(_.findWhere(saved_state, {position: "left", originalposition: idx}).response==val?1:0);
                 });
-                return score;
+                return {state:state,score:score};
             });
         });
     };

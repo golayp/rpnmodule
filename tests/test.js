@@ -2,7 +2,9 @@ require.config({
     "baseUrl": "/js",
     "shim" : {
         "bootstrap" : { "deps" :['jquery'] },
-        "ext/jquery-sortable":{ "deps" :['jquery'] }
+        "ext/jquery-sortable":{ "deps" :['jquery'] },
+        "ext/rangyinputs-jquery-src":{ "deps" :['jquery'] },
+        "ext/jquery-disableSelection":{ "deps" :['jquery'] }
     },
     
     "paths": {

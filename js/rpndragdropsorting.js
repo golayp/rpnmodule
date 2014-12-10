@@ -4,7 +4,7 @@ var rpndragdropsortingmodule = function() {
     var datas;
     var domelem;
     var validationButton;
-    var responses;
+    var state;
 
     var init = function(_datas, _domelem) {
         _.defaults(_datas, {
@@ -13,16 +13,28 @@ var rpndragdropsortingmodule = function() {
         });
         datas = _datas;
         domelem = _domelem;
-        responses = [];
+        if(!_.isUndefined(datas.state)){
+            state=datas.state;
+        }else{
+            state = {
+                todrag:datas.todrag,
+                todrop:datas.todrop
+            };
+        }
         buildUi();
     };
 
     var buildUi = function() {
         domelem.addClass('dragdropsorting');
-        domelem.append($('<div class="row"><div class="container"><div class="col-md-2"><ul class="dragthis list-unstyled"></ul></div></div><div class="row"><div class="container" id="dropzonecontainer"></div></div>'));
+        domelem.append($('<div class="row"><div class="container"><div class="col-md-2 col"><ul class="dragthis list-unstyled"></ul></div></div><div class="row"><div class="container" id="dropzonecontainer"></div></div>'));
 
         $.each(datas.todrop, function(idx, drop) {
-            $('#dropzonecontainer').append($('<div class="col-md-2"><div class="droppable"><span class="lead">' + drop + '</span><ul class="list-unstyled"></ul></div></div>'))
+            $('#dropzonecontainer').append($('<div class="col-md-2"><div class="droppable"><span class="lead">' + drop + '</span><ul class="list-unstyled"></ul></div></div>'));
+            if(!_.isUndefined(state[drop])){
+                _.each(state[drop],function(dropped,idxi){
+                    $('ul',$('.droppable')[idx]).append('<li class="draggable">'+dropped+'</li>');
+                });
+            }
         });
         $(".droppable ul").sortable({
             group: 'drop',
@@ -35,15 +47,15 @@ var rpndragdropsortingmodule = function() {
         //build validation button
         validationButton = rpnsequence.genericValidateButton();
         domelem.append(validationButton);
-
+        
         bindUiEvents();
         nextDraggable();
     };
 
     var nextDraggable = function() {
-        if ($('.dragthis li').length == 0 && datas.todrag.length > 0) {
-            var itemToDrag = datas.todrag.pop();
-            $('.dragthis').append($('<li class="draggable">' + itemToDrag + '</li>'))
+        if ($('.dragthis li').length == 0 && state.todrag.length > 0) {
+            var itemToDrag = state.todrag.pop();
+            $('.dragthis').append($('<li class="draggable">' + itemToDrag + '</li>'));
             $(".dragthis").sortable({
                 group: 'drop',
                 drop: false
@@ -53,25 +65,21 @@ var rpndragdropsortingmodule = function() {
 
     var bindUiEvents = function() {
         validationButton.click(function() {
-            if (datas.todrag.length > 0) {
-                rpnsequence.displayAlert(rpnsequence.getLabels().DragDropNotEmpty);
-            }
-            else {
-                _.each($('.droppable'), function(elem, idx) {
-                    var txts = [];
-                    $.each($(elem).find('li'), function(idx, txt) {
-                        txts.push($(txt).text());
-                    });
-                    responses[$(elem).find('lh').text()] = txts;
-                })
-                rpnsequence.handleEndOfModule(responses, function(res, sols) {
-                    var score = 0;
-                    _.map(sols, function(sol, drop) {
-                        score += _.intersection(res[drop], sol).length;
-                    });
-                    return score;
+            _.each($('.droppable'), function(elem, idx) {
+                var txts = [];
+                $.each($(elem).find('li'), function(idx, txt) {
+                    txts.push($(txt).text());
                 });
-            }
+                state[$(elem).find('span').text()] = txts;
+            });
+            
+            rpnsequence.handleEndOfModule(state, function(saved_state, sols) {
+                var score = 0;
+                _.map(sols, function(sol, drop) {
+                    score += _.intersection(saved_state[drop], sol).length;
+                });
+                return score;
+            });
         });
     };
 

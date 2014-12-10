@@ -4,9 +4,9 @@ var rpngapsimplemodule = function() {
     var datas;
     var domelem;
     var validationButton;
-    var responses;
     var ddmode;
     var maxfillength;
+    var state;
 
     var init = function(_datas, _domelem) {
         _.defaults(_datas, {
@@ -16,13 +16,16 @@ var rpngapsimplemodule = function() {
         datas = _datas;
         ddmode= !_.isUndefined(_datas.fillers);
         domelem = _domelem;
-        responses = [];
+        if(!_.isUndefined(datas.state)){
+            state=datas.state;
+        }else{
+            state=_.map($('b',datas.tofill),function(b,idx){return '';});
+        }
         buildUi();
     };
 
     var buildUi = function() {
         domelem.addClass('gapsimple');
-        var availableColors = _.shuffle(['primary', 'success', 'info', 'warning', 'danger']);
 
         if(ddmode){
             var toolbar = $('<div class="gapsimpleddtoolbar">');
@@ -55,20 +58,20 @@ var rpngapsimplemodule = function() {
         }
         
         //build panel with sentences
-        domelem.append($('<div id="sentences" class="form-inline">' + datas.tofill + '</div>'));
-        $.each($('#sentences b', domelem), function(idx, tofill) {
-            responses[idx] = -1; //initialize all responses to unmark
+        domelem.append($('<div class="form-inline">' + datas.tofill + '</div>'));
+        $.each($('b', domelem), function(idx, tofill) {
             var t = $(tofill);
             if(ddmode){
                 //add a white space for drag and drop
-                t.replaceWith($('<b class="gapsimpleddresponse">').append('<span>'+Array(maxfillength).join("_")+'</span>').sortable({
+                t.replaceWith($('<b class="gapsimpleddresponse">').append('<span class="'+(_.isEmpty(state[idx])?'':'draggable')+'">'+(_.isEmpty(state[idx])?Array(maxfillength).join("_"):state[idx])+'</span>').sortable({
                     group: 'drop',
                     itemSelector:'span',
                     containerSelector:'b',
                     vertical:false
                 }));
             }else{
-                t.replaceWith($('<input type="text" id="' + idx + '" class="rpnm_input gapsimple form-control"> <strong>(' + t.text() + ')</strong>'));    
+                t.replaceWith($('<input type="text" class="rpnm_input gapsimple form-control"> <strong>(' + t.text() + ')</strong>'));
+                $($('.rpnm_input',domelem)[idx]).val(state[idx]);
             }
             
         });
@@ -83,18 +86,17 @@ var rpngapsimplemodule = function() {
         validationButton.click(function() {
             if(ddmode){
                 _.each($('.gapsimpleddresponse',$('#sentences',domelem)),function(elem,idx){
-                    responses[idx] = $('.draggable',$(elem)).text();
+                    state[idx] = $('.draggable',$(elem)).text();
                 });
-                
             }else{
                 $.each($('.gapsimple',domelem), function(idx, gap) {
-                    responses[idx] = $(gap).val();
+                    state[idx] = $(gap).val();
                 });
             }
-            rpnsequence.handleEndOfModule(responses, function(res, sol) {
+            rpnsequence.handleEndOfModule(state, function(saved_state, sol) {
                 var score = 0;
                 _.each(sol, function(val, idx) {
-                    score += res[idx] == val ? 1 : 0;
+                    score += saved_state[idx] == val ? 1 : 0;
                 });
                 return score;
             });

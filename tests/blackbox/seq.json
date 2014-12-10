@@ -12,7 +12,8 @@
             },
             "left":[5,10,6,11],
             "right":[56,72,32],
-            "shuffle":true
+            "shuffle":true,
+            "state":[{"position":"right","originalposition":0,"value":56,"response":"1"},{"position":"left","originalposition":3,"value":11,"response":"2"},{"position":"right","originalposition":1,"value":72,"response":"3"},{"position":"left","originalposition":0,"value":5,"response":"4"},{"position":"right","originalposition":2,"value":32,"response":"5"},{"position":"left","originalposition":2,"value":6,"response":"6"},{"position":"left","originalposition":1,"value":10,"response":"7"}]
         }
     ]
 }

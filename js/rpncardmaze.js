@@ -4,13 +4,13 @@ var rpncardmazemodule = function() {
     var datas;
     var domelem;
     var validationButton;
-    var responses;
     var currentHead;
     var height;
     var width;
     var snake;
     var startid;
     var endid;
+    var state;
 
     var init = function(_datas, _domelem) {
         _.defaults(_datas, {
@@ -25,9 +25,12 @@ var rpncardmazemodule = function() {
         height = datas.mazeheight;
         width = datas.mazewidth;
         domelem = _domelem;
-        responses = [];
-        buildUi();
+        state = [];
         snake = [];
+        if(!_.isUndefined(datas.state)){
+            state=datas.state;
+        }
+        buildUi();
     };
 
     var buildUi = function() {
@@ -49,7 +52,9 @@ var rpncardmazemodule = function() {
         validationButton = rpnsequence.genericValidateButton();
         domelem.append(validationButton);
         bindUiEvents();
-
+        _.each(state,function(val,idx){
+            $($('.card')[val]).trigger('click');
+        })
     };
 
 
@@ -116,12 +121,12 @@ var rpncardmazemodule = function() {
                 rpnsequence.displayAlert(rpnsequence.getLabels().CardMazeNotEnded);
             } else {
                 _.each(snake,function(card,idx){
-                    responses[idx]=$(card).data("cardId");
+                    state[idx]=$(card).data("cardId");
                 });
-                rpnsequence.handleEndOfModule(responses, function(res, sol) {
+                rpnsequence.handleEndOfModule(state, function(saved_state, sol) {
                     var score = 0;
                     _.each(sol, function(cardIdx, idx) {
-                        score += (res[idx] == cardIdx ? 1 : 0);
+                        score += (saved_state[idx] == cardIdx ? 1 : 0);
                     })
                     return score;
                 });

@@ -5,6 +5,7 @@ var rpnclockmodule = function() {
     var domelem;
     var validationButton;
     var clock;
+    var state;
 
     var init = function(_datas, _domelem) {
         _.defaults(_datas, {
@@ -14,6 +15,11 @@ var rpnclockmodule = function() {
         datas = _datas;
         if(datas.random){
             datas.hour=Math.floor((Math.random() * 24) + 1)+':'+Math.floor(Math.random() * 59);
+        }
+        if(!_.isUndefined(datas.state)){
+            state=datas.state;
+        }else{
+            state=datas.hour;
         }
         
         domelem = _domelem;
@@ -26,7 +32,7 @@ var rpnclockmodule = function() {
         //build panel with sentences
         domelem.append($('<div id="rpnclock"></div>'));
         clock=EduClock();
-        clock.init({},$('#rpnclock'));
+        clock.init({hour:parseInt(state.split(':')[0]), minute:parseInt(state.split(':')[1])},$('#rpnclock'));
 
         //build validation button
         validationButton = rpnsequence.genericValidateButton();
@@ -38,8 +44,8 @@ var rpnclockmodule = function() {
     var bindUiEvents = function() {
         validationButton.click(function() {
             var time=clock.getCurrentTime()
-            rpnsequence.handleEndOfModule(time.hour+':'+time.minute, function(res, sol) {
-                return res == sol ? 1 : 0;
+            rpnsequence.handleEndOfModule(time.hour+':'+time.minute, function(saved_state, sol) {
+                return saved_state == sol ? 1 : 0;
             });
         });
     };
@@ -87,9 +93,9 @@ var EduClock = function() {
 
     var buildUi = function (){
         //build dialCanvas
-        sunCanvas=$('<canvas>',{style:"position: absolute; left: 0; top: 0; z-index: 0;"})
+        sunCanvas=$('<canvas>',{style:"position: absolute; left: 0; top: 0; z-index: 0;"});
         dialCanvas=$('<canvas>',{style:"position: absolute; left: 0; top: 0; z-index: 1;"});
-        handCanvas=$('<canvas>',{style:"position: absolute; left: 0; top: 0; z-index: 2;"})
+        handCanvas=$('<canvas>',{style:"position: absolute; left: 0; top: 0; z-index: 2;"});
         domelem.append([sunCanvas, dialCanvas,handCanvas]);
         sunCanvas=sunCanvas[0];
         dialCanvas=dialCanvas[0];

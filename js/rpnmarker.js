@@ -5,7 +5,7 @@ var rpnmarkermodule = function() {
     var domelem;
     var selectedMarker;
     var validationButton;
-    var responses;
+    var state;
 
     var init = function(_datas, _domelem) {
         _.defaults(_datas, {
@@ -14,8 +14,18 @@ var rpnmarkermodule = function() {
         });
         datas = _datas;
         domelem = _domelem;
-        selectedMarker = -1;
-        responses = [];
+        
+        if(!_.isUndefined(datas.state)){
+            state=datas.state;
+        }else{
+            var availableColors = _.shuffle(['primary', 'success', 'info', 'warning', 'danger']);
+            state={
+                selectedMarker : '',
+                responses:_.map($('b',datas.tomark),function(b,idx){return '';}),
+                markers:_.map(datas.markers,function(m,idx){return { label:m,color:(availableColors[idx] || 'default')}})
+
+            };
+        }
         buildUi();
     };
 
@@ -26,30 +36,30 @@ var rpnmarkermodule = function() {
             'class': 'btn-group',
             'data-toggle': 'buttons'
         });
-        var availableColors = _.shuffle(['primary', 'success', 'info', 'warning', 'danger']);
-
-        toolbar.append($('<label class="btn btn-default active"><input type="radio" name="options" id="option1" autocomplete="off" checked><i class="glyphicon glyphicon-pencil"></i> ' + rpnsequence.getLabels().Eraser + '</label>').click(function() {
-            selectedMarker = -1;
-
+        
+        toolbar.append($('<label class="btn btn-default '+(state.selectedMarker==''?'active':'')+'"><input type="radio" name="options" autocomplete="off" '+(state.selectedMarker==''?'checked':'')+'><i class="glyphicon glyphicon-remove-sign"></i> ' + rpnsequence.getLabels().Eraser + '</label>').click(function() {
+            state.selectedMarker = '';
         }));
-        $.each(datas.markers, function(idx, marker) {
-            toolbar.append($('<label class="btn btn-' + (availableColors[idx] || 'default') + '"><input type="radio" name="options" id="option3" autocomplete="off"><i class="glyphicon glyphicon-pencil"></i> ' + marker + '</label>').click(function() {
-                selectedMarker = marker;
+        $.each(state.markers, function(idx, marker) {
+            toolbar.append($('<label class="btn btn-' +marker.color + ' '+(state.selectedMarker==marker.label?'active':'')+'"><input type="radio" name="options" autocomplete="off" '+(state.selectedMarker==marker.label?'checked':'')+'><i class="glyphicon glyphicon-pencil"></i> ' + marker.label + '</label>').click(function() {
+                state.selectedMarker = marker.label;
             }));
         });
         domelem.append(toolbar);
 
         //build panel with sentences
-        domelem.append($('<div id="sentences">' + datas.tomark + '</div>'));
-        $.each($('#sentences b', domelem), function(idx, tomark) {
-            responses[idx] = -1; //initialize all responses to unmark
+        domelem.append($('<div>' + datas.tomark + '</div>'));
+        $.each($('b', domelem), function(idx, tomark) {
             var t = $(tomark);
+            if(!_.isEmpty(state.responses[idx])){
+                t.addClass('marker-'+_.findWhere(state.markers,{label:state.responses[idx]}).color);
+            }
             t.css('cursor', 'pointer').click(function() {
                 t.removeClass();
-                if (selectedMarker != -1) {
-                    t.addClass('marker-' + availableColors[_.indexOf(datas.markers,selectedMarker)]);
+                if (state.selectedMarker != '') {
+                    t.addClass('marker-' + _.findWhere(state.markers,{label:state.selectedMarker}).color);
                 }
-                responses[idx] = selectedMarker;
+                state['responses'][idx] = state.selectedMarker;
             });
         });
         //build validation button
@@ -64,10 +74,10 @@ var rpnmarkermodule = function() {
 
     var bindUiEvents = function() {
         validationButton.click(function() {
-            rpnsequence.handleEndOfModule(responses, function(res, sol) {
+            rpnsequence.handleEndOfModule(state, function(saved_state,sol) {
                 var score = 0;
                 _.each(sol, function(val, idx) {
-                    score += res[idx] == val ? 1 : 0;
+                    score += saved_state.responses[idx] == val ? 1 : 0;
                 });
                 return score;
             });

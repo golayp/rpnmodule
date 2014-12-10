@@ -4,7 +4,7 @@ var rpnmqcmodule = function() {
     var datas;
     var domelem;
     var validationButton;
-    var responses;
+    var state;
 
     var init = function(_datas, _domelem) {
         _.defaults(_datas, {
@@ -14,7 +14,13 @@ var rpnmqcmodule = function() {
 
         datas = _datas;
         domelem = _domelem;
-        responses = [];
+        if(!_.isUndefined(datas.state)){
+            state=datas.state;
+        }else{
+            state={
+                responses:_.map(datas.questions,function(q,idx){return'';})
+            };
+        }
         buildUi();
     };
 
@@ -26,13 +32,12 @@ var rpnmqcmodule = function() {
             'class': 'list-unstyled'
         });
         $.each(datas.questions, function(idq, question) {
-            responses[idq] = -1; //initialize all responses to uncheck
             var li = $('<li>');
             li.append($('<p>' + question + '</p>'));
             var answerGroup = $('<div class="btn-group" data-toggle="buttons">');
             $.each(datas.answers, function(ida, answer) {
-                answerGroup.append($('<label class="btn btn-default"><input type="radio" name="question_' + idq + '" id="answer_' + idq + '_' + ida + '" autocomplete="off">' + answer + '</label>').click(function() {
-                    responses[idq] = answer;
+                answerGroup.append($('<label class="btn btn-default '+((!_.isEmpty(state.responses[idq])&&state.responses[idq]==answer)?'active':'')+'"><input type="radio" autocomplete="off" '+((!_.isEmpty(state.responses[idq])&&state.responses[idq]==answer)?'checked':'')+'>' + answer + '</label>').click(function() {
+                    state.responses[idq] = answer;
                 }));
                 li.append(answerGroup);
             });
@@ -49,10 +54,10 @@ var rpnmqcmodule = function() {
 
     var bindUiEvents = function() {
         validationButton.click(function() {
-            rpnsequence.handleEndOfModule(responses, function(res, sol) {
+            rpnsequence.handleEndOfModule(state, function(saved_state, sol) {
                 var score = 0;
                 _.each(sol, function(val, idx) {
-                    score += res[idx] == val ? 1 : 0;
+                    score += saved_state.responses[idx] == val ? 1 : 0;
                 });
                 return score;
             });
