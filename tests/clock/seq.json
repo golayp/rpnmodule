@@ -6,8 +6,7 @@
             "title":"a clock module",
             "context":"",
             "directive":"display 22:17 on following dial",
-            "random":false,
-            "state":"10:25"
+            "random":false
         }
     ]
 }

@@ -3,11 +3,10 @@ var rpnmarkermodule = function() {
 
     var datas;
     var domelem;
-    var selectedMarker;
     var validationButton;
     var state;
 
-    var init = function(_datas, _domelem) {
+    var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
             markers: [],
             tomark: ["fill tomark to feel good please!"]
@@ -15,15 +14,14 @@ var rpnmarkermodule = function() {
         datas = _datas;
         domelem = _domelem;
         
-        if(!_.isUndefined(datas.state)){
-            state=datas.state;
+        if(!_.isUndefined(_state)){
+            state=_state;
         }else{
             var availableColors = _.shuffle(['primary', 'success', 'info', 'warning', 'danger']);
             state={
                 selectedMarker : '',
                 responses:_.map($('b',datas.tomark),function(b,idx){return '';}),
                 markers:_.map(datas.markers,function(m,idx){return { label:m,color:(availableColors[idx] || 'default')}})
-
             };
         }
         buildUi();

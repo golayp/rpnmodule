@@ -258,7 +258,7 @@ var rpnblackboxmodule = function() {
     
     
 
-    var init = function(_datas, _domelem) {
+    var init = function(_datas,_state, _domelem) {
         _.defaults(_datas, {
             operation: "x1",
             left: [1],
@@ -268,8 +268,8 @@ var rpnblackboxmodule = function() {
         datas = _datas;
         domelem = _domelem;
         shuffle = _datas.shuffle;
-        if(!_.isUndefined(datas.state)){
-            state=datas.state;
+        if(!_.isUndefined(_state)){
+            state=_state;
         }else{
             state = [];
             _.each(datas.right, function(val, idx) {

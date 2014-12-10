@@ -13,8 +13,7 @@
             "title":"a second gapfull module",
             "context":"",
             "directive":"Replace small with big and adapt sentence.",
-            "sentence":"The small mountain.",
-            "state":"yahoo"
+            "sentence":"The small mountain."
         }
     ]
 }

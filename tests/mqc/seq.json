@@ -7,8 +7,7 @@
             "context":"context",
             "directive":"do this",
             "questions":["Why <strong>doing</strong> this ?","Who <i>is</i> it ?","When <u>or</u> what ?","What ?","Where ?","How ?","Which ?","Whose ?"],
-            "answers":["Yes","No","Maybe"],
-            "state":{"responses":["Yes","No","Maybe","Yes","No","Maybe","Yes","No"]}
+            "answers":["Yes","No","Maybe"]
         }
     ]
 }

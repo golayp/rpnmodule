@@ -6,7 +6,7 @@ var rpnmqcmodule = function() {
     var validationButton;
     var state;
 
-    var init = function(_datas, _domelem) {
+    var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
             questions: ["No questions!"],
             answers: ["As no answers"]
@@ -14,8 +14,8 @@ var rpnmqcmodule = function() {
 
         datas = _datas;
         domelem = _domelem;
-        if(!_.isUndefined(datas.state)){
-            state=datas.state;
+        if(!_.isUndefined(_state)){
+            state=_state;
         }else{
             state={
                 responses:_.map(datas.questions,function(q,idx){return'';})

@@ -6,15 +6,15 @@ var rpndragdropsortingmodule = function() {
     var validationButton;
     var state;
 
-    var init = function(_datas, _domelem) {
+    var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
             todrag: ["empty"],
             todrop: ["empty too :'("]
         });
         datas = _datas;
         domelem = _domelem;
-        if(!_.isUndefined(datas.state)){
-            state=datas.state;
+        if(!_.isUndefined(_state)){
+            state=_state;
         }else{
             state = {
                 todrag:datas.todrag,

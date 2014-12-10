@@ -12,7 +12,7 @@ var rpncardmazemodule = function() {
     var endid;
     var state;
 
-    var init = function(_datas, _domelem) {
+    var init = function(_datas,_state, _domelem) {
         _.defaults(_datas, {
             mazewidth: 6,
             mazeheight: 4,
@@ -27,8 +27,8 @@ var rpncardmazemodule = function() {
         domelem = _domelem;
         state = [];
         snake = [];
-        if(!_.isUndefined(datas.state)){
-            state=datas.state;
+        if(!_.isUndefined(_state)){
+            state=_state;
         }
         buildUi();
     };

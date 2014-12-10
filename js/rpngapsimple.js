@@ -8,7 +8,7 @@ var rpngapsimplemodule = function() {
     var maxfillength;
     var state;
 
-    var init = function(_datas, _domelem) {
+    var init = function(_datas,_state, _domelem) {
         _.defaults(_datas, {
             tofill: "tofill not set!<b>Read</b> documentation please!"
         });
@@ -16,8 +16,8 @@ var rpngapsimplemodule = function() {
         datas = _datas;
         ddmode= !_.isUndefined(_datas.fillers);
         domelem = _domelem;
-        if(!_.isUndefined(datas.state)){
-            state=datas.state;
+        if(!_.isUndefined(_state)){
+            state=_state;
         }else{
             state=_.map($('b',datas.tofill),function(b,idx){return '';});
         }

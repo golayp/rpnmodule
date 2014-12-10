@@ -7,7 +7,7 @@ var rpnclockmodule = function() {
     var clock;
     var state;
 
-    var init = function(_datas, _domelem) {
+    var init = function(_datas,_state, _domelem) {
         _.defaults(_datas, {
             random: true,
             hour:'10:10'
@@ -16,8 +16,8 @@ var rpnclockmodule = function() {
         if(datas.random){
             datas.hour=Math.floor((Math.random() * 24) + 1)+':'+Math.floor(Math.random() * 59);
         }
-        if(!_.isUndefined(datas.state)){
-            state=datas.state;
+        if(!_.isUndefined(_state)){
+            state=_state;
         }else{
             state=datas.hour;
         }

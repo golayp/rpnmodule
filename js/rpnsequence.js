@@ -13,7 +13,7 @@ var rpnsequence = (function() {
     var source;
     var solurl;
     var backurl;
-    var responses;
+    var states;
     var warnexit;
     var sequenceendHandler;
     var moduleendHandler;
@@ -62,6 +62,7 @@ var rpnsequence = (function() {
         _.defaults(opts, {
             sequrl: "seq.json",
             solurl: "sol.json",
+            stateurl:"sta.json",
             returnurl: "../",
             warnonexit: false,
             domelem: $('body'),
@@ -75,7 +76,7 @@ var rpnsequence = (function() {
             navigationEnabled: false
         });
         selectedLabels = labels[opts.language];
-        responses = [];
+        states = [];
         warnexit = opts.warnonexit;
         backurl = opts.returnurl;
         solurl = opts.solurl;
@@ -96,7 +97,14 @@ var rpnsequence = (function() {
             });
             currentmod = 0;
             navigationEnabled = opts.navigationEnabled && sequencedatas.modules.length > 1;
-            buildUi();
+            $.getJSON(opts.stateurl,function(savedStates){
+                states=_.map(sequencedatas.modules,function(mod,idx){return { state:savedStates.states[idx],correctionFct:undefined};});
+                buildUi();
+            }).error(function() {
+                states=_.map(sequencedatas.modules,function(mod,idx){return { state:undefined,correctionFct:undefined};});
+                buildUi();
+            });
+            
         });
     };
 
@@ -114,32 +122,32 @@ var rpnsequence = (function() {
             $('#rpnm_modulenav').remove();
         }
 
-        _.each(sequencedatas.modules, function(elem, idx) {
+        _.each(sequencedatas.modules, function(modData, idx) {
             var div = $('<div class="rpnm_instance" id="rpnm_inst_' + idx + '">');
             mainContent.append(div);
-            if (elem.type == 'marker') {
-                rpnmarkermodule().init(elem, div);
+            if (modData.type == 'marker') {
+                rpnmarkermodule().init(modData,states[idx].state, div);
             }
-            else if (elem.type == 'mqc') {
-                rpnmqcmodule().init(elem, div);
+            else if (modData.type == 'mqc') {
+                rpnmqcmodule().init(modData,states[idx].state, div);
             }
-            else if (elem.type == 'gapsimple') {
-                rpngapsimplemodule().init(elem, div);
+            else if (modData.type == 'gapsimple') {
+                rpngapsimplemodule().init(modData,states[idx].state, div);
             }
-            else if (elem.type == 'gapfull') {
-                rpngapfullmodule().init(elem, div);
+            else if (modData.type == 'gapfull') {
+                rpngapfullmodule().init(modData,states[idx].state, div);
             }
-            else if (elem.type == 'clock') {
-                rpnclockmodule().init(elem, div);
+            else if (modData.type == 'clock') {
+                rpnclockmodule().init(modData,states[idx].state, div);
             }
-            else if (elem.type == 'blackbox') {
-                rpnblackboxmodule().init(elem, div);
+            else if (modData.type == 'blackbox') {
+                rpnblackboxmodule().init(modData,states[idx].state, div);
             }
-            else if (elem.type == 'dragdropsorting') {
-                rpndragdropsortingmodule().init(elem, div);
+            else if (modData.type == 'dragdropsorting') {
+                rpndragdropsortingmodule().init(modData,states[idx].state, div);
             }
-            else if (elem.type == 'cardmaze') {
-                rpncardmazemodule().init(elem, div);
+            else if (modData.type == 'cardmaze') {
+                rpncardmazemodule().init(modData,states[idx].state, div);
             }
             div.hide();
             div.disableSelection();
@@ -236,7 +244,7 @@ var rpnsequence = (function() {
     var handleEndOfModule = function(state, correctionFct) {
         log('End of module');
         //store result locally
-        responses[currentmod] = {
+        states[currentmod] = {
             state:state,
             correctionFct: correctionFct
         };
@@ -261,12 +269,12 @@ var rpnsequence = (function() {
 
     var handleEndOfSequence = function() {
         log('End of sequence');
-        sequenceendHandler(responses);
+        sequenceendHandler(states);
         //retrieve solutions and use correction function to make score
         $.getJSON(solurl, function(ssol) {
             var score = 0;
             _.each(ssol.solutions, function(sol, idx) {
-                score += _.isUndefined(responses[idx]) ? 0 : responses[idx].correctionFct(responses[idx].state, sol);
+                score += _.isUndefined(states[idx]) ? 0 : states[idx].correctionFct(states[idx].state, sol);
             });
             log('Calculated total score for sequence ' + score);
             if (warnexit) {

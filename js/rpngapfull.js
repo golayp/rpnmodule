@@ -7,15 +7,15 @@ var rpngapfullmodule = function() {
     var validationButton;
     var state;
 
-    var init = function(_datas, _domelem) {
+    var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
             sentence: "sentence not set!"
         });
         datas = _datas;
         domelem = _domelem;
         
-        if(!_.isUndefined(datas.state)){
-            state=datas.state;
+        if(!_.isUndefined(_state)){
+            state=_state;
         }else{
             state=datas.sentence;
         }
