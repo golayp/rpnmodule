@@ -3,7 +3,6 @@ var rpngapsimplemodule = function() {
 
     var datas;
     var domelem;
-    var validationButton;
     var ddmode;
     var maxfillength;
     var state;
@@ -75,36 +74,35 @@ var rpngapsimplemodule = function() {
             }
             
         });
-        //build validation button
-        validationButton = rpnsequence.genericValidateButton();
-        domelem.append(validationButton);
 
         bindUiEvents();
     };
 
     var bindUiEvents = function() {
-        validationButton.click(function() {
-            if(ddmode){
-                _.each($('.gapsimpleddresponse',$('#sentences',domelem)),function(elem,idx){
-                    state[idx] = $('.draggable',$(elem)).text();
-                });
-            }else{
-                $.each($('.gapsimple',domelem), function(idx, gap) {
-                    state[idx] = $(gap).val();
-                });
-            }
-            rpnsequence.handleEndOfModule(state, function(saved_state, sol) {
-                var score = 0;
-                _.each(sol, function(val, idx) {
-                    score += saved_state[idx] == val ? 1 : 0;
-                });
-                return score;
+    };
+    
+    var validate = function(){
+        if(ddmode){
+            _.each($('.gapsimpleddresponse',domelem),function(elem,idx){
+                state[idx] = $('.draggable',$(elem)).text();
             });
+        }else{
+            $.each($('.gapsimple',domelem), function(idx, gap) {
+                state[idx] = $(gap).val();
+            });
+        }
+        rpnsequence.handleEndOfModule(state, function(saved_state, sol) {
+            var score = 0;
+            _.each(sol, function(val, idx) {
+                score += saved_state[idx] == val ? 1 : 0;
+            });
+            return score;
         });
     };
-
+    
     return {
-        init: init
+        init: init,
+        validate: validate
     };
 
 };

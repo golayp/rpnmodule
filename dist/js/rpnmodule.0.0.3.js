@@ -1,3 +1,11 @@
+(function($){
+    $.fn.disableSelection = function() {
+    return this
+        .attr('unselectable', 'on')
+        .css('user-select', 'none')
+        .on('selectstart', false);
+    };
+})(jQuery);
 /* ===================================================
  *  jquery-sortable.js v0.9.12
  *  http://johnny.github.com/jquery-sortable/
@@ -677,16 +685,331 @@
   };
 
 }(jQuery, window, 'sortable');
+/**
+ * @license Rangy Inputs, a jQuery plug-in for selection and caret manipulation within textareas and text inputs.
+ * 
+ * https://github.com/timdown/rangyinputs
+ *
+ * For range and selection features for contenteditable, see Rangy.
+
+ * http://code.google.com/p/rangy/
+ *
+ * Depends on jQuery 1.0 or later.
+ *
+ * Copyright 2014, Tim Down
+ * Licensed under the MIT license.
+ * Version: 1.2.0
+ * Build date: 30 November 2014
+ */
+(function($) {
+    var UNDEF = "undefined";
+    var getSelection, setSelection, deleteSelectedText, deleteText, insertText;
+    var replaceSelectedText, surroundSelectedText, extractSelectedText, collapseSelection;
+
+    // Trio of isHost* functions taken from Peter Michaux's article:
+    // http://peter.michaux.ca/articles/feature-detection-state-of-the-art-browser-scripting
+    function isHostMethod(object, property) {
+        var t = typeof object[property];
+        return t === "function" || (!!(t == "object" && object[property])) || t == "unknown";
+    }
+
+    function isHostProperty(object, property) {
+        return typeof(object[property]) != UNDEF;
+    }
+
+    function isHostObject(object, property) {
+        return !!(typeof(object[property]) == "object" && object[property]);
+    }
+
+    function fail(reason) {
+        if (window.console && window.console.log) {
+            window.console.log("RangyInputs not supported in your browser. Reason: " + reason);
+        }
+    }
+
+    function adjustOffsets(el, start, end) {
+        if (start < 0) {
+            start += el.value.length;
+        }
+        if (typeof end == UNDEF) {
+            end = start;
+        }
+        if (end < 0) {
+            end += el.value.length;
+        }
+        return { start: start, end: end };
+    }
+
+    function makeSelection(el, start, end) {
+        return {
+            start: start,
+            end: end,
+            length: end - start,
+            text: el.value.slice(start, end)
+        };
+    }
+
+    function getBody() {
+        return isHostObject(document, "body") ? document.body : document.getElementsByTagName("body")[0];
+    }
+
+    $(document).ready(function() {
+        var testTextArea = document.createElement("textarea");
+
+        getBody().appendChild(testTextArea);
+
+        if (isHostProperty(testTextArea, "selectionStart") && isHostProperty(testTextArea, "selectionEnd")) {
+            getSelection = function(el) {
+                var start = el.selectionStart, end = el.selectionEnd;
+                return makeSelection(el, start, end);
+            };
+
+            setSelection = function(el, startOffset, endOffset) {
+                var offsets = adjustOffsets(el, startOffset, endOffset);
+                el.selectionStart = offsets.start;
+                el.selectionEnd = offsets.end;
+            };
+
+            collapseSelection = function(el, toStart) {
+                if (toStart) {
+                    el.selectionEnd = el.selectionStart;
+                } else {
+                    el.selectionStart = el.selectionEnd;
+                }
+            };
+        } else if (isHostMethod(testTextArea, "createTextRange") && isHostObject(document, "selection") &&
+                   isHostMethod(document.selection, "createRange")) {
+
+            getSelection = function(el) {
+                var start = 0, end = 0, normalizedValue, textInputRange, len, endRange;
+                var range = document.selection.createRange();
+
+                if (range && range.parentElement() == el) {
+                    len = el.value.length;
+
+                    normalizedValue = el.value.replace(/\r\n/g, "\n");
+                    textInputRange = el.createTextRange();
+                    textInputRange.moveToBookmark(range.getBookmark());
+                    endRange = el.createTextRange();
+                    endRange.collapse(false);
+                    if (textInputRange.compareEndPoints("StartToEnd", endRange) > -1) {
+                        start = end = len;
+                    } else {
+                        start = -textInputRange.moveStart("character", -len);
+                        start += normalizedValue.slice(0, start).split("\n").length - 1;
+                        if (textInputRange.compareEndPoints("EndToEnd", endRange) > -1) {
+                            end = len;
+                        } else {
+                            end = -textInputRange.moveEnd("character", -len);
+                            end += normalizedValue.slice(0, end).split("\n").length - 1;
+                        }
+                    }
+                }
+
+                return makeSelection(el, start, end);
+            };
+
+            // Moving across a line break only counts as moving one character in a TextRange, whereas a line break in
+            // the textarea value is two characters. This function corrects for that by converting a text offset into a
+            // range character offset by subtracting one character for every line break in the textarea prior to the
+            // offset
+            var offsetToRangeCharacterMove = function(el, offset) {
+                return offset - (el.value.slice(0, offset).split("\r\n").length - 1);
+            };
+
+            setSelection = function(el, startOffset, endOffset) {
+                var offsets = adjustOffsets(el, startOffset, endOffset);
+                var range = el.createTextRange();
+                var startCharMove = offsetToRangeCharacterMove(el, offsets.start);
+                range.collapse(true);
+                if (offsets.start == offsets.end) {
+                    range.move("character", startCharMove);
+                } else {
+                    range.moveEnd("character", offsetToRangeCharacterMove(el, offsets.end));
+                    range.moveStart("character", startCharMove);
+                }
+                range.select();
+            };
+
+            collapseSelection = function(el, toStart) {
+                var range = document.selection.createRange();
+                range.collapse(toStart);
+                range.select();
+            };
+        } else {
+            getBody().removeChild(testTextArea);
+            fail("No means of finding text input caret position");
+            return;
+        }
+
+        // Clean up
+        getBody().removeChild(testTextArea);
+
+        function getValueAfterPaste(el, text) {
+            var val = el.value, sel = getSelection(el), selStart = sel.start;
+            return {
+                value: val.slice(0, selStart) + text + val.slice(sel.end),
+                index: selStart,
+                replaced: sel.text
+            };
+        }
+        
+        function pasteTextWithCommand(el, text) {
+            el.focus();
+            var sel = getSelection(el);
+
+            // Hack to work around incorrect delete command when deleting the last word on a line
+            setSelection(el, sel.start, sel.end);
+            if (text == "") {
+                document.execCommand("delete", false, null);
+            } else {
+                document.execCommand("insertText", false, text);
+            }
+
+            return {
+                replaced: sel.text,
+                index: sel.start
+            };
+        }
+
+        function pasteTextWithValueChange(el, text) {
+            el.focus();
+            var valueAfterPaste = getValueAfterPaste(el, text);
+            el.value = valueAfterPaste.value;
+            return valueAfterPaste;
+        }
+
+        var pasteText = function(el, text) {
+            var valueAfterPaste = getValueAfterPaste(el, text);
+            try {
+                var pasteInfo = pasteTextWithCommand(el, text);
+                if (el.value == valueAfterPaste.value) {
+                    pasteText = pasteTextWithCommand;
+                    return pasteInfo;
+                }
+            } catch (ex) {
+                // Do nothing and fall back to changing the value manually
+            }
+            pasteText = pasteTextWithValueChange;
+            el.value = valueAfterPaste.value;
+            return valueAfterPaste;
+        };
+
+        deleteText = function(el, start, end, moveSelection) {
+            if (start != end) {
+                setSelection(el, start, end);
+                pasteText(el, "");
+            }
+            if (moveSelection) {
+                setSelection(el, start);
+            }
+        };
+
+        deleteSelectedText = function(el) {
+            setSelection(el, pasteText(el, "").index);
+        };
+
+        extractSelectedText = function(el) {
+            var pasteInfo = pasteText(el, "");
+            setSelection(el, pasteInfo.index);
+            return pasteInfo.replaced;
+        };
+
+        var updateSelectionAfterInsert = function(el, startIndex, text, selectionBehaviour) {
+            var endIndex = startIndex + text.length;
+            
+            selectionBehaviour = (typeof selectionBehaviour == "string") ?
+                selectionBehaviour.toLowerCase() : "";
+
+            if ((selectionBehaviour == "collapsetoend" || selectionBehaviour == "select") && /[\r\n]/.test(text)) {
+                // Find the length of the actual text inserted, which could vary
+                // depending on how the browser deals with line breaks
+                var normalizedText = text.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+                endIndex = startIndex + normalizedText.length;
+                var firstLineBreakIndex = startIndex + normalizedText.indexOf("\n");
+                
+                if (el.value.slice(firstLineBreakIndex, firstLineBreakIndex + 2) == "\r\n") {
+                    // Browser uses \r\n, so we need to account for extra \r characters
+                    endIndex += normalizedText.match(/\n/g).length;
+                }
+            }
+
+            switch (selectionBehaviour) {
+                case "collapsetostart":
+                    setSelection(el, startIndex, startIndex);
+                    break;
+                case "collapsetoend":
+                    setSelection(el, endIndex, endIndex);
+                    break;
+                case "select":
+                    setSelection(el, startIndex, endIndex);
+                    break;
+            }
+        };
+
+        insertText = function(el, text, index, selectionBehaviour) {
+            setSelection(el, index);
+            pasteText(el, text);
+            if (typeof selectionBehaviour == "boolean") {
+                selectionBehaviour = selectionBehaviour ? "collapseToEnd" : "";
+            }
+            updateSelectionAfterInsert(el, index, text, selectionBehaviour);
+        };
+
+        replaceSelectedText = function(el, text, selectionBehaviour) {
+            var pasteInfo = pasteText(el, text);
+            updateSelectionAfterInsert(el, pasteInfo.index, text, selectionBehaviour || "collapseToEnd");
+        };
+
+        surroundSelectedText = function(el, before, after, selectionBehaviour) {
+            if (typeof after == UNDEF) {
+                after = before;
+            }
+            var sel = getSelection(el);
+            var pasteInfo = pasteText(el, before + sel.text + after);
+            updateSelectionAfterInsert(el, pasteInfo.index + before.length, sel.text, selectionBehaviour || "select");
+        };
+
+        function jQuerify(func, returnThis) {
+            return function() {
+                var el = this.jquery ? this[0] : this;
+                var nodeName = el.nodeName.toLowerCase();
+
+                if (el.nodeType == 1 && (nodeName == "textarea" ||
+                        (nodeName == "input" && /^(?:text|email|number|search|tel|url|password)$/i.test(el.type)))) {
+                    var args = [el].concat(Array.prototype.slice.call(arguments));
+                    var result = func.apply(this, args);
+                    if (!returnThis) {
+                        return result;
+                    }
+                }
+                if (returnThis) {
+                    return this;
+                }
+            };
+        }
+
+        $.fn.extend({
+            getSelection: jQuerify(getSelection, false),
+            setSelection: jQuerify(setSelection, true),
+            collapseSelection: jQuerify(collapseSelection, true),
+            deleteSelectedText: jQuerify(deleteSelectedText, true),
+            deleteText: jQuerify(deleteText, true),
+            extractSelectedText: jQuerify(extractSelectedText, false),
+            insertText: jQuerify(insertText, true),
+            replaceSelectedText: jQuerify(replaceSelectedText, true),
+            surroundSelectedText: jQuerify(surroundSelectedText, true)
+        });
+    });
+})(jQuery);
 //blackbox
 var rpnblackboxmodule = function() {
 
     var datas;
     var domelem;
-    var validationButton;
-    var responses;
-    var boxes;
     var shuffle;
     var toggleViewButton;
+    var state;
     
     var addComment=function(inputId, classDiv, buttonId, position, t1, t2, t3, t4, t5, t6, t7, t8, t9){
     	
@@ -735,11 +1058,12 @@ var rpnblackboxmodule = function() {
     		chooseTest(t9, inputId,classDiv, buttonId);
     	});
     }
+    
     var isNumberN=function(str, myClass, myButton){
-    	var rep=$(str).val(),
-    		lastOfRep=rep.charAt(rep.length-1),
-    		prevOfRep=rep.substring(0,rep.length-1),
-    		monTexte="Il faut entrer un nombre entier positif";
+    	var rep=$(str).val();
+    	var lastOfRep=rep.charAt(rep.length-1);
+    	var prevOfRep=rep.substring(0,rep.length-1);
+    		
     	if(/[0-9]/.test(lastOfRep)){
     		if(/0/.test(prevOfRep)&&prevOfRep.length==1){
     			$(str).val(lastOfRep);
@@ -747,29 +1071,21 @@ var rpnblackboxmodule = function() {
     		$(myClass).css("display", "none");
     	}else if(/,/.test(lastOfRep)){
     		$(str).val(rep.substring(0,rep.length-1));
-    		$(myButton).text(monTexte);
-    		$(myClass).css("display", "block");
     	}
     	else if(/\./.test(lastOfRep)){
     		$(str).val(rep.substring(0,rep.length-1));
-    		$(myButton).text(monTexte);
-    		$(myClass).css("display", "block");		
     	}
     	else if(/-/.test(lastOfRep)){
-    		$(myButton).text(monTexte);
-    		$(myClass).css("display", "block");	
     		$(str).val(rep.substring(0,rep.length-1));	
     	}else{
     		$(str).val(prevOfRep);
-    		$(myButton).text("Il faut entrer un chiffre");
-    		$(myClass).css("display", "block");
     	}
     }
+    
     var isNumberZ=function(str, myClass, myButton){
-    	var rep=$(str).val(),
-    		lastOfRep=rep.charAt(rep.length-1),
-    		prevOfRep=rep.substring(0,rep.length-1),
-    		monTexte="Il faut entrer un nombre entier";;
+    	var rep=$(str).val();
+    	var lastOfRep=rep.charAt(rep.length-1);
+    	var prevOfRep=rep.substring(0,rep.length-1);
     	if(/[0-9]/.test(lastOfRep)){//On test si le chiffre d'avant est un 0
     		if(/0/.test(prevOfRep)&&prevOfRep.length==1){
     			$(str).val(lastOfRep);
@@ -780,35 +1096,25 @@ var rpnblackboxmodule = function() {
     		$(myClass).css("display", "none");
     	}else if(/,/.test(lastOfRep)){
     		$(str).val(rep.substring(0,rep.length-1));
-    		$(myButton).text(monTexte);
-    		$(myClass).css("display", "block");
+
     	}
     	else if(/\./.test(lastOfRep)){
     		$(str).val(rep.substring(0,rep.length-1));
-    		$(myButton).text(monTexte);
-    		$(myClass).css("display", "block");		
     	}
     	else if(/-/.test(lastOfRep)){//On teste s'il y a un - seulement au début
     		if(rep.length>1){
     			$(str).val(rep.substring(0,rep.length-1));
-    		}else{
-    			$(myClass).css("display", "none");
-    		}		
-    	}else if(rep.length===0){
-    		$(myButton).text("Il faut entrer un nombre");
-    		$(myClass).css("display", "block");
+    		}
     	}
     	else{
     		$(str).val(prevOfRep);
-    		$(myButton).text("Il faut entrer un chiffre");
-    		$(myClass).css("display", "block");
     	}
     }
+    
     var isNumberQ=function(str, myClass, myButton){//à Faire
-    	var rep=$(str).val(),
-    		lastOfRep=rep.charAt(rep.length-1),
-    		prevOfRep=rep.substring(0,rep.length-1),
-    		monTexte="Il faut entrer un nombre entier";;
+    	var rep=$(str).val();
+    	var lastOfRep=rep.charAt(rep.length-1);
+    	var prevOfRep=rep.substring(0,rep.length-1);
     	if(/[0-9]/.test(lastOfRep)){//On test si le chiffre d'avant est un 0
     		if(/0/.test(prevOfRep)&&prevOfRep.length==1){
     			$(str).val(lastOfRep);
@@ -824,25 +1130,17 @@ var rpnblackboxmodule = function() {
     	}
     	else if(/\./.test(lastOfRep)){
     		$(str).val(rep.substring(0,rep.length-1));
-    		$(myButton).text(monTexte);
-    		$(myClass).css("display", "block");		
     	}
     	else if(/-/.test(lastOfRep)){//On teste s'il y a un - seulement au début
     		if(rep.length>1){
     			$(str).val(rep.substring(0,rep.length-1));
-    		}else{
-    			$(myClass).css("display", "none");
-    		}		
-    	}else if(rep.length==0){
-    		$(myButton).text("Il faut entrer un nombre");
-    		$(myClass).css("display", "block");
+    		}
     	}
     	else{
     		$(str).val(prevOfRep);
-    		$(myButton).text("Il faut entrer un chiffre");
-    		$(myClass).css("display", "block");
     	}
     }
+    
     var isNumberD=function(str, myClass, myButton){
     	var rep=$(str).val(),
     		lastOfRep=rep.charAt(rep.length-1),
@@ -868,19 +1166,13 @@ var rpnblackboxmodule = function() {
     	else if(/-/.test(lastOfRep)){//On teste s'il y a un - seulement au début
     		if(rep.length>1){
     			$(str).val(rep.substring(0,rep.length-1));
-    		}else{
-    			$(myClass).css("display", "none");
-    		}		
-    	}else if(rep.length==0){
-    		$(myButton).text("Il faut entrer un nombre");
-    		$(myClass).css("display", "block");
+    		}
     	}
     	else{
     		$(str).val(prevOfRep);
-    		$(myButton).text("Il faut entrer un chiffre");
-    		$(myClass).css("display", "block");
     	}
     }
+    
     var isNumber=function(str, myClass, myButton){//Il faut encore faire si on met une puisance de 10
     	var rep=$(str).val(),
     		lastOfRep=rep.charAt(rep.length-1),
@@ -906,19 +1198,13 @@ var rpnblackboxmodule = function() {
     	else if(/-/.test(lastOfRep)){//On teste s'il y a un - seulement au début
     		if(rep.length>1){
     			$(str).val(rep.substring(0,rep.length-1));
-    		}else{
-    			$(myClass).css("display", "none");
-    		}		
-    	}else if(rep.length==0){
-    		$(myButton).text("Il faut entrer un nombre");
-    		$(myClass).css("display", "block");
+    		}
     	}
     	else{
     		$(str).val(prevOfRep);
-    		$(myButton).text("Il faut entrer un chiffre");
-    		$(myClass).css("display", "block");
     	}
     }
+    
     var withComma=function(str){
     	var rep=$(str).val(),
     		lastOfRep=rep.charAt(rep.length-1),
@@ -936,6 +1222,7 @@ var rpnblackboxmodule = function() {
     			}	
     		}
     }
+    
     var firstPoint=function(str){
     	var rep=$(str).val(),
     		lastOfRep=rep.charAt(rep.length-1),
@@ -947,6 +1234,7 @@ var rpnblackboxmodule = function() {
     		$(str).val("0.");
     	}
     }
+    
     var firstComma=function(str){
     	var rep=$(str).val(),
     		lastOfRep=rep.charAt(rep.length-1),
@@ -958,6 +1246,7 @@ var rpnblackboxmodule = function() {
     		$(str).val("0,");
     	}		
     }
+    
     var firstPointComma=function(str){
     	var rep=$(str).val(),
     		lastOfRep=rep.charAt(rep.length-1),
@@ -972,42 +1261,43 @@ var rpnblackboxmodule = function() {
     
     
 
-    var init = function(_datas, _domelem) {
+    var init = function(_datas,_state, _domelem) {
         _.defaults(_datas, {
-            validation: {
-                type:"integer",
-                mode:"lock"
-            },
             operation: "x1",
             left: [1],
             right: [1],
-            shuffle: false
+            shuffle: false,
+            validation:{
+                mode:"lock",
+                type:"integer"
+            }
         });
         datas = _datas;
         domelem = _domelem;
         shuffle = _datas.shuffle;
-        boxes = [];
-        responses = {
-            left: [],
-            right: []
-        };
-
-        _.each(datas.right, function(val, idx) {
-            boxes.push({
-                position: "right",
-                originalposition: idx,
-                value: val
-            })
-        });
-        _.each(datas.left, function(val, idx) {
-            boxes.push({
-                position: "left",
-                originalposition: idx,
-                value: val
-            })
-        });
-        if (shuffle)
-            boxes = _.shuffle(boxes);
+        if(!_.isUndefined(_state)){
+            state=_state;
+        }else{
+            state = [];
+            _.each(datas.right, function(val, idx) {
+                state.push({
+                    position: "right",
+                    originalposition: idx,
+                    value: val,
+                    response:null
+                })
+            });
+            _.each(datas.left, function(val, idx) {
+                state.push({
+                    position: "left",
+                    originalposition: idx,
+                    value: val,
+                    response:null
+                })
+            });
+            if (shuffle)
+                state = _.shuffle(state);
+        }
         buildUi();
     };
 
@@ -1017,24 +1307,26 @@ var rpnblackboxmodule = function() {
         domelem.append($('<div class="row header"><div class="col-md-3 hidden-xs hidden-sm"></div><div class="col-xs-2"><p class="text-center">x</p></div><div class="col-xs-2 operation"></div><div class="col-xs-2"><p class="text-center">y</p></div></div>'));
         $('.header', domelem).hide();
 
-        _.each(boxes, function(box, idx) {
+        _.each(state, function(box, idx) {
             if (box.position == 'left') {
-                domelem.append($('<div class="row"><div class="col-md-3 hidden-xs hidden-sm"></div><div class="col-xs-2"><p class="text-center">' + box.value + '</p></div><div class="col-xs-2 operation"><p class="text-center"><i class="glyphicon glyphicon-minus"></i>' + datas.operation + '<i class="glyphicon glyphicon-arrow-right"></i></p></div><div class="col-xs-2"><input type="text" class="rpnm_input form-control" style="text-align: center;"></div></div>'));
+                domelem.append($('<div class="row"><div class="col-md-3 hidden-xs hidden-sm"></div><div class="col-xs-2"><p class="text-center">' + box.value + '</p></div><div class="col-xs-2 operation"><p class="text-center"><i class="glyphicon glyphicon-minus"></i>' + datas.operation + '<i class="glyphicon glyphicon-arrow-right"></i></p></div><div class="col-xs-2"><input type="text" data-bind="" class="rpnm_input form-control" style="text-align: center;"></div></div>'));
             }
             else {
                 domelem.append($('<div class="row"><div class="col-md-3 hidden-xs hidden-sm"></div><div class="col-xs-2"><input type="text" class="rpnm_input form-control" style="text-align: center;"></div><div class="col-xs-2 operation"><p class="text-center"><i class="glyphicon glyphicon-minus"></i>' + datas.operation + '<i class="glyphicon glyphicon-arrow-right"></i></p></div><div class="col-xs-2"><p class="text-center">' + box.value + '</p></div></div>'));
             }
         });
+       
+        $.each($('.rpnm_input', domelem),function(idx, gap){
+            $(gap).val(state[idx].response);
+        });
+        
+        
         toggleViewButton = $('<button>', {
             'data-toggle': 'button',
             'class': 'btn btn-link btn-xs',
             text: ' ' + rpnsequence.getLabels().BlackboxTableView
         }).prepend($('<i class="glyphicon glyphicon-resize-small"></i>'));
         domelem.append($('<p class="text-center"></p>').append(toggleViewButton));
-
-        //build validation button
-        validationButton = rpnsequence.genericValidateButton();
-        domelem.append(validationButton);
         bindUiEvents();
     };
 
@@ -1050,36 +1342,36 @@ var rpnblackboxmodule = function() {
                 textNode = this.lastChild;
             $el.find('i').toggleClass('glyphicon-resize-small glyphicon-resize-full');
             textNode.nodeValue = ' ';
-            textNode.nodeValue = ' ' + ($el.hasClass('showArchieved') ? rpnsequence.getLabels().BlackboxTableView : rpnsequence.getLabels().BlackboxView)
+            textNode.nodeValue = ' ' + ($el.hasClass('showArchieved') ? rpnsequence.getLabels().BlackboxTableView : rpnsequence.getLabels().BlackboxView);
             $el.toggleClass('showArchieved');
             toggleView();
         });
         
         //Input validation
-        //rpnsequence.addvalidation($('.rpnm_input',domelem),datas.validation);
-        
-        //Validation
-        validationButton.click(function() {
-            $.each($('.rpnm_input', domelem), function(idx, gap) {
-                var t = boxes[idx];
-                responses[t.position][t.originalposition] = $(gap).val();
-            });
+        rpnsequence.addvalidation($('.rpnm_input',domelem),datas.validation);
+    };
+    
+    var validate = function(){
+         $.each($('.rpnm_input', domelem), function(idx, gap) {
+            state[idx].response = $(gap).val();
+        });
 
-            rpnsequence.handleEndOfModule(responses, function(res, sol) {
-                var score = 0;
-                _.each(sol.right, function(val, idx) {
-                    score += res.right[idx] == val ? 1 : 0;
-                });
-                _.each(sol.left, function(val, idx) {
-                    score += res.left[idx] == val ? 1 : 0;
-                });
-                return score;
+        rpnsequence.handleEndOfModule(state, function(saved_state, sol) {
+            var score = 0;
+            
+            _.each(sol.right, function(val, idx) {
+                score+=(_.findWhere(saved_state, {position: "right", originalposition: idx}).response==val?1:0);
             });
+            _.each(sol.left, function(val, idx) {
+                score+=(_.findWhere(saved_state, {position: "left", originalposition: idx}).response==val?1:0);
+            });
+            return score;
         });
     };
-
+    
     return {
-        init: init
+        init: init,
+        validate:validate
     };
 
 };
@@ -1088,16 +1380,15 @@ var rpncardmazemodule = function() {
 
     var datas;
     var domelem;
-    var validationButton;
-    var responses;
     var currentHead;
     var height;
     var width;
     var snake;
     var startid;
     var endid;
+    var state;
 
-    var init = function(_datas, _domelem) {
+    var init = function(_datas,_state, _domelem) {
         _.defaults(_datas, {
             mazewidth: 6,
             mazeheight: 4,
@@ -1110,9 +1401,12 @@ var rpncardmazemodule = function() {
         height = datas.mazeheight;
         width = datas.mazewidth;
         domelem = _domelem;
-        responses = [];
-        buildUi();
+        state = [];
         snake = [];
+        if(!_.isUndefined(_state)){
+            state=_state;
+        }
+        buildUi();
     };
 
     var buildUi = function() {
@@ -1130,11 +1424,10 @@ var rpncardmazemodule = function() {
             }
 
         });
-        //build validation button
-        validationButton = rpnsequence.genericValidateButton();
-        domelem.append(validationButton);
         bindUiEvents();
-
+        _.each(state,function(val,idx){
+            $($('.card')[val]).trigger('click');
+        })
     };
 
 
@@ -1196,26 +1489,24 @@ var rpncardmazemodule = function() {
                 }
             });
         });
-        validationButton.click(function() {
-            if (!$(snake[snake.length - 1]).hasClass('end')) {
-                rpnsequence.displayAlert(rpnsequence.getLabels().CardMazeNotEnded);
-            } else {
-                _.each(snake,function(card,idx){
-                    responses[idx]=$(card).data("cardId");
-                });
-                rpnsequence.handleEndOfModule(responses, function(res, sol) {
-                    var score = 0;
-                    _.each(sol, function(cardIdx, idx) {
-                        score += (res[idx] == cardIdx ? 1 : 0);
-                    })
-                    return score;
-                });
-            }
+    };
+    
+    var validate = function(){
+        _.each(snake,function(card,idx){
+            state[idx]=$(card).data("cardId");
+        });
+        rpnsequence.handleEndOfModule(state, function(saved_state, sol) {
+            var score = 0;
+            _.each(sol, function(cardIdx, idx) {
+                score += (saved_state[idx] == cardIdx ? 1 : 0);
+            })
+            return score;
         });
     };
-
+    
     return {
-        init: init
+        init: init,
+        validate: validate
     };
 };
 //clock
@@ -1223,10 +1514,10 @@ var rpnclockmodule = function() {
 
     var datas;
     var domelem;
-    var validationButton;
     var clock;
+    var state;
 
-    var init = function(_datas, _domelem) {
+    var init = function(_datas,_state, _domelem) {
         _.defaults(_datas, {
             random: true,
             hour:'10:10'
@@ -1234,6 +1525,11 @@ var rpnclockmodule = function() {
         datas = _datas;
         if(datas.random){
             datas.hour=Math.floor((Math.random() * 24) + 1)+':'+Math.floor(Math.random() * 59);
+        }
+        if(!(_.isUndefined(_state)||_.isEmpty(_state)||_.isNull(_state))){
+            state=_state;
+        }else{
+            state=datas.hour;
         }
         
         domelem = _domelem;
@@ -1246,26 +1542,25 @@ var rpnclockmodule = function() {
         //build panel with sentences
         domelem.append($('<div id="rpnclock"></div>'));
         clock=EduClock();
-        clock.init({},$('#rpnclock'));
-
-        //build validation button
-        validationButton = rpnsequence.genericValidateButton();
-        domelem.append(validationButton);
+        clock.init({hour:parseInt(state.split(':')[0]), minute:parseInt(state.split(':')[1])},$('#rpnclock'));
 
         bindUiEvents();
     };
 
     var bindUiEvents = function() {
-        validationButton.click(function() {
-            var time=clock.getCurrentTime()
-            rpnsequence.handleEndOfModule(time.hour+':'+time.minute, function(res, sol) {
-                return res == sol ? 1 : 0;
-            });
+        
+    };
+    
+    var validate = function(){
+        var time=clock.getCurrentTime()
+        rpnsequence.handleEndOfModule(time.hour+':'+time.minute, function(saved_state, sol) {
+            return saved_state == sol ? 1 : 0;
         });
     };
-
+    
     return {
-        init: init
+        init: init,
+        validate: validate
     };
 };
 
@@ -1307,9 +1602,9 @@ var EduClock = function() {
 
     var buildUi = function (){
         //build dialCanvas
-        sunCanvas=$('<canvas>',{style:"position: absolute; left: 0; top: 0; z-index: 0;"})
+        sunCanvas=$('<canvas>',{style:"position: absolute; left: 0; top: 0; z-index: 0;"});
         dialCanvas=$('<canvas>',{style:"position: absolute; left: 0; top: 0; z-index: 1;"});
-        handCanvas=$('<canvas>',{style:"position: absolute; left: 0; top: 0; z-index: 2;"})
+        handCanvas=$('<canvas>',{style:"position: absolute; left: 0; top: 0; z-index: 2;"});
         domelem.append([sunCanvas, dialCanvas,handCanvas]);
         sunCanvas=sunCanvas[0];
         dialCanvas=dialCanvas[0];
@@ -1669,47 +1964,55 @@ var rpndragdropsortingmodule = function() {
 
     var datas;
     var domelem;
-    var validationButton;
-    var responses;
+    var state;
 
-    var init = function(_datas, _domelem) {
+    var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
             todrag: ["empty"],
             todrop: ["empty too :'("]
         });
         datas = _datas;
         domelem = _domelem;
-        responses = [];
+        if(!_.isUndefined(_state)){
+            state=_state;
+        }else{
+            state = {
+                todrag:datas.todrag,
+                todrop:datas.todrop
+            };
+        }
         buildUi();
     };
 
     var buildUi = function() {
         domelem.addClass('dragdropsorting');
-        domelem.append($('<div class="row"><div class="container"><div class="col-md-2"><ul class="dragthis list-unstyled"></ul></div></div><div class="row"><div class="container" id="dropzonecontainer"></div></div>'));
+        domelem.append($('<div class="row"><div class="container"><div class="col-md-2 col"><ul class="dragthis list-unstyled"></ul></div></div><div class="row"><div class="container dropzonecontainer"></div></div>'));
 
         $.each(datas.todrop, function(idx, drop) {
-            $('#dropzonecontainer').append($('<div class="col-md-2"><div class="droppable"><span class="lead">' + drop + '</span><ul class="list-unstyled"></ul></div></div>'))
+            $('.dropzonecontainer',domelem).append($('<div class="col-md-2"><div class="droppable"><span class="lead">' + drop + '</span><ul class="list-unstyled"></ul></div></div>'));
+            if(!_.isUndefined(state[drop])){
+                _.each(state[drop],function(dropped,idxi){
+                    $('ul',$('.droppable')[idx]).append('<li class="draggable">'+dropped+'</li>');
+                });
+            }
         });
         $(".droppable ul").sortable({
             group: 'drop',
             onDrop:function  (item, targetContainer, _super) {
+                state.todrag.pop();
                 nextDraggable();
                 _super(item);
             }
         });
-
-        //build validation button
-        validationButton = rpnsequence.genericValidateButton();
-        domelem.append(validationButton);
-
+        
         bindUiEvents();
         nextDraggable();
     };
 
     var nextDraggable = function() {
-        if ($('.dragthis li').length == 0 && datas.todrag.length > 0) {
-            var itemToDrag = datas.todrag.pop();
-            $('.dragthis').append($('<li class="draggable">' + itemToDrag + '</li>'))
+        if ($('.dragthis li').length == 0 && state.todrag.length > 0) {
+            var itemToDrag = _.last(state.todrag);
+            $('.dragthis').append($('<li class="draggable">' + itemToDrag + '</li>'));
             $(".dragthis").sortable({
                 group: 'drop',
                 drop: false
@@ -1718,31 +2021,30 @@ var rpndragdropsortingmodule = function() {
     };
 
     var bindUiEvents = function() {
-        validationButton.click(function() {
-            if (datas.todrag.length > 0) {
-                rpnsequence.displayAlert(rpnsequence.getLabels().DragDropNotEmpty);
-            }
-            else {
-                _.each($('.droppable'), function(elem, idx) {
-                    var txts = [];
-                    $.each($(elem).find('li'), function(idx, txt) {
-                        txts.push($(txt).text());
-                    });
-                    responses[$(elem).find('lh').text()] = txts;
-                })
-                rpnsequence.handleEndOfModule(responses, function(res, sols) {
-                    var score = 0;
-                    _.map(sols, function(sol, drop) {
-                        score += _.intersection(res[drop], sol).length;
-                    });
-                    return score;
-                });
-            }
+
+    };
+    
+    var validate = function(){
+        _.each($('.droppable'), function(elem, idx) {
+            var txts = [];
+            $.each($(elem).find('li'), function(idx, txt) {
+                txts.push($(txt).text());
+            });
+            state[$(elem).find('span').text()] = txts;
+        });
+        
+        rpnsequence.handleEndOfModule(state, function(saved_state, sols) {
+            var score = 0;
+            _.map(sols, function(sol, drop) {
+                score += _.intersection(saved_state[drop], sol).length;
+            });
+            return score;
         });
     };
-
+    
     return {
-        init: init
+        init: init,
+        validate: validate
     };
 };
 //gapfull
@@ -1750,14 +2052,22 @@ var rpngapfullmodule = function() {
 
     var datas;
     var domelem;
-    var validationButton;
+    var gapfull;
+    var state;
 
-    var init = function(_datas, _domelem) {
+    var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
             sentence: "sentence not set!"
         });
         datas = _datas;
         domelem = _domelem;
+        
+        if(!_.isUndefined(_state)){
+            state=_state;
+        }else{
+            state=datas.sentence;
+        }
+        
         buildUi();
     };
 
@@ -1765,27 +2075,27 @@ var rpngapfullmodule = function() {
         domelem.addClass('gapfull');
 
         //build panel with sentence
-        domelem.append($('<p>' + datas.sentence + '</p><input type="text" id="gapfullresponse" class="rpnm_input form-control">'));
-        $('input',domelem).val(datas.sentence);
-
-        //build validation button
-        validationButton = rpnsequence.genericValidateButton();
-        domelem.append(validationButton);
+        domelem.append($('<p>' + datas.sentence + '</p><input type="text" class="rpnm_input form-control">'));
+        gapfull=$('.rpnm_input',domelem);
+        gapfull.val(state);
 
         bindUiEvents();
     };
 
     var bindUiEvents = function() {
-        validationButton.click(function() {
-            rpnsequence.handleEndOfModule($('input',domelem).val(), function(res, sol) {
-                //Try to trim and do automatic corrections here.
-                return res == sol ? 1 : 0;
-            });
+    };
+    
+    var validate = function(){
+        state=$('.rpnm_input',domelem).val();
+        rpnsequence.handleEndOfModule(state, function(saved_state, sol) {
+            //Try to trim and do automatic corrections here.
+            return saved_state == sol ? 1 : 0;
         });
     };
-
+    
     return {
-        init: init
+        init: init,
+        validate: validate
     };
 
 };
@@ -1794,12 +2104,11 @@ var rpngapsimplemodule = function() {
 
     var datas;
     var domelem;
-    var validationButton;
-    var responses;
     var ddmode;
     var maxfillength;
+    var state;
 
-    var init = function(_datas, _domelem) {
+    var init = function(_datas,_state, _domelem) {
         _.defaults(_datas, {
             tofill: "tofill not set!<b>Read</b> documentation please!"
         });
@@ -1807,13 +2116,16 @@ var rpngapsimplemodule = function() {
         datas = _datas;
         ddmode= !_.isUndefined(_datas.fillers);
         domelem = _domelem;
-        responses = [];
+        if(!_.isUndefined(_state)){
+            state=_state;
+        }else{
+            state=_.map($('b',datas.tofill),function(b,idx){return '';});
+        }
         buildUi();
     };
 
     var buildUi = function() {
         domelem.addClass('gapsimple');
-        var availableColors = _.shuffle(['primary', 'success', 'info', 'warning', 'danger']);
 
         if(ddmode){
             var toolbar = $('<div class="gapsimpleddtoolbar">');
@@ -1846,54 +2158,52 @@ var rpngapsimplemodule = function() {
         }
         
         //build panel with sentences
-        domelem.append($('<div id="sentences" class="form-inline">' + datas.tofill + '</div>'));
-        $.each($('#sentences b', domelem), function(idx, tofill) {
-            responses[idx] = -1; //initialize all responses to unmark
+        domelem.append($('<div class="form-inline">' + datas.tofill + '</div>'));
+        $.each($('b', domelem), function(idx, tofill) {
             var t = $(tofill);
             if(ddmode){
                 //add a white space for drag and drop
-                t.replaceWith($('<b class="gapsimpleddresponse">').append('<span>'+Array(maxfillength).join("_")+'</span>').sortable({
+                t.replaceWith($('<b class="gapsimpleddresponse">').append('<span class="'+(_.isEmpty(state[idx])?'':'draggable')+'">'+(_.isEmpty(state[idx])?Array(maxfillength).join("_"):state[idx])+'</span>').sortable({
                     group: 'drop',
                     itemSelector:'span',
                     containerSelector:'b',
                     vertical:false
                 }));
             }else{
-                t.replaceWith($('<input type="text" id="' + idx + '" class="rpnm_input gapsimple form-control"> <strong>(' + t.text() + ')</strong>'));    
+                t.replaceWith($('<input type="text" class="rpnm_input gapsimple form-control"> <strong>(' + t.text() + ')</strong>'));
+                $($('.rpnm_input',domelem)[idx]).val(state[idx]);
             }
             
         });
-        //build validation button
-        validationButton = rpnsequence.genericValidateButton();
-        domelem.append(validationButton);
 
         bindUiEvents();
     };
 
     var bindUiEvents = function() {
-        validationButton.click(function() {
-            if(ddmode){
-                _.each($('.gapsimpleddresponse',$('#sentences',domelem)),function(elem,idx){
-                    responses[idx] = $('.draggable',$(elem)).text();
-                });
-                
-            }else{
-                $.each($('.gapsimple',domelem), function(idx, gap) {
-                    responses[idx] = $(gap).val();
-                });
-            }
-            rpnsequence.handleEndOfModule(responses, function(res, sol) {
-                var score = 0;
-                _.each(sol, function(val, idx) {
-                    score += res[idx] == val ? 1 : 0;
-                });
-                return score;
+    };
+    
+    var validate = function(){
+        if(ddmode){
+            _.each($('.gapsimpleddresponse',domelem),function(elem,idx){
+                state[idx] = $('.draggable',$(elem)).text();
             });
+        }else{
+            $.each($('.gapsimple',domelem), function(idx, gap) {
+                state[idx] = $(gap).val();
+            });
+        }
+        rpnsequence.handleEndOfModule(state, function(saved_state, sol) {
+            var score = 0;
+            _.each(sol, function(val, idx) {
+                score += saved_state[idx] == val ? 1 : 0;
+            });
+            return score;
         });
     };
-
+    
     return {
-        init: init
+        init: init,
+        validate: validate
     };
 
 };
@@ -1902,19 +2212,26 @@ var rpnmarkermodule = function() {
 
     var datas;
     var domelem;
-    var selectedMarker;
-    var validationButton;
-    var responses;
+    var state;
 
-    var init = function(_datas, _domelem) {
+    var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
             markers: [],
-            tomark: ["fill tomark to feel good please!"]
+            tomark: ["fill tomark please!"]
         });
         datas = _datas;
         domelem = _domelem;
-        selectedMarker = -1;
-        responses = [];
+        
+        if(!_.isUndefined(_state)){
+            state=_state;
+        }else{
+            var availableColors = _.shuffle(['primary', 'success', 'info', 'warning', 'danger']);
+            state={
+                selectedMarker : '',
+                responses:_.map($('b',datas.tomark),function(b,idx){return '';}),
+                markers:_.map(datas.markers,function(m,idx){return { label:m,color:(availableColors[idx] || 'default')}})
+            };
+        }
         buildUi();
     };
 
@@ -1925,56 +2242,52 @@ var rpnmarkermodule = function() {
             'class': 'btn-group',
             'data-toggle': 'buttons'
         });
-        var availableColors = _.shuffle(['primary', 'success', 'info', 'warning', 'danger']);
-
-        toolbar.append($('<label class="btn btn-default active"><input type="radio" name="options" id="option1" autocomplete="off" checked><i class="glyphicon glyphicon-pencil"></i> ' + rpnsequence.getLabels().Eraser + '</label>').click(function() {
-            selectedMarker = -1;
-
+        
+        toolbar.append($('<label class="btn btn-default '+(state.selectedMarker==''?'active':'')+'"><input type="radio" name="options" autocomplete="off" '+(state.selectedMarker==''?'checked':'')+'><i class="glyphicon glyphicon-remove-sign"></i> ' + rpnsequence.getLabels().Eraser + '</label>').click(function() {
+            state.selectedMarker = '';
         }));
-        $.each(datas.markers, function(idx, marker) {
-            toolbar.append($('<label class="btn btn-' + (availableColors[idx] || 'default') + '"><input type="radio" name="options" id="option3" autocomplete="off"><i class="glyphicon glyphicon-pencil"></i> ' + marker + '</label>').click(function() {
-                selectedMarker = marker;
+        $.each(state.markers, function(idx, marker) {
+            toolbar.append($('<label class="btn btn-' +marker.color + ' '+(state.selectedMarker==marker.label?'active':'')+'"><input type="radio" name="options" autocomplete="off" '+(state.selectedMarker==marker.label?'checked':'')+'><i class="glyphicon glyphicon-pencil"></i> ' + marker.label + '</label>').click(function() {
+                state.selectedMarker = marker.label;
             }));
         });
         domelem.append(toolbar);
 
         //build panel with sentences
-        domelem.append($('<div id="sentences">' + datas.tomark + '</div>'));
-        $.each($('#sentences b', domelem), function(idx, tomark) {
-            responses[idx] = -1; //initialize all responses to unmark
+        domelem.append($('<div>' + datas.tomark + '</div>'));
+        $.each($('b', domelem), function(idx, tomark) {
             var t = $(tomark);
+            if(!_.isEmpty(state.responses[idx])){
+                t.addClass('marker-'+_.findWhere(state.markers,{label:state.responses[idx]}).color);
+            }
             t.css('cursor', 'pointer').click(function() {
                 t.removeClass();
-                if (selectedMarker != -1) {
-                    t.addClass('marker-' + availableColors[_.indexOf(datas.markers,selectedMarker)]);
+                if (state.selectedMarker != '') {
+                    t.addClass('marker-' + _.findWhere(state.markers,{label:state.selectedMarker}).color);
                 }
-                responses[idx] = selectedMarker;
+                state['responses'][idx] = state.selectedMarker;
             });
         });
-        //build validation button
-        validationButton = $('<button>', {
-            'class': 'btn btn-primary',
-            text: ' ' + rpnsequence.getLabels().Validate
-        }).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
-        domelem.append(validationButton);
 
         bindUiEvents();
     };
 
     var bindUiEvents = function() {
-        validationButton.click(function() {
-            rpnsequence.handleEndOfModule(responses, function(res, sol) {
-                var score = 0;
-                _.each(sol, function(val, idx) {
-                    score += res[idx] == val ? 1 : 0;
-                });
-                return score;
+    };
+    
+    var validate = function(){
+        rpnsequence.handleEndOfModule(state, function(saved_state,sol) {
+            var score = 0;
+            _.each(sol, function(val, idx) {
+                score += saved_state.responses[idx] == val ? 1 : 0;
             });
+            return score;
         });
     };
-
+    
     return {
-        init: init
+        init: init,
+        validate: validate
 
     };
 };
@@ -1983,10 +2296,9 @@ var rpnmqcmodule = function() {
 
     var datas;
     var domelem;
-    var validationButton;
-    var responses;
+    var state;
 
-    var init = function(_datas, _domelem) {
+    var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
             questions: ["No questions!"],
             answers: ["As no answers"]
@@ -1994,7 +2306,13 @@ var rpnmqcmodule = function() {
 
         datas = _datas;
         domelem = _domelem;
-        responses = [];
+        if(!_.isUndefined(_state)){
+            state=_state;
+        }else{
+            state={
+                responses:_.map(datas.questions,function(q,idx){return'';})
+            };
+        }
         buildUi();
     };
 
@@ -2006,13 +2324,12 @@ var rpnmqcmodule = function() {
             'class': 'list-unstyled'
         });
         $.each(datas.questions, function(idq, question) {
-            responses[idq] = -1; //initialize all responses to uncheck
             var li = $('<li>');
             li.append($('<p>' + question + '</p>'));
             var answerGroup = $('<div class="btn-group" data-toggle="buttons">');
             $.each(datas.answers, function(ida, answer) {
-                answerGroup.append($('<label class="btn btn-default"><input type="radio" name="question_' + idq + '" id="answer_' + idq + '_' + ida + '" autocomplete="off">' + answer + '</label>').click(function() {
-                    responses[idq] = answer;
+                answerGroup.append($('<label class="btn btn-default '+((!_.isEmpty(state.responses[idq])&&state.responses[idq]==answer)?'active':'')+'"><input type="radio" autocomplete="off" '+((!_.isEmpty(state.responses[idq])&&state.responses[idq]==answer)?'checked':'')+'>' + answer + '</label>').click(function() {
+                    state.responses[idq] = answer;
                 }));
                 li.append(answerGroup);
             });
@@ -2020,32 +2337,30 @@ var rpnmqcmodule = function() {
         });
         domelem.append(uilist);
 
-        //build validation button
-        validationButton = rpnsequence.genericValidateButton();
-        domelem.append(validationButton);
-
         bindUiEvents();
     };
 
     var bindUiEvents = function() {
-        validationButton.click(function() {
-            rpnsequence.handleEndOfModule(responses, function(res, sol) {
-                var score = 0;
-                _.each(sol, function(val, idx) {
-                    score += res[idx] == val ? 1 : 0;
-                });
-                return score;
+    };
+    
+    var validate = function(){
+        rpnsequence.handleEndOfModule(state, function(saved_state, sol) {
+            var score = 0;
+            _.each(sol, function(val, idx) {
+                score += saved_state.responses[idx] == val ? 1 : 0;
             });
+            return score;
         });
     };
-
+    
     return {
-        init: init
+        init: init,
+        validate: validate
     };
 
 };
 /*!
- * rpnmodule v0.0.1 (https://github.com/golayp/rpnmodule)
+ * rpnmodule v0.0.3 (https://github.com/golayp/rpnmodule)
  * 
  * Dependencies: jquery 2.1.1, bootstrap 3.3.1, underscore 1.7.0
  * 
@@ -2059,23 +2374,28 @@ var rpnsequence = (function() {
     var source;
     var solurl;
     var backurl;
-    var responses;
+    var states;
     var warnexit;
     var sequenceendHandler;
     var moduleendHandler;
     var mediapathHandler;
     var alertModal;
     var domelem;
+    var validationButton;
     var navigationEnabled;
     var debug;
+    var selectedLabels;
+    var modules;
+
     var labels = {
         en: {
             Recall: "Recall",
             Order: "Order",
             Warning: "Warning",
             BeforeUnloadMsg: "Module running!",
-            Wait: "Wait please...",
-            Validate: "Validate",
+            Wait: "Please wait...",
+            Validate: "Next module",
+            EndSequence:"End",
             Eraser: "Eraser",
             DragDropNotEmpty: "There are still some items to sort!",
             CardMazeNotEnded: "You have not finished the maze!",
@@ -2089,7 +2409,8 @@ var rpnsequence = (function() {
             Warning: "Attention",
             BeforeUnloadMsg: "Exercice en cours!",
             Wait: "Veuillez patienter...",
-            Validate: "Valider",
+            Validate: "Exercice suivant",
+            EndSequence:"Terminer",
             Eraser: "Effaceur",
             DragDropNotEmpty: "Il y a encore des éléments à trier!",
             CardMazeNotEnded: "Vous n'avez pas terminé le labyrinthe!",
@@ -2098,8 +2419,6 @@ var rpnsequence = (function() {
             BlackboxView: "Boîte noire"
         }
     };
-    var selectedLabels;
-
 
     var init = function(opts) {
         if (_.isUndefined(opts)) {
@@ -2108,6 +2427,7 @@ var rpnsequence = (function() {
         _.defaults(opts, {
             sequrl: "seq.json",
             solurl: "sol.json",
+            stateurl:"sta.json",
             returnurl: "../",
             warnonexit: false,
             domelem: $('body'),
@@ -2121,7 +2441,8 @@ var rpnsequence = (function() {
             navigationEnabled: false
         });
         selectedLabels = labels[opts.language];
-        responses = [];
+        states = [];
+        modules=[];
         warnexit = opts.warnonexit;
         backurl = opts.returnurl;
         solurl = opts.solurl;
@@ -2142,17 +2463,33 @@ var rpnsequence = (function() {
             });
             currentmod = 0;
             navigationEnabled = opts.navigationEnabled && sequencedatas.modules.length > 1;
-            buildUi();
+            $.getJSON(opts.stateurl,function(savedStates){
+                states=_.map(sequencedatas.modules,function(mod,idx){return { state:savedStates.states[idx],correctionFct:undefined};});
+                buildUi();
+            }).error(function() {
+                states=_.map(sequencedatas.modules,function(mod,idx){return { state:undefined,correctionFct:undefined};});
+                buildUi();
+            });
+            
         });
     };
 
     var buildUi = function() {
-        domelem.append($('<div class="container" id="rpnm"><div class="row page-header"><div class="col-md-8"><h1 id="rpnm_seq_title"></h1></div><div class="col-md-4"><nav id="rpnm_modulenav"><ul class="pagination pagination-sm"></ul></nav></div></div><div class="row"><div class="col-md-12"><h2 id="rpnm_title"></h2><h3 id="rpnm_context"></h3><h4 id="rpnm_directive"></h4></div></div><div class="row"><div id="rpnm_module_content" class="col-md-12"></div></div></div><div class="container"><div class="row"><div class="col-md-12"><em id="rpnm_source" class="pull-right"></em></div></div>'));
+        domelem.append($('<div class="container" id="rpnm"></div>').append([
+            $('<div class="row page-header"><div class="col-md-8"><h1 id="rpnm_seq_title"></h1></div><div class="col-md-4"><nav id="rpnm_modulenav"><ul class="pagination pagination-sm"></ul></nav></div></div>'),
+            $('<div class="row"><div class="col-md-12"><h2 id="rpnm_title"></h2><h3 id="rpnm_context"></h3><h4 id="rpnm_directive"></h4></div></div>'),
+            $('<div class="row"><div id="rpnm_module_content" class="col-md-12"></div></div>'),
+            $('<div class="row"><div class="col-md-12"><em id="rpnm_source" class="pull-right"></em></div></div>'),
+            $('<div class="row"><div class="col-md-12"><button id="rpnm_validation" class="btn btn-primary pull-right"></button></div></div>'),
+            ]));
+            
+        
         domelem.append($('<div id="rpnm_recall_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-bell"></i> ' + selectedLabels.Recall + '</h4></div><div class="modal-body"></div></div></div></div>'));
         domelem.append($('<div id="rpnm_order_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-question-sign"></i> ' + selectedLabels.Order + '</h4></div><div class="modal-body"></div></div></div></div>'));
         domelem.append($('<div id="rpnm_alert_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-warning-sign"></i> ' + selectedLabels.Warning + '</h4></div><div class="modal-body"></div></div></div></div>'));
         domelem.append($('<div id="rpnm_wait_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">' + selectedLabels.Wait + '</h4></div><div class="modal-body"><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% completed</span></div></div></div></div></div></div>'));
         $('#rpnm_seq_title').html(sequencedatas.title);
+        validationButton=$('#rpnm_validation');
         source = $('#rpnm_source');
         mainContent = $('#rpnm_module_content');
         alertModal = $('#rpnm_alert_modal');
@@ -2160,42 +2497,48 @@ var rpnsequence = (function() {
             $('#rpnm_modulenav').remove();
         }
 
-        _.each(sequencedatas.modules, function(elem, idx) {
+        _.each(sequencedatas.modules, function(modData, idx) {
             var div = $('<div class="rpnm_instance" id="rpnm_inst_' + idx + '">');
             mainContent.append(div);
-            if (elem.type == 'marker') {
-                rpnmarkermodule().init(elem, div);
+            if(_.isNull(states[idx]).state){
+                _.isNull(states[idx]).state=undefined;
             }
-            else if (elem.type == 'mqc') {
-                rpnmqcmodule().init(elem, div);
+            if (modData.type == 'marker') {
+                modules[idx]=rpnmarkermodule();
+                modules[idx].init(modData,states[idx].state, div);
             }
-            else if (elem.type == 'gapsimple') {
-                rpngapsimplemodule().init(elem, div);
+            else if (modData.type == 'mqc') {
+                modules[idx]=rpnmqcmodule();
+                modules[idx].init(modData,states[idx].state, div);
             }
-            else if (elem.type == 'gapfull') {
-                rpngapfullmodule().init(elem, div);
+            else if (modData.type == 'gapsimple') {
+                modules[idx]=rpngapsimplemodule();
+                modules[idx].init(modData,states[idx].state, div);
             }
-            else if (elem.type == 'clock') {
-                rpnclockmodule().init(elem, div);
+            else if (modData.type == 'gapfull') {
+                modules[idx]=rpngapfullmodule();
+                modules[idx].init(modData,states[idx].state, div);
             }
-            else if (elem.type == 'blackbox') {
-                rpnblackboxmodule().init(elem, div);
+            else if (modData.type == 'clock') {
+                modules[idx]=rpnclockmodule();
+                modules[idx].init(modData,states[idx].state, div);
             }
-            else if (elem.type == 'dragdropsorting') {
-                rpndragdropsortingmodule().init(elem, div);
+            else if (modData.type == 'blackbox') {
+                modules[idx]=rpnblackboxmodule();
+                modules[idx].init(modData,states[idx].state, div);
             }
-            else if (elem.type == 'cardmaze') {
-                rpncardmazemodule().init(elem, div);
+            else if (modData.type == 'dragdropsorting') {
+                modules[idx]=rpndragdropsortingmodule();
+                modules[idx].init(modData,states[idx].state, div);
+            }
+            else if (modData.type == 'cardmaze') {
+                modules[idx]=rpncardmazemodule();
+                modules[idx].init(modData,states[idx].state, div);
             }
             div.hide();
-
-            //navigation
-            if (navigationEnabled && sequencedatas.modules.length > 1) {
-                $('#rpnm_modulenav ul').append($('<li><a href="#">' + (idx + 1) + '</a></li>').click(function() {
-                    currentmod = idx;
-                    displayCurrentModule();
-                }));
-            }
+            div.disableSelection();
+            $('#rpnm_modulenav ul').append($('<li><a href="#">' + (idx + 1) + '</a></li>'));
+            
         });
 
         if (warnexit) {
@@ -2203,8 +2546,32 @@ var rpnsequence = (function() {
                 return selectedLabels.BeforeUnloadMsg;
             });
         }
+        bindUiEvents();
         displayCurrentModule();
     };
+    
+    var bindUiEvents = function() {
+        //Validation
+        validationButton.click(function(){
+            modules[currentmod].validate();
+            if(currentmod==sequencedatas.modules.length-1){
+                handleEndOfSequence();
+            }else{
+                currentmod++;
+                displayCurrentModule();
+            }
+        });
+        //Navigation
+        if (navigationEnabled && sequencedatas.modules.length > 1) {
+            _.each($('#rpnm_modulenav ul li'),function(nav,idx){
+                $(nav).click(function() {
+                    modules[currentmod].validate();
+                    currentmod = idx;
+                    displayCurrentModule();
+                });
+            });
+        }
+     }
 
     var displayCurrentModule = function() {
         $('#rpnm_wait_modal').modal('show');
@@ -2222,39 +2589,13 @@ var rpnsequence = (function() {
             $('#rpnm_modulenav ul li').removeClass('active');
             $($('#rpnm_modulenav ul li')[currentmod]).addClass('active');
         }
-        if (moduleDatas.status != 'ended') {
-            moduleDiv.show();
+        if(currentmod==sequencedatas.modules.length-1){
+            validationButton.html('<i class="glyphicon glyphicon glyphicon-ok-circle"></i> '+selectedLabels.EndSequence).removeClass("btn-primary").addClass("btn-success");
+        }else{
+            validationButton.html('<i class="glyphicon glyphicon-ok"></i> '+selectedLabels.Validate).removeClass("btn-success").addClass("btn-primary");
         }
-        else {
-            //module already ended... try another one or finish the sequence
-            currentmod = nextNotEndedModuleIdx();
-            if (currentmod >= 0) {
-                displayCurrentModule();
-            }
-            else {
-                handleEndOfSequence();
-            }
-        }
-
+        moduleDiv.show();
         $('#rpnm_wait_modal').modal('hide');
-    };
-
-    var nextNotEndedModuleIdx = function() {
-        var nextNotEnded = _.find(sequencedatas.modules, function(mod, idx) {
-            return mod.status != 'ended' && idx >= currentmod;
-        });
-        var previousNotEnded = _.find(sequencedatas.modules, function(mod, idx) {
-            return mod.status != 'ended' && idx < currentmod;;
-        });
-        if (!_.isUndefined(nextNotEnded)) {
-            return _.indexOf(sequencedatas.modules, nextNotEnded);
-        }
-        else if (!_.isUndefined(previousNotEnded)) {
-            return _.indexOf(sequencedatas.modules, previousNotEnded);
-        }
-        else {
-            return -1;
-        }
     };
 
     var bindModuleSharedDatas = function(datas) {
@@ -2279,40 +2620,28 @@ var rpnsequence = (function() {
         source.html(_.isUndefined(datas.sources) ? "" : (selectedLabels.Sources + ": " + datas.sources));
     };
 
-    var handleEndOfModule = function(res, correctionFct) {
+    var handleEndOfModule = function(state, correctionFct) {
+        $('#rpnm_wait_modal').modal('show');
         log('End of module');
         //store result locally
-        responses[currentmod] = {
-            responses: res,
+        states[currentmod] = {
+            state:state,
             correctionFct: correctionFct
         };
+        moduleendHandler({states:_.map(states,function(sta){return sta.state;})});
         //Save status of module
         sequencedatas.modules[currentmod].status = 'ended';
-        //disable navigation
-        if (navigationEnabled) {
-            $($('#rpnm_modulenav ul li')[currentmod]).unbind("click").addClass('disabled')
-        };
-
-
-        $('#rpnm_wait_modal').modal('show');
-        currentmod = nextNotEndedModuleIdx();
-        moduleendHandler(res);
-        if (_.isUndefined(sequencedatas.modules[currentmod])) {
-            handleEndOfSequence();
-        }
-        else {
-            displayCurrentModule();
-        }
+        
     };
 
     var handleEndOfSequence = function() {
         log('End of sequence');
-        sequenceendHandler(responses);
+        sequenceendHandler(states);
         //retrieve solutions and use correction function to make score
         $.getJSON(solurl, function(ssol) {
             var score = 0;
             _.each(ssol.solutions, function(sol, idx) {
-                score += _.isUndefined(responses[idx]) ? 0 : responses[idx].correctionFct(responses[idx].responses, sol);
+                score += _.isUndefined(states[idx]) ? 0 : states[idx].correctionFct(states[idx].state, sol);
             });
             log('Calculated total score for sequence ' + score);
             if (warnexit) {
@@ -2320,14 +2649,6 @@ var rpnsequence = (function() {
             }
             window.location = backurl;
         });
-    };
-
-    var genericValidateButton = function(label) {
-        label = _.isUndefined(label) ? selectedLabels.Validate : label;
-        return $('<button>', {
-            'class': 'btn btn-primary',
-            text: ' ' + selectedLabels.Validate
-        }).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
     };
 
     var displayAlert = function(text, onclose) {
@@ -2360,50 +2681,57 @@ var rpnsequence = (function() {
     var getLabels = function() {
         return selectedLabels;
     };
+    
     var addvalidation = function(inputs,validationoptions){
         _.defaults(validationoptions,{
             mode:"lock",
             type:"integer"
         });
-        _.each(inputs,function(input,idx){
-            $(input).on('keyup change paste',function(){
-                 // store current positions in variables
-                var inp=$(input);
-                inp.val(inp.val().trim());
-                if(validationoptions.mode=='lock'){
-                    var start = inp[0].selectionStart,
-                    end = inp[0].selectionEnd;
-                    if(validationoptions.type='integer'){
-                        var val=/(\d+)/.exec(inp.val());
-                        if(val=='' || val==null){
-                            inp.val('');
-                        }else{
-                            inp.val(parseInt(val));
-                        }
-                    }
-                    inp[0].setSelectionRange(start, end);
-                }else if(validationoptions.mode=='display'){
-                    if(validationoptions.type='integer'){
-                        if(!$.isNumeric(inp.val())){
-                            inp.tooltip({title:'integer needed'});
-                            inp.tooltip('show');
-                        }else{
-                            inp.tooltip('destroy');
-                        }
+        //prevent copy paste cut
+        $(inputs).bind("cut copy paste",function(e) {
+            e.preventDefault();
+        });
+        if(validationoptions.mode=='lock'){
+            $(inputs).keydown(function(e){
+                if(validationoptions.type=='integer'){
+                    /*Authorize:
+                    backspace, tab, shift, arrow-left, arrow-right, delete, 
+                    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 
+                    numpad-0, numpad-1, numpad-2, numpad-3, numpad-4, numpad-5, numpad-6, numpad-7, numpad-8, numpad-9, 
+                    subtract, dash*/
+                    //if subtract or dash try to know if we're at the begining of the input
+                    if(!_.contains([8,9,16,37,39,46,48,49,50,51,52,53,54,55,56,57,96,97,98,99,100,101,102,103,104,105,109,189],e.keyCode) || ((e.keyCode==109 || e.keyCode==189) && $(this).getSelection().start!=0)){
+                        log(e.keyCode);
+                        e.preventDefault();    
                     }
                 }
+            });
+            $(inputs).keyup(function(){
                 
             });
-        });
+            $(inputs).change(function(){
+                if(validationoptions.type=='integer'){
+                    var val=/(^-?[1-9]\d*)/.exec($(this).val());
+                    if(val=='' || val==null){
+                        $(this).val('');
+                    }else{
+                        $(this).val(parseInt(val));
+                    }
+                }
+            });
+        }else{
+            
+        }
+        
     };
+    
     return {
         init: init,
         buildUi: buildUi,
         handleEndOfModule: handleEndOfModule,
-        genericValidateButton: genericValidateButton,
         displayAlert: displayAlert,
         log: log,
         getLabels: getLabels,
-        addvalidation:addvalidation
+        addvalidation: addvalidation
     };
 })();

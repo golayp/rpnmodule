@@ -3,7 +3,6 @@ var rpnmqcmodule = function() {
 
     var datas;
     var domelem;
-    var validationButton;
     var state;
 
     var init = function(_datas, _state, _domelem) {
@@ -45,27 +44,25 @@ var rpnmqcmodule = function() {
         });
         domelem.append(uilist);
 
-        //build validation button
-        validationButton = rpnsequence.genericValidateButton();
-        domelem.append(validationButton);
-
         bindUiEvents();
     };
 
     var bindUiEvents = function() {
-        validationButton.click(function() {
-            rpnsequence.handleEndOfModule(state, function(saved_state, sol) {
-                var score = 0;
-                _.each(sol, function(val, idx) {
-                    score += saved_state.responses[idx] == val ? 1 : 0;
-                });
-                return score;
+    };
+    
+    var validate = function(){
+        rpnsequence.handleEndOfModule(state, function(saved_state, sol) {
+            var score = 0;
+            _.each(sol, function(val, idx) {
+                score += saved_state.responses[idx] == val ? 1 : 0;
             });
+            return score;
         });
     };
-
+    
     return {
-        init: init
+        init: init,
+        validate: validate
     };
 
 };

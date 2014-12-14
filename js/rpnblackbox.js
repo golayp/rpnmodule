@@ -3,7 +3,6 @@ var rpnblackboxmodule = function() {
 
     var datas;
     var domelem;
-    var validationButton;
     var shuffle;
     var toggleViewButton;
     var state;
@@ -263,7 +262,11 @@ var rpnblackboxmodule = function() {
             operation: "x1",
             left: [1],
             right: [1],
-            shuffle: false
+            shuffle: false,
+            validation:{
+                mode:"lock",
+                type:"integer"
+            }
         });
         datas = _datas;
         domelem = _domelem;
@@ -320,13 +323,6 @@ var rpnblackboxmodule = function() {
             text: ' ' + rpnsequence.getLabels().BlackboxTableView
         }).prepend($('<i class="glyphicon glyphicon-resize-small"></i>'));
         domelem.append($('<p class="text-center"></p>').append(toggleViewButton));
-
-        //build validation button
-        if(!_.isUndefined(datas.validation)){
-            validationButton = rpnsequence.genericValidateButton();
-        }
-        
-        domelem.append(validationButton);
         bindUiEvents();
     };
 
@@ -349,29 +345,29 @@ var rpnblackboxmodule = function() {
         
         //Input validation
         rpnsequence.addvalidation($('.rpnm_input',domelem),datas.validation);
-        
-        //Validation
-        validationButton.click(function() {
-            $.each($('.rpnm_input', domelem), function(idx, gap) {
-                state[idx].response = $(gap).val();
-            });
+    };
+    
+    var validate = function(){
+         $.each($('.rpnm_input', domelem), function(idx, gap) {
+            state[idx].response = $(gap).val();
+        });
 
-            rpnsequence.handleEndOfModule(state, function(saved_state, sol) {
-                var score = 0;
-                
-                _.each(sol.right, function(val, idx) {
-                    score+=(_.findWhere(saved_state, {position: "right", originalposition: idx}).response==val?1:0);
-                });
-                _.each(sol.left, function(val, idx) {
-                    score+=(_.findWhere(saved_state, {position: "left", originalposition: idx}).response==val?1:0);
-                });
-                return {state:state,score:score};
+        rpnsequence.handleEndOfModule(state, function(saved_state, sol) {
+            var score = 0;
+            
+            _.each(sol.right, function(val, idx) {
+                score+=(_.findWhere(saved_state, {position: "right", originalposition: idx}).response==val?1:0);
             });
+            _.each(sol.left, function(val, idx) {
+                score+=(_.findWhere(saved_state, {position: "left", originalposition: idx}).response==val?1:0);
+            });
+            return score;
         });
     };
-
+    
     return {
-        init: init
+        init: init,
+        validate:validate
     };
 
 };

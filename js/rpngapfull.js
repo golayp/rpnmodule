@@ -4,7 +4,6 @@ var rpngapfullmodule = function() {
     var datas;
     var domelem;
     var gapfull;
-    var validationButton;
     var state;
 
     var init = function(_datas, _state, _domelem) {
@@ -30,26 +29,24 @@ var rpngapfullmodule = function() {
         domelem.append($('<p>' + datas.sentence + '</p><input type="text" class="rpnm_input form-control">'));
         gapfull=$('.rpnm_input',domelem);
         gapfull.val(state);
-        
-        //build validation button
-        validationButton = rpnsequence.genericValidateButton();
-        domelem.append(validationButton);
 
         bindUiEvents();
     };
 
     var bindUiEvents = function() {
-        validationButton.click(function() {
-            state=$('.rpnm_input',domelem).val();
-            rpnsequence.handleEndOfModule(state, function(saved_state, sol) {
-                //Try to trim and do automatic corrections here.
-                return saved_state == sol ? 1 : 0;
-            });
+    };
+    
+    var validate = function(){
+        state=$('.rpnm_input',domelem).val();
+        rpnsequence.handleEndOfModule(state, function(saved_state, sol) {
+            //Try to trim and do automatic corrections here.
+            return saved_state == sol ? 1 : 0;
         });
     };
-
+    
     return {
-        init: init
+        init: init,
+        validate: validate
     };
 
 };

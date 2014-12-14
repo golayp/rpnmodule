@@ -3,7 +3,6 @@ var rpncardmazemodule = function() {
 
     var datas;
     var domelem;
-    var validationButton;
     var currentHead;
     var height;
     var width;
@@ -48,9 +47,6 @@ var rpncardmazemodule = function() {
             }
 
         });
-        //build validation button
-        validationButton = rpnsequence.genericValidateButton();
-        domelem.append(validationButton);
         bindUiEvents();
         _.each(state,function(val,idx){
             $($('.card')[val]).trigger('click');
@@ -116,25 +112,23 @@ var rpncardmazemodule = function() {
                 }
             });
         });
-        validationButton.click(function() {
-            if (!$(snake[snake.length - 1]).hasClass('end')) {
-                rpnsequence.displayAlert(rpnsequence.getLabels().CardMazeNotEnded);
-            } else {
-                _.each(snake,function(card,idx){
-                    state[idx]=$(card).data("cardId");
-                });
-                rpnsequence.handleEndOfModule(state, function(saved_state, sol) {
-                    var score = 0;
-                    _.each(sol, function(cardIdx, idx) {
-                        score += (saved_state[idx] == cardIdx ? 1 : 0);
-                    })
-                    return score;
-                });
-            }
+    };
+    
+    var validate = function(){
+        _.each(snake,function(card,idx){
+            state[idx]=$(card).data("cardId");
+        });
+        rpnsequence.handleEndOfModule(state, function(saved_state, sol) {
+            var score = 0;
+            _.each(sol, function(cardIdx, idx) {
+                score += (saved_state[idx] == cardIdx ? 1 : 0);
+            })
+            return score;
         });
     };
-
+    
     return {
-        init: init
+        init: init,
+        validate: validate
     };
 };

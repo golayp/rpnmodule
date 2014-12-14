@@ -3,13 +3,12 @@ var rpnmarkermodule = function() {
 
     var datas;
     var domelem;
-    var validationButton;
     var state;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
             markers: [],
-            tomark: ["fill tomark to feel good please!"]
+            tomark: ["fill tomark please!"]
         });
         datas = _datas;
         domelem = _domelem;
@@ -60,30 +59,26 @@ var rpnmarkermodule = function() {
                 state['responses'][idx] = state.selectedMarker;
             });
         });
-        //build validation button
-        validationButton = $('<button>', {
-            'class': 'btn btn-primary',
-            text: ' ' + rpnsequence.getLabels().Validate
-        }).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
-        domelem.append(validationButton);
 
         bindUiEvents();
     };
 
     var bindUiEvents = function() {
-        validationButton.click(function() {
-            rpnsequence.handleEndOfModule(state, function(saved_state,sol) {
-                var score = 0;
-                _.each(sol, function(val, idx) {
-                    score += saved_state.responses[idx] == val ? 1 : 0;
-                });
-                return score;
+    };
+    
+    var validate = function(){
+        rpnsequence.handleEndOfModule(state, function(saved_state,sol) {
+            var score = 0;
+            _.each(sol, function(val, idx) {
+                score += saved_state.responses[idx] == val ? 1 : 0;
             });
+            return score;
         });
     };
-
+    
     return {
-        init: init
+        init: init,
+        validate: validate
 
     };
 };

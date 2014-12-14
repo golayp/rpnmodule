@@ -1,5 +1,5 @@
 <h1>rpnmodule</h1>
-<strong>v0.0.2</strong>
+<strong>v0.0.3</strong>
 <p>rpnmodule is a project aiming to provide a base library for running educational sequences of modules. It'll provide common features for 8 base module types (maybe more in the future) that can be arranged in a sequence of work:</p>
 <p>As the project evolves the main module in the library is rpnsequence, but project name is still rpnmodule... Sorry for confusion!!!!</p>
 <h2>Dependencies</h2>
@@ -26,8 +26,8 @@
     <li>returnurl - the url launched at end of sequence. Default: ..</li>
     <li>warnonexit - do the module sequence has to display a waring message (html onbeforeunload classic warning)? default: false</li>
     <li>domelem - the element where to add sequence. default: $('body')</li>
-    <li>onsequenceend - default: an empty function</li>
-    <li>onmoduleend - default: an empty function</li>
+    <li>onsequenceend (states) - handler called on end of sequence , receive states as parameter. Default: an empty function</li>
+    <li>onmoduleend (states)-  handler called on end of each module , receive states as parameter. Default: an empty function</li>
     <li>mediapathformatter - a function to update media paths. default: function(val){return 'medias/'+val;}</li>
     <li>language - which language to use for labels? Default:fr available: fr,en</li>
     <li>debug - add some console output. default: false</li>
@@ -35,16 +35,16 @@
 </ul>
 
 <h2>default sequence datas</h2>
-By default a sequence json datas has to handle thoses values:
+By default a sequence json datas has to handle these values:
 <ul>
-    <li>title - the sequence title display along all modules on top of them (first level title)</li>
+    <li>title - the sequence title displayed along all modules on top of them (first level title)</li>
     <li>modules - a list of modules to display</li>
 </ul>
     
 <h2>module shared datas</h2>
 <ul>
     <li>type - the type of the module itself choose: blackbox|cardmaze|clock|dragdropsorting|gapfull|gapsimple|marker|mqc</li>
-    <li>title - a title diplay on top of module (second level title)</li>
+    <li>title - a title diplayed on top of module (second level title)</li>
     <li>context - a context short description (third level title)</li>
     <li>directive - a directive (fourth level title)</li>
     <li>recall - a recall for student (displayed actually as a modal dialog toggled by a link)</li>

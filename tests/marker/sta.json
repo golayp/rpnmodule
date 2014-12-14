@@ -1,5 +1,13 @@
 {
     "states":[
-        {"selectedMarker":"marker3","responses":["marker1","","marker3","","marker3",""],"markers":[{"label":"marker1","color":"primary"},{"label":"marker2","color":"success"},{"label":"marker3","color":"warning"}]}
+        {
+            "selectedMarker":"marker3",
+            "responses":["marker1","","marker3","","marker3",""],
+            "markers":[
+                {"label":"marker1","color":"primary"},
+                {"label":"marker2","color":"success"},
+                {"label":"marker3","color":"warning"}
+            ]
+        }
     ]
 }

@@ -1,5 +1,5 @@
 /*!
- * rpnmodule v0.0.1 (https://github.com/golayp/rpnmodule)
+ * rpnmodule v0.0.3 (https://github.com/golayp/rpnmodule)
  * 
  * Dependencies: jquery 2.1.1, bootstrap 3.3.1, underscore 1.7.0
  * 
@@ -20,9 +20,11 @@ var rpnsequence = (function() {
     var mediapathHandler;
     var alertModal;
     var domelem;
+    var validationButton;
     var navigationEnabled;
     var debug;
     var selectedLabels;
+    var modules;
 
     var labels = {
         en: {
@@ -31,7 +33,8 @@ var rpnsequence = (function() {
             Warning: "Warning",
             BeforeUnloadMsg: "Module running!",
             Wait: "Please wait...",
-            Validate: "Validate",
+            Validate: "Next module",
+            EndSequence:"End",
             Eraser: "Eraser",
             DragDropNotEmpty: "There are still some items to sort!",
             CardMazeNotEnded: "You have not finished the maze!",
@@ -45,7 +48,8 @@ var rpnsequence = (function() {
             Warning: "Attention",
             BeforeUnloadMsg: "Exercice en cours!",
             Wait: "Veuillez patienter...",
-            Validate: "Valider",
+            Validate: "Exercice suivant",
+            EndSequence:"Terminer",
             Eraser: "Effaceur",
             DragDropNotEmpty: "Il y a encore des éléments à trier!",
             CardMazeNotEnded: "Vous n'avez pas terminé le labyrinthe!",
@@ -77,6 +81,7 @@ var rpnsequence = (function() {
         });
         selectedLabels = labels[opts.language];
         states = [];
+        modules=[];
         warnexit = opts.warnonexit;
         backurl = opts.returnurl;
         solurl = opts.solurl;
@@ -109,12 +114,21 @@ var rpnsequence = (function() {
     };
 
     var buildUi = function() {
-        domelem.append($('<div class="container" id="rpnm"><div class="row page-header"><div class="col-md-8"><h1 id="rpnm_seq_title"></h1></div><div class="col-md-4"><nav id="rpnm_modulenav"><ul class="pagination pagination-sm"></ul></nav></div></div><div class="row"><div class="col-md-12"><h2 id="rpnm_title"></h2><h3 id="rpnm_context"></h3><h4 id="rpnm_directive"></h4></div></div><div class="row"><div id="rpnm_module_content" class="col-md-12"></div></div></div><div class="container"><div class="row"><div class="col-md-12"><em id="rpnm_source" class="pull-right"></em></div></div>'));
+        domelem.append($('<div class="container" id="rpnm"></div>').append([
+            $('<div class="row page-header"><div class="col-md-8"><h1 id="rpnm_seq_title"></h1></div><div class="col-md-4"><nav id="rpnm_modulenav"><ul class="pagination pagination-sm"></ul></nav></div></div>'),
+            $('<div class="row"><div class="col-md-12"><h2 id="rpnm_title"></h2><h3 id="rpnm_context"></h3><h4 id="rpnm_directive"></h4></div></div>'),
+            $('<div class="row"><div id="rpnm_module_content" class="col-md-12"></div></div>'),
+            $('<div class="row"><div class="col-md-12"><em id="rpnm_source" class="pull-right"></em></div></div>'),
+            $('<div class="row"><div class="col-md-12"><button id="rpnm_validation" class="btn btn-primary pull-right"></button></div></div>'),
+            ]));
+            
+        
         domelem.append($('<div id="rpnm_recall_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-bell"></i> ' + selectedLabels.Recall + '</h4></div><div class="modal-body"></div></div></div></div>'));
         domelem.append($('<div id="rpnm_order_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-question-sign"></i> ' + selectedLabels.Order + '</h4></div><div class="modal-body"></div></div></div></div>'));
         domelem.append($('<div id="rpnm_alert_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-warning-sign"></i> ' + selectedLabels.Warning + '</h4></div><div class="modal-body"></div></div></div></div>'));
         domelem.append($('<div id="rpnm_wait_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">' + selectedLabels.Wait + '</h4></div><div class="modal-body"><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% completed</span></div></div></div></div></div></div>'));
         $('#rpnm_seq_title').html(sequencedatas.title);
+        validationButton=$('#rpnm_validation');
         source = $('#rpnm_source');
         mainContent = $('#rpnm_module_content');
         alertModal = $('#rpnm_alert_modal');
@@ -125,39 +139,45 @@ var rpnsequence = (function() {
         _.each(sequencedatas.modules, function(modData, idx) {
             var div = $('<div class="rpnm_instance" id="rpnm_inst_' + idx + '">');
             mainContent.append(div);
+            if(_.isNull(states[idx]).state){
+                _.isNull(states[idx]).state=undefined;
+            }
             if (modData.type == 'marker') {
-                rpnmarkermodule().init(modData,states[idx].state, div);
+                modules[idx]=rpnmarkermodule();
+                modules[idx].init(modData,states[idx].state, div);
             }
             else if (modData.type == 'mqc') {
-                rpnmqcmodule().init(modData,states[idx].state, div);
+                modules[idx]=rpnmqcmodule();
+                modules[idx].init(modData,states[idx].state, div);
             }
             else if (modData.type == 'gapsimple') {
-                rpngapsimplemodule().init(modData,states[idx].state, div);
+                modules[idx]=rpngapsimplemodule();
+                modules[idx].init(modData,states[idx].state, div);
             }
             else if (modData.type == 'gapfull') {
-                rpngapfullmodule().init(modData,states[idx].state, div);
+                modules[idx]=rpngapfullmodule();
+                modules[idx].init(modData,states[idx].state, div);
             }
             else if (modData.type == 'clock') {
-                rpnclockmodule().init(modData,states[idx].state, div);
+                modules[idx]=rpnclockmodule();
+                modules[idx].init(modData,states[idx].state, div);
             }
             else if (modData.type == 'blackbox') {
-                rpnblackboxmodule().init(modData,states[idx].state, div);
+                modules[idx]=rpnblackboxmodule();
+                modules[idx].init(modData,states[idx].state, div);
             }
             else if (modData.type == 'dragdropsorting') {
-                rpndragdropsortingmodule().init(modData,states[idx].state, div);
+                modules[idx]=rpndragdropsortingmodule();
+                modules[idx].init(modData,states[idx].state, div);
             }
             else if (modData.type == 'cardmaze') {
-                rpncardmazemodule().init(modData,states[idx].state, div);
+                modules[idx]=rpncardmazemodule();
+                modules[idx].init(modData,states[idx].state, div);
             }
             div.hide();
             div.disableSelection();
-            //navigation
-            if (navigationEnabled && sequencedatas.modules.length > 1) {
-                $('#rpnm_modulenav ul').append($('<li><a href="#">' + (idx + 1) + '</a></li>').click(function() {
-                    currentmod = idx;
-                    displayCurrentModule();
-                }));
-            }
+            $('#rpnm_modulenav ul').append($('<li><a href="#">' + (idx + 1) + '</a></li>'));
+            
         });
 
         if (warnexit) {
@@ -165,8 +185,32 @@ var rpnsequence = (function() {
                 return selectedLabels.BeforeUnloadMsg;
             });
         }
+        bindUiEvents();
         displayCurrentModule();
     };
+    
+    var bindUiEvents = function() {
+        //Validation
+        validationButton.click(function(){
+            modules[currentmod].validate();
+            if(currentmod==sequencedatas.modules.length-1){
+                handleEndOfSequence();
+            }else{
+                currentmod++;
+                displayCurrentModule();
+            }
+        });
+        //Navigation
+        if (navigationEnabled && sequencedatas.modules.length > 1) {
+            _.each($('#rpnm_modulenav ul li'),function(nav,idx){
+                $(nav).click(function() {
+                    modules[currentmod].validate();
+                    currentmod = idx;
+                    displayCurrentModule();
+                });
+            });
+        }
+     }
 
     var displayCurrentModule = function() {
         $('#rpnm_wait_modal').modal('show');
@@ -184,39 +228,13 @@ var rpnsequence = (function() {
             $('#rpnm_modulenav ul li').removeClass('active');
             $($('#rpnm_modulenav ul li')[currentmod]).addClass('active');
         }
-        if (moduleDatas.status != 'ended') {
-            moduleDiv.show();
+        if(currentmod==sequencedatas.modules.length-1){
+            validationButton.html('<i class="glyphicon glyphicon glyphicon-ok-circle"></i> '+selectedLabels.EndSequence).removeClass("btn-primary").addClass("btn-success");
+        }else{
+            validationButton.html('<i class="glyphicon glyphicon-ok"></i> '+selectedLabels.Validate).removeClass("btn-success").addClass("btn-primary");
         }
-        else {
-            //module already ended... try another one or finish the sequence
-            currentmod = nextNotEndedModuleIdx();
-            if (currentmod >= 0) {
-                displayCurrentModule();
-            }
-            else {
-                handleEndOfSequence();
-            }
-        }
-
+        moduleDiv.show();
         $('#rpnm_wait_modal').modal('hide');
-    };
-
-    var nextNotEndedModuleIdx = function() {
-        var nextNotEnded = _.find(sequencedatas.modules, function(mod, idx) {
-            return mod.status != 'ended' && idx >= currentmod;
-        });
-        var previousNotEnded = _.find(sequencedatas.modules, function(mod, idx) {
-            return mod.status != 'ended' && idx < currentmod;;
-        });
-        if (!_.isUndefined(nextNotEnded)) {
-            return _.indexOf(sequencedatas.modules, nextNotEnded);
-        }
-        else if (!_.isUndefined(previousNotEnded)) {
-            return _.indexOf(sequencedatas.modules, previousNotEnded);
-        }
-        else {
-            return -1;
-        }
     };
 
     var bindModuleSharedDatas = function(datas) {
@@ -242,29 +260,17 @@ var rpnsequence = (function() {
     };
 
     var handleEndOfModule = function(state, correctionFct) {
+        $('#rpnm_wait_modal').modal('show');
         log('End of module');
         //store result locally
         states[currentmod] = {
             state:state,
             correctionFct: correctionFct
         };
+        moduleendHandler({states:_.map(states,function(sta){return sta.state;})});
         //Save status of module
         sequencedatas.modules[currentmod].status = 'ended';
-        //disable navigation
-        if (navigationEnabled) {
-            $($('#rpnm_modulenav ul li')[currentmod]).unbind("click").addClass('disabled')
-        };
-
-
-        $('#rpnm_wait_modal').modal('show');
-        currentmod = nextNotEndedModuleIdx();
-        moduleendHandler(state);
-        if (_.isUndefined(sequencedatas.modules[currentmod])) {
-            handleEndOfSequence();
-        }
-        else {
-            displayCurrentModule();
-        }
+        
     };
 
     var handleEndOfSequence = function() {
@@ -282,14 +288,6 @@ var rpnsequence = (function() {
             }
             window.location = backurl;
         });
-    };
-
-    var genericValidateButton = function(label) {
-        label = _.isUndefined(label) ? selectedLabels.Validate : label;
-        return $('<button>', {
-            'class': 'btn btn-primary',
-            text: ' ' + selectedLabels.Validate
-        }).prepend($('<i class="glyphicon glyphicon-ok"></i>'));
     };
 
     var displayAlert = function(text, onclose) {
@@ -370,10 +368,9 @@ var rpnsequence = (function() {
         init: init,
         buildUi: buildUi,
         handleEndOfModule: handleEndOfModule,
-        genericValidateButton: genericValidateButton,
         displayAlert: displayAlert,
         log: log,
         getLabels: getLabels,
-        addvalidation:addvalidation
+        addvalidation: addvalidation
     };
 })();

@@ -3,7 +3,6 @@ var rpnclockmodule = function() {
 
     var datas;
     var domelem;
-    var validationButton;
     var clock;
     var state;
 
@@ -16,7 +15,7 @@ var rpnclockmodule = function() {
         if(datas.random){
             datas.hour=Math.floor((Math.random() * 24) + 1)+':'+Math.floor(Math.random() * 59);
         }
-        if(!_.isUndefined(_state)){
+        if(!(_.isUndefined(_state)||_.isEmpty(_state)||_.isNull(_state))){
             state=_state;
         }else{
             state=datas.hour;
@@ -34,24 +33,23 @@ var rpnclockmodule = function() {
         clock=EduClock();
         clock.init({hour:parseInt(state.split(':')[0]), minute:parseInt(state.split(':')[1])},$('#rpnclock'));
 
-        //build validation button
-        validationButton = rpnsequence.genericValidateButton();
-        domelem.append(validationButton);
-
         bindUiEvents();
     };
 
     var bindUiEvents = function() {
-        validationButton.click(function() {
-            var time=clock.getCurrentTime()
-            rpnsequence.handleEndOfModule(time.hour+':'+time.minute, function(saved_state, sol) {
-                return saved_state == sol ? 1 : 0;
-            });
+        
+    };
+    
+    var validate = function(){
+        var time=clock.getCurrentTime()
+        rpnsequence.handleEndOfModule(time.hour+':'+time.minute, function(saved_state, sol) {
+            return saved_state == sol ? 1 : 0;
         });
     };
-
+    
     return {
-        init: init
+        init: init,
+        validate: validate
     };
 };
 
