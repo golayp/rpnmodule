@@ -15,7 +15,7 @@ var rpnclockmodule = function() {
         if(datas.random){
             datas.hour=Math.floor((Math.random() * 24) + 1)+':'+Math.floor(Math.random() * 59);
         }
-        if(!(_.isUndefined(_state)||_.isEmpty(_state)||_.isNull(_state))){
+        if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
         }else{
             state=datas.hour;

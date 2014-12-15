@@ -15,7 +15,7 @@ var rpngapsimplemodule = function() {
         datas = _datas;
         ddmode= !_.isUndefined(_datas.fillers);
         domelem = _domelem;
-        if(!_.isUndefined(_state)){
+        if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
         }else{
             state=_.map($('b',datas.tofill),function(b,idx){return '';});

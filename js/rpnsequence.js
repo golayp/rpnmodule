@@ -275,7 +275,6 @@ var rpnsequence = (function() {
 
     var handleEndOfSequence = function() {
         log('End of sequence');
-        sequenceendHandler(states);
         //retrieve solutions and use correction function to make score
         $.getJSON(solurl, function(ssol) {
             var score = 0;
@@ -283,6 +282,7 @@ var rpnsequence = (function() {
                 score += _.isUndefined(states[idx]) ? 0 : states[idx].correctionFct(states[idx].state, sol);
             });
             log('Calculated total score for sequence ' + score);
+            sequenceendHandler(states,score);
             if (warnexit) {
                 $(window).unbind('beforeunload');
             }

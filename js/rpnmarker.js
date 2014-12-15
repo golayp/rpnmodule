@@ -13,7 +13,7 @@ var rpnmarkermodule = function() {
         datas = _datas;
         domelem = _domelem;
         
-        if(!_.isUndefined(_state)){
+        if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
         }else{
             var availableColors = _.shuffle(['primary', 'success', 'info', 'warning', 'danger']);

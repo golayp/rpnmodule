@@ -271,7 +271,7 @@ var rpnblackboxmodule = function() {
         datas = _datas;
         domelem = _domelem;
         shuffle = _datas.shuffle;
-        if(!_.isUndefined(_state)){
+        if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
         }else{
             state = [];

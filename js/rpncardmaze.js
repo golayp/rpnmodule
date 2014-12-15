@@ -26,7 +26,7 @@ var rpncardmazemodule = function() {
         domelem = _domelem;
         state = [];
         snake = [];
-        if(!_.isUndefined(_state)){
+        if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
         }
         buildUi();

@@ -1275,7 +1275,7 @@ var rpnblackboxmodule = function() {
         datas = _datas;
         domelem = _domelem;
         shuffle = _datas.shuffle;
-        if(!_.isUndefined(_state)){
+        if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
         }else{
             state = [];
@@ -1403,7 +1403,7 @@ var rpncardmazemodule = function() {
         domelem = _domelem;
         state = [];
         snake = [];
-        if(!_.isUndefined(_state)){
+        if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
         }
         buildUi();
@@ -1526,7 +1526,7 @@ var rpnclockmodule = function() {
         if(datas.random){
             datas.hour=Math.floor((Math.random() * 24) + 1)+':'+Math.floor(Math.random() * 59);
         }
-        if(!(_.isUndefined(_state)||_.isEmpty(_state)||_.isNull(_state))){
+        if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
         }else{
             state=datas.hour;
@@ -1973,7 +1973,7 @@ var rpndragdropsortingmodule = function() {
         });
         datas = _datas;
         domelem = _domelem;
-        if(!_.isUndefined(_state)){
+        if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
         }else{
             state = {
@@ -2062,7 +2062,7 @@ var rpngapfullmodule = function() {
         datas = _datas;
         domelem = _domelem;
         
-        if(!_.isUndefined(_state)){
+        if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
         }else{
             state=datas.sentence;
@@ -2116,7 +2116,7 @@ var rpngapsimplemodule = function() {
         datas = _datas;
         ddmode= !_.isUndefined(_datas.fillers);
         domelem = _domelem;
-        if(!_.isUndefined(_state)){
+        if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
         }else{
             state=_.map($('b',datas.tofill),function(b,idx){return '';});
@@ -2222,7 +2222,7 @@ var rpnmarkermodule = function() {
         datas = _datas;
         domelem = _domelem;
         
-        if(!_.isUndefined(_state)){
+        if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
         }else{
             var availableColors = _.shuffle(['primary', 'success', 'info', 'warning', 'danger']);
@@ -2306,7 +2306,7 @@ var rpnmqcmodule = function() {
 
         datas = _datas;
         domelem = _domelem;
-        if(!_.isUndefined(_state)){
+        if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
         }else{
             state={
@@ -2636,7 +2636,6 @@ var rpnsequence = (function() {
 
     var handleEndOfSequence = function() {
         log('End of sequence');
-        sequenceendHandler(states);
         //retrieve solutions and use correction function to make score
         $.getJSON(solurl, function(ssol) {
             var score = 0;
@@ -2644,6 +2643,7 @@ var rpnsequence = (function() {
                 score += _.isUndefined(states[idx]) ? 0 : states[idx].correctionFct(states[idx].state, sol);
             });
             log('Calculated total score for sequence ' + score);
+            sequenceendHandler(states,score);
             if (warnexit) {
                 $(window).unbind('beforeunload');
             }
