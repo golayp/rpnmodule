@@ -42,14 +42,17 @@ var rpnclockmodule = function() {
     
     var validate = function(){
         var time=clock.getCurrentTime()
-        rpnsequence.handleEndOfModule(time.hour+':'+time.minute, function(saved_state, sol) {
-            return saved_state == sol ? 1 : 0;
-        });
+        rpnsequence.handleEndOfModule(time.hour+':'+time.minute);
+    };
+    
+    var score = function(sol) {
+        return state == sol ? 1 : 0;
     };
     
     return {
         init: init,
-        validate: validate
+        validate: validate,
+        score: score
     };
 };
 

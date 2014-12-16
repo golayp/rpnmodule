@@ -72,17 +72,20 @@ var rpndragdropsortingmodule = function() {
             state[$(elem).find('span').text()] = txts;
         });
         
-        rpnsequence.handleEndOfModule(state, function(saved_state, sols) {
-            var score = 0;
-            _.map(sols, function(sol, drop) {
-                score += _.intersection(saved_state[drop], sol).length;
-            });
-            return score;
+        rpnsequence.handleEndOfModule(state);
+    };
+    
+    var score = function(sols) {
+        var score = 0;
+        _.map(sols, function(sol, drop) {
+            score += _.intersection(state[drop], sol).length;
         });
+        return score;
     };
     
     return {
         init: init,
-        validate: validate
+        validate: validate,
+        score: score
     };
 };

@@ -51,18 +51,21 @@ var rpnmqcmodule = function() {
     };
     
     var validate = function(){
-        rpnsequence.handleEndOfModule(state, function(saved_state, sol) {
-            var score = 0;
-            _.each(sol, function(val, idx) {
-                score += saved_state.responses[idx] == val ? 1 : 0;
-            });
-            return score;
+        rpnsequence.handleEndOfModule(state);
+    };
+    
+    var score= function(sol) {
+        var score = 0;
+        _.each(sol, function(val, idx) {
+            score += state.responses[idx] == val ? 1 : 0;
         });
+        return score;
     };
     
     return {
         init: init,
-        validate: validate
+        validate: validate,
+        score: score
     };
 
 };

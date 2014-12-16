@@ -351,23 +351,25 @@ var rpnblackboxmodule = function() {
          $.each($('.rpnm_input', domelem), function(idx, gap) {
             state[idx].response = $(gap).val();
         });
-
-        rpnsequence.handleEndOfModule(state, function(saved_state, sol) {
-            var score = 0;
-            
-            _.each(sol.right, function(val, idx) {
-                score+=(_.findWhere(saved_state, {position: "right", originalposition: idx}).response==val?1:0);
-            });
-            _.each(sol.left, function(val, idx) {
-                score+=(_.findWhere(saved_state, {position: "left", originalposition: idx}).response==val?1:0);
-            });
-            return score;
+        rpnsequence.handleEndOfModule(state);
+    };
+    
+    var score = function(sol) {
+        var score = 0;
+        
+        _.each(sol.right, function(val, idx) {
+            score+=(_.findWhere(state, {position: "right", originalposition: idx}).response==val?1:0);
         });
+        _.each(sol.left, function(val, idx) {
+            score+=(_.findWhere(state, {position: "left", originalposition: idx}).response==val?1:0);
+        });
+        return score;
     };
     
     return {
         init: init,
-        validate:validate
+        validate:validate,
+        score:score
     };
 
 };

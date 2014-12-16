@@ -103,10 +103,10 @@ var rpnsequence = (function() {
             currentmod = 0;
             navigationEnabled = opts.navigationEnabled && sequencedatas.modules.length > 1;
             $.getJSON(opts.stateurl,function(savedStates){
-                states=_.map(sequencedatas.modules,function(mod,idx){return { state:savedStates.states[idx],correctionFct:undefined};});
+                states=_.map(sequencedatas.modules,function(mod,idx){return { state:savedStates.states[idx]};});
                 buildUi();
             }).error(function() {
-                states=_.map(sequencedatas.modules,function(mod,idx){return { state:undefined,correctionFct:undefined};});
+                states=_.map(sequencedatas.modules,function(mod,idx){return { state:undefined};});
                 buildUi();
             });
             
@@ -261,13 +261,12 @@ var rpnsequence = (function() {
         source.html(_.isUndefined(datas.sources) ? "" : (selectedLabels.Sources + ": " + datas.sources));
     };
 
-    var handleEndOfModule = function(state, correctionFct) {
+    var handleEndOfModule = function(state) {
         $('#rpnm_wait_modal').modal('show');
         log('End of module');
         //store result locally
         states[currentmod] = {
-            state:state,
-            correctionFct: correctionFct
+            state:state
         };
         moduleendHandler({states:_.map(states,function(sta){return sta.state;})});
         //Save status of module
@@ -281,7 +280,7 @@ var rpnsequence = (function() {
         $.getJSON(solurl, function(ssol) {
             var score = 0;
             _.each(ssol.solutions, function(sol, idx) {
-                score += _.isUndefined(states[idx]) ? 0 : states[idx].correctionFct(states[idx].state, sol);
+                score +=modules[idx].score(sol);
             });
             log('Calculated total score for sequence ' + score);
             sequenceendHandler(states,score);

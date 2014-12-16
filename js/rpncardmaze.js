@@ -118,17 +118,20 @@ var rpncardmazemodule = function() {
         _.each(snake,function(card,idx){
             state[idx]=$(card).data("cardId");
         });
-        rpnsequence.handleEndOfModule(state, function(saved_state, sol) {
-            var score = 0;
-            _.each(sol, function(cardIdx, idx) {
-                score += (saved_state[idx] == cardIdx ? 1 : 0);
-            })
-            return score;
-        });
+        rpnsequence.handleEndOfModule(state);
+    };
+    
+    var score = function(sol) {
+        var score = 0;
+        _.each(sol, function(cardIdx, idx) {
+            score += (state[idx] == cardIdx ? 1 : 0);
+        })
+        return score;
     };
     
     return {
         init: init,
-        validate: validate
+        validate: validate,
+        score:score
     };
 };
