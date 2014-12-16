@@ -175,7 +175,9 @@ var rpnsequence = (function() {
                 modules[idx].init(modData,states[idx].state, div);
             }
             div.hide();
-            div.disableSelection();
+            if(modData.type!='gapfull'){
+                div.disableSelection();
+            }
             $('#rpnm_modulenav ul').append($('<li><a href="#">' + (idx + 1) + '</a></li>'));
             
         });
