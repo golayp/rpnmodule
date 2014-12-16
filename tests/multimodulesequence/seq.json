@@ -55,6 +55,35 @@
             "todrop":["letters","colors","numbers"]
         },
         {
+            "type":"dropdown",
+            "title":"a dropdown module",
+            "context":"",
+            "directive":"Select the right words from the options and adapt sentence.",
+            "sentence":"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "circumstance":["Original","Item to select"],
+            "items":[
+                {
+                    "choice":["Lorem","Lorems"]
+                },
+                {
+                    "choice":["dictum","ipsum","vestibulum"]
+                },
+                {
+                    "choice":["dolor sit amet,"]
+                },
+                {
+                    "choice":["consectetur","fringilla"]
+                },
+                {
+                    "choice":["adipiscing"]
+                },
+                {
+                    "choice":["elit.","finibus.","faucibus.","gravida."]
+                }
+            ],
+            "Sources":"Donec arcu lectus, porttitor sed vestibulum vitae."
+        },
+        {
             "type":"cardmaze",
             "title":"a cardmaze module",
             "context":"",

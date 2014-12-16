@@ -174,6 +174,10 @@ var rpnsequence = (function() {
                 modules[idx]=rpncardmazemodule();
                 modules[idx].init(modData,states[idx].state, div);
             }
+            else if (modData.type == 'dropdown') {
+                modules[idx]=rpndropdownmodule();
+                modules[idx].init(modData,states[idx].state, div);
+            }
             div.hide();
             if(modData.type!='gapfull'){
                 div.disableSelection();

@@ -14,9 +14,10 @@
     <li>cardmaze - a maze of card in which you can navigate using questions on card and response on adjacent card (sample: http://www.rpn.ch/hosting/iclasse/MMF/6_html/L1_26_6_Indicatif_Laby_Sequ_1.html)</li>
     <li>clock - a clock you can manipulate to display a given hour (sample: http://www.rpn.ch/hosting/iclasse/html5/integrationHTML5/horloge/9_sequHorloge_1.html)</li>
     <li>dragdropsorting - items you can drag and drop in list of containers to sort (sample: http://www.rpn.ch/hosting/iclasse/MMF/8_html/L1_26_8_FormVerb_TriSac_Sequ_1.html)</li>
-    <li>gapfull - (sample: http://www.rpn.ch/hosting/iclasse/AideEval/10/html/AE_AccordGramm_1_5.html)</li>
-    <li>gapsimple - (sample: http://www.rpn.ch/hosting/iclasse/AideEval/10/html/AE_ParticipePasse_1_2.html)</li>
-    <li>marker - (sample: http://www.rpn.ch/hosting/iclasse/html5/Fra_9_html/L1_36_9_JO_Indicatif_Present_3.html)</li>
+    <li>dropdown - a sentence to adapt upon directive using dropdown choices</li>
+    <li>gapfull - a sentence to rewrite upon directive (sample: http://www.rpn.ch/hosting/iclasse/AideEval/10/html/AE_AccordGramm_1_5.html)</li>
+    <li>gapsimple - a text to complete (sample: http://www.rpn.ch/hosting/iclasse/AideEval/10/html/AE_ParticipePasse_1_2.html)</li>
+    <li>marker - a text to mark with markers (sample: http://www.rpn.ch/hosting/iclasse/html5/Fra_9_html/L1_36_9_JO_Indicatif_Present_3.html)</li>
     <li>mqc - a multiple question choice (mqc) (samples: http://www.rpn.ch/hosting/iclasse/AideEval/10/html/AE_FonctGramm_1_3.html http://www.rpn.ch/hosting/iclasse/AideEval/10/html/AE_LectureDico_2_1.html http://www.rpn.ch/hosting/iclasse/AideEval/10/html/AE_NuancesSem_3.html)</li>
 </ul>
 <h2>main options for rpnsequence init</h2>
@@ -74,10 +75,18 @@ By default a sequence json datas has to handle these values:
     <li>random - ask for a random hour (true/false). Default true</li>
 </ul>
 
-<h3>dargdropsorting options</h3>
+<h3>dragdropsorting options</h3>
 <ul>
     <li>todrag - a list of items to sort in containers</li>
     <li>todrop - a list of containers where to drag and drop items</li>
+</ul>
+
+<h3>dropdown options</h3>
+<ul>
+    
+    <li>sentence - a sentence to adapt</li>
+    <li>circumstance - an array of 2 labels introducing the orginal sentence and the text to adapt</li>
+    <li>items - a list of choice (each of them is an array of texts)</li>
 </ul>
 
 <h3>gapfull options</h3>
@@ -216,6 +225,35 @@ By default a sequence json datas has to handle these values:
             "todrop":["letters","colors","numbers"]
         },
         {
+            "type":"dropdown",
+            "title":"a dropdown module",
+            "context":"",
+            "directive":"Select the right words from the options and adapt sentence.",
+            "sentence":"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "circumstance":["Original","Item to select"],
+            "items":[
+                {
+                    "choice":["Lorem","Lorems"]
+                },
+                {
+                    "choice":["dictum","ipsum","vestibulum"]
+                },
+                {
+                    "choice":["dolor sit amet,"]
+                },
+                {
+                    "choice":["consectetur","fringilla"]
+                },
+                {
+                    "choice":["adipiscing"]
+                },
+                {
+                    "choice":["elit.","finibus.","faucibus.","gravida."]
+                }
+            ],
+            "Sources":"Donec arcu lectus, porttitor sed vestibulum vitae."
+        },
+        {
             "type":"cardmaze",
             "title":"a cardmaze module",
             "context":"",
@@ -264,6 +302,7 @@ By default a sequence json datas has to handle these values:
             "colors":["green","blue","yellow"],
             "numbers":["1","3"]
         },
+        ["Lorems","","","gravida."],
         [0,5,11,17]
         
     ]
