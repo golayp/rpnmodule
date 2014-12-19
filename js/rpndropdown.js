@@ -64,7 +64,7 @@ var rpndropdownmodule = function() {
     var score = function(sol){
         var score=0;
         _.each(sol,function(s,idx){
-            score+=(state[idx]==s?1:0);
+            score+=(_.contains(s.alternative,state[idx] )?1:0);
         });
         return score;
     };

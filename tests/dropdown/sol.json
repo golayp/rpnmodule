@@ -1,5 +1,10 @@
 {
     "solutions":[
-		["Lorems","dictum","fringilla","gravida."]
+		[
+		    {"alternative":["Lorems"]},
+			{"alternative":["dictum","ipsum"]},
+			{"alternative":["fringilla"]},
+			{"alternative":["gravida.",""]}
+		]
     ]
 }

@@ -6,8 +6,8 @@
             "title":"a dragdropsorting module",
             "context":"",
             "directive":"do this",
-            "todrag":["1","green","blue","A","3","yellow","C","Z"],
-            "todrop":["letters","colors","numbers"]
+            "todrag":["Il me duit qu'il aimerait bien reoutrner au bord de la mer.","Il me duit qu'il aimerait bien reoutrner au bord de la mer.","Il me duit qu'il aimerait bien reoutrner au bord de la mer.","Il me duit qu'il aimerait bien reoutrner au bord de la mer."],
+            "todrop":["Discours indirect","colors","numbers"]
         }
     ]
 }

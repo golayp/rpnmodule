@@ -1,6 +1,6 @@
 <h1>rpnmodule</h1>
 <strong>v0.0.3</strong>
-<p>rpnmodule is a project aiming to provide a base library for running educational sequences of modules. It'll provide common features for 8 base module types (maybe more in the future) that can be arranged in a sequence of work:</p>
+<p>rpnmodule is a project aiming to provide a base library for running educational sequences of modules. It'll provide common features for 10 module types (maybe more in the future) that can be arranged in a sequence of work:</p>
 <p>As the project evolves the main module in the library is rpnsequence, but project name is still rpnmodule... Sorry for confusion!!!!</p>
 <h2>Dependencies</h2>
 <ul>
@@ -19,6 +19,7 @@
     <li>gapsimple - a text to complete (sample: http://www.rpn.ch/hosting/iclasse/AideEval/10/html/AE_ParticipePasse_1_2.html)</li>
     <li>marker - a text to mark with markers (sample: http://www.rpn.ch/hosting/iclasse/html5/Fra_9_html/L1_36_9_JO_Indicatif_Present_3.html)</li>
     <li>mqc - a multiple question choice (mqc) (samples: http://www.rpn.ch/hosting/iclasse/AideEval/10/html/AE_FonctGramm_1_3.html http://www.rpn.ch/hosting/iclasse/AideEval/10/html/AE_LectureDico_2_1.html http://www.rpn.ch/hosting/iclasse/AideEval/10/html/AE_NuancesSem_3.html)</li>
+    <li>sorting - a sentence shuffled to rearrange with drag and drop</li>
 </ul>
 <h2>main options for rpnsequence init</h2>
 <ul>
@@ -111,6 +112,13 @@ By default a sequence json datas has to handle these values:
     <li>questions - a list of questions</li>
     <li>answers - a list of answers common to all questions</li>
 </ul>
+
+<h3>sorting options</h3>
+<ul>
+    <li>sentence - a list of item to rearrange</li>
+    <li>shuffle - shuffle items in sentence or use it as is? Default: false</li>
+</ul>
+
 <h2>sample seq json</h2>
 ```json
 {
@@ -302,7 +310,7 @@ By default a sequence json datas has to handle these values:
             "colors":["green","blue","yellow"],
             "numbers":["1","3"]
         },
-        ["Lorems","","","gravida."],
+        [{"alternative":["Lorems"]},{"alternative":["dictum","ipsum"]},{"alternative":["fringilla"]},{"alternative":["gravida.",""]}],,
         [0,5,11,17]
         
     ]

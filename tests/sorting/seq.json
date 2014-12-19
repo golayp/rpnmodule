@@ -1,0 +1,14 @@
+{
+    "title":"<i class=\"edicons-visualidentity-rpn\"></i> modulesequence",
+    "modules":[
+        {
+            "type":"sorting",
+            "title":"a sorting module",
+            "context":"",
+            "directive":"Sort this!",
+            "sentence":["Lorem","ipsum","dolor","sit","amet,","consectetur","adipiscing","elit."],
+            "shuffle":true,
+            "sources":"Donec arcu lectus, porttitor sed vestibulum vitae."
+        }
+    ]
+}

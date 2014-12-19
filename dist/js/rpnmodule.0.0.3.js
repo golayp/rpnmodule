@@ -1355,23 +1355,25 @@ var rpnblackboxmodule = function() {
          $.each($('.rpnm_input', domelem), function(idx, gap) {
             state[idx].response = $(gap).val();
         });
-
-        rpnsequence.handleEndOfModule(state, function(saved_state, sol) {
-            var score = 0;
-            
-            _.each(sol.right, function(val, idx) {
-                score+=(_.findWhere(saved_state, {position: "right", originalposition: idx}).response==val?1:0);
-            });
-            _.each(sol.left, function(val, idx) {
-                score+=(_.findWhere(saved_state, {position: "left", originalposition: idx}).response==val?1:0);
-            });
-            return score;
+        rpnsequence.handleEndOfModule(state);
+    };
+    
+    var score = function(sol) {
+        var score = 0;
+        
+        _.each(sol.right, function(val, idx) {
+            score+=(_.findWhere(state, {position: "right", originalposition: idx}).response==val?1:0);
         });
+        _.each(sol.left, function(val, idx) {
+            score+=(_.findWhere(state, {position: "left", originalposition: idx}).response==val?1:0);
+        });
+        return score;
     };
     
     return {
         init: init,
-        validate:validate
+        validate:validate,
+        score:score
     };
 
 };
@@ -1495,18 +1497,21 @@ var rpncardmazemodule = function() {
         _.each(snake,function(card,idx){
             state[idx]=$(card).data("cardId");
         });
-        rpnsequence.handleEndOfModule(state, function(saved_state, sol) {
-            var score = 0;
-            _.each(sol, function(cardIdx, idx) {
-                score += (saved_state[idx] == cardIdx ? 1 : 0);
-            })
-            return score;
-        });
+        rpnsequence.handleEndOfModule(state);
+    };
+    
+    var score = function(sol) {
+        var score = 0;
+        _.each(sol, function(cardIdx, idx) {
+            score += (state[idx] == cardIdx ? 1 : 0);
+        })
+        return score;
     };
     
     return {
         init: init,
-        validate: validate
+        validate: validate,
+        score:score
     };
 };
 //clock
@@ -1553,14 +1558,17 @@ var rpnclockmodule = function() {
     
     var validate = function(){
         var time=clock.getCurrentTime()
-        rpnsequence.handleEndOfModule(time.hour+':'+time.minute, function(saved_state, sol) {
-            return saved_state == sol ? 1 : 0;
-        });
+        rpnsequence.handleEndOfModule(time.hour+':'+time.minute);
+    };
+    
+    var score = function(sol) {
+        return state == sol ? 1 : 0;
     };
     
     return {
         init: init,
-        validate: validate
+        validate: validate,
+        score: score
     };
 };
 
@@ -2033,19 +2041,101 @@ var rpndragdropsortingmodule = function() {
             state[$(elem).find('span').text()] = txts;
         });
         
-        rpnsequence.handleEndOfModule(state, function(saved_state, sols) {
-            var score = 0;
-            _.map(sols, function(sol, drop) {
-                score += _.intersection(saved_state[drop], sol).length;
-            });
-            return score;
+        rpnsequence.handleEndOfModule(state);
+    };
+    
+    var score = function(sols) {
+        var score = 0;
+        _.map(sols, function(sol, drop) {
+            score += _.intersection(state[drop], sol).length;
         });
+        return score;
     };
     
     return {
         init: init,
-        validate: validate
+        validate: validate,
+        score: score
     };
+};
+//dropdown
+var rpndropdownmodule = function() {
+
+    var datas;
+    var domelem;
+    var state;
+    
+
+    var init = function(_datas, _state, _domelem) {
+        _.defaults(_datas, {
+            sentence: "sentence not set!"
+        });
+        datas = _datas;
+        domelem = _domelem;
+        
+        if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
+            state=_state;
+        }else{
+            state= _.map(_.filter(datas.items,function(item){return item.choice.length>1}),function(item,idx){return '';});
+        }
+        
+        buildUi();
+    };
+
+    var buildUi = function() {
+        domelem.addClass('dropdown');
+
+        //build panel with sentence
+        domelem.append($('<p>' + datas.circumstance[0] + '</p>'));
+        domelem.append($('<p>' + datas.sentence + '</p>'));
+        domelem.append($('<p>' + datas.circumstance[1] + '</p>'));
+
+        //build sentence with items to select
+        var sentenceToComplete=$('<div class="form-inline">');
+        var internalCounter=0;
+        $.each(datas.items, function(idx, item) {
+            if(item.choice.length==1){
+                sentenceToComplete.append(" " + item.choice[0] + " ");
+            }else{
+                var opts=[];
+                
+                opts[0]=$('<option value="" '+(state[internalCounter]==''?'selected':'')+'>- ? -</option>');
+                $.each(datas.items[idx].choice, function(id, choice){
+                    opts[id+1]=$('<option value="' + choice+ '" '+(state[internalCounter]==choice?'selected':'')+'>' + choice + '</option>');
+                });
+                sentenceToComplete.append($('<select class="rpnm-input dropdown form-control">').append(opts));
+                internalCounter++;
+            }
+        });
+        domelem.append(sentenceToComplete);
+
+        bindUiEvents();
+    };
+
+    var bindUiEvents = function() {
+        
+    };
+    
+    var validate = function(){
+        state=_.map($('select',domelem),function(ele,idx){return $(ele).val()});
+        rpnsequence.handleEndOfModule(state);
+    };
+    
+    var score = function(sol){
+        var score=0;
+        _.each(sol,function(s,idx){
+            score+=(_.contains(s.alternative,state[idx] )?1:0);
+        });
+        return score;
+    };
+    
+
+    return {
+        init: init,
+        validate: validate,
+        score:score
+    };
+
 };
 //gapfull
 var rpngapfullmodule = function() {
@@ -2087,15 +2177,18 @@ var rpngapfullmodule = function() {
     
     var validate = function(){
         state=$('.rpnm_input',domelem).val();
-        rpnsequence.handleEndOfModule(state, function(saved_state, sol) {
-            //Try to trim and do automatic corrections here.
-            return saved_state == sol ? 1 : 0;
-        });
+        rpnsequence.handleEndOfModule(state);
+    };
+    
+    var score =  function(sol) {
+        //Try to trim and do automatic corrections here.
+        return state == sol ? 1 : 0;
     };
     
     return {
         init: init,
-        validate: validate
+        validate: validate,
+        score:score
     };
 
 };
@@ -2192,18 +2285,21 @@ var rpngapsimplemodule = function() {
                 state[idx] = $(gap).val();
             });
         }
-        rpnsequence.handleEndOfModule(state, function(saved_state, sol) {
-            var score = 0;
-            _.each(sol, function(val, idx) {
-                score += saved_state[idx] == val ? 1 : 0;
-            });
-            return score;
+        rpnsequence.handleEndOfModule(state);
+    };
+    
+    var score = function(sol) {
+        var score = 0;
+        _.each(sol, function(val, idx) {
+            score += state[idx] == val ? 1 : 0;
         });
+        return score;
     };
     
     return {
         init: init,
-        validate: validate
+        validate: validate,
+        score: score
     };
 
 };
@@ -2276,18 +2372,21 @@ var rpnmarkermodule = function() {
     };
     
     var validate = function(){
-        rpnsequence.handleEndOfModule(state, function(saved_state,sol) {
-            var score = 0;
-            _.each(sol, function(val, idx) {
-                score += saved_state.responses[idx] == val ? 1 : 0;
-            });
-            return score;
+        rpnsequence.handleEndOfModule(state);
+    };
+    
+    var score =  function(sol) {
+        var score = 0;
+        _.each(sol, function(val, idx) {
+            score += state.responses[idx] == val ? 1 : 0;
         });
+        return score;
     };
     
     return {
         init: init,
-        validate: validate
+        validate: validate,
+        score: score
 
     };
 };
@@ -2344,18 +2443,21 @@ var rpnmqcmodule = function() {
     };
     
     var validate = function(){
-        rpnsequence.handleEndOfModule(state, function(saved_state, sol) {
-            var score = 0;
-            _.each(sol, function(val, idx) {
-                score += saved_state.responses[idx] == val ? 1 : 0;
-            });
-            return score;
+        rpnsequence.handleEndOfModule(state);
+    };
+    
+    var score= function(sol) {
+        var score = 0;
+        _.each(sol, function(val, idx) {
+            score += state.responses[idx] == val ? 1 : 0;
         });
+        return score;
     };
     
     return {
         init: init,
-        validate: validate
+        validate: validate,
+        score: score
     };
 
 };
@@ -2464,10 +2566,10 @@ var rpnsequence = (function() {
             currentmod = 0;
             navigationEnabled = opts.navigationEnabled && sequencedatas.modules.length > 1;
             $.getJSON(opts.stateurl,function(savedStates){
-                states=_.map(sequencedatas.modules,function(mod,idx){return { state:savedStates.states[idx],correctionFct:undefined};});
+                states=_.map(sequencedatas.modules,function(mod,idx){return { state:savedStates.states[idx]};});
                 buildUi();
             }).error(function() {
-                states=_.map(sequencedatas.modules,function(mod,idx){return { state:undefined,correctionFct:undefined};});
+                states=_.map(sequencedatas.modules,function(mod,idx){return { state:undefined};});
                 buildUi();
             });
             
@@ -2535,8 +2637,18 @@ var rpnsequence = (function() {
                 modules[idx]=rpncardmazemodule();
                 modules[idx].init(modData,states[idx].state, div);
             }
+            else if (modData.type == 'dropdown') {
+                modules[idx]=rpndropdownmodule();
+                modules[idx].init(modData,states[idx].state, div);
+            }
+            else if (modData.type == 'sorting') {
+                modules[idx]=rpnsortingmodule();
+                modules[idx].init(modData,states[idx].state, div);
+            }
             div.hide();
-            div.disableSelection();
+            if(modData.type!='gapfull'){
+                div.disableSelection();
+            }
             $('#rpnm_modulenav ul').append($('<li><a href="#">' + (idx + 1) + '</a></li>'));
             
         });
@@ -2620,13 +2732,12 @@ var rpnsequence = (function() {
         source.html(_.isUndefined(datas.sources) ? "" : (selectedLabels.Sources + ": " + datas.sources));
     };
 
-    var handleEndOfModule = function(state, correctionFct) {
+    var handleEndOfModule = function(state) {
         $('#rpnm_wait_modal').modal('show');
         log('End of module');
         //store result locally
         states[currentmod] = {
-            state:state,
-            correctionFct: correctionFct
+            state:state
         };
         moduleendHandler({states:_.map(states,function(sta){return sta.state;})});
         //Save status of module
@@ -2640,7 +2751,7 @@ var rpnsequence = (function() {
         $.getJSON(solurl, function(ssol) {
             var score = 0;
             _.each(ssol.solutions, function(sol, idx) {
-                score += _.isUndefined(states[idx]) ? 0 : states[idx].correctionFct(states[idx].state, sol);
+                score +=modules[idx].score(sol);
             });
             log('Calculated total score for sequence ' + score);
             sequenceendHandler(states,score);
@@ -2735,3 +2846,66 @@ var rpnsequence = (function() {
         addvalidation: addvalidation
     };
 })();
+//sorting
+var rpnsortingmodule = function() {
+
+    var datas;
+    var domelem;
+    var state;
+    
+
+    var init = function(_datas, _state, _domelem) {
+        _.defaults(_datas, {
+            sentence: ["sentence", "not", "set!"],
+            shuffle:false
+        });
+        datas = _datas;
+        domelem = _domelem;
+        
+        if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
+            state=_state;
+        }else{
+            state= datas.sentence;
+            if(datas.shuffle){
+                state=_.shuffle(state);
+            }
+        }
+        buildUi();
+    };
+
+    var buildUi = function() {
+        domelem.addClass('sorting');
+
+        //build sentence with items to select
+        var sentenceToSort=$('<ul class="list-unstyled list-inline"></ul>');
+        _.each(state, function(item, idx) {
+            sentenceToSort.append($('<li>'+item+'</li>'));
+        });
+        domelem.append(sentenceToSort);
+        sentenceToSort.sortable();
+        bindUiEvents();
+    };
+
+    var bindUiEvents = function() {
+        
+    };
+    
+    var validate = function(){
+        state=_.map($('li',domelem),function(ele,idx){return $(ele).text()});
+        rpnsequence.handleEndOfModule(state);
+    };
+    
+    var score = function(sol){
+        var score=0;
+        score=(_.isEqual(state,sol)?1:0);
+        return score;
+    };
+    
+
+    return {
+        init: init,
+        validate: validate,
+        score:score
+    };
+
+};

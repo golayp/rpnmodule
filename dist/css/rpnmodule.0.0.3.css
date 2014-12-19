@@ -100,7 +100,6 @@
 .draggable {
   background-color: #5bc0de;
   text-align: center;
-  height: 30px;
   cursor: pointer;
 }
 body.dragging,
@@ -136,4 +135,12 @@ body.dragging * {
   /* Required to make elements draggable in old WebKit */
   -khtml-user-drag: element;
   -webkit-user-drag: element;
+}
+/*dropdown*/
+.dropdown {
+  font-size: 20px;
+}
+/*sorting*/
+.sorting li {
+  cursor: pointer;
 }

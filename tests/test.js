@@ -16,7 +16,7 @@ require.config({
     }
 });
 
-require(['jquery','bootstrap','swfobject','underscore','less','ext/jquery-sortable','ext/rangyinputs-jquery-src','ext/jquery-disableSelection','rpnsequence','rpnblackbox','rpncardmaze','rpnclock','rpndragdropsorting','rpngapfull','rpngapsimple','rpnmarker','rpnmqc','rpndropdown'], function($) {
+require(['jquery','bootstrap','swfobject','underscore','less','ext/jquery-sortable','ext/rangyinputs-jquery-src','ext/jquery-disableSelection','rpnsequence','rpnblackbox','rpncardmaze','rpnclock','rpndragdropsorting','rpngapfull','rpngapsimple','rpnmarker','rpnmqc','rpndropdown','rpnsorting'], function($) {
     $(document).ready(function(){
         rpnsequence.init({
             debug:true,
