@@ -1,5 +1,5 @@
 require.config({
-    "baseUrl": "/js",
+    "baseUrl": "../../js",
     "shim" : {
         "bootstrap" : { "deps" :['jquery'] },
         "ext/jquery-sortable":{ "deps" :['jquery'] },
@@ -21,7 +21,7 @@ require(['jquery','bootstrap','swfobject','underscore','less','ext/jquery-sortab
         rpnsequence.init({
             debug:true,
             mediapathformatter:function(url){
-                return '/tests/medias/'+url;
+                return '../../tests/medias/'+url;
             },
             navigationEnabled:true
         });

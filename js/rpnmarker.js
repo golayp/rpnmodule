@@ -16,11 +16,11 @@ var rpnmarkermodule = function() {
         if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
         }else{
-            var availableColors = _.shuffle(['primary', 'success', 'info', 'warning', 'danger']);
+            var availableColors = _.shuffle(["#8d61a4","#01a271","#5dc2e7","#63b553","#ed656a","#e95c7b","#f5a95e","#d62b81","#eee227"]);
             state={
                 selectedMarker : '',
                 responses:_.map($('b',datas.tomark),function(b,idx){return '';}),
-                markers:_.map(datas.markers,function(m,idx){return { label:m,color:(availableColors[idx] || 'default')}})
+                markers:_.map(datas.markers,function(m,idx){return { label:m,color:(availableColors[idx] || '#222')}})
             };
         }
         buildUi();
@@ -34,12 +34,12 @@ var rpnmarkermodule = function() {
             'data-toggle': 'buttons'
         });
         
-        toolbar.append($('<label class="btn btn-default '+(state.selectedMarker==''?'active':'')+'"><input type="radio" name="options" autocomplete="off" '+(state.selectedMarker==''?'checked':'')+'><i class="glyphicon glyphicon-remove-sign"></i> ' + rpnsequence.getLabels().Eraser + '</label>').click(function() {
-            state.selectedMarker = '';
+        toolbar.append($('<label class="btn btn-default  btn-lg '+(state.selectedMarker==''?'active':'')+' eraser"><input type="radio" name="options" autocomplete="off" '+(state.selectedMarker==''?'checked':'')+'><span class="edicons-tool-eraser"></span> ' + rpnsequence.getLabels().Eraser + '</label>').click(function() {
+            state.selectedMarker = {color:'',label:''};
         }));
         $.each(state.markers, function(idx, marker) {
-            toolbar.append($('<label class="btn btn-' +marker.color + ' '+(state.selectedMarker==marker.label?'active':'')+'"><input type="radio" name="options" autocomplete="off" '+(state.selectedMarker==marker.label?'checked':'')+'><i class="glyphicon glyphicon-pencil"></i> ' + marker.label + '</label>').click(function() {
-                state.selectedMarker = marker.label;
+            toolbar.append($('<label class="btn btn-default btn-lg '+(state.selectedMarker==marker.label?'active':'')+' stab"><input type="radio" name="options" autocomplete="off" '+(state.selectedMarker==marker.label?'checked':'')+'><span class="edicons-tool-stab" style="color:'+marker.color+'"></span> ' + marker.label + '</label>').click(function() {
+                state.selectedMarker = marker;
             }));
         });
         domelem.append(toolbar);
@@ -49,14 +49,16 @@ var rpnmarkermodule = function() {
         $.each($('b', domelem), function(idx, tomark) {
             var t = $(tomark);
             if(!_.isEmpty(state.responses[idx])){
-                t.addClass('marker-'+_.findWhere(state.markers,{label:state.responses[idx]}).color);
+                //t.addClass('marker-'+_.findWhere(state.markers,{label:state.responses[idx]}).color);
+                t.css('background-color',_.findWhere(state.markers,{label:state.responses[idx]}).color);
             }
             t.css('cursor', 'pointer').click(function() {
-                t.removeClass();
-                if (state.selectedMarker != '') {
-                    t.addClass('marker-' + _.findWhere(state.markers,{label:state.selectedMarker}).color);
-                }
-                state['responses'][idx] = state.selectedMarker;
+                //t.removeClass();
+                //if (state.selectedMarker != '') {
+                    //t.addClass('marker-' + _.findWhere(state.markers,{label:state.selectedMarker}).color);
+                //}
+                t.css('background-color',state.selectedMarker.color);
+                state['responses'][idx] = state.selectedMarker.label;
             });
         });
 

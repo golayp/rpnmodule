@@ -1,13 +1,32 @@
 {
     "states":[
         {
-            "selectedMarker":"marker3",
-            "responses":["marker1","","marker3","","marker3",""],
-            "markers":[
-                {"label":"marker1","color":"primary"},
-                {"label":"marker2","color":"success"},
-                {"label":"marker3","color":"warning"}
-            ]
+    "selectedMarker":{
+        "label":"marker 2",
+        "color":"#01A271"
+    },
+    "responses":[
+        "marker 1",
+        "",
+        "",
+        "",
+        "marker 2",
+        "marker 3"
+    ],
+    "markers":[
+        {
+            "label":"marker 1",
+            "color":"#8D61A4"
+        },
+        {
+            "label":"marker 2",
+            "color":"#01A271"
+        },
+        {
+            "label":"marker 3",
+            "color":"#5DC2E7"
         }
+    ]
+}
     ]
 }

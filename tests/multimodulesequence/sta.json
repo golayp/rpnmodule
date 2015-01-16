@@ -1,122 +1,137 @@
 {
     "states":[
     {
-        "responses": [
-            "Yes",
+        "responses":[
             "Yes",
             "No",
-            "No",
             "Maybe",
-            "Maybe",
-            "Yes",
+            "",
+            "",
+            "",
+            "",
             ""
         ]
     },
     {
-        "selectedMarker": "marker2",
-        "responses": [
+        "selectedMarker":{
+            "label":"marker3",
+            "color":"#EEE227"
+        },
+        "responses":[
             "marker1",
-            "marker1",
-            "marker3",
-            "marker2",
             "",
-            "marker3"
+            "",
+            "",
+            "marker3",
+            ""
         ],
-        "markers": [
+        "markers":[
             {
-                "label": "marker1",
-                "color": "danger"
+                "label":"marker1",
+                "color":"#E95C7B"
             },
             {
-                "label": "marker2",
-                "color": "success"
+                "label":"marker2",
+                "color":"#01A271"
             },
             {
-                "label": "marker3",
-                "color": "warning"
+                "label":"marker3",
+                "color":"#EEE227"
             }
         ]
     },
     [
         "a",
-        "",
+        "b",
         "c",
-        "e",
-        "",
+        "d",
+        "r",
         ""
     ],
-    "test",
-    "15:3",
+    "A \"Goof\" job.",
+    "10:10",
     [
         {
-            "position": "right",
-            "originalposition": 0,
-            "value": 56,
-            "response": "1"
+            "position":"right",
+            "originalposition":0,
+            "value":56,
+            "response":"1"
         },
         {
-            "position": "right",
-            "originalposition": 1,
-            "value": 72,
-            "response": "2"
+            "position":"right",
+            "originalposition":1,
+            "value":72,
+            "response":"2"
         },
         {
-            "position": "right",
-            "originalposition": 2,
-            "value": 32,
-            "response": "3"
+            "position":"right",
+            "originalposition":2,
+            "value":32,
+            "response":"3"
         },
         {
-            "position": "left",
-            "originalposition": 0,
-            "value": 5,
-            "response": "4"
+            "position":"left",
+            "originalposition":0,
+            "value":5,
+            "response":"4"
         },
         {
-            "position": "left",
-            "originalposition": 1,
-            "value": 10,
-            "response": "5"
+            "position":"left",
+            "originalposition":1,
+            "value":10,
+            "response":""
         },
         {
-            "position": "left",
-            "originalposition": 2,
-            "value": 6,
-            "response": "6"
+            "position":"left",
+            "originalposition":2,
+            "value":6,
+            "response":""
         },
         {
-            "position": "left",
-            "originalposition": 3,
-            "value": 11,
-            "response": ""
+            "position":"left",
+            "originalposition":3,
+            "value":11,
+            "response":""
         }
     ],
     {
-        "todrag": [
+        "todrag":[
             "1",
             "green",
             "blue",
-            "A"
+            "A",
+            "3"
         ],
-        "todrop": [
+        "todrop":[
             "letters",
             "colors",
             "numbers"
         ],
-        "letters": [
-            "Z"
+        "letters":[
+            "Z",
+            "C"
         ],
-        "colors": [
-            "3",
+        "colors":[
             "yellow"
         ],
-        "numbers": []
+        "numbers":[
+
+        ]
     },
-    ["Lorems","","","gravida."],
+    [
+        "",
+        "",
+        "consectetur",
+        ""
+    ],
     [
         2,
-        1
+        8,
+        9,
+        3,
+        4,
+        5
     ]
-
 ]
+    
 }
