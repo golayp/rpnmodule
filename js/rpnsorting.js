@@ -31,7 +31,7 @@ var rpnsortingmodule = function() {
         //build sentence with items to select
         var sentenceToSort=$('<ul class="list-unstyled list-inline"></ul>');
         _.each(state, function(item, idx) {
-            sentenceToSort.append($('<li>'+item+'</li>'));
+            sentenceToSort.append($('<li class="well well-sm">'+item+'</li>'));
         });
         domelem.append(sentenceToSort);
         sentenceToSort.sortable();

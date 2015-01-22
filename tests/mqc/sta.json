@@ -1,5 +1,42 @@
 {
-    "states":[
-        {"responses":["Yes","No","Maybe","Yes","No","Maybe","Yes","No"]}
-    ]
+	"states": [
+		{
+			"responses": [
+				"What",
+				"When",
+				"Where",
+				"Who",
+				"What",
+				"When"
+			]
+		},
+		{
+			"responses": [
+				"What",
+				"When",
+				"What",
+				"What"
+			]
+		},
+		{
+			"responses": [
+				"What"
+			]
+		},
+		{
+			"responses": [
+				"What"
+			]
+		},
+		{
+			"responses": [
+				"What"
+			]
+		},
+		{
+			"responses": [
+				"Where"
+			]
+		}
+	]
 }

@@ -1,13 +1,13 @@
 {
-    "title":"<i class=\"edicons-visualidentity-rpn\"></i> modulesequence",
+    "title":"modulesequence",
     "modules":[
         {
             "type":"dragdropsorting",
             "title":"a dragdropsorting module",
             "context":"",
             "directive":"do this",
-            "todrag":["Il me duit qu'il aimerait bien reoutrner au bord de la mer.","Il me duit qu'il aimerait bien reoutrner au bord de la mer.","Il me duit qu'il aimerait bien reoutrner au bord de la mer.","Il me duit qu'il aimerait bien reoutrner au bord de la mer."],
-            "todrop":["Discours indirect","colors","numbers"]
+            "todrag":["1","green","blue","Lorem ipsum dolor sit amet, consectetur adipiscing elit.","A","3","yellow","C","Z"],
+            "todrop":["letters","colors","numbers","sentences"]
         }
     ]
 }

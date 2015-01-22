@@ -1,0 +1,30 @@
+{
+	"states": [
+		{
+			"todrag": [],
+			"todrop": [
+				"letters",
+				"colors",
+				"numbers",
+				"sentences"
+			],
+			"letters": [
+				"C",
+				"A",
+				"Z"
+			],
+			"colors": [
+				"yellow",
+				"green",
+				"blue"
+			],
+			"numbers": [
+				"3",
+				"1"
+			],
+			"sentences": [
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+			]
+		}
+	]
+}

@@ -8,7 +8,8 @@ var rpnmarkermodule = function() {
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
             markers: [],
-            tomark: ["fill tomark please!"]
+            tomark: ["fill tomark please!"],
+            hidden:false
         });
         datas = _datas;
         domelem = _domelem;
@@ -45,23 +46,39 @@ var rpnmarkermodule = function() {
         domelem.append(toolbar);
 
         //build panel with sentences
-        domelem.append($('<div>' + datas.tomark + '</div>'));
+        if(!_.isUndefined(datas.background)){
+            if(_.isUndefined(datas.background.url)){
+                rpnsequence.log('background defined without url!');
+                domelem.append($('<div class="markable" >' + datas.tomark + '</div>'));
+            }else{
+                _.defaults(datas.background,{
+    				"width":"0px",
+    				"height":"0px",
+    				"paddingTop":"0px",
+    				"paddingRight":"0px",
+    				"paddingBottom":"0px",
+    				"paddingLeft":"0px"
+                });
+                domelem.append($('<div class="markable" style="width:'+datas.background.width+';height:'+datas.background.height+';padding-top:'+datas.background.paddingTop+';padding-right:'+datas.background.paddingRight+';padding-bottom:'+datas.background.paddingBottom+';padding-left:'+datas.background.paddingLeft+';background-image:url('+rpnsequence.computeMediaUrl(datas.background.url)+');background-repeat:no-repeat;background-size:contain">' + datas.tomark + '</div>'));    
+            }
+        }else{
+            domelem.append($('<div class="markable" >' + datas.tomark + '</div>'));
+        }
         $.each($('b', domelem), function(idx, tomark) {
             var t = $(tomark);
             if(!_.isEmpty(state.responses[idx])){
-                //t.addClass('marker-'+_.findWhere(state.markers,{label:state.responses[idx]}).color);
                 t.css('background-color',_.findWhere(state.markers,{label:state.responses[idx]}).color);
             }
-            t.css('cursor', 'pointer').click(function() {
-                //t.removeClass();
-                //if (state.selectedMarker != '') {
-                    //t.addClass('marker-' + _.findWhere(state.markers,{label:state.selectedMarker}).color);
-                //}
+            if(!datas.hidden){
+                t.css('cursor', 'pointer');
+            }else{
+                t.css('font-weight','normal');
+            }
+            t.click(function() {
                 t.css('background-color',state.selectedMarker.color);
                 state['responses'][idx] = state.selectedMarker.label;
             });
         });
-
         bindUiEvents();
     };
 

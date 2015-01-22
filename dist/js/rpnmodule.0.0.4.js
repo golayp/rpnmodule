@@ -2000,7 +2000,7 @@ var rpndragdropsortingmodule = function() {
             $('.dropzonecontainer',domelem).append($('<div class="col-md-2"><div class="droppable"><span class="lead">' + drop + '</span><ul class="list-unstyled"></ul></div></div>'));
             if(!_.isUndefined(state[drop])){
                 _.each(state[drop],function(dropped,idxi){
-                    $('ul',$('.droppable')[idx]).append('<li class="draggable">'+dropped+'</li>');
+                    $('ul',$('.droppable')[idx]).append('<li class="draggable form-control">'+dropped+'</li>');
                 });
             }
         });
@@ -2020,7 +2020,7 @@ var rpndragdropsortingmodule = function() {
     var nextDraggable = function() {
         if ($('.dragthis li').length == 0 && state.todrag.length > 0) {
             var itemToDrag = _.last(state.todrag);
-            $('.dragthis').append($('<li class="draggable">' + itemToDrag + '</li>'));
+            $('.dragthis').append($('<li class="draggable form-control">' + itemToDrag + '</li>'));
             $(".dragthis").sortable({
                 group: 'drop',
                 drop: false
@@ -2219,41 +2219,41 @@ var rpngapsimplemodule = function() {
 
     var buildUi = function() {
         domelem.addClass('gapsimple');
-
         if(ddmode){
             var toolbar = $('<div class="gapsimpleddtoolbar">');
             $.each(datas.fillers, function(idx, filler) {
                 toolbar.append($('<span class="draggable">'+filler+'</span> '));
             });
             maxfillength=_.max(datas.fillers, function(filler){ return filler.length; }).length;
+            
             domelem.append(toolbar.sortable({
-                    group: 'drop',
-                    drop: false,
-                    itemSelector:'span',
-                    containerSelector:'div',
-                    placeholder:'<span class="placeholder"/>',
-                    onDragStart: function (item, container, _super) {
-                        if(!container.options.drop){
-                            // Clone item
-                            item.clone().insertAfter(item);
-                        }else{
-                            // Remove item and restore white space
-                            $('<span>'+Array(maxfillength).join("_")+'</span>').insertAfter(item);
-                        }
-                        _super(item);
-                    },
-                    onDrop:function($item, container, _super, event){
-                        $item.parent().empty().append($item);
-                        _super($item);
+                group: 'drop',
+                drop: false,
+                itemSelector:'span',
+                containerSelector:'div',
+                placeholder:'<span class="placeholder"/>',
+                onDragStart: function (item, container, _super) {
+                    if(!container.options.drop){
+                        // Clone item
+                        item.clone().insertAfter(item);
+                    }else{
+                        // Remove item and restore white space
+                        $('<span>'+Array(maxfillength).join("_")+'</span>').insertAfter(item);
                     }
-                })
-            );
+                    _super(item);
+                },
+                onDrop:function($item, container, _super, event){
+                    $item.parent().empty().append($item);
+                    _super($item);
+                }
+            }));
         }
         
         //build panel with sentences
         domelem.append($('<div class="form-inline">' + datas.tofill + '</div>'));
         $.each($('b', domelem), function(idx, tofill) {
             var t = $(tofill);
+            var txt = _.isEmpty(t.text())?"":"<strong>(" + t.text() + ")</strong>";
             if(ddmode){
                 //add a white space for drag and drop
                 t.replaceWith($('<b class="gapsimpleddresponse">').append('<span class="'+(_.isEmpty(state[idx])?'':'draggable')+'">'+(_.isEmpty(state[idx])?Array(maxfillength).join("_"):state[idx])+'</span>').sortable({
@@ -2263,16 +2263,17 @@ var rpngapsimplemodule = function() {
                     vertical:false
                 }));
             }else{
-                t.replaceWith($('<input type="text" class="rpnm_input gapsimple form-control"> <strong>(' + t.text() + ')</strong>'));
+                t.replaceWith($('<input type="text" class="rpnm_input gapsimple form-control">' + txt));
                 $($('.rpnm_input',domelem)[idx]).val(state[idx]);
             }
-            
         });
 
         bindUiEvents();
     };
 
     var bindUiEvents = function() {
+        //Input validation
+        rpnsequence.addvalidation($('.rpnm_input',domelem),datas.validation);
     };
     
     var validate = function(){
@@ -2313,7 +2314,8 @@ var rpnmarkermodule = function() {
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
             markers: [],
-            tomark: ["fill tomark please!"]
+            tomark: ["fill tomark please!"],
+            hidden:false
         });
         datas = _datas;
         domelem = _domelem;
@@ -2321,11 +2323,11 @@ var rpnmarkermodule = function() {
         if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
         }else{
-            var availableColors = _.shuffle(['primary', 'success', 'info', 'warning', 'danger']);
+            var availableColors = _.shuffle(["#8d61a4","#01a271","#5dc2e7","#63b553","#ed656a","#e95c7b","#f5a95e","#d62b81","#eee227"]);
             state={
                 selectedMarker : '',
                 responses:_.map($('b',datas.tomark),function(b,idx){return '';}),
-                markers:_.map(datas.markers,function(m,idx){return { label:m,color:(availableColors[idx] || 'default')}})
+                markers:_.map(datas.markers,function(m,idx){return { label:m,color:(availableColors[idx] || '#222')}})
             };
         }
         buildUi();
@@ -2339,32 +2341,50 @@ var rpnmarkermodule = function() {
             'data-toggle': 'buttons'
         });
         
-        toolbar.append($('<label class="btn btn-default '+(state.selectedMarker==''?'active':'')+'"><input type="radio" name="options" autocomplete="off" '+(state.selectedMarker==''?'checked':'')+'><i class="glyphicon glyphicon-remove-sign"></i> ' + rpnsequence.getLabels().Eraser + '</label>').click(function() {
-            state.selectedMarker = '';
+        toolbar.append($('<label class="btn btn-default  btn-lg '+(state.selectedMarker==''?'active':'')+' eraser"><input type="radio" name="options" autocomplete="off" '+(state.selectedMarker==''?'checked':'')+'><span class="edicons-tool-eraser"></span> ' + rpnsequence.getLabels().Eraser + '</label>').click(function() {
+            state.selectedMarker = {color:'',label:''};
         }));
         $.each(state.markers, function(idx, marker) {
-            toolbar.append($('<label class="btn btn-' +marker.color + ' '+(state.selectedMarker==marker.label?'active':'')+'"><input type="radio" name="options" autocomplete="off" '+(state.selectedMarker==marker.label?'checked':'')+'><i class="glyphicon glyphicon-pencil"></i> ' + marker.label + '</label>').click(function() {
-                state.selectedMarker = marker.label;
+            toolbar.append($('<label class="btn btn-default btn-lg '+(state.selectedMarker==marker.label?'active':'')+' stab"><input type="radio" name="options" autocomplete="off" '+(state.selectedMarker==marker.label?'checked':'')+'><span class="edicons-tool-stab" style="color:'+marker.color+'"></span> ' + marker.label + '</label>').click(function() {
+                state.selectedMarker = marker;
             }));
         });
         domelem.append(toolbar);
 
         //build panel with sentences
-        domelem.append($('<div>' + datas.tomark + '</div>'));
+        if(!_.isUndefined(datas.background)){
+            if(_.isUndefined(datas.background.url)){
+                rpnsequence.log('background defined without url!');
+                domelem.append($('<div class="markable" >' + datas.tomark + '</div>'));
+            }else{
+                _.defaults(datas.background,{
+    				"width":"0px",
+    				"height":"0px",
+    				"paddingTop":"0px",
+    				"paddingRight":"0px",
+    				"paddingBottom":"0px",
+    				"paddingLeft":"0px"
+                });
+                domelem.append($('<div class="markable" style="width:'+datas.background.width+';height:'+datas.background.height+';padding-top:'+datas.background.paddingTop+';padding-right:'+datas.background.paddingRight+';padding-bottom:'+datas.background.paddingBottom+';padding-left:'+datas.background.paddingLeft+';background-image:url('+rpnsequence.computeMediaUrl(datas.background.url)+');background-repeat:no-repeat;background-size:contain">' + datas.tomark + '</div>'));    
+            }
+        }else{
+            domelem.append($('<div class="markable" >' + datas.tomark + '</div>'));
+        }
         $.each($('b', domelem), function(idx, tomark) {
             var t = $(tomark);
             if(!_.isEmpty(state.responses[idx])){
-                t.addClass('marker-'+_.findWhere(state.markers,{label:state.responses[idx]}).color);
+                t.css('background-color',_.findWhere(state.markers,{label:state.responses[idx]}).color);
             }
-            t.css('cursor', 'pointer').click(function() {
-                t.removeClass();
-                if (state.selectedMarker != '') {
-                    t.addClass('marker-' + _.findWhere(state.markers,{label:state.selectedMarker}).color);
-                }
-                state['responses'][idx] = state.selectedMarker;
+            if(!datas.hidden){
+                t.css('cursor', 'pointer');
+            }else{
+                t.css('font-weight','normal');
+            }
+            t.click(function() {
+                t.css('background-color',state.selectedMarker.color);
+                state['responses'][idx] = state.selectedMarker.label;
             });
         });
-
         bindUiEvents();
     };
 
@@ -2390,6 +2410,7 @@ var rpnmarkermodule = function() {
 
     };
 };
+
 //mqc
 var rpnmqcmodule = function() {
 
@@ -2417,16 +2438,18 @@ var rpnmqcmodule = function() {
 
     var buildUi = function() {
         domelem.addClass('mqc');
-
+		
         //build panel with sentences
         var uilist = $('<ul>', {
             'class': 'list-unstyled'
         });
+    
         $.each(datas.questions, function(idq, question) {
             var li = $('<li>');
             li.append($('<p>' + question + '</p>'));
             var answerGroup = $('<div class="btn-group" data-toggle="buttons">');
-            $.each(datas.answers, function(ida, answer) {
+            var idmqc = datas.answers.length==1?0:idq;
+            $.each(datas.answers[idmqc].choice, function(ida, answer) {
                 answerGroup.append($('<label class="btn btn-default '+((!_.isEmpty(state.responses[idq])&&state.responses[idq]==answer)?'active':'')+'"><input type="radio" autocomplete="off" '+((!_.isEmpty(state.responses[idq])&&state.responses[idq]==answer)?'checked':'')+'>' + answer + '</label>').click(function() {
                     state.responses[idq] = answer;
                 }));
@@ -2434,8 +2457,25 @@ var rpnmqcmodule = function() {
             });
             uilist.append(li);
         });
-        domelem.append(uilist);
-
+        
+        if(!_.isUndefined(datas.illustration)){
+        	_.defaults(datas.illustration,{
+        		position:"top",
+        		url:"<img />"
+        	});
+        	var illus=$(datas.illustration.url).addClass('img-rounded');
+        	if(datas.illustration.position=='top'){
+        		domelem.append([illus,uilist]);
+        	}else if(datas.illustration.position=='bottom'){
+        		domelem.append([uilist,illus]);
+        	}else if(datas.illustration.position=='right'){
+        		domelem.append([$('<div class="col-md-8">').append(uilist),$('<div class="col-md-4">').append(illus)]);
+        	}else if(datas.illustration.position=='left'){
+        		domelem.append([$('<div class="col-md-4">').append(illus),$('<div class="col-md-8">').append(uilist)]);
+        	}
+        }else{
+        	domelem.append(uilist);
+        }
         bindUiEvents();
     };
 
@@ -2486,6 +2526,7 @@ var rpnsequence = (function() {
     var validationButton;
     var navigationEnabled;
     var debug;
+    var loadstate;
     var selectedLabels;
     var modules;
 
@@ -2540,6 +2581,7 @@ var rpnsequence = (function() {
             },
             language: "en",
             debug: false,
+            disablestateloading:false,
             navigationEnabled: false
         });
         selectedLabels = labels[opts.language];
@@ -2549,6 +2591,7 @@ var rpnsequence = (function() {
         backurl = opts.returnurl;
         solurl = opts.solurl;
         debug = opts.debug;
+        loadstate=!opts.disablestateloading;
         domelem = opts.domelem;
         sequenceendHandler = opts.onsequenceend;
         moduleendHandler = opts.onmoduleend;
@@ -2565,13 +2608,18 @@ var rpnsequence = (function() {
             });
             currentmod = 0;
             navigationEnabled = opts.navigationEnabled && sequencedatas.modules.length > 1;
-            $.getJSON(opts.stateurl,function(savedStates){
-                states=_.map(sequencedatas.modules,function(mod,idx){return { state:savedStates.states[idx]};});
-                buildUi();
-            }).error(function() {
+            if(loadstate){
+                $.getJSON(opts.stateurl,function(savedStates){
+                    states=_.map(sequencedatas.modules,function(mod,idx){return { state:savedStates.states[idx]};});
+                    buildUi();
+                }).error(function() {
+                    states=_.map(sequencedatas.modules,function(mod,idx){return { state:undefined};});
+                    buildUi();
+                });
+            }else{
                 states=_.map(sequencedatas.modules,function(mod,idx){return { state:undefined};});
                 buildUi();
-            });
+            }
             
         });
     };
@@ -2712,8 +2760,8 @@ var rpnsequence = (function() {
 
     var bindModuleSharedDatas = function(datas) {
         $('#rpnm_title').show().html(datas.title +' <button class="btn btn-default btn-sm  pull-right" href="#" id="rpnm_order_link" data-toggle="modal" data-target="#rpnm_order_modal"><i class="glyphicon glyphicon-question-sign"></i> ' + selectedLabels.Order + '</button><button class="btn btn-default btn-sm pull-right" id="rpnm_recall_link" data-toggle="modal" data-target="#rpnm_recall_modal"><i class="glyphicon glyphicon-bell"></i> ' + selectedLabels.Recall + '</button>');
-        _.isUndefined(datas.context) ? $('#rpnm_context').hide() : $('#rpnm_context').show().text(datas.context);
-        _.isUndefined(datas.directive) ? $('#rpnm_directive').hide() : $('#rpnm_directive').show().text(datas.directive);
+        _.isUndefined(datas.context) ? $('#rpnm_context').hide() : $('#rpnm_context').show().html(datas.context);
+        _.isUndefined(datas.directive) ? $('#rpnm_directive').hide() : $('#rpnm_directive').show().html(datas.directive);
 
         if (_.isUndefined(datas.recall)) {
             $('#rpnm_recall_link').hide();
@@ -2747,6 +2795,7 @@ var rpnsequence = (function() {
 
     var handleEndOfSequence = function() {
         log('End of sequence');
+        log(JSON.stringify({states:_.map(states,function(sta){return sta.state;})},null, '\t'));
         //retrieve solutions and use correction function to make score
         $.getJSON(solurl, function(ssol) {
             var score = 0;
@@ -2794,6 +2843,9 @@ var rpnsequence = (function() {
     };
     
     var addvalidation = function(inputs,validationoptions){
+        if(_.isUndefined(validationoptions)){
+            return;
+        }
         _.defaults(validationoptions,{
             mode:"lock",
             type:"integer"
@@ -2803,15 +2855,17 @@ var rpnsequence = (function() {
             e.preventDefault();
         });
         if(validationoptions.mode=='lock'){
-            $(inputs).keydown(function(e){
+            $(inputs).keypress(function(e){
                 if(validationoptions.type=='integer'){
+                    log(e.keyCode);
                     /*Authorize:
                     backspace, tab, shift, arrow-left, arrow-right, delete, 
                     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 
                     numpad-0, numpad-1, numpad-2, numpad-3, numpad-4, numpad-5, numpad-6, numpad-7, numpad-8, numpad-9, 
                     subtract, dash*/
                     //if subtract or dash try to know if we're at the begining of the input
-                    if(!_.contains([8,9,16,37,39,46,48,49,50,51,52,53,54,55,56,57,96,97,98,99,100,101,102,103,104,105,109,189],e.keyCode) || ((e.keyCode==109 || e.keyCode==189) && $(this).getSelection().start!=0)){
+                    //if(!_.contains([8,9,16,37,39,46,48,49,50,51,52,53,54,55,56,57,96,97,98,99,100,101,102,103,104,105,109,189],e.keyCode) || ((e.keyCode==109 || e.keyCode==189) && $(this).getSelection().start!=0)){
+                    if(!_.contains([8,9,48,49,50,51,52,53,54,55,56,57],e.keyCode)){
                         log(e.keyCode);
                         e.preventDefault();    
                     }
@@ -2836,6 +2890,10 @@ var rpnsequence = (function() {
         
     };
     
+    var computeMediaUrl= function(url){
+        return mediapathHandler(url);
+    };
+    
     return {
         init: init,
         buildUi: buildUi,
@@ -2843,7 +2901,8 @@ var rpnsequence = (function() {
         displayAlert: displayAlert,
         log: log,
         getLabels: getLabels,
-        addvalidation: addvalidation
+        addvalidation: addvalidation,
+        computeMediaUrl:computeMediaUrl
     };
 })();
 //sorting
@@ -2879,7 +2938,7 @@ var rpnsortingmodule = function() {
         //build sentence with items to select
         var sentenceToSort=$('<ul class="list-unstyled list-inline"></ul>');
         _.each(state, function(item, idx) {
-            sentenceToSort.append($('<li>'+item+'</li>'));
+            sentenceToSort.append($('<li class="well well-sm">'+item+'</li>'));
         });
         domelem.append(sentenceToSort);
         sentenceToSort.sortable();

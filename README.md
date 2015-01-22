@@ -87,7 +87,7 @@ By default a sequence json datas has to handle these values:
     
     <li>sentence - a sentence to adapt</li>
     <li>circumstance - an array of 2 labels introducing the orginal sentence and the text to adapt</li>
-    <li>items - a list of choice (each of them is an array of texts)</li>
+    <li>items - a list of choice (each of them is an array of texts labeled choice)</li>
 </ul>
 
 <h3>gapfull options</h3>
@@ -105,12 +105,14 @@ By default a sequence json datas has to handle these values:
 <ul>
     <li>markers - a list of markers</li>
     <li>tomark - a text where words tagged with b can be marked</li>
+    <li>hidden - if true marker targets are not bolded so they are not visible (default false)</li>
 </ul>
 
 <h3>mqc options</h3>
 <ul>
     <li>questions - a list of questions</li>
-    <li>answers - a list of answers common to all questions</li>
+    <li>illustration -  an object with url and position(top|bottom|left|right)</li>
+    <li>answers - a list of choice for each questions (if there is only one it is common to all questions)</li>
 </ul>
 
 <h3>sorting options</h3>
@@ -125,112 +127,154 @@ By default a sequence json datas has to handle these values:
     "title":"modulesequence",
     "modules":[
         {
-            "type":"mqc",
-            "title":"a mqc module",
-            "context":"context",
+            "type":"blackbox",
+            "sources":"<a href=\"https://en.wikipedia.org/wiki/JavaScript\" target=\"_blank\">javascript</a>",
+            "recall":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus posuere velit tortor, vel ullamcorper orci luctus sed.</p><img src=\"logo.png\" /><p>Etiam ut molestie lorem, ac venenatis libero. Nunc quis dolor tristique, fringilla quam nec, accumsan ipsum.</p><p>Aliquam malesuada odio vel purus scelerisque, ac tempus lectus sodales.</p><img src=\"logo2.png\" /><p>Ut accumsan, ligula vitae fermentum fringilla, magna sapien dignissim turpis, a porta eros ante id diam. Maecenas mauris erat, fringilla eget rutrum sit amet, malesuada ac ipsum. Donec semper interdum sapien, vel dapibus sem suscipit at. Mauris volutpat neque a cursus consequat. Donec sed leo at erat aliquam porta. Pellentesque nisi augue, pulvinar sed pulvinar sed, pulvinar sit amet nisl.</p>",
+            "order":"<h1>First do this</h1><h2>then that</h2><p>and finally this!</p>",
+            "operation":"x8",
+            "validation":{
+                "mode":"lock",
+                "type":"integer"
+            },
+            "left":[5,10,6,11],
+            "right":[56,72,32],
+            "shuffle":true
+        },
+        {
+            "type":"blackbox",
+            "directive":"<p>Do this :</p>",
+            "operation":"",
+            "validation":{
+                "mode":"lock",
+                "type":"integer"
+            },
+            "left":[5,10,6,11],
+            "right":[56,72,32],
+            "shuffle":false
+        },
+        {
+            "type":"cardmaze",
+            "sources":"Dictionnary article #24.13",
+            "title":"a cardmaze module",
+            "context":"",
             "directive":"do this",
-            "questions":[
+            "mazewidth":6,
+            "mazeheight":4,
+            "cards":[
                 {
-                    "val":0,
-                    "label" : "Why <strong>doing</strong> this ?"
+                    "label":"A",
+                    "clue":"B"
                 },
                 {
-                    "val":1,
-                    "label" : "Who <i>is</i> it ?"
+                    "label":"A",
+                    "clue":"B"
                 },
                 {
-                    "val":2,
-                    "label" : "When <u>or</u> what ?"
+                    "start":true,
+                    "label":"START",
+                    "clue":"B"
                 },
                 {
-                    "val":3,
-                    "label" : "What ?"
+                    "label":"A",
+                    "clue":"B"
                 },
                 {
-                    "val":4,
-                    "label" : "Where ?"
+                    "label":"A",
+                    "clue":"B"
                 },
                 {
-                    "val":5,
-                    "label" : "How ?"
+                    "label":"A",
+                    "clue":"B"
                 },
                 {
-                    "val":6,
-                    "label" : "Which ?"
+                    "label":"A",
+                    "clue":"B"
                 },
                 {
-                    "val":7,
-                    "label" : "Whose ?"
-                }
-            ],
-            "answers":[
-                {
-                    "val":0,
-                    "label":"Yes"
+                    "label":"A",
+                    "clue":"B"
                 },
                 {
-                    "val":1,
-                    "label":"No"
+                    "label":"A",
+                    "clue":"B"
                 },
                 {
-                    "val":2,
-                    "label":"Maybe"
+                    "label":"A",
+                    "clue":"B"
+                },
+                {
+                    "label":"A",
+                    "clue":"B"
+                },
+                {
+                    "label":"A",
+                    "clue":"B"
+                },
+                {
+                    "label":"A",
+                    "clue":"B"
+                },
+                {
+                    "label":"A",
+                    "clue":"B"
+                },
+                {
+                    "label":"A",
+                    "clue":"B"
+                },
+                {
+                    "label":"A",
+                    "clue":"B"
+                },
+                {
+                    "label":"A",
+                    "clue":"B"
+                },
+                {
+                    "label":"A",
+                    "clue":"B"
+                },
+                {
+                    "end":true,
+                    "label":"A",
+                    "clue":"END"
+                },
+                {
+                    "label":"A",
+                    "clue":"B"
+                },
+                {
+                    "label":"A",
+                    "clue":"B"
+                },
+                {
+                    "label":"A",
+                    "clue":"B"
+                },
+                {
+                    "label":"A",
+                    "clue":"B"
+                },
+                {
+                    "label":"A",
+                    "clue":"B"
                 }
             ]
-        },
-         {
-            "type":"marker",
-            "title":"a marker module",
-            "context":"context",
-            "directive":"try to mark words",
-            "markers":["marker 1","marker 2","marker 3"],
-            "tomark":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <b>Etiam</b> rutrum convallis maximus. Nulla faucibus mi ante, sed efficitur mi <b>ultrices</b> vel.</p><p>Class aptent taciti sociosqu ad litora torquent per <b>conubia</b> nostra, per inceptos himenaeos. Maecenas sem sapien, dictum lobortis malesuada at, pulvinar ac tortor. Donec vitae quam massa. Mauris eu ante nibh. Donec eu dapibus est, id vestibulum urna. Suspendisse eu arcu neque. Mauris sed placerat orci, vel lobortis augue.</p><p>Suspendisse nisi tellus, finibus sit amet rutrum et, molestie quis dolor. Duis pretium ipsum eu sem <b>lobortis</b>, eget varius urna sagittis.</p><p><b>Etiam</b> et dolor sit amet quam finibus faucibus ac porttitor dui. Vestibulum et erat ac nulla cursus gravida et a dui. Nunc egestas purus dui, ac lobortis turpis rhoncus a. Sed ac accumsan eros. Vivamus eget vestibulum augue, vel lacinia orci. Duis vitae leo vel dolor lacinia volutpat fermentum et leo. Sed ac efficitur tellus. Quisque eget commodo ligula.</p><p>In mollis convallis turpis, sit amet luctus purus tempor a. Integer vel convallis arcu, porttitor laoreet mauris. Sed porttitor pharetra purus nec sagittis. Curabitur ac purus finibus, blandit lectus ac, laoreet est. Ut lobortis nisl sit amet <b>fringilla</b> gravida. Donec arcu lectus, porttitor sed vestibulum vitae, vestibulum ut justo. Duis maximus viverra risus, ac finibus enim pellentesque ac. Cras interdum posuere orci, ut ultricies elit ullamcorper ut.</p>"
-        },
-        {
-            "type":"gapsimple",
-            "title":"a gapsimple module",
-            "context":"",
-            "directive":"do this",
-            "tofill":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <b>Etiam</b> rutrum convallis maximus. Nulla faucibus mi ante, sed efficitur mi <b>ultrices</b> vel.</p><p>Class aptent taciti sociosqu ad litora torquent per <b>conubia</b> nostra, per inceptos himenaeos. Maecenas sem sapien, dictum lobortis malesuada at, pulvinar ac tortor. Donec vitae quam massa. Mauris eu ante nibh. Donec eu dapibus est, id vestibulum urna. Suspendisse eu arcu neque. Mauris sed placerat orci, vel lobortis augue.</p><p>Suspendisse nisi tellus, finibus sit amet rutrum et, molestie quis dolor. Duis pretium ipsum eu sem <b>lobortis</b>, eget varius urna sagittis.</p><p><b>Etiam</b> et dolor sit amet quam finibus faucibus ac porttitor dui. Vestibulum et erat ac nulla cursus gravida et a dui. Nunc egestas purus dui, ac lobortis turpis rhoncus a. Sed ac accumsan eros. Vivamus eget vestibulum augue, vel lacinia orci. Duis vitae leo vel dolor lacinia volutpat fermentum et leo. Sed ac efficitur tellus. Quisque eget commodo ligula.</p><p>In mollis convallis turpis, sit amet luctus purus tempor a. Integer vel convallis arcu, porttitor laoreet mauris. Sed porttitor pharetra purus nec sagittis. Curabitur ac purus finibus, blandit lectus ac, laoreet est. Ut lobortis nisl sit amet <b>fringilla</b> gravida. Donec arcu lectus, porttitor sed vestibulum vitae, vestibulum ut justo. Duis maximus viverra risus, ac finibus enim pellentesque ac. Cras interdum posuere orci, ut ultricies elit ullamcorper ut.</p>"
-        },
-        {
-            "type":"gapsimple",
-            "title":"a gapsimple module with drag and drop",
-            "context":"",
-            "directive":"do this",
-            "fillers":["dream","day"],
-            "tofill":"<p>I have a <b></b> that one <b></b> this nation will rise up and live out the true meaning of its creed - we hold these truths to be self-evident: that all men are created equal.</p><p>I have a <b></b> that one <b></b> on the red hills of Georgia the sons of former slaves and the sons of former slave-owners will be able to sit down together at a table of brotherhood.</p><p>I have a <b></b> that one <b></b> even the state of Mississippi, a desert state, sweltering with the heat of injustice and oppression, will be transformed into an oasis of freedom and justice.</p><p>I have a <b></b> that my four little children will one <b></b> live in a nation where they will not be judged by the colour of their skin but by the content of their character.</p><p>I have a <b></b> to<b></b>!</p>"
-        },
-        {
-            "type":"gapfull",
-            "title":"a first gapfull module",
-            "context":"",
-            "directive":"Replace bad with good and adapt sentence.",
-            "sentence":"A \"bad\" job."
         },
         {
             "type":"clock",
             "title":"a clock module",
             "context":"",
-            "directive":"do this"
-        },
-        {
-            "type":"blackbox",
-            "title":"a blackbox module",
-            "context":"test",
-            "directive":"fill in the black box below",
-            "operation":"x8",
-            "left":[5,10,6,11],
-            "right":[56,72,32],
-            "shuffle":true
+            "directive":"display 22:17 on following dial",
+            "random":false
         },
         {
             "type":"dragdropsorting",
             "title":"a dragdropsorting module",
             "context":"",
             "directive":"do this",
-            "todrag":["1","green","blue","A","3","yellow","C","Z"],
-            "todrop":["letters","colors","numbers"]
+            "todrag":["1","green","blue","Lorem ipsum dolor sit amet, consectetur adipiscing elit.","A","3","yellow","C","Z"],
+            "todrop":["letters","colors","numbers","sentences"]
         },
         {
             "type":"dropdown",
@@ -259,35 +303,196 @@ By default a sequence json datas has to handle these values:
                     "choice":["elit.","finibus.","faucibus.","gravida."]
                 }
             ],
-            "Sources":"Donec arcu lectus, porttitor sed vestibulum vitae."
+            "sources":"Donec arcu lectus, porttitor sed vestibulum vitae."
         },
         {
-            "type":"cardmaze",
-            "title":"a cardmaze module",
+            "type":"gapfull",
+            "title":"a first gapfull module",
+            "context":"",
+            "directive":"Replace bad with good and adapt sentence.",
+            "sentence":"A \"bad\" job."
+        },
+        {
+            "type":"gapfull",
+            "title":"a second gapfull module",
+            "context":"",
+            "directive":"Replace small with big and adapt sentence.",
+            "sentence":"The small mountain."
+        },
+        {
+            "type":"gapsimple",
+            "title":"a gapsimple module",
             "context":"",
             "directive":"do this",
-            "mazewidth":2,
-            "mazeheight":2,
-            "cards":[
-                {
-                    "label":"A",
-                    "clue":"B"
-                },
-                {
-                    "label":"A",
-                    "clue":"B"
-                },
-                {
-                    "label":"A",
-                    "clue":"B"
-                },
-                {
-                    "label":"A",
-                    "clue":"B"
-                }
+            "tofill":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <b>Etiam</b> rutrum convallis maximus. Nulla faucibus mi ante, sed efficitur mi <b>ultrices</b> vel.</p><p>Class aptent taciti sociosqu ad litora torquent per <b>conubia</b> nostra, per inceptos himenaeos. Maecenas sem sapien, dictum lobortis malesuada at, pulvinar ac tortor. Donec vitae quam massa. Mauris eu ante nibh. Donec eu dapibus est, id vestibulum urna. Suspendisse eu arcu neque. Mauris sed placerat orci, vel lobortis augue.</p><p>Suspendisse nisi tellus, finibus sit amet rutrum et, molestie quis dolor. Duis pretium ipsum eu sem <b>lobortis</b>, eget varius urna sagittis.</p><p><b>Etiam</b> et dolor sit amet quam finibus faucibus ac porttitor dui. Vestibulum et erat ac nulla cursus gravida et a dui. Nunc egestas purus dui, ac lobortis turpis rhoncus a. Sed ac accumsan eros. Vivamus eget vestibulum augue, vel lacinia orci. Duis vitae leo vel dolor lacinia volutpat fermentum et leo. Sed ac efficitur tellus. Quisque eget commodo ligula.</p><p>In mollis convallis turpis, sit amet luctus purus tempor a. Integer vel convallis arcu, porttitor laoreet mauris. Sed porttitor pharetra purus nec sagittis. Curabitur ac purus finibus, blandit lectus ac, laoreet est. Ut lobortis nisl sit amet <b>fringilla</b> gravida. Donec arcu lectus, porttitor sed vestibulum vitae, vestibulum ut justo. Duis maximus viverra risus, ac finibus enim pellentesque ac. Cras interdum posuere orci, ut ultricies elit ullamcorper ut.</p>"
+        },
+        {
+            "type":"gapsimple",
+            "title":"a gapsimple module",
+            "context":"",
+            "directive":"Calculates :",
+            "tofill":"<p>18 + 7 = <b></b></p>"
+        },
+        {
+            "type":"gapsimple",
+            "title":"a gapsimple module with drag and drop (multiple)",
+            "context":"",
+            "directive":"do this",
+            "fillers":["dream","day"],
+            "tofill":"<p>I have a <b></b> that one <b></b> this nation will rise up and live out the true meaning of its creed - we hold these truths to be self-evident: that all men are created equal.</p><p>I have a <b></b> that one <b></b> on the red hills of Georgia the sons of former slaves and the sons of former slave-owners will be able to sit down together at a table of brotherhood.</p><p>I have a <b></b> that one <b></b> even the state of Mississippi, a desert state, sweltering with the heat of injustice and oppression, will be transformed into an oasis of freedom and justice.</p><p>I have a <b></b> that my four little children will one <b></b> live in a nation where they will not be judged by the colour of their skin but by the content of their character.</p><p>I have a <b></b> to<b></b>!</p>"
+        },
+        {
+            "type":"gapsimple",
+            "title":"a gapsimple module with drag and drop (single)",
+            "context":"",
+            "directive":"do this",
+            "fillers":["dream","day"],
+            "tofill":"<p>I have a <b></b> that one <b></b> this nation will rise up and live out the true meaning of its creed - we hold these truths to be self-evident: that all men are created equal.</p>"
+        },
+        {
+            "type":"marker",
+            "title":"a marker module",
+            "directive":"try to mark words",
+	        "markers":["marker1","marker2","marker3"],
+            "tomark":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <b>Etiam</b> rutrum convallis maximus. Nulla faucibus mi ante, sed efficitur mi <b>ultrices</b> vel.</p><p>Class aptent taciti sociosqu ad litora torquent per <b>conubia</b> nostra, per inceptos himenaeos. Maecenas sem sapien, dictum lobortis malesuada at, pulvinar ac tortor. Donec vitae quam massa. Mauris eu ante nibh. Donec eu dapibus est, id vestibulum urna. Suspendisse eu arcu neque. Mauris sed placerat orci, vel lobortis augue.</p><p>Suspendisse nisi tellus, finibus sit amet rutrum et, molestie quis dolor. Duis pretium ipsum eu sem <b>lobortis</b>, eget varius urna sagittis.</p><p><b>Etiam</b> et dolor sit amet quam finibus faucibus ac porttitor dui. Vestibulum et erat ac nulla <img src='book3.png' align='right'> cursus gravida et a dui. Nunc egestas purus dui, ac lobortis turpis rhoncus a. Sed ac accumsan eros. Vivamus eget vestibulum augue, vel lacinia orci. Duis vitae leo vel dolor lacinia volutpat fermentum et leo. Sed ac efficitur tellus. Quisque eget commodo ligula.</p><p>In mollis convallis turpis, sit amet luctus purus tempor a. Integer vel convallis arcu, porttitor laoreet mauris. Sed porttitor pharetra purus nec sagittis. Curabitur ac purus finibus, blandit lectus ac, laoreet est. Ut lobortis nisl sit amet <b>fringilla</b> gravida. Donec arcu lectus, porttitor sed vestibulum vitae, vestibulum ut justo. Duis maximus viverra risus, ac finibus enim pellentesque ac. Cras interdum posuere orci, ut ultricies elit ullamcorper ut.</p>"
+        },
+        {
+            "type":"marker",
+            "title":"a marker module",
+            "directive":"try to mark words",
+	        "markers":["marker1","marker2","marker3"],
+            "tomark":"<p> <img src='book2.png' align='left'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <b>Etiam</b> rutrum convallis maximus. Nulla faucibus mi ante, sed efficitur mi <b>ultrices</b> vel.</p><p>Class aptent taciti sociosqu ad litora torquent per <b>conubia</b> nostra, per inceptos himenaeos. Maecenas sem sapien, dictum lobortis malesuada at, pulvinar ac tortor. Donec vitae quam massa. Mauris eu ante nibh. Donec eu dapibus est, id vestibulum urna. Suspendisse eu arcu neque. Mauris sed placerat orci, vel lobortis augue.</p><p>Suspendisse nisi tellus, finibus sit amet rutrum et, molestie quis dolor. Duis pretium ipsum eu sem <b>lobortis</b>, eget varius urna sagittis.</p><p><b>Etiam</b> et dolor sit amet quam finibus faucibus ac porttitor dui. Vestibulum et erat ac nulla <img src='book3.png' align='right'> cursus gravida et a dui. Nunc egestas purus dui, ac lobortis turpis rhoncus a. Sed ac accumsan eros. Vivamus eget vestibulum augue, vel lacinia orci. Duis vitae leo vel dolor lacinia volutpat fermentum et leo. Sed ac efficitur tellus. Quisque eget commodo ligula.</p><p>In mollis convallis turpis, sit amet luctus purus tempor a. Integer vel convallis arcu, porttitor laoreet mauris. Sed porttitor pharetra purus nec sagittis. Curabitur ac purus finibus, blandit lectus ac, laoreet est. Ut lobortis nisl sit amet <b>fringilla</b> gravida. Donec arcu lectus, porttitor sed vestibulum vitae, vestibulum ut justo. Duis maximus viverra risus, ac finibus enim pellentesque ac. Cras interdum posuere orci, ut ultricies elit ullamcorper ut.</p>",
+            "hidden":true,
+            "background":
+            {
+				"url":"book1.png",
+				"width":"600px",
+				"height":"900px",
+				"paddingTop":"35px",
+				"paddingRight":"35px",
+				"paddingBottom":"35px",
+				"paddingLeft":"110px",
+				"align":"center"
+            }
+        },
+        {
+            "type":"marker",
+            "title":"a marker module",
+            "directive":"try to mark words",
+	        "markers":["marker1","marker2","marker3"],
+            "tomark":"<p> <img src='book2.png' align='left'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <b>Etiam</b> rutrum convallis maximus. Nulla faucibus mi ante, sed efficitur mi <b>ultrices</b> vel.</p><p>Class aptent taciti sociosqu ad litora torquent per <b>conubia</b> nostra, per inceptos himenaeos. Maecenas sem sapien, dictum lobortis malesuada at, pulvinar ac tortor. Donec vitae quam massa. Mauris eu ante nibh. Donec eu dapibus est, id vestibulum urna. Suspendisse eu arcu neque. Mauris sed placerat orci, vel lobortis augue.</p><p>Suspendisse nisi tellus, finibus sit amet rutrum et, molestie quis dolor. Duis pretium ipsum eu sem <b>lobortis</b>, eget varius urna sagittis.</p><p><b>Etiam</b> et dolor sit amet quam finibus faucibus ac porttitor dui. Vestibulum et erat ac nulla <img src='book3.png' align='right'> cursus gravida et a dui. Nunc egestas purus dui, ac lobortis turpis rhoncus a. Sed ac accumsan eros. Vivamus eget vestibulum augue, vel lacinia orci. Duis vitae leo vel dolor lacinia volutpat fermentum et leo. Sed ac efficitur tellus. Quisque eget commodo ligula.</p><p>In mollis convallis turpis, sit amet luctus purus tempor a. Integer vel convallis arcu, porttitor laoreet mauris. Sed porttitor pharetra purus nec sagittis. Curabitur ac purus finibus, blandit lectus ac, laoreet est. Ut lobortis nisl sit amet <b>fringilla</b> gravida. Donec arcu lectus, porttitor sed vestibulum vitae, vestibulum ut justo. Duis maximus viverra risus, ac finibus enim pellentesque ac. Cras interdum posuere orci, ut ultricies elit ullamcorper ut.</p>",
+            "background":
+            {
+				"url":"book1.png",
+				"width":"600px",
+				"height":"900px",
+				"paddingTop":"35px",
+				"paddingRight":"35px",
+				"paddingBottom":"35px",
+				"paddingLeft":"110px",
+				"align":"center"
+            }
+        },
+        {
+            "type":"mqc",
+            "title":"identifier ",
+            "context":"context",
+            "directive":"bla bla bla.",
+            "questions":[
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit ?",
+                "Curabitur vitae purus vulputate, rutrum tortor eu, pulvinar justo ?",
+                "Donec et turpis ut risus ullamcorper accumsan ?",
+                "Praesent eleifend sem quis mauris consequat, sit amet rutrum elit interdum ?",
+                "Vestibulum ac pulvinar magna. Nullam efficitur luctus sapien eget sagittis ?",
+                "Vivamus et metus imperdiet, facilisis nisl eget, semper ligula ?"
+            ],
+            "answers":[
+				{"choice":["What","When","Where","Who"]}
+			]
+        },
+        {
+            "type":"mqc",
+            "title":"identifier ",
+            "context":"context",
+            "directive":"bla bla bla.",
+            "questions":[
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit ?",
+                "Curabitur vitae purus vulputate, rutrum tortor eu, pulvinar justo ?",
+                "Donec et turpis ut risus ullamcorper accumsan ?",
+                "Praesent eleifend sem quis mauris consequat, sit amet rutrum elit interdum ?"
+            ],
+            "answers":[
+				{"choice":["What","When","Where","Who"]},
+				{"choice":["What","When","Where","Who"]},
+				{"choice":["Where","When","What","When"]},
+				{"choice":["When","Where","Where","What"]}
+			]
+        },
+		{
+            "type":"mqc",
+            "title":"identifier ",
+            "context":"context",
+            "directive":"bla bla bla.",
+            "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
+            "illustration":{
+                "position":"top",
+                "url":"<img src='logo2.png'>"
+            },
+            "answers":[
+                {"choice":["What","When","Where","Who"]}
+			]
+        },
+		{
+            "type":"mqc",
+            "title":"identifier ",
+            "context":"context",
+            "directive":"bla bla bla.",
+            "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
+            "illustration":{
+                "position":"right",
+                "url":"<img src='logo2.png'>"
+            },
+            "answers":[
+				{"choice":["What","When","Where","Who"]}
             ]
+        },
+		{
+            "type":"mqc",
+            "title":"identifier ",
+            "context":"context",
+            "directive":"bla bla bla.",
+            "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
+            "illustration":{
+                "position":"left",
+                "url":"<img src='logo2.png'>"
+            },
+            "answers":[
+				{"choice":["What","When","Where","Who"]}
+            ]
+        },
+		{
+            "type":"mqc",
+            "title":"identifier ",
+            "context":"context",
+            "directive":"bla bla bla.",
+            "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
+            "illustration":{
+                "position":"bottom",
+                "url":"<img src='logo2.png'>"
+            },
+            "answers":[
+				{"choice":["What","When","Where","Who"]}
+			]
+        },
+        {
+            "type":"sorting",
+            "title":"a sorting module",
+            "context":"",
+            "directive":"Sort this!",
+            "sentence":["Lorem","ipsum","dolor","sit","amet,","consectetur","adipiscing","elit."],
+            "shuffle":true,
+            "sources":"Donec arcu lectus, porttitor sed vestibulum vitae."
         }
-
     ]
 }
 ```
@@ -295,24 +500,44 @@ By default a sequence json datas has to handle these values:
 ```json
 {
     "solutions":[
-        [0,-1,2,1,-1,0],
-        [-1,"marker 1","marker 2",-1,"marker 3","marker 1"],
-        ["a","b","c","d","e","f"],
-        ["dream","day","dream","day","dream","day","dream","day","dream","day"],
-        "",
-        "",
         {
             "left":[40,80,48,88],
             "right":[7,9,4]
         },
         {
+            "left":[40,80,48,88],
+            "right":[7,9,4]
+        },
+        [2,1,0,6,12,18],
+        "22:17",
+        {
             "letters":["A","C","Z"],
             "colors":["green","blue","yellow"],
-            "numbers":["1","3"]
+            "numbers":["1","3"],
+            "sentences":["Lorem ipsum dolor sit amet, consectetur adipiscing elit."]
         },
-        [{"alternative":["Lorems"]},{"alternative":["dictum","ipsum"]},{"alternative":["fringilla"]},{"alternative":["gravida.",""]}],,
-        [0,5,11,17]
-        
+        [
+		    {"alternative":["Lorems"]},
+			{"alternative":["dictum","ipsum"]},
+			{"alternative":["fringilla"]},
+			{"alternative":["gravida.",""]}
+		],
+		"A \"good\" job.",
+        "The big mountain.",
+        ["a","b","c","d","e","f"],
+        ["25"],
+        ["dream","day","dream","day","dream","day","dream","day","dream","day"],
+        ["dream","day"],
+        ["","marker1","marker2","marker3","","marker1"],
+        ["","marker1","marker2","marker3","","marker1"],
+        ["","marker1","marker2","marker3","","marker1"],
+        ["What","What","What","What","What","What"],
+        ["What","What","What","What"],
+        ["What"],
+        ["What"],
+        ["What"],
+        ["What"],
+        ["Lorem","ipsum","dolor","sit","amet,","consectetur","adipiscing","elit."]
     ]
 }
 ```

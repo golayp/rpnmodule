@@ -1,5 +1,5 @@
 {
-    "title":"<i class=\"edicons-visualidentity-rpn\"></i> modulesequence",
+    "title":"modulesequence",
     "modules":[
         {
             "type":"gapsimple",
@@ -10,11 +10,30 @@
         },
         {
             "type":"gapsimple",
-            "title":"a gapsimple module with drag and drop",
+            "title":"a gapsimple module",
+            "context":"",
+            "directive":"Calculates :",
+            "validation":{
+                "mode":"lock",
+                "type":"integer"
+            },
+            "tofill":"<p>18 + 7 = <b></b></p>"
+        },
+        {
+            "type":"gapsimple",
+            "title":"a gapsimple module with drag and drop (multiple)",
             "context":"",
             "directive":"do this",
             "fillers":["dream","day"],
             "tofill":"<p>I have a <b></b> that one <b></b> this nation will rise up and live out the true meaning of its creed - we hold these truths to be self-evident: that all men are created equal.</p><p>I have a <b></b> that one <b></b> on the red hills of Georgia the sons of former slaves and the sons of former slave-owners will be able to sit down together at a table of brotherhood.</p><p>I have a <b></b> that one <b></b> even the state of Mississippi, a desert state, sweltering with the heat of injustice and oppression, will be transformed into an oasis of freedom and justice.</p><p>I have a <b></b> that my four little children will one <b></b> live in a nation where they will not be judged by the colour of their skin but by the content of their character.</p><p>I have a <b></b> to<b></b>!</p>"
+        },
+        {
+            "type":"gapsimple",
+            "title":"a gapsimple module with drag and drop (single)",
+            "context":"",
+            "directive":"do this",
+            "fillers":["dream","day"],
+            "tofill":"<p>I have a <b></b> that one <b></b> this nation will rise up and live out the true meaning of its creed - we hold these truths to be self-evident: that all men are created equal.</p>"
         }
     ]
 }

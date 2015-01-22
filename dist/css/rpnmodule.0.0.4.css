@@ -8,20 +8,12 @@
 .marker {
   font-size: 20px;
 }
-.marker .marker-primary {
-  background-color: #428bca;
+.marker .stab span,
+.marker .eraser span {
+  font-size: 1.5em;
 }
-.marker .marker-success {
-  background-color: #5cb85c;
-}
-.marker .marker-info {
-  background-color: #5bc0de;
-}
-.marker .marker-warning {
-  background-color: #f0ad4e;
-}
-.marker .marker-danger {
-  background-color: #d9534f;
+.markable {
+  cursor: default;
 }
 /*mqc*/
 .mqc {
@@ -101,6 +93,7 @@
   background-color: #5bc0de;
   text-align: center;
   cursor: pointer;
+  height: auto;
 }
 body.dragging,
 body.dragging * {
@@ -143,4 +136,5 @@ body.dragging * {
 /*sorting*/
 .sorting li {
   cursor: pointer;
+  background-color: #5bc0de;
 }

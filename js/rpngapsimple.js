@@ -25,41 +25,41 @@ var rpngapsimplemodule = function() {
 
     var buildUi = function() {
         domelem.addClass('gapsimple');
-
         if(ddmode){
             var toolbar = $('<div class="gapsimpleddtoolbar">');
             $.each(datas.fillers, function(idx, filler) {
                 toolbar.append($('<span class="draggable">'+filler+'</span> '));
             });
             maxfillength=_.max(datas.fillers, function(filler){ return filler.length; }).length;
+            
             domelem.append(toolbar.sortable({
-                    group: 'drop',
-                    drop: false,
-                    itemSelector:'span',
-                    containerSelector:'div',
-                    placeholder:'<span class="placeholder"/>',
-                    onDragStart: function (item, container, _super) {
-                        if(!container.options.drop){
-                            // Clone item
-                            item.clone().insertAfter(item);
-                        }else{
-                            // Remove item and restore white space
-                            $('<span>'+Array(maxfillength).join("_")+'</span>').insertAfter(item);
-                        }
-                        _super(item);
-                    },
-                    onDrop:function($item, container, _super, event){
-                        $item.parent().empty().append($item);
-                        _super($item);
+                group: 'drop',
+                drop: false,
+                itemSelector:'span',
+                containerSelector:'div',
+                placeholder:'<span class="placeholder"/>',
+                onDragStart: function (item, container, _super) {
+                    if(!container.options.drop){
+                        // Clone item
+                        item.clone().insertAfter(item);
+                    }else{
+                        // Remove item and restore white space
+                        $('<span>'+Array(maxfillength).join("_")+'</span>').insertAfter(item);
                     }
-                })
-            );
+                    _super(item);
+                },
+                onDrop:function($item, container, _super, event){
+                    $item.parent().empty().append($item);
+                    _super($item);
+                }
+            }));
         }
         
         //build panel with sentences
         domelem.append($('<div class="form-inline">' + datas.tofill + '</div>'));
         $.each($('b', domelem), function(idx, tofill) {
             var t = $(tofill);
+            var txt = _.isEmpty(t.text())?"":"<strong>(" + t.text() + ")</strong>";
             if(ddmode){
                 //add a white space for drag and drop
                 t.replaceWith($('<b class="gapsimpleddresponse">').append('<span class="'+(_.isEmpty(state[idx])?'':'draggable')+'">'+(_.isEmpty(state[idx])?Array(maxfillength).join("_"):state[idx])+'</span>').sortable({
@@ -69,16 +69,17 @@ var rpngapsimplemodule = function() {
                     vertical:false
                 }));
             }else{
-                t.replaceWith($('<input type="text" class="rpnm_input gapsimple form-control"> <strong>(' + t.text() + ')</strong>'));
+                t.replaceWith($('<input type="text" class="rpnm_input gapsimple form-control">' + txt));
                 $($('.rpnm_input',domelem)[idx]).val(state[idx]);
             }
-            
         });
 
         bindUiEvents();
     };
 
     var bindUiEvents = function() {
+        //Input validation
+        rpnsequence.addvalidation($('.rpnm_input',domelem),datas.validation);
     };
     
     var validate = function(){

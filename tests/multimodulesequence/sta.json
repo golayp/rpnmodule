@@ -1,137 +1,269 @@
 {
-    "states":[
-    {
-        "responses":[
-            "Yes",
-            "No",
-            "Maybe",
-            "",
-            "",
-            "",
-            "",
-            ""
-        ]
-    },
-    {
-        "selectedMarker":{
-            "label":"marker3",
-            "color":"#EEE227"
-        },
-        "responses":[
-            "marker1",
-            "",
-            "",
-            "",
-            "marker3",
-            ""
-        ],
-        "markers":[
-            {
-                "label":"marker1",
-                "color":"#E95C7B"
-            },
-            {
-                "label":"marker2",
-                "color":"#01A271"
-            },
-            {
-                "label":"marker3",
-                "color":"#EEE227"
-            }
-        ]
-    },
-    [
-        "a",
-        "b",
-        "c",
-        "d",
-        "r",
-        ""
-    ],
-    "A \"Goof\" job.",
-    "10:10",
-    [
-        {
-            "position":"right",
-            "originalposition":0,
-            "value":56,
-            "response":"1"
-        },
-        {
-            "position":"right",
-            "originalposition":1,
-            "value":72,
-            "response":"2"
-        },
-        {
-            "position":"right",
-            "originalposition":2,
-            "value":32,
-            "response":"3"
-        },
-        {
-            "position":"left",
-            "originalposition":0,
-            "value":5,
-            "response":"4"
-        },
-        {
-            "position":"left",
-            "originalposition":1,
-            "value":10,
-            "response":""
-        },
-        {
-            "position":"left",
-            "originalposition":2,
-            "value":6,
-            "response":""
-        },
-        {
-            "position":"left",
-            "originalposition":3,
-            "value":11,
-            "response":""
-        }
-    ],
-    {
-        "todrag":[
-            "1",
-            "green",
-            "blue",
-            "A",
-            "3"
-        ],
-        "todrop":[
-            "letters",
-            "colors",
-            "numbers"
-        ],
-        "letters":[
-            "Z",
-            "C"
-        ],
-        "colors":[
-            "yellow"
-        ],
-        "numbers":[
-
-        ]
-    },
-    [
-        "",
-        "",
-        "consectetur",
-        ""
-    ],
-    [
-        2,
-        8,
-        9,
-        3,
-        4,
-        5
-    ]
-]
-    
+	"states": [
+		[
+			{
+				"position": "left",
+				"originalposition": 0,
+				"value": 5,
+				"response": "1"
+			},
+			{
+				"position": "right",
+				"originalposition": 1,
+				"value": 72,
+				"response": "2"
+			},
+			{
+				"position": "left",
+				"originalposition": 3,
+				"value": 11,
+				"response": "3"
+			},
+			{
+				"position": "left",
+				"originalposition": 1,
+				"value": 10,
+				"response": "4"
+			},
+			{
+				"position": "left",
+				"originalposition": 2,
+				"value": 6,
+				"response": "5"
+			},
+			{
+				"position": "right",
+				"originalposition": 2,
+				"value": 32,
+				"response": "67"
+			},
+			{
+				"position": "right",
+				"originalposition": 0,
+				"value": 56,
+				"response": "7"
+			}
+		],
+		[
+			{
+				"position": "right",
+				"originalposition": 0,
+				"value": 56,
+				"response": "7"
+			},
+			{
+				"position": "right",
+				"originalposition": 1,
+				"value": 72,
+				"response": "6"
+			},
+			{
+				"position": "right",
+				"originalposition": 2,
+				"value": 32,
+				"response": "5"
+			},
+			{
+				"position": "left",
+				"originalposition": 0,
+				"value": 5,
+				"response": "4"
+			},
+			{
+				"position": "left",
+				"originalposition": 1,
+				"value": 10,
+				"response": "3"
+			},
+			{
+				"position": "left",
+				"originalposition": 2,
+				"value": 6,
+				"response": "2"
+			},
+			{
+				"position": "left",
+				"originalposition": 3,
+				"value": 11,
+				"response": "1"
+			}
+		],
+		[
+			2,
+			8
+		],
+		"14:39",
+		{
+			"todrag": [
+				"1",
+				"green",
+				"blue",
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+				"A",
+				"3"
+			],
+			"todrop": [
+				"letters",
+				"colors",
+				"numbers",
+				"sentences"
+			],
+			"letters": [
+				"C",
+				"Z"
+			],
+			"colors": [],
+			"numbers": [
+				"yellow"
+			],
+			"sentences": []
+		},
+		[
+			"Lorem",
+			"",
+			"",
+			""
+		],
+		"A \"bad1\" job.",
+		"The 1 mountain.",
+		[
+			"a",
+			"b",
+			"n",
+			"",
+			"",
+			""
+		],
+		[
+			"2"
+		],
+		[
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			""
+		],
+		[
+			"",
+			""
+		],
+		{
+			"selectedMarker": {
+				"label": "marker1",
+				"color": "#d62b81"
+			},
+			"responses": [
+				"marker1",
+				"",
+				"",
+				"",
+				"",
+				""
+			],
+			"markers": [
+				{
+					"label": "marker1",
+					"color": "#d62b81"
+				},
+				{
+					"label": "marker2",
+					"color": "#5dc2e7"
+				},
+				{
+					"label": "marker3",
+					"color": "#e95c7b"
+				}
+			]
+		},
+		{
+			"selectedMarker": {
+				"label": "marker2",
+				"color": "#f5a95e"
+			},
+			"responses": [
+				"marker2",
+				"",
+				"",
+				"",
+				"",
+				""
+			],
+			"markers": [
+				{
+					"label": "marker1",
+					"color": "#ed656a"
+				},
+				{
+					"label": "marker2",
+					"color": "#f5a95e"
+				},
+				{
+					"label": "marker3",
+					"color": "#8d61a4"
+				}
+			]
+		},
+		{
+			"selectedMarker": {
+				"label": "marker2",
+				"color": "#f5a95e"
+			},
+			"responses": [
+				"marker2",
+				"",
+				"",
+				"",
+				"",
+				""
+			],
+			"markers": [
+				{
+					"label": "marker1",
+					"color": "#5dc2e7"
+				},
+				{
+					"label": "marker2",
+					"color": "#f5a95e"
+				},
+				{
+					"label": "marker3",
+					"color": "#8d61a4"
+				}
+			]
+		},
+		null,
+		null,
+		null,
+		{
+			"responses": [
+				"Where"
+			]
+		},
+		{
+			"responses": [
+				"What"
+			]
+		},
+		{
+			"responses": [
+				"Where"
+			]
+		},
+		[
+			"amet,",
+			"dolor",
+			"sit",
+			"adipiscing",
+			"elit.",
+			"ipsum",
+			"Lorem",
+			"consectetur"
+		]
+	]
 }

@@ -25,16 +25,18 @@ var rpnmqcmodule = function() {
 
     var buildUi = function() {
         domelem.addClass('mqc');
-
+		
         //build panel with sentences
         var uilist = $('<ul>', {
             'class': 'list-unstyled'
         });
+    
         $.each(datas.questions, function(idq, question) {
             var li = $('<li>');
             li.append($('<p>' + question + '</p>'));
             var answerGroup = $('<div class="btn-group" data-toggle="buttons">');
-            $.each(datas.answers, function(ida, answer) {
+            var idmqc = datas.answers.length==1?0:idq;
+            $.each(datas.answers[idmqc].choice, function(ida, answer) {
                 answerGroup.append($('<label class="btn btn-default '+((!_.isEmpty(state.responses[idq])&&state.responses[idq]==answer)?'active':'')+'"><input type="radio" autocomplete="off" '+((!_.isEmpty(state.responses[idq])&&state.responses[idq]==answer)?'checked':'')+'>' + answer + '</label>').click(function() {
                     state.responses[idq] = answer;
                 }));
@@ -42,8 +44,25 @@ var rpnmqcmodule = function() {
             });
             uilist.append(li);
         });
-        domelem.append(uilist);
-
+        
+        if(!_.isUndefined(datas.illustration)){
+        	_.defaults(datas.illustration,{
+        		position:"top",
+        		url:"<img />"
+        	});
+        	var illus=$(datas.illustration.url).addClass('img-rounded');
+        	if(datas.illustration.position=='top'){
+        		domelem.append([illus,uilist]);
+        	}else if(datas.illustration.position=='bottom'){
+        		domelem.append([uilist,illus]);
+        	}else if(datas.illustration.position=='right'){
+        		domelem.append([$('<div class="col-md-8">').append(uilist),$('<div class="col-md-4">').append(illus)]);
+        	}else if(datas.illustration.position=='left'){
+        		domelem.append([$('<div class="col-md-4">').append(illus),$('<div class="col-md-8">').append(uilist)]);
+        	}
+        }else{
+        	domelem.append(uilist);
+        }
         bindUiEvents();
     };
 

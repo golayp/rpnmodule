@@ -1,5 +1,14 @@
 {
-    "states":[
-        ["ipsum","dolor","sit","amet,","consectetur","adipiscing","Lorem","elit."]
-    ]
+	"states": [
+		[
+			"Lorem",
+			"ipsum",
+			"sit",
+			"amet,",
+			"elit.",
+			"adipiscing",
+			"consectetur",
+			"dolor"
+		]
+	]
 }

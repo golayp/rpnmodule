@@ -20,6 +20,7 @@ require(['jquery','bootstrap','swfobject','underscore','less','ext/jquery-sortab
     $(document).ready(function(){
         rpnsequence.init({
             debug:true,
+            disablestateloading:false,
             mediapathformatter:function(url){
                 return '../../tests/medias/'+url;
             },

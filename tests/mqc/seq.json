@@ -1,13 +1,96 @@
 {
-    "title":"<i class=\"edicons-visualidentity-rpn\"></i> modulesequence",
+    "title":"modulesequence",
     "modules":[
         {
             "type":"mqc",
-            "title":"a mqc module",
+            "title":"identifier ",
             "context":"context",
-            "directive":"do this",
-            "questions":["Why <strong>doing</strong> this ?","Who <i>is</i> it ?","When <u>or</u> what ?","What ?","Where ?","How ?","Which ?","Whose ?"],
-            "answers":["Yes","No","Maybe"]
+            "directive":"bla bla bla.",
+            "questions":[
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit ?",
+                "Curabitur vitae purus vulputate, rutrum tortor eu, pulvinar justo ?",
+                "Donec et turpis ut risus ullamcorper accumsan ?",
+                "Praesent eleifend sem quis mauris consequat, sit amet rutrum elit interdum ?",
+                "Vestibulum ac pulvinar magna. Nullam efficitur luctus sapien eget sagittis ?",
+                "Vivamus et metus imperdiet, facilisis nisl eget, semper ligula ?"
+            ],
+            "answers":[
+				{"choice":["What","When","Where","Who"]}
+			]
+        },
+        {
+            "type":"mqc",
+            "title":"identifier ",
+            "context":"context",
+            "directive":"bla bla bla.",
+            "questions":[
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit ?",
+                "Curabitur vitae purus vulputate, rutrum tortor eu, pulvinar justo ?",
+                "Donec et turpis ut risus ullamcorper accumsan ?",
+                "Praesent eleifend sem quis mauris consequat, sit amet rutrum elit interdum ?"
+            ],
+            "answers":[
+				{"choice":["What","When","Where","Who"]},
+				{"choice":["What","When","Where","Who"]},
+				{"choice":["Where","When","What","When"]},
+				{"choice":["When","Where","Where","What"]}
+			]
+        },
+		{
+            "type":"mqc",
+            "title":"identifier ",
+            "context":"context",
+            "directive":"bla bla bla.",
+            "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
+            "illustration":{
+                "position":"top",
+                "url":"<img src='logo2.png'>"
+            },
+            "answers":[
+                {"choice":["What","When","Where","Who"]}
+			]
+        },
+		{
+            "type":"mqc",
+            "title":"identifier ",
+            "context":"context",
+            "directive":"bla bla bla.",
+            "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
+            "illustration":{
+                "position":"right",
+                "url":"<img src='logo2.png'>"
+            },
+            "answers":[
+				{"choice":["What","When","Where","Who"]}
+            ]
+        },
+		{
+            "type":"mqc",
+            "title":"identifier ",
+            "context":"context",
+            "directive":"bla bla bla.",
+            "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
+            "illustration":{
+                "position":"left",
+                "url":"<img src='logo2.png'>"
+            },
+            "answers":[
+				{"choice":["What","When","Where","Who"]}
+            ]
+        },
+		{
+            "type":"mqc",
+            "title":"identifier ",
+            "context":"context",
+            "directive":"bla bla bla.",
+            "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
+            "illustration":{
+                "position":"bottom",
+                "url":"<img src='logo2.png'>"
+            },
+            "answers":[
+				{"choice":["What","When","Where","Who"]}
+			]
         }
     ]
 }

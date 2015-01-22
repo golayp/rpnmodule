@@ -23,6 +23,7 @@ var rpnsequence = (function() {
     var validationButton;
     var navigationEnabled;
     var debug;
+    var loadstate;
     var selectedLabels;
     var modules;
 
@@ -77,6 +78,7 @@ var rpnsequence = (function() {
             },
             language: "en",
             debug: false,
+            disablestateloading:false,
             navigationEnabled: false
         });
         selectedLabels = labels[opts.language];
@@ -86,6 +88,7 @@ var rpnsequence = (function() {
         backurl = opts.returnurl;
         solurl = opts.solurl;
         debug = opts.debug;
+        loadstate=!opts.disablestateloading;
         domelem = opts.domelem;
         sequenceendHandler = opts.onsequenceend;
         moduleendHandler = opts.onmoduleend;
@@ -102,13 +105,18 @@ var rpnsequence = (function() {
             });
             currentmod = 0;
             navigationEnabled = opts.navigationEnabled && sequencedatas.modules.length > 1;
-            $.getJSON(opts.stateurl,function(savedStates){
-                states=_.map(sequencedatas.modules,function(mod,idx){return { state:savedStates.states[idx]};});
-                buildUi();
-            }).error(function() {
+            if(loadstate){
+                $.getJSON(opts.stateurl,function(savedStates){
+                    states=_.map(sequencedatas.modules,function(mod,idx){return { state:savedStates.states[idx]};});
+                    buildUi();
+                }).error(function() {
+                    states=_.map(sequencedatas.modules,function(mod,idx){return { state:undefined};});
+                    buildUi();
+                });
+            }else{
                 states=_.map(sequencedatas.modules,function(mod,idx){return { state:undefined};});
                 buildUi();
-            });
+            }
             
         });
     };
@@ -249,8 +257,8 @@ var rpnsequence = (function() {
 
     var bindModuleSharedDatas = function(datas) {
         $('#rpnm_title').show().html(datas.title +' <button class="btn btn-default btn-sm  pull-right" href="#" id="rpnm_order_link" data-toggle="modal" data-target="#rpnm_order_modal"><i class="glyphicon glyphicon-question-sign"></i> ' + selectedLabels.Order + '</button><button class="btn btn-default btn-sm pull-right" id="rpnm_recall_link" data-toggle="modal" data-target="#rpnm_recall_modal"><i class="glyphicon glyphicon-bell"></i> ' + selectedLabels.Recall + '</button>');
-        _.isUndefined(datas.context) ? $('#rpnm_context').hide() : $('#rpnm_context').show().text(datas.context);
-        _.isUndefined(datas.directive) ? $('#rpnm_directive').hide() : $('#rpnm_directive').show().text(datas.directive);
+        _.isUndefined(datas.context) ? $('#rpnm_context').hide() : $('#rpnm_context').show().html(datas.context);
+        _.isUndefined(datas.directive) ? $('#rpnm_directive').hide() : $('#rpnm_directive').show().html(datas.directive);
 
         if (_.isUndefined(datas.recall)) {
             $('#rpnm_recall_link').hide();
@@ -284,6 +292,7 @@ var rpnsequence = (function() {
 
     var handleEndOfSequence = function() {
         log('End of sequence');
+        log(JSON.stringify({states:_.map(states,function(sta){return sta.state;})},null, '\t'));
         //retrieve solutions and use correction function to make score
         $.getJSON(solurl, function(ssol) {
             var score = 0;
@@ -331,6 +340,9 @@ var rpnsequence = (function() {
     };
     
     var addvalidation = function(inputs,validationoptions){
+        if(_.isUndefined(validationoptions)){
+            return;
+        }
         _.defaults(validationoptions,{
             mode:"lock",
             type:"integer"
@@ -340,15 +352,17 @@ var rpnsequence = (function() {
             e.preventDefault();
         });
         if(validationoptions.mode=='lock'){
-            $(inputs).keydown(function(e){
+            $(inputs).keypress(function(e){
                 if(validationoptions.type=='integer'){
+                    log(e.keyCode);
                     /*Authorize:
                     backspace, tab, shift, arrow-left, arrow-right, delete, 
                     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 
                     numpad-0, numpad-1, numpad-2, numpad-3, numpad-4, numpad-5, numpad-6, numpad-7, numpad-8, numpad-9, 
                     subtract, dash*/
                     //if subtract or dash try to know if we're at the begining of the input
-                    if(!_.contains([8,9,16,37,39,46,48,49,50,51,52,53,54,55,56,57,96,97,98,99,100,101,102,103,104,105,109,189],e.keyCode) || ((e.keyCode==109 || e.keyCode==189) && $(this).getSelection().start!=0)){
+                    //if(!_.contains([8,9,16,37,39,46,48,49,50,51,52,53,54,55,56,57,96,97,98,99,100,101,102,103,104,105,109,189],e.keyCode) || ((e.keyCode==109 || e.keyCode==189) && $(this).getSelection().start!=0)){
+                    if(!_.contains([8,9,48,49,50,51,52,53,54,55,56,57],e.keyCode)){
                         log(e.keyCode);
                         e.preventDefault();    
                     }
@@ -373,6 +387,10 @@ var rpnsequence = (function() {
         
     };
     
+    var computeMediaUrl= function(url){
+        return mediapathHandler(url);
+    };
+    
     return {
         init: init,
         buildUi: buildUi,
@@ -380,6 +398,7 @@ var rpnsequence = (function() {
         displayAlert: displayAlert,
         log: log,
         getLabels: getLabels,
-        addvalidation: addvalidation
+        addvalidation: addvalidation,
+        computeMediaUrl:computeMediaUrl
     };
 })();

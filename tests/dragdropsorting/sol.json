@@ -3,7 +3,8 @@
         {
             "letters":["A","C","Z"],
             "colors":["green","blue","yellow"],
-            "numbers":["1","3"]
+            "numbers":["1","3"],
+            "sentences":["Lorem ipsum dolor sit amet, consectetur adipiscing elit."]
         }
     ]
 }

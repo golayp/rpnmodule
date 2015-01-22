@@ -1,32 +1,88 @@
 {
-    "states":[
-        {
-    "selectedMarker":{
-        "label":"marker 2",
-        "color":"#01A271"
-    },
-    "responses":[
-        "marker 1",
-        "",
-        "",
-        "",
-        "marker 2",
-        "marker 3"
-    ],
-    "markers":[
-        {
-            "label":"marker 1",
-            "color":"#8D61A4"
-        },
-        {
-            "label":"marker 2",
-            "color":"#01A271"
-        },
-        {
-            "label":"marker 3",
-            "color":"#5DC2E7"
-        }
-    ]
-}
-    ]
+	"states": [
+		{
+			"selectedMarker": {
+				"label": "marker1",
+				"color": "#5dc2e7"
+			},
+			"responses": [
+				"marker1",
+				"",
+				"",
+				"",
+				"",
+				""
+			],
+			"markers": [
+				{
+					"label": "marker1",
+					"color": "#5dc2e7"
+				},
+				{
+					"label": "marker2",
+					"color": "#e95c7b"
+				},
+				{
+					"label": "marker3",
+					"color": "#01a271"
+				}
+			]
+		},
+		{
+			"selectedMarker": {
+				"label": "marker3",
+				"color": "#5dc2e7"
+			},
+			"responses": [
+				"marker3",
+				"",
+				"",
+				"",
+				"",
+				""
+			],
+			"markers": [
+				{
+					"label": "marker1",
+					"color": "#ed656a"
+				},
+				{
+					"label": "marker2",
+					"color": "#8d61a4"
+				},
+				{
+					"label": "marker3",
+					"color": "#5dc2e7"
+				}
+			]
+		},
+		{
+			"selectedMarker": {
+				"label": "marker1",
+				"color": "#eee227"
+			},
+			"responses": [
+				"",
+				"",
+				"marker1",
+				"",
+				"",
+				""
+			],
+			"markers": [
+				{
+					"label": "marker1",
+					"color": "#eee227"
+				},
+				{
+					"label": "marker2",
+					"color": "#d62b81"
+				},
+				{
+					"label": "marker3",
+					"color": "#5dc2e7"
+				}
+			]
+		}
+	]
 }
