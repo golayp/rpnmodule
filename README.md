@@ -107,6 +107,16 @@ By default a sequence json datas has to handle these values:
     <li>markers - a list of markers</li>
     <li>tomark - a text where words tagged with b can be marked</li>
     <li>hidden - if true marker targets are not bolded so they are not visible (default false)</li>
+    <li>background - <ul>
+                        <li>url : the url to background image mandatory if background is setted</li>
+                        <li>width - the fixed width of content(default 100%)</li>
+    				    <li>height - the fixed height of content (default 100%)</li>
+    				    <li>paddingTop - padding top for inner content(default 0px)</li>
+    				    <li>paddingRight - padding right for inner content(default 0px)</li>
+    				    <li>paddingBottom - padding bottom for inner content(default 0px)</li>
+    				    <li>paddingLeft - padding left for inner content(default 0px)</li>
+                     </ul>
+    </li>
 </ul>
 
 <h3>mqc options</h3>
