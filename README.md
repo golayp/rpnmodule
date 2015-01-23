@@ -1,5 +1,5 @@
 <h1>rpnmodule</h1>
-<strong>v0.0.3</strong>
+<strong>v0.0.4</strong>
 <p>rpnmodule is a project aiming to provide a base library for running educational sequences of modules. It'll provide common features for 10 module types (maybe more in the future) that can be arranged in a sequence of work:</p>
 <p>As the project evolves the main module in the library is rpnsequence, but project name is still rpnmodule... Sorry for confusion!!!!</p>
 <h2>Dependencies</h2>
@@ -33,6 +33,7 @@
     <li>mediapathformatter - a function to update media paths. default: function(val){return 'medias/'+val;}</li>
     <li>language - which language to use for labels? Default:fr available: fr,en</li>
     <li>debug - add some console output. default: false</li>
+    <li>disablestateloading - if true bypass loading states and generate empty states for modules. default: false</li>
     <li>navigationEnabled - Does the sequence have to display a navigation pager? default: false</li>
 </ul>
 
