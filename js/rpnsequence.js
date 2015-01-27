@@ -292,7 +292,7 @@ var rpnsequence = (function() {
 
     var handleEndOfSequence = function() {
         log('End of sequence');
-        log(JSON.stringify({states:_.map(states,function(sta){return sta.state;})},null, '\t'));
+        //log(JSON.stringify({states:_.map(states,function(sta){return sta.state;})},null, '\t'));
         //retrieve solutions and use correction function to make score
         $.getJSON(solurl, function(ssol) {
             var score = 0;

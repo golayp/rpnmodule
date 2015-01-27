@@ -1,4 +1,5 @@
 @fontsize:20px;
+@line-height:30px;
 @brand-primary: #428bca;
 @brand-success: #5cb85c;
 @brand-info:    #5bc0de;
@@ -11,8 +12,9 @@
 @gray-lighter: lighten(#000, 93.5%); // #eee
 
 
+
 #rpnm_module_content{
-    line-height:30px;
+    line-height:@line-height;
 }
 .rpnm_input{
     font-size: @fontsize;
@@ -42,20 +44,17 @@
     margin-right:10px;
     background-color:@brand-info;
 }
-.gapsimpledd{
-}
-.gapsimpleddresponse div{
+.gapsimpleddresponse:empty{
+    width:50px;
+    height:@line-height;
+    line-height:@line-height;
+    vertical-align: bottom;
     display:inline-block;
-    
-    width:70px;
-    height:20px;
+    border: 1px dashed @gray;
 }
-.gapsimpleddresponse{
-    display:inline-block;
-    
-    min-width:20px;
+.gapsimpleddresponse-hover{
+    background-color:@brand-warning;
 }
-
 /*gapfull*/
 .gapfull{
     font-size:@fontsize;
@@ -118,37 +117,24 @@
 }
 
 body.dragging, body.dragging * {
-  cursor: move !important;
+    cursor: move !important;
 }
 .dragthis{
     height:100px;
 }
-.dragged {
-  position: absolute;
-  opacity: 0.5;
-  z-index: 2000;
-}
+
 .droppable{
     text-align:center;
     min-height:100px;
     background-color: @gray-lighter;
 }
-.dragdropsorting ul li.placeholder {
-  position: relative;
-  /** More li styles **/
+.droppable ul{
+    text-align:center;
+    min-height:100px;
 }
-.dragdropsorting ul li.placeholder:before {
-  position: absolute;
-  /** Define arrowhead **/
-}
-[draggable] {
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
-    /* Required to make elements draggable in old WebKit */
-    -khtml-user-drag: element;
-    -webkit-user-drag: element;
+.droppable-placeholder{
+    background-color:@gray-lighter;
+    border:1px dashed @gray;
 }
 
 /*dropdown*/
@@ -159,5 +145,106 @@ body.dragging, body.dragging * {
 /*sorting*/
 .sorting li{
     cursor:pointer;
-    background-color:@brand-info;
+    background-color:@gray-lighter;
+    margin-right:3px;
+}
+.sorting-highlight {
+    width:50px;
+    height:@line-height;
+    line-height:@line-height;
+    vertical-align: bottom;
+    display:inline-block;
+    border: 1px dashed @gray;
+}
+
+/*! jQuery UI - v1.11.2 - 2015-01-23
+* http://jqueryui.com
+* Includes: core.css, sortable.css
+* Copyright 2015 jQuery Foundation and other contributors; Licensed MIT */
+
+/* Layout helpers
+----------------------------------*/
+.ui-helper-hidden {
+	display: none;
+}
+.ui-helper-hidden-accessible {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+.ui-helper-reset {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	line-height: 1.3;
+	text-decoration: none;
+	font-size: 100%;
+	list-style: none;
+}
+.ui-helper-clearfix:before,
+.ui-helper-clearfix:after {
+	content: "";
+	display: table;
+	border-collapse: collapse;
+}
+.ui-helper-clearfix:after {
+	clear: both;
+}
+.ui-helper-clearfix {
+	min-height: 0; /* support: IE7 */
+}
+.ui-helper-zfix {
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	position: absolute;
+	opacity: 0;
+	filter:Alpha(Opacity=0); /* support: IE8 */
+}
+
+.ui-front {
+	z-index: 100;
+}
+
+
+/* Interaction Cues
+----------------------------------*/
+.ui-state-disabled {
+	cursor: default !important;
+}
+
+
+/* Icons
+----------------------------------*/
+
+/* states and images */
+.ui-icon {
+	display: block;
+	text-indent: -99999px;
+	overflow: hidden;
+	background-repeat: no-repeat;
+}
+
+
+/* Misc visuals
+----------------------------------*/
+
+/* Overlays */
+.ui-widget-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.ui-sortable-handle {
+	-ms-touch-action: none;
+	touch-action: none;
 }

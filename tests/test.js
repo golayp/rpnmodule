@@ -2,13 +2,13 @@ require.config({
     "baseUrl": "../../js",
     "shim" : {
         "bootstrap" : { "deps" :['jquery'] },
-        "ext/jquery-sortable":{ "deps" :['jquery'] },
-        "ext/rangyinputs-jquery-src":{ "deps" :['jquery'] },
+        "ext/jquery-ui": { "deps" :['jquery'] },
         "ext/jquery-disableSelection":{ "deps" :['jquery'] }
     },
     
     "paths": {
         "jquery": "https://code.jquery.com/jquery-2.1.1",
+        "jquery-ui":"https://code.jquery.com/ui/1.11.2/jquery-ui.js",
         "bootstrap":"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min",
         "swfobject":"//cdnjs.cloudflare.com/ajax/libs/swfobject/2.2/swfobject",
         "underscore":"//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore",
@@ -16,11 +16,11 @@ require.config({
     }
 });
 
-require(['jquery','bootstrap','swfobject','underscore','less','ext/jquery-sortable','ext/rangyinputs-jquery-src','ext/jquery-disableSelection','rpnsequence','rpnblackbox','rpncardmaze','rpnclock','rpndragdropsorting','rpngapfull','rpngapsimple','rpnmarker','rpnmqc','rpndropdown','rpnsorting'], function($) {
+require(['jquery','bootstrap','swfobject','underscore','less','ext/jquery-disableSelection','ext/jquery-ui','rpnsequence','rpnblackbox','rpncardmaze','rpnclock','rpndragdropsorting','rpngapfull','rpngapsimple','rpnmarker','rpnmqc','rpndropdown','rpnsorting'], function($) {
     $(document).ready(function(){
         rpnsequence.init({
             debug:true,
-            disablestateloading:false,
+            disablestateloading:true,
             mediapathformatter:function(url){
                 return '../../tests/medias/'+url;
             },

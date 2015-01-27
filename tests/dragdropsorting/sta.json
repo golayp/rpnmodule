@@ -1,7 +1,7 @@
 {
 	"states": [
 		{
-			"todrag": [],
+			"todrag": ["Z"],
 			"todrop": [
 				"letters",
 				"colors",
@@ -10,8 +10,7 @@
 			],
 			"letters": [
 				"C",
-				"A",
-				"Z"
+				"A"
 			],
 			"colors": [
 				"yellow",

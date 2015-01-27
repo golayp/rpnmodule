@@ -25,22 +25,25 @@ var rpndragdropsortingmodule = function() {
 
     var buildUi = function() {
         domelem.addClass('dragdropsorting');
-        domelem.append($('<div class="row"><div class="container"><div class="col-md-2 col"><ul class="dragthis list-unstyled"></ul></div></div><div class="row"><div class="container dropzonecontainer"></div></div>'));
+        domelem.append($('<div class="row"><div class="container"><div class="col-md-2 col"><ul id="drag_this_'+domelem.attr('id')+'" class="dragthis list-unstyled"></ul></div></div><div class="row"><div class="container dropzonecontainer"></div></div>'));
 
         $.each(datas.todrop, function(idx, drop) {
             $('.dropzonecontainer',domelem).append($('<div class="col-md-2"><div class="droppable"><span class="lead">' + drop + '</span><ul class="list-unstyled"></ul></div></div>'));
             if(!_.isUndefined(state[drop])){
                 _.each(state[drop],function(dropped,idxi){
-                    $('ul',$('.droppable')[idx]).append('<li class="draggable form-control">'+dropped+'</li>');
+                    $('ul',$('.droppable')[idx]).append('<li class="draggable">'+dropped+'</li>');
                 });
             }
         });
-        $(".droppable ul").sortable({
-            group: 'drop',
-            onDrop:function  (item, targetContainer, _super) {
+        $('.droppable ul',domelem).sortable({
+            connectWith: '.droppable ul',
+            dropOnEmpty: true,
+            placeholder:'droppable-placeholder',
+            forcePlaceholderSize :true,
+            distance: 0.5,
+            receive:function  (event, ui) {
                 state.todrag.pop();
                 nextDraggable();
-                _super(item);
             }
         });
         
@@ -49,12 +52,15 @@ var rpndragdropsortingmodule = function() {
     };
 
     var nextDraggable = function() {
-        if ($('.dragthis li').length == 0 && state.todrag.length > 0) {
+        if ($('.dragthis li',domelem).length == 0 && state.todrag.length > 0) {
             var itemToDrag = _.last(state.todrag);
-            $('.dragthis').append($('<li class="draggable form-control">' + itemToDrag + '</li>'));
-            $(".dragthis").sortable({
-                group: 'drop',
-                drop: false
+            $('.dragthis').append($('<li class="draggable">' + itemToDrag + '</li>'));
+            $('.dragthis').sortable({
+                connectWith: '.droppable ul',
+                placeholder:'droppable-placeholder',
+                forcePlaceholderSize :true,
+                dropOnEmpty: true,
+                distance: 0.5
             });
         }
     };
@@ -64,7 +70,7 @@ var rpndragdropsortingmodule = function() {
     };
     
     var validate = function(){
-        _.each($('.droppable'), function(elem, idx) {
+        _.each($('.droppable',domelem), function(elem, idx) {
             var txts = [];
             $.each($(elem).find('li'), function(idx, txt) {
                 txts.push($(txt).text());
