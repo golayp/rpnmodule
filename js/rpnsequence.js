@@ -345,14 +345,14 @@ var rpnsequence = (function() {
         }
         _.defaults(validationoptions,{
             mode:"lock",
-            type:"integer"
+            type:"natural"
         });
         //prevent copy paste cut
         $(inputs).bind("cut copy paste",function(e) {
             e.preventDefault();
         });
         if(validationoptions.mode=='lock'){
-            $(inputs).keypress(function(e){
+          /*  $(inputs).keypress(function(e){
                 if(validationoptions.type=='integer'){
                     log(e.keyCode);
                     /*Authorize:
@@ -362,23 +362,53 @@ var rpnsequence = (function() {
                     subtract, dash*/
                     //if subtract or dash try to know if we're at the begining of the input
                     //if(!_.contains([8,9,16,37,39,46,48,49,50,51,52,53,54,55,56,57,96,97,98,99,100,101,102,103,104,105,109,189],e.keyCode) || ((e.keyCode==109 || e.keyCode==189) && $(this).getSelection().start!=0)){
-                    if(!_.contains([8,9,48,49,50,51,52,53,54,55,56,57],e.keyCode)){
+            /*        if(!_.contains([8,9,48,49,50,51,52,53,54,55,56,57],e.keyCode)){
                         log(e.keyCode);
                         e.preventDefault();    
                     }
                 }
-            });
+            });*/
             $(inputs).keyup(function(){
                 
             });
-            $(inputs).change(function(){
-                if(validationoptions.type=='integer'){
+            $(inputs).bind('input propertychange',function(){
+                log('change');
+                var lastOfRep=$(this).val().charAt($(this).val().length-1);
+                var prevOfRep=$(this).val().substring(0,$(this).val().length-1);
+                if(validationoptions.type=='natural'){
                     var val=/(^-?[1-9]\d*)/.exec($(this).val());
                     if(val=='' || val==null){
                         $(this).val('');
                     }else{
                         $(this).val(parseInt(val));
                     }
+                }
+                else if(validationoptions.type=='integer'){
+                    
+                    var val=/^[-?1-9]\d*/.exec($(this).val());
+                    if(val=='' || val==null){
+                        $(this).val('');
+                   }else  if(val=='-'){
+                        $(this).val('-')
+                   } else if(val=='-0'){
+                        $(this).val('-')
+                   }else{
+                        $(this).val(parseInt(val));
+                    }
+                	if(/,/.test(lastOfRep)){
+                		//$(this).val($(this).val().substring(0,$(this).val().length-1));
+                        $(this).val($(this).val());
+                	}
+                	else if(/\./.test(lastOfRep)){
+                		//$(this).val($(this).val().substring(0,$(this).val().length-1));
+                		$(this).val($(this).val());
+                	}
+                	else if(/-/.test(lastOfRep)){//On teste s'il y a un - seulement au début
+                		if($(this).val().length>1){
+                			//$(this).val($(this).val().substring(0,$(this).val().length-1));
+                			$(this).val($(this).val());
+                		}
+                	}
                 }
             });
         }else{
