@@ -23,6 +23,7 @@
             "title":"identifier ",
             "context":"context",
             "directive":"bla bla bla.",
+            "vertical":true,
             "questions":[
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit ?",
                 "Curabitur vitae purus vulputate, rutrum tortor eu, pulvinar justo ?",

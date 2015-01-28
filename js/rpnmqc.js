@@ -8,7 +8,8 @@ var rpnmqcmodule = function() {
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
             questions: ["No questions!"],
-            answers: ["As no answers"]
+            answers: ["As no answers"],
+            vertical:false
         });
 
         datas = _datas;
@@ -34,7 +35,7 @@ var rpnmqcmodule = function() {
         $.each(datas.questions, function(idq, question) {
             var li = $('<li>');
             li.append($('<p>' + question + '</p>'));
-            var answerGroup = $('<div class="btn-group" data-toggle="buttons">');
+            var answerGroup = $('<div class="'+(datas.vertical?'btn-group-vertical':'btn-group')+'" role="group" data-toggle="buttons">');
             var idmqc = datas.answers.length==1?0:idq;
             $.each(datas.answers[idmqc].choice, function(ida, answer) {
                 answerGroup.append($('<label class="btn btn-default '+((!_.isEmpty(state.responses[idq])&&state.responses[idq]==answer)?'active':'')+'"><input type="radio" autocomplete="off" '+((!_.isEmpty(state.responses[idq])&&state.responses[idq]==answer)?'checked':'')+'>' + answer + '</label>').click(function() {
