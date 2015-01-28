@@ -8,7 +8,6 @@ require.config({
     
     "paths": {
         "jquery": "https://code.jquery.com/jquery-2.1.1",
-        "jquery-ui":"https://code.jquery.com/ui/1.11.2/jquery-ui.js",
         "bootstrap":"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min",
         "swfobject":"//cdnjs.cloudflare.com/ajax/libs/swfobject/2.2/swfobject",
         "underscore":"//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore",

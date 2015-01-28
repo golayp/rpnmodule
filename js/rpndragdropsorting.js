@@ -57,6 +57,7 @@ var rpndragdropsortingmodule = function() {
             $('.dragthis').append($('<li class="draggable">' + itemToDrag + '</li>'));
             $('.dragthis').sortable({
                 connectWith: '.droppable ul',
+                appendTo:'body',
                 placeholder:'droppable-placeholder',
                 forcePlaceholderSize :true,
                 dropOnEmpty: true,

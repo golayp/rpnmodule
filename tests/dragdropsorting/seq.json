@@ -6,7 +6,7 @@
             "title":"a dragdropsorting module",
             "context":"",
             "directive":"do this",
-            "todrag":["1","green","blue","Lorem ipsum dolor sit amet, consectetur adipiscing elit.","A","3","yellow","C","Z"],
+            "todrag":["1","green","blue","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet.","A","3","yellow","C","Z"],
             "todrop":["letters","colors","numbers","sentences"]
         }
     ]

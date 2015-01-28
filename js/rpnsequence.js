@@ -124,7 +124,7 @@ var rpnsequence = (function() {
     var buildUi = function() {
         domelem.append($('<div class="container" id="rpnm"></div>').append([
             $('<div class="row page-header"><div class="col-md-8"><h1 id="rpnm_seq_title"></h1></div><div class="col-md-4"><nav id="rpnm_modulenav"><ul class="pagination pagination-sm"></ul></nav></div></div>'),
-            $('<div class="row"><div class="col-md-12"><h2 id="rpnm_title"></h2><h3 id="rpnm_context"></h3><h4 id="rpnm_directive"></h4></div></div>'),
+            $('<div class="row"><div class="col-md-12"><h2 id="rpnm_title"></h2><div id="rpnm_context"></div><div id="rpnm_directive"></div></div></div>'),
             $('<div class="row"><div id="rpnm_module_content" class="col-md-12"></div></div>'),
             $('<div class="row"><div class="col-md-12"><em id="rpnm_source" class="pull-right"></em></div></div>'),
             $('<div class="row"><div class="col-md-12"><button id="rpnm_validation" class="btn btn-primary pull-right"></button></div></div>'),

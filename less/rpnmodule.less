@@ -10,55 +10,35 @@
 @gray:         lighten(#000, 33.5%); // #555
 @gray-light:   lighten(#000, 46.7%); // #777
 @gray-lighter: lighten(#000, 93.5%); // #eee
+@borderDashed: 1px dashed @gray;
 
-
-
-#rpnm_module_content{
-    line-height:@line-height;
-}
-.rpnm_input{
-    font-size: @fontsize;
-}
 
 /*marker*/
-.marker{
-    font-size:@fontsize;
-}
-.marker .stab span, .marker .eraser span{
-    font-size: 1.5em;
-}
 .markable{
     cursor:default;
 }
 
 /*mqc*/
-.mqc{
-    font-size:@fontsize;
-}
+
 
 /*gapsimple*/
-.gapsimple{
-    font-size:@fontsize;
-}
 .gapsimpleddtoolbar span{
     margin-right:10px;
     background-color:@brand-info;
 }
 .gapsimpleddresponse:empty{
-    width:50px;
+    width:150px;
     height:@line-height;
     line-height:@line-height;
     vertical-align: bottom;
     display:inline-block;
-    border: 1px dashed @gray;
+    border: @borderDashed;
 }
 .gapsimpleddresponse-hover{
     background-color:@brand-warning;
 }
+
 /*gapfull*/
-.gapfull{
-    font-size:@fontsize;
-}
 .gapfull #sentences p{
     padding: 0px 12px;
 }
@@ -74,12 +54,6 @@
 }
 .blackbox .operation{
     white-space: nowrap;
-}
-.pop-Add{
-    font-size:10px;
-    background-color:red;
-    color:white;
-    display:none;
 }
 
 /*cardmaze*/
@@ -116,11 +90,8 @@
     height:auto;
 }
 
-body.dragging, body.dragging * {
-    cursor: move !important;
-}
 .dragthis{
-    height:100px;
+    min-height:100px;
 }
 
 .droppable{
@@ -134,13 +105,11 @@ body.dragging, body.dragging * {
 }
 .droppable-placeholder{
     background-color:@gray-lighter;
-    border:1px dashed @gray;
+    border:@borderDashed;
 }
 
 /*dropdown*/
-.dropdown{
-    font-size:@fontsize;
-}
+
 
 /*sorting*/
 .sorting li{
@@ -154,12 +123,12 @@ body.dragging, body.dragging * {
     line-height:@line-height;
     vertical-align: bottom;
     display:inline-block;
-    border: 1px dashed @gray;
+    border: @borderDashed;
 }
 
-/*! jQuery UI - v1.11.2 - 2015-01-23
+/*! jQuery UI - v1.11.2 - 2015-01-28
 * http://jqueryui.com
-* Includes: core.css, sortable.css
+* Includes: core.css, draggable.css, sortable.css
 * Copyright 2015 jQuery Foundation and other contributors; Licensed MIT */
 
 /* Layout helpers
@@ -243,6 +212,10 @@ body.dragging, body.dragging * {
 	left: 0;
 	width: 100%;
 	height: 100%;
+}
+.ui-draggable-handle {
+	-ms-touch-action: none;
+	touch-action: none;
 }
 .ui-sortable-handle {
 	-ms-touch-action: none;

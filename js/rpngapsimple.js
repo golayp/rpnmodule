@@ -26,15 +26,17 @@ var rpngapsimplemodule = function() {
 
     var buildUi = function() {
         domelem.addClass('gapsimple');
+        var maxwidth=0;
         if(dragdrop){
             var toolbar = $('<div class="gapsimpleddtoolbar">');
             $.each(datas.fillers, function(idx, filler) {
-                toolbar.append($('<span class="draggable ori">'+filler+'</span> ').draggable({
+                var draggable=$('<span class="draggable ori">'+filler+'</span> ').draggable({
                     revert: "invalid",
-                    appendTo: "body",
-                    helper: "clone",
-                    containment:domelem
-                }));
+                    appendTo: domelem,
+                    helper: "clone"
+                });
+                toolbar.append(draggable);
+                maxwidth=maxwidth<draggable.width()?draggable.width():maxwidth;
             });
             maxfillength=_.max(datas.fillers, function(filler){ return filler.length; }).length;
             domelem.append(toolbar);
@@ -47,9 +49,10 @@ var rpngapsimplemodule = function() {
             var txt = _.isEmpty(t.text())?"":"<strong>(" + t.text() + ")</strong>";
             if(dragdrop){
                 //add a drop area
-                var drop=$('<b class="gapsimpleddresponse">')
+                var drop=$('<b class="gapsimpleddresponse">');
                 t.replaceWith(drop);
                 var temp=$('<span class="'+(_.isEmpty(state[idx])?'':'draggable')+'">'+(_.isEmpty(state[idx])?'':state[idx])+'</span>');
+                temp.width(maxwidth);
                 drop.droppable({
                     accept:'.draggable',
                     hoverClass: 'gapsimpleddresponse-hover',
@@ -57,9 +60,8 @@ var rpngapsimplemodule = function() {
                         $(this).empty();
                         $(this).append(((u.draggable.hasClass('ori')?u.draggable.clone():u.draggable).removeClass('ori')).draggable({
                             revert: "invalid",
-                            appendTo: "body",
-                            helper: "clone",
-                            containment:domelem
+                            appendTo: domelem,
+                            helper: "clone"
                         }));
 
                     }
