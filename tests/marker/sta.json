@@ -83,6 +83,29 @@
 					"color": "#5dc2e7"
 				}
 			]
+		},
+		{
+			"selectedMarker": {
+				"label": "marker1",
+				"color": "#eee227"
+			},
+			"responses": [
+				"marker1",
+				"",
+				"marker2",
+				"",
+				""
+			],
+			"markers": [
+				{
+					"label": "marker1",
+					"color": "#eee227"
+				},
+				{
+					"label": "marker2",
+					"color": "#d62b81"
+				}
+			]
 		}
 	]
 }

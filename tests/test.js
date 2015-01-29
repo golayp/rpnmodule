@@ -4,7 +4,8 @@ require.config({
         "bootstrap" : { "deps" :['jquery'] },
         "ext/jquery-sortable":{ "deps" :['jquery'] },
         "ext/rangyinputs-jquery-src":{ "deps" :['jquery'] },
-        "ext/jquery-disableSelection":{ "deps" :['jquery'] }
+        "ext/jquery-disableSelection":{ "deps" :['jquery'] },
+        "ext/jquery.maphilight":{ "deps" :['jquery'] }
     },
     
     "paths": {
@@ -16,7 +17,7 @@ require.config({
     }
 });
 
-require(['jquery','bootstrap','swfobject','underscore','less','ext/jquery-sortable','ext/rangyinputs-jquery-src','ext/jquery-disableSelection','rpnsequence','rpnblackbox','rpncardmaze','rpnclock','rpndragdropsorting','rpngapfull','rpngapsimple','rpnmarker','rpnmqc','rpndropdown','rpnsorting'], function($) {
+require(['jquery','bootstrap','swfobject','underscore','less','ext/jquery-sortable','ext/rangyinputs-jquery-src','ext/jquery-disableSelection','ext/jquery.maphilight','rpnsequence','rpnblackbox','rpncardmaze','rpnclock','rpndragdropsorting','rpngapfull','rpngapsimple','rpnmarker','rpnmqc','rpndropdown','rpnsorting'], function($) {
     $(document).ready(function(){
         rpnsequence.init({
             debug:true,
@@ -28,6 +29,5 @@ require(['jquery','bootstrap','swfobject','underscore','less','ext/jquery-sortab
         });
     });    
 });
-
 
 

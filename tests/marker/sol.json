@@ -2,6 +2,7 @@
     "solutions":[
         ["","marker1","marker2","marker3","","marker1"],
         ["","marker1","marker2","marker3","","marker1"],
-        ["","marker1","marker2","marker3","","marker1"]
+        ["","marker1","marker2","marker3","","marker1"],
+        ["marker1","marker2","marker2","marker2","","marker1"]
     ]
 }

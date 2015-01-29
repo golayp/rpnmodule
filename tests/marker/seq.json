@@ -44,6 +44,13 @@
 				"paddingLeft":"110px",
 				"align":"center"
             }
+        },
+        {
+            "type":"marker",
+            "title":"a marker module",
+            "directive":"try to mark shapes",
+	        "markers":["marker1","marker2"],
+            "tomark":"<p><img src='shapes.png' class='map' usemap='#shapes' /><map name='shapes'><area shape='circle' coords='106,121,57' href='#' /><area shape='poly' coords='216,66,315,16,460,86,360,135' href='#' /><area shape='poly' coords='51,222,176,265,76,353' href='#' /><area shape='poly' coords='305,228,398,231,424,321,346,374,271,316' href='#' /><area shape='poly' coords='518,244,518,153,530,155,540,157,547,159,555,162,563,167,568,170,574,174,580,180,586,185,590,192,594,197,597,203,601,209,604,215,604,217' href='#' /></map></p>"
         }
     ]
 }
