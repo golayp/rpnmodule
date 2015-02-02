@@ -40,13 +40,10 @@
 		{
             "type":"mqc",
             "title":"identifier ",
-            "context":"context",
+            "context":"context <img src='logo2.png'>",
+            "disposition":"top",
             "directive":"bla bla bla.",
             "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
-            "illustration":{
-                "position":"top",
-                "url":"<img src='logo2.png'>"
-            },
             "answers":[
                 {"choice":["What","When","Where","Who"]}
 			]
@@ -54,13 +51,10 @@
 		{
             "type":"mqc",
             "title":"identifier ",
-            "context":"context",
+            "context":"context <img src='logo2.png'>",
             "directive":"bla bla bla.",
             "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
-            "illustration":{
-                "position":"right",
-                "url":"<img src='logo2.png'>"
-            },
+            "disposition":"right",
             "answers":[
 				{"choice":["What","When","Where","Who"]}
             ]
@@ -68,13 +62,10 @@
 		{
             "type":"mqc",
             "title":"identifier ",
-            "context":"context",
+            "context":"context <img src='logo2.png'>",
             "directive":"bla bla bla.",
+            "disposition":"left",
             "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
-            "illustration":{
-                "position":"left",
-                "url":"<img src='logo2.png'>"
-            },
             "answers":[
 				{"choice":["What","When","Where","Who"]}
             ]
@@ -82,13 +73,10 @@
 		{
             "type":"mqc",
             "title":"identifier ",
-            "context":"context",
+            "context":"context <img src='logo2.png'>",
             "directive":"bla bla bla.",
             "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
-            "illustration":{
-                "position":"bottom",
-                "url":"<img src='logo2.png'>"
-            },
+            "disposition":"bottom",
             "answers":[
 				{"choice":["What","When","Where","Who"]}
 			]

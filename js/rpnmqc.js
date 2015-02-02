@@ -46,24 +46,7 @@ var rpnmqcmodule = function() {
             uilist.append(li);
         });
         
-        if(!_.isUndefined(datas.illustration)){
-        	_.defaults(datas.illustration,{
-        		position:"top",
-        		url:"<img />"
-        	});
-        	var illus=$(datas.illustration.url).addClass('img-rounded');
-        	if(datas.illustration.position=='top'){
-        		domelem.append([illus,uilist]);
-        	}else if(datas.illustration.position=='bottom'){
-        		domelem.append([uilist,illus]);
-        	}else if(datas.illustration.position=='right'){
-        		domelem.append([$('<div class="col-md-8">').append(uilist),$('<div class="col-md-4">').append(illus)]);
-        	}else if(datas.illustration.position=='left'){
-        		domelem.append([$('<div class="col-md-4">').append(illus),$('<div class="col-md-8">').append(uilist)]);
-        	}
-        }else{
-        	domelem.append(uilist);
-        }
+        domelem.append(uilist);
         bindUiEvents();
     };
 

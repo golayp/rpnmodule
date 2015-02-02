@@ -6,7 +6,10 @@
             "sources":"<a href=\"https://en.wikipedia.org/wiki/JavaScript\" target=\"_blank\">javascript</a>",
             "recall":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus posuere velit tortor, vel ullamcorper orci luctus sed.</p><img src=\"logo.png\" /><p>Etiam ut molestie lorem, ac venenatis libero. Nunc quis dolor tristique, fringilla quam nec, accumsan ipsum.</p><p>Aliquam malesuada odio vel purus scelerisque, ac tempus lectus sodales.</p><img src=\"logo2.png\" /><p>Ut accumsan, ligula vitae fermentum fringilla, magna sapien dignissim turpis, a porta eros ante id diam. Maecenas mauris erat, fringilla eget rutrum sit amet, malesuada ac ipsum. Donec semper interdum sapien, vel dapibus sem suscipit at. Mauris volutpat neque a cursus consequat. Donec sed leo at erat aliquam porta. Pellentesque nisi augue, pulvinar sed pulvinar sed, pulvinar sit amet nisl.</p>",
             "order":"<h1>First do this</h1><h2>then that</h2><p>and finally this!</p>",
+            "context":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus posuere velit tortor, vel ullamcorper orci luctus sed.</p><img src=\"logo.png\" /><p>Etiam ut molestie lorem, ac venenatis libero. Nunc quis dolor tristique, fringilla quam nec, accumsan ipsum.</p><p>Aliquam malesuada odio vel purus scelerisque, ac tempus lectus sodales.</p>",
+            "directive":"<img src=\"logo2.png\" /><p>Ut accumsan, ligula vitae fermentum fringilla, magna sapien dignissim turpis, a porta eros ante id diam. Maecenas mauris erat, fringilla eget rutrum sit amet, malesuada ac ipsum. Donec semper interdum sapien, vel dapibus sem suscipit at. Mauris volutpat neque a cursus consequat. Donec sed leo at erat aliquam porta. Pellentesque nisi augue, pulvinar sed pulvinar sed, pulvinar sit amet nisl.</p>",
             "operation":"x8",
+            "disposition":"top",
             "validation":{
                 "mode":"lock",
                 "type":"integer"
@@ -19,6 +22,9 @@
             "type":"blackbox",
             "directive":"<p>Do this :</p>",
             "operation":"",
+            "disposition":"left",
+            "context":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus posuere velit tortor, vel ullamcorper orci luctus sed.</p><img src=\"logo.png\" /><p>Etiam ut molestie lorem, ac venenatis libero. Nunc quis dolor tristique, fringilla quam nec, accumsan ipsum.</p><p>Aliquam malesuada odio vel purus scelerisque, ac tempus lectus sodales.</p>",
+            "directive":"<img src=\"logo2.png\" /><p>Ut accumsan, ligula vitae fermentum fringilla, magna sapien dignissim turpis, a porta eros ante id diam. Maecenas mauris erat, fringilla eget rutrum sit amet, malesuada ac ipsum. Donec semper interdum sapien, vel dapibus sem suscipit at. Mauris volutpat neque a cursus consequat. Donec sed leo at erat aliquam porta. Pellentesque nisi augue, pulvinar sed pulvinar sed, pulvinar sit amet nisl.</p>",
             "validation":{
                 "mode":"lock",
                 "type":"integer"
@@ -140,21 +146,20 @@
             "type":"clock",
             "title":"a clock module",
             "context":"",
+            "disposition":"right",
             "directive":"display 22:17 on following dial",
             "random":false
         },
         {
             "type":"dragdropsorting",
             "title":"a dragdropsorting module",
-            "context":"",
-            "directive":"do this",
+            "disposition":"bottom",
             "todrag":["1","green","blue","Lorem ipsum dolor sit amet, consectetur adipiscing elit.","A","3","yellow","C","Z"],
             "todrop":["letters","colors","numbers","sentences"]
         },
         {
             "type":"dropdown",
             "title":"a dropdown module",
-            "context":"",
             "directive":"Select the right words from the options and adapt sentence.",
             "sentence":"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "circumstance":["Original","Item to select"],
@@ -290,6 +295,7 @@
             "title":"identifier ",
             "context":"context",
             "directive":"bla bla bla.",
+            "vertical":true,
             "questions":[
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit ?",
                 "Curabitur vitae purus vulputate, rutrum tortor eu, pulvinar justo ?",
@@ -306,13 +312,10 @@
 		{
             "type":"mqc",
             "title":"identifier ",
-            "context":"context",
+            "context":"context <img src='logo2.png'>",
+            "disposition":"top",
             "directive":"bla bla bla.",
             "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
-            "illustration":{
-                "position":"top",
-                "url":"<img src='logo2.png'>"
-            },
             "answers":[
                 {"choice":["What","When","Where","Who"]}
 			]
@@ -320,13 +323,10 @@
 		{
             "type":"mqc",
             "title":"identifier ",
-            "context":"context",
+            "context":"context <img src='logo2.png'>",
             "directive":"bla bla bla.",
             "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
-            "illustration":{
-                "position":"right",
-                "url":"<img src='logo2.png'>"
-            },
+            "disposition":"right",
             "answers":[
 				{"choice":["What","When","Where","Who"]}
             ]
@@ -334,13 +334,10 @@
 		{
             "type":"mqc",
             "title":"identifier ",
-            "context":"context",
+            "context":"context <img src='logo2.png'>",
             "directive":"bla bla bla.",
+            "disposition":"left",
             "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
-            "illustration":{
-                "position":"left",
-                "url":"<img src='logo2.png'>"
-            },
             "answers":[
 				{"choice":["What","When","Where","Who"]}
             ]
@@ -348,13 +345,10 @@
 		{
             "type":"mqc",
             "title":"identifier ",
-            "context":"context",
+            "context":"context <img src='logo2.png'>",
             "directive":"bla bla bla.",
             "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
-            "illustration":{
-                "position":"bottom",
-                "url":"<img src='logo2.png'>"
-            },
+            "disposition":"bottom",
             "answers":[
 				{"choice":["What","When","Where","Who"]}
 			]

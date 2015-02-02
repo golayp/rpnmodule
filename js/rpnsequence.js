@@ -122,77 +122,121 @@ var rpnsequence = (function() {
     };
 
     var buildUi = function() {
+        mainContent=$('<div class="row"></div>');
         domelem.append($('<div class="container" id="rpnm"></div>').append([
             $('<div class="row page-header"><div class="col-md-8"><h1 id="rpnm_seq_title"></h1></div><div class="col-md-4"><nav id="rpnm_modulenav"><ul class="pagination pagination-sm"></ul></nav></div></div>'),
-            $('<div class="row"><div class="col-md-12"><h2 id="rpnm_title"></h2><div id="rpnm_context"></div><div id="rpnm_directive"></div></div></div>'),
-            $('<div class="row"><div id="rpnm_module_content" class="col-md-12"></div></div>'),
+            mainContent,
             $('<div class="row"><div class="col-md-12"><em id="rpnm_source" class="pull-right"></em></div></div>'),
             $('<div class="row"><div class="col-md-12"><button id="rpnm_validation" class="btn btn-primary pull-right"></button></div></div>'),
-            ]));
-            
+        ]));
         
         domelem.append($('<div id="rpnm_recall_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-bell"></i> ' + selectedLabels.Recall + '</h4></div><div class="modal-body"></div></div></div></div>'));
         domelem.append($('<div id="rpnm_order_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-question-sign"></i> ' + selectedLabels.Order + '</h4></div><div class="modal-body"></div></div></div></div>'));
         domelem.append($('<div id="rpnm_alert_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-warning-sign"></i> ' + selectedLabels.Warning + '</h4></div><div class="modal-body"></div></div></div></div>'));
         domelem.append($('<div id="rpnm_wait_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">' + selectedLabels.Wait + '</h4></div><div class="modal-body"><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% completed</span></div></div></div></div></div></div>'));
+        
         $('#rpnm_seq_title').html(sequencedatas.title);
         validationButton=$('#rpnm_validation');
         source = $('#rpnm_source');
-        mainContent = $('#rpnm_module_content');
         alertModal = $('#rpnm_alert_modal');
         if (!navigationEnabled) {
             $('#rpnm_modulenav').remove();
         }
 
         _.each(sequencedatas.modules, function(modData, idx) {
-            var div = $('<div class="rpnm_instance" id="rpnm_inst_' + idx + '">');
-            mainContent.append(div);
+            _.defaults(modData,{
+                disposition:'top'
+            })
+            
+            var btnOrder=$('<button class="btn btn-default btn-sm pull-right" href="#" data-toggle="modal" data-target="#rpnm_order_modal"><i class="glyphicon glyphicon-question-sign"></i> ' + selectedLabels.Order + '</button>');
+            var btnRecall=$('<button class="btn btn-default btn-sm pull-right" href="#" data-toggle="modal" data-target="#rpnm_recall_modal"><i class="glyphicon glyphicon-bell"></i> ' + selectedLabels.Recall + '</button>')
+            var divContext=$('<div id="rpnm_context"></div>');
+            var divDirective=$('<div id="rpnm_directive"></div>');
+            divContext.html(modData.context);
+            divDirective.html(modData.directive);
+            var divContent=$('<div>');
+            
+            var titleLine=$('<div class="row"></div>').append($('<div class="col-md-12"></div>').append($('<h2 id="rpnm_title">'+(_.isUndefined(modData.title)?'':modData.title)+'</h2>').append([
+                btnOrder,
+                btnRecall
+            ])));
+            
+            if(_.isUndefined(modData.recall)){
+              btnRecall.hide();  
+            }
+            if(_.isUndefined(modData.order)){
+              btnOrder.hide();  
+            } 
+            
+            var globaldiv = $('<div id="rpnm_inst_' + idx + '" class="rpnm_instance">').append(titleLine);
+                
+            if(modData.disposition=='bottom'){
+                globaldiv.append($('<div class="row"></div>').append($('<div class="col-md-12"></div>').append([divContent,divContext,divDirective])));
+            }else if(modData.disposition=='left'){
+                globaldiv.append($('<div class="row"></div>').append([
+                    $('<div class="col-md-6"></div>').append([divContext,divDirective]),
+                    $('<div class="col-md-6"></div>').append(divContent)
+                ]));
+            }else if(modData.disposition=='right'){
+                globaldiv.append($('<div class="row"></div>').append([
+                    $('<div class="col-md-6"></div>').append(divContent),
+                    $('<div class="col-md-6"></div>').append([divContext,divDirective])
+                ]));
+            }else{
+                //default top
+                globaldiv.append($('<div class="row"></div>').append($('<div class="col-md-12"></div>').append([divContext,divDirective,divContent])));
+            }
+            
+            _.isUndefined(modData.context) ? divContext.hide() :divContext.show().html(modData.context);
+            _.isUndefined(modData.directive) ? divDirective.hide() : divDirective.show().html(modData.directive);
+    
+            mainContent.append(globaldiv);
             if(_.isNull(states[idx]).state){
                 _.isNull(states[idx]).state=undefined;
             }
             if (modData.type == 'marker') {
                 modules[idx]=rpnmarkermodule();
-                modules[idx].init(modData,states[idx].state, div);
+                modules[idx].init(modData,states[idx].state, divContent);
             }
             else if (modData.type == 'mqc') {
                 modules[idx]=rpnmqcmodule();
-                modules[idx].init(modData,states[idx].state, div);
+                modules[idx].init(modData,states[idx].state, divContent);
             }
             else if (modData.type == 'gapsimple') {
                 modules[idx]=rpngapsimplemodule();
-                modules[idx].init(modData,states[idx].state, div);
+                modules[idx].init(modData,states[idx].state, divContent);
             }
             else if (modData.type == 'gapfull') {
                 modules[idx]=rpngapfullmodule();
-                modules[idx].init(modData,states[idx].state, div);
+                modules[idx].init(modData,states[idx].state, divContent);
             }
             else if (modData.type == 'clock') {
                 modules[idx]=rpnclockmodule();
-                modules[idx].init(modData,states[idx].state, div);
+                modules[idx].init(modData,states[idx].state, divContent);
             }
             else if (modData.type == 'blackbox') {
                 modules[idx]=rpnblackboxmodule();
-                modules[idx].init(modData,states[idx].state, div);
+                modules[idx].init(modData,states[idx].state, divContent);
             }
             else if (modData.type == 'dragdropsorting') {
                 modules[idx]=rpndragdropsortingmodule();
-                modules[idx].init(modData,states[idx].state, div);
+                modules[idx].init(modData,states[idx].state, divContent);
             }
             else if (modData.type == 'cardmaze') {
                 modules[idx]=rpncardmazemodule();
-                modules[idx].init(modData,states[idx].state, div);
+                modules[idx].init(modData,states[idx].state, divContent);
             }
             else if (modData.type == 'dropdown') {
                 modules[idx]=rpndropdownmodule();
-                modules[idx].init(modData,states[idx].state, div);
+                modules[idx].init(modData,states[idx].state, divContent);
             }
             else if (modData.type == 'sorting') {
                 modules[idx]=rpnsortingmodule();
-                modules[idx].init(modData,states[idx].state, div);
+                modules[idx].init(modData,states[idx].state, divContent);
             }
-            div.hide();
+            globaldiv.hide();
             if(modData.type!='gapfull'){
-                div.disableSelection();
+                divContent.disableSelection();
             }
             $('#rpnm_modulenav ul').append($('<li><a href="#">' + (idx + 1) + '</a></li>'));
             
@@ -256,22 +300,10 @@ var rpnsequence = (function() {
     };
 
     var bindModuleSharedDatas = function(datas) {
-        $('#rpnm_title').show().html(datas.title +' <button class="btn btn-default btn-sm  pull-right" href="#" id="rpnm_order_link" data-toggle="modal" data-target="#rpnm_order_modal"><i class="glyphicon glyphicon-question-sign"></i> ' + selectedLabels.Order + '</button><button class="btn btn-default btn-sm pull-right" id="rpnm_recall_link" data-toggle="modal" data-target="#rpnm_recall_modal"><i class="glyphicon glyphicon-bell"></i> ' + selectedLabels.Recall + '</button>');
-        _.isUndefined(datas.context) ? $('#rpnm_context').hide() : $('#rpnm_context').show().html(datas.context);
-        _.isUndefined(datas.directive) ? $('#rpnm_directive').hide() : $('#rpnm_directive').show().html(datas.directive);
-
-        if (_.isUndefined(datas.recall)) {
-            $('#rpnm_recall_link').hide();
-        }
-        else {
-            $('#rpnm_recall_link').show();
+        if (!_.isUndefined(datas.recall)){
             $('#rpnm_recall_modal .modal-body').html(datas.recall);
         }
-        if (_.isUndefined(datas.order)) {
-            $('#rpnm_order_link').hide();
-        }
-        else {
-            $('#rpnm_order_link').show();
+        if (!_.isUndefined(datas.order)) {
             $('#rpnm_order_modal .modal-body').html(datas.order);
         }
         source.html(_.isUndefined(datas.sources) ? "" : (selectedLabels.Sources + ": " + datas.sources));

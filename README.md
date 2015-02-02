@@ -52,6 +52,7 @@ By default a sequence json datas has to handle these values:
     <li>directive - a directive (fourth level title)</li>
     <li>recall - a recall for student (displayed actually as a modal dialog toggled by a link)</li>
     <li>order - an order for student (displayed actually as a modal dialog toggled by a link) </li>
+    <li>disposition - where to place context and directive (top|left|right|bottom). Default: top</li>
 </ul>
 
 <h2>module specific options</h2>
@@ -122,7 +123,6 @@ By default a sequence json datas has to handle these values:
 <h3>mqc options</h3>
 <ul>
     <li>questions - a list of questions</li>
-    <li>illustration -  an object with url and position(top|bottom|left|right)</li>
     <li>answers - a list of choice for each questions (if there is only one it is common to all questions)</li>
 </ul>
 
