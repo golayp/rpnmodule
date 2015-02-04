@@ -380,11 +380,8 @@ var rpnsequence = (function() {
                     var val_0=$(this).val().replace(',','.');
                     var val=/^[-?,?.?0?\d+]\d*.?,?\d*/.exec(val_0);
                     if ($(this).val().match(/^-/)){
-                        log('On enlève le -'+$(this).val().substring(1))
                        if($(this).val().substring(1).match(/^0[0-9a-zâäàéèùêëîïôöçñ]/i)){
-                           log('On enlève le caractere'+$(this).val().substring(2))
                            var val_1=$(this).val().replace(',','.').substring(2);
-                           log('On enlève le - et le 0'+$(this).val())
                            var val=/^[-?,?.?0?\d+]\d*.?,?\d*/.exec(val_1);
                        }else{
                            var val_1=$(this).val().replace(',','.').substring(1);
@@ -403,7 +400,7 @@ var rpnsequence = (function() {
                     }
                     if(negative){
                         $(this).val('-'+val);
-                    }else{log('else: '+val);
+                    }else{
                         $(this).val(val);
                     }
                 }
