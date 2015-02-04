@@ -352,27 +352,7 @@ var rpnsequence = (function() {
             e.preventDefault();
         });
         if(validationoptions.mode=='lock'){
-          /*  $(inputs).keypress(function(e){
-                if(validationoptions.type=='integer'){
-                    log(e.keyCode);
-                    /*Authorize:
-                    backspace, tab, shift, arrow-left, arrow-right, delete, 
-                    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 
-                    numpad-0, numpad-1, numpad-2, numpad-3, numpad-4, numpad-5, numpad-6, numpad-7, numpad-8, numpad-9, 
-                    subtract, dash*/
-                    //if subtract or dash try to know if we're at the begining of the input
-                    //if(!_.contains([8,9,16,37,39,46,48,49,50,51,52,53,54,55,56,57,96,97,98,99,100,101,102,103,104,105,109,189],e.keyCode) || ((e.keyCode==109 || e.keyCode==189) && $(this).getSelection().start!=0)){
-            /*        if(!_.contains([8,9,48,49,50,51,52,53,54,55,56,57],e.keyCode)){
-                        log(e.keyCode);
-                        e.preventDefault();    
-                    }
-                }
-            });*/
-            $(inputs).keyup(function(){
-                
-            });
             $(inputs).bind('input propertychange',function(){
-                log('change');
                 var lastOfRep=$(this).val().charAt($(this).val().length-1);
                 var prevOfRep=$(this).val().substring(0,$(this).val().length-1);
                 if(validationoptions.type=='natural'){
@@ -390,31 +370,46 @@ var rpnsequence = (function() {
                         $(this).val('');
                    }else  if(val=='-'){
                         $(this).val('-')
-                   } else if(val=='-0'){
+                   }else if(val=='-0'){
                         $(this).val('-')
                    }else{
                         $(this).val(parseInt(val));
-                    }
-                	if(/,/.test(lastOfRep)){
-                		//$(this).val($(this).val().substring(0,$(this).val().length-1));
-                        $(this).val($(this).val());
-                	}
-                	else if(/\./.test(lastOfRep)){
-                		//$(this).val($(this).val().substring(0,$(this).val().length-1));
-                		$(this).val($(this).val());
-                	}
-                	else if(/-/.test(lastOfRep)){//On teste s'il y a un - seulement au début
-                		if($(this).val().length>1){
-                			//$(this).val($(this).val().substring(0,$(this).val().length-1));
-                			$(this).val($(this).val());
-                		}
                 	}
                 }
+                else if(validationoptions.type=='decimal'){
+                    var val_0=$(this).val().replace(',','.');
+                    var val=/^[-?,?.?0?\d+]\d*.?,?\d*/.exec(val_0);
+                    if ($(this).val().match(/^-/)){
+                        log('On enlève le -'+$(this).val().substring(1))
+                       if($(this).val().substring(1).match(/^0[0-9a-zâäàéèùêëîïôöçñ]/i)){
+                           log('On enlève le caractere'+$(this).val().substring(2))
+                           var val_1=$(this).val().replace(',','.').substring(2);
+                           log('On enlève le - et le 0'+$(this).val())
+                           var val=/^[-?,?.?0?\d+]\d*.?,?\d*/.exec(val_1);
+                       }else{
+                           var val_1=$(this).val().replace(',','.').substring(1);
+                           var val=/^[-?,?.?0?\d+]\d*.?,?\d*/.exec(val_1);
+                       }
+                       var negative=true;
+                   }
+                    if($(this).val().match(/^0[0-9a-zâäàéèùêëîïôöçñ]/i)){
+                       var val_1=$(this).val().replace(',','.').substring(0,1);
+                       var val=/^[-?,?.?0?\d+]\d*.?,?\d*/.exec(val_1);
+                   }
+				    if(val=='' || val==null){
+                        val='';
+                    }else  if(val=='.'){
+                        val='0.';
+                    }
+                    if(negative){
+                        $(this).val('-'+val);
+                    }else{log('else: '+val);
+                        $(this).val(val);
+                    }
+                }
+ 
             });
-        }else{
-            
         }
-        
     };
     
     var computeMediaUrl= function(url){
