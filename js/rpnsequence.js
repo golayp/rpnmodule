@@ -353,8 +353,6 @@ var rpnsequence = (function() {
         });
         if(validationoptions.mode=='lock'){
             $(inputs).bind('input propertychange',function(){
-                var lastOfRep=$(this).val().charAt($(this).val().length-1);
-                var prevOfRep=$(this).val().substring(0,$(this).val().length-1);
                 if(validationoptions.type=='natural'){
                     var val=/(^-?[1-9]\d*)/.exec($(this).val());
                     if(val=='' || val==null){
