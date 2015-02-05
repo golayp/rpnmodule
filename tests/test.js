@@ -1,3 +1,6 @@
+  less = {
+    async: true
+  };
 require.config({
     "baseUrl": "../../js",
     "shim" : {
@@ -7,8 +10,8 @@ require.config({
     },
     
     "paths": {
-        "jquery": "https://code.jquery.com/jquery-2.1.1",
-        "bootstrap":"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min",
+        "jquery": "https://code.jquery.com/jquery-2.1.3",
+        "bootstrap":"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min",
         "swfobject":"//cdnjs.cloudflare.com/ajax/libs/swfobject/2.2/swfobject",
         "underscore":"//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore",
         "less":"//cdnjs.cloudflare.com/ajax/libs/less.js/2.1.0/less.min"

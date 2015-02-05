@@ -1,11 +1,11 @@
 <h1>rpnmodule</h1>
-<strong>v0.0.4</strong>
+<strong>v0.0.5</strong>
 <p>rpnmodule is a project aiming to provide a base library for running educational sequences of modules. It'll provide common features for 10 module types (maybe more in the future) that can be arranged in a sequence of work:</p>
 <p>As the project evolves the main module in the library is rpnsequence, but project name is still rpnmodule... Sorry for confusion!!!!</p>
 <h2>Dependencies</h2>
 <ul>
-    <li>jquery 2.1.1</li>
-    <li>bootstrap 3.3.1</li>
+    <li>jquery 2.1.3</li>
+    <li>bootstrap 3.3.2</li>
     <li>underscore 1.7.0</li>
 </ul>
 <h2>Introduction</h2>
@@ -35,6 +35,7 @@
     <li>debug - add some console output. default: false</li>
     <li>disablestateloading - if true bypass loading states and generate empty states for modules. default: false</li>
     <li>navigationEnabled - Does the sequence have to display a navigation pager? default: false</li>
+    <li>quitDisabled - Does the sequence have to hide the upper quit button? default: false</li>
 </ul>
 
 <h2>default sequence datas</h2>
@@ -86,7 +87,6 @@ By default a sequence json datas has to handle these values:
 
 <h3>dropdown options</h3>
 <ul>
-    
     <li>sentence - a sentence to adapt</li>
     <li>circumstance - an array of 2 labels introducing the orginal sentence and the text to adapt</li>
     <li>items - a list of choice (each of them is an array of texts labeled choice)</li>

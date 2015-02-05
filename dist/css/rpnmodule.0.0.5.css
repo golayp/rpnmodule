@@ -1,34 +1,15 @@
-#rpnm_module_content {
-  line-height: 30px;
-}
-.rpnm_input {
-  font-size: 20px;
-}
 /*marker*/
-.marker {
-  font-size: 20px;
-}
-.marker .stab span,
-.marker .eraser span {
-  font-size: 1.5em;
-}
 .markable {
   cursor: default;
 }
 /*mqc*/
-.mqc {
-  font-size: 20px;
-}
 /*gapsimple*/
-.gapsimple {
-  font-size: 20px;
-}
 .gapsimpleddtoolbar span {
   margin-right: 10px;
   background-color: #5bc0de;
 }
 .gapsimpleddresponse:empty {
-  width: 50px;
+  width: 150px;
   height: 30px;
   line-height: 30px;
   vertical-align: bottom;
@@ -39,9 +20,6 @@
   background-color: #f0ad4e;
 }
 /*gapfull*/
-.gapfull {
-  font-size: 20px;
-}
 .gapfull #sentences p {
   padding: 0px 12px;
 }
@@ -55,12 +33,6 @@
 }
 .blackbox .operation {
   white-space: nowrap;
-}
-.pop-Add {
-  font-size: 10px;
-  background-color: red;
-  color: white;
-  display: none;
 }
 /*cardmaze*/
 .cardmaze .nopadding {
@@ -97,12 +69,8 @@
   cursor: pointer;
   height: auto;
 }
-body.dragging,
-body.dragging * {
-  cursor: move !important;
-}
 .dragthis {
-  height: 100px;
+  min-height: 100px;
 }
 .droppable {
   text-align: center;
@@ -118,9 +86,6 @@ body.dragging * {
   border: 1px dashed #555555;
 }
 /*dropdown*/
-.dropdown {
-  font-size: 20px;
-}
 /*sorting*/
 .sorting li {
   cursor: pointer;
@@ -135,9 +100,9 @@ body.dragging * {
   display: inline-block;
   border: 1px dashed #555555;
 }
-/*! jQuery UI - v1.11.2 - 2015-01-23
+/*! jQuery UI - v1.11.2 - 2015-01-28
 * http://jqueryui.com
-* Includes: core.css, sortable.css
+* Includes: core.css, draggable.css, sortable.css
 * Copyright 2015 jQuery Foundation and other contributors; Licensed MIT */
 /* Layout helpers
 ----------------------------------*/
@@ -213,6 +178,10 @@ body.dragging * {
   left: 0;
   width: 100%;
   height: 100%;
+}
+.ui-draggable-handle {
+  -ms-touch-action: none;
+  touch-action: none;
 }
 .ui-sortable-handle {
   -ms-touch-action: none;
