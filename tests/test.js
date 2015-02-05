@@ -23,6 +23,9 @@ require(['jquery','bootstrap','swfobject','underscore','less','ext/jquery-disabl
         rpnsequence.init({
             debug:true,
             disablestateloading:true,
+            onsequenceend:function(states,score){
+                window.location.href='../';
+            },
             mediapathformatter:function(url){
                 return '../../tests/medias/'+url;
             },

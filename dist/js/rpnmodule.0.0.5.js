@@ -5354,7 +5354,6 @@ var rpnsequence = (function() {
     var mainContent;
     var source;
     var solurl;
-    var backurl;
     var states;
     var warnexit;
     var sequenceendHandler;
@@ -5414,10 +5413,9 @@ var rpnsequence = (function() {
             sequrl: "seq.json",
             solurl: "sol.json",
             stateurl:"sta.json",
-            returnurl: "../",
             warnonexit: false,
             domelem: $('body'),
-            onsequenceend: function(states, score, todo) {todo();},
+            onsequenceend: function(states, score) {},
             onmoduleend: function() {},
             mediapathformatter: function(val) {
                 return 'medias/' + val;
@@ -5432,7 +5430,6 @@ var rpnsequence = (function() {
         states = [];
         modules=[];
         warnexit = opts.warnonexit;
-        backurl = opts.returnurl;
         solurl = opts.solurl;
         debug = opts.debug;
         loadstate=!opts.disablestateloading;
@@ -5632,7 +5629,7 @@ var rpnsequence = (function() {
                 });
             });
         }
-     }
+    }
 
     var displayCurrentModule = function() {
         $('#rpnm_wait_modal').modal({show:true,backdrop:'static',keyboard:false});
@@ -5691,9 +5688,7 @@ var rpnsequence = (function() {
                 score +=modules[idx].score(sol);
             });
             log('Calculated total score for sequence ' + score);
-            sequenceendHandler(states,score,function(){
-                window.location = backurl;
-            });
+            sequenceendHandler(states,score);
             if (warnexit) {
                 $(window).unbind('beforeunload');
             }
