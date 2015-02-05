@@ -21,6 +21,28 @@
         },
         {
             "type":"gapsimple",
+            "title":"a gapsimple module",
+            "context":"",
+            "directive":"Calculates :",
+            "validation":{
+                "mode":"lock",
+                "type":"decimal"
+            },
+            "tofill":"<p>4 / 2 = <b></b></p>"
+        },
+        {
+            "type":"gapsimple",
+            "title":"a gapsimple module",
+            "context":"",
+            "directive":"Calculates :",
+            "validation":{
+                "mode":"lock",
+                "type":"decimal"
+            },
+            "tofill":"<p>5 / 2 = <b></b></p>"
+        },
+        {
+            "type":"gapsimple",
             "title":"a gapsimple module with drag and drop (multiple)",
             "context":"",
             "directive":"do this",

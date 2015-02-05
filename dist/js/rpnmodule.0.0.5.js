@@ -5417,7 +5417,7 @@ var rpnsequence = (function() {
             returnurl: "../",
             warnonexit: false,
             domelem: $('body'),
-            onsequenceend: function() {},
+            onsequenceend: function(states, score, todo) {todo();},
             onmoduleend: function() {},
             mediapathformatter: function(val) {
                 return 'medias/' + val;
@@ -5691,11 +5691,12 @@ var rpnsequence = (function() {
                 score +=modules[idx].score(sol);
             });
             log('Calculated total score for sequence ' + score);
-            sequenceendHandler(states,score);
+            sequenceendHandler(states,score,function(){
+                window.location = backurl;
+            });
             if (warnexit) {
                 $(window).unbind('beforeunload');
             }
-            window.location = backurl;
         });
     };
 
