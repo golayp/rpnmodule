@@ -1,5 +1,5 @@
 <h1>rpnmodule</h1>
-<strong>v0.0.5</strong>
+<strong>v0.1.0</strong>
 <p>rpnmodule is a project aiming to provide a base library for running educational sequences of modules. It'll provide common features for 10 module types (maybe more in the future) that can be arranged in a sequence of work:</p>
 <p>As the project evolves the main module in the library is rpnsequence, but project name is still rpnmodule... Sorry for confusion!!!!</p>
 <h2>Dependencies</h2>
@@ -25,10 +25,9 @@
 <ul>
     <li>sequrl - the url where to find json module sequence datas. Default: seq.json</li>
     <li>solurl - the url where to find json module sequence solutions. Default: sol.json</li>
-    <li>returnurl - the url launched at end of sequence. Default: ..</li>
     <li>warnonexit - do the module sequence has to display a waring message (html onbeforeunload classic warning)? default: false</li>
     <li>domelem - the element where to add sequence. default: $('body')</li>
-    <li>onsequenceend (states) - handler called on end of sequence , receive states as parameter. Default: an empty function</li>
+    <li>onsequenceend (states, score) - handler called on end of sequence , receive states and score as parameters. Default: an empty function</li>
     <li>onmoduleend (states)-  handler called on end of each module , receive states as parameter. Default: an empty function</li>
     <li>mediapathformatter - a function to update media paths. default: function(val){return 'medias/'+val;}</li>
     <li>language - which language to use for labels? Default:fr available: fr,en</li>

@@ -346,10 +346,10 @@ var rpnsequence = (function() {
                 score +=modules[idx].score(sol);
             });
             log('Calculated total score for sequence ' + score);
-            sequenceendHandler(states,score);
             if (warnexit) {
                 $(window).unbind('beforeunload');
             }
+            sequenceendHandler(states,score);
         });
     };
 
@@ -384,7 +384,7 @@ var rpnsequence = (function() {
         return selectedLabels;
     };
     
-var addvalidation = function(inputs,validationoptions){
+    var addvalidation = function(inputs,validationoptions){
         if(_.isUndefined(validationoptions)){
             return;
         }
@@ -406,9 +406,9 @@ var addvalidation = function(inputs,validationoptions){
                         $(this).val(parseInt(val));
                     }
                 }
-                else if(validationoptions.type=='integer'){
-                    
-                    var val=/^[-?1-9]\d*/.exec($(this).val());
+               else if(validationoptions.type=='integer'){ 
+
+                    var val=/[-1-9]\d*/.exec($(this).val());
                     if(val=='' || val==null){
                         $(this).val('');
                    }else  if(val=='-'){
@@ -416,25 +416,30 @@ var addvalidation = function(inputs,validationoptions){
                    }else if(val=='-0'){
                         $(this).val('-')
                    }else{
-                        $(this).val(parseInt(val));
+                        $(this).val(val);
                 	}
                 }
                 else if(validationoptions.type=='decimal'){
-                    var val_0=$(this).val().replace(',','.');
-                    var val=/^[-?,?.?0?\d+]\d*.?,?\d*/.exec(val_0);
-                    if ($(this).val().match(/^-/)){
-                       if($(this).val().substring(1).match(/^0[0-9a-zâäàéèùêëîïôöçñ]/i)){
+                  var val_0=$(this).val().replace(',','.');
+                   var val=/^[-.\d]\d*\.?\d*/.exec(val_0);
+                   if ($(this).val().match(/^-/)){
+                       if($(this).val().substring(1).match(/^0[^,\.]/)){
                            var val_1=$(this).val().replace(',','.').substring(2);
-                           var val=/^[-?,?.?0?\d+]\d*.?,?\d*/.exec(val_1);
+                           var val=/^[-.\d]\d*.?\d*/.exec(val_1);
                        }else{
                            var val_1=$(this).val().replace(',','.').substring(1);
-                           var val=/^[-?,?.?0?\d+]\d*.?,?\d*/.exec(val_1);
+                           var val=/^[-.\d]\d*.?\d*/.exec(val_1);
                        }
                        var negative=true;
                    }
-                    if($(this).val().match(/^0[0-9a-zâäàéèùêëîïôöçñ]/i)){
+                   if($(this).val().match(/^0[^,\.]/)){
                        var val_1=$(this).val().replace(',','.').substring(0,1);
-                       var val=/^[-?,?.?0?\d+]\d*.?,?\d*/.exec(val_1);
+                       var val=/^[-.\d]\d*.?\d*/.exec(val_1);
+                   }
+				   if($(this).val().match(/^-/)){
+                       var val_1=$(this).val().replace(',','.');
+                       var val=/[.\d]\d*.?\d*/.exec(val_1);
+
                    }
 				    if(val=='' || val==null){
                         val='';
@@ -447,6 +452,7 @@ var addvalidation = function(inputs,validationoptions){
                         $(this).val(val);
                     }
                 }
+ 
             });
         }
     };
