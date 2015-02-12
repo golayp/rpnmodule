@@ -350,11 +350,12 @@ var rpnsequence = (function() {
             mode:"lock",
             type:"natural"
         });
-        //prevent copy paste cut
-        $(inputs).bind("cut copy paste",function(e) {
-            e.preventDefault();
-        });
+        
         if(validationoptions.mode=='lock'){
+            //prevent copy paste cut
+            $(inputs).bind("cut copy paste",function(e) {
+                e.preventDefault();
+            });
             $(inputs).bind('input propertychange',function(){
                 if(validationoptions.type=='natural'){
                     var val=/(^-?[1-9]\d*)/.exec($(this).val());
