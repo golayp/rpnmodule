@@ -5100,8 +5100,8 @@ var rpngapsimplemodule = function() {
                 //add a drop area
                 var drop=$('<b class="gapsimpleddresponse">');
                 t.replaceWith(drop);
-                var temp=$('<span class="'+(_.isEmpty(state[idx])?'':'draggable')+'">'+(_.isEmpty(state[idx])?'':state[idx])+'</span>');
-                temp.width(maxwidth);
+                
+                
                 drop.droppable({
                     accept:'.draggable',
                     hoverClass: 'gapsimpleddresponse-hover',
@@ -5116,13 +5116,19 @@ var rpngapsimplemodule = function() {
                     }
                 });
                 //and fill if there is already a response
-                drop.append()
+                if(!_.isEmpty(state[idx])){
+                    var alreadyGivenResponse=$('<span class="'+(_.isEmpty(state[idx])?'':'draggable')+'">'+(_.isEmpty(state[idx])?'':state[idx])+'</span>');
+                    drop.append(alreadyGivenResponse.draggable({
+                        revert: "invalid",
+                        appendTo: domelem,
+                        helper: "clone"
+                    }));
+                }
             }else{
                 t.replaceWith($('<input type="text" class="rpnm_input gapsimple">' + txt));
                 $($('.rpnm_input',domelem)[idx]).val(state[idx]);
             }
         });
-
         bindUiEvents();
     };
 
@@ -5680,7 +5686,7 @@ var rpnsequence = (function() {
 
     var handleEndOfSequence = function() {
         log('End of sequence');
-        //log(JSON.stringify({states:_.map(states,function(sta){return sta.state;})},null, '\t'));
+        log(JSON.stringify({states:_.map(states,function(sta){return sta.state;})},null, '\t'));
         //retrieve solutions and use correction function to make score
         $.getJSON(solurl, function(ssol) {
             var score = 0;
@@ -5688,10 +5694,10 @@ var rpnsequence = (function() {
                 score +=modules[idx].score(sol);
             });
             log('Calculated total score for sequence ' + score);
-            sequenceendHandler(states,score);
             if (warnexit) {
                 $(window).unbind('beforeunload');
             }
+            sequenceendHandler(states,score);
         });
     };
 
@@ -5726,7 +5732,7 @@ var rpnsequence = (function() {
         return selectedLabels;
     };
     
-var addvalidation = function(inputs,validationoptions){
+    var addvalidation = function(inputs,validationoptions){
         if(_.isUndefined(validationoptions)){
             return;
         }
@@ -5748,9 +5754,9 @@ var addvalidation = function(inputs,validationoptions){
                         $(this).val(parseInt(val));
                     }
                 }
-                else if(validationoptions.type=='integer'){
-                    
-                    var val=/^[-?1-9]\d*/.exec($(this).val());
+               else if(validationoptions.type=='integer'){ 
+
+                    var val=/[-1-9]\d*/.exec($(this).val());
                     if(val=='' || val==null){
                         $(this).val('');
                    }else  if(val=='-'){
@@ -5758,25 +5764,30 @@ var addvalidation = function(inputs,validationoptions){
                    }else if(val=='-0'){
                         $(this).val('-')
                    }else{
-                        $(this).val(parseInt(val));
+                        $(this).val(val);
                 	}
                 }
                 else if(validationoptions.type=='decimal'){
-                    var val_0=$(this).val().replace(',','.');
-                    var val=/^[-?,?.?0?\d+]\d*.?,?\d*/.exec(val_0);
-                    if ($(this).val().match(/^-/)){
-                       if($(this).val().substring(1).match(/^0[0-9a-zâäàéèùêëîïôöçñ]/i)){
+                  var val_0=$(this).val().replace(',','.');
+                   var val=/^[-.\d]\d*\.?\d*/.exec(val_0);
+                   if ($(this).val().match(/^-/)){
+                       if($(this).val().substring(1).match(/^0[^,\.]/)){
                            var val_1=$(this).val().replace(',','.').substring(2);
-                           var val=/^[-?,?.?0?\d+]\d*.?,?\d*/.exec(val_1);
+                           var val=/^[-.\d]\d*.?\d*/.exec(val_1);
                        }else{
                            var val_1=$(this).val().replace(',','.').substring(1);
-                           var val=/^[-?,?.?0?\d+]\d*.?,?\d*/.exec(val_1);
+                           var val=/^[-.\d]\d*.?\d*/.exec(val_1);
                        }
                        var negative=true;
                    }
-                    if($(this).val().match(/^0[0-9a-zâäàéèùêëîïôöçñ]/i)){
+                   if($(this).val().match(/^0[^,\.]/)){
                        var val_1=$(this).val().replace(',','.').substring(0,1);
-                       var val=/^[-?,?.?0?\d+]\d*.?,?\d*/.exec(val_1);
+                       var val=/^[-.\d]\d*.?\d*/.exec(val_1);
+                   }
+				   if($(this).val().match(/^-/)){
+                       var val_1=$(this).val().replace(',','.');
+                       var val=/[.\d]\d*.?\d*/.exec(val_1);
+
                    }
 				    if(val=='' || val==null){
                         val='';
@@ -5789,6 +5800,7 @@ var addvalidation = function(inputs,validationoptions){
                         $(this).val(val);
                     }
                 }
+ 
             });
         }
     };

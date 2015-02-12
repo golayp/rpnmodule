@@ -51,8 +51,8 @@ var rpngapsimplemodule = function() {
                 //add a drop area
                 var drop=$('<b class="gapsimpleddresponse">');
                 t.replaceWith(drop);
-                var temp=$('<span class="'+(_.isEmpty(state[idx])?'':'draggable')+'">'+(_.isEmpty(state[idx])?'':state[idx])+'</span>');
-                temp.width(maxwidth);
+                
+                
                 drop.droppable({
                     accept:'.draggable',
                     hoverClass: 'gapsimpleddresponse-hover',
@@ -67,13 +67,19 @@ var rpngapsimplemodule = function() {
                     }
                 });
                 //and fill if there is already a response
-                drop.append()
+                if(!_.isEmpty(state[idx])){
+                    var alreadyGivenResponse=$('<span class="'+(_.isEmpty(state[idx])?'':'draggable')+'">'+(_.isEmpty(state[idx])?'':state[idx])+'</span>');
+                    drop.append(alreadyGivenResponse.draggable({
+                        revert: "invalid",
+                        appendTo: domelem,
+                        helper: "clone"
+                    }));
+                }
             }else{
                 t.replaceWith($('<input type="text" class="rpnm_input gapsimple">' + txt));
                 $($('.rpnm_input',domelem)[idx]).val(state[idx]);
             }
         });
-
         bindUiEvents();
     };
 
