@@ -189,6 +189,9 @@ var rpnsequence = (function() {
             else if (modData.type == 'sorting') {
                 modules[idx]=rpnsortingmodule();
                 modules[idx].init(modData,states[idx].state, div);
+            }else if (modData.type == 'twolists') {
+                modules[idx]=rpntwolistsmodule();
+                modules[idx].init(modData,states[idx].state, div);
             }
             div.hide();
             if(modData.type!='gapfull'){

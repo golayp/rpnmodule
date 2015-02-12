@@ -5,7 +5,8 @@ require.config({
         "ext/jquery-sortable":{ "deps" :['jquery'] },
         "ext/rangyinputs-jquery-src":{ "deps" :['jquery'] },
         "ext/jquery-disableSelection":{ "deps" :['jquery'] },
-        "ext/jquery.maphilight":{ "deps" :['jquery'] }
+        "ext/jquery.maphilight":{ "deps" :['jquery'] },
+        "ext/fabric":{ "deps" :['jquery'] }
     },
     
     "paths": {
@@ -13,11 +14,12 @@ require.config({
         "bootstrap":"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min",
         "swfobject":"//cdnjs.cloudflare.com/ajax/libs/swfobject/2.2/swfobject",
         "underscore":"//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore",
-        "less":"//cdnjs.cloudflare.com/ajax/libs/less.js/2.1.0/less.min"
+        "less":"//cdnjs.cloudflare.com/ajax/libs/less.js/2.1.0/less.min",
+        "mathjax":"https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
     }
 });
 
-require(['jquery','bootstrap','swfobject','underscore','less','ext/jquery-sortable','ext/rangyinputs-jquery-src','ext/jquery-disableSelection','ext/jquery.maphilight','rpnsequence','rpnblackbox','rpncardmaze','rpnclock','rpndragdropsorting','rpngapfull','rpngapsimple','rpnmarker','rpnmqc','rpndropdown','rpnsorting'], function($) {
+require(['jquery','bootstrap','swfobject','underscore','less','mathjax','ext/jquery-sortable','ext/rangyinputs-jquery-src','ext/jquery-disableSelection','ext/jquery.maphilight','ext/fabric','rpnsequence','rpnblackbox','rpncardmaze','rpnclock','rpndragdropsorting','rpngapfull','rpngapsimple','rpnmarker','rpnmqc','rpndropdown','rpnsorting','rpntwolists'], function($) {
     $(document).ready(function(){
         rpnsequence.init({
             debug:true,

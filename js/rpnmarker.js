@@ -91,8 +91,10 @@ var rpnmarkermodule = function() {
                 data.strokeColor = data.fillColor;
             }else{
                 data.alwaysOn = false;
+                fillOpacity = 0.5;
             }
-            //$(a).data('maphilight', data).trigger('alwaysOn.maphilight');
+            console.log('data '+data)
+           $(a).data('maphilight', data).trigger('alwaysOn.maphilight');
             if(!datas.hidden){
                 a.css('cursor', 'pointer');
             }else{

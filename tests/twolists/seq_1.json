@@ -1,0 +1,24 @@
+{
+    "title":"modulesequence",
+    "modules":[
+        {
+            "type":"twolists",
+            "title":"bind ",
+            "context":"context",
+            "directive":"bla bla bla.",
+            "leftitems":[
+                "<p class='text-center'>sdafdsghjhhkj fgdhfgc g ?</p>",
+                "<p class='text-center'>Curabitur vitae purus vulputate, rutrum tortor eu, pulvinar justo ?</p>",
+                "<p class='text-center'>Donec et turpis ut risus ullamcorper accumsan ?</p>",
+                "<p class='text-center'>Praesent eleifend sem quis mauris consequat, sit amet rutrum elit interdum ?</p>"
+            ],
+			"rightitems":[
+                "<img src='livre1.png' width='150px' height='150px'>",
+                "<img src='livre2.png' width='150px' height='150px'>",
+                "<img src='livre3.png' width='150px' height='150px'>",
+                "<img src='livre1.png' width='150px' height='150px'>",
+                "Vivamus et metus imperdiet, facilisis nisl eget, semper ligula ?"
+            ]
+        }
+    ]
+}
