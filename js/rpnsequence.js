@@ -364,7 +364,7 @@ var rpnsequence = (function() {
                         $(this).val(parseInt(val));
                     }
                 }
-               else if(validationoptions.type=='integer'){ 
+                else if(validationoptions.type=='integer'){ 
                     var val=/[-1-9]\d*/.exec($(this).val());
                     if(val=='' || val==null){
                         $(this).val('');
@@ -408,7 +408,31 @@ var rpnsequence = (function() {
                         $(this).val(val);
                     }
                 }
- 
+                else if(validationoptions.type=='lowercase'){
+                    var val_0=$(this).val().toLowerCase();
+                    var val=/[a-zâäàéèùêëîïôöçñ]*/.exec(val_0);
+                    if(val=='' || val==null){
+                        $(this).val('');
+                    }else{
+                        $(this).val(val);
+                    }
+                }else if(validationoptions.type=='familycase'){
+                    var val=/^[A-ZÀÂÄÉÈÙÊËÎÏÔÖÑa-zâäàéèùêëîïôöçñ][a-zâäàéèùêëîïôöçñ]*/.exec($(this).val());
+                    if(val=='' || val==null){
+                        $(this).val('');
+                    }else{
+                        $(this).val(val);
+                    }
+                }
+                else if(validationoptions.type=='uppercase'){
+                    var val_0=$(this).val().toUpperCase()
+                    var val=/[A-ZÀÂÄÉÈÙÊËÎÏÔÖÑ]*/.exec(val_0);
+                    if(val=='' || val==null){
+                        $(this).val('');
+                    }else{
+                        $(this).val(val);
+                    }
+                }
             });
         }
     };

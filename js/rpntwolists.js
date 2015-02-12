@@ -86,14 +86,14 @@ var rpntwolistsmodule = function() {
     };
 
     var score = function(sol) {
-        console.log('scorte sol[ida]'+sol)
-        console.log('bezier.target'+bezier[1].target)
+       // console.log('scorte sol[ida]'+sol)
+       // console.log('bezier.target'+bezier[1].target)
         var score = 0;
         _.each(sol, function(item, ida){
             _.each(bezier, function(item, idx) {
-                console.log(idx)
-                console.log('sol[ida]'+sol)
-                console.log('bezier.target'+bezier[idx].target)
+              //  console.log(idx)
+              //  console.log('sol[ida]'+sol)
+              //  console.log('bezier.target'+bezier[idx].target)
                 
                 score+=(((bezier[idx].target[ida]==sol[ida][0]&&bezier[idx].target[1]==sol[ida][1])||(bezier[idx].target[1]==sol[ida][0]&&bezier[idx].target[0]==sol[ida][1]))?1:0);
                
