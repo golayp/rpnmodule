@@ -79,9 +79,8 @@ var rpnmarkermodule = function() {
                 state['responses'][idx] = state.selectedMarker.label;
             });
         });
-        $(function() {
-			$('.map', domelem).maphilight({strokeWidth: 3, fillOpacity: 0.5});
-		});
+
+        $('.map', domelem).maphilight({strokeWidth: 3, fillOpacity: 0.5});
         $.each($('area', domelem), function(idx, tomark) {
             var a = $(tomark);
             var data = $(a).mouseout().data('maphilight') || {};
