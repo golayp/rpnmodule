@@ -8,7 +8,8 @@ var rpndropdownmodule = function() {
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
-            sentence: "sentence not set!"
+            sentence: "",
+            circumstance:["",""]
         });
         datas = _datas;
         domelem = _domelem;
@@ -26,9 +27,9 @@ var rpndropdownmodule = function() {
         domelem.addClass('dropdown');
 
         //build panel with sentence
-        domelem.append($('<p>' + datas.circumstance[0] + '</p>'));
-        domelem.append($('<p>' + datas.sentence + '</p>'));
-        domelem.append($('<p>' + datas.circumstance[1] + '</p>'));
+        if(!_.isEmpty(datas.circumstance[0])) {domelem.append($('<p>' + datas.circumstance[0] + '</p>'));}
+		if(!_.isEmpty(datas.sentence)) {domelem.append($('<p>' + datas.sentence + '</p>'));}
+        if(!_.isEmpty(datas.circumstance[1])) {domelem.append($('<p>' + datas.circumstance[1] + '</p>'));}
 
         //build sentence with items to select
         var sentenceToComplete=$('<div class="form-inline">');
