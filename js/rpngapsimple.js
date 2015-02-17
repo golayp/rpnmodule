@@ -40,8 +40,10 @@ var rpngapsimplemodule = function() {
                 placeholder:'<span class="placeholder"/>',
                 onDragStart: function (item, container, _super) {
                     if(!container.options.drop){
-                        // Clone item
-                        item.clone().insertAfter(item);
+                        if(!datas.single){
+                            // Clone item
+                            item.clone().insertAfter(item);
+                        }
                     }else{
                         // Remove item and restore white space
                         $('<span>'+Array(maxfillength).join("_")+'</span>').insertAfter(item);
@@ -69,7 +71,7 @@ var rpngapsimplemodule = function() {
                     vertical:false
                 }));
             }else{
-                t.replaceWith($('<input type="text" class="rpnm_input gapsimple form-control">' + txt));
+                t.replaceWith($('<pan>&#8239;<input type="text" class="rpnm_input gapsimple form-control" style="width:' + datas.validation.width + '">' + txt + '</span>'));
                 $($('.rpnm_input',domelem)[idx]).val(state[idx]);
             }
         });
