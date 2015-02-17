@@ -4923,7 +4923,8 @@ var rpndropdownmodule = function() {
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
-            sentence: "sentence not set!"
+            sentence: "",
+            circumstance:["",""]
         });
         datas = _datas;
         domelem = _domelem;
@@ -4941,9 +4942,9 @@ var rpndropdownmodule = function() {
         domelem.addClass('dropdown');
 
         //build panel with sentence
-        domelem.append($('<p>' + datas.circumstance[0] + '</p>'));
-        domelem.append($('<p>' + datas.sentence + '</p>'));
-        domelem.append($('<p>' + datas.circumstance[1] + '</p>'));
+        if(!_.isEmpty(datas.circumstance[0])) {domelem.append($('<p>' + datas.circumstance[0] + '</p>'));}
+		if(!_.isEmpty(datas.sentence)) {domelem.append($('<p>' + datas.sentence + '</p>'));}
+        if(!_.isEmpty(datas.circumstance[1])) {domelem.append($('<p>' + datas.circumstance[1] + '</p>'));}
 
         //build sentence with items to select
         var sentenceToComplete=$('<div class="form-inline">');
@@ -5740,11 +5741,12 @@ var rpnsequence = (function() {
             mode:"lock",
             type:"natural"
         });
+        
+        if(validationoptions.mode=='lock'){
         //prevent copy paste cut
         $(inputs).bind("cut copy paste",function(e) {
             e.preventDefault();
         });
-        if(validationoptions.mode=='lock'){
             $(inputs).bind('input propertychange',function(){
                 if(validationoptions.type=='natural'){
                     var val=/(^-?[1-9]\d*)/.exec($(this).val());
@@ -5755,7 +5757,6 @@ var rpnsequence = (function() {
                     }
                 }
                else if(validationoptions.type=='integer'){ 
-
                     var val=/[-1-9]\d*/.exec($(this).val());
                     if(val=='' || val==null){
                         $(this).val('');
@@ -5787,7 +5788,6 @@ var rpnsequence = (function() {
 				   if($(this).val().match(/^-/)){
                        var val_1=$(this).val().replace(',','.');
                        var val=/[.\d]\d*.?\d*/.exec(val_1);
-
                    }
 				    if(val=='' || val==null){
                         val='';
@@ -5800,7 +5800,31 @@ var rpnsequence = (function() {
                         $(this).val(val);
                     }
                 }
- 
+                else if(validationoptions.type=='lowercase'){
+                    var val_0=$(this).val().toLowerCase();
+                    var val=/[a-zâäàéèùêëîïôöçñ]*/.exec(val_0);
+                    if(val=='' || val==null){
+                        $(this).val('');
+                    }else{
+                        $(this).val(val);
+                    }
+                }else if(validationoptions.type=='familycase'){
+                    var val=/^[A-ZÀÂÄÉÈÙÊËÎÏÔÖÑa-zâäàéèùêëîïôöçñ][a-zâäàéèùêëîïôöçñ]*/.exec($(this).val());
+                    if(val=='' || val==null){
+                        $(this).val('');
+                    }else{
+                        $(this).val(val);
+                    }
+                }
+                else if(validationoptions.type=='uppercase'){
+                    var val_0=$(this).val().toUpperCase()
+                    var val=/[A-ZÀÂÄÉÈÙÊËÎÏÔÖÑ]*/.exec(val_0);
+                    if(val=='' || val==null){
+                        $(this).val('');
+                    }else{
+                        $(this).val(val);
+                    }
+                }
             });
         }
     };
