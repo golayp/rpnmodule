@@ -9,7 +9,8 @@
             "validation":{
                 "mode":"lock",
                 "type":"decimal",
-                "width":"4em;"
+                "width":"4em;",
+                "align":"text-center"
             },
             "tofill":"<p>18 + 7 = <b></b></p>"
         },
