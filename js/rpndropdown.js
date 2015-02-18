@@ -40,7 +40,7 @@ var rpndropdownmodule = function() {
             }else{
                 var opts=[];
                 
-                opts[0]=$('<option value="" '+(state[internalCounter]==''?'selected':'')+'>- ? -</option>');
+                opts[0]=$('<option value="" '+(state[internalCounter]==''?'selected':'')+'> ?</option>');
                 $.each(datas.items[idx].choice, function(id, choice){
                     opts[id+1]=$('<option value="' + choice+ '" '+(state[internalCounter]==choice?'selected':'')+'>' + choice + '</option>');
                 });
