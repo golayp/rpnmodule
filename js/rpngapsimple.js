@@ -9,7 +9,7 @@ var rpngapsimplemodule = function() {
 
     var init = function(_datas,_state, _domelem) {
         _.defaults(_datas, {
-            tofill: "tofill not set!<b>Read</b> documentation please!"
+            tofill: "tofill not set!<b>Read</b> documentation please!",
         });
 
         datas = _datas;
@@ -71,7 +71,9 @@ var rpngapsimplemodule = function() {
                     vertical:false
                 }));
             }else{
-                t.replaceWith($('<pan>&#8239;<input type="text" class="rpnm_input gapsimple form-control" style="width:' + datas.validation.width + '">' + txt + '</span>'));
+				var textAlign = _.isUndefined(datas.validation.align)?"":" " + datas.validation.align;
+				var textWidth = _.isUndefined(datas.validation.width)?"":" style='width:" + datas.validation.width + "'";
+                t.replaceWith($('<input type="text" class="rpnm_input gapsimple form-control' + textAlign + '"' + textWidth + '>' + txt));
                 $($('.rpnm_input',domelem)[idx]).val(state[idx]);
             }
         });
