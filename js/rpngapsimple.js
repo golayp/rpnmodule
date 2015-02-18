@@ -61,7 +61,7 @@ var rpngapsimplemodule = function() {
         domelem.append($('<div class="form-inline">' + datas.tofill + '</div>'));
         $.each($('b', domelem), function(idx, tofill) {
             var t = $(tofill);
-            var txt = _.isEmpty(t.text())?"":"<strong>(" + t.text() + ")</strong>";
+			var txt = "";
             if(ddmode){
                 //add a white space for drag and drop
                 t.replaceWith($('<b class="gapsimpleddresponse">').append('<span class="'+(_.isEmpty(state[idx])?'':'draggable')+'">'+(_.isEmpty(state[idx])?Array(maxfillength).join("_"):state[idx])+'</span>').sortable({
@@ -73,8 +73,14 @@ var rpngapsimplemodule = function() {
             }else{
 				var textAlign = _.isUndefined(datas.validation.align)?"":" " + datas.validation.align;
 				var textWidth = _.isUndefined(datas.validation.width)?"":" style='width:" + datas.validation.width + "'";
-                t.replaceWith($('<span class="text-nowrap"><input type="text" class="rpnm_input gapsimple form-control' + textAlign + '"' + textWidth + '>' + txt + '</span>'));
-                $($('.rpnm_input',domelem)[idx]).val(state[idx]);
+				if(t.text().substr(-1)!="_"){
+					txt = _.isEmpty(t.text())?"":"<strong>(" + t.text() + ")</strong>";
+					t.replaceWith($('<span class="text-nowrap"><input type="text" class="rpnm_input gapsimple form-control' + textAlign + '"' + textWidth + '>' + txt + '</span>'));
+                }else{
+					txt = t.text().slice(0,-1);
+					t.replaceWith($('<span class="text-nowrap">' + txt +'<input type="text" class="rpnm_input gapsimple form-control' + textAlign + '"' + textWidth + '></span>'));
+				}
+				$($('.rpnm_input',domelem)[idx]).val(state[idx]);
             }
         });
 
