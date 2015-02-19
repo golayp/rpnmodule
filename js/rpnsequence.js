@@ -392,31 +392,33 @@ var rpnsequence = (function() {
             mode:"lock",
             type:"natural"
         });
-        
-        if(validationoptions.mode=='lock'){
         //prevent copy paste cut
         $(inputs).bind("cut copy paste",function(e) {
             e.preventDefault();
         });
+        if(validationoptions.mode=='lock'){
+        
             $(inputs).bind('input propertychange',function(){
                 if(validationoptions.type=='natural'){
-                    var val=/(^-?[1-9]\d*)/.exec($(this).val());
-                    if(val=='' || val==null){
+                    var val=/(^-?[0-9]\d*)/.exec($(this).val());
+                    if(val=='' || val==null || val==0){
                         $(this).val('');
-                    }else{
+                    }else if(isNaN(val)){
                         $(this).val(parseInt(val));
                     }
                 }
-               else if(validationoptions.type=='integer'){ 
-                    var val=/[-1-9]\d*/.exec($(this).val());
+                else if(validationoptions.type=='integer'){ 
+                    var val=/[-0-9]\d*/.exec($(this).val());
                     if(val=='' || val==null){
                         $(this).val('');
                    }else  if(val=='-'){
-                        $(this).val('-')
+                        $(this).val('-');
                    }else if(val=='-0'){
-                        $(this).val('-')
+                        $(this).val('-');
+                   }else if(val=='00'){
+                       $(this).val('0');
                    }else{
-                        $(this).val(val);
+                        $(this).val(parseInt(val));
                 	}
                 }
                 else if(validationoptions.type=='decimal'){
@@ -466,8 +468,7 @@ var rpnsequence = (function() {
                     }else{
                         $(this).val(val);
                     }
-                }
-                else if(validationoptions.type=='uppercase'){
+                }else if(validationoptions.type=='uppercase'){
                     var val_0=$(this).val().toUpperCase()
                     var val=/[A-ZÀÂÄÉÈÙÊËÎÏÔÖÑ]*/.exec(val_0);
                     if(val=='' || val==null){
@@ -475,6 +476,14 @@ var rpnsequence = (function() {
                     }else{
                         $(this).val(val);
                     }
+                }else if(validationoptions.type=='letter'){
+                    var val=/[A-ZÀÂÄÉÈÙÊËÎÏÔÖÑa-zâäàéèùêëîïôöçñ]*/.exec($(this).val());
+                    if(val=='' || val==null){
+                        $(this).val('');
+                    }else{
+                        $(this).val(val);
+                    }
+                
                 }
             });
         }

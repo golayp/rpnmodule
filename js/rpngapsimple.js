@@ -46,7 +46,8 @@ var rpngapsimplemodule = function() {
         domelem.append($('<div class="form-inline">' + datas.tofill + '</div>'));
         $.each($('b', domelem), function(idx, tofill) {
             var t = $(tofill);
-            var txt = _.isEmpty(t.text())?"":"<strong>(" + t.text() + ")</strong>";
+            var txt = "";
+            //var txt = _.isEmpty(t.text())?"":"<strong>(" + t.text() + ")</strong>";
             if(dragdrop){
                 //add a drop area
                 var drop=$('<b class="gapsimpleddresponse">');
@@ -76,7 +77,15 @@ var rpngapsimplemodule = function() {
                     }));
                 }
             }else{
-                t.replaceWith($('<input type="text" class="rpnm_input gapsimple">' + txt));
+                var textAlign = _.isUndefined(datas.validation.align)?"":" " + datas.validation.align;
+				var textWidth = _.isUndefined(datas.validation.width)?"":" style='width:" + datas.validation.width + "'";
+				if(t.text().substr(-1)!="_"){
+					txt = _.isEmpty(t.text())?"":"<strong>(" + t.text() + ")</strong>";
+					t.replaceWith($('<span class="text-nowrap"><input type="text" class="rpnm_input gapsimple form-control' + textAlign + '"' + textWidth + '>' + txt + '</span>'));
+                }else{
+					txt = t.text().slice(0,-1);
+					t.replaceWith($('<span class="text-nowrap">' + txt +'<input type="text" class="rpnm_input gapsimple form-control' + textAlign + '"' + textWidth + '></span>'));
+				}
                 $($('.rpnm_input',domelem)[idx]).val(state[idx]);
             }
         });
