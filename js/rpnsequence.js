@@ -278,7 +278,7 @@ var rpnsequence = (function() {
             $('#rpnm_order_link').show();
             $('#rpnm_order_modal .modal-body').html(datas.order);
         }
-        source.html(_.isUndefined(datas.sources) ? "" : (selectedLabels.Sources + ": " + datas.sources));
+        source.html(_.isUndefined(datas.sources) ? "" : (datas.sources));
     };
 
     var handleEndOfModule = function(state) {
