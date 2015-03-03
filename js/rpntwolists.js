@@ -1,6 +1,6 @@
 //twolists
 var rpntwolistsmodule = function() {
-	console.log('Dans twolistsmodule')
+	rpnsequence.log('Dans twolistsmodule')
 
     var datas;
     var domelem;
@@ -10,7 +10,8 @@ var rpntwolistsmodule = function() {
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
-            sentence: ["sentence", "not", "set!"],
+            leftitems:["<p>what have you said?</p>"],
+			rightitems:["<p> I don't remember!</p>"],
             shuffle:false
         });
         datas = _datas;
@@ -19,20 +20,38 @@ var rpntwolistsmodule = function() {
         if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
         }else{
-            state= datas.sentence;
+            state = [];
+            //A COMPLETER!!!!!!!!!!!!!!!!!!!!!!!
+            _.each(datas.leftitems, function(val, idx) {
+                state.push({
+                    positionLX:0,
+                    positionLY:0,
+                    response:null
+                })
+            });
+            _.each(datas.rightitems, function(val, idx) {
+                state.push({
+                    positionRX:0,
+                    positionRY:0,
+                    response:null
+                })
+            });
             if(datas.shuffle){
                 state=_.shuffle(state);
             }
         }
+        rpnsequence.log('state'+state);
         buildUi();
     };
 
     var buildUi = function() {
         domelem.addClass('twolists');
+        //var math=$('<div class="row"><math  display="block"><mspace height="40px"/><mfrac linethickness="2px" numalign="left" denomalign="left"><mrow><mfrac bevelled="true"><mn>1</mn><mi>x</mi></mfrac><mo>+</mo><mfrac bevelled="true"><mn>2</mn><mi>x</mi></mfrac><mo>+</mo><mo>&hellip;</mo></mrow><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>x</mi><mn>4</mn></msup><mo>+</mo><mo>&hellip;</mo></mrow></mfrac></math></div>');
+        //domelem.append(math);
         var   leftdiv=$('<div id="leftdiv" class="col-md-4">'),
-        centerdiv=$('<div id="centerdiv" class="col-md-4">'),
+        centerdiv=$('<div id="centerdiv_'+datas.idmodule+'" class="col-md-4">'),
         rightdiv=$('<div id="rightdiv" class="col-md-4">'),
-        myCanvas=$('<canvas id="c"  height="1000px" width="1000px">'),
+        myCanvas=$('<canvas id="c'+datas.idmodule+'"  height="1000px" width="1000px">'),
         targetsName=new Array(),
         targets=new Array(),
         nbleft=datas.leftitems.length,
@@ -40,11 +59,12 @@ var rpntwolistsmodule = function() {
         nbright=datas.rightitems.length,
         availableColors = _.shuffle(["#8d61a4","#01a271","#5dc2e7","#63b553","#ed656a","#e95c7b","#f5a95e","#d62b81","#eee227"]);
         _.each(datas.leftitems, function(item,idx) {
-            leftdiv.append($('<div id="inputgrpleft_'+idx+'" class="input-group">' + datas.leftitems[idx] + '<span class="input-group-addon"><input  type="radio" id="radleft_'+idx+'" name="l'+idx+'"></span></div>'));
+            leftdiv.append($('<div id="inputgrpleft_'+idx+'_'+datas.idmodule+'" class="input-group">' + datas.leftitems[idx] + '<span class="input-group-addon"><input  type="radio" id="radleft_'+idx+'" name="l'+idx+'"></span></div>'));
             targetsName.push('#radleft_'+idx);
+            rpnsequence.log('idx'+idx);
         });
         _.each(datas.rightitems, function(item,idx) {
-            rightdiv.append($('<div id="inputgrpright_'+idx+'" class="input-group"><span class="input-group-addon" ><input  type="radio" id="radright_'+idx+'" name="r'+idx+'"></span>' + datas.rightitems[idx] + '</div>'));
+            rightdiv.append($('<div id="inputgrpright_'+idx+'_'+datas.idmodule+'" class="input-group"><span class="input-group-addon" ><input  type="radio" id="radright_'+idx+'" name="r'+idx+'"></span>' + datas.rightitems[idx] + '</div>'));
             targetsName.push('#radright_'+idx);
         });
         domelem.append(leftdiv);
@@ -57,8 +77,9 @@ var rpntwolistsmodule = function() {
 		    for (var i = 0; i < targetsName.length; i++) {
 		        targets.push($(targetsName[i]));
 		    }
-        	var canvas = new fabric.Canvas('c',{
-        		hoverCursor:'pointer'
+        	var canvas = new fabric.Canvas('c'+datas.idmodule,{
+        		hoverCursor:'pointer',
+        		selection: false
         	});
 
         	if(nbleft<nbright){
@@ -66,12 +87,16 @@ var rpntwolistsmodule = function() {
         	}
         	for (var i=0;i<nbbezier;i++){
         	    if(nbleft<nbright){
-        	        var myTop=$('#inputgrpright_0').offset().top+i*40;
+        	        var myTop=$('#inputgrpright_0_'+datas.idmodule).offset().top+i*40;
         	    }else{
-        	        var myTop=$('#inputgrpleft_0').offset().top+i*40;
+        	        var myTop=$('#inputgrpleft_0_'+datas.idmodule).offset().top+i*40;
         	    }
-                var myLeft=0.8*$('#centerdiv').offset().left;
-        	    bezier[i]=new Bezier(canvas,myLeft,myTop,myLeft+100,myTop,myLeft+100,myTop,myLeft,myTop,availableColors[i],targets,$('.canvas-container'));
+                var myLeft=0.8*$('#centerdiv_'+datas.idmodule).offset().left;
+                rpnsequence.log('idmodule'+datas.idmodule);
+                rpnsequence.log('myTop'+myTop);
+                rpnsequence.log('myTop'+myLeft);
+                var myId=i+datas.idmodule;
+        	    bezier[i+datas.idmodule]=new Bezier(canvas,myLeft,myTop,myLeft+100,myTop,myLeft+100,myTop,myLeft,myTop,availableColors[i],targets,$('.canvas-container'));
         	}
 		});
         
@@ -79,21 +104,30 @@ var rpntwolistsmodule = function() {
 
     var validate = function(){
          $.each(bezier, function(idx, item) {
-            state[idx].response =bezier[idx].target;
-            console.log('validate bezier[idx].target'+bezier[idx].target);
+            rpnsequence.log('validate bezier[idx].target'+bezier[idx+datas.idmodule].target);
+            rpnsequence.log('validate [idx+datas.idmodule]'+[idx+datas.idmodule]);
+            state[idx+datas.idmodule].response =bezier[idx+datas.idmodule].target;
+            state[idx+datas.idmodule].positionLX =bezier[idx+datas.idmodule].fromX;
+            state[idx+datas.idmodule].positionLY =bezier[idx+datas.idmodule].fromY;
+            state[idx+datas.idmodule].positionRX =bezier[idx+datas.idmodule].toX;
+            state[idx+datas.idmodule].positionRY =bezier[idx+datas.idmodule].toY;
+            rpnsequence.log('validate state[idx+datas.idmodule].positionLX'+state[idx+datas.idmodule].positionLX);
+            rpnsequence.log('validate state[idx+datas.idmodule].positionLY'+state[idx+datas.idmodule].positionLY);
+            rpnsequence.log('validate state[idx+datas.idmodule].positionRX'+state[idx+datas.idmodule].positionRX);
+            rpnsequence.log('validate state[idx+datas.idmodule].positionRY'+state[idx+datas.idmodule].positionRY);
         });
         rpnsequence.handleEndOfModule(state);
     };
 
     var score = function(sol) {
-       // console.log('scorte sol[ida]'+sol)
-       // console.log('bezier.target'+bezier[1].target)
+       // rpnsequence.log('scorte sol[ida]'+sol)
+       // rpnsequence.log('bezier.target'+bezier[1].target)
         var score = 0;
         _.each(sol, function(item, ida){
             _.each(bezier, function(item, idx) {
-              //  console.log(idx)
-              //  console.log('sol[ida]'+sol)
-              //  console.log('bezier.target'+bezier[idx].target)
+              //  rpnsequence.log(idx)
+              //  rpnsequence.log('sol[ida]'+sol)
+              //  rpnsequence.log('bezier.target'+bezier[idx].target)
                 
                 score+=(((bezier[idx].target[ida]==sol[ida][0]&&bezier[idx].target[1]==sol[ida][1])||(bezier[idx].target[1]==sol[ida][0]&&bezier[idx].target[0]==sol[ida][1]))?1:0);
                

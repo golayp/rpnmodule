@@ -199,6 +199,7 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 				p.line1.path[1][2] = p.top+p.radius;
 				p.line2.left=p.p3.left+p.radius;
 				p.line2.top=p.top+p.radius;
+				fromX=p.line1.path[0][1];
 			}
 			else if (p.line4) {
 				p.line4.path[1][5] = p.left+p.radius;
@@ -216,25 +217,25 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 		'before:selection:cleared': this.onBeforeSelectionCleared
 	}),
 	this.drawCubic=function () {
-		this.guide1 =this.makeLine([fromX,fromY, g1X, g1Y]);
+		this.guide1 =this.makeLine([this.fromX,this.fromY, this.g1X, this.g1Y]);
 		this.guide1.name="guide1";
 		
-		this.guide2 =this.makeLine([toX,toY,g2X,g2Y]);
+		this.guide2 =this.makeLine([this.toX,this.toY,this.g2X,this.g2Y]);
 		this.guide2.name="guide2";
 		
-		this.line=this.make(fromX,fromY,g1X,g1Y,g2X,g2Y,toX,toY,color);
+		this.line=this.make(this.fromX,this.fromY,this.g1X,this.g1Y,this.g2X,this.g2Y,this.toX,this.toY,this.color);
 		this.line.name="bezier";
 	 
-		this.p1 = this.makeCurvePoint(g1X, g1Y, null, this.line, null, null, this.guide1,color)
+		this.p1 = this.makeCurvePoint(this.g1X, this.g1Y, null, this.line, null, null, this.guide1,this.color)
 		this.p1.name = "p1";
 
-		this.p0 = this.makeCurveCircle(fromX, fromY, this.line, this.p1, null, null, this.guide1,color, this.target,this.targets,this.myContainer);
+		this.p0 = this.makeCurveCircle(this.fromX, this.fromY, this.line, this.p1, null, null, this.guide1,this.color, this.target,this.targets,this.myContainer);
 		this.p0.name = "p0";
 
-		this.p2 = this.makeCurvePoint(g2X, g2Y, null, null, this.line, null, this.guide2,color );
+		this.p2 = this.makeCurvePoint(this.g2X, this.g2Y, null, null, this.line, null, this.guide2,this.color );
 		this.p2.name = "p2";
 
-		this.p3 = this.makeCurveCircle(toX, toY, null, null, this.p2, this.line, this.guide2,color, this.target, this.targets,this.myContainer );
+		this.p3 = this.makeCurveCircle(this.toX, this.toY, null, null, this.p2, this.line, this.guide2,this.color, this.target, this.targets,this.myContainer );
 		this.p3.name = "p3";
 
 		this.line.p0=this.p0;

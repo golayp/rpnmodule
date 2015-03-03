@@ -6,8 +6,9 @@
             "title":"bind ",
             "context":"context",
             "directive":"bla bla bla.",
+            "idmodule":0,
             "leftitems":[
-                "<math  display='block'><mspace height='40px'/><mfrac linethickness='2px' numalign='left' denomalign='left'><mrow><mfrac bevelled='true'><mn>1</mn><mi>x</mi></mfrac><mo>+</mo><mfrac bevelled='true'><mn>2</mn><mi>x</mi></mfrac><mo>+</mo><mo>&hellip;</mo></mrow><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>x</mi><mn>4</mn></msup><mo>+</mo><mo>&hellip;</mo></mrow></mfrac></math>",
+                "<div> <math  display='block'><mspace height='40px'/><mfrac linethickness='2px' numalign='left' denomalign='left'><mrow><mfrac bevelled='true'><mn>1</mn><mi>x</mi></mfrac><mo>+</mo><mfrac bevelled='true'><mn>2</mn><mi>x</mi></mfrac><mo>+</mo><mo>&hellip;</mo></mrow><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>x</mi><mn>4</mn></msup><mo>+</mo><mo>&hellip;</mo></mrow></mfrac></math></div>",
                 "<p class='text-center'>Curabitur vitae purus vulputate, rutrum tortor eu, pulvinar justo ?</p>",
                 "<p class='text-center'>Donec et turpis ut risus ullamcorper accumsan ?</p>",
                 "<p class='text-center'>Praesent eleifend sem quis mauris consequat, sit amet rutrum elit interdum ?</p>"
@@ -18,6 +19,25 @@
                 "<img src='book3.png' width='150px' height='150px'>",
                 "<img src='book1.png' width='150px' height='150px'>",
                 "Vivamus et metus imperdiet, facilisis nisl eget, semper ligula ?"
+            ]
+        },
+         {
+            "type":"twolists",
+            "title":"bind ",
+            "context":"context",
+            "directive":"ets ets ets.",
+            "idmodule":1,
+            "leftitems":[
+                "<div> <math  display='block'><mspace height='40px'/><mfrac linethickness='2px' numalign='left' denomalign='left'><mrow>1</mrow><mrow>2</mrow></mfrac></math></div>",
+                "<p class='text-center'>Curabitur vitae purus vulputate, rutrum tortor eu, pulvinar justo ?</p>",
+                "<p class='text-center'>Donec et turpis ut risus ullamcorper accumsan ?</p>",
+                "<p class='text-center'>Praesent eleifend sem quis mauris consequat, sit amet rutrum elit interdum ?</p>"
+            ],
+			"rightitems":[
+                "<div> <math  display='block'><mspace height='40px'/><mfrac linethickness='2px' numalign='left' denomalign='left'><mrow>3</mrow><mrow>4</mrow></mfrac></math></div>",
+                "<p class='text-center'>Curabitur vitae purus vulputate, rutrum tortor eu, pulvinar justo ?</p>",
+                "<p class='text-center'>Donec et turpis ut risus ullamcorper accumsan ?</p>",
+                "<p class='text-center'>Praesent eleifend sem quis mauris consequat, sit amet rutrum elit interdum ?</p>"
             ]
         }
        
