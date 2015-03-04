@@ -42,7 +42,9 @@ var rpndragdropsortingmodule = function() {
             forcePlaceholderSize :true,
             distance: 0.5,
             receive:function  (event, ui) {
-                state.todrag.pop();
+                if($(ui.sender[0]).hasClass('dragthis')){
+                    state.todrag.pop();
+                }
                 nextDraggable();
             }
         });
