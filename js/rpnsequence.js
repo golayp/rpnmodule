@@ -1,5 +1,5 @@
 /*!
- * rpnmodule v0.0.5 (https://github.com/golayp/rpnmodule)
+ * rpnmodule 0.1.3 (https://github.com/golayp/rpnmodule)
  * 
  * Dependencies: jquery 2.1.3, bootstrap 3.3.2, underscore 1.7.0
  * 
@@ -40,7 +40,6 @@ var rpnsequence = (function() {
             Eraser: "Eraser",
             DragDropNotEmpty: "There are still some items to sort!",
             CardMazeNotEnded: "You have not finished the maze!",
-            Sources: "Sources",
             BlackboxTableView: "Values table",
             BlackboxView: "Blackbox",
             Quit:"Quit"
@@ -56,7 +55,6 @@ var rpnsequence = (function() {
             Eraser: "Effaceur",
             DragDropNotEmpty: "Il y a encore des éléments à trier!",
             CardMazeNotEnded: "Vous n'avez pas terminé le labyrinthe!",
-            Sources: "Sources",
             BlackboxTableView: "Tableau de valeurs",
             BlackboxView: "Boîte noire",
             Quit:"Quitter"
@@ -321,7 +319,7 @@ var rpnsequence = (function() {
         if (!_.isUndefined(datas.order)) {
             $('#rpnm_order_modal .modal-body').html(datas.order);
         }
-        source.html(_.isUndefined(datas.sources) ? "" : (selectedLabels.Sources + ": " + datas.sources));
+        source.html(_.isUndefined(datas.sources) ? "" :  datas.sources);
     };
 
     var handleEndOfModule = function(state) {
