@@ -249,7 +249,9 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 		this.line.perPixelTargetFind=this.guide1.perPixelTargetFind=this.guide2.perPixelTargetFind=this.p0.perPixelTargetFind=this.p1.perPixelTargetFind=this.p2.perPixelTargetFind=this.p3.perPixelTargetFind=true;
 		canvas.add(this.line, this.guide1, this.guide2, this.p0, this.p1, this.p2, this.p3);
 		
-		
+		for (i=0;i<targets.length;i++){
+			console.log('dans connecteur, target'+this.target[i]);
+		}
 	
 
 	},

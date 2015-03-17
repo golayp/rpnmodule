@@ -46,8 +46,8 @@ var rpntwolistsmodule = function() {
 
     var buildUi = function() {
         domelem.addClass('twolists');
-        //var math=$('<div class="row"><math  display="block"><mspace height="40px"/><mfrac linethickness="2px" numalign="left" denomalign="left"><mrow><mfrac bevelled="true"><mn>1</mn><mi>x</mi></mfrac><mo>+</mo><mfrac bevelled="true"><mn>2</mn><mi>x</mi></mfrac><mo>+</mo><mo>&hellip;</mo></mrow><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>x</mi><mn>4</mn></msup><mo>+</mo><mo>&hellip;</mo></mrow></mfrac></math></div>');
-        //domelem.append(math);
+        var math=$('<div class="row"><math  display="block"><mspace height="40px"/><mfrac linethickness="2px" numalign="left" denomalign="left"><mrow><mfrac bevelled="true"><mn>1</mn><mi>x</mi></mfrac><mo>+</mo><mfrac bevelled="true"><mn>2</mn><mi>x</mi></mfrac><mo>+</mo><mo>&hellip;</mo></mrow><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>x</mi><mn>4</mn></msup><mo>+</mo><mo>&hellip;</mo></mrow></mfrac></math></div>');
+        domelem.append(math);
         var   leftdiv=$('<div id="leftdiv" class="col-md-4">'),
         centerdiv=$('<div id="centerdiv_'+datas.idmodule+'" class="col-md-4">'),
         rightdiv=$('<div id="rightdiv" class="col-md-4">'),
@@ -58,25 +58,32 @@ var rpntwolistsmodule = function() {
         nbbezier=nbleft,
         nbright=datas.rightitems.length,
         availableColors = _.shuffle(["#8d61a4","#01a271","#5dc2e7","#63b553","#ed656a","#e95c7b","#f5a95e","#d62b81","#eee227"]);
+        targetsName[datas.idmodule]=new Array();
+        targets[datas.idmodule]=new Array();
         _.each(datas.leftitems, function(item,idx) {
-            leftdiv.append($('<div id="inputgrpleft_'+idx+'_'+datas.idmodule+'" class="input-group">' + datas.leftitems[idx] + '<span class="input-group-addon"><input  type="radio" id="radleft_'+idx+'" name="l'+idx+'"></span></div>'));
-            targetsName.push('#radleft_'+idx);
+            leftdiv.append($('<div id="inputgrpleft_'+idx+'_'+datas.idmodule+'" class="input-group">' + datas.leftitems[idx] + '<span class="input-group-addon"><input  type="radio" id="radleft_'+idx+'_'+datas.idmodule+'" name="l'+idx+'_'+datas.idmodule+'"></span></div>'));
+            targetsName[datas.idmodule].push('#radleft_'+idx+'_'+datas.idmodule);
             rpnsequence.log('idx'+idx);
         });
         _.each(datas.rightitems, function(item,idx) {
-            rightdiv.append($('<div id="inputgrpright_'+idx+'_'+datas.idmodule+'" class="input-group"><span class="input-group-addon" ><input  type="radio" id="radright_'+idx+'" name="r'+idx+'"></span>' + datas.rightitems[idx] + '</div>'));
-            targetsName.push('#radright_'+idx);
+            rightdiv.append($('<div id="inputgrpright_'+idx+'_'+datas.idmodule+'" class="input-group"><span class="input-group-addon" ><input  type="radio" id="radright_'+idx+'_'+datas.idmodule+'" name="r'+idx+'_'+datas.idmodule+'"></span>' + datas.rightitems[idx] + '</div>'));
+            targetsName[datas.idmodule].push('#radright_'+idx+'_'+datas.idmodule);
         });
+        
         domelem.append(leftdiv);
         domelem.append(centerdiv);
         domelem.append(rightdiv);
         domelem.append(myCanvas);
-        var nom='#radleft_'+0;
+        var nom='#radleft_'+0+'_'+datas.idmodule;
 		var myId=$(nom).offset().left;
 		$(document).ready(function(){
-		    for (var i = 0; i < targetsName.length; i++) {
-		        targets.push($(targetsName[i]));
+            
+		    for (var i = 0; i < targetsName[datas.idmodule].length; i++) {
+                //targets[i+datas.idmodule]=new Array();
+		        //targets[i+datas.idmodule].push($(targetsName[i]));
+		        targets[datas.idmodule].push($(targetsName[datas.idmodule][i]));
 		    }
+		    rpnsequence.log('targetsName'+targetsName);
         	var canvas = new fabric.Canvas('c'+datas.idmodule,{
         		hoverCursor:'pointer',
         		selection: false
@@ -92,20 +99,21 @@ var rpntwolistsmodule = function() {
         	        var myTop=$('#inputgrpleft_0_'+datas.idmodule).offset().top+i*40;
         	    }
                 var myLeft=0.8*$('#centerdiv_'+datas.idmodule).offset().left;
-                rpnsequence.log('idmodule'+datas.idmodule);
-                rpnsequence.log('myTop'+myTop);
-                rpnsequence.log('myTop'+myLeft);
-                var myId=i+datas.idmodule;
-        	    bezier[i+datas.idmodule]=new Bezier(canvas,myLeft,myTop,myLeft+100,myTop,myLeft+100,myTop,myLeft,myTop,availableColors[i],targets,$('.canvas-container'));
+                //rpnsequence.log('idmodule'+datas.idmodule);
+                //rpnsequence.log('myTop'+myTop);
+                //rpnsequence.log('myTop'+myLeft);
+                //var myId=i+datas.idmodule;
+        	    bezier[i+datas.idmodule]=new Bezier(canvas,myLeft,myTop,myLeft+100,myTop,myLeft+100,myTop,myLeft,myTop,availableColors[i],targets[datas.idmodule],$('.canvas-container'));
+        	    //bezier[i+datas.idmodule]=new Bezier(canvas,myLeft,myTop,myLeft+100,myTop,myLeft+100,myTop,myLeft,myTop,availableColors[i],targets[i+datas.idmodule],$('.canvas-container'));
         	}
 		});
         
    };
 
-    var validate = function(){
+    var validate_ = function(){
          $.each(bezier, function(idx, item) {
-            rpnsequence.log('validate bezier[idx].target'+bezier[idx+datas.idmodule].target);
-            rpnsequence.log('validate [idx+datas.idmodule]'+[idx+datas.idmodule]);
+            //rpnsequence.log('validate bezier[idx].target'+bezier[idx+datas.idmodule].target);
+            //rpnsequence.log('validate [idx+datas.idmodule]'+[idx+datas.idmodule]);
             state[idx+datas.idmodule].response =bezier[idx+datas.idmodule].target;
             state[idx+datas.idmodule].positionLX =bezier[idx+datas.idmodule].fromX;
             state[idx+datas.idmodule].positionLY =bezier[idx+datas.idmodule].fromY;
@@ -118,7 +126,8 @@ var rpntwolistsmodule = function() {
         });
         rpnsequence.handleEndOfModule(state);
     };
-
+    var validate = function(){
+    }
     var score = function(sol) {
        // rpnsequence.log('scorte sol[ida]'+sol)
        // rpnsequence.log('bezier.target'+bezier[1].target)
@@ -129,7 +138,7 @@ var rpntwolistsmodule = function() {
               //  rpnsequence.log('sol[ida]'+sol)
               //  rpnsequence.log('bezier.target'+bezier[idx].target)
                 
-                score+=(((bezier[idx].target[ida]==sol[ida][0]&&bezier[idx].target[1]==sol[ida][1])||(bezier[idx].target[1]==sol[ida][0]&&bezier[idx].target[0]==sol[ida][1]))?1:0);
+                score+=(((bezier[idx].target[datas.idmodule][ida]==sol[ida][0]&&bezier[idx].target[datas.idmodule][1]==sol[ida][1])||(bezier[idx].target[datas.idmodule][1]==sol[ida][0]&&bezier[idx].target[datas.idmodule][0]==sol[ida][1]))?1:0);
                
             });
       });
