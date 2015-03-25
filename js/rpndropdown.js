@@ -27,9 +27,9 @@ var rpndropdownmodule = function() {
         domelem.addClass('dropdown');
 
         //build panel with sentence
-        if(!_.isEmpty(datas.circumstance[0])) {domelem.append($('<p>' + datas.circumstance[0] + '</p>'));}
+        if(!_.isEmpty(datas.circumstance[0])) {domelem.append($('<hr style="border-top: 5px solid #ccc;"><p><b>' + datas.circumstance[0] + '</b></p>'));}
 		if(!_.isEmpty(datas.sentence)) {domelem.append($('<p>' + datas.sentence + '</p>'));}
-        if(!_.isEmpty(datas.circumstance[1])) {domelem.append($('<p>' + datas.circumstance[1] + '</p>'));}
+        if(!_.isEmpty(datas.circumstance[1])) {domelem.append($('<hr style="border-top: 5px solid #ccc;"><p><b>' + datas.circumstance[1] + '</b></p>'));}
 
         //build sentence with items to select
         var sentenceToComplete=$('<div class="form-inline">');
