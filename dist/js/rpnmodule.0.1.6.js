@@ -4936,7 +4936,6 @@ var rpndropdownmodule = function() {
         }else{
             state= _.map(_.filter(datas.items,function(item){return item.choice.length>1}),function(item,idx){return '';});
         }
-        
         buildUi();
     };
 
@@ -4944,9 +4943,9 @@ var rpndropdownmodule = function() {
         domelem.addClass('dropdown');
 
         //build panel with sentence
-        if(!_.isEmpty(datas.circumstance[0])) {domelem.append($('<p>' + datas.circumstance[0] + '</p>'));}
+        if(!_.isEmpty(datas.circumstance[0])) {domelem.append($('<hr style="border-top: 5px solid #ccc;"><p><b>' + datas.circumstance[0] + '</b></p>'));}
 		if(!_.isEmpty(datas.sentence)) {domelem.append($('<p>' + datas.sentence + '</p>'));}
-        if(!_.isEmpty(datas.circumstance[1])) {domelem.append($('<p>' + datas.circumstance[1] + '</p>'));}
+        if(!_.isEmpty(datas.circumstance[1])) {domelem.append($('<hr style="border-top: 5px solid #ccc;"><p><b>' + datas.circumstance[1] + '</b></p>'));}
 
         //build sentence with items to select
         var sentenceToComplete=$('<div class="form-inline">');
@@ -5778,6 +5777,24 @@ var rpnsequence = (function() {
                    }else{
                         $(this).val(parseInt(val));
                 	}
+                }
+                else if(validationoptions.type=='posdecimal'){
+                	var val_0=$(this).val().replace(',','.');
+                	var val=/^[.\d]\d*\.?\d*/.exec(val_0);
+                	if($(this).val().match(/^0[^,\.]/)){
+                		var val_1=$(this).val().replace(',','.').substring(0,1);
+                		var val=/^[-.\d]\d*.?\d*/.exec(val_1);
+                	}
+                	if($(this).val().match(/^-/)){
+                		var val_1=$(this).val().replace(',','.');
+                		var val=/[.\d]\d*.?\d*/.exec(val_1);
+                	}
+                	if(val=='' || val==null){
+                		val='';
+                	}else  if(val=='.'){
+                        val='0.';
+                    }
+                    $(this).val(val);
                 }
                 else if(validationoptions.type=='decimal'){
                   var val_0=$(this).val().replace(',','.');
