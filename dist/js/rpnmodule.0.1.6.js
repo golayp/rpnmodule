@@ -5706,7 +5706,7 @@ var rpnsequence = (function() {
             if (warnexit) {
                 $(window).unbind('beforeunload');
             }
-            sequenceendHandler(states,score);
+            sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score);
         });
     };
 
