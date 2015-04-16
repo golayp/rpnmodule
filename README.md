@@ -107,6 +107,7 @@ By default a sequence json datas has to handle these values:
     <li>markers - a list of markers</li>
     <li>tomark - a text where words tagged with b can be marked</li>
     <li>hidden - if true marker targets are not bolded so they are not visible (default false)</li>
+    <li>smallButtons - if true marker buttons are set to default size if false to btn-lg size (default false)</li>
     <li>background - <ul>
                         <li>url : the url to background image mandatory if background is setted</li>
                         <li>width - the fixed width of content(default 100%)</li>
