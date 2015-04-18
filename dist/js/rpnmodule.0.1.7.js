@@ -5188,7 +5188,8 @@ var rpnmarkermodule = function() {
             markers: [],
             tomark: ["fill tomark please!"],
             hidden:false,
-            smallButtons:false
+            smallButtons:false,
+            displayTooltip:true
         });
         datas = _datas;
         domelem = _domelem;
@@ -5196,7 +5197,7 @@ var rpnmarkermodule = function() {
         if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
         }else{
-            var availableColors = ["#8d61a4","#01a271","#5dc2e7","#ed656a","#f5a95e","#eee227","#63b553","#e95c7b","#f5a95e","#d62b81","#eee227"];
+            var availableColors = ["#8d61a4","#01a271","#5dc2e7","#ed656a","#f5a95e","#eee227","#7a5a14","#bbbbbb","#63b553","#e95c7b","#f5a95e"];
             state={
                 selectedMarker : '',
                 responses:_.map($('b',datas.tomark),function(b,idx){return '';}),
@@ -5255,6 +5256,13 @@ var rpnmarkermodule = function() {
             }
             t.click(function() {
                 t.css('background-color',state.selectedMarker.color);
+                if(datas.displayTooltip && state.selectedMarker.color!=''){
+                    t.attr('data-original-title', state.selectedMarker.label)
+                        .tooltip('fixTitle')
+                        .tooltip('show');
+                }else{
+                    t.tooltip('destroy');
+                }
                 state['responses'][idx] = state.selectedMarker.label;
             });
         });

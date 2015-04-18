@@ -1,5 +1,5 @@
 <h1>rpnmodule</h1>
-<strong>v0.1.6</strong>
+<strong>v0.1.7</strong>
 <p>rpnmodule is a project aiming to provide a base library for running educational sequences of modules. It'll provide common features for 10 module types (maybe more in the future) that can be arranged in a sequence of work:</p>
 <p>As the project evolves the main module in the library is rpnsequence, but project name is still rpnmodule... Sorry for confusion!!!!</p>
 <h2>Dependencies</h2>
@@ -108,6 +108,7 @@ By default a sequence json datas has to handle these values:
     <li>tomark - a text where words tagged with b can be marked</li>
     <li>hidden - if true marker targets are not bolded so they are not visible (default false)</li>
     <li>smallButtons - if true marker buttons are set to default size if false to btn-lg size (default false)</li>
+    <li>displayTooltip - if true marked elements display a tooltip on mouse hover or focus (default:true)</li>
     <li>background - <ul>
                         <li>url : the url to background image mandatory if background is setted</li>
                         <li>width - the fixed width of content(default 100%)</li>
