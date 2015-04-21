@@ -37,11 +37,11 @@ var rpnmarkermodule = function() {
             'data-toggle': 'buttons'
         });
         
-        toolbar.append($('<label class="btn btn-default '+(datas.smallButtons?'':'btn-lg ') + (state.selectedMarker==''?'active':'')+' eraser"><input type="radio" name="options" autocomplete="off" '+(state.selectedMarker==''?'checked':'')+'><span class="edicons-tool-eraser"></span> ' + rpnsequence.getLabels().Eraser + '</label>').click(function() {
+        toolbar.append($('<label class="btn btn-default '+(datas.smallButtons?'':'btn-lg ') + (state.selectedMarker.label==''?'active':'')+' eraser"><input type="radio" name="options" autocomplete="off" '+(state.selectedMarker==''?'checked':'')+'><span class="edicons-tool-eraser"></span> ' + rpnsequence.getLabels().Eraser + '</label>').click(function() {
             state.selectedMarker = {color:'',label:''};
         }));
         $.each(state.markers, function(idx, marker) {
-            toolbar.append($('<label class="btn btn-default '+(datas.smallButtons?'':'btn-lg ') + (state.selectedMarker==marker.label?'active':'')+' stab"><input type="radio" name="options" autocomplete="off" '+(state.selectedMarker==marker.label?'checked':'')+'><span class="edicons-tool-stab" style="color:'+marker.color+'"></span> ' + marker.label + '</label>').click(function() {
+            toolbar.append($('<label class="btn btn-default '+(datas.smallButtons?'':'btn-lg ') + (state.selectedMarker.label==marker.label?'active':'')+' stab"><input type="radio" name="options" autocomplete="off" '+(state.selectedMarker==marker.label?'checked':'')+'><span class="edicons-tool-stab" style="color:'+marker.color+'"></span> ' + marker.label + '</label>').click(function() {
                 state.selectedMarker = marker;
             }));
         });
@@ -70,6 +70,10 @@ var rpnmarkermodule = function() {
             var t = $(tomark);
             if(!_.isEmpty(state.responses[idx])){
                 t.css('background-color',_.findWhere(state.markers,{label:state.responses[idx]}).color);
+                if(datas.displayTooltip){
+                    t.attr('data-original-title', state.responses[idx])
+                        .tooltip('fixTitle');
+                }
             }
             if(!datas.hidden){
                 t.css('cursor', 'pointer');

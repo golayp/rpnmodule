@@ -2,69 +2,73 @@
 	"states": [
 		{
 			"selectedMarker": {
-				"label": "marker1",
-				"color": "#5dc2e7"
+				"label": "marker5",
+				"color": "#f5a95e"
 			},
 			"responses": [
 				"marker1",
-				"",
-				"",
-				"",
-				"",
-				""
-			],
-			"markers": [
-				{
-					"label": "marker1",
-					"color": "#5dc2e7"
-				},
-				{
-					"label": "marker2",
-					"color": "#e95c7b"
-				},
-				{
-					"label": "marker3",
-					"color": "#01a271"
-				}
-			]
-		},
-		{
-			"selectedMarker": {
-				"label": "marker3",
-				"color": "#5dc2e7"
-			},
-			"responses": [
-				"marker3",
-				"",
-				"",
-				"",
+				"marker5",
+				"marker1",
+				"marker2",
 				"",
 				""
 			],
 			"markers": [
 				{
 					"label": "marker1",
-					"color": "#ed656a"
-				},
-				{
-					"label": "marker2",
 					"color": "#8d61a4"
 				},
 				{
+					"label": "marker2",
+					"color": "#01a271"
+				},
+				{
 					"label": "marker3",
 					"color": "#5dc2e7"
+				},
+				{
+					"label": "marker4",
+					"color": "#ed656a"
+				},
+				{
+					"label": "marker5",
+					"color": "#f5a95e"
+				},
+				{
+					"label": "marker6",
+					"color": "#eee227"
+				},
+				{
+					"label": "marker7",
+					"color": "#7a5a14"
+				},
+				{
+					"label": "marker8",
+					"color": "#bbbbbb"
+				},
+				{
+					"label": "marker9",
+					"color": "#63b553"
+				},
+				{
+					"label": "marker10",
+					"color": "#e95c7b"
+				},
+				{
+					"label": "marker11",
+					"color": "#f5a95e"
 				}
 			]
 		},
 		{
 			"selectedMarker": {
 				"label": "marker1",
-				"color": "#eee227"
+				"color": "#8d61a4"
 			},
 			"responses": [
-				"",
-				"",
 				"marker1",
+				"",
+				"",
 				"",
 				"",
 				""
@@ -72,11 +76,39 @@
 			"markers": [
 				{
 					"label": "marker1",
-					"color": "#eee227"
+					"color": "#8d61a4"
 				},
 				{
 					"label": "marker2",
-					"color": "#d62b81"
+					"color": "#01a271"
+				},
+				{
+					"label": "marker3",
+					"color": "#5dc2e7"
+				}
+			]
+		},
+		{
+			"selectedMarker": {
+				"label": "marker2",
+				"color": "#01a271"
+			},
+			"responses": [
+				"",
+				"",
+				"marker2",
+				"",
+				"",
+				""
+			],
+			"markers": [
+				{
+					"label": "marker1",
+					"color": "#8d61a4"
+				},
+				{
+					"label": "marker2",
+					"color": "#01a271"
 				},
 				{
 					"label": "marker3",
