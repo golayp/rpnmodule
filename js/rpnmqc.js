@@ -54,7 +54,7 @@ var rpnmqcmodule = function() {
     };
     
     var validate = function(){
-        rpnsequence.handleEndOfModule(state);
+        return state;
     };
     
     var score= function(sol) {

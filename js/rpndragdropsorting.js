@@ -80,8 +80,7 @@ var rpndragdropsortingmodule = function() {
             });
             state[$(elem).find('span').text()] = txts;
         });
-        
-        rpnsequence.handleEndOfModule(state);
+        return state;
     };
     
     var score = function(sols) {

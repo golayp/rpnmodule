@@ -48,7 +48,7 @@ var rpnsortingmodule = function() {
     
     var validate = function(){
         state=_.map($('li',domelem),function(ele,idx){return $(ele).text()});
-        rpnsequence.handleEndOfModule(state);
+        return state;
     };
     
     var score = function(sol){

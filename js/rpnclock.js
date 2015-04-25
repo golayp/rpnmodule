@@ -41,8 +41,8 @@ var rpnclockmodule = function() {
     };
     
     var validate = function(){
-        var time=clock.getCurrentTime()
-        rpnsequence.handleEndOfModule(time.hour+':'+time.minute);
+        var time=clock.getCurrentTime();
+        return time.hour+':'+time.minute;
     };
     
     var score = function(sol) {

@@ -118,7 +118,7 @@ var rpncardmazemodule = function() {
         _.each(snake,function(card,idx){
             state[idx]=$(card).data("cardId");
         });
-        rpnsequence.handleEndOfModule(state);
+        return state;
     };
     
     var score = function(sol) {

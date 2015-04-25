@@ -4200,10 +4200,10 @@ var rpnblackboxmodule = function() {
     };
     
     var validate = function(){
-         $.each($('.rpnm_input', domelem), function(idx, gap) {
+        $.each($('.rpnm_input', domelem), function(idx, gap) {
             state[idx].response = $(gap).val();
         });
-        rpnsequence.handleEndOfModule(state);
+        return state;
     };
     
     var score = function(sol) {
@@ -4345,7 +4345,7 @@ var rpncardmazemodule = function() {
         _.each(snake,function(card,idx){
             state[idx]=$(card).data("cardId");
         });
-        rpnsequence.handleEndOfModule(state);
+        return state;
     };
     
     var score = function(sol) {
@@ -4405,8 +4405,8 @@ var rpnclockmodule = function() {
     };
     
     var validate = function(){
-        var time=clock.getCurrentTime()
-        rpnsequence.handleEndOfModule(time.hour+':'+time.minute);
+        var time=clock.getCurrentTime();
+        return time.hour+':'+time.minute;
     };
     
     var score = function(sol) {
@@ -4897,8 +4897,7 @@ var rpndragdropsortingmodule = function() {
             });
             state[$(elem).find('span').text()] = txts;
         });
-        
-        rpnsequence.handleEndOfModule(state);
+        return state;
     };
     
     var score = function(sols) {
@@ -4975,7 +4974,7 @@ var rpndropdownmodule = function() {
     
     var validate = function(){
         state=_.map($('select',domelem),function(ele,idx){return $(ele).val()});
-        rpnsequence.handleEndOfModule(state);
+        return state;
     };
     
     var score = function(sol){
@@ -5033,8 +5032,8 @@ var rpngapfullmodule = function() {
     };
     
     var validate = function(){
-        state=$('.rpnm_input',domelem).val();
-        rpnsequence.handleEndOfModule(state);
+        state= $('.rpnm_input',domelem).val();
+        return state;
     };
     
     var score =  function(sol) {
@@ -5158,7 +5157,7 @@ var rpngapsimplemodule = function() {
                 state[idx] = $(gap).val();
             });
         }
-        rpnsequence.handleEndOfModule(state);
+        return state;
     };
     
     var score = function(sol) {
@@ -5277,7 +5276,7 @@ var rpnmarkermodule = function() {
     };
     
     var validate = function(){
-        rpnsequence.handleEndOfModule(state);
+        return state;
     };
     
     var score =  function(sol) {
@@ -5352,7 +5351,7 @@ var rpnmqcmodule = function() {
     };
     
     var validate = function(){
-        rpnsequence.handleEndOfModule(state);
+        return state;
     };
     
     var score= function(sol) {
@@ -5635,25 +5634,17 @@ var rpnsequence = (function() {
     var bindUiEvents = function() {
         //Validation
         validationButton.click(function(){
-            modules[currentmod].validate();
-            if(currentmod==sequencedatas.modules.length-1){
-                handleEndOfSequence();
-            }else{
-                currentmod++;
-                displayCurrentModule();
-            }
+            handleEndOfModule(modules[currentmod].validate(),currentmod+1);
         });
         quitButton.click(function(){
-            modules[currentmod].validate();
-            handleEndOfSequence();
+            handleEndOfModule(modules[currentmod].validate(),currentmod+1);
         });
         //Navigation
         if (navigationEnabled && sequencedatas.modules.length > 1) {
             _.each($('#rpnm_modulenav ul li'),function(nav,idx){
                 $(nav).click(function() {
                     modules[currentmod].validate();
-                    currentmod = idx;
-                    displayCurrentModule();
+                    handleEndOfModule(modules[currentmod].validate(),idx);
                 });
             });
         }
@@ -5694,16 +5685,23 @@ var rpnsequence = (function() {
         source.html(_.isUndefined(datas.sources) ? "" :  datas.sources);
     };
 
-    var handleEndOfModule = function(state) {
+    var handleEndOfModule = function(state,nextmodtoshow) {
         $('#rpnm_wait_modal').modal({show:true,backdrop:'static',keyboard:false});
         log('End of module');
         //store result locally
         states[currentmod] = {
             state:state
         };
-        moduleendHandler({states:_.map(states,function(sta){return sta.state;})});
-        //Save status of module
-        sequencedatas.modules[currentmod].status = 'ended';
+        moduleendHandler({states:_.map(states,function(sta){return sta.state;})},function(){
+            //Save status of module
+            sequencedatas.modules[currentmod].status = 'ended';
+            currentmod=nextmodtoshow;
+            if(currentmod>sequencedatas.modules.length-1){
+                handleEndOfSequence();
+            }else{
+                displayCurrentModule();
+            }        
+        });
     };
 
     var handleEndOfSequence = function() {
@@ -5884,7 +5882,6 @@ var rpnsequence = (function() {
     return {
         init: init,
         buildUi: buildUi,
-        handleEndOfModule: handleEndOfModule,
         displayAlert: displayAlert,
         log: log,
         getLabels: getLabels,
@@ -5942,7 +5939,7 @@ var rpnsortingmodule = function() {
     
     var validate = function(){
         state=_.map($('li',domelem),function(ele,idx){return $(ele).text()});
-        rpnsequence.handleEndOfModule(state);
+        return state;
     };
     
     var score = function(sol){

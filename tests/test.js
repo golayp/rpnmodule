@@ -23,6 +23,10 @@ require(['jquery','bootstrap','swfobject','underscore','less','ext/jquery-disabl
         rpnsequence.init({
             debug:true,
             disablestateloading:true,
+            onmoduleend:function(states,nextstep){
+                console.log('ok');
+                nextstep();
+            },
             onsequenceend:function(states,score){
                 window.location.href='../';
             },

@@ -348,10 +348,10 @@ var rpnblackboxmodule = function() {
     };
     
     var validate = function(){
-         $.each($('.rpnm_input', domelem), function(idx, gap) {
+        $.each($('.rpnm_input', domelem), function(idx, gap) {
             state[idx].response = $(gap).val();
         });
-        rpnsequence.handleEndOfModule(state);
+        return state;
     };
     
     var score = function(sol) {

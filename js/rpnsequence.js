@@ -263,25 +263,17 @@ var rpnsequence = (function() {
     var bindUiEvents = function() {
         //Validation
         validationButton.click(function(){
-            modules[currentmod].validate();
-            if(currentmod==sequencedatas.modules.length-1){
-                handleEndOfSequence();
-            }else{
-                currentmod++;
-                displayCurrentModule();
-            }
+            handleEndOfModule(modules[currentmod].validate(),currentmod+1);
         });
         quitButton.click(function(){
-            modules[currentmod].validate();
-            handleEndOfSequence();
+            handleEndOfModule(modules[currentmod].validate(),currentmod+1);
         });
         //Navigation
         if (navigationEnabled && sequencedatas.modules.length > 1) {
             _.each($('#rpnm_modulenav ul li'),function(nav,idx){
                 $(nav).click(function() {
                     modules[currentmod].validate();
-                    currentmod = idx;
-                    displayCurrentModule();
+                    handleEndOfModule(modules[currentmod].validate(),idx);
                 });
             });
         }
@@ -322,16 +314,23 @@ var rpnsequence = (function() {
         source.html(_.isUndefined(datas.sources) ? "" :  datas.sources);
     };
 
-    var handleEndOfModule = function(state) {
+    var handleEndOfModule = function(state,nextmodtoshow) {
         $('#rpnm_wait_modal').modal({show:true,backdrop:'static',keyboard:false});
         log('End of module');
         //store result locally
         states[currentmod] = {
             state:state
         };
-        moduleendHandler({states:_.map(states,function(sta){return sta.state;})});
-        //Save status of module
-        sequencedatas.modules[currentmod].status = 'ended';
+        moduleendHandler({states:_.map(states,function(sta){return sta.state;})},function(){
+            //Save status of module
+            sequencedatas.modules[currentmod].status = 'ended';
+            currentmod=nextmodtoshow;
+            if(currentmod>sequencedatas.modules.length-1){
+                handleEndOfSequence();
+            }else{
+                displayCurrentModule();
+            }        
+        });
     };
 
     var handleEndOfSequence = function() {
@@ -512,7 +511,6 @@ var rpnsequence = (function() {
     return {
         init: init,
         buildUi: buildUi,
-        handleEndOfModule: handleEndOfModule,
         displayAlert: displayAlert,
         log: log,
         getLabels: getLabels,

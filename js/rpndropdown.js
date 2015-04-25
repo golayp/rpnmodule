@@ -58,7 +58,7 @@ var rpndropdownmodule = function() {
     
     var validate = function(){
         state=_.map($('select',domelem),function(ele,idx){return $(ele).val()});
-        rpnsequence.handleEndOfModule(state);
+        return state;
     };
     
     var score = function(sol){

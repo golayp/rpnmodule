@@ -37,8 +37,8 @@ var rpngapfullmodule = function() {
     };
     
     var validate = function(){
-        state=$('.rpnm_input',domelem).val();
-        rpnsequence.handleEndOfModule(state);
+        state= $('.rpnm_input',domelem).val();
+        return state;
     };
     
     var score =  function(sol) {

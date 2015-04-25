@@ -107,7 +107,7 @@ var rpngapsimplemodule = function() {
                 state[idx] = $(gap).val();
             });
         }
-        rpnsequence.handleEndOfModule(state);
+        return state;
     };
     
     var score = function(sol) {
