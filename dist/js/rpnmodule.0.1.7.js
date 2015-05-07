@@ -5393,6 +5393,7 @@ var rpnsequence = (function() {
     var validationButton;
     var quitButton;
     var quitDisabled;
+    var bypassModule;
     var navigationEnabled;
     var debug;
     var loadstate;
@@ -5452,6 +5453,7 @@ var rpnsequence = (function() {
             disablestateloading:false,
             navigationEnabled: false,
             quitDisabled:false,
+            bypassModule:false
         });
         selectedLabels = labels[opts.language];
         states = [];
@@ -5465,6 +5467,7 @@ var rpnsequence = (function() {
         moduleendHandler = opts.onmoduleend;
         mediapathHandler = opts.mediapathformatter;
         quitDisabled=opts.quitDisabled;
+        bypassModule=opts.bypassModule;
         $.getJSON(opts.sequrl, function(datas) {
             _.defaults(datas, {
                 title: "sequencetitle",
@@ -5619,7 +5622,9 @@ var rpnsequence = (function() {
                 divContent.disableSelection();
             }
             $('#rpnm_modulenav ul').append($('<li><a href="#">' + (idx + 1) + '</a></li>'));
-            
+            if(bypassModule){
+                handleEndOfSequence();
+            }
         });
 
         if (warnexit) {
