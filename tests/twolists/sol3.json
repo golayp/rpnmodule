@@ -1,0 +1,18 @@
+{
+	"solutions":[
+		[["<div> <math  display='block'><mspace height='40px'/><mfrac linethickness='2px' numalign='left' denomalign='left'><mrow><mfrac bevelled='true'><mn>1</mn><mi>x</mi></mfrac><mo>+</mo><mfrac bevelled='true'><mn>2</mn><mi>x</mi></mfrac><mo>+</mo><mo>&hellip;</mo></mrow><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>x</mi><mn>4</mn></msup><mo>+</mo><mo>&hellip;</mo></mrow></mfrac></math></div>","<img src='book1.png' width='150px' height='150px'>"],
+		["<p class='text-center'>m1 2 item left</p>","<img src='book2.png' width='150px' height='150px'>"],
+		["<p class='text-center'>m1 3 item left</p>","<img src='book3.png' width='150px' height='150px'>"],
+		["<p class='text-center'>m1 4 item left</p>","Vivamus et metus imperdiet, facilisis nisl eget, semper ligula ?"]],
+		
+		[["<div> <math  display='block'><mspace height='40px'/><mfrac linethickness='2px' numalign='left' denomalign='left'><mrow>1</mrow><mrow>2</mrow></mfrac></math></div>","<div> <math  display='block'><mspace height='40px'/><mfrac linethickness='2px' numalign='left' denomalign='left'><mrow>3</mrow><mrow>4</mrow></mfrac></math></div>"],
+		["<p class='text-center'>m2 2 item left</p>","<p class='text-center'>m2 2 item right</p>"],
+		["<p class='text-center'>m2 3 item left</p>","<p class='text-center'>m2 3 item right</p>"],
+		["<p class='text-center'>m2 4 item left</p>","<p class='text-center'>m2 4 item right</p>"]],
+		
+		[["<p class='text-center'>m3 1 item left</p>","<p class='text-center'>m3 1 item right</p>"],
+		["<p class='text-center'>m3 1 item left</p>","<p class='text-center'>m3 1 item right</p>"],
+		["<p class='text-center'>m3 1 item left</p>","<p class='text-center'>m3 1 item right</p>"],
+		["<p class='text-center'>m3 1 item left</p>","<p class='text-center'>m3 1 item right</p>"]]
+	]
+}

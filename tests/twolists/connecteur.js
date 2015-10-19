@@ -15,6 +15,10 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 	this.target2=[-2,-2, 'vide2'],
 	this.target=[-3,-3],
 	this.make=function(fX,fY,gX1,gY1,gX2,gY2,tX,tY,color){
+	/*	console.log('Connecteur, this.make: '+this);
+		for(i=0;i>this.targets.length;i++){
+			console.log('Connecteur, this.targets: '+this.targets[i].offset().top);
+		}*/
 		 var b = new fabric.Path('M 65 0 C 100, 100, 100, 200, 200, 0', { 
 			fill: '', 
 			stroke: color, 
@@ -69,6 +73,7 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 		c.target=target;
 		c.targets=targets;
 		c.cont=cont;
+		
 
 		return c;
 	  },
@@ -118,44 +123,6 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 		  });
 		}
 	},
-	this.onBeforeSelectionCleared=function(e) {
-	//On va faire ici l'analyse de la targetqui se trouve sous le point du connecteur
-		var activeObject = e.target;
-		
-		if (activeObject.name == "p0") {
-		  activeObject.line2.animate('opacity', '0', {
-			duration: 200,
-			onChange: canvas.renderAll.bind(canvas),
-		  });
-		  activeObject.line2.selectable = false;
-		  activeObject.guide.animate('opacity', '0', {
-			duration: 200,
-			onChange: canvas.renderAll.bind(canvas),
-		  });
-		}
-		else if (activeObject.name == "p3") {
-		  activeObject.line3.animate('opacity', '0', {
-			duration: 200,
-			onChange: canvas.renderAll.bind(canvas),
-		  });
-		  activeObject.line3.selectable = false;
-		  activeObject.guide.animate('opacity', '0', {
-			duration: 200,
-			onChange: canvas.renderAll.bind(canvas),
-		  });
-		}
-		else if (activeObject.name == "p1" || activeObject.name == "p2") {
-		  activeObject.animate('opacity', '0', {
-			duration: 200,
-			onChange: canvas.renderAll.bind(canvas),
-		  });
-		  activeObject.selectable = false;
-		  activeObject.guide.animate('opacity', '0', {
-			duration: 200,
-			onChange: canvas.renderAll.bind(canvas),
-		  });
-		}
-	},
 	this.onObjectMoving=function(e) {
 	//On va faire ici le snap sur le point et empêcher que le point sorte du canvas
 
@@ -163,8 +130,10 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 			var p = e.target,
 				topRel=p.top+p.cont.offset().top,
 				leftRel=p.left+p.cont.offset().left;
+
 			for (var i=0;i<p.targets.length;i++){
 				var cDiv=p.cont;
+
 				if (Math.abs(leftRel-p.targets[i].offset().left)<20 && Math.abs(topRel-p.targets[i].offset().top)<20){
 					p.left=-2-p.radius-p.cont.offset().left+p.targets[i].offset().left+p.targets[i].width()/2;
 					p.top=-3-p.radius-p.cont.offset().top+p.targets[i].offset().top+p.targets[i].height()/2;
@@ -173,6 +142,9 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 					}else if(p.targets[i].attr('name').substring(0, 1)=="r"){
 						p.target[1]=p.targets[i].attr('name').substring(1);
 					}
+					console.log('p.target[0]: '+p.target[0]);
+					console.log('p.target[1]: '+p.target[1]);
+					console.log('p.target: '+p.target);
 				}
 				if(p.left<=10){
 					p.left=10;
@@ -214,7 +186,7 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 	this.canvas.on({
 		'object:selected': this.onObjectSelected,
 		'object:moving': this.onObjectMoving,
-		'before:selection:cleared': this.onBeforeSelectionCleared
+	//	'before:selection:cleared': this.onBeforeSelectionCleared
 	}),
 	this.drawCubic=function () {
 		this.guide1 =this.makeLine([this.fromX,this.fromY, this.g1X, this.g1Y]);
@@ -249,10 +221,10 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 		this.line.perPixelTargetFind=this.guide1.perPixelTargetFind=this.guide2.perPixelTargetFind=this.p0.perPixelTargetFind=this.p1.perPixelTargetFind=this.p2.perPixelTargetFind=this.p3.perPixelTargetFind=true;
 		canvas.add(this.line, this.guide1, this.guide2, this.p0, this.p1, this.p2, this.p3);
 		
-		for (i=0;i<targets.length;i++){
+	/*	for (i=0;i<targets.length;i++){
 			console.log('dans connecteur, target'+this.target[i]);
 		}
-	
+	*/
 
 	},
 	this.drawCubic()
