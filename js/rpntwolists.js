@@ -21,25 +21,33 @@ var rpntwolistsmodule = function() {
             state=_state;
         }else{
             state = [];
-            //A COMPLETER!!!!!!!!!!!!!!!!!!!!!!!
-            _.each(datas.leftitems, function(val, idx) {
-                state.push({
-                    positionLX:0,
-                    positionLY:0,
-                    response:null
-                })
-            });
-            _.each(datas.rightitems, function(val, idx) {
-                state.push({
-                    positionRX:0,
-                    positionRY:0,
-                    response:null
-                })
-            });
+ 
+            if (datas.leftitems.length<datas.rightitems.length){
+                _.each(datas.leftitems, function(val, idx) {
+                    state.push({
+                        positionLX:0,
+                        positionLY:0,
+                        positionRX:0,
+                        positionRY:0,
+                        response:null
+                    })
+                });
+            }else{
+                _.each(datas.rightitems, function(val, idx) {
+                    state.push({
+                        positionLX:0,
+                        positionLY:0,
+                        positionRX:0,
+                        positionRY:0,
+                        response:null
+                    })
+                });
+            }
             if(datas.shuffle){
                 state=_.shuffle(state);
             }
         }
+        //bezier[datas.idmodule]=new Array();
         //rpnsequence.log('state'+state);
         buildUi();
     };
@@ -69,8 +77,8 @@ var leftdiv,
         R_items=_.shuffle(datas.rightitems);
         targetsName[datas.idmodule]=new Array();
         targets[datas.idmodule]=new Array();
-        rpnsequence.log('datas.leftitems'+datas.leftitems);
-        rpnsequence.log('L_items[0]'+L_items[0]);
+        //rpnsequence.log('datas.leftitems'+datas.leftitems);
+        //rpnsequence.log('L_items[0]'+L_items[0]);
 
         
         //_.each(datas.leftitems, function(item,idx) {
@@ -95,7 +103,7 @@ var leftdiv,
         domelem.append(rightdiv);
         domelem.append(myCanvas);
         
-        rpnsequence.log("leftdiv.lastChild.html()"+leftdiv.contents().find("#l_0_0").html());
+        //rpnsequence.log("leftdiv.lastChild.html()"+leftdiv.contents().find("#l_0_0").html());
       /*  var nom='#radleft_'+0+'_'+datas.idmodule;
         rpnsequence.log("nom: "+nom);
 		var myId=$(nom).offset().left;
@@ -135,15 +143,22 @@ var leftdiv,
         	    }
                 var myLeft=0.8*$('#centerdiv_'+datas.idmodule).offset().left;
                 //rpnsequence.log('idmodule'+datas.idmodule);
+                //rpnsequence.log('id bezier'+(i+10*datas.idmodule));
                 //rpnsequence.log('myTop'+myTop);
                 //rpnsequence.log('myTop'+myLeft);
                 //var myId=i+datas.idmodule;
                 //rpnsequence.log('datas.idmodule: '+datas.idmodule);
                 //rpnsequence.log('targets[datas.idmodule]'+targets[datas.idmodule][i].offset().top);
                 //rpnsequence.log('targets[datas.idmodule]'+targets[datas.idmodule][i+nbleft].offset().top);
-        	    bezier[i+datas.idmodule]=new Bezier(canvas,myLeft,myTop,myLeft+100,myTop,myLeft+100,myTop,myLeft,myTop,availableColors[i],targets[datas.idmodule],myCanvas);
+                bezier[i+10*datas.idmodule]=new Bezier(canvas,myLeft,myTop,myLeft+100,myTop,myLeft+100,myTop,myLeft,myTop,availableColors[i],targets[datas.idmodule],myCanvas);
+                //bezier[datas.idmodule].push(new Bezier(canvas,myLeft,myTop,myLeft+100,myTop,myLeft+100,myTop,myLeft,myTop,availableColors[i],targets[datas.idmodule],myCanvas));
+        	    //bezier[i]=new Bezier(canvas,myLeft,myTop,myLeft+100,myTop,myLeft+100,myTop,myLeft,myTop,availableColors[i],targets[datas.idmodule],myCanvas);
         	    //bezier[i+datas.idmodule]=new Bezier(canvas,myLeft,myTop,myLeft+100,myTop,myLeft+100,myTop,myLeft,myTop,availableColors[i],targets[i+datas.idmodule],$('.canvas-container'));
-        	    //rpnsequence.log('i+datas.idmodule: '+(i+datas.idmodule));
+        	    /*bezier=$.grep(bezier, function(n,i){  
+                  return n =='';  
+                },true); 
+        	    rpnsequence.log('bezier: '+bezier);
+        	    rpnsequence.log('bezier.length: '+bezier.length);*/
         	}
 		});
         
@@ -151,20 +166,37 @@ var leftdiv,
     //var validate = function(){
     var validate = function(){
         var k=0;
-         $.each(bezier, function(idx, item) {
-             if(bezier[k+datas.idmodule]){
-                //rpnsequence.log('validate bezier[idx].target'+bezier[idx+datas.idmodule].target);
-               // rpnsequence.log('validate [idx+datas.idmodule]: '+[k+datas.idmodule]);
-                state[k+datas.idmodule].response =bezier[k+datas.idmodule].target;
-                state[k+datas.idmodule].positionLX =bezier[k+datas.idmodule].fromX;
-                state[k+datas.idmodule].positionLY =bezier[k+datas.idmodule].fromY;
-                state[k+datas.idmodule].positionRX =bezier[k+datas.idmodule].toX;
-                state[k+datas.idmodule].positionRY =bezier[k+datas.idmodule].toY;
-                //rpnsequence.log('state[idx+datas.idmodule].response'+state[k+datas.idmodule].response);
-               // rpnsequence.log('validate state[idx+datas.idmodule].positionLX'+state[k+datas.idmodule].positionLX);
-               // rpnsequence.log('validate state[idx+datas.idmodule].positionLY'+state[k+datas.idmodule].positionLY);
-                //rpnsequence.log('validate state[idx+datas.idmodule].positionRX'+state[k+datas.idmodule].positionRX);
-               // rpnsequence.log('validate state[idx+datas.idmodule].positionRY'+state[k+datas.idmodule].positionRY);
+        //rpnsequence.log('L_items: '+L_items)
+         $.each(bezier, function(idx) {
+             //rpnsequence.log('L_items[0][0]: '+L_items[0][0])
+             var myid=k+10*datas.idmodule;
+             //var myid=k;
+             //var myid=idx;
+             //rpnsequence.log('myid (k+10*datas.idmodule): '+myid);
+             //rpnsequence.log('bezier[myid].target: '+bezier[myid].target)
+            //rpnsequence.log('bezier[myid].target[1]: '+bezier[myid].target[1])
+             //rpnsequence.log('bezier[myid].target[1][0]: '+bezier[myid].target[1][0])
+             //rpnsequence.log('L_items[bezier[myid].target[1][0]]: '+L_items[bezier[myid].target[1][0]])
+             //rpnsequence.log('L_items[bezier[myid].target[1][0]][0]: '+L_items[bezier[myid].target[1][0]][0])
+             if(bezier[myid] && bezier[myid].target[0]!=-3 && bezier[myid].target[1]!=-3){
+                 //rpnsequence.log('bezier[myid].target[1][0]: '+bezier[myid].target[1][0])
+                 //rpnsequence.log('L_items: '+L_items[bezier[myid].target[0][0]][0])
+                 //rpnsequence.log('R_items: '+R_items[bezier[myid].target[1][0]][0])
+                 state[idx].response =[L_items[bezier[myid].target[0][0]][0],R_items[bezier[myid].target[1][0]][0]];
+               /* //state[idx].response =bezier[myid].target;
+                if (L_items[bezier[myid].target[0][0]][0]<=R_items[bezier[myid].target[1][0]][0]){
+                    rpnsequence.log('normal')
+                    state[idx].response =[L_items[bezier[myid].target[0][0]][0],R_items[bezier[myid].target[1][0]][0]];
+                }else{
+                    rpnsequence.log('inversé')
+                    //state[idx].response =[bezier[myid].target[1][0],bezier[myid].target[0][0]];
+                    state[idx].response =[L_items[bezier[myid].target[1][0]][0],R_items[bezier[myid].target[0][0]][0]];
+                }*/
+                state[idx].positionLX =bezier[myid].fromX;
+                state[idx].positionLY =bezier[myid].fromY;
+                state[idx].positionRX =bezier[myid].toX;
+                state[idx].positionRY =bezier[myid].toY;
+                //rpnsequence.log('reponse: '+state[idx].response)
                 k++;
              }
         });
@@ -176,13 +208,49 @@ var leftdiv,
     //var score = function(sol) {
     //}
     var score = function(sol) {
-       // rpnsequence.log('scorte sol[ida]'+sol)
+      /*rpnsequence.log('sol.length'+sol.length)
+      rpnsequence.log('sol'+sol)
+      
+      rpnsequence.log('state.length'+state.length)
+      rpnsequence.log('state'+state)
+      
+      rpnsequence.log('bezier.length'+bezier.length)
+      rpnsequence.log('bezier'+bezier)
+      
+      rpnsequence.log('index depart'+(10*datas.idmodule))
+      */
+      score = 0;
+      for (i=10*datas.idmodule;i<bezier.length;i++){
+          for (j=0;j<sol.length;j++){
+              if(state[i-10*datas.idmodule].response!=null){
+                //rpnsequence.log('item: '+sol[j]);
+                //rpnsequence.log('item: '+sol[j][0]);
+                //rpnsequence.log('item: '+sol[j][1]);
+                //rpnsequence.log('state[j].reponse: '+state[i-10*datas.idmodule].response);
+                //rpnsequence.log('state[j].reponse: '+state[i-10*datas.idmodule].response[0]);
+                //rpnsequence.log('state[j].reponse: '+state[i-10*datas.idmodule].response[1]);
+               /* if(state[i-10*datas.idmodule].response[0]==sol[j][0]){
+                    rpnsequence.log('egalite')
+                }else{
+                    rpnsequence.log('pas egal')
+                }*/
+                //score+=(state[i-10*datas.idmodule].reponse==sol[j]?1:0);
+                score+=(state[i-10*datas.idmodule].response[0]==sol[j][0]&&state[i-10*datas.idmodule].response[1]==sol[j][1]?1:0);
+                //score+=(_.findWhere(state).response==sol[i]?1:0);
+              }
+          }
+      }
        // rpnsequence.log('bezier.target'+bezier[1].target)
-        score = 0;
-        _.each(sol, function(item, ida){
-            rpnsequence.log('ida num sol'+ida)
-            _.each(bezier, function(item, idx) {
-                rpnsequence.log('idx: num bez'+idx)
+        
+     /*   _.each(sol, function(item){
+            //rpnsequence.log('ida num sol'+ida)
+             //rpnsequence.log('item sol'+item)
+             var c2=0;
+             rpnsequence.log('bezier.length'+bezier.length)
+            _.each(bezier, function(itemb, idx) {
+                rpnsequence.log(c2)
+                //rpnsequence.log('idx: num bez'+idx)
+                //rpnsequence.log('item bez: '+itemb)
                // rpnsequence.log('sol[ida]'+sol)
                 //rpnsequence.log('bezier[idx].target'+bezier[idx].target);
                 //rpnsequence.log('bezier[idx].target[datas.idmodule][0]: '+bezier[idx].target[datas.idmodule][ida]);
@@ -198,7 +266,7 @@ var leftdiv,
                 //rpnsequence.log('rightdiv.contents().find(idContentR).html(): '+rightdiv.contents().find(idContentR).html())
                 //rpnsequence.log('sol[ida][1]: '+sol[ida][1])
                 //rpnsequence.log('')
-            /*    if(leftdiv.contents().find(idContentL).html()==sol[ida][0]){
+                if(leftdiv.contents().find(idContentL).html()==sol[ida][0]){
                     rpnsequence.log('bezier'+idx+'gauche egal solution gauche');
                     if(rightdiv.contents().find(idContentR).html()==sol[ida][1]){
                        rpnsequence.log('bezier'+idx+'droite egal aussi solution droite, on ajoute 1 au score');
@@ -215,40 +283,56 @@ var leftdiv,
                 }else{
                     rpnsequence.log('bezier'+idx+'aucune égalié/////////////////////////////////////////////////////////');
                        score=1000+score;
-                }*/
+                }
                 
                 //rpnsequence.log('bezier[idx].target'+bezier[idx].target);
                 //rpnsequence.log('bezier[idx].target[datas.idmodule]'+bezier[idx].target[datas.idmodule]);
                 //rpnsequence.log('bezier[idx].target[0]: '+bezier[idx].target[0][0]);
-                rpnsequence.log('sol[ida][0]: '+sol[ida][0]);
+                //if (typeof bezier[idx] !== 'undefined' &&
+                        //typeof L_items[bezier[idx].target[0][0]] !== 'undefined' &&
+                        //typeof R_items[bezier[idx].target[1][0]] !== 'undefined' &&
+                        //typeof R_items[bezier[idx].target[0][0]] !== 'undefined' &&
+                        //typeof L_items[bezier[idx].target[1][0]] !== 'undefined' ){
+                //rpnsequence.log('');
+                //rpnsequence.log('sol[ida][0]: '+sol[ida][0]);
                 //rpnsequence.log('');
                 //rpnsequence.log('bezier[idx].target[datas.idmodule][1]: '+bezier[idx].target[1][0]);
-                rpnsequence.log('sol[ida][1]: '+sol[ida][1]);
-                rpnsequence.log('');
+                //rpnsequence.log('sol[ida][1]: '+sol[ida][1]);
+                
                 //rpnsequence.log('L_items[bezier[idx].target[0][0]][0]: '+L_items[bezier[idx].target[0][0]][0]);
                 //rpnsequence.log('R_items[bezier[idx].target[1][0]][0]: '+R_items[bezier[idx].target[1][0]][0]);
-               // rpnsequence.log('R_items[bezier[idx].target[0][0]][0]: '+R_items[bezier[idx].target[0][0]][0]);
-               // rpnsequence.log('L_items[bezier[idx].target[1][0]][0]: '+L_items[bezier[idx].target[1][0]][0]);
-                
+                //rpnsequence.log('R_items[bezier[idx].target[0][0]][0]: '+R_items[bezier[idx].target[0][0]][0]);
+                //rpnsequence.log('L_items[bezier[idx].target[1][0]][0]: '+L_items[bezier[idx].target[1][0]][0]);
+                //rpnsequence.log('');
+                //}
                 //score+=(((leftdiv.contents().find(idContentL).html()==sol[ida][0]&&rightdiv.contents().find(idContentR).html()==sol[ida][1])||(rightdiv.contents().find(idContentR).html()==sol[ida][0]&&leftdiv.contents().find(idContentL).html()==sol[ida][1]))?1:0);
                 score+=(
                         (
-                            (typeof L_items[bezier[idx].target[0][0]] !== 'undefined' &&
+                            (typeof bezier[idx] !== 'undefined' &&
+                            typeof L_items[bezier[idx].target[0][0]] !== 'undefined' &&
                             typeof R_items[bezier[idx].target[1][0]] !== 'undefined' &&
                             typeof R_items[bezier[idx].target[0][0]] !== 'undefined' &&
                             typeof L_items[bezier[idx].target[1][0]] !== 'undefined' ) &&
                         (
-                            (L_items[bezier[idx].target[0][0]][0]==sol[ida][0] && R_items[bezier[idx].target[1][0]][0]==sol[ida][1])||
-                            (L_items[bezier[idx].target[1][0]][0]==sol[ida][0] && R_items[bezier[idx].target[0][0]][0]==sol[ida][1])
+                            (L_items[state[idx][0]][0]==sol[ida][0] && R_items[bezier[idx].target[1][0]][0]==sol[ida][1])||
+                            (L_items[state[idx][1]][0]==sol[ida][0] && R_items[bezier[idx].target[0][0]][0]==sol[ida][1])
+                            //(L_items[bezier[idx].target[0][0]][0]==sol[ida][0] && R_items[bezier[idx].target[1][0]][0]==sol[ida][1])||
+                            //(L_items[bezier[idx].target[1][0]][0]==sol[ida][0] && R_items[bezier[idx].target[0][0]][0]==sol[ida][1])
                         )
                     )?1:0);
+                    rpnsequence.log('item: '+item)
+                    rpnsequence.log('_.findWhere(state).response: '+_.findWhere(state).response)
+                    score+=(_.findWhere(state).response==item?1:0);
+                    c2++;
                //score++;
                
               
             });
-        }); 
-        rpnsequence.log('score: '+score);
-        bonjour=test();
+            c1++;
+        }); */
+        rpnsequence.log('score intermédiaire: '+score)
+        //rpnsequence.log('score: '+score);
+       // bonjour=test();
         return score;
     };
     

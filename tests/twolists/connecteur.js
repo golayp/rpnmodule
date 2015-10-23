@@ -142,9 +142,9 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 					}else if(p.targets[i].attr('name').substring(0, 1)=="r"){
 						p.target[1]=p.targets[i].attr('name').substring(1);
 					}
-					console.log('p.target[0]: '+p.target[0]);
-					console.log('p.target[1]: '+p.target[1]);
-					console.log('p.target: '+p.target);
+					//console.log('p.target[0]: '+p.target[0]);
+					//console.log('p.target[1]: '+p.target[1]);
+					//console.log('p.target: '+p.target);
 				}
 				if(p.left<=10){
 					p.left=10;

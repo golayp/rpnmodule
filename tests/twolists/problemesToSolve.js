@@ -8,7 +8,7 @@ rpnsequence.log fait planter la console lorsque'elle est beaucoup utilisée. Pr�
 //Faire l'analyse des réponses avec les contenus au lieu des id des targets.Pour l'instantjen'arrive pas à récupérer le contenu des div (line 76) Résolu
 
 Faire l'analyse dans score: on ne retrouve pas toujours les bon éléments avec l'id diContenuL ou R ne donne pas le bonne réponse.
-repecher le numero de l'item sur le target.
+IL faut encore repérer les beziers du bon module
 
 
 /*Dans validate: module1 4 bezier, ok module 2 5bezier, 1 de trop et module 3 5 bezier, un de trop.
