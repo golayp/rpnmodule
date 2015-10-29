@@ -8,57 +8,62 @@
             "directive":"bla bla bla.",
             "idmodule":0,
             "leftitems":[
-                "<div> <math  display='block'><mspace height='40px'/><mfrac linethickness='2px' numalign='left' denomalign='left'><mrow><mfrac bevelled='true'><mn>1</mn><mi>x</mi></mfrac><mo>+</mo><mfrac bevelled='true'><mn>2</mn><mi>x</mi></mfrac><mo>+</mo><mo>&hellip;</mo></mrow><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>x</mi><mn>4</mn></msup><mo>+</mo><mo>&hellip;</mo></mrow></mfrac></math></div>",
-                "<p class='text-center'>Curabitur vitae purus vulputate, rutrum tortor eu, pulvinar justo ?</p>",
-                "<p class='text-center'>Donec et turpis ut risus ullamcorper accumsan ?</p>",
-                "<p class='text-center'>Praesent eleifend sem quis mauris consequat, sit amet rutrum elit interdum ?</p>"
+                [0,"<div> <math   display='block'><mspace height='40px'/><mfrac linethickness='2px' numalign='left' denomalign='left'><mrow><mfrac bevelled='true'><mn>1</mn><mi>x</mi></mfrac><mo>+</mo><mfrac bevelled='true'><mn>2</mn><mi>x</mi></mfrac><mo>+</mo><mo>&hellip;</mo></mrow><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>x</mi><mn>4</mn></msup><mo>+</mo><mo>&hellip;</mo></mrow></mfrac></math></div>"],
+                [1,"<p class='text-center'>m1 2 item left</p>"],
+                [2,"<p class='text-center'>m1 3 item left</p>"],
+                [3,"<p class='text-center'>m1 4 item left</p>"]
             ],
 			"rightitems":[
-                "<img src='book1.png' width='150px' height='150px'>",
-                "<img src='book2.png' width='150px' height='150px'>",
-                "<img src='book3.png' width='150px' height='150px'>",
-                "<img src='book1.png' width='150px' height='150px'>",
-                "Vivamus et metus imperdiet, facilisis nisl eget, semper ligula ?"
+                [4,"<img src='../medias/book1.png' width='150px' height='150px'>"],
+                [5,"<p class='text-center'>m1 2 item right</p>"],
+                [6,"<p class='text-center'>m1 3 item right</p>"],
+                [7,"<p class='text-center'>m1 4 item right</p>"],
+                [8,"<p class='text-left'>Vivamus et metus imperdiet, facilisis nisl eget, semper ligula ?</p>"]
             ]
         },
         {
             "type":"twolists",
             "title":"bind ",
             "context":"context",
-            "directive":"ets ets ets.",
-            "idmodule":1,
-            "leftitems":[
-                "<div> <math  display='block'><mspace height='40px'/><mfrac linethickness='2px' numalign='left' denomalign='left'><mrow>1</mrow><mrow>2</mrow></mfrac></math></div>",
-                "<p class='text-center'>Curabitur vitae purus vulputate, rutrum tortor eu, pulvinar justo ?</p>",
-                "<p class='text-center'>Donec et turpis ut risus ullamcorper accumsan ?</p>",
-                "<p class='text-center'>Praesent eleifend sem quis mauris consequat, sit amet rutrum elit interdum ?</p>"
-            ],
-			"rightitems":[
-                "<div> <math  display='block'><mspace height='40px'/><mfrac linethickness='2px' numalign='left' denomalign='left'><mrow>3</mrow><mrow>4</mrow></mfrac></math></div>",
-                "<p class='text-center'>Curabitur vitae purus vulputate, rutrum tortor eu, pulvinar justo ?</p>",
-                "<p class='text-center'>Donec et turpis ut risus ullamcorper accumsan ?</p>",
-                "<p class='text-center'>Praesent eleifend sem quis mauris consequat, sit amet rutrum elit interdum ?</p>"
-            ]
-        },
-        {
-            "type":"twolists",
-            "title":"bind ",
-            "context":"context",
-            "directive":"ets ets ets.",
+            "directive":"bla bla bla.",
             "idmodule":2,
             "leftitems":[
-                "<div> <math  display='block'><mspace height='40px'/><mfrac linethickness='2px' numalign='left' denomalign='left'><mrow>1</mrow><mrow>2</mrow></mfrac></math></div>",
-                "<p class='text-center'>Curabitur vitae purus vulputate, rutrum tortor eu, pulvinar justo ?</p>",
-                "<p class='text-center'>Donec et turpis ut risus ullamcorper accumsan ?</p>",
-                "<p class='text-center'>Praesent eleifend sem quis mauris consequat, sit amet rutrum elit interdum ?</p>"
+                [0,"<div> <math   display='block'><mspace height='40px'/><mfrac linethickness='2px' numalign='left' denomalign='left'><mrow><mfrac bevelled='true'><mn>1</mn><mi>x</mi></mfrac><mo>+</mo><mfrac bevelled='true'><mn>2</mn><mi>x</mi></mfrac><mo>+</mo><mo>&hellip;</mo></mrow><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>x</mi><mn>4</mn></msup><mo>+</mo><mo>&hellip;</mo></mrow></mfrac></math></div>"],
+                [1,"<p class='text-center'>m1 2 item left</p>"],
+                [2,"<p class='text-center'>m1 3 item left</p>"],
+                [3,"<p class='text-center'>m1 4 item left</p>"]
             ],
 			"rightitems":[
-                "<div> <math  display='block'><mspace height='40px'/><mfrac linethickness='2px' numalign='left' denomalign='left'><mrow>3</mrow><mrow>4</mrow></mfrac></math></div>",
-                "<p class='text-center'>Curabitur vitae purus vulputate, rutrum tortor eu, pulvinar justo ?</p>",
-                "<p class='text-center'>Donec et turpis ut risus ullamcorper accumsan ?</p>",
-                "<p class='text-center'>Praesent eleifend sem quis mauris consequat, sit amet rutrum elit interdum ?</p>"
+                [4,"<img src='../medias/book1.png' width='150px' height='150px'>"],
+                [5,"<p class='text-center'>m1 1, 2, 3, 4 item right</p>"],
+                [6,"<p class='text-center'>test3</p>"],
+                [7,"<p class='text-center'>test4</p>"],
+                [8,"<p class='text-left'>Vivamus et metus imperdiet, facilisis nisl eget, semper ligula ?</p>"]
+            ]
+        },
+        {
+            "type":"twolists",
+            "title":"bind ",
+            "context":"context",
+            "directive":"bla bla bla.",
+            "idmodule":1,
+            "leftitems":[
+                [0,"<div> <math   display='block'><mspace height='40px'/><mfrac linethickness='2px' numalign='left' denomalign='left'><mrow><mfrac bevelled='true'><mn>1</mn><mi>x</mi></mfrac><mo>+</mo><mfrac bevelled='true'><mn>2</mn><mi>x</mi></mfrac><mo>+</mo><mo>&hellip;</mo></mrow><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>x</mi><mn>4</mn></msup><mo>+</mo><mo>&hellip;</mo></mrow></mfrac></math></div>"],
+                [1,"<p class='text-center'>m1 2 item left</p>"],
+                [2,"<p class='text-center'>m1 3 item left</p>"],
+                [3,"<p class='text-center'>m1 4 item left</p>"]
+            ],
+			"rightitems":[
+                [4,"<img src='../medias/book1.png' width='150px' height='150px'>"],
+                [5,"<p class='text-center'>m1 2 item right</p>"],
+                [6,"<p class='text-center'>test2</p>"],
+                [7,"<p class='text-center'>test1</p>"],
+                [8,"<p class='text-center'>m1 3 item right</p>"],
+                [9,"<p class='text-center'>m1 4 item right</p>"],
+                [10,"<p class='text-left'>Vivamus et metus imperdiet, facilisis nisl eget, semper ligula ?</p>"]
             ]
         }
+        
        
     ]
 }
