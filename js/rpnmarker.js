@@ -18,9 +18,11 @@ var rpnmarkermodule = function() {
             state=_state;
         }else{
             var availableColors = _.shuffle(["#8d61a4","#01a271","#5dc2e7","#63b553","#ed656a","#e95c7b","#f5a95e","#d62b81","#eee227"]);
+            var tomarkelements = $('b',datas.tomark);
+            $.merge( tomarkelements , $('area',datas.tomark));
             state={
                 selectedMarker : '',
-                responses:_.map($('b',datas.tomark),function(b,idx){return '';}),
+                responses:_.map(tomarkelements,function(b,idx){return '';}),
                 markers:_.map(datas.markers,function(m,idx){return { label:m,color:(availableColors[idx] || '#222')}})
             };
         }
@@ -84,9 +86,9 @@ var rpnmarkermodule = function() {
         $.each($('area', domelem), function(idx, tomark) {
             var a = $(tomark);
             var data = $(a).mouseout().data('maphilight') || {};
-            if(!_.isEmpty(state.responses[idx])){
+            if(!_.isEmpty(state.responses[idx+$('b', domelem).length])){
                 data.alwaysOn = true;
-                data.fillColor = _.findWhere(state.markers,{label:state.responses[idx]}).color.substring(1);
+                data.fillColor = _.findWhere(state.markers,{label:state.responses[idx+$('b', domelem).length]}).color.substring(1);
                 data.strokeColor = data.fillColor;
             }else{
                 data.alwaysOn = false;
@@ -100,7 +102,7 @@ var rpnmarkermodule = function() {
                 a.css('font-weight','normal');
             }
             a.click(function() {
-                state['responses'][idx] = state.selectedMarker.label;
+                state['responses'][idx+$('b', domelem).length] = state.selectedMarker.label;
                 if (state.selectedMarker.label==''){
                     data.alwaysOn = false;
                 }else{
