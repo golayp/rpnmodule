@@ -1,7 +1,7 @@
 {
     "solutions":[
         ["25"],
-        ["a","b","c","d","e","f"],
+        [{"alternative":["a","aa","aaa"]},"b","c","d","e","f"],
         ["dream","day","dream","day","dream","day","dream","day","dream","day"],
         ["dream","day"]
     ]

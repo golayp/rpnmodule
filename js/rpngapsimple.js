@@ -108,7 +108,11 @@ var rpngapsimplemodule = function() {
     var score = function(sol) {
         var score = 0;
         _.each(sol, function(val, idx) {
-            score += state[idx] == val ? 1 : 0;
+            if(val.alternative){
+                score += (_.contains(val.alternative,state[idx] ) ? 1 : 0);
+            }else{
+                score += state[idx] == val ? 1 : 0;
+            }
         });
         return score;
     };
