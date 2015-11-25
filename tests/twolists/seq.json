@@ -8,37 +8,17 @@
             "directive":"bla bla bla.",
             "idmodule":0,
             "leftitems":[
-                [0,"<div> <math   display='block'><mspace height='40px'/><mfrac linethickness='2px' numalign='left' denomalign='left'><mrow><mfrac bevelled='true'><mn>1</mn><mi>x</mi></mfrac><mo>+</mo><mfrac bevelled='true'><mn>2</mn><mi>x</mi></mfrac><mo>+</mo><mo>&hellip;</mo></mrow><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>x</mi><mn>4</mn></msup><mo>+</mo><mo>&hellip;</mo></mrow></mfrac></math></div>"],
-                [1,"<p class='text-center'>m1 2 item left</p>"],
-                [2,"<p class='text-center'>m1 3 item left</p>"],
-                [3,"<p class='text-center'>m1 4 item left</p>"]
+                "<div> <math   display='block'><mspace height='40px'/><mfrac linethickness='2px' numalign='left' denomalign='left'><mrow><mfrac bevelled='true'><mn>1</mn><mi>x</mi></mfrac><mo>+</mo><mfrac bevelled='true'><mn>2</mn><mi>x</mi></mfrac><mo>+</mo><mo>&hellip;</mo></mrow><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>x</mi><mn>4</mn></msup><mo>+</mo><mo>&hellip;</mo></mrow></mfrac></math></div>",
+                "<p class='text-center'>m1 2 item left</p>",
+                "<p class='text-center'>m1 3 item left</p>",
+                "<p class='text-center'>m1 4 item left je tu il elle on nous vous ils elles  aus by mit nach seit von zu durch für gegen ohne um</p>"
             ],
 			"rightitems":[
-                [4,"<img src='../medias/book1.png' width='150px' height='150px'>"],
-                [5,"<p class='text-center'>m1 2 item right</p>"],
-                [6,"<p class='text-center'>m1 3 item right</p>"],
-                [7,"<p class='text-center'>m1 4 item right</p>"],
-                [8,"<p class='text-left'>Vivamus et metus imperdiet, facilisis nisl eget, semper ligula ?</p>"]
-            ]
-        },
-        {
-            "type":"twolists",
-            "title":"bind ",
-            "context":"context",
-            "directive":"bla bla bla.",
-            "idmodule":2,
-            "leftitems":[
-                [0,"<div> <math   display='block'><mspace height='40px'/><mfrac linethickness='2px' numalign='left' denomalign='left'><mrow><mfrac bevelled='true'><mn>1</mn><mi>x</mi></mfrac><mo>+</mo><mfrac bevelled='true'><mn>2</mn><mi>x</mi></mfrac><mo>+</mo><mo>&hellip;</mo></mrow><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>x</mi><mn>4</mn></msup><mo>+</mo><mo>&hellip;</mo></mrow></mfrac></math></div>"],
-                [1,"<p class='text-center'>m1 2 item left</p>"],
-                [2,"<p class='text-center'>m1 3 item left</p>"],
-                [3,"<p class='text-center'>m1 4 item left</p>"]
-            ],
-			"rightitems":[
-                [4,"<img src='../medias/book1.png' width='150px' height='150px'>"],
-                [5,"<p class='text-center'>m1 1, 2, 3, 4 item right</p>"],
-                [6,"<p class='text-center'>test3</p>"],
-                [7,"<p class='text-center'>test4</p>"],
-                [8,"<p class='text-left'>Vivamus et metus imperdiet, facilisis nisl eget, semper ligula ?</p>"]
+                "<img src='../medias/book1.png' width='150px' height='150px'>",
+                "<p class='text-center'>m1 2 item right</p>",
+                "<p class='text-center'>m1 3 item right</p>",
+                "<p class='text-center'>m1 4 item right</p>",
+                "<p class='text-left'>Vivamus et metus imperdiet, facilisis nisl eget, semper ligula ?</p>"
             ]
         },
         {
@@ -48,19 +28,39 @@
             "directive":"bla bla bla.",
             "idmodule":1,
             "leftitems":[
-                [0,"<div> <math   display='block'><mspace height='40px'/><mfrac linethickness='2px' numalign='left' denomalign='left'><mrow><mfrac bevelled='true'><mn>1</mn><mi>x</mi></mfrac><mo>+</mo><mfrac bevelled='true'><mn>2</mn><mi>x</mi></mfrac><mo>+</mo><mo>&hellip;</mo></mrow><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>x</mi><mn>4</mn></msup><mo>+</mo><mo>&hellip;</mo></mrow></mfrac></math></div>"],
-                [1,"<p class='text-center'>m1 2 item left</p>"],
-                [2,"<p class='text-center'>m1 3 item left</p>"],
-                [3,"<p class='text-center'>m1 4 item left</p>"]
+                "<div> <math   display='block'><mspace height='40px'/><mfrac linethickness='2px' numalign='left' denomalign='left'><mrow><mfrac bevelled='true'><mn>1</mn><mi>x</mi></mfrac><mo>+</mo><mfrac bevelled='true'><mn>2</mn><mi>x</mi></mfrac><mo>+</mo><mo>&hellip;</mo></mrow><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>x</mi><mn>4</mn></msup><mo>+</mo><mo>&hellip;</mo></mrow></mfrac></math></div>",
+                "<p class='text-center'>m1 2 item left</p>",
+                "<p class='text-center'>m1 3 item left</p>",
+                "<p class='text-center'>m1 4 item left je tu il elle on nous vous ils elles  aus by mit nach seit von zu durch für gegen ohne um</p>"
             ],
 			"rightitems":[
-                [4,"<img src='../medias/book1.png' width='150px' height='150px'>"],
-                [5,"<p class='text-center'>m1 2 item right</p>"],
-                [6,"<p class='text-center'>test2</p>"],
-                [7,"<p class='text-center'>test1</p>"],
-                [8,"<p class='text-center'>m1 3 item right</p>"],
-                [9,"<p class='text-center'>m1 4 item right</p>"],
-                [10,"<p class='text-left'>Vivamus et metus imperdiet, facilisis nisl eget, semper ligula ?</p>"]
+                "<img src='../medias/book1.png' width='150px' height='150px'>",
+                "<p class='text-center'>m1 1, 2, 3, 4 item right</p>",
+                "<p class='text-center'>test3</p>",
+                "<p class='text-center'>test4</p>",
+                "<p class='text-left'>Vivamus et metus imperdiet, facilisis nisl eget, semper ligula ?</p>"
+            ]
+        },
+        {
+            "type":"twolists",
+            "title":"bind ",
+            "context":"context",
+            "directive":"bla bla bla.",
+            "idmodule":2,
+            "leftitems":[
+                "<p class='text-center'>m1 1 item left</p>",
+                "<p class='text-center'>m1 2 item left</p>",
+                "<p class='text-center'>m1 3 item left</p>",
+                "<p class='text-center'>m1 4 item left</p>"
+            ],
+			"rightitems":[
+                "<p class='text-center'>m1 1 item right</p>",
+                "<p class='text-center'>m1 2 item right</p>",
+                "<p class='text-center'>test2</p>",
+                "<p class='text-center'>test1</p>",
+                "<p class='text-center'>m1 3 item right</p>",
+                "<p class='text-center'>m1 4 item right</p>",
+                "<p class='text-left'>Vivamus et metus imperdiet, facilisis nisl eget, semper ligula ?</p>"
             ]
         }
         
