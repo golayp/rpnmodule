@@ -126,14 +126,15 @@ var rpntwolistsmodule = function() {
         	nbBiggerItemSize=$('#leftdiv_'+datas.idmodule).height()+50;
         }
 		
-        var myCanvas=$('<canvas id="c'+datas.idmodule+'" height="'+window.innerHeight*0.78+'px" width="'+myCanvasPositionwidth+'px" top="0px">');
+        //var myCanvas=$('<canvas id="c'+datas.idmodule+'" height="'+window.innerHeight+'px" width="'+myCanvasPositionwidth+'px" top="0px">');
+        var myCanvas=$('<canvas id="c'+datas.idmodule+'" height="1000px" width="'+myCanvasPositionwidth+'px" top="0px">');
         domelem.append(myCanvas);
 
 		//var myheight=$('#rpnm_module_content').height();
 		$('.row:last').css({
-			position:'fixed',
-			top:window.innerHeight*0.91+'px',
-			left:'75%'
+			position:'absolute',
+			top:window.innerHeight-35,
+			left:'85%'
 		})
 		
         buildBezier(targetsName, datas, targets, nbleft, nbright, nbbezier, state, bezier, availableColors, myCanvas);
@@ -270,6 +271,24 @@ function coordsBezier(num, mod, bezier, scalx, scaly){
 	var myTopL=bezier[num].fromY*scaly;
 	var myLeftR=bezier[num].toX*scalx;
 	var myTopR=bezier[num].toY*scaly;
+	if($('#rpnm').width()<530){
+		rpnsequence.log('<530 '+$('.pagination').offset().top)
+		$('.row:last').css({
+			position:'absolute',
+			//top:'15%',
+			top:$('.pagination').offset().top,
+			left:'85%'
+		})
+		
+	}else{
+		rpnsequence.log('>530')
+		$('.row:last').css({
+			position:'absolute',
+			top:window.innerHeight-35,
+			left:'85%'
+		})
+		
+	}
 
 	if(bezier[num].target[0]!=-3){
 		id0='#radleft_'+bezier[num].target[0];
