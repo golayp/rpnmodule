@@ -34,7 +34,11 @@ var rpnsortingmodule = function() {
             sentenceToSort.append($('<li class="well well-sm">'+item+'</li>'));
         });
         domelem.append(sentenceToSort);
-        sentenceToSort.sortable();
+       sentenceToSort.sortable({
+          placeholder: "sorting-highlight",
+          tolerance:"pointer"
+        });
+        $( "#sortable" ).disableSelection();
         bindUiEvents();
     };
 
@@ -43,13 +47,19 @@ var rpnsortingmodule = function() {
     };
     
     var validate = function(){
-        state=_.map($('li',domelem),function(ele,idx){return $(ele).text()});
-        rpnsequence.handleEndOfModule(state);
+        state=_.map($('li',domelem),function(ele,idx){return $(ele).html()});
+        return state;
     };
     
     var score = function(sol){
-        var score=0;
-        score=(_.isEqual(state,sol)?1:0);
+        var score = 0;
+        if(sol.alternative){
+            _.each(sol.alternative, function(ssol, idx) {
+                score += (_.isEqual(state,ssol) ? 1 : 0);
+            });
+        }else{
+            score = (_.isEqual(state,sol) ? 1 : 0);
+        }
         return score;
     };
     
