@@ -9,7 +9,9 @@ var rpnmarkermodule = function() {
         _.defaults(_datas, {
             markers: [],
             tomark: ["fill tomark please!"],
-            hidden:false
+            hidden:false,
+            smallButtons:false,
+            displayTooltip:true
         });
         datas = _datas;
         domelem = _domelem;
@@ -17,7 +19,7 @@ var rpnmarkermodule = function() {
         if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
         }else{
-            var availableColors = _.shuffle(["#8d61a4","#01a271","#5dc2e7","#63b553","#ed656a","#e95c7b","#f5a95e","#d62b81","#eee227"]);
+            var availableColors = ["#8d61a4","#01a271","#5dc2e7","#ed656a","#f5a95e","#eee227","#7a5a14","#bbbbbb","#63b553","#e95c7b","#f5a95e"];
             var tomarkelements = $('b',datas.tomark);
             $.merge( tomarkelements , $('area',datas.tomark));
             state={
@@ -37,11 +39,11 @@ var rpnmarkermodule = function() {
             'data-toggle': 'buttons'
         });
         
-        toolbar.append($('<label class="btn btn-default  btn-lg '+(state.selectedMarker==''?'active':'')+' eraser"><input type="radio" name="options" autocomplete="off" '+(state.selectedMarker==''?'checked':'')+'><span class="edicons-tool-eraser"></span> ' + rpnsequence.getLabels().Eraser + '</label>').click(function() {
+        toolbar.append($('<label class="btn btn-default '+(datas.smallButtons?'':'btn-lg ') + (state.selectedMarker.label==''?'active':'')+' eraser"><input type="radio" name="options" autocomplete="off" '+(state.selectedMarker==''?'checked':'')+'><span class="edicons-tool-eraser"></span> ' + rpnsequence.getLabels().Eraser + '</label>').click(function() {
             state.selectedMarker = {color:'',label:''};
         }));
         $.each(state.markers, function(idx, marker) {
-            toolbar.append($('<label class="btn btn-default btn-lg '+(state.selectedMarker.label==marker.label?'active':'')+' stab"><input type="radio" name="options" autocomplete="off" '+(state.selectedMarker==marker.label?'checked':'')+'><span class="edicons-tool-stab" style="color:'+marker.color+'"></span> ' + marker.label + '</label>').click(function() {
+            toolbar.append($('<label class="btn btn-default '+(datas.smallButtons?'':'btn-lg ') + (state.selectedMarker.label==marker.label?'active':'')+' stab"><input type="radio" name="options" autocomplete="off" '+(state.selectedMarker==marker.label?'checked':'')+'><span class="edicons-tool-stab" style="color:'+marker.color+'"></span> ' + marker.label + '</label>').click(function() {
                 state.selectedMarker = marker;
             }));
         });
@@ -70,6 +72,10 @@ var rpnmarkermodule = function() {
             var t = $(tomark);
             if(!_.isEmpty(state.responses[idx])){
                 t.css('background-color',_.findWhere(state.markers,{label:state.responses[idx]}).color);
+                if(datas.displayTooltip){
+                    t.attr('data-original-title', state.responses[idx])
+                        .tooltip('fixTitle');
+                }
             }
             if(!datas.hidden){
                 t.css('cursor', 'pointer');
@@ -78,11 +84,17 @@ var rpnmarkermodule = function() {
             }
             t.click(function() {
                 t.css('background-color',state.selectedMarker.color);
+                if(datas.displayTooltip && state.selectedMarker.color!=''){
+                    t.attr('data-original-title', state.selectedMarker.label)
+                        .tooltip('fixTitle')
+                        .tooltip('show');
+                }else{
+                    t.tooltip('destroy');
+                }
                 state['responses'][idx] = state.selectedMarker.label;
             });
         });
-
-        $('.map', domelem).maphilight({strokeWidth: 3, fillOpacity: 0.5});
+$('.map', domelem).maphilight({strokeWidth: 3, fillOpacity: 0.5});
         $.each($('area', domelem), function(idx, tomark) {
             var a = $(tomark);
             var data = $(a).mouseout().data('maphilight') || {};
@@ -121,7 +133,7 @@ var rpnmarkermodule = function() {
     };
     
     var validate = function(){
-        rpnsequence.handleEndOfModule(state);
+        return state;
     };
     
     var score =  function(sol) {
