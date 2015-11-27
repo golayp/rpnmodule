@@ -272,7 +272,7 @@ function coordsBezier(num, mod, bezier, scalx, scaly){
 	var myLeftR=bezier[num].toX*scalx;
 	var myTopR=bezier[num].toY*scaly;
 	if($('#rpnm').width()<530){
-		rpnsequence.log('<530 '+$('.pagination').offset().top)
+		//rpnsequence.log('<530 '+$('.pagination').offset().top)
 		$('.row:last').css({
 			position:'absolute',
 			//top:'15%',
@@ -281,7 +281,7 @@ function coordsBezier(num, mod, bezier, scalx, scaly){
 		})
 		
 	}else{
-		rpnsequence.log('>530')
+		//rpnsequence.log('>530')
 		$('.row:last').css({
 			position:'absolute',
 			top:window.innerHeight-35,
@@ -289,7 +289,7 @@ function coordsBezier(num, mod, bezier, scalx, scaly){
 		})
 		
 	}
-
+rpnsequence.log('bezier.target'+bezier[num].target)
 	if(bezier[num].target[0]!=-3){
 		id0='#radleft_'+bezier[num].target[0];
 		myTopL=$(id0).offset().top-$('#rpnm_module_content').offset().top+4;
@@ -382,6 +382,7 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,target,
 		c.guide=guide;
 		c.target=target;
 		c.targets=targets;
+		c.mytarget=-3;
 		c.cont=cont;
 		c.num=num;
 		c.mod=mod;
@@ -484,7 +485,6 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,target,
 	},
 	this.onObjectMoving=function(e) {
 	//On va faire ici le snap sur le point et empêcher que le point sorte du canvas
-	//console.log('nom du target'+e.target.name)
 		if (e.target.name == "p0" || e.target.name == "p3") {
 			var p = e.target,
 				topRel=p.top+p.cont.offset().top,
@@ -515,22 +515,40 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,target,
 						//console.log('myline.fromY'+myline.fromY)
 					}
 				}
-				
+			var	target0=false,
+				target1=false;
+				p.mytarget=-3;
 			for (var i=0;i<p.targets.length;i++){
 				var cDiv=p.cont;
-
+				
 				if (Math.abs(leftRel-p.targets[i].offset().left)<20 && Math.abs(topRel-p.targets[i].offset().top)<20){
 					p.left=-2-p.radius-p.cont.offset().left+p.targets[i].offset().left+p.targets[i].width()/2;
 					p.top=-3-p.radius-p.cont.offset().top+p.targets[i].offset().top+p.targets[i].height()/2;
+					
 					if(p.targets[i].attr('name').substring(0, 1)=="l"){
-						p.target[0]=p.targets[i].attr('name').substring(1);
+						p.mytarget=p.targets[i].attr('name').substring(1);
+						target0=true
 					}else if(p.targets[i].attr('name').substring(0, 1)=="r"){
-						p.target[1]=p.targets[i].attr('name').substring(1);
+						p.mytarget=p.targets[i].attr('name').substring(1);
+						target1=true;
 					}
-					//console.log('p.target[0]: '+p.target[0]);
-					//console.log('p.target[1]: '+p.target[1]);
-					//console.log('p.target: '+p.target);
-					//console.log('myline.target: '+myline.target);
+				}
+
+				if(target0==true && target1==false){
+					console.log('t0=true t1=false')
+					p.target[0]=p.mytarget;
+				}else if(target0==false && target1==true){
+					console.log('t0=false t1=true')
+					p.target[1]=p.mytarget;
+				}else {
+					if(p.name=="p0"){
+						console.log('c\'est p0')
+						p.target[0]=p.mytarget;
+					}
+					if(p.name=="p3"){
+						console.log('c\'est p1')
+						p.target[1]=p.mytarget;
+					}
 				}
 				if(p.left<=10){
 					p.left=10;
@@ -557,10 +575,6 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,target,
 				p.line1.path[1][2] = p.top+p.radius;
 				p.line2.left=p.p3.left+p.radius;
 				p.line2.top=p.top+p.radius;
-			//	console.log(' ')
-			//	console.log('p.left'+p.left)
-			//	console.log('fromX'+myline.fromX)
-			//	console.log('p.line1.path[0][1]'+p.line1.path[0][1]);
 				p.guide.set({ 'x1': p.left, 'y1': p.top });
 			}
 			else if (p.line4) {
