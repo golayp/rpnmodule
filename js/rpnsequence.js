@@ -510,7 +510,7 @@ var rpnsequence = (function() {
                     }
                 }
 				else if(validationoptions.type=='sentence'){
-                    var val=/[A-ZÀÂÄÉÈÙÊËÎÏÔÖÑa-zâäàéèùêëîïôöçñ ]*/.exec($(this).val().replace(/\s{2,}/g,' '));
+                    var val=/[A-ZÀÂÄÉÈÙÊËÎÏÔÖÑa-zâäàéèùêëîïôöçñ' ]*/.exec($(this).val().replace(/\s{2,}/g,' '));
                     if(val=='' || val==null){
                         $(this).val('');
                     }else{
