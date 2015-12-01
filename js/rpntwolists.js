@@ -2,14 +2,16 @@
 
 var rpntwolistsmodule = function() {
 	rpnsequence.log('Dans twolistsmodule')
-    var datas;
-    var domelem;
-    var state;
-    var bezier=new Array();
-    var windowWidth=window.innerWidth;
-    var windowHeight=window.innerHeight;
+    var datas,
+	    domelem,
+    	state,
+    	bezier = new Array(),
+    	windowWidth = window.innerWidth,
+    	windowHeight = window.innerHeight,
+    	canvaswidth,
+    	canvasheight,
     //Pour buidUI
-    var leftdiv, 
+    	leftdiv, 
 	    rightdiv, 
 	    centerdiv,
 	    L_items,
@@ -25,7 +27,7 @@ var rpntwolistsmodule = function() {
         domelem = _domelem;
         
         if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
-            state=_state;
+            state = _state;
 
         }else{
             state = [];
@@ -117,9 +119,14 @@ var rpntwolistsmodule = function() {
             targetsName[datas.idmodule].push('#radright_'+idx+'_'+datas.idmodule);
             
         });
-        domelem.append(leftdiv);
-        domelem.append(centerdiv);
-        domelem.append(rightdiv);
+        mytwolists=$('<div id="mytwolists_'+datas.idmodule+'"/>');
+        
+        mytwolists.append(leftdiv);
+        mytwolists.append(centerdiv);
+        mytwolists.append(rightdiv);
+        
+        domelem.append(mytwolists);
+        
         if($("#leftdiv_"+datas.idmodule).height()<$('#rightdiv_'+datas.idmodule).height()){
     	   	nbBiggerItemSize=$('#rightdiv_'+datas.idmodule).height()+50;
         }else{
@@ -130,15 +137,17 @@ var rpntwolistsmodule = function() {
         var myCanvas=$('<canvas id="c'+datas.idmodule+'" height="1000px" width="'+myCanvasPositionwidth+'px" top="0px">');
         domelem.append(myCanvas);
 
-		//var myheight=$('#rpnm_module_content').height();
+		//var myheight=$('.twolists').height();
 		$('.row:last').css({
 			position:'absolute',
 			top:window.innerHeight-35,
 			left:'85%'
 		})
-		
+		rpnsequence.log('.width: '+$('#mytwolists_'+datas.idmodule).width())
+        rpnsequence.log('.height: '+$('#mytwolists_'+datas.idmodule).height())
         buildBezier(targetsName, datas, targets, nbleft, nbright, nbbezier, state, bezier, availableColors, myCanvas);
 		resizeWindow(bezier, datas);
+		
     };
     
    
@@ -150,8 +159,8 @@ var rpntwolistsmodule = function() {
             state[idx].listL =L_items;
             state[idx].listR =R_items;
         });
-        rpnsequence.handleEndOfModule(state);
-        
+        //rpnsequence.handleEndOfModule(state);
+        return state;
     };
 
     var score = function(sol) {
@@ -197,30 +206,32 @@ function buildBezier(targetsName, datas, targets, nbleft, nbright, nbbezier, sta
         		//var myid=i+10*datas.idmodule;
         		var myid=i;
         		var test=$('#radright_'+i+'_'+datas.idmodule);
-        		//rpnsequence.log("offset().top: "+$('#radright_'+i+'_'+datas.idmodule).offset().top)
+        		//rpnsequence.log("[0].offset().top: "+$('.twolists')[0].offset().top.offset().top)
         		//rpnsequence.log('!_.isNull(state[i].response: '+!_.isNull(state[i].response))
-        		//rpnsequence.log('offset().left: '+test.height())
+        		
        	    
        	    
        	    	if(nbleft<nbright){
        	    		//rpnsequence.log('ici')
         	    	if(!_.isNull(state[i].response)){
-        	    		//rpnsequence.log('state[myid].response: '+state[i].response)
+        	    		rpnsequence.log('state[myid].response: '+$('.twolists').offset().top)
         	    		//rpnsequence.log('#radright_3_'+$('#radright_3_'+datas.idmodule).offset().left)
         	    		//rpnsequence.log('state[myid].response[0][0]'+state[myid].response[1])
         	    		//var thisId='#radright_'+state[myid].response[1];
         	    		if(i>1){
-        	    		rpnsequence.log('#rpnm_module_content+thisId'+$('#rpnm_module_content').offset().top+5)
+        	    		rpnsequence.log('.twolists+thisId'+$('.twolists').offset().top+5)
         	    		rpnsequence.log('#radleft_state[1].response[0]'+$('#radleft_'+state[i].response[0]).offset().top)
         	    		}
         	        	//var myTopL=$('#radleft_'+state[i].response[0]).offset().top;
         	        	//var myTopR=$('#radright_'+state[i].response[1]).offset().top;
-        	        	var myTopL=$('#radleft_'+state[i].response[0]).offset().top-$('#rpnm_module_content').offset().top+5;
-        	        	var myTopR=$('#radright_'+state[i].response[1]).offset().top-$('#rpnm_module_content').offset().top+5;
+        	        	var myTopL=$('#radleft_'+state[i].response[0]).offset().top-$('#mytwolists_'+datas.idmodule).offset().top+5;
+        	        	var myTopR=$('#radright_'+state[i].response[1]).offset().top-$('#mytwolists_'+datas.idmodule).offset().top+5;
+        	        	//var myTopL=$('#radleft_'+state[i].response[0]).offset().top-$('#leftdiv_'+datas.idmodule).offset().top+5;
+        	        	//var myTopR=$('#radright_'+state[i].response[1]).offset().top-$('#rightdiv_'+datas.idmodule).offset().top+5;
         	        }else{
         	        	var myTopL=$('#radleft_0_'+datas.idmodule).height()+5+i*20;
-        	        	//var myTopL=$('#radleft_'+i+'_'+datas.idmodule).offset().top-$('#rpnm_module_content').offset().top+5;
-        	        	//var myTopR=$('#radright_'+i+'_'+datas.idmodule).offset().top-$('#rpnm_module_content').offset().top+5;
+        	        	//var myTopL=$('#radleft_'+i+'_'+datas.idmodule).offset().top-$('.twolists').offset().top+5;
+        	        	//var myTopR=$('#radright_'+i+'_'+datas.idmodule).offset().top-$('.twolists').offset().top+5;
         	        	var myTopR=myTopL;
         	        }
         	        
@@ -240,14 +251,15 @@ function buildBezier(targetsName, datas, targets, nbleft, nbright, nbbezier, sta
         	    	//var myLeftL=0.8*$('#centerdiv_'+state[i].response[0][2]).offset().left;
         	    	//var myLeftR=0.8*$('#centerdiv_'+state[i].response[1][2]).offset().left;
         	    	//rpnsequence.log('myLeftL'+myLeftL)
-        	    	//rpnsequence.log('myLeftR'+myLeftR)
+        	    	rpnsequence.log('myLeftR'+$('#radright_'+state[i].response[1]).offset().left)
         	    	var myLeftL=$('#inputgrpleft_'+i+'_'+state[i].response[0][2]).width()-5;
-                	var myLeftR=$('#inputgrpright_'+i+'_'+state[i].response[0][2]).offset().left-$('#rpnm_module_content').offset().left+3;
+                	var myLeftR=$('#inputgrpright_'+i+'_'+state[i].response[0][2]).offset().left-$('#mytwolists_'+datas.idmodule).offset().left+16;
+                	//var myLeftR=$('#inputgrpright_'+i+'_'+state[i].response[0][2]).offset().left-$('#inputgrpright_'+i+'_'+state[i].response[0][2]).width()/2+5;
         	    }else{
                 	var myLeftL=0.8*$('#centerdiv_'+datas.idmodule).offset().left;
                 	//var myLeftL=$('#inputgrpleft_'+i+'_'+datas.idmodule).width()-5;
                 	var myLeftR=myLeftL+100;
-                	//var myLeftR=$('#inputgrpright_'+i+'_'+datas.idmodule).offset().left-$('#rpnm_module_content').offset().left+5;
+                	//var myLeftR=$('#inputgrpright_'+i+'_'+datas.idmodule).offset().left-$('.twolists').offset().left+5;
             	}
             	if (state[i].response){
             		var target=state[i].response;
@@ -289,16 +301,19 @@ function coordsBezier(num, mod, bezier, scalx, scaly){
 		})
 		
 	}
-rpnsequence.log('bezier.target'+bezier[num].target)
+//rpnsequence.log('bezier.target'+bezier[num].target)
 	if(bezier[num].target[0]!=-3){
 		id0='#radleft_'+bezier[num].target[0];
-		myTopL=$(id0).offset().top-$('#rpnm_module_content').offset().top+4;
+		
+		rpnsequence.log('id0'+id0)
+		rpnsequence.log('$(.twolists).offset().top'+$('.twolists').offset().top)
+		myTopL=$(id0).offset().top-$('#mytwolists_'+mod).offset().top+4;
 		myLeftL=$(id2).width()-6;	
 	}
 	if(bezier[num].target[1]!=-3){
 		id1='#radright_'+bezier[num].target[1];
-		myTopR=$(id1).offset().top-$('#rpnm_module_content').offset().top+4;
-		myLeftR=$(id3).offset().left-$('#rpnm_module_content').offset().left+4;	
+		myTopR=$(id1).offset().top-$('#mytwolists_'+mod).offset().top+4;
+		myLeftR=$(id3).offset().left-$('#mytwolists_'+mod).offset().left+16;	
 	}
 	
 	var myreturn=new Array(Math.round(myLeftL), Math.round(myTopL), Math.round(myLeftR), Math.round(myTopR));
@@ -509,10 +524,10 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,target,
 						//myline.g2Y=p.gy;
 						//console.log('p3 '+p.num+' '+p.mod)
 						//console.log('num_mod'+myline.num+'_'+myline.mod)
-						//console.log('myline.toX'+myline.toX)
-						//console.log('myline.toY'+myline.toY)
-						//console.log('myline.fromX'+myline.fromX)
-						//console.log('myline.fromY'+myline.fromY)
+						console.log('myline.toX'+myline.toX)
+						console.log('myline.toY'+myline.toY)
+						console.log('myline.fromX'+myline.fromX)
+						console.log('myline.fromY'+myline.fromY)
 					}
 				}
 			var	target0=false,
@@ -535,18 +550,18 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,target,
 				}
 
 				if(target0==true && target1==false){
-					console.log('t0=true t1=false')
+					//console.log('t0=true t1=false')
 					p.target[0]=p.mytarget;
 				}else if(target0==false && target1==true){
-					console.log('t0=false t1=true')
+					//console.log('t0=false t1=true')
 					p.target[1]=p.mytarget;
 				}else {
 					if(p.name=="p0"){
-						console.log('c\'est p0')
+						//console.log('c\'est p0')
 						p.target[0]=p.mytarget;
 					}
 					if(p.name=="p3"){
-						console.log('c\'est p1')
+						//console.log('c\'est p1')
 						p.target[1]=p.mytarget;
 					}
 				}
@@ -747,8 +762,10 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,target,
 };
 
 function resizeWindow(bezier, datas){
-	var wwidth=$('#rpnm_module_content').width();
-	var wheight=$('#rpnm_module_content').height();
+	var wwidth=$('#mytwolists_'+datas.idmodule).width();
+	var wheight=$('#mytwolists_'+datas.idmodule).height();
+	rpnsequence.log('wwidth'+wwidth)
+	rpnsequence.log('wheight'+wheight)
 	var myobject = {};
 	myobject.debounce = function(func, wait, immediate) {
 		var timeout;
@@ -770,11 +787,12 @@ function resizeWindow(bezier, datas){
 		};
 	};
 	myobject.resizeBezier = function() {
-		var scalx=$('#rpnm_module_content').width()/wwidth;
-		var scaly=$('#rpnm_module_content').height()/wheight;
-		wwidth=$('#rpnm_module_content').width();
-		wheight=$('#rpnm_module_content').height();
-		
+		var scalx=$('#mytwolists_'+datas.idmodule).width()/wwidth;
+		var scaly=$('#mytwolists_'+datas.idmodule).height()/wheight;
+		wwidth=$('#mytwolists_'+datas.idmodule).width();
+		wheight=$('#mytwolists_'+datas.idmodule).height();
+		rpnsequence.log('scalx'+scalx)
+		rpnsequence.log('scaly'+scaly)
 	    _.each(bezier, function(item,idx) {
 			  	if(bezier[idx]){
 			  		var coor=coordsBezier(idx,bezier[idx].mod, bezier, scalx, scaly);
@@ -792,10 +810,11 @@ function resizeWindow(bezier, datas){
 		jQuery(function($) {
 			var myid="#rpnm_modulenav";
         	$( myid ).bind( "mouseenter mouseover click", function(){
-				var scalx=$('#rpnm_module_content').width()/wwidth;
-				var scaly=$('#rpnm_module_content').height()/wheight;
-				wwidth=$('#rpnm_module_content').width();
-				wheight=$('#rpnm_module_content').height();
+        		rpnsequence.log('sur num modules')
+				var scalx=$('#mytwolists_'+datas.idmodule).width()/wwidth;
+				var scaly=$('#mytwolists_'+datas.idmodule).height()/wheight;
+				wwidth=$('#mytwolists_'+datas.idmodule).width();
+				wheight=$('#mytwolists_'+datas.idmodule).height();
 				
 			    _.each(bezier, function(item,idx) {
 					  	if(bezier[idx]){
@@ -815,10 +834,11 @@ function resizeWindow(bezier, datas){
 			});
 			var myid2="#rpnm_validation";
 			$( myid2 ).bind( "mouseenter mouseover click", function(){
-        		var scalx=$('#rpnm_module_content').width()/wwidth;
-				var scaly=$('#rpnm_module_content').height()/wheight;
-				wwidth=$('#rpnm_module_content').width();
-				wheight=$('#rpnm_module_content').height();
+				rpnsequence.log('sur validation')
+        		var scalx=$('#mytwolists_'+datas.idmodule).width()/wwidth;
+				var scaly=$('#mytwolists_'+datas.idmodule).height()/wheight;
+				wwidth=$('#mytwolists_'+datas.idmodule).width();
+				wheight=$('#mytwolists_'+datas.idmodule).height();
 
 			    _.each(bezier, function(item,idx) {
 					  	if(bezier[idx]){
