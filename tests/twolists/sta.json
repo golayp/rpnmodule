@@ -1,0 +1,130 @@
+{
+"states": [
+		[
+			{
+				"positionLX": 342.26250000000005,
+				"positionLY": 262,
+				"positionRX": 442.26250000000005,
+				"positionRY": 262,
+				"response": [
+					2,
+					7
+				]
+			},
+			{
+				"positionLX": 342.26250000000005,
+				"positionLY": 302,
+				"positionRX": 442.26250000000005,
+				"positionRY": 302,
+				"response": [
+					3,
+					4
+				]
+			},
+			{
+				"positionLX": 342.26250000000005,
+				"positionLY": 342,
+				"positionRX": 442.26250000000005,
+				"positionRY": 342,
+				"response": [
+					0,
+					5
+				]
+			},
+			{
+				"positionLX": 342.26250000000005,
+				"positionLY": 382,
+				"positionRX": 442.26250000000005,
+				"positionRY": 382,
+				"response": [
+					1,
+					6
+				]
+			}
+		],
+		[
+			{
+				"positionLX": 342.26250000000005,
+				"positionLY": 262,
+				"positionRX": 442.26250000000005,
+				"positionRY": 262,
+				"response": [
+					0,
+					4
+				]
+			},
+			{
+				"positionLX": 342.26250000000005,
+				"positionLY": 302,
+				"positionRX": 442.26250000000005,
+				"positionRY": 302,
+				"response": [
+					2,
+					6
+				]
+			},
+			{
+				"positionLX": 342.26250000000005,
+				"positionLY": 342,
+				"positionRX": 442.26250000000005,
+				"positionRY": 342,
+				"response": [
+					1,
+					8
+				]
+			},
+			{
+				"positionLX": 342.26250000000005,
+				"positionLY": 382,
+				"positionRX": 442.26250000000005,
+				"positionRY": 382,
+				"response": [
+					3,
+					5
+				]
+			}
+		],
+		[
+			{
+				"positionLX": 342.26250000000005,
+				"positionLY": 262,
+				"positionRX": 442.26250000000005,
+				"positionRY": 262,
+				"response": [
+					3,
+					6
+				]
+			},
+			{
+				"positionLX": 342.26250000000005,
+				"positionLY": 302,
+				"positionRX": 442.26250000000005,
+				"positionRY": 302,
+				"response": [
+					1,
+					5
+				]
+			},
+			{
+				"positionLX": 342.26250000000005,
+				"positionLY": 342,
+				"positionRX": 442.26250000000005,
+				"positionRY": 342,
+				"response": [
+					2,
+					4
+				]
+			},
+			{
+				"positionLX": 342.26250000000005,
+				"positionLY": 382,
+				"positionRX": 442.26250000000005,
+				"positionRY": 382,
+				"response": [
+					0,
+					8
+				]
+			}
+		]
+	]
+}

@@ -115,6 +115,29 @@
 					"color": "#5dc2e7"
 				}
 			]
+		},
+		{
+			"selectedMarker": {
+				"label": "marker1",
+				"color": "#8d61a4"
+			},
+			"responses": [
+				"marker1",
+				"marker2",
+				"",
+				"marker1",
+				"marker1"
+			],
+			"markers": [
+				{
+					"label": "marker1",
+					"color": "#8d61a4"
+				},
+				{
+					"label": "marker2",
+					"color": "#01a271"
+				}
+			]
 		}
 	]
 }
