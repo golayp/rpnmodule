@@ -58,15 +58,17 @@ var rpntwolistsmodule = function() {
 	
     
     var buildUi = function() {
-    	$('span').css({
+    	domelem.addClass('twolists');
+    	
+    /*	$('span').css({
          	background:'none',
 		  	border: 'none'
-		});
+		});*/
     	
         var myCanvasPositionHeight=window.innerHeight,
         	myCanvasPositionwidth=$('#rpnm_inst_'+datas.idmodule).width();
 
-        domelem.addClass('twolists');
+        
 
         
         leftdiv=$('<div id="leftdiv_'+datas.idmodule+'" class="col-xs-4">');
@@ -110,12 +112,12 @@ var rpntwolistsmodule = function() {
 	        
         }
         _.each(L_items, function(item,idx) {
-           leftdiv.append($('<div id="inputgrpleft_'+idx+'_'+datas.idmodule+'" class="input-group"><span id="l_'+idx+'_'+datas.idmodule+'">' + L_items[idx] + '</span><span class="input-group-addon" border="none" ><input  type="radio" id="radleft_'+idx+'_'+datas.idmodule+'" name="l'+idx+'_'+datas.idmodule+'"></span></div>'));
+           leftdiv.append($('<div id="inputgrpleft_'+idx+'_'+datas.idmodule+'" class="input-group"><span id="l_'+idx+'_'+datas.idmodule+'">' + L_items[idx] + '</span><span class="input-group-btn" border="none" ><input  type="radio" id="radleft_'+idx+'_'+datas.idmodule+'" name="l'+idx+'_'+datas.idmodule+'"></span></div>'));
            targetsName[datas.idmodule].push('#radleft_'+idx+'_'+datas.idmodule);
           
         });
         _.each(R_items, function(item,idx) {
-            rightdiv.append($('<div id="inputgrpright_'+idx+'_'+datas.idmodule+'" class="input-group"><span class="input-group-addon" ><input  type="radio" id="radright_'+idx+'_'+datas.idmodule+'" name="r'+idx+'_'+datas.idmodule+'"></span><span id="r_'+idx+'_'+datas.idmodule+'">'+ R_items[idx] + '</span></div>'));
+            rightdiv.append($('<div id="inputgrpright_'+idx+'_'+datas.idmodule+'" class="input-group"><span class="input-group-btn" ><input  type="radio" id="radright_'+idx+'_'+datas.idmodule+'" name="r'+idx+'_'+datas.idmodule+'"></span><span id="r_'+idx+'_'+datas.idmodule+'">'+ R_items[idx] + '</span></div>'));
             targetsName[datas.idmodule].push('#radright_'+idx+'_'+datas.idmodule);
             
         });
@@ -126,7 +128,10 @@ var rpntwolistsmodule = function() {
         mytwolists.append(rightdiv);
         
         domelem.append(mytwolists);
-        
+     /*   mytwolists.css({
+        	width:window.innerWidth*0.85,
+        	height:window.innerHeight
+        })*/
         if($("#leftdiv_"+datas.idmodule).height()<$('#rightdiv_'+datas.idmodule).height()){
     	   	nbBiggerItemSize=$('#rightdiv_'+datas.idmodule).height()+50;
         }else{
@@ -140,11 +145,11 @@ var rpntwolistsmodule = function() {
 		//var myheight=$('.twolists').height();
 		$('.row:last').css({
 			position:'absolute',
-			top:window.innerHeight-35,
+			//top:window.innerHeight-35,
 			left:'85%'
 		})
-		rpnsequence.log('.width: '+$('#mytwolists_'+datas.idmodule).width())
-        rpnsequence.log('.height: '+$('#mytwolists_'+datas.idmodule).height())
+		//rpnsequence.log('.width: '+$('#mytwolists_'+datas.idmodule).width())
+        //rpnsequence.log('.height: '+$('#mytwolists_'+datas.idmodule).height())
         buildBezier(targetsName, datas, targets, nbleft, nbright, nbbezier, state, bezier, availableColors, myCanvas);
 		resizeWindow(bezier, datas);
 		
@@ -214,13 +219,13 @@ function buildBezier(targetsName, datas, targets, nbleft, nbright, nbbezier, sta
        	    	if(nbleft<nbright){
        	    		//rpnsequence.log('ici')
         	    	if(!_.isNull(state[i].response)){
-        	    		rpnsequence.log('state[myid].response: '+$('.twolists').offset().top)
+        	    		//rpnsequence.log('state[myid].response: '+$('.twolists').offset().top)
         	    		//rpnsequence.log('#radright_3_'+$('#radright_3_'+datas.idmodule).offset().left)
         	    		//rpnsequence.log('state[myid].response[0][0]'+state[myid].response[1])
         	    		//var thisId='#radright_'+state[myid].response[1];
         	    		if(i>1){
-        	    		rpnsequence.log('.twolists+thisId'+$('.twolists').offset().top+5)
-        	    		rpnsequence.log('#radleft_state[1].response[0]'+$('#radleft_'+state[i].response[0]).offset().top)
+        	    		//rpnsequence.log('.twolists+thisId'+$('.twolists').offset().top+5)
+        	    		//rpnsequence.log('#radleft_state[1].response[0]'+$('#radleft_'+state[i].response[0]).offset().top)
         	    		}
         	        	//var myTopL=$('#radleft_'+state[i].response[0]).offset().top;
         	        	//var myTopR=$('#radright_'+state[i].response[1]).offset().top;
@@ -251,9 +256,9 @@ function buildBezier(targetsName, datas, targets, nbleft, nbright, nbbezier, sta
         	    	//var myLeftL=0.8*$('#centerdiv_'+state[i].response[0][2]).offset().left;
         	    	//var myLeftR=0.8*$('#centerdiv_'+state[i].response[1][2]).offset().left;
         	    	//rpnsequence.log('myLeftL'+myLeftL)
-        	    	rpnsequence.log('myLeftR'+$('#radright_'+state[i].response[1]).offset().left)
-        	    	var myLeftL=$('#inputgrpleft_'+i+'_'+state[i].response[0][2]).width()-5;
-                	var myLeftR=$('#inputgrpright_'+i+'_'+state[i].response[0][2]).offset().left-$('#mytwolists_'+datas.idmodule).offset().left+16;
+        	    //	rpnsequence.log('myLeftR'+$('#radright_'+state[i].response[1]).offset().left)
+        	    	var myLeftL=$('#inputgrpleft_'+i+'_'+state[i].response[0][2]).width()+5;
+                	var myLeftR=$('#inputgrpright_'+i+'_'+state[i].response[0][2]).offset().left-$('#mytwolists_'+datas.idmodule).offset().left+5;
                 	//var myLeftR=$('#inputgrpright_'+i+'_'+state[i].response[0][2]).offset().left-$('#inputgrpright_'+i+'_'+state[i].response[0][2]).width()/2+5;
         	    }else{
                 	var myLeftL=0.8*$('#centerdiv_'+datas.idmodule).offset().left;
@@ -285,6 +290,18 @@ function coordsBezier(num, mod, bezier, scalx, scaly){
 	var myTopR=bezier[num].toY*scaly;
 	if($('#rpnm').width()<530){
 		//rpnsequence.log('<530 '+$('.pagination').offset().top)
+		if($('.pagination').offset.top){
+			var mypositiontop=$('.pagination').offset().top;
+		}else{
+			var mypositiontop=$('#rpnm_inst_'+mod).offset().top;
+		}
+		$('.row:last').css({
+			position:'absolute',
+			//top:'15%',
+			top:mypositiontop,
+			left:'85%'
+		})
+		
 		$('.row:last').css({
 			position:'absolute',
 			//top:'15%',
@@ -296,7 +313,7 @@ function coordsBezier(num, mod, bezier, scalx, scaly){
 		//rpnsequence.log('>530')
 		$('.row:last').css({
 			position:'absolute',
-			top:window.innerHeight-35,
+			top:$('#c'+mod).height(),
 			left:'85%'
 		})
 		
@@ -305,15 +322,15 @@ function coordsBezier(num, mod, bezier, scalx, scaly){
 	if(bezier[num].target[0]!=-3){
 		id0='#radleft_'+bezier[num].target[0];
 		
-		rpnsequence.log('id0'+id0)
-		rpnsequence.log('$(.twolists).offset().top'+$('.twolists').offset().top)
+		//rpnsequence.log('id0'+id0)
+		//rpnsequence.log('$(.twolists).offset().top'+$('.twolists').offset().top)
 		myTopL=$(id0).offset().top-$('#mytwolists_'+mod).offset().top+4;
-		myLeftL=$(id2).width()-6;	
+		myLeftL=$(id2).width()+5;	
 	}
 	if(bezier[num].target[1]!=-3){
 		id1='#radright_'+bezier[num].target[1];
 		myTopR=$(id1).offset().top-$('#mytwolists_'+mod).offset().top+4;
-		myLeftR=$(id3).offset().left-$('#mytwolists_'+mod).offset().left+16;	
+		myLeftR=$(id3).offset().left-$('#mytwolists_'+mod).offset().left+5;	
 	}
 	
 	var myreturn=new Array(Math.round(myLeftL), Math.round(myTopL), Math.round(myLeftR), Math.round(myTopR));
@@ -524,10 +541,10 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,target,
 						//myline.g2Y=p.gy;
 						//console.log('p3 '+p.num+' '+p.mod)
 						//console.log('num_mod'+myline.num+'_'+myline.mod)
-						console.log('myline.toX'+myline.toX)
-						console.log('myline.toY'+myline.toY)
-						console.log('myline.fromX'+myline.fromX)
-						console.log('myline.fromY'+myline.fromY)
+						//console.log('myline.toX'+myline.toX)
+						//console.log('myline.toY'+myline.toY)
+						//console.log('myline.fromX'+myline.fromX)
+						//console.log('myline.fromY'+myline.fromY)
 					}
 				}
 			var	target0=false,
@@ -764,6 +781,9 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,target,
 function resizeWindow(bezier, datas){
 	var wwidth=$('#mytwolists_'+datas.idmodule).width();
 	var wheight=$('#mytwolists_'+datas.idmodule).height();
+	if (isNaN(wheight) || wheight==0){
+		wheight=1;
+	}
 	rpnsequence.log('wwidth'+wwidth)
 	rpnsequence.log('wheight'+wheight)
 	var myobject = {};
@@ -789,6 +809,12 @@ function resizeWindow(bezier, datas){
 	myobject.resizeBezier = function() {
 		var scalx=$('#mytwolists_'+datas.idmodule).width()/wwidth;
 		var scaly=$('#mytwolists_'+datas.idmodule).height()/wheight;
+		if (scaly==0 || isNaN(scaly)){
+			scaly=1;
+		}
+		if (scalx==0 || isNaN(scalx)){
+			scalx=1;
+		}
 		wwidth=$('#mytwolists_'+datas.idmodule).width();
 		wheight=$('#mytwolists_'+datas.idmodule).height();
 		rpnsequence.log('scalx'+scalx)
@@ -810,9 +836,15 @@ function resizeWindow(bezier, datas){
 		jQuery(function($) {
 			var myid="#rpnm_modulenav";
         	$( myid ).bind( "mouseenter mouseover click", function(){
-        		rpnsequence.log('sur num modules')
+        		//rpnsequence.log('sur num modules')
 				var scalx=$('#mytwolists_'+datas.idmodule).width()/wwidth;
 				var scaly=$('#mytwolists_'+datas.idmodule).height()/wheight;
+				if (scaly==0 || isNaN(scaly)){
+					scaly=1;
+				}
+				if (scalx==0 || isNaN(scalx)){
+					scalx=1;
+				}
 				wwidth=$('#mytwolists_'+datas.idmodule).width();
 				wheight=$('#mytwolists_'+datas.idmodule).height();
 				
@@ -834,9 +866,15 @@ function resizeWindow(bezier, datas){
 			});
 			var myid2="#rpnm_validation";
 			$( myid2 ).bind( "mouseenter mouseover click", function(){
-				rpnsequence.log('sur validation')
+				//rpnsequence.log('sur validation')
         		var scalx=$('#mytwolists_'+datas.idmodule).width()/wwidth;
 				var scaly=$('#mytwolists_'+datas.idmodule).height()/wheight;
+				if (scaly==0 || isNaN(scaly)){
+					scaly=1;
+				}
+				if (scalx==0 || isNaN(scalx)){
+					scalx=1;
+				}
 				wwidth=$('#mytwolists_'+datas.idmodule).width();
 				wheight=$('#mytwolists_'+datas.idmodule).height();
 
