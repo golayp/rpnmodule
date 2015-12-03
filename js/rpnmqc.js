@@ -9,7 +9,8 @@ var rpnmqcmodule = function() {
         _.defaults(_datas, {
             questions: ["No questions!"],
             answers: ["As no answers"],
-            vertical:false
+            vertical:false,
+            mqcmultiple:false
         });
 
         datas = _datas;
@@ -37,12 +38,27 @@ var rpnmqcmodule = function() {
             li.append($('<p>' + question + '</p>'));
             var answerGroup = $('<div class="'+(datas.vertical?'btn-group-vertical':'btn-group')+'" role="group" data-toggle="buttons">');
             var idmqc = datas.answers.length==1?0:idq;
-            $.each(datas.answers[idmqc].choice, function(ida, answer) {
-                answerGroup.append($('<label class="btn btn-default '+((!_.isEmpty(state.responses[idq])&&state.responses[idq]==answer)?'active':'')+'"><input type="radio" autocomplete="off" '+((!_.isEmpty(state.responses[idq])&&state.responses[idq]==answer)?'checked':'')+'>' + answer + '</label>').click(function() {
-                    state.responses[idq] = answer;
-                }));
-                li.append(answerGroup);
-            });
+            //multiple responses allowed
+            if(datas.mqcmultiple){
+                var answerArray = new Array(datas.answers.length);
+                answerArray = _.map(answerArray,function(aa,idaa){return'';});
+                $.each(datas.answers[idmqc].choice, function(ida, answer) {
+                    answerArray[ida] = (!_.isEmpty(state.responses[idq][ida])&&state.responses[idq][ida]==answer)? state.responses[idq][ida] : '';
+                    answerGroup.append($('<label class="btn btn-default '+((!_.isEmpty(state.responses[idq][ida])&&state.responses[idq][ida]==answer)?'active':'')+'"><input type="checkbox" autocomplete="off" '+((!_.isEmpty(state.responses[idq][ida])&&state.responses[idq][ida]==answer)?'checked':'')+'>' + answer + '</label>').click(function(lab) {
+                        answerArray[ida] = !$(lab.currentTarget).hasClass('active')? answer : '';
+                        state.responses[idq] = answerArray;
+                    }));
+                    li.append(answerGroup);
+                });
+            }
+            else{
+                $.each(datas.answers[idmqc].choice, function(ida, answer) {
+                    answerGroup.append($('<label class="btn btn-default '+((!_.isEmpty(state.responses[idq])&&state.responses[idq]==answer)?'active':'')+'"><input type="radio" autocomplete="off" '+((!_.isEmpty(state.responses[idq])&&state.responses[idq]==answer)?'checked':'')+'>' + answer + '</label>').click(function() {
+                        state.responses[idq] = answer;
+                    }));
+                    li.append(answerGroup);
+                });
+            }
             uilist.append(li);
         });
         
@@ -60,7 +76,7 @@ var rpnmqcmodule = function() {
     var score= function(sol) {
         var score = 0;
         _.each(sol, function(val, idx) {
-            score += state.responses[idx] == val ? 1 : 0;
+            score += _.isEqual(state.responses[idx],val) ? 1 : 0;
         });
         return score;
     };

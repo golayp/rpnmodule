@@ -246,10 +246,6 @@ var rpnsequence = (function() {
                 modules[idx]=rpnsortingmodule();
                 modules[idx].init(modData,states[idx].state, divContent);
             }
-            else if (modData.type == 'twolists') {
-                modules[idx]=rpntwolistsmodule();
-                modules[idx].init(modData,states[idx].state, divContent);
-            }
             globaldiv.hide();
             if(modData.type!='gapfull'){
                 divContent.disableSelection();
@@ -507,7 +503,14 @@ var rpnsequence = (function() {
                     }else{
                         $(this).val(val);
                     }
-                
+                }
+                else if(validationoptions.type=='words'){
+                    var val=/[A-ZÀÂÄÉÈÙÊËÎÏÔÖÑa-zâäàéèùêëîïôöçñ' ]*/.exec($(this).val().replace(/\s{2,}/g,' '));
+                    if(val=='' || val==null){
+                        $(this).val('');
+                    }else{
+                        $(this).val(val);
+                    }
                 }
             });
         }
