@@ -248,6 +248,11 @@ var rpnsequence = (function() {
                 modules[idx]=rpnsortingmodule();
                 modules[idx].init(modData,states[idx].state, divContent);
             }
+            else if (modData.type == 'twolists') {
+                modules[idx]=rpntwolistsmodule();
+                modules[idx].init(modData,states[idx].state, divContent);
+            }
+            
             globaldiv.hide();
             if(modData.type!='gapfull'){
                 divContent.disableSelection();
