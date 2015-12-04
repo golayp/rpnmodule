@@ -1,5 +1,7 @@
+
+/* global _*/
 /*!
- * rpnmodule 0.1.3 (https://github.com/golayp/rpnmodule)
+ * rpnmodule 0.1.8 (https://github.com/golayp/rpnmodule)
  * 
  * Dependencies: jquery 2.1.3, bootstrap 3.3.2, underscore 1.7.0
  * 

@@ -3850,6 +3850,366 @@ var sortable = $.widget("ui.sortable", $.ui.mouse, {
 
 
 }));
+(function($) {
+	var has_VML, has_canvas, create_canvas_for, add_shape_to, clear_canvas, shape_from_area,
+		canvas_style, hex_to_decimal, css3color, is_image_loaded, options_from_area;
+
+	has_canvas = !!document.createElement('canvas').getContext;
+
+	// VML: more complex
+	has_VML = (function() {
+		var a = document.createElement('div');
+		a.innerHTML = '<v:shape id="vml_flag1" adj="1" />';
+		var b = a.firstChild;
+		b.style.behavior = "url(#default#VML)";
+		return b ? typeof b.adj == "object": true;
+	})();
+
+	if(!(has_canvas || has_VML)) {
+		$.fn.maphilight = function() { return this; };
+		return;
+	}
+	
+	if(has_canvas) {
+		hex_to_decimal = function(hex) {
+			return Math.max(0, Math.min(parseInt(hex, 16), 255));
+		};
+		css3color = function(color, opacity) {
+			return 'rgba('+hex_to_decimal(color.substr(0,2))+','+hex_to_decimal(color.substr(2,2))+','+hex_to_decimal(color.substr(4,2))+','+opacity+')';
+		};
+		create_canvas_for = function(img) {
+			var c = $('<canvas style="width:'+$(img).width()+'px;height:'+$(img).height()+'px;"></canvas>').get(0);
+			c.getContext("2d").clearRect(0, 0, $(img).width(), $(img).height());
+			return c;
+		};
+		var draw_shape = function(context, shape, coords, x_shift, y_shift) {
+			x_shift = x_shift || 0;
+			y_shift = y_shift || 0;
+			
+			context.beginPath();
+			if(shape == 'rect') {
+				// x, y, width, height
+				context.rect(coords[0] + x_shift, coords[1] + y_shift, coords[2] - coords[0], coords[3] - coords[1]);
+			} else if(shape == 'poly') {
+				context.moveTo(coords[0] + x_shift, coords[1] + y_shift);
+				for(i=2; i < coords.length; i+=2) {
+					context.lineTo(coords[i] + x_shift, coords[i+1] + y_shift);
+				}
+			} else if(shape == 'circ') {
+				// x, y, radius, startAngle, endAngle, anticlockwise
+				context.arc(coords[0] + x_shift, coords[1] + y_shift, coords[2], 0, Math.PI * 2, false);
+			}
+			context.closePath();
+		};
+		add_shape_to = function(canvas, shape, coords, options, name) {
+			var i, context = canvas.getContext('2d');
+			
+			// Because I don't want to worry about setting things back to a base state
+			
+			// Shadow has to happen first, since it's on the bottom, and it does some clip /
+			// fill operations which would interfere with what comes next.
+			if(options.shadow) {
+				context.save();
+				if(options.shadowPosition == "inside") {
+					// Cause the following stroke to only apply to the inside of the path
+					draw_shape(context, shape, coords);
+					context.clip();
+				}
+				
+				// Redraw the shape shifted off the canvas massively so we can cast a shadow
+				// onto the canvas without having to worry about the stroke or fill (which
+				// cannot have 0 opacity or width, since they're what cast the shadow).
+				var x_shift = canvas.width * 100;
+				var y_shift = canvas.height * 100;
+				draw_shape(context, shape, coords, x_shift, y_shift);
+				
+				context.shadowOffsetX = options.shadowX - x_shift;
+				context.shadowOffsetY = options.shadowY - y_shift;
+				context.shadowBlur = options.shadowRadius;
+				context.shadowColor = css3color(options.shadowColor, options.shadowOpacity);
+				
+				// Now, work out where to cast the shadow from! It looks better if it's cast
+				// from a fill when it's an outside shadow or a stroke when it's an interior
+				// shadow. Allow the user to override this if they need to.
+				var shadowFrom = options.shadowFrom;
+				if (!shadowFrom) {
+					if (options.shadowPosition == 'outside') {
+						shadowFrom = 'fill';
+					} else {
+						shadowFrom = 'stroke';
+					}
+				}
+				if (shadowFrom == 'stroke') {
+					context.strokeStyle = "rgba(0,0,0,1)";
+					context.stroke();
+				} else if (shadowFrom == 'fill') {
+					context.fillStyle = "rgba(0,0,0,1)";
+					context.fill();
+				}
+				context.restore();
+				
+				// and now we clean up
+				if(options.shadowPosition == "outside") {
+					context.save();
+					// Clear out the center
+					draw_shape(context, shape, coords);
+					context.globalCompositeOperation = "destination-out";
+					context.fillStyle = "rgba(0,0,0,1);";
+					context.fill();
+					context.restore();
+				}
+			}
+			
+			context.save();
+			
+			draw_shape(context, shape, coords);
+			
+			// fill has to come after shadow, otherwise the shadow will be drawn over the fill,
+			// which mostly looks weird when the shadow has a high opacity
+			if(options.fill) {
+				context.fillStyle = css3color(options.fillColor, options.fillOpacity);
+				context.fill();
+			}
+			// Likewise, stroke has to come at the very end, or it'll wind up under bits of the
+			// shadow or the shadow-background if it's present.
+			if(options.stroke) {
+				context.strokeStyle = css3color(options.strokeColor, options.strokeOpacity);
+				context.lineWidth = options.strokeWidth;
+				context.stroke();
+			}
+			
+			context.restore();
+			
+			if(options.fade) {
+				$(canvas).css('opacity', 0).animate({opacity: 1}, 100);
+			}
+		};
+		clear_canvas = function(canvas) {
+			canvas.getContext('2d').clearRect(0, 0, canvas.width,canvas.height);
+		};
+	} else {   // ie executes this code
+		create_canvas_for = function(img) {
+			return $('<var style="zoom:1;overflow:hidden;display:block;width:'+img.width+'px;height:'+img.height+'px;"></var>').get(0);
+		};
+		add_shape_to = function(canvas, shape, coords, options, name) {
+			var fill, stroke, opacity, e;
+			for (var i in coords) { coords[i] = parseInt(coords[i], 10); }
+			fill = '<v:fill color="#'+options.fillColor+'" opacity="'+(options.fill ? options.fillOpacity : 0)+'" />';
+			stroke = (options.stroke ? 'strokeweight="'+options.strokeWidth+'" stroked="t" strokecolor="#'+options.strokeColor+'"' : 'stroked="f"');
+			opacity = '<v:stroke opacity="'+options.strokeOpacity+'"/>';
+			if(shape == 'rect') {
+				e = $('<v:rect name="'+name+'" filled="t" '+stroke+' style="zoom:1;margin:0;padding:0;display:block;position:absolute;left:'+coords[0]+'px;top:'+coords[1]+'px;width:'+(coords[2] - coords[0])+'px;height:'+(coords[3] - coords[1])+'px;"></v:rect>');
+			} else if(shape == 'poly') {
+				e = $('<v:shape name="'+name+'" filled="t" '+stroke+' coordorigin="0,0" coordsize="'+canvas.width+','+canvas.height+'" path="m '+coords[0]+','+coords[1]+' l '+coords.join(',')+' x e" style="zoom:1;margin:0;padding:0;display:block;position:absolute;top:0px;left:0px;width:'+canvas.width+'px;height:'+canvas.height+'px;"></v:shape>');
+			} else if(shape == 'circ') {
+				e = $('<v:oval name="'+name+'" filled="t" '+stroke+' style="zoom:1;margin:0;padding:0;display:block;position:absolute;left:'+(coords[0] - coords[2])+'px;top:'+(coords[1] - coords[2])+'px;width:'+(coords[2]*2)+'px;height:'+(coords[2]*2)+'px;"></v:oval>');
+			}
+			e.get(0).innerHTML = fill+opacity;
+			$(canvas).append(e);
+		};
+		clear_canvas = function(canvas) {
+			// jquery1.8 + ie7 
+			var $html = $("<div>" + canvas.innerHTML + "</div>");
+			$html.children('[name=highlighted]').remove();
+			canvas.innerHTML = $html.html();
+		};
+	}
+	
+	shape_from_area = function(area) {
+		var i, coords = area.getAttribute('coords').split(',');
+		for (i=0; i < coords.length; i++) { coords[i] = parseFloat(coords[i]); }
+		return [area.getAttribute('shape').toLowerCase().substr(0,4), coords];
+	};
+
+	options_from_area = function(area, options) {
+		var $area = $(area);
+		return $.extend({}, options, $.metadata ? $area.metadata() : false, $area.data('maphilight'));
+	};
+	
+	is_image_loaded = function(img) {
+		if(!img.complete) { return false; } // IE
+		if(typeof img.naturalWidth != "undefined" && img.naturalWidth === 0) { return false; } // Others
+		return true;
+	};
+
+	canvas_style = {
+		position: 'absolute',
+		left: 0,
+		top: 0,
+		padding: 0,
+		border: 0
+	};
+	
+	var ie_hax_done = false;
+	$.fn.maphilight = function(opts) {
+		opts = $.extend({}, $.fn.maphilight.defaults, opts);
+		
+		if(!has_canvas && !ie_hax_done) {
+			$(window).ready(function() {
+				document.namespaces.add("v", "urn:schemas-microsoft-com:vml");
+				var style = document.createStyleSheet();
+				var shapes = ['shape','rect', 'oval', 'circ', 'fill', 'stroke', 'imagedata', 'group','textbox'];
+				$.each(shapes,
+					function() {
+						style.addRule('v\\:' + this, "behavior: url(#default#VML); antialias:true");
+					}
+				);
+			});
+			ie_hax_done = true;
+		}
+		
+		return this.each(function() {
+			var img, wrap, options, map, canvas, canvas_always, highlighted_shape, usemap;
+			img = $(this);
+
+			if(!is_image_loaded(this)) {
+				// If the image isn't fully loaded, this won't work right.  Try again later.
+				return window.setTimeout(function() {
+					img.maphilight(opts);
+				}, 200);
+			}
+
+			options = $.extend({}, opts, $.metadata ? img.metadata() : false, img.data('maphilight'));
+
+			// jQuery bug with Opera, results in full-url#usemap being returned from jQuery's attr.
+			// So use raw getAttribute instead.
+			usemap = img.get(0).getAttribute('usemap');
+
+			if (!usemap) {
+				return;
+			}
+
+			map = $('map[name="'+usemap.substr(1)+'"]');
+
+			if(!(img.is('img,input[type="image"]') && usemap && map.size() > 0)) {
+				return;
+			}
+
+			if(img.hasClass('maphilighted')) {
+				// We're redrawing an old map, probably to pick up changes to the options.
+				// Just clear out all the old stuff.
+				var wrapper = img.parent();
+				img.insertBefore(wrapper);
+				wrapper.remove();
+				$(map).unbind('.maphilight');
+			}
+
+			wrap = $('<div></div>').css({
+				display:'block',
+				backgroundImage:'url("'+this.src+'")',
+				backgroundSize:'contain',
+				position:'relative',
+				padding:0,
+				width:this.width,
+				height:this.height
+				});
+			if(options.wrapClass) {
+				if(options.wrapClass === true) {
+					wrap.addClass($(this).attr('class'));
+				} else {
+					wrap.addClass(options.wrapClass);
+				}
+			}
+			img.before(wrap).css('opacity', 0).css(canvas_style).remove();
+			if(has_VML) { img.css('filter', 'Alpha(opacity=0)'); }
+			wrap.append(img);
+			
+			canvas = create_canvas_for(this);
+			$(canvas).css(canvas_style);
+			canvas.height = this.height;
+			canvas.width = this.width;
+			
+			$(map).bind('alwaysOn.maphilight', function() {
+				// Check for areas with alwaysOn set. These are added to a *second* canvas,
+				// which will get around flickering during fading.
+				if(canvas_always) {
+					clear_canvas(canvas_always);
+				}
+				if(!has_canvas) {
+					$(canvas).empty();
+				}
+				$(map).find('area[coords]').each(function() {
+					var shape, area_options;
+					area_options = options_from_area(this, options);
+					if(area_options.alwaysOn) {
+						if(!canvas_always && has_canvas) {
+							canvas_always = create_canvas_for(img[0]);
+							$(canvas_always).css(canvas_style);
+							canvas_always.width = img[0].width;
+							canvas_always.height = img[0].height;
+							img.before(canvas_always);
+						}
+						area_options.fade = area_options.alwaysOnFade; // alwaysOn shouldn't fade in initially
+						shape = shape_from_area(this);
+						if (has_canvas) {
+							add_shape_to(canvas_always, shape[0], shape[1], area_options, "");
+						} else {
+							add_shape_to(canvas, shape[0], shape[1], area_options, "");
+						}
+					}
+				});
+			}).trigger('alwaysOn.maphilight')
+			.bind('mouseover.maphilight, focus.maphilight', function(e) {
+				var shape, area_options, area = e.target;
+				area_options = options_from_area(area, options);
+				if(!area_options.neverOn && !area_options.alwaysOn) {
+					shape = shape_from_area(area);
+					add_shape_to(canvas, shape[0], shape[1], area_options, "highlighted");
+					if(area_options.groupBy) {
+						var areas;
+						// two ways groupBy might work; attribute and selector
+						if(/^[a-zA-Z][\-a-zA-Z]+$/.test(area_options.groupBy)) {
+							areas = map.find('area['+area_options.groupBy+'="'+$(area).attr(area_options.groupBy)+'"]');
+						} else {
+							areas = map.find(area_options.groupBy);
+						}
+						var first = area;
+						areas.each(function() {
+							if(this != first) {
+								var subarea_options = options_from_area(this, options);
+								if(!subarea_options.neverOn && !subarea_options.alwaysOn) {
+									var shape = shape_from_area(this);
+									add_shape_to(canvas, shape[0], shape[1], subarea_options, "highlighted");
+								}
+							}
+						});
+					}
+					// workaround for IE7, IE8 not rendering the final rectangle in a group
+					if(!has_canvas) {
+						$(canvas).append('<v:rect></v:rect>');
+					}
+				}
+			}).bind('mouseout.maphilight, blur.maphilight', function(e) { clear_canvas(canvas); });
+			
+			img.before(canvas); // if we put this after, the mouseover events wouldn't fire.
+			
+			img.addClass('maphilighted');
+		});
+	};
+	$.fn.maphilight.defaults = {
+		fill: true,
+		fillColor: '000000',
+		fillOpacity: 0.2,
+		stroke: true,
+		strokeColor: 'ff0000',
+		strokeOpacity: 1,
+		strokeWidth: 1,
+		fade: true,
+		alwaysOn: false,
+		neverOn: false,
+		groupBy: false,
+		wrapClass: true,
+		// plenty of shadow:
+		shadow: false,
+		shadowX: 0,
+		shadowY: 0,
+		shadowRadius: 6,
+		shadowColor: '000000',
+		shadowOpacity: 0.8,
+		shadowPosition: 'outside',
+		shadowFrom: false
+	};
+})(jQuery);
 //blackbox
 var rpnblackboxmodule = function() {
 
@@ -3858,256 +4218,6 @@ var rpnblackboxmodule = function() {
     var shuffle;
     var toggleViewButton;
     var state;
-    
-    var addComment=function(inputId, classDiv, buttonId, position, t1, t2, t3, t4, t5, t6, t7, t8, t9){
-    	
-    	var chooseTest=function(arg, idInput,divClass, idButton){
-    		switch(arg){
-    		case 'isNumberN':
-    			isNumberN(idInput, divClass, idButton);
-    		break;
-    		case 'isNumberZ':
-    			isNumberZ(idInput, divClass, idButton);
-    		break;
-    		case 'isNumberD':
-    			isNumberD(idInput, divClass, idButton);
-    		break;
-    		case 'isNumberQ':
-    			isNumberQ(idInput, divClass, idButton);
-    		break;
-    		case 'isNumber':
-    			isNumber(idInput, divClass, idButton);
-    		break;
-    		case 'withComma':
-    			withComma(idInput);
-    		break;
-    		case 'firstPoint':
-    			firstPoint(idInput);
-    		break;
-    		case 'firstComma':
-    			firstComma(idInput);
-    		break;
-    		case 'firstPointComma':
-    			firstPointComma(idInput);
-    		break;
-    		default:
-    		break;
-    		}
-    	}
-    	$(inputId).bind('input propertychange', function(){
-    		chooseTest(t1, inputId,classDiv, buttonId);
-    		chooseTest(t2, inputId,classDiv, buttonId);
-    		chooseTest(t3, inputId,classDiv, buttonId);
-    		chooseTest(t4, inputId,classDiv, buttonId);
-    		chooseTest(t5, inputId,classDiv, buttonId);
-    		chooseTest(t6, inputId,classDiv, buttonId);
-    		chooseTest(t7, inputId,classDiv, buttonId);
-    		chooseTest(t8, inputId,classDiv, buttonId);
-    		chooseTest(t9, inputId,classDiv, buttonId);
-    	});
-    }
-    
-    var isNumberN=function(str, myClass, myButton){
-    	var rep=$(str).val();
-    	var lastOfRep=rep.charAt(rep.length-1);
-    	var prevOfRep=rep.substring(0,rep.length-1);
-    		
-    	if(/[0-9]/.test(lastOfRep)){
-    		if(/0/.test(prevOfRep)&&prevOfRep.length==1){
-    			$(str).val(lastOfRep);
-    		}
-    		$(myClass).css("display", "none");
-    	}else if(/,/.test(lastOfRep)){
-    		$(str).val(rep.substring(0,rep.length-1));
-    	}
-    	else if(/\./.test(lastOfRep)){
-    		$(str).val(rep.substring(0,rep.length-1));
-    	}
-    	else if(/-/.test(lastOfRep)){
-    		$(str).val(rep.substring(0,rep.length-1));	
-    	}else{
-    		$(str).val(prevOfRep);
-    	}
-    }
-    
-    var isNumberZ=function(str, myClass, myButton){
-    	var rep=$(str).val();
-    	var lastOfRep=rep.charAt(rep.length-1);
-    	var prevOfRep=rep.substring(0,rep.length-1);
-    	if(/[0-9]/.test(lastOfRep)){//On test si le chiffre d'avant est un 0
-    		if(/0/.test(prevOfRep)&&prevOfRep.length==1){
-    			$(str).val(lastOfRep);
-    		}
-    		if(/-0/.test(prevOfRep)&&prevOfRep.length==2){
-    			$(str).val('-'+lastOfRep);
-    		}
-    		$(myClass).css("display", "none");
-    	}else if(/,/.test(lastOfRep)){
-    		$(str).val(rep.substring(0,rep.length-1));
-
-    	}
-    	else if(/\./.test(lastOfRep)){
-    		$(str).val(rep.substring(0,rep.length-1));
-    	}
-    	else if(/-/.test(lastOfRep)){//On teste s'il y a un - seulement au début
-    		if(rep.length>1){
-    			$(str).val(rep.substring(0,rep.length-1));
-    		}
-    	}
-    	else{
-    		$(str).val(prevOfRep);
-    	}
-    }
-    
-    var isNumberQ=function(str, myClass, myButton){//à Faire
-    	var rep=$(str).val();
-    	var lastOfRep=rep.charAt(rep.length-1);
-    	var prevOfRep=rep.substring(0,rep.length-1);
-    	if(/[0-9]/.test(lastOfRep)){//On test si le chiffre d'avant est un 0
-    		if(/0/.test(prevOfRep)&&prevOfRep.length==1){
-    			$(str).val(lastOfRep);
-    		}
-    		if(/-0/.test(prevOfRep)&&prevOfRep.length==2){
-    			$(str).val('-'+lastOfRep);
-    		}
-    		$(myClass).css("display", "none");
-    	}else if(/,/.test(lastOfRep)){
-    		$(str).val(rep.substring(0,rep.length-1));
-    		$(myButton).text(monTexte);
-    		$(myClass).css("display", "block");
-    	}
-    	else if(/\./.test(lastOfRep)){
-    		$(str).val(rep.substring(0,rep.length-1));
-    	}
-    	else if(/-/.test(lastOfRep)){//On teste s'il y a un - seulement au début
-    		if(rep.length>1){
-    			$(str).val(rep.substring(0,rep.length-1));
-    		}
-    	}
-    	else{
-    		$(str).val(prevOfRep);
-    	}
-    }
-    
-    var isNumberD=function(str, myClass, myButton){
-    	var rep=$(str).val(),
-    		lastOfRep=rep.charAt(rep.length-1),
-    		prevOfRep=rep.substring(0,rep.length-1);
-    	if(/[0-9]/.test(lastOfRep)){//On test si le chiffre d'avant est un 0
-    		if(/0/.test(prevOfRep)&&prevOfRep.length==1){
-    			$(str).val(lastOfRep);
-    		}
-    		if(/-0/.test(prevOfRep)&&prevOfRep.length==2){
-    			$(str).val('-'+lastOfRep);
-    		}
-    		$(myClass).css("display", "none");
-    	}else if(/,/.test(lastOfRep)){//On teste s'il y a plusieurs virgules
-    		if(/,/.test(prevOfRep.substring(0,rep.length-1))){
-    			$(str).val(rep.substring(0,rep.length-1));
-    		}
-    	}
-    	else if(/\./.test(lastOfRep)){//On teste s'il y a plusieurs points
-    		if(/,/.test(prevOfRep.substring(0,rep.length-1))){
-    			$(str).val(rep.substring(0,rep.length-1));
-    		}	
-    	}
-    	else if(/-/.test(lastOfRep)){//On teste s'il y a un - seulement au début
-    		if(rep.length>1){
-    			$(str).val(rep.substring(0,rep.length-1));
-    		}
-    	}
-    	else{
-    		$(str).val(prevOfRep);
-    	}
-    }
-    
-    var isNumber=function(str, myClass, myButton){//Il faut encore faire si on met une puisance de 10
-    	var rep=$(str).val(),
-    		lastOfRep=rep.charAt(rep.length-1),
-    		prevOfRep=rep.substring(0,rep.length-1);
-    	if(/[0-9]/.test(lastOfRep)){//On test si le chiffre d'avant est un 0
-    		if(/0/.test(prevOfRep)&&prevOfRep.length==1){
-    			$(str).val(lastOfRep);
-    		}
-    		if(/-0/.test(prevOfRep)&&prevOfRep.length==2){
-    			$(str).val('-'+lastOfRep);
-    		}
-    		$(myClass).css("display", "none");
-    	}else if(/,/.test(lastOfRep)){//On teste s'il y a plusieurs virgules
-    		if(/,/.test(prevOfRep.substring(0,rep.length-1))){
-    			$(str).val(rep.substring(0,rep.length-1));
-    		}
-    	}
-    	else if(/\./.test(lastOfRep)){//On teste s'il y a plusieurs points
-    		if(/,/.test(prevOfRep.substring(0,rep.length-1))){
-    			$(str).val(rep.substring(0,rep.length-1));
-    		}	
-    	}
-    	else if(/-/.test(lastOfRep)){//On teste s'il y a un - seulement au début
-    		if(rep.length>1){
-    			$(str).val(rep.substring(0,rep.length-1));
-    		}
-    	}
-    	else{
-    		$(str).val(prevOfRep);
-    	}
-    }
-    
-    var withComma=function(str){
-    	var rep=$(str).val(),
-    		lastOfRep=rep.charAt(rep.length-1),
-    		prevOfRep=rep.substring(0,rep.length-1);
-    		if(/,/.test(lastOfRep)){
-    			if(/,/.test(prevOfRep.substring(0,rep.length-1))){
-    				$(str).val(rep.substring(0,rep.length-1));
-    			}
-    		}
-    		if(/\./.test(lastOfRep)){//On remplace le . par une , s'il n'y en pas déjà une
-    			if(/,/.test(prevOfRep)){
-    				$(str).val(prevOfRep.substring(0,prevOfRep.length-1));
-    			}else{//Sinon on l'efface
-    				$(str).val(rep.substring(0,rep.length-1).concat(','));
-    			}	
-    		}
-    }
-    
-    var firstPoint=function(str){
-    	var rep=$(str).val(),
-    		lastOfRep=rep.charAt(rep.length-1),
-    		prevOfRep=rep.substring(0,rep.length-1);
-    	if(/-/.test(prevOfRep)&&/^\./.test(lastOfRep)){
-    		$(str).val("-0.");
-    	}
-    	if(/^\./.test(rep)){//On remplace le . 0.
-    		$(str).val("0.");
-    	}
-    }
-    
-    var firstComma=function(str){
-    	var rep=$(str).val(),
-    		lastOfRep=rep.charAt(rep.length-1),
-    		prevOfRep=rep.substring(0,rep.length-1);
-    	if(/-/.test(prevOfRep)&&/^,/.test(lastOfRep)){
-    		$(str).val("-0,");
-    	}
-    	if(/^,/.test(rep)){//On remplace le , 0,
-    		$(str).val("0,");
-    	}		
-    }
-    
-    var firstPointComma=function(str){
-    	var rep=$(str).val(),
-    		lastOfRep=rep.charAt(rep.length-1),
-    		prevOfRep=rep.substring(0,rep.length-1);
-    	if(/-/.test(prevOfRep)&&/^\./.test(lastOfRep)){
-    		$(str).val("-0,");
-    	}
-    	if(/^\./.test(rep)){//On remplace le . 0.
-    		$(str).val("0,");
-    	}
-    }
-    
-    
 
     var init = function(_datas,_state, _domelem) {
         _.defaults(_datas, {
@@ -4980,7 +5090,11 @@ var rpndropdownmodule = function() {
     var score = function(sol){
         var score=0;
         _.each(sol,function(s,idx){
-            score+=(_.contains(s.alternative,state[idx] )?1:0);
+            if(s.alternative){
+                score += (_.contains(s.alternative,state[idx] ) ? 1 : 0);
+            }else{
+                score += state[idx] == s ? 1 : 0;
+            }
         });
         return score;
     };
@@ -5154,16 +5268,20 @@ var rpngapsimplemodule = function() {
             });
         }else{
             $.each($('.gapsimple',domelem), function(idx, gap) {
-                state[idx] = $(gap).val();
+                state[idx] = $(gap).val().trim();
             });
         }
         return state;
     };
     
-    var score = function(sol) {
+   var score = function(sol) {
         var score = 0;
         _.each(sol, function(val, idx) {
-            score += state[idx] == val ? 1 : 0;
+            if(val.alternative){
+                score += (_.contains(val.alternative,state[idx] ) ? 1 : 0);
+            }else{
+                score += state[idx] == val ? 1 : 0;
+            }
         });
         return score;
     };
@@ -5197,9 +5315,11 @@ var rpnmarkermodule = function() {
             state=_state;
         }else{
             var availableColors = ["#8d61a4","#01a271","#5dc2e7","#ed656a","#f5a95e","#eee227","#7a5a14","#bbbbbb","#63b553","#e95c7b","#f5a95e"];
+            var tomarkelements = $('b',datas.tomark);
+            $.merge( tomarkelements , $('area',datas.tomark));
             state={
                 selectedMarker : '',
-                responses:_.map($('b',datas.tomark),function(b,idx){return '';}),
+                responses:_.map(tomarkelements,function(b,idx){return '';}),
                 markers:_.map(datas.markers,function(m,idx){return { label:m,color:(availableColors[idx] || '#222')}})
             };
         }
@@ -5269,6 +5389,38 @@ var rpnmarkermodule = function() {
                 state['responses'][idx] = state.selectedMarker.label;
             });
         });
+$('.map', domelem).maphilight({strokeWidth: 3, fillOpacity: 0.5});
+        $.each($('area', domelem), function(idx, tomark) {
+            var a = $(tomark);
+            var data = $(a).mouseout().data('maphilight') || {};
+            if(!_.isEmpty(state.responses[idx+$('b', domelem).length])){
+                data.alwaysOn = true;
+                data.fillColor = _.findWhere(state.markers,{label:state.responses[idx+$('b', domelem).length]}).color.substring(1);
+                data.strokeColor = data.fillColor;
+            }else{
+                data.alwaysOn = false;
+                fillOpacity = 0.5;
+            }
+            console.log('data '+data)
+           $(a).data('maphilight', data).trigger('alwaysOn.maphilight');
+            if(!datas.hidden){
+                a.css('cursor', 'pointer');
+            }else{
+                a.css('font-weight','normal');
+            }
+            a.click(function() {
+                state['responses'][idx+$('b', domelem).length] = state.selectedMarker.label;
+                if (state.selectedMarker.label==''){
+                    data.alwaysOn = false;
+                }else{
+                    data.alwaysOn = true;
+               		data.fillColor = state.selectedMarker.color.substring(1);
+               		data.strokeColor = data.fillColor;
+                }
+                $(a).data('maphilight', data).trigger('alwaysOn.maphilight');
+            });
+        });
+
         bindUiEvents();
     };
 
@@ -5306,7 +5458,8 @@ var rpnmqcmodule = function() {
         _.defaults(_datas, {
             questions: ["No questions!"],
             answers: ["As no answers"],
-            vertical:false
+            vertical:false,
+            mqcmultiple:false
         });
 
         datas = _datas;
@@ -5334,12 +5487,27 @@ var rpnmqcmodule = function() {
             li.append($('<p>' + question + '</p>'));
             var answerGroup = $('<div class="'+(datas.vertical?'btn-group-vertical':'btn-group')+'" role="group" data-toggle="buttons">');
             var idmqc = datas.answers.length==1?0:idq;
-            $.each(datas.answers[idmqc].choice, function(ida, answer) {
-                answerGroup.append($('<label class="btn btn-default '+((!_.isEmpty(state.responses[idq])&&state.responses[idq]==answer)?'active':'')+'"><input type="radio" autocomplete="off" '+((!_.isEmpty(state.responses[idq])&&state.responses[idq]==answer)?'checked':'')+'>' + answer + '</label>').click(function() {
-                    state.responses[idq] = answer;
-                }));
-                li.append(answerGroup);
-            });
+            //multiple responses allowed
+            if(datas.mqcmultiple){
+                var answerArray = new Array(datas.answers.length);
+                answerArray = _.map(answerArray,function(aa,idaa){return'';});
+                $.each(datas.answers[idmqc].choice, function(ida, answer) {
+                    answerArray[ida] = (!_.isEmpty(state.responses[idq][ida])&&state.responses[idq][ida]==answer)? state.responses[idq][ida] : '';
+                    answerGroup.append($('<label class="btn btn-default '+((!_.isEmpty(state.responses[idq][ida])&&state.responses[idq][ida]==answer)?'active':'')+'"><input type="checkbox" autocomplete="off" '+((!_.isEmpty(state.responses[idq][ida])&&state.responses[idq][ida]==answer)?'checked':'')+'>' + answer + '</label>').click(function(lab) {
+                        answerArray[ida] = !$(lab.currentTarget).hasClass('active')? answer : '';
+                        state.responses[idq] = answerArray;
+                    }));
+                    li.append(answerGroup);
+                });
+            }
+            else{
+                $.each(datas.answers[idmqc].choice, function(ida, answer) {
+                    answerGroup.append($('<label class="btn btn-default '+((!_.isEmpty(state.responses[idq])&&state.responses[idq]==answer)?'active':'')+'"><input type="radio" autocomplete="off" '+((!_.isEmpty(state.responses[idq])&&state.responses[idq]==answer)?'checked':'')+'>' + answer + '</label>').click(function() {
+                        state.responses[idq] = answer;
+                    }));
+                    li.append(answerGroup);
+                });
+            }
             uilist.append(li);
         });
         
@@ -5357,7 +5525,7 @@ var rpnmqcmodule = function() {
     var score= function(sol) {
         var score = 0;
         _.each(sol, function(val, idx) {
-            score += state.responses[idx] == val ? 1 : 0;
+            score += _.isEqual(state.responses[idx],val) ? 1 : 0;
         });
         return score;
     };
@@ -5369,8 +5537,10 @@ var rpnmqcmodule = function() {
     };
 
 };
+
+/* global _*/
 /*!
- * rpnmodule 0.1.3 (https://github.com/golayp/rpnmodule)
+ * rpnmodule 0.1.8 (https://github.com/golayp/rpnmodule)
  * 
  * Dependencies: jquery 2.1.3, bootstrap 3.3.2, underscore 1.7.0
  * 
@@ -5874,7 +6044,14 @@ var rpnsequence = (function() {
                     }else{
                         $(this).val(val);
                     }
-                
+                }
+                else if(validationoptions.type=='words'){
+                    var val=/[A-ZÀÂÄÉÈÙÊËÎÏÔÖÑa-zâäàéèùêëîïôöçñ' ]*/.exec($(this).val().replace(/\s{2,}/g,' '));
+                    if(val=='' || val==null){
+                        $(this).val('');
+                    }else{
+                        $(this).val(val);
+                    }
                 }
             });
         }
@@ -5943,13 +6120,19 @@ var rpnsortingmodule = function() {
     };
     
     var validate = function(){
-        state=_.map($('li',domelem),function(ele,idx){return $(ele).text()});
+        state=_.map($('li',domelem),function(ele,idx){return $(ele).html()});
         return state;
     };
     
-    var score = function(sol){
-        var score=0;
-        score=(_.isEqual(state,sol)?1:0);
+   var score = function(sol){
+        var score = 0;
+        if(sol.alternative){
+            _.each(sol.alternative, function(ssol, idx) {
+                score += (_.isEqual(state,ssol) ? 1 : 0);
+            });
+        }else{
+            score = (_.isEqual(state,sol) ? 1 : 0);
+        }
         return score;
     };
     
@@ -5960,4 +6143,396 @@ var rpnsortingmodule = function() {
         score:score
     };
 
+};
+//twolists
+var rpntwolistsmodule = function() {
+
+    var datas;
+    var domelem;
+    var state;
+    var bezier=new Array();
+    
+    var leftdiv;
+    var rightdiv;
+    var centerdiv;
+    var L_items;
+    var R_items;
+    
+
+    var init = function(_datas, _state, _domelem) {
+        _.defaults(_datas, {
+            leftitems:["<p>what have you said?</p>"],
+			rightitems:["<p> I don't remember!</p>"],
+            shuffle:false
+        });
+        datas = _datas;
+        domelem = _domelem;
+        
+        if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
+            state=_state;
+        }else{
+            state = [];
+ 
+            if (datas.leftitems.length<datas.rightitems.length){
+                _.each(datas.leftitems, function(val, idx) {
+                    state.push({
+                        positionLX:0,
+                        positionLY:0,
+                        positionRX:0,
+                        positionRY:0,
+                        response:null
+                    })
+                });
+            }else{
+                _.each(datas.rightitems, function(val, idx) {
+                    state.push({
+                        positionLX:0,
+                        positionLY:0,
+                        positionRX:0,
+                        positionRY:0,
+                        response:null
+                    })
+                });
+            }
+            if(datas.shuffle){
+                state=_.shuffle(state);
+            }
+        }
+        buildUi();
+    };
+
+    
+    var buildUi = function() {
+        var myCanvasPositionHeight=(datas.rightitems.length+datas.leftitems.length)*100/2;
+        domelem.addClass('twolists');
+        var math=$('<div class="row"><math  display="block"><mspace height="40px"/><mfrac linethickness="2px" numalign="left" denomalign="left"><mrow><mfrac bevelled="true"><mn>1</mn><mi>x</mi></mfrac><mo>+</mo><mfrac bevelled="true"><mn>2</mn><mi>x</mi></mfrac><mo>+</mo><mo>&hellip;</mo></mrow><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>x</mi><mn>4</mn></msup><mo>+</mo><mo>&hellip;</mo></mrow></mfrac></math></div>');
+        domelem.append(math);
+        
+        leftdiv=$('<div id="leftdiv" class="col-xs-4">');
+        centerdiv=$('<div id="centerdiv_'+datas.idmodule+'" class="col-xs-4">');
+        rightdiv=$('<div id="rightdiv" class="col-xs-4">');
+        
+        var myCanvas=$('<canvas id="c'+datas.idmodule+'"  height="'+myCanvasPositionHeight+'px" width="1000px">'),
+        targetsName=new Array(),
+        targets=new Array(),
+        nbleft=datas.leftitems.length,
+        nbbezier=nbleft,
+        nbright=datas.rightitems.length,
+        availableColors = _.shuffle(["#8d61a4","#01a271","#5dc2e7","#63b553","#ed656a","#e95c7b","#f5a95e","#d62b81","#eee227"]);
+        L_items=_.shuffle(datas.leftitems);
+        R_items=_.shuffle(datas.rightitems);
+        targetsName[datas.idmodule]=new Array();
+        targets[datas.idmodule]=new Array();
+
+        _.each(L_items, function(item,idx) {
+           leftdiv.append($('<div id="inputgrpleft_'+idx+'_'+datas.idmodule+'" class="input-group"><span id="l_'+idx+'_'+datas.idmodule+'">' + L_items[idx][1] + '</span><span class="input-group-addon"><input  type="radio" id="radleft_'+idx+'_'+datas.idmodule+'" name="l'+idx+'_'+datas.idmodule+'"></span></div>'));
+            targetsName[datas.idmodule].push('#radleft_'+idx+'_'+datas.idmodule);
+          
+        });
+
+        _.each(R_items, function(item,idx) {
+            rightdiv.append($('<div id="inputgrpright_'+idx+'_'+datas.idmodule+'" class="input-group"><span class="input-group-addon" ><input type="radio" id="radright_'+idx+'_'+datas.idmodule+'" name="r'+idx+'_'+datas.idmodule+'"></span><span id="r_'+idx+'_'+datas.idmodule+'">'+ R_items[idx][1] + '</span></div>'));
+            targetsName[datas.idmodule].push('#radright_'+idx+'_'+datas.idmodule);
+        });
+        
+        domelem.append(leftdiv);
+        domelem.append(centerdiv);
+        domelem.append(rightdiv);
+        domelem.append(myCanvas);
+	
+		$(document).ready(function(){
+            
+		    for (var i = 0; i < targetsName[datas.idmodule].length; i++) {
+		        targets[datas.idmodule].push($(targetsName[datas.idmodule][i]));
+		    }
+
+        	var canvas = new fabric.Canvas('c'+datas.idmodule,{
+        		hoverCursor:'pointer',
+        		selection: false
+        	});
+
+        	if(nbleft>nbright){
+        	    nbbezier=nbright;
+        	}
+
+        	for (var i=0;i<nbbezier;i++){
+        	    if(nbleft<nbright){
+        	        var myTop=$('#inputgrpright_0_'+datas.idmodule).offset().top+i*40;
+        	    }else{
+        	        var myTop=$('#inputgrpleft_0_'+datas.idmodule).offset().top+i*40;
+        	    }
+                var myLeft=0.8*$('#centerdiv_'+datas.idmodule).offset().left;
+                bezier[i+10*datas.idmodule]=new Bezier(canvas,myLeft,myTop,myLeft+100,myTop,myLeft+100,myTop,myLeft,myTop,availableColors[i],targets[datas.idmodule],myCanvas);
+
+        	}
+		});
+        
+    };
+
+    var validate = function(){
+        var k=0;
+         $.each(bezier, function(idx) {
+             var myid=k+10*datas.idmodule;
+             if(bezier[myid] && bezier[myid].target[0]!=-3 && bezier[myid].target[1]!=-3){
+                state[idx].response =[L_items[bezier[myid].target[0][0]][0],R_items[bezier[myid].target[1][0]][0]];
+                state[idx].positionLX =bezier[myid].fromX;
+                state[idx].positionLY =bezier[myid].fromY;
+                state[idx].positionRX =bezier[myid].toX;
+                state[idx].positionRY =bezier[myid].toY;
+                k++;
+             }
+        });
+        return state;
+    };
+
+    var score = function(sol) {
+        score = 0;
+        for (var i=10*datas.idmodule;i<bezier.length;i++){
+            for (var j=0;j<sol.length;j++){
+                if(state[i-10*datas.idmodule].response!=null){
+                    score+=(state[i-10*datas.idmodule].response[0]==sol[j][0]&&state[i-10*datas.idmodule].response[1]==sol[j][1]?1:0);
+                }
+            }
+        }
+        return score;
+    };
+    
+    return {
+        init:init,
+        validate:validate,
+        score:score
+    };
+
+};
+
+function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myContainer){
+	this.myContainer=myContainer,
+	this.canvas=canvas,
+	this.fromX=fromX,
+	this.fromY=fromY,
+	this.toX=toX,
+	this.toY=toY,
+	this.g1X=g1X,
+	this.g1Y=g1Y,
+	this.g2X=g2X,
+	this.g2Y=g2Y,
+	this.color=color,
+	this.targets=targets,
+	this.target1=[-1,-1, 'vide1'],
+	this.target2=[-2,-2, 'vide2'],
+	this.target=[-3,-3],
+	this.make=function(fX,fY,gX1,gY1,gX2,gY2,tX,tY,color){
+	/*	console.log('Connecteur, this.make: '+this);
+		for(i=0;i>this.targets.length;i++){
+			console.log('Connecteur, this.targets: '+this.targets[i].offset().top);
+		}*/
+		 var b = new fabric.Path('M 65 0 C 100, 100, 100, 200, 200, 0', { 
+			fill: '', 
+			stroke: color, 
+			strokeWidth: 3,
+			opacity:1
+			});
+
+		b.path[0][1] = fX;
+		b.path[0][2] = fY;
+
+		b.path[1][1] = gX1;
+		b.path[1][2] = gY1;
+
+		b.path[1][3] = gX2;
+		b.path[1][4] = gY2;
+		
+		b.path[1][5] = tX;
+		b.path[1][6] = tY;
+		
+		//b.hasBorders = b.hasControls = false;
+		//b.perPixelTargetFind = true;
+		return b;
+	},
+	this.makeLine=function(coords, myId) {
+		dashL= new fabric.Line(coords, {
+		  fill: 'black',
+		  stroke: 'red',
+		  strokeWidth: 1,
+		  strokeDashArray: [5, 5],
+		  opacity:0
+		});
+		//dashL.hasBorders = dashL.hasControls = false;
+		//dashL.perPixelTargetFind = true;
+		return dashL;
+	  },
+	this.makeCurveCircle=function (left, top, line1, line2, line3, line4, guide, color,target,targets,cont) {
+		var c = new fabric.Circle({
+		  radius: 5,
+		  left: left-5,
+		  top: top-5,
+		  strokeWidth: 3,
+		  fill: color,
+		  stroke: color,
+		  opacity:1
+		});
+
+		c.line1 = line1;
+		c.line2 = line2;
+		c.line3 = line3;
+		c.line4 = line4;
+		c.guide=guide;
+		c.target=target;
+		c.targets=targets;
+		c.cont=cont;
+		
+
+		return c;
+	  },
+	this.makeCurvePoint=function(left, top, line1, line2, line3, line4, guide, color,myId) {
+		var d = new fabric.Circle({
+		  left: left,
+		  top: top,
+		  strokeWidth: 3,
+		  radius: 2,
+		  fill: color,
+		  stroke: color,
+		  opacity:0
+		  
+		});
+
+		d.line1 = line1;
+		d.line2 = line2;
+		d.line3 = line3;
+		d.line4 = line4;
+		d.guide=guide;
+
+		return d;
+	  },
+	this.onObjectSelected=function(e){
+		var activeObject = e.target;
+
+		if (activeObject.name == "p0") {
+			activeObject.line2.animate('opacity', '0', {
+			duration: 200,
+			onChange: canvas.renderAll.bind(canvas),
+			});
+			activeObject.line2.selectable = true;
+			activeObject.guide.animate('opacity', '0', {
+			duration: 200,
+			onChange: canvas.renderAll.bind(canvas),
+		  });
+		}
+		if (activeObject.name == "p3") {
+			activeObject.line3.animate('opacity', '0', {
+				duration: 200,
+				onChange: canvas.renderAll.bind(canvas),
+			}); 
+			activeObject.line3.selectable = true;
+			activeObject.guide.animate('opacity', '0', {
+			duration: 200,
+			onChange: canvas.renderAll.bind(canvas),
+		  });
+		}
+	},
+	this.onObjectMoving=function(e) {
+	//On va faire ici le snap sur le point et empêcher que le point sorte du canvas
+
+		if (e.target.name == "p0" || e.target.name == "p3") {
+			var p = e.target,
+				topRel=p.top+p.cont.offset().top,
+				leftRel=p.left+p.cont.offset().left;
+
+			for (var i=0;i<p.targets.length;i++){
+				var cDiv=p.cont;
+
+				if (Math.abs(leftRel-p.targets[i].offset().left)<20 && Math.abs(topRel-p.targets[i].offset().top)<20){
+					p.left=-2-p.radius-p.cont.offset().left+p.targets[i].offset().left+p.targets[i].width()/2;
+					p.top=-3-p.radius-p.cont.offset().top+p.targets[i].offset().top+p.targets[i].height()/2;
+					if(p.targets[i].attr('name').substring(0, 1)=="l"){
+						p.target[0]=p.targets[i].attr('name').substring(1);
+					}else if(p.targets[i].attr('name').substring(0, 1)=="r"){
+						p.target[1]=p.targets[i].attr('name').substring(1);
+					}
+					//console.log('p.target[0]: '+p.target[0]);
+					//console.log('p.target[1]: '+p.target[1]);
+					//console.log('p.target: '+p.target);
+				}
+				if(p.left<=10){
+					p.left=10;
+				}
+				if(p.left>=cDiv.width()){
+					p.left=cDiv.width()-10;
+				}
+				if(p.top<=8){
+					p.top=8;
+				}
+				if(p.top>=cDiv.height()-10){
+					p.top=cDiv.height()-10;
+				}
+			}
+			if(p.name=="p0"){
+				p.guide.set({'x1':p.left,'y1':p.top, 'x2':p.p3.left,'y2':p.top});
+			}else{
+				p.guide.set({'x1':p.left,'y1':p.top, 'x2':p.p0.left,'y2':p.top});
+			}
+			if (p.line1) {
+				p.line1.path[0][1] = p.left+p.radius;
+				p.line1.path[0][2] = p.top+p.radius;
+				p.line1.path[1][1] = p.p3.left+p.radius;
+				p.line1.path[1][2] = p.top+p.radius;
+				p.line2.left=p.p3.left+p.radius;
+				p.line2.top=p.top+p.radius;
+				fromX=p.line1.path[0][1];
+			}
+			else if (p.line4) {
+				p.line4.path[1][5] = p.left+p.radius;
+				p.line4.path[1][6] = p.top+p.radius;
+				p.line4.path[1][3] = p.p0.left+p.radius;
+				p.line4.path[1][4] = p.top+p.radius;
+				p.line3.left=p.p0.left+p.radius;
+				p.line3.top=p.top+p.radius;
+			}
+		}
+	},
+	this.canvas.on({
+		'object:selected': this.onObjectSelected,
+		'object:moving': this.onObjectMoving,
+	//	'before:selection:cleared': this.onBeforeSelectionCleared
+	}),
+	this.drawCubic=function () {
+		this.guide1 =this.makeLine([this.fromX,this.fromY, this.g1X, this.g1Y]);
+		this.guide1.name="guide1";
+		
+		this.guide2 =this.makeLine([this.toX,this.toY,this.g2X,this.g2Y]);
+		this.guide2.name="guide2";
+		
+		this.line=this.make(this.fromX,this.fromY,this.g1X,this.g1Y,this.g2X,this.g2Y,this.toX,this.toY,this.color);
+		this.line.name="bezier";
+	 
+		this.p1 = this.makeCurvePoint(this.g1X, this.g1Y, null, this.line, null, null, this.guide1,this.color)
+		this.p1.name = "p1";
+
+		this.p0 = this.makeCurveCircle(this.fromX, this.fromY, this.line, this.p1, null, null, this.guide1,this.color, this.target,this.targets,this.myContainer);
+		this.p0.name = "p0";
+
+		this.p2 = this.makeCurvePoint(this.g2X, this.g2Y, null, null, this.line, null, this.guide2,this.color );
+		this.p2.name = "p2";
+
+		this.p3 = this.makeCurveCircle(this.toX, this.toY, null, null, this.p2, this.line, this.guide2,this.color, this.target, this.targets,this.myContainer );
+		this.p3.name = "p3";
+
+		this.line.p0=this.p0;
+		this.line.p3=this.p3;
+		this.p3.p0=this.p0;
+		this.p0.p3=this.p3;
+		
+		this.line.selectable=this.guide1.selectable=this.guide2.selectable=this.p0.selectable=this.p1.selectable=this.p2.selectable=this.p3.selectable=true;
+		this.line.hasBorders=this.guide1.hasBorders=this.guide2.hasBorders=this.p0.hasBorders=this.p1.hasBorders=this.p2.hasBorders=this.p3.hasBorders=false;
+		this.line.hasControls=this.guide1.hasControls=this.guide2.hasControls=this.p0.hasControls=this.p1.hasControls=this.p2.hasControls=this.p3.hasControls=false;
+		this.line.perPixelTargetFind=this.guide1.perPixelTargetFind=this.guide2.perPixelTargetFind=this.p0.perPixelTargetFind=this.p1.perPixelTargetFind=this.p2.perPixelTargetFind=this.p3.perPixelTargetFind=true;
+		canvas.add(this.line, this.guide1, this.guide2, this.p0, this.p1, this.p2, this.p3);
+		
+	/*	for (i=0;i<targets.length;i++){
+			console.log('dans connecteur, target'+this.target[i]);
+		}
+	*/
+
+	},
+	this.drawCubic()
 };
