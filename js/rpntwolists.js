@@ -28,11 +28,13 @@ var rpntwolistsmodule = function() {
         
         if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state = _state;
+            rpnsequence.log('state exise')
 
         }else{
             state = [];
+            
  
-            if (datas.leftitems.length<datas.rightitems.length){
+            if (datas.nbbinds=="left"){
                 _.each(datas.leftitems, function(val, idx) {
                     state.push({
                         listL:null,
@@ -84,18 +86,28 @@ var rpntwolistsmodule = function() {
         stateContent=false,
         availableColors=new Array();
         if(nbleft<nbright){
+            rpnsequence.log('nbbinds='+datas.nbbinds)
     	   nbBiggerItemSize=nbright;
         }
 		targetsName[datas.idmodule]=new Array();
         targets[datas.idmodule]=new Array();
         
+        if (datas.nbbinds=="left"){
+            rpnsequence.log('left nbbinds='+datas.nbbinds)
+            nbbezier=datas.leftitems.length;
+        }else if(datas.nbbinds=="right"){
+            rpnsequence.log('right nbbinds='+datas.nbbinds)
+            nbbezier=datas.rightitems.length;
+        }else{
+            nbbezier=datas.leftitems.length;
+        }
         for (var i=0;i<state.length;i++){
         	if (!_.isNull(state[i].response)){
         		stateContent=true;
         		L_items=state[i].listL;
         		R_items=state[i].listR;
         		nbleft=datas.leftitems.length,
-		        nbbezier=nbleft,
+		        //nbbezier=nbleft,
 		        nbright=datas.rightitems.length,
 		        availableColors.push(state[i].color);
 		        
@@ -106,7 +118,7 @@ var rpntwolistsmodule = function() {
 	        L_items=_.shuffle(datas.leftitems);
 	        R_items=_.shuffle(datas.rightitems);
 	        nbleft=datas.leftitems.length,
-	        nbbezier=nbleft,
+	        //nbbezier=nbleft,
 	        nbright=datas.rightitems.length,
 	        availableColors = _.shuffle(["#8d61a4","#01a271","#5dc2e7","#63b553","#ed656a","#e95c7b","#f5a95e","#d62b81","#eee227"]);
 	        
@@ -139,21 +151,16 @@ var rpntwolistsmodule = function() {
         }
 		
         //var myCanvas=$('<canvas id="c'+datas.idmodule+'" height="'+window.innerHeight+'px" width="'+myCanvasPositionwidth+'px" top="0px">');
-        var myCanvas=$('<canvas id="c'+datas.idmodule+'" height="1000px" width="'+myCanvasPositionwidth+'px" top="0px">');
+        var myCanvas=$('<canvas id="c'+datas.idmodule+'" height="1200px" width="'+myCanvasPositionwidth+'px" top="0px">');
         domelem.append(myCanvas);
 
-	/*	var myheight;
-		
-		if ($('#rightdiv_'+datas.idmodule).height()>0.8*window.innerHeight){
-			myheight = $('#rightdiv_'+datas.idmodule).height();
-		}else{
-			myheight = 0.8 * window.innerHeight;
-		}
-		$('.row:last').css({
+		//var myheight=$('.twolists').height();
+	/*	$('.row:last').css({
 			position:'absolute',
-			top:myheight,
+			//top:window.innerHeight-35,
 			left:'85%'
-		})*/
+		})*/ 
+        
 		//rpnsequence.log('.width: '+$('#mytwolists_'+datas.idmodule).width())
         //rpnsequence.log('.height: '+$('#mytwolists_'+datas.idmodule).height())
         buildBezier(targetsName, datas, targets, nbleft, nbright, nbbezier, state, bezier, availableColors, myCanvas);
@@ -170,6 +177,7 @@ var rpntwolistsmodule = function() {
             state[idx].listL =L_items;
             state[idx].listR =R_items;
         });
+        rpnsequence.log('state='+state)
         //rpnsequence.handleEndOfModule(state);
         return state;
     };
@@ -197,7 +205,7 @@ var rpntwolistsmodule = function() {
 };
 
 function buildBezier(targetsName, datas, targets, nbleft, nbright, nbbezier, state, bezier, availableColors, myCanvas){ 
-        	//rpnsequence.log('buildBezier')
+        	//rpnsequence.log('buildBezier'+nbbezier)
 		    for (var i = 0; i < targetsName[datas.idmodule].length; i++) {
 		        targets[datas.idmodule].push($(targetsName[datas.idmodule][i]));
 		    }
@@ -209,11 +217,13 @@ function buildBezier(targetsName, datas, targets, nbleft, nbright, nbbezier, sta
         		selection: false
         	});
 
-        	if(nbleft>nbright){
+        	/*if(nbleft>nbright){
         	    nbbezier=nbright;
-        	}
+        	}*/
 
         	for (var i=0;i<nbbezier;i++){
+                //rpnsequence.log('i='+ i)
+                //rpnsequence.log('state[i]='+ state[i])
         		//var myid=i+10*datas.idmodule;
         		var myid=i;
         		var test=$('#radright_'+i+'_'+datas.idmodule);
@@ -284,25 +294,26 @@ function buildBezier(targetsName, datas, targets, nbleft, nbright, nbbezier, sta
 }
 
 function coordsBezier(num, mod, bezier, scalx, scaly){
-	
+	rpnsequence.log('num'+num)
 	var id0='#radleft_'+num+'_'+mod;
 	var id1='#radright_'+num+'_'+mod;
 	var id2='#inputgrpleft_'+num+'_'+mod;
-	var id3='#inputgrpright_'+num+'_'+mod;
+	//var id3='#inputgrpright_'+num+'_'+mod;
+    var id3='#inputgrpright_0_'+mod;
+    //rpnsequence.log('id3'+$(id3))
 
 	var myLeftL=bezier[num].fromX*scalx;
 	var myTopL=bezier[num].fromY*scaly;
 	var myLeftR=bezier[num].toX*scalx;
 	var myTopR=bezier[num].toY*scaly;
-/*	if(window.innerWidth<530){
-		rpnsequence.log('<530 '+$('.pagination pagination-sm').offset.top)
+	/*if(window.innerWidth<530){
+		rpnsequence.log('<530 ')
         var mypositiontop;
-		if($('#rpnm_modulenav').offset.top){
-			mypositiontop=$('.pagination pagination-sm').offset().top;
+		if($('.pagination').offset.top){
+			mypositiontop=$('.pagination').offset().top;
 		}else{
 			mypositiontop=$('#rpnm_inst_'+mod).offset().top;
 		}
-		mypositiontop=130;
 		$('.row:last').css({
 			position:'absolute',
 			//top:'15%',
@@ -314,12 +325,7 @@ function coordsBezier(num, mod, bezier, scalx, scaly){
 		
 	}else{
 		rpnsequence.log('>530'+$('#rightdiv_'+mod).height())
-		if ($('#rightdiv_'+mod).height()>0.8*window.innerHeight){
-			mypositiontop = $('#rightdiv_'+mod).height();
-		}else{
-			mypositiontop = 0.8 * window.innerHeight;
-		}
-        
+        mypositiontop = $('#rightdiv_'+mod).height();
 		$('.row:last').css({
 			position:'absolute',
 			top:mypositiontop*1.2,
@@ -339,6 +345,7 @@ function coordsBezier(num, mod, bezier, scalx, scaly){
 	if(bezier[num].target[1]!=-3){
 		id1='#radright_'+bezier[num].target[1];
 		myTopR=$(id1).offset().top-$('#mytwolists_'+mod).offset().top+4;
+         //rpnsequence.log('$(id3).offset().left='+$(id3).offset().left)
 		myLeftR=$(id3).offset().left-$('#mytwolists_'+mod).offset().left+5;	
 	}
 	
@@ -793,8 +800,8 @@ function resizeWindow(bezier, datas){
 	if (isNaN(wheight) || wheight==0){
 		wheight=1;
 	}
-	rpnsequence.log('wwidth'+wwidth)
-	rpnsequence.log('wheight'+wheight)
+	//rpnsequence.log('wwidth'+wwidth)
+	//rpnsequence.log('wheight'+wheight)
 	var myobject = {};
 	myobject.debounce = function(func, wait, immediate) {
 		var timeout;
@@ -826,8 +833,8 @@ function resizeWindow(bezier, datas){
 		}
 		wwidth=$('#mytwolists_'+datas.idmodule).width();
 		wheight=$('#mytwolists_'+datas.idmodule).height();
-		rpnsequence.log('scalx'+scalx)
-		rpnsequence.log('scaly'+scaly)
+		//rpnsequence.log('scalx'+scalx)
+		//rpnsequence.log('scaly'+scaly)
 	    _.each(bezier, function(item,idx) {
 			  	if(bezier[idx]){
 			  		var coor=coordsBezier(idx,bezier[idx].mod, bezier, scalx, scaly);
