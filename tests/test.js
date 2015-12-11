@@ -22,7 +22,6 @@ require.config({
 require([
     'jquery',
     'bootstrap',
-    'swfobject',
     'underscore',
     'less',
     'fabric',
