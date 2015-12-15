@@ -1,11 +1,11 @@
 {
     "title":"modulesequence",
+    "context":"context",
+    "directive":"directive",
     "modules":[
         {
             "type":"plumb",
-            "title":"title ",
-            "context":"context",
-            "directive":"directive",
+            "title":"title",
             "shuffle":true,
             "left":[
                 "item 1 1",
@@ -19,6 +19,24 @@
                 "item 2 3",
                 "item 2 4",
                 "item 2 5"
+            ]
+        },
+        {
+            "type":"plumb",
+            "title":"title",
+            "shuffle":true,
+            "left":[
+                "item 1",
+                "item 2",
+                "item 3",
+                "item 4"
+            ],
+			"right":[
+                "item 1",
+                "item 2",
+                "item 3",
+                "item 4",
+                "item 5"
             ]
         }
     ]

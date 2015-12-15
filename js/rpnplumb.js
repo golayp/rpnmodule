@@ -95,10 +95,10 @@ var rpnplumb = function() {
             //try to remount sta given
             _.each(state.responses,function(target,source){
                 if(target !=null){
-                    var srcElem=_.filter($('ul.plumbsource li'),function(li){
+                    var srcElem=_.filter($('ul.plumbsource li',domelem),function(li){
                         return $(li).data('idx')==source;
                     });
-                    var targetElem=_.filter($('ul.plumbtarget li'),function(li){
+                    var targetElem=_.filter($('ul.plumbtarget li',domelem),function(li){
                         return $(li).data('idx')==target
                     });
                     plumb.connect({

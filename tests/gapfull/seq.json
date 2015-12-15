@@ -4,14 +4,12 @@
         {
             "type":"gapfull",
             "title":"a first gapfull module",
-            "context":"",
             "directive":"Replace bad with good and adapt sentence.",
             "sentence":"A \"bad\" job."
         },
         {
             "type":"gapfull",
             "title":"a second gapfull module",
-            "context":"",
             "directive":"Replace small with big and adapt sentence.",
             "sentence":"The small mountain."
         }

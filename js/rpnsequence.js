@@ -141,9 +141,9 @@ var rpnsequence = (function() {
             ])
         ]);
         
-        domelem.append($('<div id="rpnm_recall_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-bell"></i> ' + selectedLabels.Recall + '</h4></div><div class="modal-body"></div></div></div></div>'));
-        domelem.append($('<div id="rpnm_order_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-question-sign"></i> ' + selectedLabels.Order + '</h4></div><div class="modal-body"></div></div></div></div>'));
-        domelem.append($('<div id="rpnm_alert_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-warning-sign"></i> ' + selectedLabels.Warning + '</h4></div><div class="modal-body"></div></div></div></div>'));
+        domelem.append($('<div id="rpnm_recall_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-bell"></i> ' + selectedLabels.Recall + '</h4></div><div class="modal-body"></div></div></div></div>'));
+        domelem.append($('<div id="rpnm_order_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-question-sign"></i> ' + selectedLabels.Order + '</h4></div><div class="modal-body"></div></div></div></div>'));
+        domelem.append($('<div id="rpnm_alert_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-warning-sign"></i> ' + selectedLabels.Warning + '</h4></div><div class="modal-body"></div></div></div></div>'));
         domelem.append($('<div id="rpnm_wait_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">' + selectedLabels.Wait + '</h4></div><div class="modal-body"><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% completed</span></div></div></div></div></div></div>'));
         
         $('#rpnm_seq_title').html(sequencedatas.title);
@@ -168,7 +168,7 @@ var rpnsequence = (function() {
             var btnRecall=$('<button class="btn btn-default btn-sm pull-right" href="#" data-toggle="modal" data-target="#rpnm_recall_modal"><i class="glyphicon glyphicon-bell"></i> ' + selectedLabels.Recall + '</button>')
             var divContext=$('<div id="rpnm_context"></div>');
             var divDirective=$('<div id="rpnm_directive"></div>');
-            divContext.html(modData.context);
+            divContext.html(_.isUndefined(modData.context)?_.isUndefined(sequencedatas.context)?"":sequencedatas.context:modData.context);
             divDirective.html(modData.directive);
             var row=$('<div class="row">');
             var divContent=$('<div class="col-md-12">');
@@ -178,10 +178,10 @@ var rpnsequence = (function() {
                 btnRecall
             ])));
             
-            if(_.isUndefined(modData.recall)){
+            if(_.isUndefined(modData.recall)&&_.isUndefined(sequencedatas.recall)){
               btnRecall.hide();  
             }
-            if(_.isUndefined(modData.order)){
+            if(_.isUndefined(modData.order)&&_.isUndefined(sequencedatas.order)){
               btnOrder.hide();  
             } 
             
@@ -204,8 +204,8 @@ var rpnsequence = (function() {
                 globaldiv.append($('<div class="row"></div>').append($('<div class="col-md-12"></div>').append([divContext,divDirective,row])));
             }
             
-            _.isUndefined(modData.context) ? divContext.hide() :divContext.show().html(modData.context);
-            _.isUndefined(modData.directive) ? divDirective.hide() : divDirective.show().html(modData.directive);
+            _.isUndefined(modData.context)? _.isUndefined(sequencedatas.context) ? divContext.hide():divContext.show().html(sequencedatas.context) :divContext.show().html(modData.context);
+            _.isUndefined(modData.directive)? _.isUndefined(sequencedatas.directive) ? divDirective.hide(): divDirective.show().html(sequencedatas.directive) : divDirective.show().html(modData.directive);
     
             mainContent.append(globaldiv);
             if(_.isNull(states[idx]).state){
@@ -325,11 +325,15 @@ var rpnsequence = (function() {
     var bindModuleSharedDatas = function(datas) {
         if (!_.isUndefined(datas.recall)){
             $('#rpnm_recall_modal .modal-body').html(datas.recall);
+        }else if(!_.isUndefined(sequencedatas.recall)){
+            $('#rpnm_recall_modal .modal-body').html(sequencedatas.recall);
         }
         if (!_.isUndefined(datas.order)) {
             $('#rpnm_order_modal .modal-body').html(datas.order);
+        }else if(!_.isUndefined(sequencedatas.order)){
+            $('#rpnm_order_modal .modal-body').html(sequencedatas.order);
         }
-        source.html(_.isUndefined(datas.sources) ? "" :  datas.sources);
+        source.html(_.isUndefined(datas.sources) ? _.isUndefined(sequencedatas.sources)?"":sequencedatas.sources :  datas.sources);
     };
 
     var handleEndOfModule = function(state,nextmodtoshow) {

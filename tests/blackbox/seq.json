@@ -1,13 +1,13 @@
 {
     "title":"modulesequence",
+    "recall":"recall from sequence",
+    "order":"order from sequence",
+    "sources":"source from sequence",
+    "directive":"directive from sequence",
+    "context":"context from sequence",
     "modules":[
         {
             "type":"blackbox",
-            "sources":"<a href=\"https://en.wikipedia.org/wiki/JavaScript\" target=\"_blank\">javascript</a>",
-            "context":"Context:<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus posuere velit tortor, vel ullamcorper orci luctus sed.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus posuere velit tortor, vel ullamcorper orci luctus sed.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus posuere velit tortor, vel ullamcorper orci luctus sed.</p><ul><li>one</li><li>two</li><li>three</li></ul>",
-            "directive":"Directive:<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus posuere velit tortor, vel ullamcorper orci luctus sed.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus posuere velit tortor, vel ullamcorper orci luctus sed.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus posuere velit tortor, vel ullamcorper orci luctus sed.</p><ul><li>one</li><li>two</li><li>three</li></ul>",
-            "recall":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus posuere velit tortor, vel ullamcorper orci luctus sed.</p><img src=\"logo.png\" /><p>Etiam ut molestie lorem, ac venenatis libero. Nunc quis dolor tristique, fringilla quam nec, accumsan ipsum.</p><p>Aliquam malesuada odio vel purus scelerisque, ac tempus lectus sodales.</p><img src=\"logo2.png\" /><p>Ut accumsan, ligula vitae fermentum fringilla, magna sapien dignissim turpis, a porta eros ante id diam. Maecenas mauris erat, fringilla eget rutrum sit amet, malesuada ac ipsum. Donec semper interdum sapien, vel dapibus sem suscipit at. Mauris volutpat neque a cursus consequat. Donec sed leo at erat aliquam porta. Pellentesque nisi augue, pulvinar sed pulvinar sed, pulvinar sit amet nisl.</p>",
-            "order":"<h1>First do this</h1><h2>then that</h2><p>and finally this!</p>",
             "operation":"x8",
             "validation":{
                 "mode":"lock",
@@ -19,7 +19,11 @@
         },
         {
             "type":"blackbox",
-            "directive":"<p>Do this :</p>",
+            "directive":"directive from module",
+            "context":"context from module",
+            "recall":"recall from module",
+            "order":"order from module",
+            "sources":"source from module",
             "operation":"",
             "validation":{
                 "mode":"lock",

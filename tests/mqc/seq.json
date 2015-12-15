@@ -1,11 +1,14 @@
 {
     "title":"modulesequence",
+    "recall":"recall from sequence",
+    "order":"order from sequence",
+    "sources":"source from sequence",
+    "directive":"directive from sequence",
+    "context":"context from sequence",
     "modules":[
         {
             "type":"mqc",
-            "title":"identifier ",
-            "context":"context",
-            "directive":"bla bla bla.",
+            "title":"identifier",
             "questions":[
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit ?",
                 "Curabitur vitae purus vulputate, rutrum tortor eu, pulvinar justo ?",
@@ -21,8 +24,6 @@
         {
             "type":"mqc",
             "title":"identifier ",
-            "context":"context",
-            "directive":"bla bla bla.",
             "vertical":true,
             "questions":[
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit ?",
@@ -40,9 +41,7 @@
 		{
             "type":"mqc",
             "title":"identifier ",
-            "context":"context <img src='logo2.png'>",
             "disposition":"top",
-            "directive":"bla bla bla.",
             "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
             "answers":[
                 {"choice":["What","When","Where","Who"]}
@@ -51,8 +50,6 @@
 		{
             "type":"mqc",
             "title":"identifier ",
-            "context":"context <img src='logo2.png'>",
-            "directive":"bla bla bla.",
             "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
             "disposition":"right",
             "answers":[
@@ -62,8 +59,6 @@
 		{
             "type":"mqc",
             "title":"identifier ",
-            "context":"context <img src='logo2.png'>",
-            "directive":"bla bla bla.",
             "disposition":"left",
             "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
             "answers":[
@@ -73,10 +68,8 @@
 		{
             "type":"mqc",
             "title":"identifier ",
-            "context":"context <img src='logo2.png'>",
-            "directive":"bla bla bla.",
-            "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
             "disposition":"bottom",
+            "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
             "answers":[
 				{"choice":["What","When","Where","Who"]}
 			]
