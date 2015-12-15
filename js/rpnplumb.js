@@ -24,7 +24,6 @@ var rpnplumb = function() {
             _.defaults(state, {
                 left: [],
                 right: [],
-                shuffle:false,
                 responses:[]
             });
             state.left=_.map(datas.left, function(d,i){
@@ -46,10 +45,10 @@ var rpnplumb = function() {
         var leftItems=$('<ul class="list-unstyled plumbsource"></ul>');
         var rightItems=$('<ul class="list-unstyled plumbtarget"></ul>');
         _.each(state.left, function(item, idx) {
-            leftItems.append($('<li class="well"></li>').html(datas.left[item]).data( 'idx', item ));
+            leftItems.append($('<li>').html(datas.left[item]).data( 'idx', item ));
         });
         _.each(state.right, function(item, idx) {
-            rightItems.append($('<li class="well"></li>').html(datas.right[item]).data( 'idx', item ));
+            rightItems.append($('<li>').html(datas.right[item]).data( 'idx', item ));
         });
         domelem.append([$('<div class="col-xs-5"></div>').append(leftItems),$('<div class="col-xs-2"></div>'),$('<div class="col-xs-5"></div>').append(rightItems)]);
         plumb=jsPlumb.getInstance();
@@ -95,20 +94,18 @@ var rpnplumb = function() {
             });
             //try to remount sta given
             _.each(state.responses,function(target,source){
-                rpnsequence.log(source +  ' -> ' + target);
-                
-                var srcElem=_.filter($('ul.plumbsource li'),function(li){
-                    return $(li).data('idx')==source;
-                });
-                var targetElem=_.filter($('ul.plumbtarget li'),function(li){
-                    return $(li).data('idx')==target
-                });
-                
-                rpnsequence.log($(srcElem[0]).attr('id') + ' with ' + $(targetElem[0]).attr('id'))
-                plumb.connect({
-                   source:$(srcElem[0]).attr('id'),
-                   target:$(targetElem[0]).attr('id')
-                });
+                if(target !=null){
+                    var srcElem=_.filter($('ul.plumbsource li'),function(li){
+                        return $(li).data('idx')==source;
+                    });
+                    var targetElem=_.filter($('ul.plumbtarget li'),function(li){
+                        return $(li).data('idx')==target
+                    });
+                    plumb.connect({
+                       source:$(srcElem[0]).attr('id'),
+                       target:$(targetElem[0]).attr('id')
+                    });
+                }
             });
         });
         

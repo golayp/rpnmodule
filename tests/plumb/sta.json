@@ -2,23 +2,22 @@
 	"states": [
 		{
 			"left": [
-				1,
-				3,
-				0,
-				2
-			],
-			"right": [
-				4,
 				0,
 				3,
 				2,
 				1
 			],
-			"shuffle": false,
+			"right": [
+				1,
+				4,
+				3,
+				0,
+				2
+			],
 			"responses": [
 				0,
-				1,
-				2,
+				null,
+				null,
 				3
 			]
 		}
