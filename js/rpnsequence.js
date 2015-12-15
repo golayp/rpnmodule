@@ -126,7 +126,9 @@ var rpnsequence = (function() {
             
         });
     };
-
+    var getColor = function(idx){
+        return ["#8d61a4","#01a271","#5dc2e7","#ed656a","#f5a95e","#eee227","#7a5a14","#bbbbbb","#63b553","#e95c7b","#f5a95e"][idx];
+    }
     var buildUi = function() {
         mainContent=$('<div></div>');
         domelem.append([
@@ -168,8 +170,9 @@ var rpnsequence = (function() {
             var divDirective=$('<div id="rpnm_directive"></div>');
             divContext.html(modData.context);
             divDirective.html(modData.directive);
-            var divContent=$('<div>');
-            
+            var row=$('<div class="row">');
+            var divContent=$('<div class="col-md-12">');
+            row.append(divContent);
             var titleLine=$('<div class="row"></div>').append($('<div class="col-md-12"></div>').append($('<h2 id="rpnm_title">'+(_.isUndefined(modData.title)?'':modData.title)+'</h2>').append([
                 btnOrder,
                 btnRecall
@@ -185,20 +188,20 @@ var rpnsequence = (function() {
             var globaldiv = $('<div id="rpnm_inst_' + idx + '" class="rpnm_instance">').append(titleLine);
                 
             if(modData.disposition=='bottom'){
-                globaldiv.append($('<div class="row"></div>').append($('<div class="col-md-12"></div>').append([divContent,divContext,divDirective])));
+                globaldiv.append($('<div class="row"></div>').append($('<div class="col-md-12"></div>').append([row,divContext,divDirective])));
             }else if(modData.disposition=='left'){
                 globaldiv.append($('<div class="row"></div>').append([
                     $('<div class="col-md-6"></div>').append([divContext,divDirective]),
-                    $('<div class="col-md-6"></div>').append(divContent)
+                    $('<div class="col-md-6"></div>').append(row)
                 ]));
             }else if(modData.disposition=='right'){
                 globaldiv.append($('<div class="row"></div>').append([
-                    $('<div class="col-md-6"></div>').append(divContent),
+                    $('<div class="col-md-6"></div>').append(row),
                     $('<div class="col-md-6"></div>').append([divContext,divDirective])
                 ]));
             }else{
                 //default top
-                globaldiv.append($('<div class="row"></div>').append($('<div class="col-md-12"></div>').append([divContext,divDirective,divContent])));
+                globaldiv.append($('<div class="row"></div>').append($('<div class="col-md-12"></div>').append([divContext,divDirective,row])));
             }
             
             _.isUndefined(modData.context) ? divContext.hide() :divContext.show().html(modData.context);
@@ -250,6 +253,9 @@ var rpnsequence = (function() {
             }
             else if (modData.type == 'twolists') {
                 modules[idx]=rpntwolistsmodule();
+                modules[idx].init(modData,states[idx].state, divContent);
+            }else if (modData.type == 'plumb') {
+                modules[idx]=rpnplumb();
                 modules[idx].init(modData,states[idx].state, divContent);
             }
             
@@ -534,6 +540,7 @@ var rpnsequence = (function() {
         log: log,
         getLabels: getLabels,
         addvalidation: addvalidation,
-        computeMediaUrl:computeMediaUrl
+        computeMediaUrl:computeMediaUrl,
+        getColor:getColor
     };
 })();

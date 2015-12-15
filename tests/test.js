@@ -1,3 +1,4 @@
+/*global less*/
 less = {
     async: true
 };
@@ -14,6 +15,7 @@ require.config({
         "jquery": "https://code.jquery.com/jquery-2.1.3",
         "bootstrap":"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min",
         "underscore":"//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore",
+        "jsplumb":"ext/jsPlumb-2.0.4",
         "less":"//cdnjs.cloudflare.com/ajax/libs/less.js/2.1.0/less.min",
         "fabric":"//cdnjs.cloudflare.com/ajax/libs/fabric.js/1.5.0/fabric.min"
     }
@@ -23,6 +25,7 @@ require([
     'jquery',
     'bootstrap',
     'underscore',
+    'jsplumb',
     'less',
     'fabric',
     'ext/jquery-disableSelection',
@@ -36,6 +39,7 @@ require([
     'rpngapsimple',
     'rpnmarker',
     'rpnmqc',
+    'rpnplumb',
     'rpndropdown',
     'rpnsorting',
     'rpntwolists'
@@ -43,7 +47,7 @@ require([
     $(document).ready(function(){
         rpnsequence.init({
             debug:true,
-            disablestateloading:true,
+            disablestateloading:false,
             onmoduleend:function(states,nextstep){
                 console.log('ok');
                 nextstep();

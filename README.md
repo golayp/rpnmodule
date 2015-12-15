@@ -1,5 +1,5 @@
 <h1>rpnmodule</h1>
-<strong>v0.1.8</strong>
+<strong>v0.1.9</strong>
 <p>rpnmodule is a project aiming to provide a base library for running educational sequences of modules. It'll provide common features for 10 module types (maybe more in the future) that can be arranged in a sequence of work:</p>
 <p>As the project evolves the main module in the library is rpnsequence, but project name is still rpnmodule... Sorry for confusion!!!!</p>
 <h2>Dependencies</h2>
@@ -19,6 +19,7 @@
     <li>gapsimple - a text to complete (sample: http://www.rpn.ch/hosting/iclasse/AideEval/10/html/AE_ParticipePasse_1_2.html)</li>
     <li>marker - a text to mark with markers (sample: http://www.rpn.ch/hosting/iclasse/html5/Fra_9_html/L1_36_9_JO_Indicatif_Present_3.html)</li>
     <li>mqc - a multiple question choice (mqc) (samples: http://www.rpn.ch/hosting/iclasse/AideEval/10/html/AE_FonctGramm_1_3.html http://www.rpn.ch/hosting/iclasse/AideEval/10/html/AE_LectureDico_2_1.html http://www.rpn.ch/hosting/iclasse/AideEval/10/html/AE_NuancesSem_3.html)</li>
+    <li>plumb - a source/target link module using jsPlumb</li>
     <li>sorting - a sentence shuffled to rearrange with drag and drop</li>
     <li>twolists - two lists of items to connect with bezier curves</li>
 </ul>
