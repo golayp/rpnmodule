@@ -9,6 +9,7 @@
         {
             "type":"mqc",
             "title":"identifier",
+            "context":"same answers for all questions",
             "questions":[
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit ?",
                 "Curabitur vitae purus vulputate, rutrum tortor eu, pulvinar justo ?",
@@ -18,13 +19,13 @@
                 "Vivamus et metus imperdiet, facilisis nisl eget, semper ligula ?"
             ],
             "answers":[
-				{"choice":["What","When","Where","Who"]}
+				{"choice":["answer 1","answer 2","answer 3","answer 4"]}
 			]
         },
         {
             "type":"mqc",
             "title":"identifier ",
-            "vertical":true,
+            "context":"a unique set of answers for each questions",
             "questions":[
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit ?",
                 "Curabitur vitae purus vulputate, rutrum tortor eu, pulvinar justo ?",
@@ -32,16 +33,17 @@
                 "Praesent eleifend sem quis mauris consequat, sit amet rutrum elit interdum ?"
             ],
             "answers":[
-				{"choice":["What","When","Where","Who"]},
-				{"choice":["What","When","Where","Who"]},
-				{"choice":["Where","When","What","When"]},
-				{"choice":["When","Where","Where","What"]}
+				{"choice":["answer 1","answer 2","answer 3","answer 4"]}
+				{"choice":["answer 5","answer 6","answer 7","answer 8"]}
+				{"choice":["answer 9","answer 10","answer 11","answer 12"]}
+				{"choice":["answer 13","answer 14","answer 15","answer 16"]}
 			]
         },
 		{
             "type":"mqc",
             "title":"identifier ",
-            "disposition":"top",
+            "context":"answers disposed vertically",
+            "vertical":true,
             "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
             "answers":[
                 {"choice":["What","When","Where","Who"]}
@@ -51,28 +53,9 @@
             "type":"mqc",
             "title":"identifier ",
             "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
-            "disposition":"right",
             "answers":[
 				{"choice":["What","When","Where","Who"]}
             ]
-        },
-		{
-            "type":"mqc",
-            "title":"identifier ",
-            "disposition":"left",
-            "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
-            "answers":[
-				{"choice":["What","When","Where","Who"]}
-            ]
-        },
-		{
-            "type":"mqc",
-            "title":"identifier ",
-            "disposition":"bottom",
-            "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
-            "answers":[
-				{"choice":["What","When","Where","Who"]}
-			]
         }
     ]
 }

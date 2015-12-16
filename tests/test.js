@@ -10,7 +10,6 @@ require.config({
         "ext/jquery.maphilight":{ "deps" :['jquery'] },
         "ext/jquery-disableSelection":{ "deps" :['jquery'] }
     },
-    
     "paths": {
         "jquery": "https://code.jquery.com/jquery-2.1.3",
         "bootstrap":"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min",

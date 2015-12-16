@@ -1,11 +1,11 @@
 {
     "title":"modulesequence",
+    "context":"Context",
+    "directive":"Directive",
     "modules":[
         {
             "type":"twolists",
             "title":"title ",
-            "context":"context",
-            "directive":"directive",
             "idmodule":0,
             "leftitems":[
                 [0,"<div> <math   display='block'><mspace height='40px'/><mfrac linethickness='2px' numalign='left' denomalign='left'><mrow><mfrac bevelled='true'><mn>1</mn><mi>x</mi></mfrac><mo>+</mo><mfrac bevelled='true'><mn>2</mn><mi>x</mi></mfrac><mo>+</mo><mo>&hellip;</mo></mrow><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>x</mi><mn>4</mn></msup><mo>+</mo><mo>&hellip;</mo></mrow></mfrac></math></div>"],
@@ -24,8 +24,6 @@
         {
             "type":"twolists",
             "title":"title ",
-            "context":"context",
-            "directive":"directive",
             "idmodule":2,
             "leftitems":[
                 [0,"<div> <math display='block'><mspace height='40px'/><mfrac linethickness='2px' numalign='left' denomalign='left'><mrow><mfrac bevelled='true'><mn>1</mn><mi>x</mi></mfrac><mo>+</mo><mfrac bevelled='true'><mn>2</mn><mi>x</mi></mfrac><mo>+</mo><mo>&hellip;</mo></mrow><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>x</mi><mn>4</mn></msup><mo>+</mo><mo>&hellip;</mo></mrow></mfrac></math></div>"],
@@ -44,8 +42,6 @@
         {
             "type":"twolists",
             "title":"title ",
-            "context":"context",
-            "directive":"directive",
             "idmodule":1,
             "leftitems":[
                 [0,"<div> <math   display='block'><mspace height='40px'/><mfrac linethickness='2px' numalign='left' denomalign='left'><mrow><mfrac bevelled='true'><mn>1</mn><mi>x</mi></mfrac><mo>+</mo><mfrac bevelled='true'><mn>2</mn><mi>x</mi></mfrac><mo>+</mo><mo>&hellip;</mo></mrow><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>x</mi><mn>4</mn></msup><mo>+</mo><mo>&hellip;</mo></mrow></mfrac></math></div>"],
