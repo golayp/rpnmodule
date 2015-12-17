@@ -126,8 +126,11 @@ var rpnplumb = function() {
         });
         return score;
     };
-
+    var displayed = function(){
+         plumb.repaintEverything();
+    }
     return {
+        displayed:displayed,
         init: init,
         validate: validate,
         score:score

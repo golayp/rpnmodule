@@ -33,9 +33,9 @@
                 "Praesent eleifend sem quis mauris consequat, sit amet rutrum elit interdum ?"
             ],
             "answers":[
-				{"choice":["answer 1","answer 2","answer 3","answer 4"]}
-				{"choice":["answer 5","answer 6","answer 7","answer 8"]}
-				{"choice":["answer 9","answer 10","answer 11","answer 12"]}
+				{"choice":["answer 1","answer 2","answer 3","answer 4"]},
+				{"choice":["answer 5","answer 6","answer 7","answer 8"]},
+				{"choice":["answer 9","answer 10","answer 11","answer 12"]},
 				{"choice":["answer 13","answer 14","answer 15","answer 16"]}
 			]
         },

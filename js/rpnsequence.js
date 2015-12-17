@@ -179,11 +179,16 @@ var rpnsequence = (function() {
             ])));
             
             if(_.isUndefined(modData.recall)&&_.isUndefined(sequencedatas.recall)){
-              btnRecall.hide();  
+                btnRecall.hide();  
             }
             if(_.isUndefined(modData.order)&&_.isUndefined(sequencedatas.order)){
-              btnOrder.hide();  
-            } 
+                btnOrder.hide();  
+            }
+            if(_.isUndefined(modData.title) && _.isUndefined(modData.order)&&_.isUndefined(sequencedatas.order) && _.isUndefined(modData.recall)&&_.isUndefined(sequencedatas.recall)){
+                titleLine.hide();
+            }else{
+                titleLine.show();
+            }
             
             var globaldiv = $('<div id="rpnm_inst_' + idx + '" class="rpnm_instance">').append(titleLine);
                 
@@ -319,6 +324,9 @@ var rpnsequence = (function() {
             validationButton.html(selectedLabels.Validate+' <i class="glyphicon glyphicon-chevron-right"></i>').removeClass("btn-success").addClass("btn-primary");
         }
         moduleDiv.show();
+        if(!_.isUndefined( modules[currentmod].displayed)){
+            modules[currentmod].displayed();
+        }
         $('#rpnm_wait_modal').modal('hide');
     };
 

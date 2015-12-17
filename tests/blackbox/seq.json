@@ -1,7 +1,5 @@
 {
     "title":"modulesequence",
-    "recall":"recall from sequence",
-    "order":"order from sequence",
     "sources":"source from sequence",
     "directive":"directive from sequence",
     "context":"context from sequence",
