@@ -3,8 +3,11 @@
     "sources":"source from sequence",
     "directive":"directive from sequence",
     "context":"context from sequence",
+    "recall":"recall from sequence",
+    "order":"order from sequence",
     "modules":[
         {
+            "title":"title",
             "type":"blackbox",
             "operation":"x8",
             "validation":{
@@ -17,6 +20,7 @@
         },
         {
             "type":"blackbox",
+            
             "directive":"directive from module",
             "context":"context from module",
             "recall":"recall from module",

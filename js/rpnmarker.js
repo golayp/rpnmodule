@@ -20,11 +20,9 @@ var rpnmarkermodule = function() {
             state=_state;
         }else{
             var availableColors = ["#8d61a4","#01a271","#5dc2e7","#ed656a","#f5a95e","#eee227","#7a5a14","#bbbbbb","#63b553","#e95c7b","#f5a95e"];
-            var tomarkelements = $('b',datas.tomark);
-            $.merge( tomarkelements , $('area',datas.tomark));
             state={
                 selectedMarker : '',
-                responses:_.map(tomarkelements,function(b,idx){return '';}),
+                responses:_.map($('b',datas.tomark),function(b,idx){return '';}),
                 markers:_.map(datas.markers,function(m,idx){return { label:m,color:(availableColors[idx] || '#222')}})
             };
         }
@@ -94,38 +92,6 @@ var rpnmarkermodule = function() {
                 state['responses'][idx] = state.selectedMarker.label;
             });
         });
-$('.map', domelem).maphilight({strokeWidth: 3, fillOpacity: 0.5});
-        $.each($('area', domelem), function(idx, tomark) {
-            var a = $(tomark);
-            var data = $(a).mouseout().data('maphilight') || {};
-            if(!_.isEmpty(state.responses[idx+$('b', domelem).length])){
-                data.alwaysOn = true;
-                data.fillColor = _.findWhere(state.markers,{label:state.responses[idx+$('b', domelem).length]}).color.substring(1);
-                data.strokeColor = data.fillColor;
-            }else{
-                data.alwaysOn = false;
-                fillOpacity = 0.5;
-            }
-            console.log('data '+data)
-           $(a).data('maphilight', data).trigger('alwaysOn.maphilight');
-            if(!datas.hidden){
-                a.css('cursor', 'pointer');
-            }else{
-                a.css('font-weight','normal');
-            }
-            a.click(function() {
-                state['responses'][idx+$('b', domelem).length] = state.selectedMarker.label;
-                if (state.selectedMarker.label==''){
-                    data.alwaysOn = false;
-                }else{
-                    data.alwaysOn = true;
-               		data.fillColor = state.selectedMarker.color.substring(1);
-               		data.strokeColor = data.fillColor;
-                }
-                $(a).data('maphilight', data).trigger('alwaysOn.maphilight');
-            });
-        });
-
         bindUiEvents();
     };
 
