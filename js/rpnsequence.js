@@ -209,7 +209,7 @@ var rpnsequence = (function() {
             _.isUndefined(modData.directive)? _.isUndefined(sequencedatas.directive) ? divDirective.hide(): divDirective.show().html(sequencedatas.directive) : divDirective.show().html(modData.directive);
             
             
-            moduleLocation.append(rpnmInstance);
+            
             if(_.isNull(states[idx]).state){
                 _.isNull(states[idx]).state=undefined;
             }
@@ -257,6 +257,8 @@ var rpnsequence = (function() {
                 modules[idx]=rpnplumb();
                 modules[idx].init(modData,states[idx].state, divContent);
             }
+            handleMediaPath(rpnmInstance);
+            moduleLocation.append(rpnmInstance);
             
             rpnmInstance.hide();
             if(modData.type!='gapfull'){
@@ -303,7 +305,7 @@ var rpnsequence = (function() {
 
         var moduleDiv = $('#rpnm_inst_' + currentmod);
         bindModuleSharedDatas(moduleDatas);
-        handleMediaPath();
+        
         //navigation
         if (navigationEnabled) {
             $('#rpnm_modulenav ul li').removeClass('active');
@@ -397,9 +399,9 @@ var rpnsequence = (function() {
         }
     };
 
-    var handleMediaPath = function() {
+    var handleMediaPath = function(content) {
         //Images paths
-        _.each($('img:not(.rpnm-img, .rpnm-mediapath)'), function(elem, idx) {
+        _.each($('img:not(.rpnm-img, .rpnm-mediapath)',content), function(elem, idx) {
             var img = $(elem);
             img.attr('src', mediapathHandler($(elem).attr('src'))).addClass('rpnm-mediapath');
             if (img.is('.modal-body img')) {

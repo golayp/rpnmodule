@@ -16958,8 +16958,8 @@ var rpngapsimplemodule = function() {
                     }));
                 }
             }else{
-                var textAlign = _.isUndefined(datas.validation.align)?"":" " + datas.validation.align;
-				var textWidth = _.isUndefined(datas.validation.width)?"":" style='width:" + datas.validation.width + "'";
+                var textAlign = (_.isUndefined(datas.validation)||_.isUndefined(datas.validation.align))?"":" " + datas.validation.align;
+				var textWidth = (_.isUndefined(datas.validation)||_.isUndefined(datas.validation.width))?"":" style='width:" + datas.validation.width + "'";
 				if(t.text().substr(-1)!="_"){
 					txt = _.isEmpty(t.text())?"":"<strong>(" + t.text() + ")</strong>";
 					t.replaceWith($('<span class="text-nowrap"><input type="text" class="rpnm_input gapsimple form-control' + textAlign + '"' + textWidth + '>' + txt + '</span>'));
@@ -17570,7 +17570,7 @@ var rpnsequence = (function() {
             _.isUndefined(modData.directive)? _.isUndefined(sequencedatas.directive) ? divDirective.hide(): divDirective.show().html(sequencedatas.directive) : divDirective.show().html(modData.directive);
             
             
-            moduleLocation.append(rpnmInstance);
+            
             if(_.isNull(states[idx]).state){
                 _.isNull(states[idx]).state=undefined;
             }
@@ -17618,6 +17618,8 @@ var rpnsequence = (function() {
                 modules[idx]=rpnplumb();
                 modules[idx].init(modData,states[idx].state, divContent);
             }
+            handleMediaPath(rpnmInstance);
+            moduleLocation.append(rpnmInstance);
             
             rpnmInstance.hide();
             if(modData.type!='gapfull'){
@@ -17664,7 +17666,7 @@ var rpnsequence = (function() {
 
         var moduleDiv = $('#rpnm_inst_' + currentmod);
         bindModuleSharedDatas(moduleDatas);
-        handleMediaPath();
+        
         //navigation
         if (navigationEnabled) {
             $('#rpnm_modulenav ul li').removeClass('active');
@@ -17758,9 +17760,9 @@ var rpnsequence = (function() {
         }
     };
 
-    var handleMediaPath = function() {
+    var handleMediaPath = function(content) {
         //Images paths
-        _.each($('img:not(.rpnm-img, .rpnm-mediapath)'), function(elem, idx) {
+        _.each($('img:not(.rpnm-img, .rpnm-mediapath)',content), function(elem, idx) {
             var img = $(elem);
             img.attr('src', mediapathHandler($(elem).attr('src'))).addClass('rpnm-mediapath');
             if (img.is('.modal-body img')) {

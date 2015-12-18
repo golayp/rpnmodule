@@ -77,8 +77,8 @@ var rpngapsimplemodule = function() {
                     }));
                 }
             }else{
-                var textAlign = _.isUndefined(datas.validation.align)?"":" " + datas.validation.align;
-				var textWidth = _.isUndefined(datas.validation.width)?"":" style='width:" + datas.validation.width + "'";
+                var textAlign = (_.isUndefined(datas.validation)||_.isUndefined(datas.validation.align))?"":" " + datas.validation.align;
+				var textWidth = (_.isUndefined(datas.validation)||_.isUndefined(datas.validation.width))?"":" style='width:" + datas.validation.width + "'";
 				if(t.text().substr(-1)!="_"){
 					txt = _.isEmpty(t.text())?"":"<strong>(" + t.text() + ")</strong>";
 					t.replaceWith($('<span class="text-nowrap"><input type="text" class="rpnm_input gapsimple form-control' + textAlign + '"' + textWidth + '>' + txt + '</span>'));

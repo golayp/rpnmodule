@@ -1,0 +1,11 @@
+{
+    "title":"modulesequence",
+   
+    "modules":[
+         {
+            "type":"gapsimple",
+            "title":"a gapsimple module",
+            "tofill":"8 + 7 = <b></b><br/><img src='logo.png' />"
+        }
+    ]
+}
