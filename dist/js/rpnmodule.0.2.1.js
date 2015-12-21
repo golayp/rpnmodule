@@ -17222,7 +17222,7 @@ var rpnmqcmodule = function() {
 };
 /*global rpnsequence, jsPlumb, _*/
 //plumb
-var rpnplumb = function() {
+var rpnplumbmodule = function() {
 
     var datas;
     var domelem;
@@ -17234,6 +17234,7 @@ var rpnplumb = function() {
         _.defaults(_datas, {
             left: ["item1", "item2", "item3"],
             right: ["item1", "item2", "item3"],
+            multipleTarget:false,
             shuffle:false
         });
         datas = _datas;
@@ -17310,7 +17311,7 @@ var rpnplumb = function() {
             });
             $('li',rightItems).each(function(i,li){
                plumb.makeTarget(li, {
-                    maxConnections:1,
+                    maxConnections:datas.multipleTarget?-1:1,
                     anchor:"Left"
                 });
             });
@@ -17615,7 +17616,11 @@ var rpnsequence = (function() {
                 modules[idx].init(modData,states[idx].state, divContent);
             }
             else if (modData.type == 'plumb') {
-                modules[idx]=rpnplumb();
+                modules[idx]=rpnplumbmodule();
+                modules[idx].init(modData,states[idx].state, divContent);
+            }
+            else if (modData.type == 'map') {
+                modules[idx]=rpnmapmodule();
                 modules[idx].init(modData,states[idx].state, divContent);
             }
             handleMediaPath(rpnmInstance);

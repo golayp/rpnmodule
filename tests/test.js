@@ -7,6 +7,7 @@ require.config({
     "shim" : {
         "bootstrap" : { "deps" :['jquery'] },
         "ext/jquery-ui": { "deps" :['jquery'] },
+        //"ext/jquery.maphilight": { "deps" :['jquery'] },
         "ext/jquery-disableSelection":{ "deps" :['jquery'] }
     },
     "paths": {
@@ -26,6 +27,7 @@ require([
     'less',
     'ext/jquery-disableSelection',
     'ext/jquery-ui',
+    //'ext/jquery.maphilight',
     'rpnsequence',
     'rpnblackbox',
     'rpncardmaze',
@@ -33,6 +35,7 @@ require([
     'rpngapfull',
     'rpngapsimple',
     'rpnmarker',
+    //'rpnmap',
     'rpnmqc',
     'rpnplumb',
     'rpndropdown',

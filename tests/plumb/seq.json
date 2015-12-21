@@ -7,6 +7,7 @@
             "type":"plumb",
             "title":"title",
             "shuffle":true,
+            "multipleTarget":true,
             "left":[
                 "item 1 1",
                 "item 1 2",

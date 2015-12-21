@@ -1,0 +1,12 @@
+{
+    "title":"modulesequence",
+    "directive":"try to mark words",
+    "modules":[
+        {
+            "type":"map",
+            "title":"a map module",
+	        "markers":["marker1","marker2","marker3","marker4","marker5","marker6","marker7","marker8"],
+	        "map":"<img src=\"mario.png\" alt=\"\" usemap=\"#map\" /><map name=\"map\"><area shape=\"circle\" coords=\"173, 49, 40\" /><area shape=\"circle\" coords=\"60, 193, 24\" /><area shape=\"circle\" coords=\"288, 191, 24\" /><area shape=\"circle\" coords=\"173, 215, 38\" /></map>"
+        }
+    ]
+}

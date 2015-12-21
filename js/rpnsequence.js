@@ -254,7 +254,11 @@ var rpnsequence = (function() {
                 modules[idx].init(modData,states[idx].state, divContent);
             }
             else if (modData.type == 'plumb') {
-                modules[idx]=rpnplumb();
+                modules[idx]=rpnplumbmodule();
+                modules[idx].init(modData,states[idx].state, divContent);
+            }
+            else if (modData.type == 'map') {
+                modules[idx]=rpnmapmodule();
                 modules[idx].init(modData,states[idx].state, divContent);
             }
             handleMediaPath(rpnmInstance);

@@ -1,6 +1,6 @@
 /*global rpnsequence, jsPlumb, _*/
 //plumb
-var rpnplumb = function() {
+var rpnplumbmodule = function() {
 
     var datas;
     var domelem;
@@ -12,6 +12,7 @@ var rpnplumb = function() {
         _.defaults(_datas, {
             left: ["item1", "item2", "item3"],
             right: ["item1", "item2", "item3"],
+            multipleTarget:false,
             shuffle:false
         });
         datas = _datas;
@@ -88,7 +89,7 @@ var rpnplumb = function() {
             });
             $('li',rightItems).each(function(i,li){
                plumb.makeTarget(li, {
-                    maxConnections:1,
+                    maxConnections:datas.multipleTarget?-1:1,
                     anchor:"Left"
                 });
             });
