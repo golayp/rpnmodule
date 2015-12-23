@@ -18,6 +18,7 @@ var rpnsequence = (function() {
     var sequenceendHandler;
     var moduleendHandler;
     var mediapathHandler;
+    var readyHandler;
     var alertModal;
     var domelem;
     var validationButton;
@@ -75,6 +76,7 @@ var rpnsequence = (function() {
             domelem: $('body'),
             onsequenceend: function(states, score) {},
             onmoduleend: function() {},
+            onsequenceready:function(){},
             mediapathformatter: function(val) {
                 return 'medias/' + val;
             },
@@ -96,6 +98,7 @@ var rpnsequence = (function() {
         sequenceendHandler = opts.onsequenceend;
         moduleendHandler = opts.onmoduleend;
         mediapathHandler = opts.mediapathformatter;
+        readyHandler = opts.onsequenceready;
         
         bypassModule=opts.bypassModule;
         $.getJSON(opts.sequrl, function(datas) {
@@ -273,7 +276,6 @@ var rpnsequence = (function() {
                 handleEndOfSequence();
             }
         });
-
         if (warnexit) {
             $(window).bind('beforeunload', function(e) {
                 return selectedLabels.BeforeUnloadMsg;
@@ -281,6 +283,11 @@ var rpnsequence = (function() {
         }
         bindUiEvents();
         displayCurrentModule();
+        ready();
+    };
+    
+    var ready=function(){
+        readyHandler();
     };
     
     var bindUiEvents = function() {
@@ -554,7 +561,7 @@ var rpnsequence = (function() {
     
     return {
         init: init,
-        buildUi: buildUi,
+        
         displayAlert: displayAlert,
         log: log,
         getLabels: getLabels,
