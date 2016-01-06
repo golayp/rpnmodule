@@ -17713,9 +17713,13 @@ var rpnsequence = (function() {
         }
         if(_.isUndefined(datas.recall)&&_.isUndefined(sequencedatas.recall)){
             btnRecall.hide();  
+        }else{
+            handleMediaPath($('#rpnm_recall_modal .modal-body'));
         }
         if(_.isUndefined(datas.order)&&_.isUndefined(sequencedatas.order)){
             btnOrder.hide();  
+        }else{
+            handleMediaPath($('#rpnm_order_modal .modal-body'));
         }
         source.html(_.isUndefined(datas.sources) ? _.isUndefined(sequencedatas.sources)?"":sequencedatas.sources :  datas.sources);
     };

@@ -1,6 +1,7 @@
 {
     "title":"modulesequence",
-   
+   "recall":"<img src='logo.png' />",
+   "order":"<img src='logo.png' />",
     "modules":[
          {
             "type":"gapsimple",
