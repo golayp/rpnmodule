@@ -9,6 +9,15 @@
             "sentence":["Lorem","ipsum","dolor","sit","amet,","consectetur","adipiscing","elit."],
             "shuffle":true,
             "sources":"Donec arcu lectus, porttitor sed vestibulum vitae."
+        },
+        {
+            "type":"sorting",
+            "title":"a sorting module",
+            "context":"Context",
+            "directive":"Directive",
+            "sentence":["Lorem","ipsum","dolor","sit","amet,","consectetur","adipiscing","elit."],
+            "shuffle":true,
+            "sources":"Donec arcu lectus, porttitor sed vestibulum vitae."
         }
     ]
 }

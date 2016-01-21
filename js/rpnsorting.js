@@ -38,7 +38,7 @@ var rpnsortingmodule = function() {
           placeholder: "sorting-highlight",
           tolerance:"pointer"
         });
-        $( "#sortable" ).disableSelection();
+        $(domelem).disableSelection();
         bindUiEvents();
     };
 
@@ -63,7 +63,6 @@ var rpnsortingmodule = function() {
         return score;
     };
     
-
     return {
         init: init,
         validate: validate,

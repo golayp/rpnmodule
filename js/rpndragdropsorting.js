@@ -31,7 +31,7 @@ var rpndragdropsortingmodule = function() {
             $('.dropzonecontainer',domelem).append($('<div class="col-md-2"><div class="droppable"><span class="lead">' + drop + '</span><ul class="list-unstyled"></ul></div></div>'));
             if(!_.isUndefined(state[drop])){
                 _.each(state[drop],function(dropped,idxi){
-                    $('ul',$('.droppable')[idx]).append('<li class="draggable">'+dropped+'</li>');
+                    $('ul',$('.droppable',domelem)[idx]).append('<li class="draggable">'+dropped+'</li>');
                 });
             }
         });
@@ -48,7 +48,6 @@ var rpndragdropsortingmodule = function() {
                 nextDraggable();
             }
         });
-        
         bindUiEvents();
         nextDraggable();
     };
@@ -56,8 +55,8 @@ var rpndragdropsortingmodule = function() {
     var nextDraggable = function() {
         if ($('.dragthis li',domelem).length == 0 && state.todrag.length > 0) {
             var itemToDrag = _.last(state.todrag);
-            $('.dragthis').append($('<li class="draggable">' + itemToDrag + '</li>'));
-            $('.dragthis').sortable({
+            $('.dragthis',domelem).append($('<li class="draggable">' + itemToDrag + '</li>'));
+            $('.dragthis',domelem).sortable({
                 connectWith: '.droppable ul',
                 appendTo:'body',
                 placeholder:'droppable-placeholder',

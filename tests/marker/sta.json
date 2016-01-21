@@ -2,16 +2,17 @@
 	"states": [
 		{
 			"selectedMarker": {
-				"label": "marker5",
-				"color": "#f5a95e"
+				"label": "marker6",
+				"color": "#eee227"
 			},
 			"responses": [
-				"marker1",
-				"marker5",
+				"",
 				"marker1",
 				"marker2",
-				"",
-				""
+				"marker3",
+				"marker4",
+				"marker5",
+				"marker6"
 			],
 			"markers": [
 				{
@@ -45,31 +46,19 @@
 				{
 					"label": "marker8",
 					"color": "#bbbbbb"
-				},
-				{
-					"label": "marker9",
-					"color": "#63b553"
-				},
-				{
-					"label": "marker10",
-					"color": "#e95c7b"
-				},
-				{
-					"label": "marker11",
-					"color": "#f5a95e"
 				}
 			]
 		},
 		{
 			"selectedMarker": {
-				"label": "marker1",
-				"color": "#8d61a4"
+				"label": "marker3",
+				"color": "#5dc2e7"
 			},
 			"responses": [
+				"",
 				"marker1",
-				"",
-				"",
-				"",
+				"marker2",
+				"marker3",
 				"",
 				""
 			],
@@ -90,14 +79,14 @@
 		},
 		{
 			"selectedMarker": {
-				"label": "marker2",
-				"color": "#01a271"
+				"label": "marker3",
+				"color": "#5dc2e7"
 			},
 			"responses": [
 				"",
-				"",
+				"marker1",
 				"marker2",
-				"",
+				"marker3",
 				"",
 				""
 			],
@@ -113,29 +102,6 @@
 				{
 					"label": "marker3",
 					"color": "#5dc2e7"
-				}
-			]
-		},
-		{
-			"selectedMarker": {
-				"label": "marker1",
-				"color": "#8d61a4"
-			},
-			"responses": [
-				"marker1",
-				"marker2",
-				"",
-				"marker1",
-				"marker1"
-			],
-			"markers": [
-				{
-					"label": "marker1",
-					"color": "#8d61a4"
-				},
-				{
-					"label": "marker2",
-					"color": "#01a271"
 				}
 			]
 		}

@@ -3,45 +3,45 @@
 		[
 			{
 				"position": "right",
-				"originalposition": 2,
-				"value": 32,
-				"response": "1"
-			},
-			{
-				"position": "left",
-				"originalposition": 0,
-				"value": 5,
-				"response": "2"
-			},
-			{
-				"position": "right",
 				"originalposition": 1,
 				"value": 72,
-				"response": "3"
-			},
-			{
-				"position": "left",
-				"originalposition": 2,
-				"value": 6,
-				"response": "4"
-			},
-			{
-				"position": "left",
-				"originalposition": 1,
-				"value": 10,
-				"response": "5"
+				"response": "9"
 			},
 			{
 				"position": "left",
 				"originalposition": 3,
 				"value": 11,
-				"response": "6"
+				"response": "88"
+			},
+			{
+				"position": "left",
+				"originalposition": 2,
+				"value": 6,
+				"response": "48"
+			},
+			{
+				"position": "right",
+				"originalposition": 2,
+				"value": 32,
+				"response": "4"
+			},
+			{
+				"position": "left",
+				"originalposition": 0,
+				"value": 5,
+				"response": "40"
 			},
 			{
 				"position": "right",
 				"originalposition": 0,
 				"value": 56,
 				"response": "7"
+			},
+			{
+				"position": "left",
+				"originalposition": 1,
+				"value": 10,
+				"response": "80"
 			}
 		],
 		[
@@ -55,37 +55,37 @@
 				"position": "right",
 				"originalposition": 1,
 				"value": 72,
-				"response": "6"
+				"response": "9"
 			},
 			{
 				"position": "right",
 				"originalposition": 2,
 				"value": 32,
-				"response": "5"
+				"response": "4"
 			},
 			{
 				"position": "left",
 				"originalposition": 0,
 				"value": 5,
-				"response": "4"
+				"response": "40"
 			},
 			{
 				"position": "left",
 				"originalposition": 1,
 				"value": 10,
-				"response": "3"
+				"response": "80"
 			},
 			{
 				"position": "left",
 				"originalposition": 2,
 				"value": 6,
-				"response": "2"
+				"response": "48"
 			},
 			{
 				"position": "left",
 				"originalposition": 3,
 				"value": 11,
-				"response": "1"
+				"response": "88"
 			}
 		]
 	]

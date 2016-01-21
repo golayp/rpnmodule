@@ -49,13 +49,13 @@ var rpncardmazemodule = function() {
         });
         bindUiEvents();
         _.each(state,function(val,idx){
-            $($('.card')[val]).trigger('click');
+            $($('.card',domelem)[val]).trigger('click');
         })
     };
 
 
     var bindUiEvents = function() {
-        _.each($('.card'), function(card, idx) {
+        _.each($('.card',domelem), function(card, idx) {
             $(card).click(function() {
                 if ($(card).hasClass('start') || $(card).hasClass('selectable') || $(card).hasClass('selected')) {
                     if (((idx == currentHead && $(card).hasClass('start') ) ||idx == currentHead + width || idx == currentHead - width || idx == currentHead - 1 || idx == currentHead + 1) && !$(card).hasClass('selected')) {
@@ -65,9 +65,9 @@ var rpncardmazemodule = function() {
                         snake=snake.slice(0,_.indexOf(snake,card)+1);
                     }
                     currentHead = idx;
-                    $('.selected').removeClass('selected');
-                    $('.selectable').removeClass('selectable');
-                    $('.card').removeClass('fromtop frombottom fromleft fromright totop tobottom toleft toright');
+                    $('.selected',domelem).removeClass('selected');
+                    $('.selectable',domelem).removeClass('selectable');
+                    $('.card',domelem).removeClass('fromtop frombottom fromleft fromright totop tobottom toleft toright');
                     _.each(snake,function(icard,ii){
                         if(ii>0){
                             var dif=$(icard).data('cardId')-$(snake[ii-1]).data('cardId');
@@ -97,16 +97,16 @@ var rpncardmazemodule = function() {
                     });
                     if (idx != endid) {
                         if (!((idx + width) > (width * height))) {
-                            $($('.card')[idx + width]).addClass('selectable');
+                            $($('.card',domelem)[idx + width]).addClass('selectable');
                         }
                         if (!((idx - width) < 0)) {
-                            $($('.card')[idx - width]).addClass('selectable');
+                            $($('.card',domelem)[idx - width]).addClass('selectable');
                         }
                         if (idx % width != 0) {
-                            $($('.card')[idx - 1]).addClass('selectable');
+                            $($('.card',domelem)[idx - 1]).addClass('selectable');
                         }
                         if ((idx + 1) % width != 0) {
-                            $($('.card')[idx + 1]).addClass('selectable');
+                            $($('.card',domelem)[idx + 1]).addClass('selectable');
                         }
                     }
                 }

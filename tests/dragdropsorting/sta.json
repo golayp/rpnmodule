@@ -1,7 +1,7 @@
 {
 	"states": [
 		{
-			"todrag": ["Z"],
+			"todrag": [],
 			"todrop": [
 				"letters",
 				"colors",
@@ -9,6 +9,7 @@
 				"sentences"
 			],
 			"letters": [
+				"Z",
 				"C",
 				"A"
 			],
@@ -22,7 +23,7 @@
 				"1"
 			],
 			"sentences": [
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet."
 			]
 		}
 	]

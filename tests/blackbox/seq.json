@@ -26,7 +26,7 @@
             "recall":"recall from module",
             "order":"order from module",
             "sources":"source from module",
-            "operation":"",
+            "operation":"x8",
             "validation":{
                 "mode":"lock",
                 "type":"integer"

@@ -45,6 +45,7 @@ require([
         rpnsequence.init({
             debug:true,
             disablestateloading:false,
+            testMode:false,
             onmoduleend:function(states,nextstep){
                 console.log('ok');
                 nextstep();

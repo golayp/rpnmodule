@@ -16556,13 +16556,13 @@ var rpncardmazemodule = function() {
         });
         bindUiEvents();
         _.each(state,function(val,idx){
-            $($('.card')[val]).trigger('click');
+            $($('.card',domelem)[val]).trigger('click');
         })
     };
 
 
     var bindUiEvents = function() {
-        _.each($('.card'), function(card, idx) {
+        _.each($('.card',domelem), function(card, idx) {
             $(card).click(function() {
                 if ($(card).hasClass('start') || $(card).hasClass('selectable') || $(card).hasClass('selected')) {
                     if (((idx == currentHead && $(card).hasClass('start') ) ||idx == currentHead + width || idx == currentHead - width || idx == currentHead - 1 || idx == currentHead + 1) && !$(card).hasClass('selected')) {
@@ -16572,9 +16572,9 @@ var rpncardmazemodule = function() {
                         snake=snake.slice(0,_.indexOf(snake,card)+1);
                     }
                     currentHead = idx;
-                    $('.selected').removeClass('selected');
-                    $('.selectable').removeClass('selectable');
-                    $('.card').removeClass('fromtop frombottom fromleft fromright totop tobottom toleft toright');
+                    $('.selected',domelem).removeClass('selected');
+                    $('.selectable',domelem).removeClass('selectable');
+                    $('.card',domelem).removeClass('fromtop frombottom fromleft fromright totop tobottom toleft toright');
                     _.each(snake,function(icard,ii){
                         if(ii>0){
                             var dif=$(icard).data('cardId')-$(snake[ii-1]).data('cardId');
@@ -16604,16 +16604,16 @@ var rpncardmazemodule = function() {
                     });
                     if (idx != endid) {
                         if (!((idx + width) > (width * height))) {
-                            $($('.card')[idx + width]).addClass('selectable');
+                            $($('.card',domelem)[idx + width]).addClass('selectable');
                         }
                         if (!((idx - width) < 0)) {
-                            $($('.card')[idx - width]).addClass('selectable');
+                            $($('.card',domelem)[idx - width]).addClass('selectable');
                         }
                         if (idx % width != 0) {
-                            $($('.card')[idx - 1]).addClass('selectable');
+                            $($('.card',domelem)[idx - 1]).addClass('selectable');
                         }
                         if ((idx + 1) % width != 0) {
-                            $($('.card')[idx + 1]).addClass('selectable');
+                            $($('.card',domelem)[idx + 1]).addClass('selectable');
                         }
                     }
                 }
@@ -16675,7 +16675,7 @@ var rpndragdropsortingmodule = function() {
             $('.dropzonecontainer',domelem).append($('<div class="col-md-2"><div class="droppable"><span class="lead">' + drop + '</span><ul class="list-unstyled"></ul></div></div>'));
             if(!_.isUndefined(state[drop])){
                 _.each(state[drop],function(dropped,idxi){
-                    $('ul',$('.droppable')[idx]).append('<li class="draggable">'+dropped+'</li>');
+                    $('ul',$('.droppable',domelem)[idx]).append('<li class="draggable">'+dropped+'</li>');
                 });
             }
         });
@@ -16692,7 +16692,6 @@ var rpndragdropsortingmodule = function() {
                 nextDraggable();
             }
         });
-        
         bindUiEvents();
         nextDraggable();
     };
@@ -16700,8 +16699,8 @@ var rpndragdropsortingmodule = function() {
     var nextDraggable = function() {
         if ($('.dragthis li',domelem).length == 0 && state.todrag.length > 0) {
             var itemToDrag = _.last(state.todrag);
-            $('.dragthis').append($('<li class="draggable">' + itemToDrag + '</li>'));
-            $('.dragthis').sortable({
+            $('.dragthis',domelem).append($('<li class="draggable">' + itemToDrag + '</li>'));
+            $('.dragthis',domelem).sortable({
                 connectWith: '.droppable ul',
                 appendTo:'body',
                 placeholder:'droppable-placeholder',
@@ -17387,6 +17386,7 @@ var rpnsequence = (function() {
     var btnOrder;
     var btnRecall;
     var bypassModule;
+    var testMode;
     var navigationEnabled;
     var debug;
     var loadstate;
@@ -17447,7 +17447,8 @@ var rpnsequence = (function() {
             disablestateloading:false,
             navigationEnabled: false,
             quitDisabled:false,
-            bypassModule:false
+            bypassModule:false,
+            testMode:false
         });
         selectedLabels = labels[opts.language];
         states = [];
@@ -17463,6 +17464,7 @@ var rpnsequence = (function() {
         readyHandler = opts.onsequenceready;
         
         bypassModule=opts.bypassModule;
+        testMode=opts.testMode;
         $.getJSON(opts.sequrl, function(datas) {
             _.defaults(datas, {
                 title: "sequencetitle",
@@ -17618,23 +17620,23 @@ var rpnsequence = (function() {
                 modules[idx]=rpnsortingmodule();
                 modules[idx].init(modData,states[idx].state, divContent);
             }
-            else if (modData.type == 'plumb') {
-                modules[idx]=rpnplumbmodule();
-                modules[idx].init(modData,states[idx].state, divContent);
-            }
             else if (modData.type == 'map') {
                 modules[idx]=rpnmapmodule();
                 modules[idx].init(modData,states[idx].state, divContent);
             }
             handleMediaPath(rpnmInstance);
             moduleLocation.append(rpnmInstance);
-            
+            //load plumb module after dom append in order to make connector available for paint
+            if (modData.type == 'plumb') {
+                modules[idx]=rpnplumbmodule();
+                modules[idx].init(modData,states[idx].state, divContent);
+            }
             rpnmInstance.hide();
             if(modData.type!='gapfull'){
                 divContent.disableSelection();
             }
             $('#rpnm_modulenav ul').append($('<li><a href="#">' + (idx + 1) + '</a></li>'));
-            if(bypassModule){
+            if(bypassModule && idx==sequencedatas.modules.length-1){
                 handleEndOfSequence();
             }
         });
@@ -17669,7 +17671,6 @@ var rpnsequence = (function() {
     };
 
     var displayCurrentModule = function() {
-        $('#rpnm_wait_modal').modal({show:true,backdrop:'static',keyboard:false});
         var moduleDatas = sequencedatas.modules[currentmod];
         _.defaults(moduleDatas, {
             title: "title"
@@ -17693,7 +17694,6 @@ var rpnsequence = (function() {
         if(!_.isUndefined( modules[currentmod].displayed)){
             modules[currentmod].displayed();
         }
-        $('#rpnm_wait_modal').modal('hide');
     };
 
     var bindModuleSharedDatas = function(datas) {
@@ -17725,8 +17725,6 @@ var rpnsequence = (function() {
     };
 
     var handleEndOfModule = function(state,nextmodtoshow) {
-        $('#rpnm_wait_modal').modal({show:true,backdrop:'static',keyboard:false});
-        log('End of module');
         //store result locally
         states[currentmod] = {
             state:state
@@ -17745,19 +17743,34 @@ var rpnsequence = (function() {
 
     var handleEndOfSequence = function() {
         log('End of sequence');
-        log(JSON.stringify({states:_.map(states,function(sta){return sta.state;})},null, '\t'));
+        if(!testMode && !bypassModule){
+            log(JSON.stringify({states:_.map(states,function(sta){return sta.state;})},null, '\t'));
+        }
         //retrieve solutions and use correction function to make score
-        $.getJSON(solurl, function(ssol) {
-            var score = 0;
-            _.each(ssol.solutions, function(sol, idx) {
-                score +=modules[idx].score(sol);
+        if(bypassModule || testMode){
+            $.getJSON(solurl, function(ssol) {
+                var score = 0;
+                _.each(ssol.solutions, function(sol, idx) {
+                    score +=modules[idx].score(sol);
+                });
+                if (warnexit) {
+                    $(window).unbind('beforeunload');
+                }
+                if(testMode){
+                    displayAlert('Score :' + score + ' pt' + (score>1?'s':''),function(){
+                        sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score);
+                    });
+                    log('SCORE: '+ score);
+                }
+                if(bypassModule){
+                    sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score);
+                }
+                
             });
-            log('Calculated total score for sequence ' + score);
-            if (warnexit) {
-                $(window).unbind('beforeunload');
-            }
-            sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score);
-        });
+        }else{
+            $('#rpnm_wait_modal').modal({show:true,backdrop:'static',keyboard:false});
+            sequenceendHandler({states:_.map(states,function(sta){return sta.state;})});
+        }
     };
 
     var displayAlert = function(text, onclose) {
@@ -17976,7 +17989,7 @@ var rpnsortingmodule = function() {
           placeholder: "sorting-highlight",
           tolerance:"pointer"
         });
-        $( "#sortable" ).disableSelection();
+        $(domelem).disableSelection();
         bindUiEvents();
     };
 
@@ -18001,7 +18014,6 @@ var rpnsortingmodule = function() {
         return score;
     };
     
-
     return {
         init: init,
         validate: validate,

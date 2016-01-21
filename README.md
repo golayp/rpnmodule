@@ -1,5 +1,5 @@
 <h1>rpnmodule</h1>
-<strong>v0.2.1</strong>
+<strong>v0.2.2</strong>
 <p>rpnmodule is a project aiming to provide a base library for running educational sequences of modules. It'll provide common features for modules that can be arranged in a sequence of work:</p>
 <p>As the project evolves the main module in the library is rpnsequence, but project name is still rpnmodule... Sorry for confusion!!!!</p>
 
@@ -27,18 +27,20 @@
 
 <h2>main options for rpnsequence init</h2>
 <ul>
-    <li>sequrl - the url where to find json module sequence datas. Default: seq.json</li>
-    <li>solurl - the url where to find json module sequence solutions. Default: sol.json</li>
-    <li>warnonexit - do the module sequence has to display a waring message (html onbeforeunload classic warning)? default: false</li>
+    <li>sequrl - the url where to find json module sequence datas (default: seq.json)</li>
+    <li>solurl - the url where to find json module sequence solutions (default: sol.json)</li>
+    <li>warnonexit - do the module sequence has to display a waring message (html onbeforeunload classic warning)? (default: false)</li>
     <li>domelem - the element where to add sequence. default: $('body')</li>
-    <li>onsequenceend (states, score) - handler called on end of sequence , receive states and score as parameters. Default: an empty function</li>
-    <li>onmoduleend (states)-  handler called on end of each module , receive states as parameter. Default: an empty function</li>
-    <li>mediapathformatter - a function to update media paths. default: function(val){return 'medias/'+val;}</li>
-    <li>language - which language to use for labels? Default:fr available: fr,en</li>
-    <li>debug - add some console output. default: false</li>
-    <li>disablestateloading - if true bypass loading states and generate empty states for modules. default: false</li>
-    <li>navigationEnabled - Does the sequence have to display a navigation pager? default: false</li>
-    <li>quitDisabled - Does the sequence have to hide the upper quit button? default: false</li>
+    <li>onsequenceend (states, score) - handler called on end of sequence , receive states and score as parameters (default: an empty function)</li>
+    <li>onmoduleend (states)-  handler called on end of each module , receive states as parameter (default: an empty function)</li>
+    <li>mediapathformatter - a function to update media paths (default: function(val){return 'medias/'+val;})</li>
+    <li>language - which language to use for labels? (default:fr available: fr,en)</li>
+    <li>debug - add some console output (default: false)</li>
+    <li>disablestateloading - if true bypass loading states and generate empty states for modules (default: false)</li>
+    <li>navigationEnabled - Does the sequence have to display a navigation pager? (default: false)</li>
+    <li>quitDisabled - Does the sequence have to hide the upper quit button? (default: false)</li>
+    <li>bypassModule - Compute score without ui rendering for correction purpose (default: false)</li>
+    <li>testMode - Correct module and display score in a modal at end of sequence for test purpose (default: false)</li>
 </ul>
 
 <h2>default sequence datas</h2>

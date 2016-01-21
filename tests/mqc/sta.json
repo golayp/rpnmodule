@@ -2,25 +2,20 @@
 	"states": [
 		{
 			"responses": [
-				"What",
-				"When",
-				"Where",
-				"Who",
-				"What",
-				"When"
+				"answer 1",
+				"answer 1",
+				"answer 1",
+				"answer 1",
+				"answer 1",
+				"answer 1"
 			]
 		},
 		{
 			"responses": [
-				"What",
-				"When",
-				"What",
-				"What"
-			]
-		},
-		{
-			"responses": [
-				"What"
+				"answer 1",
+				"answer 5",
+				"answer 9",
+				"answer 13"
 			]
 		},
 		{
@@ -31,11 +26,6 @@
 		{
 			"responses": [
 				"What"
-			]
-		},
-		{
-			"responses": [
-				"Where"
 			]
 		}
 	]
