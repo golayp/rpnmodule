@@ -41,6 +41,7 @@
     <li>quitDisabled - Does the sequence have to hide the upper quit button? (default: false)</li>
     <li>bypassModule - Compute score without ui rendering for correction purpose (default: false)</li>
     <li>testMode - Correct module and display score in a modal at end of sequence for test purpose (default: false)</li>
+    <li>background - A background image shared by all modules--> this can be overwriten by background property in module</li>
 </ul>
 
 <h2>default sequence datas</h2>

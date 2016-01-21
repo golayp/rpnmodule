@@ -1,9 +1,8 @@
-
 /* global _*/
 /*!
- * rpnmodule 0.1.8 (https://github.com/golayp/rpnmodule)
+ * rpnmodule 0.2.2 (https://github.com/golayp/rpnmodule)
  * 
- * Dependencies: jquery 2.1.3, bootstrap 3.3.2, underscore 1.7.0
+ * Dependencies: jquery 2.1.3, bootstrap 3.3.6, underscore 1.8.3
  * 
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
@@ -30,6 +29,7 @@ var rpnsequence = (function() {
     var debug;
     var loadstate;
     var selectedLabels;
+    var moduleLocation;
     var modules;
 
     var labels = {
@@ -104,6 +104,7 @@ var rpnsequence = (function() {
         
         bypassModule=opts.bypassModule;
         testMode=opts.testMode;
+        
         $.getJSON(opts.sequrl, function(datas) {
             _.defaults(datas, {
                 title: "sequencetitle",
@@ -135,7 +136,7 @@ var rpnsequence = (function() {
         return ["#8d61a4","#01a271","#5dc2e7","#ed656a","#f5a95e","#eee227","#7a5a14","#bbbbbb","#63b553","#e95c7b","#f5a95e"][idx];
     }
     var buildUi = function() {
-        var moduleLocation=$('<div></div>')
+        moduleLocation=$('<div></div>')
         validationButton=$('<button class="btn btn-success" id="rpnm_validation"></button>');
         btnOrder=$('<button class="btn btn-default btn-sm" data-target="#rpnm_order_modal" data-toggle="modal"><span class="visible-xs visible-sm"><i class="glyphicon glyphicon-question-sign"></i></span><span class="visible-md visible-lg"><i class="glyphicon glyphicon-question-sign"></i> ' + selectedLabels.Order + '</span></button>');
         btnRecall=$('<button class="btn btn-default btn-sm" data-target="#rpnm_recall_modal" data-toggle="modal"><span class="visible-xs visible-sm"><i class="glyphicon glyphicon-bell"></i></span><span class="visible-md visible-lg"><i class="glyphicon glyphicon-bell"></i> ' + selectedLabels.Recall + '</span></button>');
@@ -167,7 +168,6 @@ var rpnsequence = (function() {
         if (!navigationEnabled) {
             $('#rpnm_modulenav').remove();
         }
-
         _.each(sequencedatas.modules, function(modData, idx) {
             _.defaults(modData,{
                 disposition:'top'
@@ -182,6 +182,10 @@ var rpnsequence = (function() {
             var divContext=$('<div id="rpnm_context"></div>');
             var divDirective=$('<div id="rpnm_directive"></div>');
             var divContent=$('<div>');
+            
+           
+            
+            
             var rpnmInstance = $('<div id="rpnm_inst_' + idx + '" class="row rpnm_instance">');
                 
             if(modData.disposition=='bottom'){
@@ -289,6 +293,7 @@ var rpnsequence = (function() {
         ready();
     };
     
+    
     var ready=function(){
         readyHandler();
     };
@@ -350,6 +355,19 @@ var rpnsequence = (function() {
             $('#rpnm_order_modal .modal-body').html(sequencedatas.order);
             btnOrder.show();
         }
+        if(!_.isUndefined(datas.background) || !_.isUndefined(sequencedatas.background)){
+            moduleLocation.css({
+                    'background-image':'url(' + mediapathHandler(_.isUndefined(datas.background)?sequencedatas.background:datas.background) + ')',
+                    'background-repeat': 'no-repeat',
+                    'background-position': 'top center',
+                    'background-size':'cover'
+            });
+        }else{
+            moduleLocation.css({
+                'background-image':'none'
+            });
+        }
+        
         if(_.isUndefined(datas.recall)&&_.isUndefined(sequencedatas.recall)){
             btnRecall.hide();  
         }else{
