@@ -115,17 +115,28 @@
 
 /*sorting*/
 .sorting li{
+    line-height:@line-height;
+    height:@line-height;
     cursor:pointer;
     background-color:@gray-lighter;
-    margin-right:3px;
+    margin-bottom:3px;
+    
 }
-.sorting-highlight {
-    width:50px;
+.sorting .list-inline li{
+    margin-right:3px;
+    display:inline-block;
+}
+.sorting .sorting-highlight{
     height:@line-height;
     line-height:@line-height;
     vertical-align: bottom;
     display:inline-block;
     border: @borderDashed;
+    background-color:none;
+    width:100%;
+}
+.sorting .list-inline .sorting-highlight {
+    width:80px;
 }
 
 /*plumb*/

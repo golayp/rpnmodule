@@ -88,17 +88,27 @@
 /*dropdown*/
 /*sorting*/
 .sorting li {
+  line-height: 30px;
+  height: 30px;
   cursor: pointer;
   background-color: #eeeeee;
-  margin-right: 3px;
+  margin-bottom: 3px;
 }
-.sorting-highlight {
-  width: 50px;
+.sorting .list-inline li {
+  margin-right: 3px;
+  display: inline-block;
+}
+.sorting .sorting-highlight {
   height: 30px;
   line-height: 30px;
   vertical-align: bottom;
   display: inline-block;
   border: 1px dashed #555555;
+  background-color: none;
+  width: 100%;
+}
+.sorting .list-inline .sorting-highlight {
+  width: 80px;
 }
 /*plumb*/
 .plumbsource li,

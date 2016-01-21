@@ -597,7 +597,6 @@ var rpnsequence = (function() {
     
     return {
         init: init,
-        
         displayAlert: displayAlert,
         log: log,
         getLabels: getLabels,

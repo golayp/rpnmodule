@@ -17958,7 +17958,6 @@ var rpnsequence = (function() {
     
     return {
         init: init,
-        
         displayAlert: displayAlert,
         log: log,
         getLabels: getLabels,
@@ -17978,7 +17977,8 @@ var rpnsortingmodule = function() {
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
             sentence: ["sentence", "not", "set!"],
-            shuffle:false
+            shuffle:false,
+            vertical:false
         });
         datas = _datas;
         domelem = _domelem;
@@ -17998,7 +17998,7 @@ var rpnsortingmodule = function() {
         domelem.addClass('sorting');
 
         //build sentence with items to select
-        var sentenceToSort=$('<ul class="list-unstyled list-inline"></ul>');
+        var sentenceToSort=$('<ul class="list-unstyled'+(datas.vertical?'':' list-inline')+'"></ul>');
         _.each(state, function(item, idx) {
             sentenceToSort.append($('<li>'+item+'</li>'));
         });
