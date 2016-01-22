@@ -267,13 +267,14 @@ var rpnsequence = (function() {
                 modules[idx]=rpnmapmodule();
                 modules[idx].init(modData,states[idx].state, divContent);
             }
-            handleMediaPath(rpnmInstance);
+            
             moduleLocation.append(rpnmInstance);
             //load plumb module after dom append in order to make connector available for paint
             if (modData.type == 'plumb') {
                 modules[idx]=rpnplumbmodule();
                 modules[idx].init(modData,states[idx].state, divContent);
             }
+            handleMediaPath(rpnmInstance);
             rpnmInstance.hide();
             if(modData.type!='gapfull'){
                 divContent.disableSelection();

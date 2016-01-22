@@ -16430,7 +16430,7 @@ var rpnblackboxmodule = function() {
     };
 
     var buildUi = function() {
-        domelem.addClass('blackbox,text-center');
+        domelem.addClass('blackbox text-center');
 
         domelem.append($('<div class="row header"><div class="col-md-3 hidden-xs hidden-sm"></div><div class="col-xs-2"><p class="text-center">x</p></div><div class="col-xs-2 operation"></div><div class="col-xs-2"><p class="text-center">y</p></div></div>'));
         $('.header', domelem).hide();
@@ -17628,13 +17628,14 @@ var rpnsequence = (function() {
                 modules[idx]=rpnmapmodule();
                 modules[idx].init(modData,states[idx].state, divContent);
             }
-            handleMediaPath(rpnmInstance);
+            
             moduleLocation.append(rpnmInstance);
             //load plumb module after dom append in order to make connector available for paint
             if (modData.type == 'plumb') {
                 modules[idx]=rpnplumbmodule();
                 modules[idx].init(modData,states[idx].state, divContent);
             }
+            handleMediaPath(rpnmInstance);
             rpnmInstance.hide();
             if(modData.type!='gapfull'){
                 divContent.disableSelection();
