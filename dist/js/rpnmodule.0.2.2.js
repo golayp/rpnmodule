@@ -17502,11 +17502,15 @@ var rpnsequence = (function() {
         btnOrder=$('<button class="btn btn-default btn-sm" data-target="#rpnm_order_modal" data-toggle="modal"><span class="visible-xs visible-sm"><i class="glyphicon glyphicon-question-sign"></i></span><span class="visible-md visible-lg"><i class="glyphicon glyphicon-question-sign"></i> ' + selectedLabels.Order + '</span></button>');
         btnRecall=$('<button class="btn btn-default btn-sm" data-target="#rpnm_recall_modal" data-toggle="modal"><span class="visible-xs visible-sm"><i class="glyphicon glyphicon-bell"></i></span><span class="visible-md visible-lg"><i class="glyphicon glyphicon-bell"></i> ' + selectedLabels.Recall + '</span></button>');
         source=$('<div class="col-md-12"></div>');
+        var baseContainer=$('<div class="container"></div>');
+        if(!_.isUndefined(sequencedatas.cssClass)){
+            baseContainer.addClass(sequencedatas.cssClass);
+        }
         domelem.append([
-            $('<div class="container"></div>').append([
+            baseContainer.append([
                 $('<div class="row sequence-header"></div>').append([
                     $('<div class="col-md-5"><h1>'+sequencedatas.title+'</h1></div>'),
-                    $('<div class="col-xs-4 visible-lg visible-md"><nav id="rpnm_modulenav"><ul class="pagination pagination-sm"></div>'),
+                    $('<div class="col-xs-4"><nav id="rpnm_modulenav"><ul class="pagination pagination-sm"></div>'),
                     $('<div class="col-md-3"></div>').append([
                         btnOrder,
                         btnRecall
@@ -17684,6 +17688,9 @@ var rpnsequence = (function() {
         $('.rpnm_instance').hide();
 
         var moduleDiv = $('#rpnm_inst_' + currentmod);
+        if(!_.isUndefined(moduleDatas.cssClass)){
+            moduleDiv.addClass(moduleDatas.cssClass);
+        }
         bindModuleSharedDatas(moduleDatas);
         
         //navigation
@@ -17787,6 +17794,9 @@ var rpnsequence = (function() {
                 
             });
         }else{
+            if (warnexit) {
+                $(window).unbind('beforeunload');
+            }
             $('#rpnm_wait_modal').modal({show:true,backdrop:'static',keyboard:false});
             sequenceendHandler({states:_.map(states,function(sta){return sta.state;})});
         }

@@ -20,7 +20,6 @@
         },
         {
             "type":"blackbox",
-            
             "directive":"directive from module",
             "context":"context from module",
             "recall":"recall from module",

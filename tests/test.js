@@ -46,6 +46,7 @@ require([
             debug:true,
             disablestateloading:false,
             testMode:false,
+            warnonexit:true,
             onmoduleend:function(states,nextstep){
                 console.log('ok');
                 nextstep();
