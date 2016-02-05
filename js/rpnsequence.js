@@ -412,33 +412,26 @@ var rpnsequence = (function() {
             log(JSON.stringify({states:_.map(states,function(sta){return sta.state;})},null, '\t'));
         }
         //retrieve solutions and use correction function to make score
-        if(bypassModule || testMode){
-            $.getJSON(solurl, function(ssol) {
-                var score = 0;
-                _.each(ssol.solutions, function(sol, idx) {
-                    score +=modules[idx].score(sol);
-                });
-                if (warnexit) {
-                    $(window).unbind('beforeunload');
-                }
-                if(testMode){
-                    displayAlert('Score :' + score + ' pt' + (score>1?'s':''),function(){
-                        sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score);
-                    });
-                    log('SCORE: '+ score);
-                }
-                if(bypassModule){
-                    sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score);
-                }
-                
+        $.getJSON(solurl, function(ssol) {
+            var score = 0;
+            _.each(ssol.solutions, function(sol, idx) {
+                score +=modules[idx].score(sol);
             });
-        }else{
+            log('SCORE: '+ score);
             if (warnexit) {
                 $(window).unbind('beforeunload');
             }
-            $('#rpnm_wait_modal').modal({show:true,backdrop:'static',keyboard:false});
-            sequenceendHandler({states:_.map(states,function(sta){return sta.state;})});
-        }
+            if(testMode){
+                displayAlert('Score :' + score + ' pt' + (score>1?'s':''),function(){
+                    sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score);
+                });
+            }
+            else
+            {
+                sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score);
+            }
+            
+        });
     };
 
     var displayAlert = function(text, onclose) {

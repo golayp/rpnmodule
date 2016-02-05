@@ -8,6 +8,30 @@
             "directive":"do this",
             "todrag":["1","green","blue","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet.","A","3","yellow","C","Z"],
             "todrop":["letters","colors","numbers","sentences"]
+        },
+        {
+            "type":"dragdropsorting",
+            "title":"a dragdropsorting module",
+            "context":"",
+            "directive":"do this",
+            "todrag":["1","green","blue","A","3","yellow","C","Z"],
+            "todrop":["letters","colors","numbers"]
+        },
+        {
+            "type":"dragdropsorting",
+            "title":"a dragdropsorting module",
+            "context":"",
+            "directive":"do this",
+            "todrag":["1","green","blue","A","3","yellow","C","Z"],
+            "todrop":["letters","colors","numbers","test2","test3"]
+        },
+        {
+            "type":"dragdropsorting",
+            "title":"a dragdropsorting module",
+            "context":"",
+            "directive":"do this",
+            "todrag":["green","blue","A","C","Z"],
+            "todrop":["letters","colors"]
         }
     ]
 }
