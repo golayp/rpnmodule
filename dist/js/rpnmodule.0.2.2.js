@@ -16670,9 +16670,9 @@ var rpndragdropsortingmodule = function() {
     var buildUi = function() {
         domelem.addClass('dragdropsorting');
         domelem.append($('<div class="row"><div class="container"><div class="col-md-2 col"><ul id="drag_this_'+domelem.attr('id')+'" class="dragthis list-unstyled"></ul></div></div><div class="row"><div class="container dropzonecontainer"></div></div>'));
-
+        var nbcol=datas.todrop.length
         $.each(datas.todrop, function(idx, drop) {
-            $('.dropzonecontainer',domelem).append($('<div class="col-md-2"><div class="droppable"><span class="lead">' + drop + '</span><ul class="list-unstyled"></ul></div></div>'));
+            $('.dropzonecontainer',domelem).append($('<div class="col-xs-'+(nbcol<5?'3':'2')+(idx==0?(nbcol==2?' col-xs-offset-3':(nbcol==3||nbcol==5)?' col-xs-offset-1':''):'')+'"><div class="droppable"><span class="lead">' + drop + '</span><ul class="list-unstyled"></ul></div></div>'));
             if(!_.isUndefined(state[drop])){
                 _.each(state[drop],function(dropped,idxi){
                     $('ul',$('.droppable',domelem)[idx]).append('<li class="draggable">'+dropped+'</li>');
