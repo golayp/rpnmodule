@@ -1,119 +1,14 @@
 //twolists
-jQuery.fn.resizeDelayed = (function(){
-
-    // >>> THIS PART RUNS ONLY ONCE - RIGHT NOW
-
-    var rd_funcs = [], rd_counter = 1, foreachResizeFunction = function( func ){ for( var index in rd_funcs ) { func(index); } };
-
-    // REGISTER JQUERY RESIZE EVENT HANDLER
-    jQuery(window).resize(function() {
-
-        // SET/RESET TIMEOUT ON EACH REGISTERED FUNCTION
-        foreachResizeFunction(function(index){
-
-            // IF THIS FUNCTION IS MANUALLY DISABLED ( by calling jQuery(window).resizeDelayed(false, 'id') ),
-            // THEN JUST CONTINUE TO NEXT ONE
-            if( rd_funcs[index] === false )
-                return; // CONTINUE;
-
-            // IF setTimeout IS ALREADY SET, THAT MEANS THAT WE SHOULD RESET IT BECAUSE ITS CALLED BEFORE DURATION TIME EXPIRES
-            if( rd_funcs[index].timeout !== false )
-                clearTimeout( rd_funcs[index].timeout );
-
-            // SET NEW TIMEOUT BY RESPECTING DURATION TIME
-            rd_funcs[index].timeout = setTimeout( rd_funcs[index].func, rd_funcs[index].delay );
-
-        });
-
-    });
-
-    // <<< THIS PART RUNS ONLY ONCE - RIGHT NOW
-
-    // RETURN THE FUNCTION WHICH JQUERY SHOULD USE WHEN jQuery(window).resizeDelayed(...) IS CALLED
-    return function( func_or_false, delay_or_id, id ){
-
-        // FIRST PARAM SHOULD BE SET!
-        if( typeof func_or_false == "undefined" ){
-
-            console.log( 'jQuery(window).resizeDelayed(...) REQUIRES AT LEAST 1 PARAMETER!' );
-            return this; // RETURN JQUERY OBJECT
-
-        }
-
-        // SHOULD WE DELETE THE EXISTING FUNCTION(S) INSTEAD OF CREATING A NEW ONE?
-        if( func_or_false == false ){
-
-            // DELETE ALL REGISTERED FUNCTIONS?
-            if( typeof delay_or_id == "undefined" ){
-
-                // CLEAR ALL setTimeout's FIRST
-                foreachResizeFunction(function(index){
-
-                    if( typeof rd_funcs[index] != "undefined" && rd_funcs[index].timeout !== false )
-                        clearTimeout( rd_funcs[index].timeout );
-
-                });
-
-                rd_funcs = [];
-
-                return this; // RETURN JQUERY OBJECT
-
-            }
-            // DELETE ONLY THE FUNCTION WITH SPECIFIC ID?
-            else if( typeof rd_funcs[delay_or_id] != "undefined" ){
-
-                // CLEAR setTimeout FIRST
-                if( rd_funcs[delay_or_id].timeout !== false )
-                    clearTimeout( rd_funcs[delay_or_id].timeout );
-
-                rd_funcs[delay_or_id] = false;
-
-                return this; // RETURN JQUERY OBJECT
-
-            }
-
-        }
-
-        // NOW, FIRST PARAM MUST BE THE FUNCTION
-        if( typeof func_or_false != "function" )
-            return this; // RETURN JQUERY OBJECT
-
-        // SET THE DEFAULT DELAY TIME IF ITS NOT ALREADY SET
-        if( typeof delay_or_id == "undefined" || isNaN(delay_or_id) )
-            delay_or_id = 500;
-
-        // SET THE DEFAULT ID IF ITS NOT ALREADY SET
-        if( typeof id == "undefined" )
-            id = rd_counter;
-
-        // ADD NEW FUNCTION TO RESIZE EVENT
-        rd_funcs[id] = {
-            func : func_or_false,
-            delay: delay_or_id,
-            timeout : false
-        };
-
-        rd_counter++;
-
-        return this; // RETURN JQUERY OBJECT
-
-    }
-
-})();
 var rpntwolistsmodule = function() {
 	rpnsequence.log('Dans twolistsmodule')
+
     var datas;
     var domelem;
     var state;
     var bezier=new Array();
     var windowWidth=window.innerWidth;
     var windowHeight=window.innerHeight;
-    //Pour buidUI
-    var leftdiv, 
-	    rightdiv, 
-	    centerdiv,
-	    L_items,
-	    R_items;
+    
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -155,12 +50,14 @@ var rpntwolistsmodule = function() {
            // }
         }
         buildUi();
-        
     };
-	
+	var leftdiv, 
+	    rightdiv, 
+	    centerdiv,
+	    L_items,
+	    R_items;
     
     var buildUi = function() {
-    	
         var myCanvasPositionHeight=(datas.rightitems.length+datas.leftitems.length)*100/2;
         domelem.addClass('twolists');
         var math=$('<div class="row"><math  display="block"><mspace height="40px"/><mfrac linethickness="2px" numalign="left" denomalign="left"><mrow><mfrac bevelled="true"><mn>1</mn><mi>x</mi></mfrac><mo>+</mo><mfrac bevelled="true"><mn>2</mn><mi>x</mi></mfrac><mo>+</mo><mo>&hellip;</mo></mrow><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>x</mi><mn>4</mn></msup><mo>+</mo><mo>&hellip;</mo></mrow></mfrac></math></div>');
@@ -209,7 +106,7 @@ var rpntwolistsmodule = function() {
             targetsName[datas.idmodule].push('#radright_'+idx+'_'+datas.idmodule);
             
         });
-        //rpnsequence.log('targetsName'+targetsName)
+        
         domelem.append(leftdiv);
         domelem.append(centerdiv);
         domelem.append(rightdiv);
@@ -223,16 +120,62 @@ var rpntwolistsmodule = function() {
 		//	rpnsequence.log('bezier[0].target'+bezier[0].target)
 	     //   bezier[0].drawCubicNewPosition(30,50, 100, 80, 100, 80, 30, 50);	
 		//}
-		//rpnsequence.log("$('#c'+datas.idmodule)"+$('#c'+datas.idmodule).attr('id'))
-		//rpnsequence.log("$('#c'+datas.idmodule)"+$('#c'+datas.idmodule).attr('selection'))
-	//	resizeW($('#c'+datas.idmodule), windowWidth, windowHeight);
-	//rpnsequence.log('datas.idmodule'+datas.idmodule)
-	//rpnsequence.log('datas.nbmodules'+datas.nbmodules)
-	resizeWindow(bezier, datas);
+		rpnsequence.log("$('#c'+datas.idmodule)"+$('#c'+datas.idmodule).id)
+		resizeW($('#c'+datas.idmodule), windowWidth, windowHeight);
+	
     };
     
-   
+  /*  $(window).resize(function (){
+    	var myCanvasHere=$('#c'+datas.idmodule);
+ 		if (windowWidth != window.innerWidth||windowHeight!=window.innerHeight) {
+            var scaleMultiplierH = window.innerWidth / windowWidth;
+            var scaleMultiplierV = window.innerHeight/ windowHeight;
+            var objects = myCanvasHere.getObjects();
+            for (var i in objects) {
+            	rpnsequence.log (i)
+                objects[i].scaleX = objects[i].scaleX * scaleMultiplierH;
+                objects[i].scaleY = objects[i].scaleY * scaleMultiplierV;
+                objects[i].left = objects[i].left * scaleMultiplierH;
+                objects[i].top = objects[i].top * scaleMultiplierV;
+                objects[i].setCoords();
+            }
 
+            myCanvasHere.setWidth(myCanvasHere.getWidth() * scaleMultiplierH);
+            myCanvasHere.setHeight(myCanvasHere.getHeight() * scaleMultiplierV);
+            myCanvasHere.renderAll();
+            myCanvasHere.calcOffset();
+        }
+    });
+  */ 
+/*    $( window ).resize(function() {
+		    _.each(bezier, function(item,idx) {
+		    	var myid=idx+10*datas.idmodule;
+		    	//rpnsequence.log('datas.idmodule'+datas.idmodule);
+		    	//rpnsequence.log('item'+item);
+		    	rpnsequence.log('idx'+idx);
+			  	if(bezier[myid]){
+			  		var coor=coordsBezier(idx,datas.idmodule);
+			  		//rpnsequence.log('coor'+coor)
+			  		//rpnsequence.log('idx'+idx);
+			  		//rpnsequence.log('coordsBezier()'+coordsBezier(idx,datas.idmodule));
+			  		//rpnsequence.log('bezier[myid].targets: '+bezier[myid].fromX)
+			  		var fx=coor[0];
+			  		var fy=coor[1];
+			  		var tx=coor[2];
+			  		var ty=coor[3];
+			  		var gfx=coor[2];
+			  		var gfy=coor[1];
+			  		var gtx=coor[0];
+			  		var gty=coor[3];
+					//rpnsequence.log('bezier[0].target'+bezier[0].target)
+			        //bezier[myid].drawCubicNewPosition(30,50, 100, 80, 100, 80, 30, 50);
+			        bezier[myid].drawCubicNewPosition(fx,fy, tx, ty, gfx, gfy, gtx, gty);
+				}
+				//k++;
+		    });
+    	//};
+	});
+*/
     var validate = function(){
         var k=0;
          $.each(bezier, function(idx) {
@@ -281,15 +224,41 @@ var rpntwolistsmodule = function() {
     };
 
 };
+function resizeW(canv, ww, wh){
+	rpnsequence.log('rpntwolists.windowWidth'+rpntwolistsmodule.windowWidth)
+ 	$(window).resize(function (){
+ 		if (ww != window.innerWidth||wh!=window.innerHeight) {
+            var scaleMultiplierH = window.innerWidth / ww;
+            var scaleMultiplierV = window.innerHeight/ wh;
+            var objects = canv.getObjects();
+            for (var i in objects) {
+            	rpnsequence.log (i)
+                objects[i].scaleX = objects[i].scaleX * scaleMultiplierH;
+                objects[i].scaleY = objects[i].scaleY * scaleMultiplierV;
+                objects[i].left = objects[i].left * scaleMultiplierH;
+                objects[i].top = objects[i].top * scaleMultiplierV;
+                objects[i].setCoords();
+            }
 
+            canv.setWidth(canv.getWidth() * scaleMultiplierH);
+            canv.setHeight(canv.getHeight() * scaleMultiplierV);
+            canv.renderAll();
+            canv.calcOffset();
+            ww = window.innerWidth;
+            wh = window.innerHeight;
+            rpnsequence('rpntwolists.windowWidth'+rpntwolists.windowWidth)
+            rpntwolists.windowWidth= window.innerWidth;
+            rpntwolists.windowHeight= window.innerHeight;
+       }
+ 	
+ 	}); 
+};
 function buildBezier(targetsName, datas, targets, nbleft, nbright, nbbezier, state, bezier, availableColors, myCanvas){ 
         	//rpnsequence.log('buildBezier')
 		    for (var i = 0; i < targetsName[datas.idmodule].length; i++) {
 		        targets[datas.idmodule].push($(targetsName[datas.idmodule][i]));
 		    }
-		    
-		 
-			
+
         	var canvas = new fabric.Canvas('c'+datas.idmodule,{
         		hoverCursor:'pointer',
         		selection: false
@@ -313,10 +282,10 @@ function buildBezier(targetsName, datas, targets, nbleft, nbright, nbbezier, sta
         	        	var myTopL=$('#radleft_'+state[myid].response[0]).offset().top;
         	        	var myTopR=$('#radright_'+state[myid].response[0]).offset().top;
         	        }else{
-        	        	var myTopL=$('#radleft_0_'+datas.idmodule).height()+5+i*20;
-        	        	//var myTopL=$('#radleft_'+i+'_'+datas.idmodule).offset().top-$('#rpnm_module_content').offset().top+5;
-        	        	//var myTopR=$('#radright_'+i+'_'+datas.idmodule).offset().top-$('#rpnm_module_content').offset().top+5;
-        	        	var myTopR=myTopL;
+        	        	//var myTopL=$('#radleft_0_'+datas.idmodule).height()+5+i*20;
+        	        	var myTopL=$('#radleft_'+i+'_'+datas.idmodule).offset().top-$('#rpnm_module_content').offset().top+5;
+        	        	var myTopR=$('#radright_'+i+'_'+datas.idmodule).offset().top-$('#rpnm_module_content').offset().top+5;
+        	        //	var myTopR=myTopL;
         	        }
         	        
         	    }else{
@@ -334,90 +303,43 @@ function buildBezier(targetsName, datas, targets, nbleft, nbright, nbbezier, sta
         	    	//var myLeftL=$('#inputgrpleft_'+i+'_'+datas.idmodule).width()-5;
                 	//var myLeftR=$('#inputgrpright_'+i+'_'+datas.idmodule).offset().left-$('#rpnm_module_content').offset().left+3;
         	    }else{
-                	var myLeftL=0.8*$('#centerdiv_'+datas.idmodule).offset().left;
-                	//var myLeftL=$('#inputgrpleft_'+i+'_'+datas.idmodule).width()-5;
-                	var myLeftR=myLeftL+100;
-                	//var myLeftR=$('#inputgrpright_'+i+'_'+datas.idmodule).offset().left-$('#rpnm_module_content').offset().left+5;
+                	//var myLeftL=0.8*$('#centerdiv_'+datas.idmodule).offset().left;
+                	var myLeftL=$('#inputgrpleft_'+i+'_'+datas.idmodule).width()-5;
+                	//var myLeftR=myLeftL+100;
+                	var myLeftR=$('#inputgrpright_'+i+'_'+datas.idmodule).offset().left-$('#rpnm_module_content').offset().left+5;
                 	}
-                bezier[i]=new Bezier(canvas,myLeftL,myTopL,myLeftR,myTopR,myLeftR,myTopL,myLeftL,myTopR,availableColors[i],targets[datas.idmodule],myCanvas, i, datas.idmodule);
-               
-       	//  	bezier[i+10*datas.idmodule]=new Bezier(canvas,myLeft,myTop,myLeft+100,myTop,myLeft+100,myTop,myLeft,myTop,availableColors[i],targets[datas.idmodule],myCanvas);
-        	}
-}
+                bezier[i+10*datas.idmodule]=new Bezier(canvas,myLeftL,myTopL,myLeftR,myTopR,myLeftR,myTopL,myLeftL,myTopR,availableColors[i],targets[datas.idmodule],myCanvas, i, datas.idmodule);
+       	/*  	bezier[i+10*datas.idmodule]=new Bezier(canvas,myLeft,myTop,myLeft+100,myTop,myLeft+100,myTop,myLeft,myTop,availableColors[i],targets[datas.idmodule],myCanvas);
 
-function coordsBezier(num, mod, bezier, scalx, scaly){
-	rpnsequence.log('coordsBezier: '+num+'_'+mod)
-	//rpnsequence.log('coordsBezier: '+mod)
+       	    }*/
+        	}
+        	//rpnsequence.log('bezier'+bezier)
+        	//bezier[10*datas.idmodule].drawCubicNewPosition(30,35, 40, 45);
+}
+//var coordsBezier=function( datas, nbleft, nbright, nbbezier, state){ 
+function coordsBezier(num, mod){
+	//rpnsequence.log('coordsBezier'+num)
+	//rpnsequence.log('coordsBezier'+mod)
 	//rpnsequence.log("$('#rpnm_module_content').offset().top"+$('#rpnm_module_content').offset().top)
 	//rpnsequence.log("$('#radright_0_0').offset().top"+$('#radright_0_0').offset().top)
 	//var myid=num+10*mod;
-	var screenscale=window.innerHeight;
-	
 	var id0='#radleft_'+num+'_'+mod;
 	var id1='#radright_'+num+'_'+mod;
 	var id2='#inputgrpleft_'+num+'_'+mod;
 	var id3='#inputgrpright_'+num+'_'+mod;
-	rpnsequence.log("scalx"+scalx)
-	rpnsequence.log("scaly"+scaly)
-	rpnsequence.log("bezier["+num+"].fromY"+bezier[num].fromY)
-	
-	var myLeftL=bezier[num].fromX*scalx;
-	var myTopL=bezier[num].fromY*scaly;
-	var myLeftR=bezier[num].toX*scalx;
-	var myTopR=bezier[num].toY*scaly;
-	
-	
-	if(bezier[num].target[0]!=-3){
-		rpnsequence.log('bezier[num].target[0][0]'+bezier[num].target[0])
-		id0='#radleft_'+bezier[num].target[0];
-		myTopL=$(id0).offset().top-$('#rpnm_module_content').offset().top+4;
-		myLeftL=$(id2).width()-6;	
-	}
-	if(bezier[num].target[1]!=-3){
-		//rpnsequence.log('bezier[num].target[1][0]'+bezier[num].target[1])
-		id1='#radright_'+bezier[num].target[1];
-		//rpnsequence.log('id1'+id1)
-		myTopR=$(id1).offset().top-$('#rpnm_module_content').offset().top+4;
-		myLeftR=$(id3).offset().left-$('#rpnm_module_content').offset().left+4;	
-	}
-	
-	//var myG1X=bezier[num].g1X*scalx;
-	//var myG1Y=bezier[num].g1Y*scaly;
-	//var myG2X=bezier[num].g2X*scalx;
-	//var myG2Y=bezier[num].g2Y*scaly;
-	
-	//rpnsequence.log('myTopL'+Math.round(myTopL))
-	//rpnsequence.log('myTopR'+Math.round(myTopR))
-	//rpnsequence.log('myLeftL'+Math.round(myLeftL))
-	//rpnsequence.log('myLeftR'+Math.round(myLeftR))
-	
-	//if (Math.abs($(id0).offset().top-$('#rpnm_module_content').offset().top+4-myTopL)<10 && Math.round($(id2).width()-6-myLeftL)<10){
-/*	if (Math.abs($(id0).offset().top-$('#rpnm_module_content').offset().top+4-myTopL)<10 && Math.round($(id2).width()-6-myLeftL)<10){
-		myTopL=$(id0).offset().top-$('#rpnm_module_content').offset().top+4;
-		myLeftL=$(id2).width()-6;
-		rpnsequence.log('dans if sur les points debut')
-	}
-	//if (Math.abs($(id1).offset().top-$('#rpnm_module_content').offset().top+4-myTopR)<10 && Math.round($(id3).offset().left-$('#rpnm_module_content').offset().left+4-myLeftR)<10){
-	if (Math.abs($(id1).offset().top-$('#rpnm_module_content').offset().top+4-myTopR)<10 && Math.round($(id3).offset().left-$('#rpnm_module_content').offset().left+4-myLeftR)<10){
-		myTopR=$(id1).offset().top-$('#rpnm_module_content').offset().top+4;
-		myLeftR=$(id3).offset().left-$('#rpnm_module_content').offset().left+4;
-		rpnsequence.log('dans if sur les points fin')
-	}
-*/
-	
-	var myreturn=new Array(Math.round(myLeftL), Math.round(myTopL), Math.round(myLeftR), Math.round(myTopR));
-	//var myreturn=new Array(Math.round(myLeftL), Math.round(myTopL), Math.round(myLeftR), Math.round(myTopR), Math.round(myG1X), Math.round(myG1Y), Math.round(myG2X), Math.round(myG2X));
-	//if(mod==0){
-	//	rpnsequence.log('myreturn, scalx: '+myreturn+' '+scalx)	
-	//}
-	rpnsequence.log('myTopL'+Math.round(myTopL))
-	rpnsequence.log('myTopR'+Math.round(myTopR))
-	rpnsequence.log('myLeftL'+Math.round(myLeftL))
-	rpnsequence.log('myLeftR'+Math.round(myLeftR))
+	//rpnsequence.log("test"+test)
+	//rpnsequence.log("$(test).offset().top"+$(test).offset().top)
+
+	var myTopL=$(id0).offset().top-$('#rpnm_module_content').offset().top+4;
+	var myTopR=$(id1).offset().top-$('#rpnm_module_content').offset().top+4;
+
+	var myLeftL=$(id2).width()-6;
+	var myLeftR=$(id3).offset().left-$('#rpnm_module_content').offset().left+4;
+
+	var myreturn=new Array(myLeftL, myTopL, myLeftR, myTopR);
 	return myreturn;
 }
 function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myContainer,num,mod){
-	var myline=this;
 	this.myContainer=myContainer,
 	this.canvas=canvas,
 	this.fromX=fromX,
@@ -430,13 +352,17 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 	this.g2Y=g2Y,
 	this.color=color,
 	this.targets=targets,
+	this.target1=[-1,-1, 'vide1'],
+	this.target2=[-2,-2, 'vide2'],
 	this.target=[-3,-3],
 	this.num=num,
 	this.mod=mod,
+	//rpnsequence.log('this.mod'+this.mod)
 	this.make=function(fX,fY,gX1,gY1,gX2,gY2,tX,tY,color){
-		//M Début de la ligne X, Y, C les autre points, dans l'ordre 1ere poignée X, 1ere poignée Y, 2e poignée X, 2e poignée Y, fin de la ligne X, Y
-		//Autrement dit
-		//M path[0][1] path[0][2] C path[1[1] path[1][2] path[1][3] path[1][4] path[1][5] path[1][6]
+	/*	console.log('Connecteur, this.make: '+this);
+		for(i=0;i>this.targets.length;i++){
+			console.log('Connecteur, this.targets: '+this.targets[i].offset().top);
+		}*/
 		 var b = new fabric.Path('M 65 0 C 100, 100, 100, 200, 200, 0', { 
 			fill: '', 
 			stroke: color, 
@@ -460,7 +386,34 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 		//b.perPixelTargetFind = true;
 		return b;
 	},
+	make=function(fX,fY,gX1,gY1,gX2,gY2,tX,tY,color){
+	/*	console.log('Connecteur, this.make: '+this);
+		for(i=0;i>this.targets.length;i++){
+			console.log('Connecteur, this.targets: '+this.targets[i].offset().top);
+		}*/
+		 var b = new fabric.Path('M 65 0 C 100, 100, 100, 200, 200, 0', { 
+			fill: '', 
+			stroke: color, 
+			strokeWidth: 3,
+			opacity:1
+			});
 
+		b.path[0][1] = fX;
+		b.path[0][2] = fY;
+
+		b.path[1][1] = gX1;
+		b.path[1][2] = gY1;
+
+		b.path[1][3] = gX2;
+		b.path[1][4] = gY2;
+		
+		b.path[1][5] = tX;
+		b.path[1][6] = tY;
+		
+		//b.hasBorders = b.hasControls = false;
+		//b.perPixelTargetFind = true;
+		return b;
+	},
 	this.makeLine=function(coords, myId) {
 		dashL= new fabric.Line(coords, {
 		  fill: 'black',
@@ -473,8 +426,19 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 		//dashL.perPixelTargetFind = true;
 		return dashL;
 	  },
-
-	this.makeCurveCircle=function (left, top, line1, line2, line3, line4, guide, color,target,targets,cont, num, mod, guideX, guideY) {
+	makeLine=function(coords, myId) {
+		dashL= new fabric.Line(coords, {
+		  fill: 'black',
+		  stroke: 'red',
+		  strokeWidth: 1,
+		  strokeDashArray: [5, 5],
+		  opacity:0
+		});
+		//dashL.hasBorders = dashL.hasControls = false;
+		//dashL.perPixelTargetFind = true;
+		return dashL;
+	  },
+	this.makeCurveCircle=function (left, top, line1, line2, line3, line4, guide, color,target,targets,cont) {
 		var c = new fabric.Circle({
 		  radius: 5,
 		  left: left-5,
@@ -493,10 +457,6 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 		c.target=target;
 		c.targets=targets;
 		c.cont=cont;
-		c.num=num;
-		c.mod=mod;
-		c.gx=guideX;
-		c.gy=guideY;
 		
 
 		return c;
@@ -521,109 +481,41 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 
 		return d;
 	  },
-	  
-	this.onBeforeSelectionCleared=function(e) {
-	    var activeObject = e.target;
-		console.log ('before selected Cleared myline.fromY: '+myline.fromY);
-	    if (activeObject.name == "p0") {
-	    	console.log ('before selected Cleared myline.fromY: '+myline.fromY);
-	      activeObject.line2.animate('opacity', '0', {
-	        duration: 200,
-	        onChange: canvas.renderAll.bind(canvas),
-	      });
-		  activeObject.line2.selectable = false;
-		  activeObject.guide.animate('opacity', '0', {
-	        duration: 200,
-	        onChange: canvas.renderAll.bind(canvas),
-	      });
-	    }
-	    else if (activeObject.name == "p3") {
-	    	console.log ('before selected Cleared myline.toY: '+myline.toY);
-	      activeObject.line3.animate('opacity', '0', {
-	        duration: 200,
-	        onChange: canvas.renderAll.bind(canvas),
-	      });
-	      activeObject.line3.selectable = false;
-		  activeObject.guide.animate('opacity', '0', {
-	        duration: 200,
-	        onChange: canvas.renderAll.bind(canvas),
-	      });
-	    }
-	    else if (activeObject.name == "p1" || activeObject.name == "p2") {
-	      activeObject.animate('opacity', '0', {
-	        duration: 200,
-	        onChange: canvas.renderAll.bind(canvas),
-	      });
-	      activeObject.selectable = false;
-		  activeObject.guide.animate('opacity', '0', {
-	        duration: 200,
-	        onChange: canvas.renderAll.bind(canvas),
-	      });
-	    }
-	  },
 	this.onObjectSelected=function(e){
 		var activeObject = e.target;
-		if(p.num==myline.num && p.mod==myline.mod){
-			if (activeObject.name == "p0") {
-				console.log ('selected myline.fromY: '+myline.fromY);
-				activeObject.line2.animate('opacity', '0', {
+
+		if (activeObject.name == "p0") {
+			activeObject.line2.animate('opacity', '0', {
+			duration: 200,
+			onChange: canvas.renderAll.bind(canvas),
+			});
+			activeObject.line2.selectable = true;
+			activeObject.guide.animate('opacity', '0', {
+			duration: 200,
+			onChange: canvas.renderAll.bind(canvas),
+		  });
+		}
+		if (activeObject.name == "p3") {
+			activeObject.line3.animate('opacity', '0', {
 				duration: 200,
 				onChange: canvas.renderAll.bind(canvas),
-				});
-				activeObject.line2.selectable = true;
-				activeObject.guide.animate('opacity', '0', {
-				duration: 200,
-				onChange: canvas.renderAll.bind(canvas),
-			  });
-			}
-			if (activeObject.name == "p3") {
-				console.log ('selected myline.toY: '+myline.toY);
-				activeObject.line3.animate('opacity', '0', {
-					duration: 200,
-					onChange: canvas.renderAll.bind(canvas),
-				}); 
-				activeObject.line3.selectable = true;
-				activeObject.guide.animate('opacity', '0', {
-				duration: 200,
-				onChange: canvas.renderAll.bind(canvas),
-			  });
-			}
+			}); 
+			activeObject.line3.selectable = true;
+			activeObject.guide.animate('opacity', '0', {
+			duration: 200,
+			onChange: canvas.renderAll.bind(canvas),
+		  });
 		}
 	},
 	this.onObjectMoving=function(e) {
 	//On va faire ici le snap sur le point et empêcher que le point sorte du canvas
-	//console.log('nom du target'+e.target.name)
+
 		if (e.target.name == "p0" || e.target.name == "p3") {
 			var p = e.target,
 				topRel=p.top+p.cont.offset().top,
 				leftRel=p.left+p.cont.offset().left;
-				if(p.num==myline.num && p.mod==myline.mod){
-					//console.log('p.num'+p.num)
-					if(p.name=="p0"){
-						myline.fromX=p.left;
-						myline.fromY=p.top;
-						//myline.g1X=p.gx;
-						//myline.g1Y=p.gy;
-						console.log('p0 '+p.num+' '+p.mod)
-						//console.log('num_mod'+myline.num+'_'+myline.mod)
-						//console.log('myline.toX'+myline.toX)
-						//console.log('myline.toY'+myline.toY)
-						//console.log('myline.fromX'+myline.fromX)
-						//console.log('myline.fromY'+myline.fromY)
-					}else if(p.name=="p3"){
-						myline.toX=p.left;
-						myline.toY=p.top;
-						//myline.g2X=p.gx;
-						//myline.g2Y=p.gy;
-						console.log('p3 '+p.num+' '+p.mod)
-						//console.log('num_mod'+myline.num+'_'+myline.mod)
-						//console.log('myline.toX'+myline.toX)
-						//console.log('myline.toY'+myline.toY)
-						//console.log('myline.fromX'+myline.fromX)
-						//console.log('myline.fromY'+myline.fromY)
-					}
-				}
-				
+//rpnsequence.log('target'+p)
+//rpnsequence.log('this'+this)
 			for (var i=0;i<p.targets.length;i++){
 				var cDiv=p.cont;
 
@@ -638,7 +530,6 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 					//console.log('p.target[0]: '+p.target[0]);
 					//console.log('p.target[1]: '+p.target[1]);
 					//console.log('p.target: '+p.target);
-					//console.log('myline.target: '+myline.target);
 				}
 				if(p.left<=10){
 					p.left=10;
@@ -665,7 +556,7 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 				p.line1.path[1][2] = p.top+p.radius;
 				p.line2.left=p.p3.left+p.radius;
 				p.line2.top=p.top+p.radius;
-				//fromX=p.line1.path[0][1];
+				fromX=p.line1.path[0][1];
 			}
 			else if (p.line4) {
 				p.line4.path[1][5] = p.left+p.radius;
@@ -677,11 +568,53 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 			}
 		}
 	},
+	makeCurveCircle=function (left, top, line1, line2, line3, line4, guide, color,target,targets,cont) {
+		var c = new fabric.Circle({
+		  radius: 5,
+		  left: left-5,
+		  top: top-5,
+		  strokeWidth: 3,
+		  fill: color,
+		  stroke: color,
+		  opacity:1
+		});
 
+		c.line1 = line1;
+		c.line2 = line2;
+		c.line3 = line3;
+		c.line4 = line4;
+		c.guide=guide;
+		c.target=target;
+		c.targets=targets;
+		c.cont=cont;
+		
+
+		return c;
+	  },
+	makeCurvePoint=function(left, top, line1, line2, line3, line4, guide, color,myId) {
+		var d = new fabric.Circle({
+		  left: left,
+		  top: top,
+		  strokeWidth: 3,
+		  radius: 2,
+		  fill: color,
+		  stroke: color,
+		  opacity:0
+		  
+		});
+
+		d.line1 = line1;
+		d.line2 = line2;
+		d.line3 = line3;
+		d.line4 = line4;
+		d.guide=guide;
+
+		return d;
+	  },
 	this.canvas.on({
 		'object:selected': this.onObjectSelected,
 		'object:moving': this.onObjectMoving,
-		'before:selection:cleared': this.onBeforeSelectionCleared
+	//	'before:selection:cleared': this.onBeforeSelectionCleared
 	}),
 	this.drawCubic=function () {
 		this.guide1 =this.makeLine([this.fromX,this.fromY, this.g1X, this.g1Y]);
@@ -696,13 +629,13 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 		this.p1 = this.makeCurvePoint(this.g1X, this.g1Y, null, this.line, null, null, this.guide1,this.color)
 		this.p1.name = "p1";
 
-		this.p0 = this.makeCurveCircle(this.fromX, this.fromY, this.line, this.p1, null, null, this.guide1,this.color, this.target,this.targets,this.myContainer, this.num, this.mod, this.g1X, this.g1Y);
+		this.p0 = this.makeCurveCircle(this.fromX, this.fromY, this.line, this.p1, null, null, this.guide1,this.color, this.target,this.targets,this.myContainer);
 		this.p0.name = "p0";
 
 		this.p2 = this.makeCurvePoint(this.g2X, this.g2Y, null, null, this.line, null, this.guide2,this.color );
 		this.p2.name = "p2";
 
-		this.p3 = this.makeCurveCircle(this.toX, this.toY, null, null, this.p2, this.line, this.guide2,this.color, this.target, this.targets,this.myContainer, this.num, this.mod, this.g2X, this.g2Y);
+		this.p3 = this.makeCurveCircle(this.toX, this.toY, null, null, this.p2, this.line, this.guide2,this.color, this.target, this.targets,this.myContainer );
 		this.p3.name = "p3";
 
 		this.line.p0=this.p0;
@@ -714,11 +647,18 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 		this.line.hasBorders=this.guide1.hasBorders=this.guide2.hasBorders=this.p0.hasBorders=this.p1.hasBorders=this.p2.hasBorders=this.p3.hasBorders=false;
 		this.line.hasControls=this.guide1.hasControls=this.guide2.hasControls=this.p0.hasControls=this.p1.hasControls=this.p2.hasControls=this.p3.hasControls=false;
 		this.line.perPixelTargetFind=this.guide1.perPixelTargetFind=this.guide2.perPixelTargetFind=this.p0.perPixelTargetFind=this.p1.perPixelTargetFind=this.p2.perPixelTargetFind=this.p3.perPixelTargetFind=true;
-		this.canvas.add(this.line, this.guide1, this.guide2, this.p0, this.p1, this.p2, this.p3);
-
+		canvas.add(this.line, this.guide1, this.guide2, this.p0, this.p1, this.p2, this.p3);
+		
+	/*	for (i=0;i<targets.length;i++){
+			console.log('dans connecteur, target'+this.target[i]);
+		}
+	*/
 
 	},
-	this.drawCubicNewPosition=function (no, modu, fx,fy,tx,ty,gfx, gfy, gtx, gty) {
+	this.drawCubicNewPosition=function (fx,fy,tx,ty,gfx, gfy, gtx, gty) {
+		//rpnsequence.log('drawcubicnewposition')
+		rpnsequence.log('drawcubicnewposition: '+this.num+'_'+this.mod)
+		//rpnsequence.log('This.mod'+this.mod)
 		this.canvas.remove(this.line, this.guide1, this.guide2, this.p0, this.p1, this.p2, this.p3);
 		this.fromX=fx;
 		this.fromY=fy;
@@ -728,28 +668,26 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 		this.g1Y=gfy;
 		this.g2X=gtx;
 		this.g2Y=gty;
-		this.num=no;
-		this.mod=modu;
 		
-		this.guide1 =this.makeLine([this.fromX,this.fromY, this.g1X, this.g1Y]);
+		this.guide1 =makeLine([this.fromX,this.fromY, this.g1X, this.g1Y]);
 		this.guide1.name="guide1";
 		
-		this.guide2 =this.makeLine([this.toX,this.toY,this.g2X,this.g2Y]);
+		this.guide2 =makeLine([this.toX,this.toY,this.g2X,this.g2Y]);
 		this.guide2.name="guide2";
 		
-		this.line=this.make(this.fromX,this.fromY,this.g1X,this.g1Y,this.g2X,this.g2Y,this.toX,this.toY,this.color);
+		this.line=make(this.fromX,this.fromY,this.g1X,this.g1Y,this.g2X,this.g2Y,this.toX,this.toY,this.color);
 		this.line.name="bezier";
 	 
-		this.p1 = this.makeCurvePoint(this.g1X, this.g1Y, null, this.line, null, null, this.guide1,this.color)
+		this.p1 = makeCurvePoint(this.g1X, this.g1Y, null, this.line, null, null, this.guide1,this.color)
 		this.p1.name = "p1";
 
-		this.p0 = this.makeCurveCircle(this.fromX, this.fromY, this.line, this.p1, null, null, this.guide1,this.color, this.target,this.targets,this.myContainer, this.num, this.mod, this.g1X, this.g1Y);
+		this.p0 = makeCurveCircle(this.fromX, this.fromY, this.line, this.p1, null, null, this.guide1,this.color, this.target,this.targets,this.myContainer);
 		this.p0.name = "p0";
 
-		this.p2 = this.makeCurvePoint(this.g2X, this.g2Y, null, null, this.line, null, this.guide2,this.color );
+		this.p2 = makeCurvePoint(this.g2X, this.g2Y, null, null, this.line, null, this.guide2,this.color );
 		this.p2.name = "p2";
 
-		this.p3 = this.makeCurveCircle(this.toX, this.toY, null, null, this.p2, this.line, this.guide2,this.color, this.target, this.targets,this.myContainer, this.num, this.mod, this.g2X, this.g2Y );
+		this.p3 = makeCurveCircle(this.toX, this.toY, null, null, this.p2, this.line, this.guide2,this.color, this.target, this.targets,this.myContainer );
 		this.p3.name = "p3";
 
 		this.line.p0=this.p0;
@@ -765,62 +703,131 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 
 	},
 	
-	this.drawCubic()
-};
+	cloneObjects=function (from_canvas, to_canvas, o_top, o_left) {
 
-function resizeWindow(bezier, datas){
-	//rpnsequence.log('bezier'+bezier)
-	var wwidth=$('#rpnm_module_content').width();
-	var wheight=$('#rpnm_module_content').height();
-	var c=0;
-	var myobject = {};
-	myobject.debounce = function(func, wait, immediate) {
-		var timeout;
-		return function() {
-			var context = this,
-				args = arguments;
-			var later = function() {
-				timeout = null;
-				if ( !immediate ) {
-					func.apply(context, args);
-				}
-			};
-			var callNow = immediate && !timeout;
-			clearTimeout(timeout);
-			timeout = setTimeout(later, wait || 200);
-			if ( callNow ) { 
-				func.apply(context, args);
-			}
-		};
-	};
-	myobject.resizeBezier = function() {
-		//rpnsequence.log('$(#rpnm_module_content).width'+ $('#rpnm_module_content').width())
-		var scalx=$('#rpnm_module_content').width()/wwidth;
-		var scaly=$('#rpnm_module_content').height()/wheight;
-		wwidth=$('#rpnm_module_content').width();
-		wheight=$('#rpnm_module_content').height();
-		//rpnsequence.log('scalx'+scalx)
-		//rpnsequence.log('scaly'+scaly)
-	    _.each(bezier, function(item,idx) {
-				//rpnsequence.log('idx: '+idx)
-			  	if(bezier[idx]){
-			  		var coor=coordsBezier(idx,bezier[idx].mod, bezier, scalx, scaly);
+	    var objects = from_canvas.getObjects();
+	    for (var i in objects) {
+	
+	        var object = fabric.util.object.clone(objects[i]);
+	        var x = object.x;
+	        var y = object.y;
+	        var left = object.left;
+	        var top = object.top;
+	        object.x = o_left + x;
+	        object.y = o_top + y;
+	        object.left = o_left + left;
+	        object.top = o_top + top;
+	
+	        object.name += '-export';
+	
+	        object.setCoords();
+	
+	        object.selectable = false;
+	
+	        to_canvas.add(object);
+	
+	
+	    }
+	
+	    to_canvas.calcOffset();
+	    to_canvas.deactivateAll().renderAll();
+	},
+
+	/*$( window ).resize(function() {
+    	n=0;
+    	//rpnsequence.log('resize '+num)
+    	//rpnsequence.log('resize '+mod)
+    	var coor=coordsBezier(num,mod);
+  		rpnsequence.log('coor'+coor)
+  		//rpnsequence.log('idx'+idx);
+  		//rpnsequence.log('coordsBezier()'+coordsBezier(idx,datas.idmodule));
+  		//rpnsequence.log('bezier[myid].targets: '+bezier[myid].fromX)
+  		var fx=coor[0];
+  		var fy=coor[1];
+  		var tx=coor[2];
+  		var ty=coor[3];
+  		var gfx=coor[2];
+  		var gfy=coor[3];
+  		var gtx=coor[0];
+  		var gty=coor[1];
+		//rpnsequence.log('bezier[0].target'+bezier[0].target)
+        //bezier[myid].drawCubicNewPosition(30,50, 100, 80, 100, 80, 30, 50);
+        drawCubicNewPosition(fx,fy, tx, ty, gfx, gfy, gtx, gty);
+    	$.each(datas, function(item, ida) {
+    	    rpnsequence.log('ida'+ida);
+    	    rpnsequence.log('item'+item);
+    	    n++;
+    	})
+    	rpnsequence.log('datas.length: '+n)
+    	for(var k=0;k<datas.length;k++) {
+    		rpnsequence.log('ida'+k);
+    		rpnsequence.log('idmodule'+idmodule);
+		    _.each(bezier, function(item,idx) {
+		    	var myid=idx+10*datas.idmodule;
+		    	rpnsequence.log('datas.idmodule'+datas.idmodule);
+		    	rpnsequence.log('bezier[]'+item);
+			  	if(bezier[myid]){
+			  		var coor=coordsBezier(idx,datas.idmodule);
+			  		//rpnsequence.log('coor'+coor)
+			  		//rpnsequence.log('idx'+idx);
+			  		//rpnsequence.log('coordsBezier()'+coordsBezier(idx,datas.idmodule));
+			  		//rpnsequence.log('bezier[myid].targets: '+bezier[myid].fromX)
 			  		var fx=coor[0];
 			  		var fy=coor[1];
 			  		var tx=coor[2];
 			  		var ty=coor[3];
 			  		var gfx=coor[2];
-			  		var gfy=coor[1];
+			  		var gfy=coor[3];
 			  		var gtx=coor[0];
-			  		var gty=coor[3];
-			        //rpnsequence.log('idx, num, mod:'+idx+', '+bezier[idx].num+', '+bezier[idx].mod)
-			        bezier[idx].drawCubicNewPosition(idx, bezier[idx].mod, fx, fy, tx, ty, gfx, gfy, gtx, gty);
-			  	} 
-		});
-		//mysizes=new Array($('#rpnm_module_content').width(),$('#rpnm_module_content').height());
-		//return mysizes;
-	};
-	window.addEventListener('resize', myobject.debounce(myobject.resizeBezier, 400));
-	//Ca Foncionne aussi avec buildUi
-	//window.addEventListener('resize', myobject.debounce(func, 400));
+			  		var gty=coor[1];
+					//rpnsequence.log('bezier[0].target'+bezier[0].target)
+			        //bezier[myid].drawCubicNewPosition(30,50, 100, 80, 100, 80, 30, 50);
+			        bezier[myid].drawCubicNewPosition(fx,fy, tx, ty, gfx, gfy, gtx, gty);
+				}
+				//k++;
+		    });
+    	//};
+	}),*/
+	this.drawCubic()
+};
+function tet(){
+	$( window ).resize(function() {
+    	n=0;
+    	//rpnsequence.log('resize')
+    /*	$.each(datas, function(item, ida) {
+    	    rpnsequence.log('ida'+ida);
+    	    rpnsequence.log('item'+item);
+    	    n++;
+    	})
+    	rpnsequence.log('datas.length: '+n)
+    	for(var k=0;k<datas.length;k++) {
+    		rpnsequence.log('ida'+k);
+    		rpnsequence.log('idmodule'+idmodule);
+		*/    _.each(bezier, function(idx,item) {
+		    	var myid=idx+10*datas.idmodule;
+		    	rpnsequence.log('datas.idmodule'+datas.idmodule);
+		    	rpnsequence.log('item'+item);
+		    	rpnsequence.log('idx'+idx);
+			  	if(bezier[myid]){
+			  		var coor=coordsBezier(idx,datas.idmodule);
+			  		//rpnsequence.log('coor'+coor)
+			  		//rpnsequence.log('idx'+idx);
+			  		//rpnsequence.log('coordsBezier()'+coordsBezier(idx,datas.idmodule));
+			  		//rpnsequence.log('bezier[myid].targets: '+bezier[myid].fromX)
+			  		var fx=coor[0];
+			  		var fy=coor[1];
+			  		var tx=coor[2];
+			  		var ty=coor[3];
+			  		var gfx=coor[2];
+			  		var gfy=coor[3];
+			  		var gtx=coor[0];
+			  		var gty=coor[1];
+					//rpnsequence.log('bezier[0].target'+bezier[0].target)
+			        //bezier[myid].drawCubicNewPosition(30,50, 100, 80, 100, 80, 30, 50);
+			        bezier[myid].drawCubicNewPosition(fx,fy, tx, ty, gfx, gfy, gtx, gty);
+				}
+				//k++;
+		    });
+    	//};
+	});
 }

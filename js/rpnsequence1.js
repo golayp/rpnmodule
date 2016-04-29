@@ -1,7 +1,7 @@
 /*!
- * rpnmodule 0.1.3 (https://github.com/golayp/rpnmodule)
+ * rpnmodule v0.0.3 (https://github.com/golayp/rpnmodule)
  * 
- * Dependencies: jquery 2.1.3, bootstrap 3.3.2, underscore 1.7.0
+ * Dependencies: jquery 2.1.1, bootstrap 3.3.1, underscore 1.7.0
  * 
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
@@ -12,6 +12,7 @@ var rpnsequence = (function() {
     var mainContent;
     var source;
     var solurl;
+    var backurl;
     var states;
     var warnexit;
     var sequenceendHandler;
@@ -20,14 +21,12 @@ var rpnsequence = (function() {
     var alertModal;
     var domelem;
     var validationButton;
-    var quitButton;
-    var quitDisabled;
-    var bypassModule;
     var navigationEnabled;
     var debug;
     var loadstate;
     var selectedLabels;
     var modules;
+    //var response=new Array();
 
     var labels = {
         en: {
@@ -36,14 +35,14 @@ var rpnsequence = (function() {
             Warning: "Warning",
             BeforeUnloadMsg: "Module running!",
             Wait: "Please wait...",
-            Validate: "Next",
-            EndSequence:"Continue",
+            Validate: "Next module",
+            EndSequence:"End",
             Eraser: "Eraser",
             DragDropNotEmpty: "There are still some items to sort!",
             CardMazeNotEnded: "You have not finished the maze!",
+            Sources: "Sources",
             BlackboxTableView: "Values table",
-            BlackboxView: "Blackbox",
-            Quit:"Quit"
+            BlackboxView: "Blackbox"
         },
         fr: {
             Recall: "Rappel",
@@ -51,14 +50,14 @@ var rpnsequence = (function() {
             Warning: "Attention",
             BeforeUnloadMsg: "Exercice en cours!",
             Wait: "Veuillez patienter...",
-            Validate: "Suite",
-            EndSequence:"Continuer",
+            Validate: "Exercice suivant",
+            EndSequence:"Terminer",
             Eraser: "Effaceur",
             DragDropNotEmpty: "Il y a encore des éléments à trier!",
             CardMazeNotEnded: "Vous n'avez pas terminé le labyrinthe!",
+            Sources: "Sources",
             BlackboxTableView: "Tableau de valeurs",
-            BlackboxView: "Boîte noire",
-            Quit:"Quitter"
+            BlackboxView: "Boîte noire"
         }
     };
 
@@ -70,9 +69,10 @@ var rpnsequence = (function() {
             sequrl: "seq.json",
             solurl: "sol.json",
             stateurl:"sta.json",
+            returnurl: "../",
             warnonexit: false,
             domelem: $('body'),
-            onsequenceend: function(states, score) {},
+            onsequenceend: function() {},
             onmoduleend: function() {},
             mediapathformatter: function(val) {
                 return 'medias/' + val;
@@ -80,24 +80,20 @@ var rpnsequence = (function() {
             language: "en",
             debug: false,
             disablestateloading:false,
-            navigationEnabled: false,
-            quitDisabled:false,
-            bypassModule:false
+            navigationEnabled: false
         });
         selectedLabels = labels[opts.language];
         states = [];
         modules=[];
         warnexit = opts.warnonexit;
+        backurl = opts.returnurl;
         solurl = opts.solurl;
         debug = opts.debug;
         loadstate=!opts.disablestateloading;
-        log('loadstate'+loadstate)
         domelem = opts.domelem;
         sequenceendHandler = opts.onsequenceend;
         moduleendHandler = opts.onmoduleend;
         mediapathHandler = opts.mediapathformatter;
-        quitDisabled=opts.quitDisabled;
-        bypassModule=opts.bypassModule;
         $.getJSON(opts.sequrl, function(datas) {
             _.defaults(datas, {
                 title: "sequencetitle",
@@ -127,138 +123,83 @@ var rpnsequence = (function() {
     };
 
     var buildUi = function() {
-        mainContent=$('<div></div>');
-        domelem.append([
-            $('<button id="rpnm_quit" class="btn btn-link pull-right hidden-xs hidden-sm">' +selectedLabels.Quit+' <i class="glyphicon glyphicon-remove-circle"></i></button>'),
-            $('<div class="container" id="rpnm"></div>').append([
-                $('<div class="row page-header"><div class="col-md-7"><h1 id="rpnm_seq_title"></h1></div><div class="col-md-5"><nav id="rpnm_modulenav"><ul class="pagination pagination-sm"></ul></nav></div></div>'),
-                mainContent,
-                $('<div class="row"><div class="col-md-12"><em id="rpnm_source" class="pull-right"></em></div></div>'),
-                $('<div class="row"><div class="col-md-12"><button id="rpnm_validation" class="btn btn-primary pull-right"></button></div></div>'),
-            ])
-        ]);
+        domelem.append($('<div class="container" id="rpnm"></div>').append([
+            $('<div class="row page-header"><div class="col-md-8"><h1 id="rpnm_seq_title"></h1></div><div class="col-md-4"><nav id="rpnm_modulenav"><ul class="pagination pagination-sm"></ul></nav></div></div>'),
+            $('<div class="row"><div class="col-md-12"><h2 id="rpnm_title"></h2><h3 id="rpnm_context"></h3><h4 id="rpnm_directive"></h4></div></div>'),
+            $('<div class="row"><div id="rpnm_module_content" class="col-md-12"></div></div>'),
+            $('<div class="row"><div class="col-md-12"><em id="rpnm_source" class="pull-right"></em></div></div>'),
+            $('<div class="row"><div class="col-md-12"><button id="rpnm_validation" class="btn btn-primary pull-right"></button></div></div>'),
+            ]));
+            
         
         domelem.append($('<div id="rpnm_recall_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-bell"></i> ' + selectedLabels.Recall + '</h4></div><div class="modal-body"></div></div></div></div>'));
         domelem.append($('<div id="rpnm_order_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-question-sign"></i> ' + selectedLabels.Order + '</h4></div><div class="modal-body"></div></div></div></div>'));
         domelem.append($('<div id="rpnm_alert_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-warning-sign"></i> ' + selectedLabels.Warning + '</h4></div><div class="modal-body"></div></div></div></div>'));
         domelem.append($('<div id="rpnm_wait_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">' + selectedLabels.Wait + '</h4></div><div class="modal-body"><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% completed</span></div></div></div></div></div></div>'));
-        
         $('#rpnm_seq_title').html(sequencedatas.title);
         validationButton=$('#rpnm_validation');
-        quitButton=$('#rpnm_quit');
-        if(quitDisabled){
-            quitButton.hide();
-        }
-        
         source = $('#rpnm_source');
+        mainContent = $('#rpnm_module_content');
         alertModal = $('#rpnm_alert_modal');
         if (!navigationEnabled) {
             $('#rpnm_modulenav').remove();
         }
 
         _.each(sequencedatas.modules, function(modData, idx) {
-            _.defaults(modData,{
-                disposition:'top'
-            })
-            
-            var btnOrder=$('<button class="btn btn-default btn-sm pull-right" href="#" data-toggle="modal" data-target="#rpnm_order_modal"><i class="glyphicon glyphicon-question-sign"></i> ' + selectedLabels.Order + '</button>');
-            var btnRecall=$('<button class="btn btn-default btn-sm pull-right" href="#" data-toggle="modal" data-target="#rpnm_recall_modal"><i class="glyphicon glyphicon-bell"></i> ' + selectedLabels.Recall + '</button>')
-            var divContext=$('<div id="rpnm_context"></div>');
-            var divDirective=$('<div id="rpnm_directive"></div>');
-            divContext.html(modData.context);
-            divDirective.html(modData.directive);
-            var divContent=$('<div>');
-            
-            var titleLine=$('<div class="row"></div>').append($('<div class="col-md-12"></div>').append($('<h2 id="rpnm_title">'+(_.isUndefined(modData.title)?'':modData.title)+'</h2>').append([
-                btnOrder,
-                btnRecall
-            ])));
-            
-            if(_.isUndefined(modData.recall)){
-              btnRecall.hide();  
-            }
-            if(_.isUndefined(modData.order)){
-              btnOrder.hide();  
-            } 
-            
-            var globaldiv = $('<div id="rpnm_inst_' + idx + '" class="rpnm_instance">').append(titleLine);
-                
-            if(modData.disposition=='bottom'){
-                globaldiv.append($('<div class="row"></div>').append($('<div class="col-md-12"></div>').append([divContent,divContext,divDirective])));
-            }else if(modData.disposition=='left'){
-                globaldiv.append($('<div class="row"></div>').append([
-                    $('<div class="col-md-6"></div>').append([divContext,divDirective]),
-                    $('<div class="col-md-6"></div>').append(divContent)
-                ]));
-            }else if(modData.disposition=='right'){
-                globaldiv.append($('<div class="row"></div>').append([
-                    $('<div class="col-md-6"></div>').append(divContent),
-                    $('<div class="col-md-6"></div>').append([divContext,divDirective])
-                ]));
-            }else{
-                //default top
-                globaldiv.append($('<div class="row"></div>').append($('<div class="col-md-12"></div>').append([divContext,divDirective,divContent])));
-            }
-            
-            _.isUndefined(modData.context) ? divContext.hide() :divContext.show().html(modData.context);
-            _.isUndefined(modData.directive) ? divDirective.hide() : divDirective.show().html(modData.directive);
-    
-            mainContent.append(globaldiv);
+            var div = $('<div class="rpnm_instance" id="rpnm_inst_' + idx + '">');
+            mainContent.append(div);
             if(_.isNull(states[idx]).state){
                 _.isNull(states[idx]).state=undefined;
             }
             if (modData.type == 'marker') {
                 modules[idx]=rpnmarkermodule();
-                modules[idx].init(modData,states[idx].state, divContent);
+                modules[idx].init(modData,states[idx].state, div);
             }
             else if (modData.type == 'mqc') {
                 modules[idx]=rpnmqcmodule();
-                modules[idx].init(modData,states[idx].state, divContent);
+                modules[idx].init(modData,states[idx].state, div);
             }
             else if (modData.type == 'gapsimple') {
                 modules[idx]=rpngapsimplemodule();
-                modules[idx].init(modData,states[idx].state, divContent);
+                modules[idx].init(modData,states[idx].state, div);
             }
             else if (modData.type == 'gapfull') {
                 modules[idx]=rpngapfullmodule();
-                modules[idx].init(modData,states[idx].state, divContent);
+                modules[idx].init(modData,states[idx].state, div);
             }
             else if (modData.type == 'clock') {
                 modules[idx]=rpnclockmodule();
-                modules[idx].init(modData,states[idx].state, divContent);
+                modules[idx].init(modData,states[idx].state, div);
             }
             else if (modData.type == 'blackbox') {
                 modules[idx]=rpnblackboxmodule();
-                modules[idx].init(modData,states[idx].state, divContent);
+                modules[idx].init(modData,states[idx].state, div);
             }
             else if (modData.type == 'dragdropsorting') {
                 modules[idx]=rpndragdropsortingmodule();
-                modules[idx].init(modData,states[idx].state, divContent);
+                modules[idx].init(modData,states[idx].state, div);
             }
             else if (modData.type == 'cardmaze') {
                 modules[idx]=rpncardmazemodule();
-                modules[idx].init(modData,states[idx].state, divContent);
+                modules[idx].init(modData,states[idx].state, div);
             }
             else if (modData.type == 'dropdown') {
                 modules[idx]=rpndropdownmodule();
-                modules[idx].init(modData,states[idx].state, divContent);
+                modules[idx].init(modData,states[idx].state, div);
             }
             else if (modData.type == 'sorting') {
                 modules[idx]=rpnsortingmodule();
-                modules[idx].init(modData,states[idx].state, divContent);
-            }
-            else if (modData.type == 'twolists') {
+                modules[idx].init(modData,states[idx].state, div);
+            }else if (modData.type == 'twolists') {
                 modules[idx]=rpntwolistsmodule();
-                modules[idx].init(modData,states[idx].state, divContent);
+                modules[idx].init(modData,states[idx].state, div);
             }
-            globaldiv.hide();
+            div.hide();
             if(modData.type!='gapfull'){
-                divContent.disableSelection();
+                div.disableSelection();
             }
             $('#rpnm_modulenav ul').append($('<li><a href="#">' + (idx + 1) + '</a></li>'));
-            if(bypassModule){
-                handleEndOfSequence();
-            }
+            
         });
 
         if (warnexit) {
@@ -268,29 +209,34 @@ var rpnsequence = (function() {
         }
         bindUiEvents();
         displayCurrentModule();
+        
     };
     
     var bindUiEvents = function() {
         //Validation
         validationButton.click(function(){
-            handleEndOfModule(modules[currentmod].validate(),currentmod+1);
-        });
-        quitButton.click(function(){
-            handleEndOfModule(modules[currentmod].validate(),currentmod+1);
+            modules[currentmod].validate();
+            if(currentmod==sequencedatas.modules.length-1){
+                handleEndOfSequence();
+            }else{
+                currentmod++;
+                displayCurrentModule();
+            }
         });
         //Navigation
         if (navigationEnabled && sequencedatas.modules.length > 1) {
             _.each($('#rpnm_modulenav ul li'),function(nav,idx){
                 $(nav).click(function() {
                     modules[currentmod].validate();
-                    handleEndOfModule(modules[currentmod].validate(),idx);
+                    currentmod = idx;
+                    displayCurrentModule();
                 });
             });
         }
-    }
+     }
 
     var displayCurrentModule = function() {
-        $('#rpnm_wait_modal').modal({show:true,backdrop:'static',keyboard:false});
+        $('#rpnm_wait_modal').modal('show');
         var moduleDatas = sequencedatas.modules[currentmod];
         _.defaults(moduleDatas, {
             title: "title"
@@ -306,41 +252,47 @@ var rpnsequence = (function() {
             $($('#rpnm_modulenav ul li')[currentmod]).addClass('active');
         }
         if(currentmod==sequencedatas.modules.length-1){
-            validationButton.html(selectedLabels.EndSequence+' <i class="glyphicon glyphicon glyphicon-ok-circle"></i>').removeClass("btn-primary").addClass("btn-success");
+            validationButton.html('<i class="glyphicon glyphicon glyphicon-ok-circle"></i> '+selectedLabels.EndSequence).removeClass("btn-primary").addClass("btn-success");
         }else{
-            validationButton.html(selectedLabels.Validate+' <i class="glyphicon glyphicon-chevron-right"></i>').removeClass("btn-success").addClass("btn-primary");
+            validationButton.html('<i class="glyphicon glyphicon-ok"></i> '+selectedLabels.Validate).removeClass("btn-success").addClass("btn-primary");
         }
         moduleDiv.show();
         $('#rpnm_wait_modal').modal('hide');
     };
 
     var bindModuleSharedDatas = function(datas) {
-        if (!_.isUndefined(datas.recall)){
+        $('#rpnm_title').show().html(datas.title +' <button class="btn btn-default btn-sm  pull-right" href="#" id="rpnm_order_link" data-toggle="modal" data-target="#rpnm_order_modal"><i class="glyphicon glyphicon-question-sign"></i> ' + selectedLabels.Order + '</button><button class="btn btn-default btn-sm pull-right" id="rpnm_recall_link" data-toggle="modal" data-target="#rpnm_recall_modal"><i class="glyphicon glyphicon-bell"></i> ' + selectedLabels.Recall + '</button>');
+        _.isUndefined(datas.context) ? $('#rpnm_context').hide() : $('#rpnm_context').show().html(datas.context);
+        _.isUndefined(datas.directive) ? $('#rpnm_directive').hide() : $('#rpnm_directive').show().html(datas.directive);
+
+        if (_.isUndefined(datas.recall)) {
+            $('#rpnm_recall_link').hide();
+        }
+        else {
+            $('#rpnm_recall_link').show();
             $('#rpnm_recall_modal .modal-body').html(datas.recall);
         }
-        if (!_.isUndefined(datas.order)) {
+        if (_.isUndefined(datas.order)) {
+            $('#rpnm_order_link').hide();
+        }
+        else {
+            $('#rpnm_order_link').show();
             $('#rpnm_order_modal .modal-body').html(datas.order);
         }
-        source.html(_.isUndefined(datas.sources) ? "" :  datas.sources);
+        source.html(_.isUndefined(datas.sources) ? "" : (datas.sources));
     };
 
-    var handleEndOfModule = function(state,nextmodtoshow) {
-        $('#rpnm_wait_modal').modal({show:true,backdrop:'static',keyboard:false});
+    var handleEndOfModule = function(state) {
+        $('#rpnm_wait_modal').modal('show');
         log('End of module');
         //store result locally
         states[currentmod] = {
             state:state
         };
-        moduleendHandler({states:_.map(states,function(sta){return sta.state;})},function(){
-            //Save status of module
-            sequencedatas.modules[currentmod].status = 'ended';
-            currentmod=nextmodtoshow;
-            if(currentmod>sequencedatas.modules.length-1){
-                handleEndOfSequence();
-            }else{
-                displayCurrentModule();
-            }        
-        });
+        moduleendHandler({states:_.map(states,function(sta){return sta.state;})});
+        //Save status of module
+        sequencedatas.modules[currentmod].status = 'ended';
+        
     };
 
     var handleEndOfSequence = function() {
@@ -353,10 +305,11 @@ var rpnsequence = (function() {
                 score +=modules[idx].score(sol);
             });
             log('Calculated total score for sequence ' + score);
+            sequenceendHandler(states,score);
             if (warnexit) {
                 $(window).unbind('beforeunload');
             }
-            sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score);
+            window.location = backurl;
         });
     };
 
@@ -404,7 +357,7 @@ var rpnsequence = (function() {
             e.preventDefault();
         });
         if(validationoptions.mode=='lock'){
-        
+            
             $(inputs).bind('input propertychange',function(){
                 if(validationoptions.type=='natural'){
                     var val=/(^-?[0-9]\d*)/.exec($(this).val());
@@ -429,22 +382,22 @@ var rpnsequence = (function() {
                 	}
                 }
                 else if(validationoptions.type=='posdecimal'){
-                	var val_0=$(this).val().replace(',','.');
-                	var val=/^[.\d]\d*\.?\d*/.exec(val_0);
-                	if($(this).val().match(/^0[^,\.]/)){
-                		var val_1=$(this).val().replace(',','.').substring(0,1);
-                		var val=/^[-.\d]\d*.?\d*/.exec(val_1);
-                	}
-                	if($(this).val().match(/^-/)){
-                		var val_1=$(this).val().replace(',','.');
-                		var val=/[.\d]\d*.?\d*/.exec(val_1);
-                	}
-                	if(val=='' || val==null){
-                		val='';
-                	}else  if(val=='.'){
+                  var val_0=$(this).val().replace(',','.');
+                   var val=/^[.\d]\d*\.?\d*/.exec(val_0);
+                   if($(this).val().match(/^0[^,\.]/)){
+                       var val_1=$(this).val().replace(',','.').substring(0,1);
+                       var val=/^[-.\d]\d*.?\d*/.exec(val_1);
+                   }
+				   if($(this).val().match(/^-/)){
+                       var val_1=$(this).val().replace(',','.');
+                       var val=/[.\d]\d*.?\d*/.exec(val_1);
+                   }
+				    if(val=='' || val==null){
+                        val='';
+                    }else  if(val=='.'){
                         val='0.';
                     }
-                    $(this).val(val);
+                     $(this).val(val);
                 }
                 else if(validationoptions.type=='decimal'){
                   var val_0=$(this).val().replace(',','.');
@@ -486,23 +439,24 @@ var rpnsequence = (function() {
                     }else{
                         $(this).val(val);
                     }
-                }else if(validationoptions.type=='familycase'){
+                }
+                else if(validationoptions.type=='familycase'){
                     var val=/^[A-ZÀÂÄÉÈÙÊËÎÏÔÖÑa-zâäàéèùêëîïôöçñ][a-zâäàéèùêëîïôöçñ]*/.exec($(this).val());
                     if(val=='' || val==null){
                         $(this).val('');
                     }else{
                         $(this).val(val);
                     }
-                }else if(validationoptions.type=='uppercase'){
-                    var val_0=$(this).val().toUpperCase()
+                }
+                else if(validationoptions.type=='uppercase'){
+                    var val_0=$(this).val().toUpperCase();
                     var val=/[A-ZÀÂÄÉÈÙÊËÎÏÔÖÑ]*/.exec(val_0);
                     if(val=='' || val==null){
                         $(this).val('');
                     }else{
                         $(this).val(val);
                     }
-                }
-				else if(validationoptions.type=='letter'){
+                }else if(validationoptions.type=='letter'){
                     var val=/[A-ZÀÂÄÉÈÙÊËÎÏÔÖÑa-zâäàéèùêëîïôöçñ]*/.exec($(this).val());
                     if(val=='' || val==null){
                         $(this).val('');
@@ -510,15 +464,10 @@ var rpnsequence = (function() {
                         $(this).val(val);
                     }
                 }
-				else if(validationoptions.type=='sentence'){
-                    var val=/[A-ZÀÂÄÉÈÙÊËÎÏÔÖÑa-zâäàéèùêëîïôöçñ' ]*/.exec($(this).val().replace(/\s{2,}/g,' '));
-                    if(val=='' || val==null){
-                        $(this).val('');
-                    }else{
-                        $(this).val(val);
-                    }
-                }
+                
             });
+        
+            
         }
     };
     
@@ -529,6 +478,7 @@ var rpnsequence = (function() {
     return {
         init: init,
         buildUi: buildUi,
+        handleEndOfModule: handleEndOfModule,
         displayAlert: displayAlert,
         log: log,
         getLabels: getLabels,

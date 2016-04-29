@@ -278,7 +278,7 @@ var rpnsequence = (function() {
             $('#rpnm_order_link').show();
             $('#rpnm_order_modal .modal-body').html(datas.order);
         }
-        source.html(_.isUndefined(datas.sources) ? "" : (selectedLabels.Sources + ": " + datas.sources));
+        source.html(_.isUndefined(datas.sources) ? "" : (datas.sources));
     };
 
     var handleEndOfModule = function(state) {
@@ -379,6 +379,24 @@ var rpnsequence = (function() {
                    }else{
                         $(this).val(parseInt(val));
                 	}
+                }
+                else if(validationoptions.type=='posdecimal'){
+                  var val_0=$(this).val().replace(',','.');
+                   var val=/^[.\d]\d*\.?\d*/.exec(val_0);
+                   if($(this).val().match(/^0[^,\.]/)){
+                       var val_1=$(this).val().replace(',','.').substring(0,1);
+                       var val=/^[-.\d]\d*.?\d*/.exec(val_1);
+                   }
+				   if($(this).val().match(/^-/)){
+                       var val_1=$(this).val().replace(',','.');
+                       var val=/[.\d]\d*.?\d*/.exec(val_1);
+                   }
+				    if(val=='' || val==null){
+                        val='';
+                    }else  if(val=='.'){
+                        val='0.';
+                    }
+                     $(this).val(val);
                 }
                 else if(validationoptions.type=='decimal'){
                   var val_0=$(this).val().replace(',','.');

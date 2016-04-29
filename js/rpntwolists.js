@@ -28,7 +28,7 @@ var rpntwolistsmodule = function() {
         
         if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state = _state;
-
+rpnsequence.log('satate existe')
         }else{
             state = [];
  

@@ -1,5 +1,5 @@
 //twolists
-jQuery.fn.resizeDelayed = (function(){
+/*jQuery.fn.resizeDelayed = (function(){
 
     // >>> THIS PART RUNS ONLY ONCE - RIGHT NOW
 
@@ -99,7 +99,7 @@ jQuery.fn.resizeDelayed = (function(){
 
     }
 
-})();
+})();*/
 var rpntwolistsmodule = function() {
 	rpnsequence.log('Dans twolistsmodule')
     var datas;
@@ -126,6 +126,7 @@ var rpntwolistsmodule = function() {
         
         if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
+            //rpnsequence.log('state: '+state)
         }else{
             state = [];
  
@@ -133,6 +134,8 @@ var rpntwolistsmodule = function() {
                 _.each(datas.leftitems, function(val, idx) {
                     state.push({
                         listL:null,
+                        listR:null,
+                        color:null,
                         //positionLY:0,
                         //positionRX:0,
                         //positionRY:0,
@@ -143,6 +146,8 @@ var rpntwolistsmodule = function() {
                 _.each(datas.rightitems, function(val, idx) {
                     state.push({
                         listR:null,
+                        listR:null,
+                        color:null,
                         //positionLY:0,
                         //positionRX:0,
                         //positionRY:0,
@@ -160,46 +165,73 @@ var rpntwolistsmodule = function() {
 	
     
     var buildUi = function() {
+    	$('span').css({
+         	background:'none',
+		  	border: 'none'
+		});
     	
-        var myCanvasPositionHeight=(datas.rightitems.length+datas.leftitems.length)*100/2;
+        var myCanvasPositionHeight=window.innerHeight,
+        	//myCanvasPositionHeight=(datas.rightitems.length+datas.leftitems.length)*100/2,
+        	myCanvasPositionwidth=$('#rpnm_inst_'+datas.idmodule).width();
+        	//rpnsequence.log('myCanvasPositionwidth'+myCanvasPositionHeight)
+        	//rpnsequence.log('myCanvasPositionwidth'+myCanvasPositionwidth)
         domelem.addClass('twolists');
         var math=$('<div class="row"><math  display="block"><mspace height="40px"/><mfrac linethickness="2px" numalign="left" denomalign="left"><mrow><mfrac bevelled="true"><mn>1</mn><mi>x</mi></mfrac><mo>+</mo><mfrac bevelled="true"><mn>2</mn><mi>x</mi></mfrac><mo>+</mo><mo>&hellip;</mo></mrow><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>x</mi><mn>4</mn></msup><mo>+</mo><mo>&hellip;</mo></mrow></mfrac></math></div>');
         //domelem.append(math);
         
-        leftdiv=$('<div id="leftdiv" class="col-md-4">');
-        centerdiv=$('<div id="centerdiv_'+datas.idmodule+'" class="col-md-4">');
-        rightdiv=$('<div id="rightdiv" class="col-md-4">');
+        leftdiv=$('<div id="leftdiv_'+datas.idmodule+'" class="col-xs-4">');
+        centerdiv=$('<div id="centerdiv_'+datas.idmodule+'" class="col-xs-4">');
+        rightdiv=$('<div id="rightdiv_'+datas.idmodule+'" class="col-xs-4">');
         
        // var myCanvas=$('<canvas id="c'+datas.idmodule+'" height="'+myCanvasPositionHeight+'px" width="1000px"  position="fixed" top="0px">'),
-        var myCanvas=$('<canvas id="c'+datas.idmodule+'" height="'+myCanvasPositionHeight+'px" width="1000px"  top="0px">'),
-        targetsName=new Array(),
+        var targetsName=new Array(),
         targets=new Array(),
-        nbleft=datas.leftitems.length,
-        nbbezier=nbleft,
-        nbright=datas.rightitems.length,
+        nbleft,
+        nbbezier,
+        nbBiggerItemSize,
+        nbright,
         stateContent=false,
-        availableColors = _.shuffle(["#8d61a4","#01a271","#5dc2e7","#63b553","#ed656a","#e95c7b","#f5a95e","#d62b81","#eee227"]);
+        availableColors=new Array();
+        if(nbleft<nbright){
+    	   nbBiggerItemSize=nbright;
+        }
+		targetsName[datas.idmodule]=new Array();
+        targets[datas.idmodule]=new Array();
+        
+        //var myCanvas=$('<canvas id="c'+datas.idmodule+'" height="'+nbBiggerItemSize*200+'px" width="'+myCanvasPositionwidth+'px" top="0px">');
+        
         for (var i=0;i<state.length;i++){
         	//rpnsequence.log('sate intitial: '+state[i].response)
         	if (!_.isNull(state[i].response)){
         		stateContent=true;
+        	//	rpnsequence.log('state.reponse: '+state[i].response)
+        		L_items=state[i].listL;
+        		R_items=state[i].listR;
+        	//	rpnsequence.log('state L_items: '+L_items[state[i].response[0][0]])
+        	//	rpnsequence.log('state R_items: '+R_items[state[i].response[1][0]])
+        		nbleft=datas.leftitems.length,
+		        nbbezier=nbleft,
+		        nbright=datas.rightitems.length,
+		        availableColors.push(state[i].color);
+		        
         	}
         }
         
-        if (stateContent==true){
-        	L_items=state.listL;
-        	R_items=state.listR;	
-        }else{
+        if (stateContent!=true){
 	        L_items=_.shuffle(datas.leftitems);
 	        R_items=_.shuffle(datas.rightitems);
+	        nbleft=datas.leftitems.length,
+	        nbbezier=nbleft,
+	        nbright=datas.rightitems.length,
+	        availableColors = _.shuffle(["#8d61a4","#01a271","#5dc2e7","#63b553","#ed656a","#e95c7b","#f5a95e","#d62b81","#eee227"]);
+	        
         }
         
-        targetsName[datas.idmodule]=new Array();
-        targets[datas.idmodule]=new Array();
+        
 
         _.each(L_items, function(item,idx) {
-           leftdiv.append($('<div id="inputgrpleft_'+idx+'_'+datas.idmodule+'" class="input-group"><span id="l_'+idx+'_'+datas.idmodule+'">' + L_items[idx] + '</span><span class="input-group-addon"><input  type="radio" id="radleft_'+idx+'_'+datas.idmodule+'" name="l'+idx+'_'+datas.idmodule+'"></span></div>'));
-            targetsName[datas.idmodule].push('#radleft_'+idx+'_'+datas.idmodule);
+           leftdiv.append($('<div id="inputgrpleft_'+idx+'_'+datas.idmodule+'" class="input-group"><span id="l_'+idx+'_'+datas.idmodule+'">' + L_items[idx] + '</span><span class="input-group-addon" border="none" ><input  type="radio" id="radleft_'+idx+'_'+datas.idmodule+'" name="l'+idx+'_'+datas.idmodule+'"></span></div>'));
+           targetsName[datas.idmodule].push('#radleft_'+idx+'_'+datas.idmodule);
           
         });
 
@@ -209,13 +241,30 @@ var rpntwolistsmodule = function() {
             targetsName[datas.idmodule].push('#radright_'+idx+'_'+datas.idmodule);
             
         });
-        //rpnsequence.log('targetsName'+targetsName)
+       // rpnsequence.log('targetsName'+targetsName)
         domelem.append(leftdiv);
         domelem.append(centerdiv);
         domelem.append(rightdiv);
+        if($("#leftdiv_"+datas.idmodule).height()<$('#rightdiv_'+datas.idmodule).height()){
+    	   	nbBiggerItemSize=$('#rightdiv_'+datas.idmodule).height()+50;
+        }else{
+        	nbBiggerItemSize=$('#leftdiv_'+datas.idmodule).height()+50;
+        }
+		
+        var myCanvas=$('<canvas id="c'+datas.idmodule+'" height="'+window.innerHeight*0.78+'px" width="'+myCanvasPositionwidth+'px" top="0px">');
         domelem.append(myCanvas);
-	
+        
 	//	$(document).ready(function(){
+	
+		var myheight=$('#rpnm_module_content').height();
+		$('.row:last').css({
+			position:'fixed',
+			top:window.innerHeight*0.91+'px',
+			//top:myheight*0.82,
+			left:'75%'
+			
+		})
+
         
         buildBezier(targetsName, datas, targets, nbleft, nbright, nbbezier, state, bezier, availableColors, myCanvas);
 	//	});
@@ -228,15 +277,18 @@ var rpntwolistsmodule = function() {
 	//	resizeW($('#c'+datas.idmodule), windowWidth, windowHeight);
 	//rpnsequence.log('datas.idmodule'+datas.idmodule)
 	//rpnsequence.log('datas.nbmodules'+datas.nbmodules)
-	resizeWindow(bezier, datas);
+		resizeWindow(bezier, datas);
+		
     };
     
    
 
     var validate = function(){
-        var k=0;
+        //var k=0;
          $.each(bezier, function(idx) {
-             var myid=k+10*datas.idmodule;
+            //var myid=k+10*datas.idmodule;
+             var myid=idx;
+            // rpnsequence.log('idx: '+idx)
         /*     rpnsequence.log('L_items: '+L_items)
              rpnsequence.log('R_items: '+R_items)
              rpnsequence.log('bezier[myid].target: '+bezier[myid].target)
@@ -244,29 +296,46 @@ var rpntwolistsmodule = function() {
              rpnsequence.log('bezier[myid].target[1][0]: '+bezier[myid].target[1][0])
              rpnsequence.log('L_items[bezier[myid].target[0][0]]: '+L_items[bezier[myid].target[0][0]])
              rpnsequence.log('R_items[bezier[myid].target[1][0]]: '+R_items[bezier[myid].target[1][0]])    */
-             if(bezier[myid] && bezier[myid].target[0]!=-3 && bezier[myid].target[1]!=-3){
+            // if(bezier[myid] && bezier[myid].target[0]!=-3 && bezier[myid].target[1]!=-3){
                 //state[idx].response =[L_items[bezier[myid].target[0][0]],R_items[bezier[myid].target[1][0]]];
-                state[idx].response =bezier[myid].target
-                rpnsequence.log('state[idx].response: '+state[idx].response)
+                state[idx].response =bezier[myid].target;
+                //rpnsequence.log('state[idx].response: '+state[idx].response)
+                state[idx].color =bezier[myid].color;
+                //rpnsequence.log('state[idx].response: '+state[idx].color)
+                state[idx].listL =L_items;
+               // rpnsequence.log('state[idx].response: '+state[idx].listL)
+                state[idx].listR =R_items;
+                //rpnsequence.log('state[idx].response: '+state[idx].listR)
+                
                 //state[idx].positionLX =bezier[myid].fromX;
                 //state[idx].positionLX =$("#inputgrpleft_"+bezier[myid].target).offset().left;
                //rpnsequence.log('state[idx].positionLX: '+state[idx].positionLX)
                 //state[idx].positionLY =bezier[myid].fromY;
                 //state[idx].positionRX =bezier[myid].toX;
                 //state[idx].positionRY =bezier[myid].toY;
-                k++;
-             }
+               // k++;
+            // }
         });
         rpnsequence.handleEndOfModule(state);
         
     };
 
     var score = function(sol) {
-      score = 0;
-      for (i=10*datas.idmodule;i<bezier.length;i++){
+      var score = 0;
+      for (i=0;i<bezier.length;i++){
           for (j=0;j<sol.length;j++){
-              if(state[i-10*datas.idmodule].response!=null){
-                score+=(state[i-10*datas.idmodule].response[0]==sol[j][0]&&state[i-10*datas.idmodule].response[1]==sol[j][1]?1:0);
+              if(state[i].response!=null){
+              	var test=score;
+                score+=(L_items[state[i].response[0][0]]==sol[j][0]&&R_items[state[i].response[1][0]]==sol[j][1]?1:0);
+             /*   if (test!=score){
+	                rpnsequence.log('L_items[state[i].response[0][0]]'+L_items[state[i].response[0][0]])
+	              	rpnsequence.log('sol[j][0]'+sol[j][0])
+	              	rpnsequence.log('R_items[state[i].response[1][0]]'+R_items[state[i].response[1][0]])
+	              	rpnsequence.log('sol[j][1]'+sol[j][1])
+	              	rpnsequence.log(' ')
+	              	rpnsequence.log('score '+score)
+	              	rpnsequence.log(' ')
+                }*/
               }
           }
       }
@@ -288,8 +357,8 @@ function buildBezier(targetsName, datas, targets, nbleft, nbright, nbbezier, sta
 		        targets[datas.idmodule].push($(targetsName[datas.idmodule][i]));
 		    }
 		    
-		 
-			
+		    
+		     
         	var canvas = new fabric.Canvas('c'+datas.idmodule,{
         		hoverCursor:'pointer',
         		selection: false
@@ -300,7 +369,8 @@ function buildBezier(targetsName, datas, targets, nbleft, nbright, nbbezier, sta
         	}
 
         	for (var i=0;i<nbbezier;i++){
-        		var myid=i+10*datas.idmodule;
+        		//var myid=i+10*datas.idmodule;
+        		var myid=i;
         		var test=$('#radright_'+i+'_'+datas.idmodule);
         		//rpnsequence.log("offset().top: "+$('#radright_'+i+'_'+datas.idmodule).offset().top)
         		//rpnsequence.log('!_.isNull(state[i].response: '+!_.isNull(state[i].response))
@@ -310,8 +380,18 @@ function buildBezier(targetsName, datas, targets, nbleft, nbright, nbbezier, sta
        	    	if(nbleft<nbright){
        	    		//rpnsequence.log('ici')
         	    	if(!_.isNull(state[i].response)){
-        	        	var myTopL=$('#radleft_'+state[myid].response[0]).offset().top;
-        	        	var myTopR=$('#radright_'+state[myid].response[0]).offset().top;
+        	    		//rpnsequence.log('state[myid].response: '+state[i].response)
+        	    		//rpnsequence.log('#radright_3_'+$('#radright_3_'+datas.idmodule).offset().left)
+        	    		//rpnsequence.log('state[myid].response[0][0]'+state[myid].response[1])
+        	    		//var thisId='#radright_'+state[myid].response[1];
+        	    		if(i>1){
+        	    		rpnsequence.log('#rpnm_module_content+thisId'+$('#rpnm_module_content').offset().top+5)
+        	    		rpnsequence.log('#radleft_state[1].response[0]'+$('#radleft_'+state[i].response[0]).offset().top)
+        	    		}
+        	        	//var myTopL=$('#radleft_'+state[i].response[0]).offset().top;
+        	        	//var myTopR=$('#radright_'+state[i].response[1]).offset().top;
+        	        	var myTopL=$('#radleft_'+state[i].response[0]).offset().top-$('#rpnm_module_content').offset().top+5;
+        	        	var myTopR=$('#radright_'+state[i].response[1]).offset().top-$('#rpnm_module_content').offset().top+5;
         	        }else{
         	        	var myTopL=$('#radleft_0_'+datas.idmodule).height()+5+i*20;
         	        	//var myTopL=$('#radleft_'+i+'_'+datas.idmodule).offset().top-$('#rpnm_module_content').offset().top+5;
@@ -321,25 +401,35 @@ function buildBezier(targetsName, datas, targets, nbleft, nbright, nbbezier, sta
         	        
         	    }else{
         	    	if(!_.isNull(state[i].response)){
-        	        	var myTopL=$('#radleft_'+state[myid].response[0]).offset().top+i*20;
-        	        	var myTopR=$('#radright_'+state[myid].response[1]).offset().top+i*20;
+        	        	var myTopL=$('#radleft_'+state[i].response[0]).offset().top+i*20;
+        	        	var myTopR=$('#radright_'+state[i].response[1]).offset().top+i*20;
         	       	}else{
-        	       		var myTopL=$('#radleft_0_'+datas.idmodule).height()+5+i*20;
+        	       		var myTopL=$('#radleft_'+datas.idmodule).height()+5+i*20;
         	       		var myTopR=myTopL;
         	       	}
         	    }
+        	    
         	    if(!_.isNull(state[i].response)){
-        	    	var myLeftL=0.8*$('#centerdiv_'+state[myid].response[0]).offset().left;
-        	    	var myLeftR=0.8*$('#centerdiv_'+state[myid].response[1]).offset().left;
-        	    	//var myLeftL=$('#inputgrpleft_'+i+'_'+datas.idmodule).width()-5;
-                	//var myLeftR=$('#inputgrpright_'+i+'_'+datas.idmodule).offset().left-$('#rpnm_module_content').offset().left+3;
+        	    	//rpnsequence.log('state[i].response[0][2]'+state[i].response[0][2])
+        	    //rpnsequence.log('datas.idmodule'+datas.idmodule)
+        	    	//var myLeftL=0.8*$('#centerdiv_'+state[i].response[0][2]).offset().left;
+        	    	//var myLeftR=0.8*$('#centerdiv_'+state[i].response[1][2]).offset().left;
+        	    	//rpnsequence.log('myLeftL'+myLeftL)
+        	    	//rpnsequence.log('myLeftR'+myLeftR)
+        	    	var myLeftL=$('#inputgrpleft_'+i+'_'+state[i].response[0][2]).width()-5;
+                	var myLeftR=$('#inputgrpright_'+i+'_'+state[i].response[0][2]).offset().left-$('#rpnm_module_content').offset().left+3;
         	    }else{
                 	var myLeftL=0.8*$('#centerdiv_'+datas.idmodule).offset().left;
                 	//var myLeftL=$('#inputgrpleft_'+i+'_'+datas.idmodule).width()-5;
                 	var myLeftR=myLeftL+100;
                 	//var myLeftR=$('#inputgrpright_'+i+'_'+datas.idmodule).offset().left-$('#rpnm_module_content').offset().left+5;
-                	}
-                bezier[i]=new Bezier(canvas,myLeftL,myTopL,myLeftR,myTopR,myLeftR,myTopL,myLeftL,myTopR,availableColors[i],targets[datas.idmodule],myCanvas, i, datas.idmodule);
+            	}
+            	if (state[i].response){
+            		var target=state[i].response;
+            	}else{
+            		var target=[-3,-3];
+            	}
+                bezier[i]=new Bezier(canvas,myLeftL,myTopL,myLeftR,myTopR,myLeftR,myTopL,myLeftL,myTopR,availableColors[i],targets[datas.idmodule], target ,myCanvas, i, datas.idmodule);
                
        	//  	bezier[i+10*datas.idmodule]=new Bezier(canvas,myLeft,myTop,myLeft+100,myTop,myLeft+100,myTop,myLeft,myTop,availableColors[i],targets[datas.idmodule],myCanvas);
         	}
@@ -358,17 +448,17 @@ function coordsBezier(num, mod, bezier, scalx, scaly){
 	var id2='#inputgrpleft_'+num+'_'+mod;
 	var id3='#inputgrpright_'+num+'_'+mod;
 	rpnsequence.log("scalx"+scalx)
-	rpnsequence.log("scaly"+scaly)
-	rpnsequence.log("bezier["+num+"].fromY"+bezier[num].fromY)
+	//rpnsequence.log("scaly"+scaly)
+	//rpnsequence.log("bezier["+num+"].fromY"+bezier[num].fromY)
 	
 	var myLeftL=bezier[num].fromX*scalx;
 	var myTopL=bezier[num].fromY*scaly;
 	var myLeftR=bezier[num].toX*scalx;
 	var myTopR=bezier[num].toY*scaly;
 	
-	
+//	rpnsequence.log('bezier[num].target[0]'+bezier[num].target[0])
 	if(bezier[num].target[0]!=-3){
-		rpnsequence.log('bezier[num].target[0][0]'+bezier[num].target[0])
+		//rpnsequence.log('bezier[num].target[0]'+bezier[num].target[0])
 		id0='#radleft_'+bezier[num].target[0];
 		myTopL=$(id0).offset().top-$('#rpnm_module_content').offset().top+4;
 		myLeftL=$(id2).width()-6;	
@@ -410,13 +500,13 @@ function coordsBezier(num, mod, bezier, scalx, scaly){
 	//if(mod==0){
 	//	rpnsequence.log('myreturn, scalx: '+myreturn+' '+scalx)	
 	//}
-	rpnsequence.log('myTopL'+Math.round(myTopL))
-	rpnsequence.log('myTopR'+Math.round(myTopR))
-	rpnsequence.log('myLeftL'+Math.round(myLeftL))
-	rpnsequence.log('myLeftR'+Math.round(myLeftR))
+	//rpnsequence.log('myTopL'+Math.round(myTopL))
+	//rpnsequence.log('myTopR'+Math.round(myTopR))
+	//rpnsequence.log('myLeftL'+Math.round(myLeftL))
+	//rpnsequence.log('myLeftR'+Math.round(myLeftR))
 	return myreturn;
 }
-function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myContainer,num,mod){
+function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,target,myContainer,num,mod){
 	var myline=this;
 	this.myContainer=myContainer,
 	this.canvas=canvas,
@@ -430,9 +520,10 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 	this.g2Y=g2Y,
 	this.color=color,
 	this.targets=targets,
-	this.target=[-3,-3],
+	this.target=target,
 	this.num=num,
 	this.mod=mod,
+	//console.log('this.target'+this.target)
 	this.make=function(fX,fY,gX1,gY1,gX2,gY2,tX,tY,color){
 		//M Début de la ligne X, Y, C les autre points, dans l'ordre 1ere poignée X, 1ere poignée Y, 2e poignée X, 2e poignée Y, fin de la ligne X, Y
 		//Autrement dit
@@ -462,7 +553,7 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 	},
 
 	this.makeLine=function(coords, myId) {
-		dashL= new fabric.Line(coords, {
+		 var dashL= new fabric.Line(coords, {
 		  fill: 'black',
 		  stroke: 'red',
 		  strokeWidth: 1,
@@ -524,48 +615,50 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 	  
 	this.onBeforeSelectionCleared=function(e) {
 	    var activeObject = e.target;
-		console.log ('before selected Cleared myline.fromY: '+myline.fromY);
-	    if (activeObject.name == "p0") {
-	    	console.log ('before selected Cleared myline.fromY: '+myline.fromY);
-	      activeObject.line2.animate('opacity', '0', {
-	        duration: 200,
-	        onChange: canvas.renderAll.bind(canvas),
-	      });
-		  activeObject.line2.selectable = false;
-		  activeObject.guide.animate('opacity', '0', {
-	        duration: 200,
-	        onChange: canvas.renderAll.bind(canvas),
-	      });
-	    }
-	    else if (activeObject.name == "p3") {
-	    	console.log ('before selected Cleared myline.toY: '+myline.toY);
-	      activeObject.line3.animate('opacity', '0', {
-	        duration: 200,
-	        onChange: canvas.renderAll.bind(canvas),
-	      });
-	      activeObject.line3.selectable = false;
-		  activeObject.guide.animate('opacity', '0', {
-	        duration: 200,
-	        onChange: canvas.renderAll.bind(canvas),
-	      });
-	    }
-	    else if (activeObject.name == "p1" || activeObject.name == "p2") {
-	      activeObject.animate('opacity', '0', {
-	        duration: 200,
-	        onChange: canvas.renderAll.bind(canvas),
-	      });
-	      activeObject.selectable = false;
-		  activeObject.guide.animate('opacity', '0', {
-	        duration: 200,
-	        onChange: canvas.renderAll.bind(canvas),
-	      });
+	    if(activeObject.num==myline.num && activeObject.mod==myline.mod){
+		//	console.log ('before selected Cleared myline.fromY: '+myline.fromY);
+		    if (activeObject.name == "p0") {
+		    	//console.log ('before selected Cleared myline.fromY: '+myline.fromY);
+		      activeObject.line2.animate('opacity', '0', {
+		        duration: 200,
+		        onChange: canvas.renderAll.bind(canvas),
+		      });
+			  activeObject.line2.selectable = false;
+			  activeObject.guide.animate('opacity', '0', {
+		        duration: 200,
+		        onChange: canvas.renderAll.bind(canvas),
+		      });
+		    }
+		    else if (activeObject.name == "p3") {
+		    	//console.log ('before selected Cleared myline.toY: '+myline.toY);
+		      activeObject.line3.animate('opacity', '0', {
+		        duration: 200,
+		        onChange: canvas.renderAll.bind(canvas),
+		      });
+		      activeObject.line3.selectable = false;
+			  activeObject.guide.animate('opacity', '0', {
+		        duration: 200,
+		        onChange: canvas.renderAll.bind(canvas),
+		      });
+		    }
+		    else if (activeObject.name == "p1" || activeObject.name == "p2") {
+		      activeObject.animate('opacity', '0', {
+		        duration: 200,
+		        onChange: canvas.renderAll.bind(canvas),
+		      });
+		      activeObject.selectable = false;
+			  activeObject.guide.animate('opacity', '0', {
+		        duration: 200,
+		        onChange: canvas.renderAll.bind(canvas),
+		      });
+		    }
 	    }
 	  },
 	this.onObjectSelected=function(e){
 		var activeObject = e.target;
-		if(p.num==myline.num && p.mod==myline.mod){
+		if(activeObject.num==myline.num && activeObject.mod==myline.mod){
 			if (activeObject.name == "p0") {
-				console.log ('selected myline.fromY: '+myline.fromY);
+				//console.log ('selected myline.fromY: '+myline.fromY);
 				activeObject.line2.animate('opacity', '0', {
 				duration: 200,
 				onChange: canvas.renderAll.bind(canvas),
@@ -577,7 +670,7 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 			  });
 			}
 			if (activeObject.name == "p3") {
-				console.log ('selected myline.toY: '+myline.toY);
+				//console.log ('selected myline.toY: '+myline.toY);
 				activeObject.line3.animate('opacity', '0', {
 					duration: 200,
 					onChange: canvas.renderAll.bind(canvas),
@@ -604,7 +697,7 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 						myline.fromY=p.top;
 						//myline.g1X=p.gx;
 						//myline.g1Y=p.gy;
-						console.log('p0 '+p.num+' '+p.mod)
+						//console.log('p0 '+p.num+' '+p.mod)
 						//console.log('num_mod'+myline.num+'_'+myline.mod)
 						//console.log('myline.toX'+myline.toX)
 						//console.log('myline.toY'+myline.toY)
@@ -615,7 +708,7 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 						myline.toY=p.top;
 						//myline.g2X=p.gx;
 						//myline.g2Y=p.gy;
-						console.log('p3 '+p.num+' '+p.mod)
+						//console.log('p3 '+p.num+' '+p.mod)
 						//console.log('num_mod'+myline.num+'_'+myline.mod)
 						//console.log('myline.toX'+myline.toX)
 						//console.log('myline.toY'+myline.toY)
@@ -665,7 +758,11 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 				p.line1.path[1][2] = p.top+p.radius;
 				p.line2.left=p.p3.left+p.radius;
 				p.line2.top=p.top+p.radius;
-				//fromX=p.line1.path[0][1];
+			//	console.log(' ')
+			//	console.log('p.left'+p.left)
+			//	console.log('fromX'+myline.fromX)
+			//	console.log('p.line1.path[0][1]'+p.line1.path[0][1]);
+				p.guide.set({ 'x1': p.left, 'y1': p.top });
 			}
 			else if (p.line4) {
 				p.line4.path[1][5] = p.left+p.radius;
@@ -674,6 +771,46 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 				p.line4.path[1][4] = p.top+p.radius;
 				p.line3.left=p.p0.left+p.radius;
 				p.line3.top=p.top+p.radius;
+				p.guide.set({ 'x1': p.left, 'y1': p.top });
+			}
+			canvas.renderAll()
+		}
+	},
+	this.onObjectmousedown=function(e){
+	//	console.log('mousedown')
+		if (e.target && (e.target.name == "p0" || e.target.name == "p3")) {
+			var p = e.target;
+			if(p.num==myline.num && p.mod==myline.mod){
+			/*	if(p.name=='p0'){
+					myline.fromX=p.left;
+					myline.fromY=p.top;
+				}else if(p.name=='p3'){
+					myline.toX=p.left;
+					myline.toY=p.top;
+				}*/
+			//	console.log('myline.fromX: '+myline.fromX+' myline.fromY: '+myline.fromY)
+			//	console.log('myline.toX: '+myline.toX+' myline.toY: '+myline.toY)
+			//	console.log('myline.g1X: '+myline.g1X+' myline.g1Y: '+myline.g1Y)
+			//	console.log('myline.g2X: '+myline.g2X+' myline.g2Y: '+myline.g2Y)
+			}
+		}
+	},
+	this.onObjectmouseup=function(e){
+	//	console.log ('mouseup')
+		if (e.target && (e.target.name == "p0" || e.target.name == "p3")) {
+			var p = e.target;
+			if(p.num==myline.num && p.mod==myline.mod){
+				/*if(p.name=='p0'){
+					myline.fromX=p.left;
+					myline.fromY=p.top;
+				}else if(p.name=='p3'){
+					myline.toX=p.left;
+					myline.toY=p.top;
+				}*/
+			//	console.log('myline.fromX: '+myline.fromX+' myline.fromY: '+myline.fromY)
+			//	console.log('myline.toX: '+myline.toX+' myline.toY: '+myline.toY)
+			//	console.log('myline.g1X: '+myline.g1X+' myline.g1Y: '+myline.g1Y)
+			//	console.log('myline.g2X: '+myline.g2X+' myline.g2Y: '+myline.g2Y)
 			}
 		}
 	},
@@ -681,6 +818,8 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 	this.canvas.on({
 		'object:selected': this.onObjectSelected,
 		'object:moving': this.onObjectMoving,
+	//	'mouse:up':this.onObjectmouseup,
+	//	'mouse:down':this.onObjectmousedown,
 		'before:selection:cleared': this.onBeforeSelectionCleared
 	}),
 	this.drawCubic=function () {
@@ -730,7 +869,31 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 		this.g2Y=gty;
 		this.num=no;
 		this.mod=modu;
-		
+	/*	console.log('draweCubicNewPosition')
+		console.log('myline.fromX: '+myline.fromX+' myline.fromY: '+myline.fromY)
+		console.log('myline.fromX: '+this.fromX+' myline.fromY: '+this.fromY)
+		console.log('myline.toX: '+myline.toX+' myline.toY: '+myline.toY)
+		console.log('myline.g1X: '+myline.g1X+' myline.g1Y: '+myline.g1Y)
+		console.log('myline.g2X: '+myline.g2X+' myline.g2Y: '+myline.g2Y)
+		//Point de départ
+		this.line.path[0][1] = this.fromX+this.p0.radius;
+		this.line.path[0][2] = this.fromY+this.p0.radius;
+		//1ere poingnée tangeante
+		this.line.path[1][1] = this.g1X;
+		this.line.path[1][2] = this.g1Y;
+		//1ere poignée
+		this.p2.left=this.g1X;
+		this.p2.top=this.g1Y;
+		//2e poingnée tangeante
+		this.line.path[1][3] = this.g2X;
+		this.line.path[1][4] = this.g2Y;
+		//point d'arrivée
+		this.line.path[1][5] = this.toX;
+		this.line.path[1][6] = this.toY;
+		//2e poignée
+		this.p3.left=this.g2X;
+		this.p3.top=this.g2Y;
+	*/	
 		this.guide1 =this.makeLine([this.fromX,this.fromY, this.g1X, this.g1Y]);
 		this.guide1.name="guide1";
 		
@@ -763,6 +926,8 @@ function Bezier(canvas,fromX,fromY,toX,toY,g1X,g1Y,g2X,g2Y,color,targets,myConta
 		this.line.perPixelTargetFind=this.guide1.perPixelTargetFind=this.guide2.perPixelTargetFind=this.p0.perPixelTargetFind=this.p1.perPixelTargetFind=this.p2.perPixelTargetFind=this.p3.perPixelTargetFind=true;
 		this.canvas.add(this.line, this.guide1, this.guide2, this.p0, this.p1, this.p2, this.p3);
 
+		
+			
 	},
 	
 	this.drawCubic()
@@ -799,8 +964,20 @@ function resizeWindow(bezier, datas){
 		var scaly=$('#rpnm_module_content').height()/wheight;
 		wwidth=$('#rpnm_module_content').width();
 		wheight=$('#rpnm_module_content').height();
+		
+	
 		//rpnsequence.log('scalx'+scalx)
 		//rpnsequence.log('scaly'+scaly)
+		//rpnsequence.log('$(#rightdiv_+datas.idmodule).height():'+$('#rightdiv_'+datas.idmodule).height())
+	/*	if($('#leftdiv_'+datas.idmodule).height()<$('#rightdiv_'+datas.idmodule).height()){
+    	   	nbBiggerItemSize=$('#rightdiv_'+datas.idmodule).height()+50;
+        }else{
+        	nbBiggerItemSize=$('#leftdiv_'+datas.idmodule).height()+50;
+        }
+        rpnsequence.log('nbBiggerItemSize resize'+nbBiggerItemSize)
+      */  
+        
+        //rpnsequence.log('size canvas resize'+$('canvas').css('height'))
 	    _.each(bezier, function(item,idx) {
 				//rpnsequence.log('idx: '+idx)
 			  	if(bezier[idx]){
@@ -813,14 +990,80 @@ function resizeWindow(bezier, datas){
 			  		var gfy=coor[1];
 			  		var gtx=coor[0];
 			  		var gty=coor[3];
+			  		//$('canvas').css({
+			       // 	height:window.innerHeight+'px'
+			      //  });
 			        //rpnsequence.log('idx, num, mod:'+idx+', '+bezier[idx].num+', '+bezier[idx].mod)
 			        bezier[idx].drawCubicNewPosition(idx, bezier[idx].mod, fx, fy, tx, ty, gfx, gfy, gtx, gty);
 			  	} 
 		});
+		jQuery(function($) {
+			var myid="#rpnm_modulenav";
+	        //$( myid ).bind( "mouseenter mouseover mouseleave", function() {
+        	$( myid ).bind( "mouseenter mouseover click", function(){
+	        	//rpnsequence.log('///////////////////////////////////////////////////////////////////////////////sur le module '+datas.idmodule)
+	        	
+				//rpnsequence.log('$(#rpnm_module_content).width'+ $('#rpnm_module_content').width())
+				var scalx=$('#rpnm_module_content').width()/wwidth;
+				var scaly=$('#rpnm_module_content').height()/wheight;
+				wwidth=$('#rpnm_module_content').width();
+				wheight=$('#rpnm_module_content').height();
+				//rpnsequence.log('scalx'+scalx)
+				//rpnsequence.log('scaly'+scaly)
+			    _.each(bezier, function(item,idx) {
+						//rpnsequence.log('idx: '+idx)
+					  	if(bezier[idx]){
+					  		var coor=coordsBezier(idx,bezier[idx].mod, bezier, scalx, scaly);
+					  		var fx=coor[0];
+					  		var fy=coor[1];
+					  		var tx=coor[2];
+					  		var ty=coor[3];
+					  		var gfx=coor[2];
+					  		var gfy=coor[1];
+					  		var gtx=coor[0];
+					  		var gty=coor[3];
+					        //rpnsequence.log('idx, num, mod:'+idx+', '+bezier[idx].num+', '+bezier[idx].mod)
+					        bezier[idx].drawCubicNewPosition(idx, bezier[idx].mod, fx, fy, tx, ty, gfx, gfy, gtx, gty);
+					  	} 
+				});
+			
+			});
+			var myid2="#rpnm_validation";
+				$( myid2 ).bind( "mouseenter mouseover click", function(){
+	        	rpnsequence.log('///////////////////////////////////////////////////////////////////////////////sur le module '+datas.idmodule)
+	        	
+				//rpnsequence.log('$(#rpnm_module_content).width'+ $('#rpnm_module_content').width())
+				var scalx=$('#rpnm_module_content').width()/wwidth;
+				var scaly=$('#rpnm_module_content').height()/wheight;
+				wwidth=$('#rpnm_module_content').width();
+				wheight=$('#rpnm_module_content').height();
+				//rpnsequence.log('scalx'+scalx)
+				//rpnsequence.log('scaly'+scaly)
+			    _.each(bezier, function(item,idx) {
+						//rpnsequence.log('idx: '+idx)
+					  	if(bezier[idx]){
+					  		var coor=coordsBezier(idx,bezier[idx].mod, bezier, scalx, scaly);
+					  		var fx=coor[0];
+					  		var fy=coor[1];
+					  		var tx=coor[2];
+					  		var ty=coor[3];
+					  		var gfx=coor[2];
+					  		var gfy=coor[1];
+					  		var gtx=coor[0];
+					  		var gty=coor[3];
+					        //rpnsequence.log('idx, num, mod:'+idx+', '+bezier[idx].num+', '+bezier[idx].mod)
+					        bezier[idx].drawCubicNewPosition(idx, bezier[idx].mod, fx, fy, tx, ty, gfx, gfy, gtx, gty);
+					  	} 
+				});
+			
+			});
+			
+		});
+        
 		//mysizes=new Array($('#rpnm_module_content').width(),$('#rpnm_module_content').height());
 		//return mysizes;
 	};
-	window.addEventListener('resize', myobject.debounce(myobject.resizeBezier, 400));
+	window.addEventListener('resize', myobject.debounce(myobject.resizeBezier, 100));
 	//Ca Foncionne aussi avec buildUi
 	//window.addEventListener('resize', myobject.debounce(func, 400));
 }

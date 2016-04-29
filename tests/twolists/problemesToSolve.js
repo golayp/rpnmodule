@@ -21,3 +21,23 @@ Les formules mathjax ne fonctionnent pas toujours, en particulier à l'école et
 //Positionnement de nextmodule et end
 
 //enlever les remarques
+
+Dans opera, mycanvas est en dessous des listes on ne peut pas arriver avec les bezier sur les boutons radio.
+
+//Faire l'analyse en tesant le contenu des div et en comparant avec les datas de sequ.json et non avec les contenu du DOM
+
+//Dans validate, on va essayer de tout faitre en fonction de state.response
+
+//Faire un state qui soit souvé avec les réponses choisies et que lorsqu'on recharge on puisse prendre le state qui avait été fait. et que les beziers reprennent la position antérieur basée sur le offset des boutons radio
+
+
+//Prevoir la position des bezier lors des redimensionnement de la fenêtre avec un fonction .il faut voir ce que deviennent les positions des div apres un resize. les beziers de la page active sont ok, les beziers des modules cachés disparaissent
+
+//resize, il faut utiliser chaque conteneurs pour les canvas et add. Chaque rpnmodule a son propre bezier. les points lors du resize ont un bug
+ligne 255 il faut mettre au max 0.63 pour voir le bouton next module. on pourrait changer cette valeur si on a une petite fenêtre où de toute façon on doit utiliser 
+
+l'ascenceur et la remetttre lorsqu'on agrandit la fenêtre. Chercher une fonction js qui indique si on est en mode pleine fenêtre. 
+
+
+sta lorsque une poignée manque top of undefinded
+jsplumb
