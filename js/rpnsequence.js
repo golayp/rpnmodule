@@ -492,13 +492,13 @@ var rpnsequence = (function() {
                     var val=/[-0-9]\d*/.exec($(this).val());
                     if(val=='' || val==null){
                         $(this).val('');
-                   }else  if(val=='-'){
+                    }else  if(val=='-'){
                         $(this).val('-');
-                   }else if(val=='-0'){
+                    }else if(val=='-0'){
                         $(this).val('-');
-                   }else if(val=='00'){
+                    }else if(val=='00'){
                        $(this).val('0');
-                   }else{
+                    }else{
                         $(this).val(parseInt(val));
                 	}
                 }
@@ -521,9 +521,9 @@ var rpnsequence = (function() {
                     $(this).val(val);
                 }
                 else if(validationoptions.type=='decimal'){
-                  var val_0=$(this).val().replace(',','.');
-                   var val=/^[-.\d]\d*\.?\d*/.exec(val_0);
-                   if ($(this).val().match(/^-/)){
+                    var val_0=$(this).val().replace(',','.');
+                    var val=/^[-.\d]\d*\.?\d*/.exec(val_0);
+                    if ($(this).val().match(/^-/)){
                        if($(this).val().substring(1).match(/^0[^,\.]/)){
                            var val_1=$(this).val().replace(',','.').substring(2);
                            var val=/^[-.\d]\d*.?\d*/.exec(val_1);
@@ -532,15 +532,15 @@ var rpnsequence = (function() {
                            var val=/^[-.\d]\d*.?\d*/.exec(val_1);
                        }
                        var negative=true;
-                   }
-                   if($(this).val().match(/^0[^,\.]/)){
+                    }
+                    if($(this).val().match(/^0[^,\.]/)){
                        var val_1=$(this).val().replace(',','.').substring(0,1);
                        var val=/^[-.\d]\d*.?\d*/.exec(val_1);
-                   }
-				   if($(this).val().match(/^-/)){
+                    }
+				    if($(this).val().match(/^-/)){
                        var val_1=$(this).val().replace(',','.');
                        var val=/[.\d]\d*.?\d*/.exec(val_1);
-                   }
+                    }
 				    if(val=='' || val==null){
                         val='';
                     }else  if(val=='.'){
@@ -589,6 +589,74 @@ var rpnsequence = (function() {
                         $(this).val('');
                     }else{
                         $(this).val(val);
+                    }
+                }
+                else if(validationoptions.type[0]=='list'){
+                    //window.alert('list');
+                    var tablength=validationoptions.type.length; 
+                    var valinliste=$(this).val()+"+";
+                    var regvarinlist=new RegExp(valinliste);
+                    var val0=$(this).val();
+                    val0=val0.substr(0,val0.length-1);
+                    var val='';
+                    for(var i=1;i<tablength;i++){
+                        if(val==''||val==null){
+                            val=regvarinlist.exec(validationoptions.type[i]);
+                        }
+                    }
+                    if(val=='' || val==null){
+                        $(this).val(val0);
+                    }else{
+                        $(this).val(val);
+                    }
+                }else if(validationoptions.type=="integermille"){
+                    //window.alert("integermille");
+                    var val=/[-0-9']\d*/.exec($(this).val());
+                    //var res=val.toString();
+                    var res=$(this).val().toString();
+                    //window.alert($(this).val()+" integermille "+res+" val.length "+res.length);
+                    if(val=='' || val==null){
+                        $(this).val('');
+                        
+                    }else  if(val=='\''){
+                        $(this).val('');
+                        
+                    }else if(val=='-\''){
+                        $(this).val('-');
+                        
+                    }else if(val=='0\''){
+                        $(this).val('0');
+                        
+                    }else if(val=='00\''){
+                        $(this).val('0');
+                        
+                    }else if(val=='-\''){
+                        $(this).val('-');
+                        
+                    }else  if(val=='-'){
+                        $(this).val('-');
+                        
+                    }else if(val=='-0'){
+                        $(this).val('-');
+                        
+                    }else if(val=='00'){
+                       $(this).val('0');
+                        
+                    }else if(res.charAt(0)=='0' && res.length==2){
+                        //window.alert("parseInt "+val.length);
+                        $(this).val(parseInt(val));
+                	}else if(res.charAt(res.length-2)=='\''&& res.charAt(res.length-1)=='\''){
+                        //window.alert("On veut enlever le 2e  "+res.substring(0,res.length-2));
+                        $(this).val(res.substring(0,res.length-1));
+                    }else if(res.substr(res.length-1,1)=='\''  && res.substring(0,res.length-1).match(/'/)){
+                        //window.alert('il y a un 2e'+res.substr(res.length-5,1));
+                        if(res.substr(res.length-5,1)=='\''){
+                            //window.alert('on le laisse'+res);
+                            $(this).val(res); 
+                        }else {
+                            //window.alert('on l\'enlève:'+res.substring(0,res.length-1));
+                            $(this).val(res.substring(0,res.length-1));
+                        }
                     }
                 }
             });
