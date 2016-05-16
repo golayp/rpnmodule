@@ -75,9 +75,9 @@ var rpndragdropsortingmodule = function() {
         _.each($('.droppable',domelem), function(elem, idx) {
             var txts = [];
             $.each($(elem).find('li'), function(idx, txt) {
-                txts.push($(txt).text());
+                txts.push($(txt).html());
             });
-            state[$(elem).find('span').text()] = txts;
+            state[$(elem).find('span').html()] = txts;
         });
         return state;
     };
