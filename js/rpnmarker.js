@@ -19,7 +19,7 @@ var rpnmarkermodule = function() {
         if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
         }else{
-            var availableColors = ["#8d61a4","#01a271","#5dc2e7","#ed656a","#f5a95e","#eee227","#7a5a14","#bbbbbb","#63b553","#e95c7b","#f5a95e"];
+            var availableColors = ["#8d61a4","#01a271","#5dc2e7","#ed656a","#f5a95e","#eee227","#7a5a14","#63b553","#e95c7b","#f5a95e"];
             state={
                 selectedMarker : '',
                 responses:_.map($('b',datas.tomark),function(b,idx){return '';}),
@@ -79,6 +79,7 @@ var rpnmarkermodule = function() {
                 t.css('cursor', 'pointer');
             }else{
                 t.css('font-weight','normal');
+                t.css('background-color','rgba(255, 255, 255, 0)');
             }
             t.click(function() {
                 t.css('background-color',state.selectedMarker.color);
@@ -105,8 +106,10 @@ var rpnmarkermodule = function() {
     var score =  function(sol) {
         var score = 0;
         _.each(sol, function(val, idx) {
-            score += state.responses[idx] == val ? 1 : 0;
+            score += (val != "" && state.responses[idx] == val) ? 1 : 0;
+            score -= (val == "" && state.responses[idx] != val) ? 1 : 0;
         });
+        score = score >= 0 ? score : 0;
         return score;
     };
     
