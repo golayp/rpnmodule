@@ -7,6 +7,8 @@ var rpngapsimplemodule = function() {
     var clone;
     var maxfillength;
     var state;
+     var dragfromtext;
+    var answerArray;
 
     var init = function(_datas,_state, _domelem) {
         _.defaults(_datas, {
@@ -15,6 +17,7 @@ var rpngapsimplemodule = function() {
 
         datas = _datas;
         dragdrop= !_.isUndefined(_datas.fillers);
+        dragfromtext = !_.isUndefined(_datas.dragfromtext);
         domelem = _domelem;
         if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
@@ -27,49 +30,76 @@ var rpngapsimplemodule = function() {
     var buildUi = function() {
         domelem.addClass('gapsimple');
         var maxwidth=0;
-        if(dragdrop){
+        answerArray = new Array();
+        if(dragdrop || dragfromtext){
             var toolbar = $('<div class="gapsimpleddtoolbar">');
+            if(dragdrop){
             $.each(datas.fillers, function(idx, filler) {
-                var draggable=$('<span class="draggable ori">'+filler+'</span> ').draggable({
+                var draggable=$('<span class="draggable ori" val="'+idx+'" >'+filler+'</span> ').draggable({
                     revert: "invalid",
                     appendTo: domelem,
-                    helper: "clone"
+                    helper: "clone",
+                    snap: true,
+                    snapMode: 'inner'
                 });
+                answerArray[idx] = filler;
                 toolbar.append(draggable);
                 maxwidth=maxwidth<draggable.width()?draggable.width():maxwidth;
             });
             maxfillength=_.max(datas.fillers, function(filler){ return filler.length; }).length;
+            }
+            //build trash
+            var trash = $('<i class="fa fa-trash-o"></i>').droppable({
+                accept:'.clone',
+                hoverClass: 'gapsimpleddresponse-hover',
+                drop: function(e,u) {
+                    $(u.draggable).remove();
+                }
+            });
+            toolbar.append(trash);
             domelem.append(toolbar);
         }
         
         //build panel with sentences
         domelem.append($('<div class="form-inline">' + datas.tofill + '</div>'));
+        
+         $.each($('b[class=drag]', domelem), function(idx, tofill) {
+            var t = $(tofill);
+            var draggable=$('<span class="draggable ori">'+t.html()+'</span> ').draggable({
+                revert: "invalid",
+                appendTo: domelem,
+                helper: "clone",
+                snap: true,
+                snapMode: 'inner'
+            });
+            t.replaceWith(draggable);
+            maxwidth=maxwidth<draggable.width()?draggable.width():maxwidth;
+        });
+        
         $.each($('b', domelem), function(idx, tofill) {
             var t = $(tofill);
             var txt = "";
             //var txt = _.isEmpty(t.text())?"":"<strong>(" + t.text() + ")</strong>";
-            if(dragdrop){
+            if(dragdrop || dragfromtext){
                 //add a drop area
                 var drop=$('<b class="gapsimpleddresponse">');
                 t.replaceWith(drop);
-                
-                
+
                 drop.droppable({
                     accept:'.draggable',
                     hoverClass: 'gapsimpleddresponse-hover',
                     drop: function(e,u) {
                         $(this).empty();
-                        $(this).append(((u.draggable.hasClass('ori')?u.draggable.clone():u.draggable).removeClass('ori')).draggable({
+                        $(this).append(((u.draggable.hasClass('ori')?u.draggable.clone():u.draggable).addClass('clone').removeClass('ori')).draggable({
                             revert: "invalid",
                             appendTo: domelem,
                             helper: "clone"
                         }));
-
                     }
                 });
                 //and fill if there is already a response
                 if(!_.isEmpty(state[idx])){
-                    var alreadyGivenResponse=$('<span class="'+(_.isEmpty(state[idx])?'':'draggable')+'">'+(_.isEmpty(state[idx])?'':state[idx])+'</span>');
+                    var alreadyGivenResponse=$('<span class="'+(_.isEmpty(state[idx])?'':'draggable clone')+'">'+(_.isEmpty(state[idx])?'':state[idx])+'</span>');
                     drop.append(alreadyGivenResponse.draggable({
                         revert: "invalid",
                         appendTo: domelem,

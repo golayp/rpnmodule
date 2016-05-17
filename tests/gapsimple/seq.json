@@ -34,7 +34,22 @@
             "type":"gapsimple",
             "title":"a gapsimple module with drag and drop (single)",
             "fillers":["dream","day"],
+            "singledd": true,
             "tofill":"<p>I have a <b></b> that one <b></b> this nation will rise up and live out the true meaning of its creed - we hold these truths to be self-evident: that all men are created equal.</p>"
+        },
+        {
+            "type":"gapsimple",
+            "title":"a gapsimple module with drag and drop (from a text)",
+            "dragfromtext":true,
+            "tofill":"<p>I have a <b class=\"drag\">dream</b> that one <b class=\"drag\">day</b> this nation will rise up and live out the true meaning of its creed - we hold these truths to be self-evident: that all men are created equal.</p><table><tr><td width=\"100\">jour</td><td width=\"100\">rêve</td></tr><tr><td><b></b></td><td><b></b></td></tr></table>"
+        },
+        {
+            "type":"gapsimple",
+            "cssClass":"ddimage",
+            "title":"a gapsimple module with drag and drop images",
+            "dragimage":true,
+            "fillers":["<img src=\"logo.png\" width=\"150\" height=\"150\" >","<img src=\"logo2.png\" width=\"150\" height=\"150\" >"],
+            "tofill":"<table><tr><td>JS purple</td><td>JS yellow</td></tr><tr><td><b></b></td><td><b></b></td></tr></table>"
         }
     ]
 }

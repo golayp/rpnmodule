@@ -5,27 +5,35 @@
 		],
 		[
 			"a",
-			"b",
+			"",
 			"c",
-			"d",
-			"e",
-			"f"
+			"",
+			"",
+			""
 		],
 		[
 			"dream",
 			"day",
-			"dream",
-			"day",
-			"dream",
-			"day",
-			"dream",
-			"day",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
 			"dream",
 			"day"
 		],
 		[
 			"dream",
-			"day"
-		]
+			""
+		],
+        [
+            "day",
+            ""
+        ],
+        [
+            "",
+            "<img src=\"logo.png\" width=\"150\" height=\"150\" >"
+        ]
 	]
 }
