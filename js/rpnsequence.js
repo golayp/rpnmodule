@@ -263,6 +263,10 @@ var rpnsequence = (function() {
                 modules[idx]=rpndropdownmodule();
                 modules[idx].init(modData,states[idx].state, divContent);
             }
+            else if (modData.type == 'dropdown2') {
+                modules[idx]=rpndropdown2module();
+                modules[idx].init(modData,states[idx].state, divContent);
+            }
             else if (modData.type == 'sorting') {
                 modules[idx]=rpnsortingmodule();
                 modules[idx].init(modData,states[idx].state, divContent);

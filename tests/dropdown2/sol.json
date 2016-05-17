@@ -1,0 +1,9 @@
+{
+    "solutions":[
+		[
+		    "red",
+			"yellow",
+			{"alternative":["red","green","yellow"]}
+		]
+    ]
+}

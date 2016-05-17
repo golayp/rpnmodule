@@ -39,6 +39,7 @@ require([
     'rpnmqc',
     'rpnplumb',
     'rpndropdown',
+    'rpndropdown2',
     'rpnsorting'
     ], function($) {
     $(document).ready(function(){
