@@ -7,7 +7,8 @@ var rpngapsimplemodule = function() {
     var clone;
     var maxfillength;
     var state;
-     var dragfromtext;
+    var dragfromtext;
+    var dragimage;
     var answerArray;
 
     var init = function(_datas,_state, _domelem) {
@@ -18,11 +19,12 @@ var rpngapsimplemodule = function() {
         datas = _datas;
         dragdrop= !_.isUndefined(_datas.fillers);
         dragfromtext = !_.isUndefined(_datas.dragfromtext);
+        dragimage = !_.isUndefined(_datas.dragimage);
         domelem = _domelem;
         if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
         }else{
-            state=_.map($('b',datas.tofill),function(b,idx){return '';});
+            state=_.map($('b:not([class])',datas.tofill),function(b,idx){return '';});
         }
         buildUi();
     };
@@ -42,7 +44,6 @@ var rpngapsimplemodule = function() {
                     snap: true,
                     snapMode: 'inner'
                 });
-                answerArray[idx] = filler;
                 toolbar.append(draggable);
                 maxwidth=maxwidth<draggable.width()?draggable.width():maxwidth;
             });
@@ -95,16 +96,18 @@ var rpngapsimplemodule = function() {
                             appendTo: domelem,
                             helper: "clone"
                         }));
+                        answerArray[idx] = dragimage?datas.fillers[u.draggable.attr("val")]:'';
                     }
                 });
                 //and fill if there is already a response
                 if(!_.isEmpty(state[idx])){
-                    var alreadyGivenResponse=$('<span class="'+(_.isEmpty(state[idx])?'':'draggable clone')+'">'+(_.isEmpty(state[idx])?'':state[idx])+'</span>');
+                    var alreadyGivenResponse=$('<span class="'+(_.isEmpty(state[idx])?'':'draggable clone')+'" '+((_.isEmpty(state[idx]) && dragimage)?'':'val="'+idx+'"')+'>'+(_.isEmpty(state[idx])?'':state[idx])+'</span>');
                     drop.append(alreadyGivenResponse.draggable({
                         revert: "invalid",
                         appendTo: domelem,
                         helper: "clone"
                     }));
+                    answerArray[idx] = state[idx];
                 }
             }else{
                 var textAlign = (_.isUndefined(datas.validation)||_.isUndefined(datas.validation.align))?"":" " + datas.validation.align;
@@ -128,9 +131,13 @@ var rpngapsimplemodule = function() {
     };
     
     var validate = function(){
-        if(dragdrop){
+        if(dragdrop || dragfromtext){
             _.each($('.gapsimpleddresponse',domelem),function(elem,idx){
-                state[idx] = $('.draggable',$(elem)).text();
+                if(dragimage){
+                    state[idx] = answerArray[idx];
+                }else{
+                    state[idx] = $('.draggable',$(elem)).html();
+                }
             });
         }else{
             $.each($('.gapsimple',domelem), function(idx, gap) {
@@ -146,9 +153,11 @@ var rpngapsimplemodule = function() {
             if(val.alternative){
                 score += (_.contains(val.alternative,state[idx] ) ? 1 : 0);
             }else{
-                score += state[idx] == val ? 1 : 0;
+                score += (val != "" && state[idx] == val) ? 1 : 0;
+                score -= (val == "" && state[idx] != val) ? 1 : 0;
             }
         });
+        score = score >= 0 ? score : 0;
         return score;
     };
     
