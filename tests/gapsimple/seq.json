@@ -3,16 +3,60 @@
     "context":"context",
     "directive":"directive",
     "modules":[
-         {
+        {
             "type":"gapsimple",
-            "title":"a gapsimple module",
+            "title":"a gapsimple module type natural'mille ",
             "validation":{
                 "mode":"lock",
-                "type":"decimal",
+                "type":"naturalmille",
+                "width":"10em;",
+                "align":"text-center"
+            },
+            "tofill":"<p>13 + 7 = <b></b></p>"
+        },
+        {
+            "type":"gapsimple",
+            "title":"a gapsimple module type integer'mille ",
+            "validation":{
+                "mode":"lock",
+                "type":"integermille",
                 "width":"4em;",
                 "align":"text-center"
             },
             "tofill":"<p>18 + 7 = <b></b></p>"
+        },
+        {
+            "type":"gapsimple",
+            "title":"a gapsimple module type natural ",
+            "validation":{
+                "mode":"lock",
+                "type":"natural",
+                "width":"4em;",
+                "align":"text-center"
+            },
+            "tofill":"<p>13 + 7 = <b></b></p>"
+        },
+        {
+            "type":"gapsimple",
+            "title":"a gapsimple module type integer ",
+            "validation":{
+                "mode":"lock",
+                "type":"integer",
+                "width":"4em;",
+                "align":"text-center"
+            },
+            "tofill":"<p>13 + 7 = <b></b></p>"
+        },
+        {
+            "type":"gapsimple",
+            "title":"a gapsimple module type list put a list in validation type",
+            "validation":{
+                "mode":"lock",
+                "type":["list","aim","ait","aie"],
+                "width":"4em;",
+                "align":"text-center"
+            },
+            "tofill":"<p>20 + 7 = <b></b></p>"
         },
         {
             "type":"gapsimple",
