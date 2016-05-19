@@ -613,29 +613,13 @@ var rpnsequence = (function() {
                     }else{
                         $(this).val(val);
                     }
-                }else if(validationoptions.type=="integermille"){
-                    //window.alert("integermille");
-                    var val=/[-0-9']\d*/.exec($(this).val());
-                    //var res=val.toString();
-                    var res=$(this).val().toString();
-                    //window.alert($(this).val()+" integermille "+res+" val.length "+res.length);
+                }else if(validationoptions.type=="naturalmille"){
+                 
+                    var nb=$(this).val().split('\'');
+                    nb=nb.join('');
+                    var val=/[0-9'](\'||\d)*/.exec(nb);
                     if(val=='' || val==null){
                         $(this).val('');
-                        
-                    }else  if(val=='\''){
-                        $(this).val('');
-                        
-                    }else if(val=='-\''){
-                        $(this).val('-');
-                        
-                    }else if(val=='0\''){
-                        $(this).val('0');
-                        
-                    }else if(val=='00\''){
-                        $(this).val('0');
-                        
-                    }else if(val=='-\''){
-                        $(this).val('-');
                         
                     }else  if(val=='-'){
                         $(this).val('-');
@@ -645,22 +629,50 @@ var rpnsequence = (function() {
                         
                     }else if(val=='00'){
                        $(this).val('0');
-                        
-                    }else if(res.charAt(0)=='0' && res.length==2){
-                        //window.alert("parseInt "+val.length);
-                        $(this).val(parseInt(val));
-                	}else if(res.charAt(res.length-2)=='\''&& res.charAt(res.length-1)=='\''){
-                        //window.alert("On veut enlever le 2e  "+res.substring(0,res.length-2));
-                        $(this).val(res.substring(0,res.length-1));
-                    }else if(res.substr(res.length-1,1)=='\''  && res.substring(0,res.length-1).match(/'/)){
-                        //window.alert('il y a un 2e'+res.substr(res.length-5,1));
-                        if(res.substr(res.length-5,1)=='\''){
-                            //window.alert('on le laisse'+res);
-                            $(this).val(res); 
-                        }else {
-                            //window.alert('on l\'enlève:'+res.substring(0,res.length-1));
-                            $(this).val(res.substring(0,res.length-1));
+                       
+                    }else if(parseInt(val) != 0 && val[0].length==2){
+                       $(this).val(parseInt(val)); 
+                    
+
+                    }else{
+                        for (var i=val[0].length-1;i>=0;i-=3){;
+                            if (val[0].charAt(i-3) && val[0].charAt(i-3)!='-'){
+                                var avant=val[0].substring(0,i-2);
+                                var apres=val[0].substring(i-2);
+                                val[0]=avant+'\''+apres;
+                            }
                         }
+                        $(this).val(val[0]);
+                    }
+                
+                }else if(validationoptions.type=="integermille"){
+                    var nb=$(this).val().split('\'');
+                    nb=nb.join('');
+                    var val=/[-0-9']\d*/.exec(nb);
+                    if(val=='' || val==null){
+                        $(this).val('');
+                        
+                    }else  if(val=='-'){
+                        $(this).val('-');
+                        
+                    }else if(val=='-0'){
+                        $(this).val('-');
+                        
+                    }else if(val=='00'){
+                       $(this).val('0');
+                       
+                    }else if(parseInt(val) != 0 && val[0].length==2){
+                       $(this).val(parseInt(val)); 
+
+                    }else{
+                        for (var i=val[0].length-1;i>=0;i-=3){
+                            if (val[0].charAt(i-3) && val[0].charAt(i-3)!='-'){
+                                var avant=val[0].substring(0,i-2);
+                                var apres=val[0].substring(i-2);
+                                val[0]=avant+'\''+apres;
+                            }
+                        }
+                        $(this).val(val[0]);
                     }
                 }
             });
