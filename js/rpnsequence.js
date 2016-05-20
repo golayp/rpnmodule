@@ -484,76 +484,210 @@ var rpnsequence = (function() {
         if(validationoptions.mode=='lock'){
         
             $(inputs).bind('input propertychange',function(){
-                if(validationoptions.type=='natural'){
-                    var val=/(^-?[0-9]\d*)/.exec($(this).val());
-                    if(val=='' || val==null || val==0){
-                        $(this).val('');
-                    }else if(isNaN(val)){
-                        $(this).val(parseInt(val));
+                if(validationoptions.type=="natural"){
+                    if(validationoptions.milleseparator==true){
+                        var nb=$(this).val().split('\'');
+                        nb=nb.join('');
+                        var val=/[0-9'](\'||\d)*/.exec(nb);
+                        if(val=='' || val==null){
+                            $(this).val('');
+
+                        }else  if(val=='-'){
+                            $(this).val('-');
+
+                        }else if(val=='-0'){
+                            $(this).val('-');
+
+                        }else if(val=='00'){
+                           $(this).val('0');
+
+                        }else if(parseInt(val) != 0 && val[0].length==2){
+                           $(this).val(parseInt(val)); 
+
+
+                        }else{
+                            for (var i=val[0].length-1;i>=0;i-=3){;
+                                if (val[0].charAt(i-3) && val[0].charAt(i-3)!='-'){
+                                    var avant=val[0].substring(0,i-2);
+                                    var apres=val[0].substring(i-2);
+                                    val[0]=avant+'\''+apres;
+                                }
+                            }
+                            $(this).val(val[0]);
                     }
-                }
-                else if(validationoptions.type=='integer'){ 
-                    var val=/[-0-9]\d*/.exec($(this).val());
-                    if(val=='' || val==null){
-                        $(this).val('');
-                    }else  if(val=='-'){
-                        $(this).val('-');
-                    }else if(val=='-0'){
-                        $(this).val('-');
-                    }else if(val=='00'){
-                       $(this).val('0');
+                        
                     }else{
-                        $(this).val(parseInt(val));
-                	}
-                }
-                else if(validationoptions.type=='posdecimal'){
-                	var val_0=$(this).val().replace(',','.');
-                	var val=/^[.\d]\d*\.?\d*/.exec(val_0);
-                	if($(this).val().match(/^0[^,\.]/)){
-                		var val_1=$(this).val().replace(',','.').substring(0,1);
-                		var val=/^[-.\d]\d*.?\d*/.exec(val_1);
-                	}
-                	if($(this).val().match(/^-/)){
-                		var val_1=$(this).val().replace(',','.');
-                		var val=/[.\d]\d*.?\d*/.exec(val_1);
-                	}
-                	if(val=='' || val==null){
-                		val='';
-                	}else  if(val=='.'){
-                        val='0.';
+                        var val=/(^-?[0-9]\d*)/.exec($(this).val());
+                        if(val=='' || val==null || val==0){
+                            $(this).val('');
+                        }else if(isNaN(val)){
+                            $(this).val(parseInt(val));
+                        } 
                     }
-                    $(this).val(val);
+                 
+                
+                }else if(validationoptions.type=="integer"){
+                    if(validationoptions.milleseparator==true){
+                        var nb=$(this).val().split('\'');
+                        nb=nb.join('');
+                        var val=/[-0-9']\d*/.exec(nb);
+                        if(val=='' || val==null){
+                            $(this).val('');
+
+                        }else  if(val=='-'){
+                            $(this).val('-');
+
+                        }else if(val=='-0'){
+                            $(this).val('-');
+
+                        }else if(val=='00'){
+                           $(this).val('0');
+
+                        }else if(parseInt(val) != 0 && val[0].length==2){
+                           $(this).val(parseInt(val)); 
+
+                        }else{
+                            for (var i=val[0].length-1;i>=0;i-=3){
+                                if (val[0].charAt(i-3) && val[0].charAt(i-3)!='-'){
+                                    var avant=val[0].substring(0,i-2);
+                                    var apres=val[0].substring(i-2);
+                                    val[0]=avant+'\''+apres;
+                                }
+                            }
+                            $(this).val(val[0]);
+                        }
+                    }else{
+                        var val=/[-0-9]\d*/.exec($(this).val());
+                        if(val=='' || val==null){
+                            $(this).val('');
+                        }else  if(val=='-'){
+                            $(this).val('-');
+                        }else if(val=='-0'){
+                            $(this).val('-');
+                        }else if(val=='00'){
+                           $(this).val('0');
+                        }else{
+                            $(this).val(parseInt(val));
+                        }
+                    }
+                }else if(validationoptions.type=='posdecimal'){
+                        var val_0=$(this).val().replace(',','.');
+                        val_0=val_0.split('\'');
+                        val_0=val_0.join('');
+                        var val=/^[.\d]\d*\.?\d*/.exec(val_0);
+                        if($(this).val().match(/^0[^,\.]/)){
+                            var val_1=$(this).val().replace(',','.').substring(0,1);
+                            var val=/^[-.\d]\d*.?\d*/.exec(val_1);
+                        }
+                        if($(this).val().match(/^-/)){
+                            var val_1=$(this).val().replace(',','.');
+                            var val=/[.\d]\d*.?\d*/.exec(val_1);
+                        }
+                        if(val=='' || val==null){
+                            val='';
+                        }else  if(val=='.'){
+                            val='0.';
+                        }
+                        $(this).val(val);
+                    if(validationoptions.milleseparator==true){
+                        var point=$(this).val().match(/\./);
+                        var nbInteger=$(this).val().split('.');
+                        var nb=nbInteger[0].split('\'');
+                        nb=nb.join('');
+                        var val=/[0-9']\d*/.exec(nb);
+                        if(val=='' || val==null){
+                            $(this).val('');
+
+                        }else  if(val=='-'){
+                            $(this).val('-');
+
+                        }else if(val=='-0'){
+                            $(this).val('-');
+
+                        }else if(val=='00'){
+                           $(this).val('0');
+
+                        }else if(parseInt(val) != 0 && val[0].length==2){
+                           $(this).val(parseInt(val)); 
+
+                        }else{
+                            for (var i=val[0].length-1;i>=0;i-=3){
+                                if (val[0].charAt(i-3) && val[0].charAt(i-3)!='-'){
+                                    var avant=val[0].substring(0,i-2);
+                                    var apres=val[0].substring(i-2);
+                                    val[0]=avant+'\''+apres;
+                                }
+                            }
+                            if(point=='' || point == null){
+                                $(this).val(val[0]);
+                            }else{
+                                $(this).val(val[0]+point+nbInteger[1]); 
+                            }  
+                        }
+                    }
+                	
                 }
                 else if(validationoptions.type=='decimal'){
                     var val_0=$(this).val().replace(',','.');
+                    val_0=val_0.split('\'');
+                    val_0=val_0.join('');
                     var val=/^[-.\d]\d*\.?\d*/.exec(val_0);
-                    if ($(this).val().match(/^-/)){
-                       if($(this).val().substring(1).match(/^0[^,\.]/)){
-                           var val_1=$(this).val().replace(',','.').substring(2);
-                           var val=/^[-.\d]\d*.?\d*/.exec(val_1);
+                        console.log('decimal, val: '+val)
+                    if (val[0].match(/^-/)){
+                       if(val[0].substring(1).match(/^0[^,\.]/)){       
+                           var val=/^[-.\d]\d*.?\d*/.exec(val[0]);
                        }else{
-                           var val_1=$(this).val().replace(',','.').substring(1);
-                           var val=/^[-.\d]\d*.?\d*/.exec(val_1);
+                           var val=/^[-.\d]\d*.?\d*/.exec(val[0]);
                        }
                        var negative=true;
                     }
-                    if($(this).val().match(/^0[^,\.]/)){
-                       var val_1=$(this).val().replace(',','.').substring(0,1);
-                       var val=/^[-.\d]\d*.?\d*/.exec(val_1);
+                    if(val[0].match(/^0[^,\.]/)){
+                        var val=/^[-.\d]\d*.?\d*/.exec(val[0]);
                     }
-				    if($(this).val().match(/^-/)){
-                       var val_1=$(this).val().replace(',','.');
-                       var val=/[.\d]\d*.?\d*/.exec(val_1);
+                    if(val[0].match(/^-/)){
+                        var val=/[.\d]\d*.?\d*/.exec(val[0]);
                     }
-				    if(val=='' || val==null){
+                    if(val=='' || val==null){
                         val='';
                     }else  if(val=='.'){
                         val='0.';
                     }
                     if(negative){
-                        $(this).val('-'+val);
+                       $(this).val('-'+val);
                     }else{
                         $(this).val(val);
+                    }
+                    if(validationoptions.milleseparator==true){
+                        var point=$(this).val().match(/\./);
+                        var nbInteger=$(this).val().split('.');
+                        var nb=nbInteger[0].split('\'');
+                        nb=nb.join('');
+                        var val=/[-0-9']\d*/.exec(nb);
+                        if(val=='' || val==null){
+                            $(this).val('');
+
+                        }else  if(val=='-'){
+                            $(this).val('-');
+                        }else if(val=='00'){
+                           $(this).val('0');
+
+                        }else if(parseInt(val) != 0 && val[0].length==2){
+                           $(this).val(parseInt(val)); 
+
+                        }else{
+                            for (var i=val[0].length-1;i>=0;i-=3){
+                                if (val[0].charAt(i-3) && val[0].charAt(i-3)!='-'){
+                                    var avant=val[0].substring(0,i-2);
+                                    var apres=val[0].substring(i-2);
+                                    val[0]=avant+'\''+apres;
+                                }
+                            }
+                            if(point=='' || point == null){
+                                $(this).val(val[0]);
+                            }else{
+                                $(this).val(val[0]+point+nbInteger[1]); 
+                            }  
+                        }
                     }
                 }
                 else if(validationoptions.type=='lowercase'){
@@ -613,68 +747,7 @@ var rpnsequence = (function() {
                     }else{
                         $(this).val(val);
                     }
-                }else if(validationoptions.type=="naturalmille"){
-                 
-                    var nb=$(this).val().split('\'');
-                    nb=nb.join('');
-                    var val=/[0-9'](\'||\d)*/.exec(nb);
-                    if(val=='' || val==null){
-                        $(this).val('');
-                        
-                    }else  if(val=='-'){
-                        $(this).val('-');
-                        
-                    }else if(val=='-0'){
-                        $(this).val('-');
-                        
-                    }else if(val=='00'){
-                       $(this).val('0');
-                       
-                    }else if(parseInt(val) != 0 && val[0].length==2){
-                       $(this).val(parseInt(val)); 
-                    
-
-                    }else{
-                        for (var i=val[0].length-1;i>=0;i-=3){;
-                            if (val[0].charAt(i-3) && val[0].charAt(i-3)!='-'){
-                                var avant=val[0].substring(0,i-2);
-                                var apres=val[0].substring(i-2);
-                                val[0]=avant+'\''+apres;
-                            }
-                        }
-                        $(this).val(val[0]);
-                    }
-                
-                }else if(validationoptions.type=="integermille"){
-                    var nb=$(this).val().split('\'');
-                    nb=nb.join('');
-                    var val=/[-0-9']\d*/.exec(nb);
-                    if(val=='' || val==null){
-                        $(this).val('');
-                        
-                    }else  if(val=='-'){
-                        $(this).val('-');
-                        
-                    }else if(val=='-0'){
-                        $(this).val('-');
-                        
-                    }else if(val=='00'){
-                       $(this).val('0');
-                       
-                    }else if(parseInt(val) != 0 && val[0].length==2){
-                       $(this).val(parseInt(val)); 
-
-                    }else{
-                        for (var i=val[0].length-1;i>=0;i-=3){
-                            if (val[0].charAt(i-3) && val[0].charAt(i-3)!='-'){
-                                var avant=val[0].substring(0,i-2);
-                                var apres=val[0].substring(i-2);
-                                val[0]=avant+'\''+apres;
-                            }
-                        }
-                        $(this).val(val[0]);
-                    }
-                }
+                } 
             });
         }
     };

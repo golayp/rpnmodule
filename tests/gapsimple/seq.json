@@ -8,7 +8,8 @@
             "title":"a gapsimple module type natural'mille ",
             "validation":{
                 "mode":"lock",
-                "type":"naturalmille",
+                "type":"natural",
+                "milleseparator":true,
                 "width":"10em;",
                 "align":"text-center"
             },
@@ -19,30 +20,33 @@
             "title":"a gapsimple module type integer'mille ",
             "validation":{
                 "mode":"lock",
-                "type":"integermille",
-                "width":"4em;",
+                "type":"integer",
+                "milleseparator":true,
+                "width":"10em;",
                 "align":"text-center"
             },
             "tofill":"<p>18 + 7 = <b></b></p>"
         },
         {
             "type":"gapsimple",
-            "title":"a gapsimple module type natural ",
+            "title":"a gapsimple module type decimal ",
             "validation":{
                 "mode":"lock",
-                "type":"natural",
-                "width":"4em;",
+                "type":"decimal",
+                "milleseparator":true,
+                "width":"10em;",
                 "align":"text-center"
             },
             "tofill":"<p>13 + 7 = <b></b></p>"
         },
         {
             "type":"gapsimple",
-            "title":"a gapsimple module type integer ",
+            "title":"a gapsimple module type posdecimal ",
             "validation":{
                 "mode":"lock",
-                "type":"integer",
-                "width":"4em;",
+                "type":"posdecimal",
+                "milleseparator":true,
+                "width":"10em;",
                 "align":"text-center"
             },
             "tofill":"<p>13 + 7 = <b></b></p>"
