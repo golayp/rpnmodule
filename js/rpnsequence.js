@@ -484,6 +484,12 @@ var rpnsequence = (function() {
         if(validationoptions.mode=='lock'){
         
             $(inputs).bind('input propertychange',function(){
+                if(validationoptions.numberofchar){
+                    var mylength=$(this).val().length;
+                    if(mylength>validationoptions.numberofchar){
+                        $(this).val($(this).val().substr(0,mylength-1))
+                    }
+                }
                 if(validationoptions.type=="natural"){
                     if(validationoptions.milleseparator==true){
                         var nb=$(this).val().split('\'');
