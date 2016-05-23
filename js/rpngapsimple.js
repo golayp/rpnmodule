@@ -134,7 +134,7 @@ var rpngapsimplemodule = function() {
         if(dragdrop || dragfromtext){
             _.each($('.gapsimpleddresponse',domelem),function(elem,idx){
                 if(dragimage){
-                    state[idx] = answerArray[idx];
+                    state[idx] = !_.isUndefined($('.draggable',$(elem)).html()) ? ($('.draggable',$(elem)).html().length==0?'':answerArray[idx]):'';
                 }else{
                     state[idx] = $('.draggable',$(elem)).html();
                 }
