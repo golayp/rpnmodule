@@ -1,0 +1,28 @@
+{
+    "title":"modulesequence",
+    "context":"context",
+    "directive":"directive",
+    "modules":[
+        {
+            "type":"doc",
+            "title":"a doc module with iframe",
+            "object":{
+                "type":"iframe",
+                "url":"http://www.languageguide.org/anglais/salutations/",
+                "width":"100%",
+                "height":"70%"
+            }
+        },
+        {
+            "type":"doc",
+            "title":"a doc module with an applet geogebra",
+            "object":{
+                "type":"iframe",
+                "url":"https://www.geogebra.org/material/iframe/id/20380/width/848/height/636/border/888888/rc/false/ai/false/sdz/true/smb/false/stb/false/stbh/true/ld/false/sri/true/at/preferhtml5",
+                "width":"848px",
+                "height":"636px",
+                "style":"border:0px;"
+            }
+        }
+    ]
+}

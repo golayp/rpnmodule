@@ -40,7 +40,8 @@ require([
     'rpnplumb',
     'rpndropdown',
     'rpndropdown2',
-    'rpnsorting'
+    'rpnsorting',
+    'rpndoc'
     ], function($) {
     $(document).ready(function(){
         rpnsequence.init({

@@ -275,6 +275,10 @@ var rpnsequence = (function() {
                 modules[idx]=rpnmapmodule();
                 modules[idx].init(modData,states[idx].state, divContent);
             }
+            else if (modData.type == 'doc') {
+                modules[idx]=rpndocmodule();
+                modules[idx].init(modData,states[idx].state, divContent);
+            }
             
             moduleLocation.append(rpnmInstance);
             //load plumb module after dom append in order to make connector available for paint
