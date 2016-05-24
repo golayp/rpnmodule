@@ -30,10 +30,11 @@ var rpndocmodule = function() {
         domelem.addClass('doc');
         var doc = $('<div class="doc">');
         var objectType = (_.isUndefined(datas.object)||_.isUndefined(datas.object.type))?"":datas.object.type;
-        var objectWidth = (_.isUndefined(datas.object)||_.isUndefined(datas.object.width))?"":"width=" + datas.object.width;
-        var objectHeight = (_.isUndefined(datas.object)||_.isUndefined(datas.object.height))?"":"height=" + datas.object.height;
+        var objectWidth = (_.isUndefined(datas.object)||_.isUndefined(datas.object.width))?"width=\"100%\"":"width=" + datas.object.width;
+        var objectHeight = (_.isUndefined(datas.object)||_.isUndefined(datas.object.height))?"height=\"70%\"":"height=" + datas.object.height;
         var objectStyle = (_.isUndefined(datas.object)||_.isUndefined(datas.object.style))?"":"style=" + datas.object.style;
-        var object = $('<'+objectType+' src="'+datas.object.url+'" '+objectWidth+' '+objectHeight+' '+objectStyle+' ><p>Your browser does not support objects.</p></'+objectType+'>');
+        var objectAttribut = (_.isUndefined(datas.object)||_.isUndefined(datas.object.attribut))?"":datas.object.attribut;
+        var object = $('<'+objectType+' src="'+datas.object.url+'" '+objectWidth+' '+objectHeight+' '+objectStyle+' '+objectAttribut+' ></'+objectType+'>');
         
         doc.append(object);
         domelem.append(doc);

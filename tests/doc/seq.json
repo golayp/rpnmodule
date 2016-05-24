@@ -8,9 +8,7 @@
             "title":"a doc module with iframe",
             "object":{
                 "type":"iframe",
-                "url":"http://www.languageguide.org/anglais/salutations/",
-                "width":"100%",
-                "height":"70%"
+                "url":"http://www.languageguide.org/anglais/salutations/"
             }
         },
         {
@@ -22,6 +20,26 @@
                 "width":"848px",
                 "height":"636px",
                 "style":"border:0px;"
+            }
+        },
+        {
+            "type":"doc",
+            "title":"a doc module with a youtube video",
+            "object":{
+                "type":"iframe",
+                "url":"https://www.youtube.com/embed/CAkMUdeB06o",
+                "width":"420px",
+                "height":"315px",
+                "attribut":"frameborder=\"0\" allowfullscreen"
+            }
+        },
+        {
+            "type":"doc",
+            "title":"a doc module with a swf file",
+            "object":{
+                "type":"embed",
+                "url":"http://www.pragmasoft.be/carnets/geo/ecluse/Ecluse2015.swf",
+                "attribut":"fullscreen=yes"
             }
         }
     ]
