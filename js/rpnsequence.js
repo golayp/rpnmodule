@@ -488,6 +488,10 @@ var rpnsequence = (function() {
         if(validationoptions.mode=='lock'){
         
             $(inputs).bind('input propertychange',function(){
+                var mylength=$(this).val().length;
+                var myelement=document.activeElement;
+                myelement.focus();
+                var myelementcursor=myelement.selectionStart;
                 if(validationoptions.numberofchar){
                     var mylength=$(this).val().length;
                     if(mylength>validationoptions.numberofchar){
@@ -495,6 +499,13 @@ var rpnsequence = (function() {
                     }
                 }
                 if(validationoptions.type=="natural"){
+                    var val_0=$(this).val();
+                    var stringbeforecursor= val_0.substring(0,myelementcursor);
+                    var nbofseparatorbeforearray1=stringbeforecursor.match(/\'/g);
+                    var nbofseparator1=0;
+                    if(nbofseparatorbeforearray1){
+                        nbofseparator1=nbofseparatorbeforearray1.length;
+                    }
                     if(validationoptions.milleseparator==true){
                         var nb=$(this).val().split('\'');
                         nb=nb.join('');
@@ -521,9 +532,16 @@ var rpnsequence = (function() {
                                     var avant=val[0].substring(0,i-2);
                                     var apres=val[0].substring(i-2);
                                     val[0]=avant+'\''+apres;
+                                    if(i<=myelementcursor){myelementcursor=myelementcursor+1};
                                 }
                             }
                             $(this).val(val[0]);
+                            var stringbeforecursor= $(this).val().substring(0,myelementcursor);
+                            var nbofseparatorbeforearray2=stringbeforecursor.match(/\'/g);
+                            var nbofseparator2=0;
+                            if(nbofseparatorbeforearray2){
+                                myelementcursor=myelementcursor-nbofseparator1;
+                            }
                     }
                         
                     }else{
@@ -537,6 +555,13 @@ var rpnsequence = (function() {
                  
                 
                 }else if(validationoptions.type=="integer"){
+                    var val_0=$(this).val();
+                    var stringbeforecursor= val_0.substring(0,myelementcursor);
+                    var nbofseparatorbeforearray1=stringbeforecursor.match(/\'/g);
+                    var nbofseparator1=0;
+                    if(nbofseparatorbeforearray1){
+                        nbofseparator1=nbofseparatorbeforearray1.length;
+                    }
                     if(validationoptions.milleseparator==true){
                         var nb=$(this).val().split('\'');
                         nb=nb.join('');
@@ -562,9 +587,16 @@ var rpnsequence = (function() {
                                     var avant=val[0].substring(0,i-2);
                                     var apres=val[0].substring(i-2);
                                     val[0]=avant+'\''+apres;
+                                    if(i<=myelementcursor){myelementcursor=myelementcursor+1};
                                 }
                             }
                             $(this).val(val[0]);
+                            var stringbeforecursor= $(this).val().substring(0,myelementcursor);
+                            var nbofseparatorbeforearray2=stringbeforecursor.match(/\'/g);
+                            var nbofseparator2=0;
+                            if(nbofseparatorbeforearray2){
+                                myelementcursor=myelementcursor-nbofseparator1;
+                            }
                         }
                     }else{
                         var val=/[-0-9]\d*/.exec($(this).val());
@@ -582,6 +614,12 @@ var rpnsequence = (function() {
                     }
                 }else if(validationoptions.type=='posdecimal'){
                         var val_0=$(this).val().replace(',','.');
+                        var stringbeforecursor= val_0.substring(0,myelementcursor);
+                        var nbofseparatorbeforearray1=stringbeforecursor.match(/\'/g);
+                        var nbofseparator1=0;
+                        if(nbofseparatorbeforearray1){
+                            nbofseparator1=nbofseparatorbeforearray1.length;
+                        }
                         val_0=val_0.split('\'');
                         val_0=val_0.join('');
                         var val=/^[.\d]\d*\.?\d*/.exec(val_0);
@@ -597,6 +635,7 @@ var rpnsequence = (function() {
                             val='';
                         }else  if(val=='.'){
                             val='0.';
+                            myelementcursor=myelementcursor+1;
                         }
                         $(this).val(val);
                     if(validationoptions.milleseparator==true){
@@ -626,23 +665,35 @@ var rpnsequence = (function() {
                                     var avant=val[0].substring(0,i-2);
                                     var apres=val[0].substring(i-2);
                                     val[0]=avant+'\''+apres;
+                                    if(i<=myelementcursor){myelementcursor=myelementcursor+1};
                                 }
                             }
                             if(point=='' || point == null){
                                 $(this).val(val[0]);
                             }else{
                                 $(this).val(val[0]+point+nbInteger[1]); 
-                            }  
+                            }
+                            var stringbeforecursor= $(this).val().substring(0,myelementcursor);
+                            var nbofseparatorbeforearray2=stringbeforecursor.match(/\'/g);
+                            var nbofseparator2=0;
+                            if(nbofseparatorbeforearray2){
+                                myelementcursor=myelementcursor-nbofseparator1;
+                            }
                         }
                     }
                 	
                 }
                 else if(validationoptions.type=='decimal'){
                     var val_0=$(this).val().replace(',','.');
+                    var stringbeforecursor= val_0.substring(0,myelementcursor);
+                    var nbofseparatorbeforearray1=stringbeforecursor.match(/\'/g);
+                    var nbofseparator1=0;
+                    if(nbofseparatorbeforearray1){
+                        nbofseparator1=nbofseparatorbeforearray1.length;
+                    }
                     val_0=val_0.split('\'');
                     val_0=val_0.join('');
                     var val=/^[-.\d]\d*\.?\d*/.exec(val_0);
-                        console.log('decimal, val: '+val)
                     if (val[0].match(/^-/)){
                        if(val[0].substring(1).match(/^0[^,\.]/)){       
                            var val=/^[-.\d]\d*.?\d*/.exec(val[0]);
@@ -661,6 +712,7 @@ var rpnsequence = (function() {
                         val='';
                     }else  if(val=='.'){
                         val='0.';
+                        myelementcursor=myelementcursor+1;
                     }
                     if(negative){
                        $(this).val('-'+val);
@@ -690,13 +742,25 @@ var rpnsequence = (function() {
                                     var avant=val[0].substring(0,i-2);
                                     var apres=val[0].substring(i-2);
                                     val[0]=avant+'\''+apres;
+                                    if(i<=myelementcursor){
+                                        myelementcursor=myelementcursor+1;
+                                    }
+                                        
                                 }
                             }
                             if(point=='' || point == null){
                                 $(this).val(val[0]);
+                                
                             }else{
-                                $(this).val(val[0]+point+nbInteger[1]); 
-                            }  
+                                $(this).val(val[0]+point+nbInteger[1]);
+                                
+                            }
+                            var stringbeforecursor= $(this).val().substring(0,myelementcursor);
+                            var nbofseparatorbeforearray2=stringbeforecursor.match(/\'/g);
+                            var nbofseparator2=0;
+                            if(nbofseparatorbeforearray2){
+                                myelementcursor=myelementcursor-nbofseparator1;
+                            }
                         }
                     }
                 }
@@ -757,7 +821,9 @@ var rpnsequence = (function() {
                     }else{
                         $(this).val(val);
                     }
-                } 
+                }
+                    myelement.setSelectionRange(myelementcursor, myelementcursor);
+                
             });
         }
     };

@@ -14,7 +14,7 @@
                 "numberofchar":"6",
                 "align":"text-center"
             },
-            "tofill":"<p>13 + 7 = <b></b></p>"
+            "tofill":"<p>1300 + 7 = <b></b></p>"
         },
         {
             "type":"gapsimple",
@@ -26,7 +26,7 @@
                 "width":"10em;",
                 "align":"text-center"
             },
-            "tofill":"<p>18 + 7 = <b></b></p>"
+            "tofill":"<p>1800 + 7 = <b></b></p>"
         },
         {
             "type":"gapsimple",
@@ -38,7 +38,7 @@
                 "width":"10em;",
                 "align":"text-center"
             },
-            "tofill":"<p>13 + 7 = <b></b></p>"
+            "tofill":"<p>1500 + 7 = <b></b></p>"
         },
         {
             "type":"gapsimple",
@@ -50,7 +50,7 @@
                 "width":"10em;",
                 "align":"text-center"
             },
-            "tofill":"<p>13 + 7 = <b></b></p>"
+            "tofill":"<p>1400 + 7 = <b></b></p>"
         },
         {
             "type":"gapsimple",
@@ -61,7 +61,7 @@
                 "width":"4em;",
                 "align":"text-center"
             },
-            "tofill":"<p>20 + 7 = <b></b></p>"
+            "tofill":"<p>arriv<b></b></p>"
         },
         {
             "type":"gapsimple",
