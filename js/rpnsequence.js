@@ -805,11 +805,16 @@ var rpnsequence = (function() {
                 }
                 else if(validationoptions.type[0]=='list'){
                     //window.alert('list');
-                    var tablength=validationoptions.type.length; 
-                    var valinliste=$(this).val()+"+";
+                    var tablength=validationoptions.type.length;
+                    var val0=$(this).val().split('^');
+                    val0=val0.join('');
+                    var myval=val0;
+                    var mychar=myval.charAt(myelementcursor-1);
+                    //val0=val0.substr(0,myelementcursor-1);
+                    val0=val0.split(mychar).join('');
+                    console.log('val0'+val0)
+                    var valinliste=myval+"+";
                     var regvarinlist=new RegExp(valinliste);
-                    var val0=$(this).val();
-                    val0=val0.substr(0,val0.length-1);
                     var val='';
                     for(var i=1;i<tablength;i++){
                         if(val==''||val==null){
@@ -822,7 +827,7 @@ var rpnsequence = (function() {
                         $(this).val(val);
                     }
                 }
-                    myelement.setSelectionRange(myelementcursor, myelementcursor);
+                myelement.setSelectionRange(myelementcursor, myelementcursor);
                 
             });
         }
