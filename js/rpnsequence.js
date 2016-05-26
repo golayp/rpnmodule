@@ -810,9 +810,7 @@ var rpnsequence = (function() {
                     val0=val0.join('');
                     var myval=val0;
                     var mychar=myval.charAt(myelementcursor-1);
-                    //val0=val0.substr(0,myelementcursor-1);
                     val0=val0.split(mychar).join('');
-                    console.log('val0'+val0)
                     var valinliste=myval+"+";
                     var regvarinlist=new RegExp(valinliste);
                     var val='';
@@ -823,6 +821,7 @@ var rpnsequence = (function() {
                     }
                     if(val=='' || val==null){
                         $(this).val(val0);
+                        myelementcursor=myelementcursor-1;
                     }else{
                         $(this).val(val);
                     }
