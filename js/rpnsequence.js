@@ -657,7 +657,11 @@ var rpnsequence = (function() {
                            $(this).val('0');
 
                         }else if(parseInt(val) != 0 && val[0].length==2){
-                           $(this).val(parseInt(val)); 
+                            if(point=='' || point == null){
+                                $(this).val(parseInt(val));    
+                            }else{
+                                $(this).val(parseInt(val)+point+nbInteger[1]); 
+                            } 
 
                         }else{
                             for (var i=val[0].length-1;i>=0;i-=3){
@@ -734,8 +738,11 @@ var rpnsequence = (function() {
                            $(this).val('0');
 
                         }else if(parseInt(val) != 0 && val[0].length==2){
-                           $(this).val(parseInt(val)); 
-
+                           if(point=='' || point == null){
+                                $(this).val(parseInt(val));    
+                            }else{
+                                $(this).val(parseInt(val)+point+nbInteger[1]); 
+                            }
                         }else{
                             for (var i=val[0].length-1;i>=0;i-=3){
                                 if (val[0].charAt(i-3) && val[0].charAt(i-3)!='-'){
@@ -749,11 +756,9 @@ var rpnsequence = (function() {
                                 }
                             }
                             if(point=='' || point == null){
-                                $(this).val(val[0]);
-                                
+                                $(this).val(val[0]);    
                             }else{
-                                $(this).val(val[0]+point+nbInteger[1]);
-                                
+                                $(this).val(val[0]+point+nbInteger[1]);  
                             }
                             var stringbeforecursor= $(this).val().substring(0,myelementcursor);
                             var nbofseparatorbeforearray2=stringbeforecursor.match(/\'/g);
