@@ -499,6 +499,8 @@ var rpnsequence = (function() {
                     }
                 }
                 if(validationoptions.type=="natural"){
+                    
+                    $(this).val(parseInt($(this).val().split('\'').join('')));
                     var val_0=$(this).val();
                     var stringbeforecursor= val_0.substring(0,myelementcursor);
                     var nbofseparatorbeforearray1=stringbeforecursor.match(/\'/g);
@@ -509,23 +511,16 @@ var rpnsequence = (function() {
                     if(validationoptions.milleseparator==true){
                         var nb=$(this).val().split('\'');
                         nb=nb.join('');
-                        var val=/[0-9'](\'||\d)*/.exec(nb);
+                        console.log('nb'+nb)
+                        var val=/(^-?[0-9]\d*)/.exec(nb);
                         if(val=='' || val==null){
                             $(this).val('');
-
-                        }else  if(val=='-'){
-                            $(this).val('-');
-
-                        }else if(val=='-0'){
-                            $(this).val('-');
 
                         }else if(val=='00'){
                            $(this).val('0');
 
                         }else if(parseInt(val) != 0 && val[0].length==2){
-                           $(this).val(parseInt(val)); 
-
-
+                           $(this).val(parseInt(val));
                         }else{
                             for (var i=val[0].length-1;i>=0;i-=3){;
                                 if (val[0].charAt(i-3) && val[0].charAt(i-3)!='-'){
@@ -555,6 +550,13 @@ var rpnsequence = (function() {
                  
                 
                 }else if(validationoptions.type=="integer"){
+                    if($(this).val().indexOf('-')==1){$(this).val($(this).val().substring(1))};
+                    var myless=/[-0-9']\d*/.exec($(this).val());
+                    if(myless=='-'){
+                        $(this).val('-');
+                    } else{
+                        $(this).val(parseInt($(this).val().split('\'').join(''))); 
+                    }
                     var val_0=$(this).val();
                     var stringbeforecursor= val_0.substring(0,myelementcursor);
                     var nbofseparatorbeforearray1=stringbeforecursor.match(/\'/g);
@@ -613,6 +615,13 @@ var rpnsequence = (function() {
                         }
                     }
                 }else if(validationoptions.type=='posdecimal'){
+                    $(this).val($(this).val().replace(',','.'));
+                    var mypoint=$(this).val().match(/\./);
+                    if(mypoint==""||mypoint==null){mypoint=''};
+                    var mydecimalpart=$(this).val().split('.');
+                    if(mydecimalpart[1]==undefined){mydecimalpart[1]=''};
+                    $(this).val(parseInt($(this).val().split('\'').join(''))+mypoint+mydecimalpart[1]);
+                    
                         var val_0=$(this).val().replace(',','.');
                         var stringbeforecursor= val_0.substring(0,myelementcursor);
                         var nbofseparatorbeforearray1=stringbeforecursor.match(/\'/g);
@@ -688,6 +697,20 @@ var rpnsequence = (function() {
                 	
                 }
                 else if(validationoptions.type=='decimal'){
+                    $(this).val($(this).val().replace(',','.'));
+                    if($(this).val().indexOf('-')==1){$(this).val($(this).val().substring(1))};
+                    var myless=/[-0-9']\d*/.exec($(this).val());
+                    if(myless=='-'){
+                        $(this).val('-');
+                    } else{
+                        var mypoint=$(this).val().match(/\./);
+                        if(mypoint==""||mypoint==null){mypoint=''};
+                        var mydecimalpart=$(this).val().split('.');
+                        if(mydecimalpart[1]==undefined){mydecimalpart[1]=''};
+                        $(this).val(parseInt($(this).val().split('\'').join(''))+mypoint+mydecimalpart[1]); 
+                    }
+                    
+                    
                     var val_0=$(this).val().replace(',','.');
                     var stringbeforecursor= val_0.substring(0,myelementcursor);
                     var nbofseparatorbeforearray1=stringbeforecursor.match(/\'/g);
