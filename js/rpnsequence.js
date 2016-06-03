@@ -502,6 +502,21 @@ var rpnsequence = (function() {
                     
                     $(this).val(parseInt($(this).val().split('\'').join('')));
                     var val_0=$(this).val();
+                    console.log('val_0'+val_0)
+                    console.log('myelementcursor'+myelementcursor)
+                    var stringaftercursor= val_0.substring(myelementcursor);
+                    console.log('apres le curseur'+stringaftercursor)
+                    var val=/[0-9']\d*/.exec(parseInt(val_0.split('\'').join('')));
+                    if(val==null){val=['']};
+                    console.log('val_0'+val_0)
+                    console.log('val[0]'+val[0])
+                    if (val[0]!=val_0){
+                        console.log('dans le if'+stringaftercursor)
+                        $(this).val(val[0]+stringaftercursor);
+                        myelementcursor=myelementcursor-1;
+                        console.log('dans le if')
+                    } 
+                    val_0=$(this).val();
                     var stringbeforecursor= val_0.substring(0,myelementcursor);
                     var nbofseparatorbeforearray1=stringbeforecursor.match(/\'/g);
                     var nbofseparator1=0;
@@ -551,19 +566,35 @@ var rpnsequence = (function() {
                 
                 }else if(validationoptions.type=="integer"){
                     if($(this).val().indexOf('-')==1){$(this).val($(this).val().substring(1))};
+                    var val_0=$(this).val();
+                    console.log('val_0'+val_0)
+                    console.log('myelementcursor'+myelementcursor)
+                    var stringaftercursor= val_0.substring(myelementcursor);
+                    console.log('apres le curseur'+stringaftercursor)
+                    var val=/[-0-9']\d*/.exec(parseInt(val_0.split('\'').join('')));
+                    if(val==null){val=['']};
+                    console.log('val_0'+val_0)
+                    console.log('val[0]'+val[0])
+                    if (val[0]!=val_0){
+                        console.log('dans le if'+stringaftercursor)
+                        $(this).val(val[0]+stringaftercursor);
+                        myelementcursor=myelementcursor-1;
+                        console.log('dans le if')
+                    }
                     var myless=/[-0-9']\d*/.exec($(this).val());
                     if(myless=='-'){
                         $(this).val('-');
                     } else{
                         $(this).val(parseInt($(this).val().split('\'').join(''))); 
                     }
-                    var val_0=$(this).val();
+                    val_0=$(this).val();
                     var stringbeforecursor= val_0.substring(0,myelementcursor);
                     var nbofseparatorbeforearray1=stringbeforecursor.match(/\'/g);
                     var nbofseparator1=0;
                     if(nbofseparatorbeforearray1){
                         nbofseparator1=nbofseparatorbeforearray1.length;
                     }
+                    
                     if(validationoptions.milleseparator==true){
                         var nb=$(this).val().split('\'');
                         nb=nb.join('');
