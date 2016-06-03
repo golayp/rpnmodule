@@ -614,39 +614,69 @@ var rpnsequence = (function() {
                             $(this).val(parseInt(val));
                         }
                     }
-                }else if(validationoptions.type=='posdecimal'){
-                    $(this).val($(this).val().replace(',','.'));
-                    var mypoint=$(this).val().match(/\./);
-                    if(mypoint==""||mypoint==null){mypoint=''};
-                    var mydecimalpart=$(this).val().split('.');
-                    if(mydecimalpart[1]==undefined){mydecimalpart[1]=''};
-                    $(this).val(parseInt($(this).val().split('\'').join(''))+mypoint+mydecimalpart[1]);
-                    
-                        var val_0=$(this).val().replace(',','.');
-                        var stringbeforecursor= val_0.substring(0,myelementcursor);
-                        var nbofseparatorbeforearray1=stringbeforecursor.match(/\'/g);
-                        var nbofseparator1=0;
-                        if(nbofseparatorbeforearray1){
-                            nbofseparator1=nbofseparatorbeforearray1.length;
+                }else if(validationoptions.type=='posdecimal'){ 
+                   $(this).val($(this).val().replace(',','.'));
+                    if($(this).val().indexOf('-')==1){$(this).val($(this).val().substring(1))};
+                    var val_0=$(this).val();
+                    if(val_0.match(/\./g)!=null){
+                        if(val_0.match(/\./g).length>1){
+                            val_0=val_0.substring(0,myelementcursor).split('.').join('')+'.'+val_0.substring(myelementcursor).split('.').join('');
                         }
-                        val_0=val_0.split('\'');
-                        val_0=val_0.join('');
-                        var val=/^[.\d]\d*\.?\d*/.exec(val_0);
-                        if($(this).val().match(/^0[^,\.]/)){
-                            var val_1=$(this).val().replace(',','.').substring(0,1);
-                            var val=/^[-.\d]\d*.?\d*/.exec(val_1);
-                        }
-                        if($(this).val().match(/^-/)){
-                            var val_1=$(this).val().replace(',','.');
-                            var val=/[.\d]\d*.?\d*/.exec(val_1);
-                        }
-                        if(val=='' || val==null){
-                            val='';
-                        }else  if(val=='.'){
-                            val='0.';
-                            myelementcursor=myelementcursor+1;
-                        }
-                        $(this).val(val);
+                    }
+                    var negative='';
+                    var stringbeforecursor= val_0.substring(0,myelementcursor);
+                    var stringaftercursor= val_0.substring(myelementcursor);
+                    var nbofseparatorbeforearray1=stringbeforecursor.match(/\'/g);
+                    var nbofseparator1=0;
+                    if(nbofseparatorbeforearray1){
+                        nbofseparator1=nbofseparatorbeforearray1.length;
+                    }
+                    var firstchardigit='';
+                    val_0=val_0.split('\'');
+                    val_0=val_0.join('');
+                    console.log('val_0'+val_0)
+                    var val=/^[-.\d]\d*\.?\d*/.exec(val_0);
+                    if(val==null){val=['']};
+                    if (val[0]!=val_0){
+                        val[0]=val[0]+stringaftercursor;
+                        myelementcursor=myelementcursor-1;
+                    }
+                    if (val[0].match(/^-/)){
+                        negative='-';
+                        val[0]=val[0].substr(1);
+                        myelementcursor=myelementcursor-1;
+                    }
+                    firstchardigit=val[0].charAt(0);
+                    var secondchar=val[0].charAt(1);
+                    if(firstchardigit=='0'&& secondchar!='.'){myelementcursor=myelementcursor-1};
+                    if(val[0].match(/^0[^,\.]/)){
+                        var val=/^[-.\d]\d*.?\d*/.exec(val[0]);
+                    }
+                    if(val[0].match(/^-/)){
+                        var val=/[.\d]\d*.?\d*/.exec(val[0]);
+                    }
+                    if(val=='' || val==null){
+                       val='';
+                    }else if(val=='.'){
+                        val='0.';
+                        myelementcursor=myelementcursor+1;
+                    }
+                    $(this).val(negative+val);
+                    var point=$(this).val().match(/\./);
+                    var nbInteger=$(this).val().split('.');
+                    var nb=nbInteger[0].split('\'');
+                    nb=nb.join('');
+                    if(point==null||point==undefined){point=''};
+                    if(nbInteger[1]==null||nbInteger[1]==undefined){nbInteger[1]=''};
+                    if(nb==null||nb==undefined||nb==NaN||nb=='-'){
+                        nb='';
+                        $(this).val(nb+point+nbInteger[1]);
+                    }else{
+                        if(nb==''){myelementcursor=1};
+                        nb=Math.abs(Number(nb));
+                        $(this).val(parseInt(nb)+point+nbInteger[1]);
+                    }
+                    //if(validationoptions.milleseparator=='bonjour'){
                     if(validationoptions.milleseparator==true){
                         var point=$(this).val().match(/\./);
                         var nbInteger=$(this).val().split('.');
@@ -699,36 +729,46 @@ var rpnsequence = (function() {
                 else if(validationoptions.type=='decimal'){
                     $(this).val($(this).val().replace(',','.'));
                     if($(this).val().indexOf('-')==1){$(this).val($(this).val().substring(1))};
-                    var myless=/[-0-9']\d*/.exec($(this).val());
-                    if(myless=='-'){
-                        $(this).val('-');
-                    } else{
-                        var mypoint=$(this).val().match(/\./);
-                        if(mypoint==""||mypoint==null){mypoint=''};
-                        var mydecimalpart=$(this).val().split('.');
-                        if(mydecimalpart[1]==undefined){mydecimalpart[1]=''};
-                        $(this).val(parseInt($(this).val().split('\'').join(''))+mypoint+mydecimalpart[1]); 
+                    var val_0=$(this).val();
+                    if(val_0.match(/\./g)!=null){
+                        if(val_0.match(/\./g).length>1){
+                            if (val_0.match(/^-/)){
+                                mystring=val_0.substring(1,myelementcursor);
+                                if(mystring.length==1){
+                                    val_0='-0.'+val_0.substring(myelementcursor).split('.').join('');
+                                }else{
+                                  val_0=val_0.substring(0,myelementcursor).split('.').join('')+'.'+val_0.substring(myelementcursor).split('.').join('');   
+                                }
+                            }else{
+                               val_0=val_0.substring(0,myelementcursor).split('.').join('')+'.'+val_0.substring(myelementcursor).split('.').join(''); 
+                            }
+                            
+                        }
                     }
-                    
-                    
-                    var val_0=$(this).val().replace(',','.');
+                    var negative='';
                     var stringbeforecursor= val_0.substring(0,myelementcursor);
+                    var stringaftercursor= val_0.substring(myelementcursor);
                     var nbofseparatorbeforearray1=stringbeforecursor.match(/\'/g);
                     var nbofseparator1=0;
                     if(nbofseparatorbeforearray1){
                         nbofseparator1=nbofseparatorbeforearray1.length;
                     }
+                    var firstchardigit='';
                     val_0=val_0.split('\'');
                     val_0=val_0.join('');
                     var val=/^[-.\d]\d*\.?\d*/.exec(val_0);
-                    if (val[0].match(/^-/)){
-                       if(val[0].substring(1).match(/^0[^,\.]/)){       
-                           var val=/^[-.\d]\d*.?\d*/.exec(val[0]);
-                       }else{
-                           var val=/^[-.\d]\d*.?\d*/.exec(val[0]);
-                       }
-                       var negative=true;
+                    if(val==null){val=['']};
+                    if (val[0]!=val_0){
+                        val[0]=val[0]+stringaftercursor;
+                        myelementcursor=myelementcursor-1;
                     }
+                    if (val[0].match(/^-/)){
+                        negative='-';
+                        val[0]=val[0].substr(1);
+                    }
+                    var firstchardigit=val[0].charAt(0);
+                    var secondchar=val[0].charAt(1);
+                    if(firstchardigit=='0'&& secondchar!='.'){myelementcursor=myelementcursor-1;}
                     if(val[0].match(/^0[^,\.]/)){
                         var val=/^[-.\d]\d*.?\d*/.exec(val[0]);
                     }
@@ -736,16 +776,29 @@ var rpnsequence = (function() {
                         var val=/[.\d]\d*.?\d*/.exec(val[0]);
                     }
                     if(val=='' || val==null){
-                        val='';
-                    }else  if(val=='.'){
+                       val='';
+                    }else if(val=='.'){
                         val='0.';
                         myelementcursor=myelementcursor+1;
                     }
-                    if(negative){
-                       $(this).val('-'+val);
+                    $(this).val(negative+val);
+                    var point=$(this).val().match(/\./);
+                    var nbInteger=$(this).val().split('.');
+                    var nb=nbInteger[0].split('\'');
+                    nb=nb.join('');
+                    if(point==null||point==undefined){point=''};
+                    if(nbInteger[1]==null||nbInteger[1]==undefined){nbInteger[1]=''};
+                    if(nb==null||nb==undefined||nb==NaN||nb=='-'){
+                        nb='';
+                        $(this).val(negative+nb+point+nbInteger[1]);
                     }else{
-                        $(this).val(val);
+                        nb=Math.abs(Number(nb));
+                        $(this).val(negative+parseInt(nb)+point+nbInteger[1]);
                     }
+                    
+                    
+                    
+                    
                     if(validationoptions.milleseparator==true){
                         var point=$(this).val().match(/\./);
                         var nbInteger=$(this).val().split('.');
@@ -774,8 +827,7 @@ var rpnsequence = (function() {
                                     val[0]=avant+'\''+apres;
                                     if(i<=myelementcursor){
                                         myelementcursor=myelementcursor+1;
-                                    }
-                                        
+                                    }     
                                 }
                             }
                             if(point=='' || point == null){
