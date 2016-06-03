@@ -506,7 +506,6 @@ var rpnsequence = (function() {
                     if (val_0.match(/^-/)){
                         negative='';
                         mystring=val_0.substring(1,myelementcursor);
-                        console.log('mystring'+mystring)
                         $(this).val(myvalbeorenumberofchar);
                     }
                     
@@ -548,7 +547,6 @@ var rpnsequence = (function() {
                     $(this).val(negative+val);
                     var nb=$(this).val().split('\'');
                     nb=nb.join('');
-                    console.log(isNaN(nb))
                     if(nb.substring(0,1)=='0'||nb==null||nb==undefined|isNaN(nb)||nb=='-'){
                         nb=nb.substring(myvalbeorenumberofchar);
                         $(this).val(myvalbeorenumberofchar.substring(1));
@@ -558,7 +556,6 @@ var rpnsequence = (function() {
                     if(validationoptions.milleseparator==true){
                         var nb=$(this).val().split('\'');
                         nb=nb.join('');
-                        console.log('nb'+nb)
                         var val=/(^[0-9]\d*)/.exec(nb);
                         if(val=='' || val==null){
                             $(this).val('');
@@ -603,7 +600,6 @@ var rpnsequence = (function() {
                     if (val_0.match(/^-/)){
                         negative='-';
                         mystring=val_0.substring(1,myelementcursor);
-                        console.log('mystring'+mystring)
                         $(this).val('-'+val_0.substring(myelementcursor));
                     }
                     
@@ -719,7 +715,6 @@ var rpnsequence = (function() {
                     var firstchardigit='';
                     val_0=val_0.split('\'');
                     val_0=val_0.join('');
-                    console.log('val_0'+val_0)
                     var val=/^[-.\d]\d*\.?\d*/.exec(val_0);
                     if(val==null){val=['']};
                     if (val[0]!=val_0){
