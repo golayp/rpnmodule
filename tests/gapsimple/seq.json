@@ -23,6 +23,7 @@
                 "mode":"lock",
                 "type":"integer",
                 "milleseparator":true,
+                "numberofchar":"6",
                 "width":"10em;",
                 "align":"text-center"
             },
@@ -35,6 +36,7 @@
                 "mode":"lock",
                 "type":"decimal",
                 "milleseparator":true,
+                "numberofchar":"6",
                 "width":"10em;",
                 "align":"text-center"
             },
@@ -47,6 +49,7 @@
                 "mode":"lock",
                 "type":"posdecimal",
                 "milleseparator":true,
+                "numberofchar":"6",
                 "width":"10em;",
                 "align":"text-center"
             },

@@ -494,9 +494,13 @@ var rpnsequence = (function() {
                 var myelementcursor=myelement.selectionStart;
                 var myvalbeorenumberofchar=$(this).val();
                 if(validationoptions.numberofchar){
-                    var mylength=$(this).val().length;
+                    if(validationoptions.type=="natural"){
+                        var mylength=$(this).val().length;
+                    }else{
+                        var mylength=$(this).val().length+1;
+                    }
                     if(mylength>validationoptions.numberofchar){
-                        $(this).val($(this).val().substr(0,mylength-1))
+                        $(this).val($(this).val().substr(0,mylength-1));
                     }
                 }
                 if(validationoptions.type=="natural"){
@@ -521,7 +525,7 @@ var rpnsequence = (function() {
                     val_0=val_0.join('');
                     var val=/^[\d]\d*/.exec(val_0);
                     if(val==null){
-                        val=[myvalbeorenumberofchar];
+                        val=[myvalbeorenumberofchar.split('.').join('')];
                         myelementcursor=myelementcursor-1;
                     }
                     else if (val[0]!=val_0){
@@ -553,6 +557,7 @@ var rpnsequence = (function() {
                     }else{
                         $(this).val(negative+parseInt(nb));
                     }
+                    
                     if(validationoptions.milleseparator==true){
                         var nb=$(this).val().split('\'');
                         nb=nb.join('');
@@ -625,12 +630,15 @@ var rpnsequence = (function() {
                     }
                     var firstchardigit=val[0].charAt(0);
                     var secondchar=val[0].charAt(1);
-                    if(firstchardigit=='0'){myelementcursor=myelementcursor-1;}
+                    if(firstchardigit=='0'){myelementcursor=myelementcursor-1};
+                    if(firstchardigit=='-' && secondchar=='-'){
+                        val[0]=val[0].substring(1);
+                    }
                     if(val[0].match(/^0[^,\.]/)){
                         var val=/^[-\d]\d*/.exec(val[0]);
                     }
                     if(val[0].match(/^-/)){
-                        var val=/[\d]\d*/.exec(val[0]);
+                        var val=val[0].substr(1);
                     }
                     if(val=='' || val==null){
                        val='';
@@ -643,6 +651,11 @@ var rpnsequence = (function() {
                     }else{
                         nb=Math.abs(Number(nb));
                         $(this).val(negative+parseInt(nb));
+                    }
+                    if(validationoptions.numberofchar){
+                        if($(this).val().length>=validationoptions.numberofchar){
+                            $(this).val($(this).val().substr(0,$(this).val().length-1))
+                        }
                     }
                     //if(validationoptions.milleseparator=='bonjour'){
                     if(validationoptions.milleseparator==true){
@@ -755,6 +768,37 @@ var rpnsequence = (function() {
                         if(nb==''){myelementcursor=1};
                         nb=Math.abs(Number(nb));
                         $(this).val(parseInt(nb)+point+nbInteger[1]);
+                    }
+                    if(validationoptions.numberofchar){
+                        var leftpoint;
+                        var thepoint=false;
+                        if($(this).val().match(/\./)){
+                            leftpoint=$(this).val().split('.');
+                            thepoint=true;
+                        }
+                        if($(this).val().length>=validationoptions.numberofchar && $(this).val().charAt($(this).val().length-1)=='.'){
+                            $(this).val(myvalbeorenumberofchar.substr(0,myvalbeorenumberofchar.length-1))
+                        }
+                        else if($(this).val().length>=Number(validationoptions.numberofchar)-1 && $(this).val().charAt($(this).val().length-1)=='.'){
+                            $(this).val(myvalbeorenumberofchar.substr(0,myvalbeorenumberofchar.length-1))
+                        }
+                        else if ($(this).val().length<validationoptions.numberofchar){rpnsequence.log('on ne fait rien')}
+                        else if($(this).val().length>=validationoptions.numberofchar && thepoint==false){
+                            $(this).val($(this).val().substr(0,$(this).val().length-1));
+                        }else if($(this).val().length>=Number(validationoptions.numberofchar)+1 && thepoint==true && leftpoint[0].length>=4 && validationoptions.milleseparator==true){
+                            
+                            $(this).val($(this).val().substr(0,$(this).val().length-2));
+                            if($(this).val().charAt($(this).val().length-1)=='.'){$(this).val($(this).val().substr(0,$(this).val().length-1))};
+                            
+                        }else if($(this).val().length>=Number(validationoptions.numberofchar)+1 && thepoint==true && leftpoint[0].length>=4 && !validationoptions.milleseparator){
+                            $(this).val($(this).val().substr(0,$(this).val().length-1));
+                            if($(this).val().charAt($(this).val().length-1)=='.'){$(this).val($(this).val().substr(0,$(this).val().length-1))};
+                        }else if ($(this).val().length>validationoptions.numberofchar){
+                            $(this).val($(this).val().substr(0,$(this).val().length-1));
+                        }
+                        else{
+                            $(this).val($(this).val().substr(0,$(this).val().length));
+                        }
                     }
                     //if(validationoptions.milleseparator=='bonjour'){
                     if(validationoptions.milleseparator==true){
@@ -875,10 +919,36 @@ var rpnsequence = (function() {
                         nb=Math.abs(Number(nb));
                         $(this).val(negative+parseInt(nb)+point+nbInteger[1]);
                     }
-                    
-                    
-                    
-                    
+                    if(validationoptions.numberofchar){
+                        var leftpoint;
+                        var thepoint=false;
+                        if($(this).val().match(/\./)){
+                            leftpoint=$(this).val().split('.');
+                            thepoint=true;
+                        }
+                        if($(this).val().length>=validationoptions.numberofchar && $(this).val().charAt($(this).val().length-1)=='.'){
+                            $(this).val(myvalbeorenumberofchar.substr(0,myvalbeorenumberofchar.length-1))
+                        }
+                        else if($(this).val().length>=Number(validationoptions.numberofchar)-1 && $(this).val().charAt($(this).val().length-1)=='.'){
+                            $(this).val(myvalbeorenumberofchar.substr(0,myvalbeorenumberofchar.length-1))
+                        }
+                        else if ($(this).val().length<validationoptions.numberofchar){rpnsequence.log('on ne fait rien')}
+                        else if($(this).val().length>=validationoptions.numberofchar && thepoint==false){
+                            $(this).val($(this).val().substr(0,$(this).val().length-1));
+                        }else if($(this).val().length>=Number(validationoptions.numberofchar)+1 && thepoint==true && leftpoint[0].length>=4 && validationoptions.milleseparator==true){
+                            $(this).val($(this).val().substr(0,$(this).val().length-2));
+                            if($(this).val().charAt($(this).val().length-1)=='.'){$(this).val($(this).val().substr(0,$(this).val().length-1))};
+                            
+                        }else if($(this).val().length>=Number(validationoptions.numberofchar)+1 && thepoint==true && leftpoint[0].length>=4 && !validationoptions.milleseparator){
+                            $(this).val($(this).val().substr(0,$(this).val().length-1));
+                            if($(this).val().charAt($(this).val().length-1)=='.'){$(this).val($(this).val().substr(0,$(this).val().length-1))};
+                        }else if ($(this).val().length>validationoptions.numberofchar){
+                            $(this).val($(this).val().substr(0,$(this).val().length-1));
+                        }
+                        else{
+                            $(this).val($(this).val().substr(0,$(this).val().length));
+                        }
+                    }
                     if(validationoptions.milleseparator==true){
                         var point=$(this).val().match(/\./);
                         var nbInteger=$(this).val().split('.');
