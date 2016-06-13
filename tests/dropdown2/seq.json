@@ -9,13 +9,13 @@
             "toselect":"<p>Strawberries are <b></b> and bananas are <b></b>.</p><p>Aplles can be <b></b></p>",
             "items":[
                 {
-                    "choice":["?","white","red","yellow","grey","green"]
+                    "choice":["","white","red","yellow","grey","green"]
                 },
                 {
-                    "choice":["?","white","red","yellow","grey","green"]
+                    "choice":["","white","red","yellow","grey","green"]
                 },
                 {
-                    "choice":["?","white","red","yellow","grey","green"]
+                    "choice":["","white","red","yellow","grey","green"]
                 }
             ]
         }

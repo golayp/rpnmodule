@@ -137,8 +137,9 @@
 }
 
 
-/*sorting*/
-.sorting li{
+/*sorting & multiplelistssync*/
+.sorting li,
+.multiplelistssync li{
     line-height:@line-height;
     height:@line-height;
     cursor:pointer;
@@ -146,11 +147,13 @@
     margin-bottom:3px;
     
 }
-.sorting .list-inline li{
+.sorting .list-inline li,
+.multiplelistssync .list-inline li{
     margin-right:3px;
     display:inline-block;
 }
-.sorting .sorting-highlight{
+.sorting .sorting-highlight,
+.multiplelistssync .sorting-highlight{
     height:@line-height;
     line-height:@line-height;
     vertical-align: bottom;
@@ -159,8 +162,14 @@
     background-color:none;
     width:100%;
 }
-.sorting .list-inline .sorting-highlight {
+.sorting .list-inline .sorting-highlight,
+.multiplelistssync .list-inline .sorting-highlight{
     width:80px;
+}
+.multiplelistssync ul{
+    display:inline-block;
+    width: 100px;
+    margin-right: 3px;
 }
 
 /*plumb*/

@@ -41,12 +41,13 @@ require([
     'rpndropdown',
     'rpndropdown2',
     'rpnsorting',
-    'rpndoc'
+    'rpndoc',
+    'rpnmultiplelistssync'
     ], function($) {
     $(document).ready(function(){
         rpnsequence.init({
             debug:true,
-            disablestateloading:false,
+            disablestateloading:true,
             testMode:false,
             warnonexit:true,
             //bypassModule:true,

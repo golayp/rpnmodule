@@ -7,13 +7,12 @@ var rpndocmodule = function() {
     var object;
 
     var init = function(_datas,_state, _domelem) {
-        _.defaults(_datas, {
+        /*_.defaults(_datas, {
             tofill: "tofill not set!<b>Read</b> documentation please!"
-        });
+        });*/
 
         datas = _datas;
         object= !_.isUndefined(_datas.object);
-        embed = !_.isUndefined(_datas.embed);
         domelem = _domelem;
         if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;

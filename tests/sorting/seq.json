@@ -21,7 +21,7 @@
         },
         {
             "type":"sorting",
-            "title":"a sorting module",
+            "title":"a vertically sorting module",
             "context":"Context",
             "directive":"Directive",
             "vertical":true,

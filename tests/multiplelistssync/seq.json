@@ -1,0 +1,30 @@
+{
+    "title":"modulesequence",
+    "modules":[
+        {
+            "type":"multiplelistssync",
+            "title":"a multiple lists synchronization module",
+            "context":"Context",
+            "directive":"Directive",
+            "vertical":true,
+            "lists":[
+                {"items":["tree","flower","mouse","elephant","sun"]},
+                {"items":["fleur","soleil","arbre","souris","éléphant"]}
+            ],
+            "shuffle":false
+        },
+        {
+            "type":"multiplelistssync",
+            "title":"a multiple lists synchronization module",
+            "context":"Context",
+            "directive":"Directive",
+            "vertical":true,
+            "lists":[
+                {"items":["tree","flower","mouse","elephant","sun"]},
+                {"items":["fleur","soleil","arbre","souris","éléphant"]},
+                {"items":["Sonne","Elefant","Baum","Blume","Maus"]}
+            ],
+            "shuffle":false
+        }
+    ]
+}
