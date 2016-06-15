@@ -3,28 +3,68 @@
     "modules":[
         {
             "type":"multiplelistssync",
-            "title":"a multiple lists synchronization module",
-            "context":"Context",
+            "title":"a multiple lists synchronization module with column titles (two columns)",
             "directive":"Directive",
-            "vertical":true,
             "lists":[
-                {"items":["tree","flower","mouse","elephant","sun"]},
-                {"items":["fleur","soleil","arbre","souris","éléphant"]}
-            ],
-            "shuffle":false
+                {
+                    "title":"English",
+                    "items":["tree","flower","mouse","elephant","sun"],
+                    "movable":true
+                },
+                {
+                    "title":"French",
+                    "items":["fleur","soleil","arbre","souris","éléphant"],
+                    "movable":true
+                }
+            ]
         },
         {
             "type":"multiplelistssync",
-            "title":"a multiple lists synchronization module",
-            "context":"Context",
+            "title":"a multiple lists synchronization module (the left column is fixed)",
             "directive":"Directive",
-            "vertical":true,
             "lists":[
-                {"items":["tree","flower","mouse","elephant","sun"]},
-                {"items":["fleur","soleil","arbre","souris","éléphant"]},
-                {"items":["Sonne","Elefant","Baum","Blume","Maus"]}
-            ],
-            "shuffle":false
+                {
+                    "title":"English",
+                    "items":["tree","flower","mouse","elephant","sun"]
+                },
+                {
+                    "title":"French",
+                    "items":["fleur","soleil","arbre","souris","éléphant"],          "movable":true
+                }
+            ]
+        },
+        {
+            "type":"multiplelistssync",
+            "title":"a multiple lists synchronization module without column titles (three columns)",
+            "directive":"Directive",
+            "lists":[
+                {
+                    "items":["tree","flower","mouse","elephant","sun"],          "movable":true
+                },
+                {
+                    "items":["fleur","soleil","arbre","souris","éléphant"],          "movable":true
+                },
+                {
+                    "items":["Sonne","Elefant","Baum","Blume","Maus"],          "movable":true
+                }
+            ]
+        },
+        {
+            "type":"multiplelistssync",
+            "title":"a multiple lists synchronization module with pictures",
+            "cssClass":"pictureSorting",
+            "directive":"Directive",
+            "lists":[
+                {
+                    "items":["tree","flowers","mouse","elephant","sun"],          "movable":true
+                },
+                {
+                    
+                    "items":["<img src=\"sorting1.png\" >","<img src=\"sorting2.png\" >","<img src=\"sorting3.png\" >","<img src=\"sorting4.png\" >","<img src=\"sorting5.png\" >"],
+                    "type":"picture",
+                    "movable":true
+                }
+            ]
         }
     ]
 }

@@ -6,13 +6,13 @@
 					"tree",
 					"flower",
 					"mouse",
-					"elephant",
-					"sun"
+					"sun",
+					"elephant"
 				],
 				[
 					"arbre",
-					"fleur",
 					"soleil",
+					"fleur",
 					"souris",
 					"éléphant"
 				]
@@ -24,15 +24,55 @@
 				],
 				[
 					"flower",
+					"soleil"
+				],
+				[
+					"mouse",
+					"fleur"
+				],
+				[
+					"sun",
+					"souris"
+				],
+				[
+					"elephant",
+					"éléphant"
+				]
+			]
+		},
+		{
+			"lists": [
+				[
+					"tree",
+					"flower",
+					"mouse",
+					"elephant",
+					"sun"
+				],
+				[
+					"soleil",
+					"fleur",
+					"souris",
+					"arbre",
+					"éléphant"
+				]
+			],
+			"responses": [
+				[
+					"tree",
+					"soleil"
+				],
+				[
+					"flower",
 					"fleur"
 				],
 				[
 					"mouse",
-					"soleil"
+					"souris"
 				],
 				[
 					"elephant",
-					"souris"
+					"arbre"
 				],
 				[
 					"sun",
@@ -43,52 +83,92 @@
 		{
 			"lists": [
 				[
+					"tree",
 					"flower",
 					"mouse",
-					"tree",
 					"elephant",
 					"sun"
 				],
 				[
 					"fleur",
 					"soleil",
-					"arbre",
 					"souris",
-					"éléphant"
+					"éléphant",
+					"arbre"
 				],
 				[
-					"Blume",
 					"Sonne",
-					"Baum",
 					"Elefant",
+					"Baum",
+					"Blume",
 					"Maus"
 				]
 			],
 			"responses": [
 				[
-					"flower",
+					"tree",
 					"fleur",
-					"Blume"
-				],
-				[
-					"mouse",
-					"soleil",
 					"Sonne"
 				],
 				[
-					"tree",
-					"arbre",
+					"flower",
+					"soleil",
+					"Elefant"
+				],
+				[
+					"mouse",
+					"souris",
 					"Baum"
 				],
 				[
 					"elephant",
-					"souris",
-					"Elefant"
+					"éléphant",
+					"Blume"
 				],
 				[
 					"sun",
-					"éléphant",
+					"arbre",
 					"Maus"
+				]
+			]
+		},
+		{
+			"lists": [
+				[
+					"tree",
+					"flowers",
+					"elephant",
+					"sun",
+					"mouse"
+				],
+				[
+					"<img src=\"sorting2.png\" >",
+					"<img src=\"sorting3.png\" >",
+					"<img src=\"sorting1.png\" >",
+					"<img src=\"sorting4.png\" >",
+					"<img src=\"sorting5.png\" >"
+				]
+			],
+			"responses": [
+				[
+					"tree",
+					"<img src=\"sorting2.png\" >"
+				],
+				[
+					"flowers",
+					"<img src=\"sorting3.png\" >"
+				],
+				[
+					"elephant",
+					"<img src=\"sorting1.png\" >"
+				],
+				[
+					"sun",
+					"<img src=\"sorting4.png\" >"
+				],
+				[
+					"mouse",
+					"<img src=\"sorting5.png\" >"
 				]
 			]
 		}

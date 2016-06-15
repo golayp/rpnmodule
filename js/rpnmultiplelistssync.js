@@ -4,11 +4,15 @@ var rpnmultiplelistssyncmodule = function() {
     var datas;
     var domelem;
     var state;
+    var typeList;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
-            lists: ["list", "not", "set!"],
-            shuffle:false,
+            lists: {
+                "title":"",
+                "items":["list", "not", "set!"],
+                "movable":false
+            },
             vertical:true
         });
         datas = _datas;
@@ -21,10 +25,6 @@ var rpnmultiplelistssyncmodule = function() {
                 lists : _.map(_.filter(datas.lists,function(list){return list.items.length>1}),function(list,idx){return '';}),
                 responses:_.map(_.filter(datas.responses,function(resp){return resp.length>1}),function(r,idx){return '';})
             };
-            /*datas.lists;
-            if(datas.shuffle){
-                state=_.shuffle(state);
-            }*/
         }
         buildUi();
     };
@@ -32,42 +32,52 @@ var rpnmultiplelistssyncmodule = function() {
     var buildUi = function() {
         domelem.addClass('multiplelistssync');
         var listToSort;
+        typeList = new Array();
         
         //build lists with items to sort
         _.each(datas.lists, function(li,idx){
-            listToSort = $('<ul class="list-unstyled'+(datas.vertical?'':' list-inline')+'" id="sortable-'+idx+'" ></ul>').sortable({
-                placeholder: "sorting-highlight",
-                tolerance:"pointer"
-            });
-            //and fill if there is already a response
-            if(!_.isEmpty(state.lists[idx])){
-                _.each(state.lists[idx], function(item) {
-                    listToSort.append($('<li>'+item+'</li>'));
+            typeList[idx] = datas.lists[idx].type ? datas.lists[idx].type : '';
+            if(datas.lists[idx].movable){
+                listToSort = $('<ul class="list-unstyled'+(datas.vertical?'':' list-inline')+'" id="sortable-'+idx+'" >'+(_.isEmpty(datas.lists[idx].title) ? '' : '<li class="title">'+datas.lists[idx].title)+'</li></ul>').sortable({
+                    items: "li:not(.title)",
+                    placeholder: "sorting-highlight",
+                    tolerance:"pointer"
                 });
             }
             else{
-                _.each(datas.lists[idx].items, function(item, idx) {
-                    listToSort.append($('<li>'+item+'</li>'));
+                listToSort = $('<ul class="list-unstyled'+(datas.vertical?'':' list-inline')+' unmovable" id="sortable-'+idx+'" >'+(_.isEmpty(datas.lists[idx].title) ? '' : '<li class="title">'+datas.lists[idx].title)+'</li></ul>')
+            }
+            //and fill if there is already a response
+            if(!_.isEmpty(state.lists[idx])){
+                _.each(state.lists[idx], function(item,id) {
+                    listToSort.append($('<li val=\"'+id+'\">'+item+'</li>'));
+                });
+            }
+            else{
+                _.each(datas.lists[idx].items, function(item,id) {
+                    listToSort.append($('<li val=\"'+id+'\">'+item+'</li>'));
                 });
             };
             domelem.append(listToSort);
         });
-        
         $(domelem).disableSelection();
+        
         bindUiEvents();
     };
-
+   
     var bindUiEvents = function() {
         
     };
     
     var validate = function(){
-        var syncitems = new Array();
+        var answerArray = new Array();
         _.each($('ul',domelem), function(ul,idx){
-            syncitems.push(_.map($('ul[id="sortable-'+idx+'"] li',domelem),function(ele,idx){return $(ele).html()}));
+            answerArray.push(_.map($('ul[id="sortable-'+idx+'"] li:not(.title)',domelem),function(ele,id){
+                return (typeList[idx]=="picture") ? datas.lists[idx].items[$(ele).attr("val")] : $(ele).html()
+            }));
         });
-        state.lists = syncitems;
-        state.responses = _.unzip(syncitems);
+        state.lists = answerArray;
+        state.responses = _.unzip(answerArray);
         return state;
     };
     

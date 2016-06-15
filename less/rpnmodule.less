@@ -144,7 +144,7 @@
     height:@line-height;
     cursor:pointer;
     background-color:@gray-lighter;
-    margin-bottom:3px;
+    margin-bottom:5px;
     
 }
 .sorting .list-inline li,
@@ -162,14 +162,41 @@
     background-color:none;
     width:100%;
 }
-.sorting .list-inline .sorting-highlight,
-.multiplelistssync .list-inline .sorting-highlight{
-    width:80px;
+.sorting .list-inline .sorting-highlight{
+    width:30px;
 }
 .multiplelistssync ul{
     display:inline-block;
-    width: 100px;
-    margin-right: 3px;
+    margin-left: 10px;
+    .sorting-highlight{
+        height:50px;
+    }
+    li{
+        text-align: center;
+        padding: 10px 40px 10px 40px;
+        height: auto;
+    }
+    li.title{
+        font-weight: bold;
+        background-color: #d9edf7;
+        height: auto;
+        cursor: default;
+    }
+}
+.multiplelistssync ul.unmovable{
+    background-color: #eee;
+    padding: 0px 5px 0px 5px;
+    li:not(.title){
+        background-color: #fff;
+        cursor: default;
+    }
+}
+.pictureSorting{
+    #sortable-0 li,
+    ul .sorting-highlight{
+        height: 140px;
+        line-height: 140px;
+    }
 }
 
 /*plumb*/

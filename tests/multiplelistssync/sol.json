@@ -11,11 +11,29 @@
         },
         {
             "syncitems":[
+                ["tree","arbre"],
+                ["flower","fleur"],
+                ["mouse","souris"],
+                ["elephant","éléphant"],
+                ["sun","soleil"]
+		    ]
+        },
+        {
+            "syncitems":[
                 ["tree","arbre","Baum"],
                 ["flower","fleur","Blume"],
                 ["mouse","souris","Maus"],
                 ["elephant","éléphant","Elefant"],
                 ["sun","soleil","Sonne"]
+		    ]
+        },
+        {
+            "syncitems":[
+                ["tree","<img src=\"sorting1.png\" >"],
+                ["flowers","<img src=\"sorting3.png\" >"],
+                ["mouse","<img src=\"sorting5.png\" >"],
+                ["elephant","<img src=\"sorting4.png\" >"],
+                ["sun","<img src=\"sorting2.png\" >"]
 		    ]
         }
     ]
