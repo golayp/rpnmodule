@@ -540,9 +540,16 @@ var rpnsequence = (function() {
                         negative='';
                         val[0]=val[0].substr(1);
                     }
-                    var firstchardigit=val[0].charAt(0);
+                    firstchardigit=val[0].charAt(0);
                     var secondchar=val[0].charAt(1);
-                    if(firstchardigit=='0'){myelementcursor=myelementcursor-1;}
+                    var digitatsepartor=myvalbeorenumberofchar.charAt(myelementcursor);
+                    if(digitatsepartor){
+                        if(digitatsepartor.match(/\d/)==null&&myelementcursor-1<=val[0].length){
+                            val=myvalbeorenumberofchar.substr(0,myelementcursor)+myvalbeorenumberofchar.substr(myelementcursor+1);
+                        }
+                    }
+                    if(firstchardigit=='0'){myelementcursor=myelementcursor-1};
+                    if(/\d/.exec(secondchar)==null){$(this).val(myvalbeorenumberofchar.substr(0,1)+myvalbeorenumberofchar.substr(2))};
                     if(val[0].match(/^0[^,\.]/)){
                         var val=/^[\d]\d*/.exec(val[0]);
                     }
@@ -550,12 +557,17 @@ var rpnsequence = (function() {
                         var val=/[\d]\d*/.exec(val[0]);
                     }
                     if(val=='' || val==null){
-                       val='';
+                        if(/\d/.exec(secondchar)==null){
+                            val=myvalbeorenumberofchar.substr(0,1)+myvalbeorenumberofchar.substr(2);
+                                
+                        }else{
+                            val='';
+                        }
                     }
                     $(this).val(negative+val);
                     var nb=$(this).val().split('\'');
                     nb=nb.join('');
-                    if(nb.substring(0,1)=='0'||nb==null||nb==undefined|isNaN(nb)||nb=='-'){
+                    if(nb.substring(0,1)=='0'||nb==null||nb==undefined||isNaN(nb)||nb=='-'){
                         nb=nb.substring(myvalbeorenumberofchar);
                         $(this).val(myvalbeorenumberofchar.substring(1));
                     }else{
@@ -566,8 +578,14 @@ var rpnsequence = (function() {
                         var nb=$(this).val().split('\'');
                         nb=nb.join('');
                         var val=/(^[0-9]\d*)/.exec(nb);
+                        if(/\d/.exec(secondchar)==null){$(this).val(myvalbeorenumberofchar.substr(0,1)+myvalbeorenumberofchar.substr(2))};
                         if(val=='' || val==null){
-                            $(this).val('');
+                            if(/\d/.exec(secondchar)==null){
+                                $(this).val(myvalbeorenumberofchar.substr(0,1)+myvalbeorenumberofchar.substr(2));
+                                
+                            }else{
+                                $(this).val('');
+                            }
 
                         }else if(val=='00'){
                            $(this).val('0');
@@ -645,12 +663,17 @@ var rpnsequence = (function() {
                         var val=val[0].substr(1);
                     }
                     if(val=='' || val==null){
-                       val='';
+                       if(/\d/.exec(secondchar)==null){
+                            $(this).val(myvalbeorenumberofchar.substr(0,1)+myvalbeorenumberofchar.substr(2));
+                            
+                        }else{
+                            $(this).val('');
+                        }
                     }
                     $(this).val(negative+val);
                     var nb=$(this).val().split('\'');
                     nb=nb.join('');
-                    if(nb==null||nb==undefined||nb==NaN||nb=='-'){
+                    if(nb==null||nb==undefined||isNaN(nb)||nb=='-'){
                         $(this).val(negative);
                     }else{
                         nb=Math.abs(Number(nb));
@@ -667,7 +690,12 @@ var rpnsequence = (function() {
                         nb=nb.join('');
                         var val=/[-0-9']\d*/.exec(nb);
                         if(val=='' || val==null){
-                            $(this).val('');
+                           if(/\d/.exec(secondchar)==null){
+                                $(this).val(myvalbeorenumberofchar.substr(0,1)+myvalbeorenumberofchar.substr(2));
+                                
+                            }else{
+                                $(this).val('');
+                            }
 
                         }else  if(val=='-'){
                             $(this).val('-');
@@ -765,7 +793,7 @@ var rpnsequence = (function() {
                     nb=nb.join('');
                     if(point==null||point==undefined){point=''};
                     if(nbInteger[1]==null||nbInteger[1]==undefined){nbInteger[1]=''};
-                    if(nb==null||nb==undefined||nb==NaN||nb=='-'){
+                    if(nb==null||nb==undefined||isNaN(nb)||nb=='-'){
                         nb='';
                         $(this).val(nb+point+nbInteger[1]);
                     }else{
@@ -916,7 +944,7 @@ var rpnsequence = (function() {
                     nb=nb.join('');
                     if(point==null||point==undefined){point=''};
                     if(nbInteger[1]==null||nbInteger[1]==undefined){nbInteger[1]=''};
-                    if(nb==null||nb==undefined||nb==NaN||nb=='-'){
+                    if(nb==null||nb==undefined||isNaN(nb)||nb=='-'){
                         nb='';
                         $(this).val(negative+nb+point+nbInteger[1]);
                     }else{
