@@ -29,7 +29,8 @@
                 },
                 {
                     "title":"French",
-                    "items":["fleur","soleil","arbre","souris","éléphant"],          "movable":true
+                    "items":["fleur","soleil","arbre","souris","éléphant"],
+                    "movable":true
                 }
             ]
         },
@@ -39,13 +40,16 @@
             "directive":"Directive",
             "lists":[
                 {
-                    "items":["tree","flower","mouse","elephant","sun"],          "movable":true
+                    "items":["tree","flower","mouse","elephant","sun"],
+                    "movable":true
                 },
                 {
-                    "items":["fleur","soleil","arbre","souris","éléphant"],          "movable":true
+                    "items":["fleur","soleil","arbre","souris","éléphant"],
+                    "movable":true
                 },
                 {
-                    "items":["Sonne","Elefant","Baum","Blume","Maus"],          "movable":true
+                    "items":["Sonne","Elefant","Baum","Blume","Maus"],
+                    "movable":true
                 }
             ]
         },
@@ -56,7 +60,8 @@
             "directive":"Directive",
             "lists":[
                 {
-                    "items":["tree","flowers","mouse","elephant","sun"],          "movable":true
+                    "items":["tree","flowers","mouse","elephant","sun"],
+                    "movable":true
                 },
                 {
                     
