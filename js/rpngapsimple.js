@@ -20,6 +20,7 @@ var rpngapsimplemodule = function() {
         dragdrop= !_.isUndefined(_datas.fillers);
         dragfromtext = !_.isUndefined(_datas.dragfromtext);
         dragimage = !_.isUndefined(_datas.dragimage);
+        singledd = !_.isUndefined(_datas.singledd);
         domelem = _domelem;
         if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
@@ -35,14 +36,24 @@ var rpngapsimplemodule = function() {
         answerArray = new Array();
         if(dragdrop || dragfromtext){
             var toolbar = $('<div class="gapsimpleddtoolbar">');
-            if(dragdrop){
+            if (singledd){
+                $.each(datas.fillers, function(idx, filler) {
+                    var divDrag = $('<div class="divdraggable" id="div'+idx+'" ></div>');
+                    var drag = $('<span class="singledraggable" draggable="true" id="drag'+idx+'" val="'+idx+'" >'+filler+'</span>').on('dragstart', function (ev) {
+                        ev.originalEvent.dataTransfer.setData("text", ev.target.id);
+                    });
+                    divDrag.append(drag);
+                    toolbar.append(divDrag);
+                });
+            }
+            else if(dragdrop){
             $.each(datas.fillers, function(idx, filler) {
                 var draggable=$('<span class="draggable ori" val="'+idx+'" >'+filler+'</span> ').draggable({
                     revert: "invalid",
                     appendTo: domelem,
                     helper: "clone",
                     snap: true,
-                    snapMode: 'inner'
+                    snapMode: 'inner',
                 });
                 toolbar.append(draggable);
                 maxwidth=maxwidth<draggable.width()?draggable.width():maxwidth;
@@ -50,14 +61,16 @@ var rpngapsimplemodule = function() {
             maxfillength=_.max(datas.fillers, function(filler){ return filler.length; }).length;
             }
             //build trash
-            var trash = $('<i class="fa fa-trash-o"></i>').droppable({
-                accept:'.clone',
-                hoverClass: 'gapsimpleddresponse-hover',
-                drop: function(e,u) {
-                    $(u.draggable).remove();
-                }
-            });
-            toolbar.append(trash);
+            if (!datas.singledd){
+                var trash = $('<i class="fa fa-trash-o"></i>').droppable({
+                    accept:'.clone',
+                    hoverClass: 'gapsimpleddresponse-hover',
+                    drop: function(e,u) {
+                        $(u.draggable).remove();
+                    }
+                });
+                toolbar.append(trash);
+            }
             domelem.append(toolbar);
         }
         
@@ -71,7 +84,7 @@ var rpngapsimplemodule = function() {
                 appendTo: domelem,
                 helper: "clone",
                 snap: true,
-                snapMode: 'inner'
+                snapMode: "inner"
             });
             t.replaceWith(draggable);
             maxwidth=maxwidth<draggable.width()?draggable.width():maxwidth;
@@ -81,7 +94,25 @@ var rpngapsimplemodule = function() {
             var t = $(tofill);
             var txt = "";
             //var txt = _.isEmpty(t.text())?"":"<strong>(" + t.text() + ")</strong>";
-            if(dragdrop || dragfromtext){
+            if(singledd){
+                var drop = $('<b class="gapsimpleddresponse" >').on('dragover', function(ev){
+                     ev.preventDefault();
+                }).on('drop', function(ev) {
+                    ev.preventDefault();
+                    var target = ev.target;
+                    var targetPlaced = target;
+                    var valPlaced = ev.target.getAttribute("val");
+                    
+                    if(ev.target.className == "singledraggable"){
+                        target = $(target).parent();
+                        $("#div"+valPlaced).append($(targetPlaced));
+                    }
+                    var data = ev.originalEvent.dataTransfer.getData("text");
+                    $(target).append($("#"+data));
+                });
+                t.replaceWith(drop);
+            }
+            else if(dragdrop || dragfromtext){
                 //add a drop area
                 var drop=$('<b class="gapsimpleddresponse">');
                 t.replaceWith(drop);
@@ -90,15 +121,21 @@ var rpngapsimplemodule = function() {
                     accept:'.draggable',
                     hoverClass: 'gapsimpleddresponse-hover',
                     drop: function(e,u) {
+                        var nb = $(this).children('span').attr('val');
+                        //$('.gapsimpleddtoolbar span[val='+nb+']').show();
                         $(this).empty();
+                        //$(this).append(((u.draggable.hasClass('ori')?u.draggable.clone():u.draggable)).css("position","inherit").addClass('clone').removeClass('ori').draggable({
                         $(this).append(((u.draggable.hasClass('ori')?u.draggable.clone():u.draggable).addClass('clone').removeClass('ori')).draggable({
                             revert: "invalid",
                             appendTo: domelem,
-                            helper: "clone"
+                            helper: "clone",
+                            snap: true,
+                            snapMode: "inner",
                         }));
                         answerArray[idx] = dragimage?datas.fillers[u.draggable.attr("val")]:'';
                     }
                 });
+
                 //and fill if there is already a response
                 if(!_.isEmpty(state[idx])){
                     var alreadyGivenResponse=$('<span class="'+(_.isEmpty(state[idx])?'':'draggable clone')+'" '+((_.isEmpty(state[idx]) && dragimage)?'':'val="'+idx+'"')+'>'+(_.isEmpty(state[idx])?'':state[idx])+'</span>');
