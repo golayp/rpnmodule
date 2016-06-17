@@ -620,7 +620,8 @@ var rpnsequence = (function() {
                     }
                  
                 
-                }else if(validationoptions.type=="integer"){
+                }
+                else if(validationoptions.type=="integer"){
                     if($(this).val().indexOf('-')==1){$(this).val($(this).val().substring(1))};
                     var val_0=$(this).val();
                     var negative='';
@@ -740,7 +741,8 @@ var rpnsequence = (function() {
                             $(this).val(parseInt(val));
                         }
                     }
-                }else if(validationoptions.type=='posdecimal'){ 
+                }
+                else if(validationoptions.type=='posdecimal'){ 
                    $(this).val($(this).val().replace(',','.'));
                     if($(this).val().indexOf('-')==1){$(this).val($(this).val().substring(1))};
                     var val_0=$(this).val();
@@ -1091,6 +1093,7 @@ var rpnsequence = (function() {
                         $(this).val(val);
                     }
                 }
+                
                 myelement.setSelectionRange(myelementcursor, myelementcursor);
                 
             });

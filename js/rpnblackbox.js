@@ -99,7 +99,11 @@ var rpnblackboxmodule = function() {
     
     var validate = function(){
         $.each($('.rpnm_input', domelem), function(idx, gap) {
-            state[idx].response = $(gap).val();
+            if(isNaN(state[idx].response = $(gap).val().split("'").join(""))==false){
+                state[idx].response = $(gap).val().split("'").join("");
+            }else{
+               state[idx].response = $(gap).val(); 
+            }
         });
         return state;
     };

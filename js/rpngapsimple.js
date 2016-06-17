@@ -53,7 +53,7 @@ var rpngapsimplemodule = function() {
                     appendTo: domelem,
                     helper: "clone",
                     snap: true,
-                    snapMode: 'inner',
+                    snapMode: 'inner'
                 });
                 toolbar.append(draggable);
                 maxwidth=maxwidth<draggable.width()?draggable.width():maxwidth;
@@ -130,7 +130,7 @@ var rpngapsimplemodule = function() {
                             appendTo: domelem,
                             helper: "clone",
                             snap: true,
-                            snapMode: "inner",
+                            snapMode: "inner"
                         }));
                         answerArray[idx] = dragimage?datas.fillers[u.draggable.attr("val")]:'';
                     }
@@ -178,7 +178,11 @@ var rpngapsimplemodule = function() {
             });
         }else{
             $.each($('.gapsimple',domelem), function(idx, gap) {
-                state[idx] = $(gap).val().trim();
+                if(isNaN($(gap).val().trim().split("'").join(""))==false){
+                    state[idx] = $(gap).val().trim().split("'").join("");
+                }else{
+                   state[idx] = $(gap).val().trim(); 
+                }
             });
         }
         return state;
@@ -187,7 +191,14 @@ var rpngapsimplemodule = function() {
    var score = function(sol) {
         var score = 0;
         _.each(sol, function(val, idx) {
-            if(val.alternative){
+            if(sol[idx].indexOf('<script>')>-1){
+                var myval=sol[idx].substring(8);
+                myval=myval.substring(0,myval.length-9);
+                if (eval(myval)==state[idx]){
+                    score++; 
+                }
+            }
+            else if(val.alternative){
                 score += (_.contains(val.alternative,state[idx] ) ? 1 : 0);
             }else{
                 score += (val != "" && state[idx] == val) ? 1 : 0;

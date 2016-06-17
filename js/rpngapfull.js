@@ -37,7 +37,12 @@ var rpngapfullmodule = function() {
     };
     
     var validate = function(){
-        state= $('.rpnm_input',domelem).val();
+        if(isNaN($('.rpnm_input',domelem).val().split("'").join(""))==false){
+            state= $('.rpnm_input',domelem).val().split("'").join("");
+        }else{
+           state= $('.rpnm_input',domelem).val(); 
+        }
+        
         return state;
     };
     
