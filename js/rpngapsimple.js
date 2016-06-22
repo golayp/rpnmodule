@@ -10,6 +10,7 @@ var rpngapsimplemodule = function() {
     var dragfromtext;
     var dragimage;
     var answerArray;
+    var myresponse;
 
     var init = function(_datas,_state, _domelem) {
         _.defaults(_datas, {
@@ -28,12 +29,14 @@ var rpngapsimplemodule = function() {
             state=_.map($('b:not([class])',datas.tofill),function(b,idx){return '';});
         }
         buildUi();
+        
     };
 
     var buildUi = function() {
         domelem.addClass('gapsimple');
         var maxwidth=0;
         answerArray = new Array();
+        myresponse =new Array();
         if(dragdrop || dragfromtext){
             var toolbar = $('<div class="gapsimpleddtoolbar">');
             if (singledd){
@@ -157,6 +160,10 @@ var rpngapsimplemodule = function() {
 					t.replaceWith($('<span class="text-nowrap">' + txt +'<input type="text" class="rpnm_input gapsimple form-control' + textAlign + '"' + textWidth + '></span>'));
 				}
                 $($('.rpnm_input',domelem)[idx]).val(state[idx]);
+                $($('.rpnm_input',domelem)[idx]).bind('input propertychange',function(){
+                    myresponse[idx]=$(this).val();
+                    console.log(idx+'myresopponse'+myresponse)
+                });
             }
         });
         bindUiEvents();
@@ -191,15 +198,28 @@ var rpngapsimplemodule = function() {
    var score = function(sol) {
         var score = 0;
         _.each(sol, function(val, idx) {
-            if(sol[idx].indexOf('<script>')>-1){
+            if(val.alternative){
+                var alternativelength=val.alternative.length;
+                for (var al=0;al<alternativelength;al++){
+                   if(val.alternative[al].indexOf('<script>')>-1){
+                        var myval=val.alternative[al].substring(8);
+                        myval=myval.substring(0,myval.length-9);
+                        if (eval(myval)==state[idx]){
+                            score++; 
+                        } 
+                    }
+                    else if(val.alternative[al]==state[idx]){
+                        score ++;
+                    }
+                }
+                
+            }
+            else if(sol[idx].indexOf('<script>')>-1){
                 var myval=sol[idx].substring(8);
                 myval=myval.substring(0,myval.length-9);
                 if (eval(myval)==state[idx]){
                     score++; 
                 }
-            }
-            else if(val.alternative){
-                score += (_.contains(val.alternative,state[idx] ) ? 1 : 0);
             }else{
                 score += (val != "" && state[idx] == val) ? 1 : 0;
                 score -= (val == "" && state[idx] != val) ? 1 : 0;
