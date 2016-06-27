@@ -118,7 +118,7 @@
         },
         {
             "type":"gapsimple",
-            "title":"a gapsimple module response from module to next module ",
+            "title":"a gapsimple module value from module to next module ",
             "validation":{
                 "mode":"lock",
                 "type":"natural",
@@ -128,6 +128,19 @@
                 "align":"text-center"
             },
             "tofill":"<script>document.getElementById('rep2').innerHTML ='myresponse: '+'<br>'+myvar1+'<br>'+myvar2+'<br>'+(myvar1+myvar2);</script><p id=rep2></p><p><b></b></p>"
+        },
+        {
+            "type":"gapsimple",
+            "title":"a gapsimple module field content from module to next module ",
+            "validation":{
+                "mode":"lock",
+                "type":"natural",
+                "milleseparator":true,
+                "numberofchar":"6",
+                "width":"10em;",
+                "align":"text-center"
+            },
+            "tofill":"<script>document.addEventListener('click', displayResponse);function displayResponse() {myresponse=rpnsequence.modulesresponse();if(myresponse){document.getElementById('rep3').innerHTML ='module 1:'+myresponse}};</script><p id=rep3></p><p><b></b></p>"
         }
     ]
 }

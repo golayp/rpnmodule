@@ -35,7 +35,6 @@ var rpngapsimplemodule = function() {
         domelem.addClass('gapsimple');
         var maxwidth=0;
         answerArray = new Array();
-        myresponse =new Array();
         if(dragdrop || dragfromtext){
             var toolbar = $('<div class="gapsimpleddtoolbar">');
             if (singledd){

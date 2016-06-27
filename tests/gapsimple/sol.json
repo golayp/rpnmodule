@@ -13,6 +13,7 @@
         ["<script>myvar1+myvar2</script>"],
         [
             {"alternative":["<script>myvar1+myvar2</script>","<script>myvar1</script>","<script>myvar2</script>"]}
-        ]
+        ],
+        ["<script>var myresponse=rpnsequence.modulesresponse();if(myresponse){myresponse[0]}</script>"]
     ]
 }
