@@ -140,7 +140,7 @@
                 "width":"10em;",
                 "align":"text-center"
             },
-            "tofill":"<script>document.addEventListener('click', displayResponse);function displayResponse() {myresponse=rpnsequence.modulesresponse();if(myresponse){document.getElementById('rep3').innerHTML ='module 1:'+myresponse}};</script><p id=rep3></p><p><b></b></p>"
+            "tofill":"<script>document.addEventListener('click', displayResponse);function displayResponse() {var myresponse=rpnsequence.modulesresponse();if(myresponse){document.getElementById('rep3').innerHTML ='module 1:'+myresponse}};</script><p id=rep3></p><p><b></b></p>"
         }
     ]
 }

@@ -1117,7 +1117,10 @@ var rpnsequence = (function() {
                     }else{
                         $(this).val(val);
                     }
-                } 
+                }
+                
+                myelement.setSelectionRange(myelementcursor, myelementcursor);
+                
             });
         }
     };
