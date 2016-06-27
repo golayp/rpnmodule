@@ -28,6 +28,7 @@ var rpngapsimplemodule = function() {
             state=_.map($('b:not([class])',datas.tofill),function(b,idx){return '';});
         }
         buildUi();
+        
     };
 
     var buildUi = function() {
@@ -167,6 +168,7 @@ var rpngapsimplemodule = function() {
         rpnsequence.addvalidation($('.rpnm_input',domelem),datas.validation);
     };
     
+    
     var validate = function(){
         if(dragdrop || dragfromtext){
             _.each($('.gapsimpleddresponse',domelem),function(elem,idx){
@@ -191,15 +193,28 @@ var rpngapsimplemodule = function() {
    var score = function(sol) {
         var score = 0;
         _.each(sol, function(val, idx) {
-            if(sol[idx].indexOf('<script>')>-1){
+            if(val.alternative){
+                var alternativelength=val.alternative.length;
+                for (var al=0;al<alternativelength;al++){
+                   if(val.alternative[al].indexOf('<script>')>-1){
+                        var myval=val.alternative[al].substring(8);
+                        myval=myval.substring(0,myval.length-9);
+                        if (eval(myval)==state[idx]){
+                            score++; 
+                        } 
+                    }
+                    else if(val.alternative[al]==state[idx]){
+                        score ++;
+                    }
+                }
+                
+            }
+            else if(sol[idx].indexOf('<script>')>-1){
                 var myval=sol[idx].substring(8);
                 myval=myval.substring(0,myval.length-9);
                 if (eval(myval)==state[idx]){
                     score++; 
                 }
-            }
-            else if(val.alternative){
-                score += (_.contains(val.alternative,state[idx] ) ? 1 : 0);
             }else{
                 score += (val != "" && state[idx] == val) ? 1 : 0;
                 score -= (val == "" && state[idx] != val) ? 1 : 0;

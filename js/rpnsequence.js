@@ -31,6 +31,7 @@ var rpnsequence = (function() {
     var selectedLabels;
     var moduleLocation;
     var modules;
+    var respmodulearray=new Array();
 
     var labels = {
         en: {
@@ -406,6 +407,7 @@ var rpnsequence = (function() {
         states[currentmod] = {
             state:state
         };
+        
         moduleendHandler({states:_.map(states,function(sta){return sta.state;})},function(){
             //Save status of module
             sequencedatas.modules[currentmod].status = 'ended';
@@ -416,6 +418,29 @@ var rpnsequence = (function() {
                 displayCurrentModule();
             }        
         });
+        
+        $.getJSON(solurl, function(ssol) {
+            var score = 0;
+            _.each(ssol.solutions, function(sol, idx) {
+                score +=modules[idx].score(sol); });
+                JSON.stringify({states:_.map(states,function(sta, idx){respmodulearray[idx]=(sta.state);return sta.state;})},null, '\t');
+                var mylength=respmodulearray.length;
+                for (var i=0;i<mylength;i++){
+                  log('reponses: '+respmodulearray[i]);  
+                }
+                log('SCORE: '+ score);
+                if (warnexit) {
+                    $(window).unbind('beforeunload');
+                }
+                if(testMode){
+                    displayAlert('Score :' + score + ' pt' + (score>1?'s':''),function(){
+                        sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score);
+                    });
+                }  
+            });
+    };
+    var modulesresponse = function(){
+        return respmodulearray;
     };
 
     var handleEndOfSequence = function() {
@@ -1100,6 +1125,7 @@ var rpnsequence = (function() {
         }
     };
     
+    
     var computeMediaUrl= function(url){
         return mediapathHandler(url);
     };
@@ -1111,6 +1137,7 @@ var rpnsequence = (function() {
         getLabels: getLabels,
         addvalidation: addvalidation,
         computeMediaUrl:computeMediaUrl,
-        getColor:getColor
+        getColor:getColor,
+        modulesresponse: modulesresponse
     };
 })();
