@@ -31,6 +31,7 @@ var rpnsequence = (function() {
     var selectedLabels;
     var moduleLocation;
     var modules;
+    var respmodulearray=new Array();
 
     var labels = {
         en: {
@@ -406,6 +407,7 @@ var rpnsequence = (function() {
         states[currentmod] = {
             state:state
         };
+        
         moduleendHandler({states:_.map(states,function(sta){return sta.state;})},function(){
             //Save status of module
             sequencedatas.modules[currentmod].status = 'ended';
@@ -415,6 +417,36 @@ var rpnsequence = (function() {
             }else{
                 displayCurrentModule();
             }        
+        });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        if(!testMode && !bypassModule){
+            log(JSON.stringify({states:_.map(states,function(sta){if(sta.state){respmodulearray.push(sta.state)};return sta.state;})},null, '\t'));
+            log (state)
+            var mylength=respmodulearray.length;
+            log('reponses: '+respmodulearray[mylength-2]+','+respmodulearray[mylength-1]);
+        }
+        $.getJSON(solurl, function(ssol) {
+            var score = 0;
+            _.each(ssol.solutions, function(sol, idx) {
+                score +=modules[idx].score(sol);
+                //respmodulearray[idx]=state[0];
+                
+            });
+            //log(respmodulearray)
+            log('SCORE: '+ score);
+            if (warnexit) {
+                $(window).unbind('beforeunload');
+            }
+            if(testMode){
+                displayAlert('Score :' + score + ' pt' + (score>1?'s':''),function(){
+                    //sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score);
+                });
+            }
+         //   else
+         //   {
+         //       sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score);
+         //   }
+            
         });
     };
 
@@ -1092,13 +1124,11 @@ var rpnsequence = (function() {
                     }else{
                         $(this).val(val);
                     }
-                }
-                
-                myelement.setSelectionRange(myelementcursor, myelementcursor);
-                
+                } 
             });
         }
     };
+    
     
     var computeMediaUrl= function(url){
         return mediapathHandler(url);

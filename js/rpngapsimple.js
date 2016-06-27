@@ -10,7 +10,6 @@ var rpngapsimplemodule = function() {
     var dragfromtext;
     var dragimage;
     var answerArray;
-    var myresponse;
 
     var init = function(_datas,_state, _domelem) {
         _.defaults(_datas, {
@@ -160,10 +159,6 @@ var rpngapsimplemodule = function() {
 					t.replaceWith($('<span class="text-nowrap">' + txt +'<input type="text" class="rpnm_input gapsimple form-control' + textAlign + '"' + textWidth + '></span>'));
 				}
                 $($('.rpnm_input',domelem)[idx]).val(state[idx]);
-                $($('.rpnm_input',domelem)[idx]).bind('input propertychange',function(){
-                    myresponse[idx]=$(this).val();
-                    console.log(idx+'myresopponse'+myresponse)
-                });
             }
         });
         bindUiEvents();
@@ -173,6 +168,7 @@ var rpngapsimplemodule = function() {
         //Input validation
         rpnsequence.addvalidation($('.rpnm_input',domelem),datas.validation);
     };
+    
     
     var validate = function(){
         if(dragdrop || dragfromtext){
