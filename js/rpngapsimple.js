@@ -90,7 +90,23 @@ var rpngapsimplemodule = function() {
             t.replaceWith(draggable);
             maxwidth=maxwidth<draggable.width()?draggable.width():maxwidth;
         });
-        
+        //if(datas.validation.rndval){
+            $.each($('xxx', domelem), function(idx, tofill) {
+                window.alert(datas.validation.rndval);
+                   // window.alert(datas.validation.rndval);
+                   // window.alert("xxx"+rpnsequence.alea(datas.validation.rndval));
+                    var t = $(tofill);
+                    var txt = "";
+                    var textAlign = (_.isUndefined(datas.validation)||_.isUndefined(datas.validation.align))?"":" " + datas.validation.align;
+                    var textWidth = (_.isUndefined(datas.validation)||_.isUndefined(datas.validation.width))?"":" style='width:" + datas.validation.width + "'";
+
+                    txt = t.text().slice(0,-1);
+                    t.replaceWith(txt+$('<br>' + rpnsequence.alea(datas.validation.rndval)[idx] +'<input type="text" class="rpnm_input gapsimple form-control' + textAlign + '"' + textWidth + '>'));
+
+                    $($('.rpnm_input',domelem)[idx]).val(state[idx]); 
+
+            });
+        //}
         $.each($('b', domelem), function(idx, tofill) {
             var t = $(tofill);
             var txt = "";

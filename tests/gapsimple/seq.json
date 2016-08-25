@@ -141,6 +141,20 @@
                 "align":"text-center"
             },
             "tofill":"<script>document.addEventListener('click', displayResponse);function displayResponse() {var myresponse=rpnsequence.modulesresponse();if(myresponse){document.getElementById('rep3').innerHTML ='module 1:'+myresponse}};</script><p id=rep3></p><p><b></b></p>"
+        },
+        {
+            "type":"gapsimple",
+            "title":"a gapsimple module typed script ",
+            "validation":{
+                "mode":"lock",
+                "type":"natural",
+                "milleseparator":true,
+                "numberofchar":"6",
+                "width":"10em;",
+                "align":"text-center",
+                "rndval":[1,100, 4]
+            },
+            "tofill":"<xxx><br><xxx><br><xxx><br><xxx><p id=rep1></p><p><b></b></p>"
         }
     ]
 }
