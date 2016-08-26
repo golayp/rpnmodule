@@ -10,6 +10,7 @@ var rpngapsimplemodule = function() {
     var dragfromtext;
     var dragimage;
     var answerArray;
+    var myrndval;
 
     var init = function(_datas,_state, _domelem) {
         _.defaults(_datas, {
@@ -90,23 +91,20 @@ var rpngapsimplemodule = function() {
             t.replaceWith(draggable);
             maxwidth=maxwidth<draggable.width()?draggable.width():maxwidth;
         });
-        //if(datas.validation.rndval){
-            $.each($('xxx', domelem), function(idx, tofill) {
-                window.alert(datas.validation.rndval);
-                   // window.alert(datas.validation.rndval);
-                   // window.alert("xxx"+rpnsequence.alea(datas.validation.rndval));
-                    var t = $(tofill);
-                    var txt = "";
-                    var textAlign = (_.isUndefined(datas.validation)||_.isUndefined(datas.validation.align))?"":" " + datas.validation.align;
-                    var textWidth = (_.isUndefined(datas.validation)||_.isUndefined(datas.validation.width))?"":" style='width:" + datas.validation.width + "'";
-
-                    txt = t.text().slice(0,-1);
-                    t.replaceWith(txt+$('<br>' + rpnsequence.alea(datas.validation.rndval)[idx] +'<input type="text" class="rpnm_input gapsimple form-control' + textAlign + '"' + textWidth + '>'));
-
-                    $($('.rpnm_input',domelem)[idx]).val(state[idx]); 
-
-            });
-        //}
+        
+        if(datas.validation && datas.validation.thiselement){
+                var newelement=datas.validation.thiselement;
+                if(datas.validation.rndval){
+                    myrndval=rpnsequence.alea(datas.validation.rndval);
+                }
+               $.each($(newelement, domelem), function(idx, tofill) {
+                   var t = $(tofill);
+                   t.replaceWith($('<span class="text-nowrap">' + myrndval[idx] +'<input type="text" class="rpnm_input gapsimple form-control"></span>'));
+                   
+                    $($('.rpnm_input',domelem)[idx]).val(state[idx]);
+                });
+        }
+        
         $.each($('b', domelem), function(idx, tofill) {
             var t = $(tofill);
             var txt = "";
@@ -207,6 +205,7 @@ var rpngapsimplemodule = function() {
     };
     
    var score = function(sol) {
+       
         var score = 0;
         _.each(sol, function(val, idx) {
             if(val.alternative){
@@ -230,6 +229,37 @@ var rpngapsimplemodule = function() {
                 myval=myval.substring(0,myval.length-9);
                 if (eval(myval)==state[idx]){
                     score++; 
+                }
+            }else if(sol[idx].indexOf('rndval')>-1){
+                var mysol=NaN;
+                if (sol[idx].indexOf('+')>-1){
+                    
+                    var n1=Number(sol[idx].split('+')[0].split('[')[1].slice(0,sol[idx].split('+')[0].split('[')[1].length-1));
+                    var n2=Number(sol[idx].split('+')[1].split('[')[1].slice(0,sol[idx].split('+')[1].split('[')[1].length-1));
+                    mysol=myrndval[n1]+myrndval[n2];
+                    //alert('mysol: '+mysol+' state[idx]: '+state[idx])
+                }
+                if (sol[idx].indexOf('-')>-1){
+                    
+                    var n1=Number(sol[idx].split('-')[0].split('[')[1].slice(0,sol[idx].split('-')[0].split('[')[1].length-1));
+                    var n2=Number(sol[idx].split('-')[1].split('[')[1].slice(0,sol[idx].split('-')[1].split('[')[1].length-1));
+                    mysol=myrndval[n1]-myrndval[n2];
+                }
+                if (sol[idx].indexOf('*')>-1){
+                    
+                    var n1=Number(sol[idx].split('*')[0].split('[')[1].slice(0,sol[idx].split('*')[0].split('[')[1].length-1));
+                    var n2=Number(sol[idx].split('*')[1].split('[')[1].slice(0,sol[idx].split('*')[1].split('[')[1].length-1));
+                    mysol=myrndval[n1]*myrndval[n2];
+                }
+                if (sol[idx].indexOf('/')>-1){
+                    
+                    var n1=Number(sol[idx].split('/')[0].split('[')[1].slice(0,sol[idx].split('/')[0].split('[')[1].length-1));
+                    var n2=Number(sol[idx].split('/')[1].split('[')[1].slice(0,sol[idx].split('/')[1].split('[')[1].length-1));
+                    mysol=Math.floor(myrndval[n1]/myrndval[n2]);
+                }
+                if (mysol==state[idx]){
+                    score++;
+                    alert('+1')
                 }
             }else{
                 score += (val != "" && state[idx] == val) ? 1 : 0;

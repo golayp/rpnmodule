@@ -147,14 +147,15 @@
             "title":"a gapsimple module typed script ",
             "validation":{
                 "mode":"lock",
-                "type":"natural",
+                "type":"integer",
                 "milleseparator":true,
                 "numberofchar":"6",
                 "width":"10em;",
                 "align":"text-center",
+                "thiselement":"pre",
                 "rndval":[1,100, 4]
             },
-            "tofill":"<xxx><br><xxx><br><xxx><br><xxx><p id=rep1></p><p><b></b></p>"
+            "tofill":"<pre>test1</pre><br><pre>test2</pre><br><pre>test3</pre><br><pre>test4</pre>"
         }
     ]
 }
