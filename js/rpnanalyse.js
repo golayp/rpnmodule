@@ -34,7 +34,7 @@ var rpnanalyse = (function() {
         return thisscore;//on remonte le score
     }
      return {
-         
+         //On remonte le score
         fouroperation: fouroperation
     };
 })();
