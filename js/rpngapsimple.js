@@ -231,7 +231,11 @@ var rpngapsimplemodule = function() {
                     score++; 
                 }
             }else if(sol[idx].indexOf('rndval')>-1){
-                var mysol=NaN;
+                //window.alert(rpnanalyse.fouroperation(myrndval,state,sol, idx, score));
+                score=rpnanalyse.fouroperation(myrndval,state,sol, idx, score);
+                window.alert('score'+score);
+                
+               /* var mysol=NaN;
                 if (sol[idx].indexOf('+')>-1){
                     
                     var n1=Number(sol[idx].split('+')[0].split('[')[1].slice(0,sol[idx].split('+')[0].split('[')[1].length-1));
@@ -260,7 +264,7 @@ var rpngapsimplemodule = function() {
                 if (mysol==state[idx]){
                     score++;
                     alert('+1')
-                }
+                }*/
             }else{
                 score += (val != "" && state[idx] == val) ? 1 : 0;
                 score -= (val == "" && state[idx] != val) ? 1 : 0;
