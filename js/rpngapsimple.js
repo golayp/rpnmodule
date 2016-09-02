@@ -227,13 +227,13 @@ var rpngapsimplemodule = function() {
             else if(sol[idx].indexOf('<script>')>-1){
                 var myval=sol[idx].substring(8);
                 myval=myval.substring(0,myval.length-9);
-                if (eval(myval)==state[idx]){
+                if (eval(myval)!='' && eval(myval)==state[idx]){
                     score++; 
                 }
             }else if(sol[idx].indexOf('rndval')>-1){
                 //window.alert(rpnanalyse.fouroperation(myrndval,state,sol, idx, score));
                 score=rpnanalyse.fouroperation(myrndval,state,sol, idx, score);
-                window.alert('score'+score);
+                rpnsequence.log('score'+score);
                 
                /* var mysol=NaN;
                 if (sol[idx].indexOf('+')>-1){
