@@ -188,8 +188,6 @@ var rpngapsimplemodule = function() {
             _.each($('.gapsimpleddresponse',domelem),function(elem,idx){
                 if(dragimage){
                     state[idx] = !_.isUndefined($('.draggable',$(elem)).html()) ? ($('.draggable',$(elem)).html().length==0?'':answerArray[idx]):'';
-                }else if(datas.singledd){
-                    state[idx] = $('.singledraggable',$(elem)).html();
                 }else{
                     state[idx] = $('.draggable',$(elem)).html();
                 }
