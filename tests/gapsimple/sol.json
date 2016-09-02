@@ -14,7 +14,6 @@
         [
             {"alternative":["<script>myvar1+myvar2</script>","<script>myvar1</script>","<script>myvar2</script>"]}
         ],
-        ["<script>var myresponse=rpnsequence.modulesresponse();if(myresponse){myresponse[0]}</script>"],
-        ["rndval[0]+rndval[1]", "rndval[1]-rndval[0]", "rndval[2]*rndval[3]", "rndval[3]/rndval[2]"]
+        ["<script>var myresponse=rpnsequence.modulesresponse();if(myresponse){myresponse[0]}</script>"]
     ]
 }

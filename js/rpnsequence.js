@@ -32,7 +32,6 @@ var rpnsequence = (function() {
     var moduleLocation;
     var modules;
     var respmodulearray=new Array();
-    var varaleaarray=new Array();
 
     var labels = {
         en: {
@@ -1124,23 +1123,14 @@ var rpnsequence = (function() {
                 
             });
         }
-        
     };
     
-    //Si on veut de l'aléatoire'
-    var alea = function(valalea){
-        for(var i=0;i<valalea[2];i++){
-            varaleaarray[i]=valalea[0]+Math.floor(Math.random()*valalea[1]);
-        }
-        return varaleaarray;
-    };
     
     var computeMediaUrl= function(url){
         return mediapathHandler(url);
     };
     
     return {
-        alea: alea,
         init: init,
         displayAlert: displayAlert,
         log: log,
