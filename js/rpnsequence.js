@@ -32,7 +32,7 @@ var rpnsequence = (function() {
     var moduleLocation;
     var modules;
     var respmodulearray=new Array();
-    var varaleaarray=new Array();
+   // var varaleaarray=new Array();
 
     var labels = {
         en: {
@@ -284,6 +284,9 @@ var rpnsequence = (function() {
             else if (modData.type == 'multiplelistssync') {
                 modules[idx]=rpnmultiplelistssyncmodule();
                 modules[idx].init(modData,states[idx].state, divContent);
+            }
+            if(modData.analcontinu){
+                rpnconsigne.analyseeachmod();
             }
             
             moduleLocation.append(rpnmInstance);
@@ -1128,19 +1131,20 @@ var rpnsequence = (function() {
     };
     
     //Si on veut de l'aléatoire'
-    var alea = function(valalea){
+ /*   var alea = function(valalea){
         for(var i=0;i<valalea[2];i++){
             varaleaarray[i]=valalea[0]+Math.floor(Math.random()*valalea[1]);
         }
         return varaleaarray;
     };
+    */
     
     var computeMediaUrl= function(url){
         return mediapathHandler(url);
     };
     
     return {
-        alea: alea,
+        //alea: alea,
         init: init,
         displayAlert: displayAlert,
         log: log,

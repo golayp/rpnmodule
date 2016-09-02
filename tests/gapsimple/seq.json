@@ -131,6 +131,7 @@
         },
         {
             "type":"gapsimple",
+            "analcontinu":true,
             "title":"a gapsimple module field content from module to next module ",
             "validation":{
                 "mode":"lock",
@@ -138,9 +139,10 @@
                 "milleseparator":true,
                 "numberofchar":"6",
                 "width":"10em;",
-                "align":"text-center"
+                "align":"text-center",
+                "bindmodrep":"true"
             },
-            "tofill":"<script>document.addEventListener('click', displayResponse);function displayResponse() {var myresponse=rpnsequence.modulesresponse();if(myresponse){document.getElementById('rep3').innerHTML ='module 1:'+myresponse}};</script><p id=rep3></p><p><b></b></p>"
+            "tofill":"<p id=rep3>scripe remplace</p><p><b></b></p>"
         },
         {
             "type":"gapsimple",

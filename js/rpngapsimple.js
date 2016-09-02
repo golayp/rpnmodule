@@ -11,6 +11,7 @@ var rpngapsimplemodule = function() {
     var dragimage;
     var answerArray;
     var myrndval;
+    var bindmodrepvar;
 
     var init = function(_datas,_state, _domelem) {
         _.defaults(_datas, {
@@ -29,6 +30,7 @@ var rpngapsimplemodule = function() {
             state=_.map($('b:not([class])',datas.tofill),function(b,idx){return '';});
         }
         buildUi();
+        
         
     };
 
@@ -91,11 +93,17 @@ var rpngapsimplemodule = function() {
             t.replaceWith(draggable);
             maxwidth=maxwidth<draggable.width()?draggable.width():maxwidth;
         });
-        
-        if(datas.validation && datas.validation.thiselement){
+        if(datas.validation){
+            alert('datas'+datas.validation.bindmodrep)
+            if(datas.validation.bindmodrep=="true"){
+                
+                bindmodrepvar=datas.validation.bindmodrep;
+            }
+            if(datas.validation.thiselement){
                 var newelement=datas.validation.thiselement;
                 if(datas.validation.rndval){
-                    myrndval=rpnsequence.alea(datas.validation.rndval);
+                    //myrndval=rpnsequence.alea(datas.validation.rndval);
+                    myrndval=rpnconsigne.alea(datas.validation.rndval);
                 }
                $.each($(newelement, domelem), function(idx, tofill) {
                    var t = $(tofill);
@@ -103,7 +111,9 @@ var rpngapsimplemodule = function() {
                    
                     $($('.rpnm_input',domelem)[idx]).val(state[idx]);
                 });
+            }
         }
+        
         
         $.each($('b', domelem), function(idx, tofill) {
             var t = $(tofill);
@@ -203,7 +213,7 @@ var rpngapsimplemodule = function() {
         }
         return state;
     };
-    
+     
    var score = function(sol) {
        
         var score = 0;
@@ -231,40 +241,10 @@ var rpngapsimplemodule = function() {
                     score++; 
                 }
             }else if(sol[idx].indexOf('rndval')>-1){
-                //window.alert(rpnanalyse.fouroperation(myrndval,state,sol, idx, score));
                 score=rpnanalyse.fouroperation(myrndval,state,sol, idx, score);
+            }else if(bindmodrepvar){
                 rpnsequence.log('score'+score);
-                
-               /* var mysol=NaN;
-                if (sol[idx].indexOf('+')>-1){
-                    
-                    var n1=Number(sol[idx].split('+')[0].split('[')[1].slice(0,sol[idx].split('+')[0].split('[')[1].length-1));
-                    var n2=Number(sol[idx].split('+')[1].split('[')[1].slice(0,sol[idx].split('+')[1].split('[')[1].length-1));
-                    mysol=myrndval[n1]+myrndval[n2];
-                    //alert('mysol: '+mysol+' state[idx]: '+state[idx])
-                }
-                if (sol[idx].indexOf('-')>-1){
-                    
-                    var n1=Number(sol[idx].split('-')[0].split('[')[1].slice(0,sol[idx].split('-')[0].split('[')[1].length-1));
-                    var n2=Number(sol[idx].split('-')[1].split('[')[1].slice(0,sol[idx].split('-')[1].split('[')[1].length-1));
-                    mysol=myrndval[n1]-myrndval[n2];
-                }
-                if (sol[idx].indexOf('*')>-1){
-                    
-                    var n1=Number(sol[idx].split('*')[0].split('[')[1].slice(0,sol[idx].split('*')[0].split('[')[1].length-1));
-                    var n2=Number(sol[idx].split('*')[1].split('[')[1].slice(0,sol[idx].split('*')[1].split('[')[1].length-1));
-                    mysol=myrndval[n1]*myrndval[n2];
-                }
-                if (sol[idx].indexOf('/')>-1){
-                    
-                    var n1=Number(sol[idx].split('/')[0].split('[')[1].slice(0,sol[idx].split('/')[0].split('[')[1].length-1));
-                    var n2=Number(sol[idx].split('/')[1].split('[')[1].slice(0,sol[idx].split('/')[1].split('[')[1].length-1));
-                    mysol=Math.floor(myrndval[n1]/myrndval[n2]);
-                }
-                if (mysol==state[idx]){
-                    score++;
-                    alert('+1')
-                }*/
+                score=rpnanalyse.numbermodrep(state,sol, idx, score);
             }else{
                 score += (val != "" && state[idx] == val) ? 1 : 0;
                 score -= (val == "" && state[idx] != val) ? 1 : 0;

@@ -32,12 +32,24 @@ var rpnanalyse = (function() {
                 }
                 if (mythissol==thisstate[thisidx]){
                     thisscore++;
-                    rpnsequence.log('+1')
+                    rpnsequence.log('4ope +1')
                 }
         return thisscore;//on remonte le score
     }
+    var numbermodrep=function(thisstate,thissol,thisidx,thisscore){
+        var myresponse=rpnsequence.modulesresponse();
+        //var n1=Number(thissol[thisidx].split('[')[1].slice(0,length-1));
+        var n1=Number(thissol[thisidx]);
+        rpnsequence.log('numbermodrep'+myresponse[n1])
+        if(myresponse[n1]!='' && myresponse[n1]==thisstate[thisidx]){
+            thisscore++;
+            rpnsequence.log('numbermodrep +1')
+        };
+        return thisscore;
+    }
+    
      return {
-         
+        numbermodrep:numbermodrep, 
         fouroperation: fouroperation
     };
 })();

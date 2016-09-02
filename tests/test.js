@@ -43,7 +43,8 @@ require([
     'rpnsorting',
     'rpndoc',
     'rpnmultiplelistssync',
-    'rpnanalyse'
+    'rpnanalyse',
+    'rpnconsigne'
     ], function($) {
     $(document).ready(function(){
         rpnsequence.init({
