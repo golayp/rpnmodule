@@ -60,7 +60,7 @@
             "title":"a gapsimple module type list put a list in validation type",
             "validation":{
                 "mode":"lock",
-                "type":["list","aim","ait","aie"],
+                "type":["list","aim","ait","aie","ais"],
                 "width":"4em;",
                 "align":"text-center"
             },

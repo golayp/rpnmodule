@@ -42,7 +42,8 @@ require([
     'rpndropdown2',
     'rpnsorting',
     'rpndoc',
-    'rpnmultiplelistssync'
+    'rpnmultiplelistssync',
+    "rpnanalyse"
     ], function($) {
     $(document).ready(function(){
         rpnsequence.init({

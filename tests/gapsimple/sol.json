@@ -3,9 +3,14 @@
         ["1307"],
         ["1807"],
         ["1507"],
-        ["1704"],
-        ["arrivait"],
-        ["a","b","c","d","e",""],
+        ["1407"],
+        [
+            {"alternative":[
+                "ait",
+                "ais"
+            ]}
+        ],
+        ["a","b","c","d","","f"],
         ["dream","day","dream","day","dream","day","dream","day","dream","day"],
         ["dream","day"],
         ["day","dream"],
