@@ -9,6 +9,7 @@ var rpngapsimplemodule = function() {
     var state;
     var dragfromtext;
     var dragimage;
+    var singledd;
     var answerArray;
 
     var init = function(_datas,_state, _domelem) {
@@ -35,15 +36,18 @@ var rpngapsimplemodule = function() {
         domelem.addClass('gapsimple');
         var maxwidth=0;
         answerArray = new Array();
+
         if(dragdrop || dragfromtext){
             var toolbar = $('<div class="gapsimpleddtoolbar">');
             if (singledd){
                 $.each(datas.fillers, function(idx, filler) {
                     var divDrag = $('<div class="divdraggable" id="div'+idx+'" ></div>');
-                    var drag = $('<span class="singledraggable" draggable="true" id="drag'+idx+'" val="'+idx+'" >'+filler+'</span>').on('dragstart', function (ev) {
-                        ev.originalEvent.dataTransfer.setData("text", ev.target.id);
-                    });
-                    divDrag.append(drag);
+                    if(!(_.contains(state, filler))){
+                        var drag = $('<span class="singledraggable" draggable="true" id="drag'+_.indexOf(datas.fillers, filler)+'" val="'+_.indexOf(datas.fillers, filler)+'" >'+filler+'</span>').on('dragstart', function (ev) {
+                            ev.originalEvent.dataTransfer.setData("text", ev.target.id);
+                        });
+                        divDrag.append(drag);
+                    }
                     toolbar.append(divDrag);
                 });
             }
@@ -96,8 +100,11 @@ var rpngapsimplemodule = function() {
             var txt = "";
             //var txt = _.isEmpty(t.text())?"":"<strong>(" + t.text() + ")</strong>";
             if(singledd){
-                var drop = $('<b class="gapsimpleddresponse" >').on('dragover', function(ev){
-                     ev.preventDefault();
+                var drop = $('<b class="gapsimpleddresponse">').on('dragenter', function(ev){
+                    ev.stopPropagation(); 
+                    ev.preventDefault();
+                }).on('dragover', function(ev){
+                    ev.preventDefault();
                 }).on('drop', function(ev) {
                     ev.preventDefault();
                     var target = ev.target;
@@ -112,6 +119,12 @@ var rpngapsimplemodule = function() {
                     $(target).append($("#"+data));
                 });
                 t.replaceWith(drop);
+                
+                var alreadyGivenResponse = (_.isEmpty(state[idx]) ? '' : $('<span class="singledraggable" draggable="true" id="drag'+_.indexOf(datas.fillers, state[idx])+'" val="'+_.indexOf(datas.fillers, state[idx])+'" >'+state[idx]+'</span>'));
+                $(alreadyGivenResponse).on('dragstart', function (ev) {
+                    ev.originalEvent.dataTransfer.setData("text", ev.target.id);
+                });
+                drop.append(alreadyGivenResponse);
             }
             else if(dragdrop || dragfromtext){
                 //add a drop area
@@ -145,6 +158,7 @@ var rpngapsimplemodule = function() {
                         appendTo: domelem,
                         helper: "clone"
                     }));
+                    
                     answerArray[idx] = state[idx];
                 }
             }else{
@@ -152,7 +166,7 @@ var rpngapsimplemodule = function() {
 				var textWidth = (_.isUndefined(datas.validation)||_.isUndefined(datas.validation.width))?"":" style='width:" + datas.validation.width + "'";
 				if(t.text().substr(-1)!="_"){
 					txt = _.isEmpty(t.text())?"":"<strong>(" + t.text() + ")</strong>";
-					t.replaceWith($('<span class="text-nowrap"><input type="text" class="rpnm_input gapsimple form-control' + textAlign + '"' + textWidth + '>' + txt + '</span>'));
+                    t.replaceWith($('<span class="text-nowrap"><input type="text" class="rpnm_input gapsimple form-control' + textAlign + '"' + textWidth + '>' + txt + '</span>'));
                 }else{
 					txt = t.text().slice(0,-1);
 					t.replaceWith($('<span class="text-nowrap">' + txt +'<input type="text" class="rpnm_input gapsimple form-control' + textAlign + '"' + textWidth + '></span>'));
@@ -196,27 +210,16 @@ var rpngapsimplemodule = function() {
         var score = 0;
         _.each(sol, function(val, idx) {
             if(val.alternative){
+                score += (_.contains(val.alternative,state[idx] ) ? 1 : 0);
+                /*
                 var alternativelength=val.alternative.length;
                 for (var al=0;al<alternativelength;al++){
-                   if(val.alternative[al].indexOf('<script>')>-1){
-                        var myval=val.alternative[al].substring(8);
-                        myval=myval.substring(0,myval.length-9);
-                        if (eval(myval)==state[idx]){
-                            score++; 
-                        } 
-                    }
-                    else if(val.alternative[al]==state[idx]){
+                   if(val.alternative[al]==state[idx]){
                         score ++;
                     }
                 }
-                
-            }
-            else if(sol[idx].indexOf('<script>')>-1){
-                var myval=sol[idx].substring(8);
-                myval=myval.substring(0,myval.length-9);
-                if (eval(myval)==state[idx]){
-                    score++; 
-                }
+                */
+           
             }else{
                 score += (val != "" && state[idx] == val) ? 1 : 0;
                 score -= (val == "" && state[idx] != val) ? 1 : 0;

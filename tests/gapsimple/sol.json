@@ -1,19 +1,14 @@
 {
     "solutions":[
         ["1307"],
-        ["1807"],
-        ["1507"],
-        ["1704"],
-        ["arrivait"],
-        ["a","b","c","d","e",""],
+        ["-1807"],
+        ["-1492.63"],
+        ["14.82"],
+        ["ait"],
+        ["a","b","c","d","","f"],
         ["dream","day","dream","day","dream","day","dream","day","dream","day"],
         ["dream","day"],
         ["day","dream"],
-        ["<img src=\"logo2.png\" width=\"150\" height=\"150\" >","<img src=\"logo.png\" width=\"150\" height=\"150\" >"],
-        ["<script>myvar1+myvar2</script>"],
-        [
-            {"alternative":["<script>myvar1+myvar2</script>","<script>myvar1</script>","<script>myvar2</script>"]}
-        ],
-        ["<script>var myresponse=rpnsequence.modulesresponse();if(myresponse){myresponse[0]}</script>"]
+        ["<img src=\"logo2.png\" width=\"150\" height=\"150\" >","<img src=\"logo.png\" width=\"150\" height=\"150\" >"]
     ]
 }

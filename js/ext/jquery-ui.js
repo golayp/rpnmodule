@@ -232,7 +232,7 @@ $.fn.extend({
 	})( $.fn.focus ),
 
 	disableSelection: (function() {
-		var eventType = "onselectstart" in document.createElement( "div" ) ?
+		/*var eventType = "onselectstart" in document.createElement( "div" ) ?
 			"selectstart" :
 			"mousedown";
 
@@ -240,7 +240,7 @@ $.fn.extend({
 			return this.bind( eventType + ".ui-disableSelection", function( event ) {
 				event.preventDefault();
 			});
-		};
+		};*/
 	})(),
 
 	enableSelection: function() {

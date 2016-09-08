@@ -5,7 +5,7 @@
     "modules":[
         {
             "type":"gapsimple",
-            "title":"a gapsimple module typed natural'mille ",
+            "title":"a gapsimple module typed natural'mille, nbofchar: 6,  milleseparator: true ",
             "validation":{
                 "mode":"lock",
                 "type":"natural",
@@ -18,7 +18,7 @@
         },
         {
             "type":"gapsimple",
-            "title":"a gapsimple module type integer'mille ",
+            "title":"a gapsimple module type integer'mille, nbofchar: 6, milleseparator: true ",
             "validation":{
                 "mode":"lock",
                 "type":"integer",
@@ -27,37 +27,37 @@
                 "width":"10em;",
                 "align":"text-center"
             },
-            "tofill":"<p>1800 + 7 = <b></b></p>"
+            "tofill":"<p>-1800 - 7 = <b></b></p>"
         },
         {
             "type":"gapsimple",
-            "title":"a gapsimple module type decimal ",
+            "title":"a gapsimple module type decimal, nbofchar: 12, milleseparator: true ",
             "validation":{
                 "mode":"lock",
                 "type":"decimal",
                 "milleseparator":true,
-                "numberofchar":"6",
+                "numberofchar":"12",
                 "width":"10em;",
                 "align":"text-center"
             },
-            "tofill":"<p>1500 + 7 = <b></b></p>"
+            "tofill":"<p>-1500,03 + 7.4 = <b></b></p>"
         },
         {
             "type":"gapsimple",
-            "title":"a gapsimple module type posdecimal ",
+            "title":"a gapsimple module type posdecimal, nbofchar: 12, milleseparator: false  ",
             "validation":{
                 "mode":"lock",
                 "type":"posdecimal",
-                "milleseparator":true,
-                "numberofchar":"6",
+                "milleseparator":false,
+                "numberofchar":"12",
                 "width":"10em;",
                 "align":"text-center"
             },
-            "tofill":"<p>1400 + 7 = <b></b></p>"
+            "tofill":"<p>14,12 + 0,7 = <b></b></p>"
         },
         {
             "type":"gapsimple",
-            "title":"a gapsimple module type list put a list in validation type",
+            "title":"a gapsimple module type list put a list [aim,ait,aie] in validation type",
             "validation":{
                 "mode":"lock",
                 "type":["list","aim","ait","aie"],
@@ -102,45 +102,6 @@
             "dragimage":true,
             "fillers":["<img src=\"logo.png\" width=\"150\" height=\"150\" >","<img src=\"logo2.png\" width=\"150\" height=\"150\" >"],
             "tofill":"<table><tr><td>JS purple</td><td>JS yellow</td></tr><tr><td><b></b></td><td><b></b></td></tr></table>"
-        },
-        {
-            "type":"gapsimple",
-            "title":"a gapsimple module typed script ",
-            "validation":{
-                "mode":"lock",
-                "type":"natural",
-                "milleseparator":true,
-                "numberofchar":"6",
-                "width":"10em;",
-                "align":"text-center"
-            },
-            "tofill":"<script>var myvar1=Math.floor(Math.random()*100);var myvar2=Math.floor(Math.random()*100);document.getElementById('rep1').innerHTML =myvar1+'<br>'+myvar2+'<br>'+(myvar1+myvar2);</script><p id=rep1></p><p><b></b></p>"
-        },
-        {
-            "type":"gapsimple",
-            "title":"a gapsimple module value from module to next module ",
-            "validation":{
-                "mode":"lock",
-                "type":"natural",
-                "milleseparator":true,
-                "numberofchar":"6",
-                "width":"10em;",
-                "align":"text-center"
-            },
-            "tofill":"<script>document.getElementById('rep2').innerHTML ='myresponse: '+'<br>'+myvar1+'<br>'+myvar2+'<br>'+(myvar1+myvar2);</script><p id=rep2></p><p><b></b></p>"
-        },
-        {
-            "type":"gapsimple",
-            "title":"a gapsimple module field content from module to next module ",
-            "validation":{
-                "mode":"lock",
-                "type":"natural",
-                "milleseparator":true,
-                "numberofchar":"6",
-                "width":"10em;",
-                "align":"text-center"
-            },
-            "tofill":"<script>document.addEventListener('click', displayResponse);function displayResponse() {myresponse=rpnsequence.modulesresponse();if(myresponse){document.getElementById('rep3').innerHTML ='module 1:'+myresponse}};</script><p id=rep3></p><p><b></b></p>"
         }
     ]
 }

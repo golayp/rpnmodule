@@ -31,7 +31,7 @@ var rpnsequence = (function() {
     var selectedLabels;
     var moduleLocation;
     var modules;
-    var respmodulearray=new Array();
+   // var respmodulearray=new Array();
 
     var labels = {
         en: {
@@ -419,7 +419,7 @@ var rpnsequence = (function() {
             }        
         });
         
-        $.getJSON(solurl, function(ssol) {
+       /* $.getJSON(solurl, function(ssol) {
             var score = 0;
             _.each(ssol.solutions, function(sol, idx) {
                 score +=modules[idx].score(sol); });
@@ -440,7 +440,7 @@ var rpnsequence = (function() {
             });
     };
     var modulesresponse = function(){
-        return respmodulearray;
+        return respmodulearray;*/
     };
 
     var handleEndOfSequence = function() {
@@ -1138,6 +1138,6 @@ var rpnsequence = (function() {
         addvalidation: addvalidation,
         computeMediaUrl:computeMediaUrl,
         getColor:getColor,
-        modulesresponse: modulesresponse
+        //modulesresponse: modulesresponse
     };
 })();
