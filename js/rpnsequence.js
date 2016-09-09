@@ -533,6 +533,7 @@ var rpnsequence = (function() {
                     }
                 }
                 if(validationoptions.type=="natural"){
+                    
                     if($(this).val().indexOf('-')==1){$(this).val($(this).val().substring(1))};
                     var val_0=$(this).val();
                     var negative='';
@@ -553,9 +554,13 @@ var rpnsequence = (function() {
                     val_0=val_0.split('\'');
                     val_0=val_0.join('');
                     var val=/^[\d]\d*/.exec(val_0);
+                    
                     if(val==null){
                         val=[myvalbeorenumberofchar.split('.').join('')];
+                        val=/^[\d]\d*/.exec(val_0);
                         myelementcursor=myelementcursor-1;
+                        val="";
+                        $(this).val(val);
                     }
                     else if (val[0]!=val_0){
                         val[0]=val[0]+stringaftercursor;
@@ -565,6 +570,7 @@ var rpnsequence = (function() {
                         negative='';
                         val[0]=val[0].substr(1);
                     }
+                    
                     firstchardigit=val[0].charAt(0);
                     var secondchar=val[0].charAt(1);
                     var digitatsepartor=myvalbeorenumberofchar.charAt(myelementcursor);
@@ -573,24 +579,30 @@ var rpnsequence = (function() {
                             val=myvalbeorenumberofchar.substr(0,myelementcursor)+myvalbeorenumberofchar.substr(myelementcursor+1);
                         }
                     }
+                    
                     if(firstchardigit=='0'){myelementcursor=myelementcursor-1};
                     if(/\d/.exec(secondchar)==null){$(this).val(myvalbeorenumberofchar.substr(0,1)+myvalbeorenumberofchar.substr(2))};
+                    
                     if(val[0].match(/^0[^,\.]/)){
                         var val=/^[\d]\d*/.exec(val[0]);
                     }
+
                     if(val[0].match(/^-/)){
                         var val=/[\d]\d*/.exec(val[0]);
                     }
+                  
                     if(val=='' || val==null){
                         if(/\d/.exec(secondchar)==null){
-                            val=myvalbeorenumberofchar.substr(0,1)+myvalbeorenumberofchar.substr(2);
+                         val=myvalbeorenumberofchar.substr(0,1)+myvalbeorenumberofchar.substr(2);
                                 
                         }else{
                             val='';
                         }
                     }
+           //         alert('natural'+val)
                     $(this).val(negative+val);
                     var nb=$(this).val().split('\'');
+                    
                     nb=nb.join('');
                     if(nb.substring(0,1)=='0'||nb==null||nb==undefined||isNaN(nb)||nb=='-'){
                         nb=nb.substring(myvalbeorenumberofchar);
@@ -644,7 +656,7 @@ var rpnsequence = (function() {
                         } 
                     }
                  
-                
+            //    alert('dans natural fin')
                 }
                 else if(validationoptions.type=="integer"){
                     if($(this).val().indexOf('-')==1){$(this).val($(this).val().substring(1))};
