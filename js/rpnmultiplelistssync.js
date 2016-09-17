@@ -50,7 +50,8 @@ var rpnmultiplelistssyncmodule = function() {
             //and fill if there is already a response
             if(!_.isEmpty(state.lists[idx])){
                 _.each(state.lists[idx], function(item,id) {
-                    listToSort.append($('<li val=\"'+id+'\">'+item+'</li>'));
+                    var noElem = _.indexOf(datas.lists[idx].items, item);
+                    listToSort.append($('<li val=\"'+noElem+'\">'+item+'</li>'));
                 });
             }
             else{
