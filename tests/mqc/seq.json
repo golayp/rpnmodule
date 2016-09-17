@@ -54,6 +54,8 @@
 		{
             "type":"mqc",
             "title":"identifier ",
+            "context":"multiple responses possible",
+            "mqcmultiple":true,
             "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
             "answers":[
 				{"choice":["What","When","Where","Who"]}
