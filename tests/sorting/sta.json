@@ -29,6 +29,11 @@
 			"amet,",
 			"ipsum",
 			"Lorem"
-		]
+		],
+        [
+            "<img src=\"sorting2.png\">",
+            "<img src=\"sorting3.png\">",
+            "<img src=\"sorting1.png\">"
+        ]
 	]
 }

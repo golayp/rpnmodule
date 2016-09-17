@@ -28,6 +28,14 @@
             "sentence":["Lorem","ipsum","dolor","sit","amet,","consectetur","adipiscing","elit."],
             "shuffle":true,
             "sources":"Donec arcu lectus, porttitor sed vestibulum vitae."
+        },
+        {
+            "type":"sorting",
+            "title":"a sorting module with pictures",
+            "context":"Context",
+            "directive":"Directive",
+            "sentence":["<img src=\"sorting1.png\">","<img src=\"sorting2.png\">","<img src=\"sorting3.png\">"],
+            "shuffle":false
         }
     ]
 }

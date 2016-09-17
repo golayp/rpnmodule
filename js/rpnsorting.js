@@ -32,7 +32,8 @@ var rpnsortingmodule = function() {
         //build sentence with items to select
         var sentenceToSort=$('<ul class="list-unstyled'+(datas.vertical?'':' list-inline')+'"></ul>');
         _.each(state, function(item, idx) {
-            sentenceToSort.append($('<li>'+item+'</li>'));
+            var noElem = _.indexOf(datas.sentence, item);
+            sentenceToSort.append($('<li val="'+noElem+'">'+item+'</li>'));
         });
         domelem.append(sentenceToSort);
         sentenceToSort.sortable({
@@ -48,7 +49,9 @@ var rpnsortingmodule = function() {
     };
     
     var validate = function(){
-        state=_.map($('li',domelem),function(ele,idx){return $(ele).html()});
+        state=_.map($('li',domelem),function(ele,idx){
+            return ($(ele).children().is("img")) ? datas.sentence[$(ele).attr("val")] : $(ele).html();
+        });
         return state;
     };
     

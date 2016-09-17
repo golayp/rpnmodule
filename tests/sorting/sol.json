@@ -2,10 +2,11 @@
     "solutions":[
 		["Lorem","ipsum","dolor","sit","amet,","consectetur","adipiscing","elit."],
 		{"alternative":[
-		    ["Lorem","ipsum","dolor","sit","amet,","consectetur","adipiscing","elit."],
-		    ["ipsum","Lorem","dolor","sit","amet,","consectetur","adipiscing","elit."]
+		      ["Lorem","ipsum","dolor","sit","amet,","consectetur","adipiscing","elit."],
+		      ["ipsum","Lorem","dolor","sit","amet,","consectetur","adipiscing","elit."]
 		    ]
         },
-        ["Lorem","ipsum","dolor","sit","amet,","consectetur","adipiscing","elit."]
+        ["Lorem","ipsum","dolor","sit","amet,","consectetur","adipiscing","elit."],
+        ["<img src=\"sorting3.png\">","<img src=\"sorting2.png\">","<img src=\"sorting1.png\">"]
     ]
 }
