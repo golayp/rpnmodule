@@ -48,8 +48,8 @@ require([
         rpnsequence.init({
             debug:true,
             disablestateloading:true,
-            testMode:false,
-            warnonexit:true,
+            testMode:true,
+            warnonexit:false,
             //bypassModule:true,
             onmoduleend:function(states,nextstep){
                 console.log('ok');
