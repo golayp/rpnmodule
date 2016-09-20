@@ -22,6 +22,11 @@
         {
             "letters":["A","C","Z"],
             "colors":["green","blue","yellow"]
+        },
+        {
+            "verbs":["have","live","hold"],
+            "names":["dream","nation","men"],
+            "others":["true","equal"]
         }
     ]
 }

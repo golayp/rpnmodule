@@ -4,6 +4,7 @@ var rpndragdropsortingmodule = function() {
     var datas;
     var domelem;
     var state;
+    var dragfromtext;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -11,6 +12,7 @@ var rpndragdropsortingmodule = function() {
             todrop: ["empty too :'("]
         });
         datas = _datas;
+        dragfromtext = !_.isUndefined(_datas.dragfromtext);
         domelem = _domelem;
         if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
@@ -25,7 +27,30 @@ var rpndragdropsortingmodule = function() {
 
     var buildUi = function() {
         domelem.addClass('dragdropsorting');
-        domelem.append($('<div class="row"><div class="container"><div class="col-md-2 col"><ul id="drag_this_'+domelem.attr('id')+'" class="dragthis list-unstyled"></ul></div></div><div class="row"><div class="container dropzonecontainer"></div></div>'));
+        if (dragfromtext){
+            //build panel with sentences
+            domelem.append($('<div class="form-inline">' + datas.todrag + '</div><div class="row"><div class="container dropzonecontainer"></div></div>'));
+            
+            $.each($('b', domelem), function(idx, todrag) {
+                var t = $(todrag);
+                var draggable=$('<ul id="drag_this_'+idx+'" class="dragthis list-unstyled list-inline fromtext"><li class="draggable">'+t.html()+'</li></ul>').sortable({
+                    connectWith: '.droppable ul',
+                    appendTo:'body',
+                    placeholder:'droppable-placeholder',
+                    forcePlaceholderSize :true,
+                    dropOnEmpty: true,
+                    distance: 0.5,
+                    remove: function(e,li) {
+                        copyHelper= li.item.clone().insertAfter(li.item);
+                        $(this).sortable('cancel');
+                    }     
+
+                }).disableSelection();
+                t.replaceWith(draggable);
+            });
+        }else{
+            domelem.append($('<div class="row"><div class="container"><div class="col-md-2 col"><ul id="drag_this_'+domelem.attr('id')+'" class="dragthis list-unstyled"></ul></div></div><div class="row"><div class="container dropzonecontainer"></div></div>'));
+        }
         var nbcol=datas.todrop.length
         $.each(datas.todrop, function(idx, drop) {
             $('.dropzonecontainer',domelem).append($('<div class="col-xs-'+(nbcol<5?'3':'2')+(idx==0?(nbcol==2?' col-xs-offset-3':(nbcol==3||nbcol==5)?' col-xs-offset-1':''):'')+'"><div class="droppable"><span class="lead">' + drop + '</span><ul class="list-unstyled"></ul></div></div>'));
@@ -42,14 +67,21 @@ var rpndragdropsortingmodule = function() {
             forcePlaceholderSize :true,
             distance: 0.5,
             receive:function  (event, ui) {
-                if($(ui.sender[0]).hasClass('dragthis')){
-                    state.todrag.pop();
+                if(dragfromtext){
+                    $(ui.sender[0]).addClass('dropped')
+                    removeDuplicates();
+                }else{
+                    if($(ui.sender[0]).hasClass('dragthis')){
+                        state.todrag.pop();
+                    }
+                    nextDraggable();
                 }
-                nextDraggable();
             }
         });
         bindUiEvents();
-        nextDraggable();
+        if(!dragfromtext){
+            nextDraggable();
+        }
     };
 
     var nextDraggable = function() {
@@ -81,6 +113,21 @@ var rpndragdropsortingmodule = function() {
         });
         return state;
     };
+    
+    var removeDuplicates = function(){
+        var list = [];
+        _.each($('.droppable',domelem), function(elem, idx) {
+            $.each($(elem).find('li'), function(idx, txt) {
+                var item = $(txt).html();
+                if (_.indexOf(list, item)>-1){
+                    this.remove();
+                }else{
+                    list.push(item);               
+                }
+            });
+        });
+        return state;
+    }
     
     var score = function(sols) {
         var score = 0;

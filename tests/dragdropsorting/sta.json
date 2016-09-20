@@ -94,6 +94,24 @@
 				"Z"
 			],
 			"colors": []
+		},
+		{
+			"todrop": [
+				"verbs",
+				"names",
+                "others"
+			],
+			"verbs": [
+				"have",
+                "hold"
+			],
+			"names": [
+                "dream",
+                "nation"
+            ],
+            "others":[
+                "live"
+            ]
 		}
 	]
 }

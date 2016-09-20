@@ -96,7 +96,24 @@
   margin-bottom: 2px;
 }
 .dragthis {
-  min-height: 300px;
+  min-height: 100px;
+}
+.dragthis.fromtext {
+  min-height: 20px;
+  display: inline;
+}
+.dragthis.dropped li {
+  background-color: turquoise;
+}
+span.todrag {
+  display: none;
+}
+.dragdropsorting .form-inline {
+  margin-bottom: 80px;
+}
+.dragdropsorting .form-inline .list-inline > li {
+  padding: 0px;
+  margin-left: 5px;
 }
 .droppable {
   text-align: center;
@@ -105,7 +122,7 @@
 }
 .droppable ul {
   text-align: center;
-  min-height: 100px;
+  min-height: 200px;
 }
 .droppable-placeholder {
   background-color: #eeeeee;

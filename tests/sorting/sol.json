@@ -1,9 +1,9 @@
 {
     "solutions":[
-		["Lorem","ipsum","dolor","sit","amet,","consectetur","adipiscing","elit."],
+        ["Lorem","ipsum","dolor","sit","amet,","consectetur","adipiscing","elit."],
 		{"alternative":[
-		      ["Lorem","ipsum","dolor","sit","amet,","consectetur","adipiscing","elit."],
-		      ["ipsum","Lorem","dolor","sit","amet,","consectetur","adipiscing","elit."]
+		    ["Lorem","ipsum","dolor","sit","amet,","consectetur","adipiscing","elit."],
+		    ["ipsum","Lorem","dolor","sit","amet,","consectetur","adipiscing","elit."]
 		    ]
         },
         ["Lorem","ipsum","dolor","sit","amet,","consectetur","adipiscing","elit."],
