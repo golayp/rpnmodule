@@ -27,6 +27,11 @@
             "verbs":["have","live","hold"],
             "names":["dream","nation","men"],
             "others":["true","equal"]
+        },
+        {
+            "4-letter words":["have","live","true","hold"],
+            "words starting with h":["have","hold"],
+            "verbs":["have","live","hold"]
         }
     ]
 }

@@ -96,7 +96,12 @@
 			"colors": []
 		},
 		{
-			"todrop": [
+			"todrag": [
+				"men",
+				"true",
+				"equal"
+			],
+            "todrop": [
 				"verbs",
 				"names",
                 "others"
@@ -110,6 +115,29 @@
                 "nation"
             ],
             "others":[
+                "live"
+            ]
+		},
+		{
+			"todrag": [
+				"men",
+				"true",
+				"equal"
+			],
+            "todrop": [
+				"4-letter words",
+				"words starting with h",
+                "verbs"
+			],
+			"4-letter words": [
+				"have",
+                "hold"
+			],
+			"words starting with h": [
+                "dream",
+                "nation"
+            ],
+            "verbs":[
                 "live"
             ]
 		}

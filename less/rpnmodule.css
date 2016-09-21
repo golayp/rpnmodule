@@ -23,10 +23,14 @@
 .gapsimpleddresponse-hover {
   background-color: #f0ad4e;
 }
-.gapsimple .fa-trash-o {
-  font-size: 20px;
+.gapsimple .fa-trash-o,
+.dragdropsorting .fa-trash-o {
+  font-size: 40px;
+  padding-left: 40px;
+  padding-right: 40px;
 }
-.gapsimple .fa-trash-o:hover {
+.gapsimple .fa-trash-o:hover,
+.dragdropsorting .fa-trash-o:hover {
   color: #f0ad4e;
 }
 .ddimage .gapsimple img,
