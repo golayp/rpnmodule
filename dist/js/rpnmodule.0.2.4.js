@@ -240,7 +240,7 @@ $.fn.extend({
 	})( $.fn.focus ),
 
 	disableSelection: (function() {
-		var eventType = "onselectstart" in document.createElement( "div" ) ?
+		/*var eventType = "onselectstart" in document.createElement( "div" ) ?
 			"selectstart" :
 			"mousedown";
 
@@ -248,7 +248,7 @@ $.fn.extend({
 			return this.bind( eventType + ".ui-disableSelection", function( event ) {
 				event.preventDefault();
 			});
-		};
+		};*/
 	})(),
 
 	enableSelection: function() {
@@ -3850,6 +3850,7 @@ var sortable = $.widget("ui.sortable", $.ui.mouse, {
 
 
 }));
+
 /**
  * jsBezier-0.7
  *
@@ -16481,7 +16482,11 @@ var rpnblackboxmodule = function() {
     
     var validate = function(){
         $.each($('.rpnm_input', domelem), function(idx, gap) {
-            state[idx].response = $(gap).val();
+            if(isNaN(state[idx].response = $(gap).val().split("'").join(""))==false){
+                state[idx].response = $(gap).val().split("'").join("");
+            }else{
+               state[idx].response = $(gap).val(); 
+            }
         });
         return state;
     };
@@ -16642,19 +16647,90 @@ var rpncardmazemodule = function() {
         score:score
     };
 };
+//doc
+var rpndocmodule = function() {
+
+    var datas;
+    var domelem;
+    var state;
+    var object;
+
+    var init = function(_datas,_state, _domelem) {
+        /*_.defaults(_datas, {
+            tofill: "tofill not set!<b>Read</b> documentation please!"
+        });*/
+
+        datas = _datas;
+        object= !_.isUndefined(_datas.object);
+        domelem = _domelem;
+        if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
+            state=_state;
+        }
+        else{
+            state={
+                seen : ''
+            };
+        }
+        buildUi();
+    };
+
+    var buildUi = function() {
+        domelem.addClass('doc');
+        var doc = $('<div class="doc">');
+        var objectType = (_.isUndefined(datas.object)||_.isUndefined(datas.object.type))?"":datas.object.type;
+        var objectWidth = (_.isUndefined(datas.object)||_.isUndefined(datas.object.width))?"width=\"100%\"":"width=" + datas.object.width;
+        var objectHeight = (_.isUndefined(datas.object)||_.isUndefined(datas.object.height))?"height=\"70%\"":"height=" + datas.object.height;
+        var objectStyle = (_.isUndefined(datas.object)||_.isUndefined(datas.object.style))?"":"style=" + datas.object.style;
+        var objectAttribut = (_.isUndefined(datas.object)||_.isUndefined(datas.object.attribut))?"":datas.object.attribut;
+        var object = $('<'+objectType+' src="'+datas.object.url+'" '+objectWidth+' '+objectHeight+' '+objectStyle+' '+objectAttribut+' ></'+objectType+'>');
+        
+        doc.append(object);
+        domelem.append(doc);
+        
+        bindUiEvents();
+    };
+
+    var bindUiEvents = function() {
+
+    };
+    
+    var validate = function(){
+        state.seen = true;
+        return state;
+    };
+    
+   var score = function(sol) {
+        var score = 0;
+        return score;
+    };
+    
+    return {
+        init: init,
+        validate: validate,
+        score: score
+    };
+
+};
 //dragdropsorting
 var rpndragdropsortingmodule = function() {
 
     var datas;
     var domelem;
     var state;
+    var dragfromtext;
+    var singledd;
+    var itemSortedState;
+    var itemToSortArray;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
             todrag: ["empty"],
-            todrop: ["empty too :'("]
+            todrop: ["empty too :'("],
+            tosort: "empty"
         });
         datas = _datas;
+        dragfromtext = !_.isUndefined(_datas.dragfromtext);
+        singledd = !_.isUndefined(_datas.singledd) ? _datas.singledd : false;
         domelem = _domelem;
         if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
@@ -16669,13 +16745,63 @@ var rpndragdropsortingmodule = function() {
 
     var buildUi = function() {
         domelem.addClass('dragdropsorting');
-        domelem.append($('<div class="row"><div class="container"><div class="col-md-2 col"><ul id="drag_this_'+domelem.attr('id')+'" class="dragthis list-unstyled"></ul></div></div><div class="row"><div class="container dropzonecontainer"></div></div>'));
+        if (dragfromtext){
+            //build trash
+            if (!singledd){
+                var dragdropsortingtoolbar = $('<div class="dragdropsortingtoolbar"></div>');
+                var trash = $('<i class="fa fa-trash-o"></i>').droppable({
+                    accept:'.sorted',
+                    hoverClass: 'dragdropsortingtoolbar-hover',
+                    drop: function(e,u) {
+                        $(u.draggable, domelem).remove();
+                        handleToDragState();
+                    }
+                });
+                dragdropsortingtoolbar.append(trash);
+                domelem.append(dragdropsortingtoolbar);
+            }
+            
+            //build panel with sentences and items to sort
+            domelem.append($('<div class="form-inline">' + datas.tosort + '</div><div class="row"><div class="container dropzonecontainer"></div></div>'));
+            
+            itemSortedState = new Array();
+            itemToSortArray = new Array();
+            
+            $.each($('b', domelem), function(idx, todragg) {
+                var t = $(todragg);
+
+                itemSortedState[idx] = (_.indexOf(state.todrag, t.html())>-1 || state.todrag.toString()=="empty") ? 0 : 1;
+                itemToSortArray[idx] = t.html();
+                
+                var draggable=$('<ul id="drag_this_'+idx+'" class="dragthis list-unstyled list-inline fromtext '+((itemSortedState[idx])?"dropped":"")+'"><li class="draggable">'+t.html()+'</li></ul>').sortable({
+                    connectWith: '.droppable ul',
+                    appendTo:'body',
+                    placeholder:'droppable-placeholder',
+                    forcePlaceholderSize :true,
+                    dropOnEmpty: true,
+                    distance: 0.5,
+                    remove: function(e,li) {
+                        copyHelper= li.item.clone().insertAfter(li.item);
+                        $(this).sortable('cancel');
+                    },
+                    items:"li:not(.disabled)"
+                }).disableSelection();
+                if(singledd && itemSortedState[idx]){
+                        draggable.sortable('destroy');
+                    }
+                t.replaceWith(draggable);
+            });
+        }else{
+            //build panel for items to sort
+            domelem.append($('<div class="row"><div class="container"><div class="col-md-2 col"><ul id="drag_this_'+domelem.attr('id')+'" class="dragthis list-unstyled"></ul></div></div><div class="row"><div class="container dropzonecontainer"></div></div>'));
+        }
+        //Build panel for dropzone
         var nbcol=datas.todrop.length
         $.each(datas.todrop, function(idx, drop) {
             $('.dropzonecontainer',domelem).append($('<div class="col-xs-'+(nbcol<5?'3':'2')+(idx==0?(nbcol==2?' col-xs-offset-3':(nbcol==3||nbcol==5)?' col-xs-offset-1':''):'')+'"><div class="droppable"><span class="lead">' + drop + '</span><ul class="list-unstyled"></ul></div></div>'));
             if(!_.isUndefined(state[drop])){
                 _.each(state[drop],function(dropped,idxi){
-                    $('ul',$('.droppable',domelem)[idx]).append('<li class="draggable">'+dropped+'</li>');
+                    $('ul',$('.droppable',domelem)[idx]).append('<li class="draggable sorted">'+dropped+'</li>');
                 });
             }
         });
@@ -16686,14 +16812,30 @@ var rpndragdropsortingmodule = function() {
             forcePlaceholderSize :true,
             distance: 0.5,
             receive:function  (event, ui) {
-                if($(ui.sender[0]).hasClass('dragthis')){
-                    state.todrag.pop();
+                if(dragfromtext && $(ui.sender[0], domelem).hasClass('fromtext')){
+                    $(ui.sender[0], domelem).addClass('dropped');
+                    if(singledd){
+                        $(ui.sender[0], domelem).sortable('destroy');
+                    }
+                    removeDuplicates();
+                }else if(dragfromtext){
+                    removeDuplicates();
+                }else{
+                    if($(ui.sender[0], domelem).hasClass('dragthis')){
+                        state.todrag.pop();
+                    }
+                    nextDraggable();
                 }
-                nextDraggable();
+            }
+        }).droppable({
+            drop: function(event,ui) {
+                ui.draggable.addClass('sorted');
             }
         });
         bindUiEvents();
-        nextDraggable();
+        if(!dragfromtext){
+            nextDraggable();
+        }
     };
 
     var nextDraggable = function() {
@@ -16716,21 +16858,64 @@ var rpndragdropsortingmodule = function() {
     };
     
     var validate = function(){
+        var itemSorted = new Array();
         _.each($('.droppable',domelem), function(elem, idx) {
             var txts = [];
             $.each($(elem).find('li'), function(idx, txt) {
-                txts.push($(txt).text());
+                txts.push($(txt).html());
+                itemSorted.push($(txt).html());
             });
-            state[$(elem).find('span').text()] = txts;
+            state[$(elem).find('span').html()] = txts;
         });
+        if (dragfromtext){
+            state.todrag = _.difference(itemToSortArray, _.uniq(itemSorted));
+        }
+        console.log(state)
         return state;
+    };
+    
+    var removeDuplicates = function(){
+        _.each($('.droppable',domelem), function(elem, idx) {
+            var list = new Array();
+            $.each($(elem).find('li'), function(id, txt) {
+                var item = $(txt).html();
+                if (_.indexOf(list, item)>-1){
+                    this.remove();
+                }else{
+                    list.push(item);               
+                }
+            });
+        });
+    };
+    
+    var handleToDragState = function(){
+        var itemSorted = new Array();
+        _.each($('.droppable',domelem), function(elem, idx) {
+            $.each($(elem).find('li'), function(idx, txt) {
+                itemSorted.push($(txt).html());
+            });
+        });
+        itemSorted = _.compact(_.uniq(itemSorted));
+        console.log(itemSorted)
+        $.each($('li', '.form-inline'), function(idx, todrag){
+            console.log($(todrag).html())
+            if (_.indexOf(itemSorted, $(todrag).html())==-1){
+                 itemSortedState[idx] = 0;
+                $(todrag).hasClass('sorted') ? $(todrag).removeClass('sorted') : '';
+                $(todrag).parent().hasClass('dropped') ? $(todrag).parent().removeClass('dropped') : '';
+            }
+        });
     };
     
     var score = function(sols) {
         var score = 0;
         _.map(sols, function(sol, drop) {
             score += _.intersection(state[drop], sol).length;
+            if (!singledd && dragfromtext){
+                score -= _.difference(state[drop], sol).length;
+            }
         });
+        score = score >= 0 ? score : 0;
         return score;
     };
     
@@ -16823,6 +17008,76 @@ var rpndropdownmodule = function() {
     };
 
 };
+//dropdown
+var rpndropdown2module = function() {
+
+    var datas;
+    var domelem;
+    var state;
+    
+
+    var init = function(_datas, _state, _domelem) {
+        _.defaults(_datas, {
+            toselect: "toselect not set!<b>Read</b> documentation please!",
+            items:[]
+        });
+        datas = _datas;
+        domelem = _domelem;
+        
+        if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
+            state=_state;
+        }else{
+            state= _.map(_.filter(datas.items,function(item){return item.choice.length>1}),function(item,idx){return '';});
+        }
+        buildUi();
+    };
+
+    var buildUi = function() {
+        domelem.addClass('dropdown2');
+
+        //build sentence with items to select
+        domelem.append($('<div class="form-inline">' + datas.toselect + '</div>'));
+        $.each($('b', domelem), function(idx, toselect) {
+            var t =$(toselect);
+            var opts=[];
+            $.each(datas.items[idx].choice, function(id, choice){
+                opts[id]=$('<option value="' + choice+ '" '+(state[idx]==choice?'selected':'')+'>' + choice + '</option>');
+            });
+            t.append($('<select class="rpnm-input dropdown form-control">').append(opts));
+        });
+
+        bindUiEvents();
+    };
+
+    var bindUiEvents = function() {
+        
+    };
+    
+    var validate = function(){
+        state=_.map($('select',domelem),function(ele,idx){return $(ele).val()});
+        return state;
+    };
+    
+    var score = function(sol){
+        var score=0;
+        _.each(sol,function(s,idx){
+            if(s.alternative){
+                score += (_.contains(s.alternative,state[idx] ) ? 1 : 0);
+            }else{
+                score += state[idx] == s ? 1 : 0;
+            }
+        });
+        return score;
+    };
+    
+
+    return {
+        init: init,
+        validate: validate,
+        score:score
+    };
+
+};
 //gapfull
 var rpngapfullmodule = function() {
 
@@ -16862,7 +17117,12 @@ var rpngapfullmodule = function() {
     };
     
     var validate = function(){
-        state= $('.rpnm_input',domelem).val();
+        if(isNaN($('.rpnm_input',domelem).val().split("'").join(""))==false){
+            state= $('.rpnm_input',domelem).val().split("'").join("");
+        }else{
+           state= $('.rpnm_input',domelem).val(); 
+        }
+        
         return state;
     };
     
@@ -16887,6 +17147,10 @@ var rpngapsimplemodule = function() {
     var clone;
     var maxfillength;
     var state;
+    var dragfromtext;
+    var dragimage;
+    var singledd;
+    var answerArray;
 
     var init = function(_datas,_state, _domelem) {
         _.defaults(_datas, {
@@ -16895,73 +17159,154 @@ var rpngapsimplemodule = function() {
 
         datas = _datas;
         dragdrop= !_.isUndefined(_datas.fillers);
+        dragfromtext = !_.isUndefined(_datas.dragfromtext);
+        dragimage = !_.isUndefined(_datas.dragimage);
+        singledd = !_.isUndefined(_datas.singledd);
         domelem = _domelem;
         if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
         }else{
-            state=_.map($('b',datas.tofill),function(b,idx){return '';});
+            state=_.map($('b:not([class])',datas.tofill),function(b,idx){return '';});
         }
         buildUi();
+        
     };
 
     var buildUi = function() {
         domelem.addClass('gapsimple');
         var maxwidth=0;
-        if(dragdrop){
+        answerArray = new Array();
+
+        if(dragdrop || dragfromtext){
             var toolbar = $('<div class="gapsimpleddtoolbar">');
+            if (singledd){
+                $.each(datas.fillers, function(idx, filler) {
+                    var divDrag = $('<div class="divdraggable" id="div'+idx+'" ></div>');
+                    if(!(_.contains(state, filler))){
+                        var drag = $('<span class="singledraggable" draggable="true" id="drag'+_.indexOf(datas.fillers, filler)+'" val="'+_.indexOf(datas.fillers, filler)+'" >'+filler+'</span>').on('dragstart', function (ev) {
+                            ev.originalEvent.dataTransfer.setData("text", ev.target.id);
+                        });
+                        divDrag.append(drag);
+                    }
+                    toolbar.append(divDrag);
+                });
+            }
+            else if(dragdrop){
             $.each(datas.fillers, function(idx, filler) {
-                var draggable=$('<span class="draggable ori">'+filler+'</span> ').draggable({
+                var draggable=$('<span class="draggable ori" val="'+idx+'" >'+filler+'</span> ').draggable({
                     revert: "invalid",
                     appendTo: domelem,
-                    helper: "clone"
+                    helper: "clone",
+                    snap: true,
+                    snapMode: 'inner'
                 });
                 toolbar.append(draggable);
                 maxwidth=maxwidth<draggable.width()?draggable.width():maxwidth;
             });
             maxfillength=_.max(datas.fillers, function(filler){ return filler.length; }).length;
+            }
+            //build trash
+            if (!datas.singledd){
+                var trash = $('<i class="fa fa-trash-o"></i>').droppable({
+                    accept:'.clone',
+                    hoverClass: 'gapsimpleddresponse-hover',
+                    drop: function(e,u) {
+                        $(u.draggable).remove();
+                    }
+                });
+                toolbar.append(trash);
+            }
             domelem.append(toolbar);
         }
         
         //build panel with sentences
         domelem.append($('<div class="form-inline">' + datas.tofill + '</div>'));
+        
+         $.each($('b[class=drag]', domelem), function(idx, tofill) {
+            var t = $(tofill);
+            var draggable=$('<span class="draggable ori">'+t.html()+'</span> ').draggable({
+                revert: "invalid",
+                appendTo: domelem,
+                helper: "clone",
+                snap: true,
+                snapMode: "inner"
+            });
+            t.replaceWith(draggable);
+            maxwidth=maxwidth<draggable.width()?draggable.width():maxwidth;
+        });
+        
         $.each($('b', domelem), function(idx, tofill) {
             var t = $(tofill);
             var txt = "";
             //var txt = _.isEmpty(t.text())?"":"<strong>(" + t.text() + ")</strong>";
-            if(dragdrop){
+            if(singledd){
+                var drop = $('<b class="gapsimpleddresponse">').on('dragenter', function(ev){
+                    ev.stopPropagation(); 
+                    ev.preventDefault();
+                }).on('dragover', function(ev){
+                    ev.preventDefault();
+                }).on('drop', function(ev) {
+                    ev.preventDefault();
+                    var target = ev.target;
+                    var targetPlaced = target;
+                    var valPlaced = ev.target.getAttribute("val");
+                    
+                    if(ev.target.className == "singledraggable"){
+                        target = $(target).parent();
+                        $("#div"+valPlaced).append($(targetPlaced));
+                    }
+                    var data = ev.originalEvent.dataTransfer.getData("text");
+                    $(target).append($("#"+data));
+                });
+                t.replaceWith(drop);
+                
+                var alreadyGivenResponse = (_.isEmpty(state[idx]) ? '' : $('<span class="singledraggable" draggable="true" id="drag'+_.indexOf(datas.fillers, state[idx])+'" val="'+_.indexOf(datas.fillers, state[idx])+'" >'+state[idx]+'</span>'));
+                $(alreadyGivenResponse).on('dragstart', function (ev) {
+                    ev.originalEvent.dataTransfer.setData("text", ev.target.id);
+                });
+                drop.append(alreadyGivenResponse);
+            }
+            else if(dragdrop || dragfromtext){
                 //add a drop area
                 var drop=$('<b class="gapsimpleddresponse">');
                 t.replaceWith(drop);
-                
-                
+
                 drop.droppable({
                     accept:'.draggable',
                     hoverClass: 'gapsimpleddresponse-hover',
                     drop: function(e,u) {
+                        var nb = $(this).children('span').attr('val');
+                        //$('.gapsimpleddtoolbar span[val='+nb+']').show();
                         $(this).empty();
-                        $(this).append(((u.draggable.hasClass('ori')?u.draggable.clone():u.draggable).removeClass('ori')).draggable({
+                        //$(this).append(((u.draggable.hasClass('ori')?u.draggable.clone():u.draggable)).css("position","inherit").addClass('clone').removeClass('ori').draggable({
+                        $(this).append(((u.draggable.hasClass('ori')?u.draggable.clone():u.draggable).addClass('clone').removeClass('ori')).draggable({
                             revert: "invalid",
                             appendTo: domelem,
-                            helper: "clone"
+                            helper: "clone",
+                            snap: true,
+                            snapMode: "inner"
                         }));
-
+                        answerArray[idx] = dragimage?datas.fillers[u.draggable.attr("val")]:'';
                     }
                 });
+
                 //and fill if there is already a response
                 if(!_.isEmpty(state[idx])){
-                    var alreadyGivenResponse=$('<span class="'+(_.isEmpty(state[idx])?'':'draggable')+'">'+(_.isEmpty(state[idx])?'':state[idx])+'</span>');
+                    var alreadyGivenResponse=$('<span class="'+(_.isEmpty(state[idx])?'':'draggable clone')+'" '+((_.isEmpty(state[idx]) && dragimage)?'':'val="'+idx+'"')+'>'+(_.isEmpty(state[idx])?'':state[idx])+'</span>');
                     drop.append(alreadyGivenResponse.draggable({
                         revert: "invalid",
                         appendTo: domelem,
                         helper: "clone"
                     }));
+                    
+                    answerArray[idx] = state[idx];
                 }
             }else{
                 var textAlign = (_.isUndefined(datas.validation)||_.isUndefined(datas.validation.align))?"":" " + datas.validation.align;
 				var textWidth = (_.isUndefined(datas.validation)||_.isUndefined(datas.validation.width))?"":" style='width:" + datas.validation.width + "'";
 				if(t.text().substr(-1)!="_"){
 					txt = _.isEmpty(t.text())?"":"<strong>(" + t.text() + ")</strong>";
-					t.replaceWith($('<span class="text-nowrap"><input type="text" class="rpnm_input gapsimple form-control' + textAlign + '"' + textWidth + '>' + txt + '</span>'));
+                    t.replaceWith($('<span class="text-nowrap"><input type="text" class="rpnm_input gapsimple form-control' + textAlign + '"' + textWidth + '>' + txt + '</span>'));
                 }else{
 					txt = t.text().slice(0,-1);
 					t.replaceWith($('<span class="text-nowrap">' + txt +'<input type="text" class="rpnm_input gapsimple form-control' + textAlign + '"' + textWidth + '></span>'));
@@ -16977,14 +17322,25 @@ var rpngapsimplemodule = function() {
         rpnsequence.addvalidation($('.rpnm_input',domelem),datas.validation);
     };
     
+    
     var validate = function(){
-        if(dragdrop){
+        if(dragdrop || dragfromtext){
             _.each($('.gapsimpleddresponse',domelem),function(elem,idx){
-                state[idx] = $('.draggable',$(elem)).text();
+                if(dragimage){
+                    state[idx] = !_.isUndefined($('.draggable',$(elem)).html()) ? ($('.draggable',$(elem)).html().length==0?'':answerArray[idx]):'';
+                }else if(datas.singledd){
+                    state[idx] = $('.singledraggable',$(elem)).html();
+                }else{
+                    state[idx] = $('.draggable',$(elem)).html();
+                }
             });
         }else{
             $.each($('.gapsimple',domelem), function(idx, gap) {
-                state[idx] = $(gap).val().trim();
+                if(isNaN($(gap).val().trim().split("'").join(""))==false){
+                    state[idx] = $(gap).val().trim().split("'").join("");
+                }else{
+                   state[idx] = $(gap).val().trim(); 
+                }
             });
         }
         return state;
@@ -16995,10 +17351,21 @@ var rpngapsimplemodule = function() {
         _.each(sol, function(val, idx) {
             if(val.alternative){
                 score += (_.contains(val.alternative,state[idx] ) ? 1 : 0);
+                /*
+                var alternativelength=val.alternative.length;
+                for (var al=0;al<alternativelength;al++){
+                   if(val.alternative[al]==state[idx]){
+                        score ++;
+                    }
+                }
+                */
+           
             }else{
-                score += state[idx] == val ? 1 : 0;
+                score += (val != "" && state[idx] == val) ? 1 : 0;
+                score -= (val == "" && state[idx] != val) ? 1 : 0;
             }
         });
+        score = score >= 0 ? score : 0;
         return score;
     };
     
@@ -17009,6 +17376,7 @@ var rpngapsimplemodule = function() {
     };
 
 };
+
 //marker
 var rpnmarkermodule = function() {
 
@@ -17030,7 +17398,7 @@ var rpnmarkermodule = function() {
         if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
         }else{
-            var availableColors = ["#8d61a4","#01a271","#5dc2e7","#ed656a","#f5a95e","#eee227","#7a5a14","#bbbbbb","#63b553","#e95c7b","#f5a95e"];
+            var availableColors = ["#8d61a4","#01a271","#5dc2e7","#ed656a","#f5a95e","#eee227","#7a5a14","#63b553","#e95c7b","#f5a95e"];
             state={
                 selectedMarker : '',
                 responses:_.map($('b',datas.tomark),function(b,idx){return '';}),
@@ -17090,6 +17458,7 @@ var rpnmarkermodule = function() {
                 t.css('cursor', 'pointer');
             }else{
                 t.css('font-weight','normal');
+                t.css('background-color','rgba(255, 255, 255, 0)');
             }
             t.click(function() {
                 t.css('background-color',state.selectedMarker.color);
@@ -17116,8 +17485,10 @@ var rpnmarkermodule = function() {
     var score =  function(sol) {
         var score = 0;
         _.each(sol, function(val, idx) {
-            score += state.responses[idx] == val ? 1 : 0;
+            score += (val != "" && state.responses[idx] == val) ? 1 : 0;
+            score -= (val == "" && state.responses[idx] != val) ? 1 : 0;
         });
+        score = score >= 0 ? score : 0;
         return score;
     };
     
@@ -17216,6 +17587,107 @@ var rpnmqcmodule = function() {
         init: init,
         validate: validate,
         score: score
+    };
+
+};
+//multiplelistssync
+var rpnmultiplelistssyncmodule = function() {
+
+    var datas;
+    var domelem;
+    var state;
+    var typeList;
+
+    var init = function(_datas, _state, _domelem) {
+        _.defaults(_datas, {
+            lists: {
+                "title":"",
+                "items":["list", "not", "set!"],
+                "movable":false
+            },
+            vertical:true
+        });
+        datas = _datas;
+        domelem = _domelem;
+        
+        if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
+            state=_state;
+        }else{
+            state= {
+                lists : _.map(_.filter(datas.lists,function(list){return list.items.length>1}),function(list,idx){return '';}),
+                responses:_.map(_.filter(datas.responses,function(resp){return resp.length>1}),function(r,idx){return '';})
+            };
+        }
+        buildUi();
+    };
+
+    var buildUi = function() {
+        domelem.addClass('multiplelistssync');
+        var listToSort;
+        typeList = new Array();
+        
+        //build lists with items to sort
+        _.each(datas.lists, function(li,idx){
+            typeList[idx] = datas.lists[idx].type ? datas.lists[idx].type : '';
+            if(datas.lists[idx].movable){
+                listToSort = $('<ul class="list-unstyled'+(datas.vertical?'':' list-inline')+'" id="sortable-'+idx+'" >'+(_.isEmpty(datas.lists[idx].title) ? '' : '<li class="title">'+datas.lists[idx].title)+'</li></ul>').sortable({
+                    items: "li:not(.title)",
+                    placeholder: "sorting-highlight",
+                    tolerance:"pointer"
+                });
+            }
+            else{
+                listToSort = $('<ul class="list-unstyled'+(datas.vertical?'':' list-inline')+' unmovable" id="sortable-'+idx+'" >'+(_.isEmpty(datas.lists[idx].title) ? '' : '<li class="title">'+datas.lists[idx].title)+'</li></ul>')
+            }
+            //and fill if there is already a response
+            if(!_.isEmpty(state.lists[idx])){
+                _.each(state.lists[idx], function(item,id) {
+                    var noElem = _.indexOf(datas.lists[idx].items, item);
+                    listToSort.append($('<li val=\"'+noElem+'\">'+item+'</li>'));
+                });
+            }
+            else{
+                _.each(datas.lists[idx].items, function(item,id) {
+                    listToSort.append($('<li val=\"'+id+'\">'+item+'</li>'));
+                });
+            };
+            domelem.append(listToSort);
+        });
+        $(domelem).disableSelection();
+        
+        bindUiEvents();
+    };
+   
+    var bindUiEvents = function() {
+        
+    };
+    
+    var validate = function(){
+        var answerArray = new Array();
+        _.each($('ul',domelem), function(ul,idx){
+            answerArray.push(_.map($('ul[id="sortable-'+idx+'"] li:not(.title)',domelem),function(ele,id){
+                return (typeList[idx]=="picture") ? datas.lists[idx].items[$(ele).attr("val")] : $(ele).html()
+            }));
+        });
+        state.lists = answerArray;
+        state.responses = _.unzip(answerArray);
+        return state;
+    };
+    
+   var score = function(sols){
+        var score = 0;
+        _.map(sols.syncitems, function(sol) {
+            _.each(state.responses, function(resp, idx){
+                score += _.isEqual(resp, sol) ? 1 : 0;
+            });
+        });
+        return score;
+    };
+    
+    return {
+        init: init,
+        validate: validate,
+        score:score
     };
 
 };
@@ -17392,6 +17864,7 @@ var rpnsequence = (function() {
     var selectedLabels;
     var moduleLocation;
     var modules;
+   // var respmodulearray=new Array();
 
     var labels = {
         en: {
@@ -17624,12 +18097,24 @@ var rpnsequence = (function() {
                 modules[idx]=rpndropdownmodule();
                 modules[idx].init(modData,states[idx].state, divContent);
             }
+            else if (modData.type == 'dropdown2') {
+                modules[idx]=rpndropdown2module();
+                modules[idx].init(modData,states[idx].state, divContent);
+            }
             else if (modData.type == 'sorting') {
                 modules[idx]=rpnsortingmodule();
                 modules[idx].init(modData,states[idx].state, divContent);
             }
             else if (modData.type == 'map') {
                 modules[idx]=rpnmapmodule();
+                modules[idx].init(modData,states[idx].state, divContent);
+            }
+            else if (modData.type == 'doc') {
+                modules[idx]=rpndocmodule();
+                modules[idx].init(modData,states[idx].state, divContent);
+            }
+            else if (modData.type == 'multiplelistssync') {
+                modules[idx]=rpnmultiplelistssyncmodule();
                 modules[idx].init(modData,states[idx].state, divContent);
             }
             
@@ -17755,6 +18240,7 @@ var rpnsequence = (function() {
         states[currentmod] = {
             state:state
         };
+        
         moduleendHandler({states:_.map(states,function(sta){return sta.state;})},function(){
             //Save status of module
             sequencedatas.modules[currentmod].status = 'ended';
@@ -17765,6 +18251,29 @@ var rpnsequence = (function() {
                 displayCurrentModule();
             }        
         });
+        
+       /* $.getJSON(solurl, function(ssol) {
+            var score = 0;
+            _.each(ssol.solutions, function(sol, idx) {
+                score +=modules[idx].score(sol); });
+                JSON.stringify({states:_.map(states,function(sta, idx){respmodulearray[idx]=(sta.state);return sta.state;})},null, '\t');
+                var mylength=respmodulearray.length;
+                for (var i=0;i<mylength;i++){
+                  log('reponses: '+respmodulearray[i]);  
+                }
+                log('SCORE: '+ score);
+                if (warnexit) {
+                    $(window).unbind('beforeunload');
+                }
+                if(testMode){
+                    displayAlert('Score :' + score + ' pt' + (score>1?'s':''),function(){
+                        sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score);
+                    });
+                }  
+            });
+    };
+    var modulesresponse = function(){
+        return respmodulearray;*/
     };
 
     var handleEndOfSequence = function() {
@@ -17841,76 +18350,552 @@ var rpnsequence = (function() {
         if(validationoptions.mode=='lock'){
         
             $(inputs).bind('input propertychange',function(){
-                if(validationoptions.type=='natural'){
-                    var val=/(^-?[0-9]\d*)/.exec($(this).val());
-                    if(val=='' || val==null || val==0){
-                        $(this).val('');
-                    }else if(isNaN(val)){
-                        $(this).val(parseInt(val));
+                var mylength=$(this).val().length;
+                var myelement=document.activeElement;
+                myelement.focus();
+                var myelementcursor=myelement.selectionStart;
+                var myvalbeorenumberofchar=$(this).val();
+                if(validationoptions.numberofchar){
+                    if(validationoptions.type=="natural"){
+                        var mylength=$(this).val().length;
+                    }else{
+                        var mylength=$(this).val().length+1;
+                    }
+                    if(mylength>validationoptions.numberofchar){
+                        $(this).val($(this).val().substr(0,mylength-1));
                     }
                 }
-                else if(validationoptions.type=='integer'){ 
-                    var val=/[-0-9]\d*/.exec($(this).val());
+                if(validationoptions.type=="natural"){
+                    
+                    if($(this).val().indexOf('-')==1){$(this).val($(this).val().substring(1))};
+                    var val_0=$(this).val();
+                    var negative='';
+                    if (val_0.match(/^-/)){
+                        negative='';
+                        mystring=val_0.substring(1,myelementcursor);
+                        $(this).val(myvalbeorenumberofchar);
+                    }
+                    
+                    var stringbeforecursor= val_0.substring(0,myelementcursor);
+                    var stringaftercursor= val_0.substring(myelementcursor);
+                    var nbofseparatorbeforearray1=stringbeforecursor.match(/\'/g);
+                    var nbofseparator1=0;
+                    if(nbofseparatorbeforearray1){
+                        nbofseparator1=nbofseparatorbeforearray1.length;
+                    }
+                    var firstchardigit='';
+                    val_0=val_0.split('\'');
+                    val_0=val_0.join('');
+                    var val=/^[\d]\d*/.exec(val_0);
+                    
+                    if(val==null){
+                        val=[myvalbeorenumberofchar.split('.').join('')];
+                        val=/^[\d]\d*/.exec(val_0);
+                        myelementcursor=myelementcursor-1;
+                        val="";
+                        $(this).val(val);
+                    }
+                    else if (val[0]!=val_0){
+                        val[0]=val[0]+stringaftercursor;
+                        myelementcursor=myelementcursor-1;
+                    }
+                    if (val[0].match(/^-/)){
+                        negative='';
+                        val[0]=val[0].substr(1);
+                    }
+                    
+                    firstchardigit=val[0].charAt(0);
+                    var secondchar=val[0].charAt(1);
+                    var digitatsepartor=myvalbeorenumberofchar.charAt(myelementcursor);
+                    if(digitatsepartor){
+                        if(digitatsepartor.match(/\d/)==null&&myelementcursor-1<=val[0].length){
+                            val=myvalbeorenumberofchar.substr(0,myelementcursor)+myvalbeorenumberofchar.substr(myelementcursor+1);
+                        }
+                    }
+                    
+                    if(firstchardigit=='0'){myelementcursor=myelementcursor-1};
+                    if(/\d/.exec(secondchar)==null){$(this).val(myvalbeorenumberofchar.substr(0,1)+myvalbeorenumberofchar.substr(2))};
+                    
+                    if(val[0].match(/^0[^,\.]/)){
+                        var val=/^[\d]\d*/.exec(val[0]);
+                    }
+
+                    if(val[0].match(/^-/)){
+                        var val=/[\d]\d*/.exec(val[0]);
+                    }
+                  
                     if(val=='' || val==null){
-                        $(this).val('');
-                   }else  if(val=='-'){
-                        $(this).val('-');
-                   }else if(val=='-0'){
-                        $(this).val('-');
-                   }else if(val=='00'){
-                       $(this).val('0');
-                   }else{
-                        $(this).val(parseInt(val));
-                	}
-                }
-                else if(validationoptions.type=='posdecimal'){
-                	var val_0=$(this).val().replace(',','.');
-                	var val=/^[.\d]\d*\.?\d*/.exec(val_0);
-                	if($(this).val().match(/^0[^,\.]/)){
-                		var val_1=$(this).val().replace(',','.').substring(0,1);
-                		var val=/^[-.\d]\d*.?\d*/.exec(val_1);
-                	}
-                	if($(this).val().match(/^-/)){
-                		var val_1=$(this).val().replace(',','.');
-                		var val=/[.\d]\d*.?\d*/.exec(val_1);
-                	}
-                	if(val=='' || val==null){
-                		val='';
-                	}else  if(val=='.'){
-                        val='0.';
+                        if(/\d/.exec(secondchar)==null){
+                         val=myvalbeorenumberofchar.substr(0,1)+myvalbeorenumberofchar.substr(2);
+                                
+                        }else{
+                            val='';
+                        }
                     }
-                    $(this).val(val);
+           //         alert('natural'+val)
+                    $(this).val(negative+val);
+                    var nb=$(this).val().split('\'');
+                    
+                    nb=nb.join('');
+                    if(nb.substring(0,1)=='0'||nb==null||nb==undefined||isNaN(nb)||nb=='-'){
+                        nb=nb.substring(myvalbeorenumberofchar);
+                        $(this).val(myvalbeorenumberofchar.substring(1));
+                    }else{
+                        $(this).val(negative+parseInt(nb));
+                    }
+                    
+                    if(validationoptions.milleseparator==true){
+                        var nb=$(this).val().split('\'');
+                        nb=nb.join('');
+                        var val=/(^[0-9]\d*)/.exec(nb);
+                        if(/\d/.exec(secondchar)==null){$(this).val(myvalbeorenumberofchar.substr(0,1)+myvalbeorenumberofchar.substr(2))};
+                        if(val=='' || val==null){
+                            if(/\d/.exec(secondchar)==null){
+                                $(this).val(myvalbeorenumberofchar.substr(0,1)+myvalbeorenumberofchar.substr(2));
+                                
+                            }else{
+                                $(this).val('');
+                            }
+
+                        }else if(val=='00'){
+                           $(this).val('0');
+
+                        }else if(parseInt(val) != 0 && val[0].length==2){
+                           $(this).val(parseInt(val));
+                        }else{
+                            for (var i=val[0].length-1;i>=0;i-=3){;
+                                if (val[0].charAt(i-3) && val[0].charAt(i-3)!='-'){
+                                    var avant=val[0].substring(0,i-2);
+                                    var apres=val[0].substring(i-2);
+                                    val[0]=avant+'\''+apres;
+                                    if(i<=myelementcursor){myelementcursor=myelementcursor+1};
+                                }
+                            }
+                            $(this).val(val[0]);
+                            var stringbeforecursor= $(this).val().substring(0,myelementcursor);
+                            var nbofseparatorbeforearray2=stringbeforecursor.match(/\'/g);
+                            var nbofseparator2=0;
+                            if(nbofseparatorbeforearray2){
+                                myelementcursor=myelementcursor-nbofseparator1;
+                            }
+                    }
+                        
+                    }else{
+                        var val=/(^-?[0-9]\d*)/.exec($(this).val());
+                        if(val=='' || val==null || val==0){
+                            $(this).val('');
+                        }else if(isNaN(val)){
+                            $(this).val(parseInt(val));
+                        } 
+                    }
+                 
+            //    alert('dans natural fin')
+                }
+                else if(validationoptions.type=="integer"){
+                    if($(this).val().indexOf('-')==1){$(this).val($(this).val().substring(1))};
+                    var val_0=$(this).val();
+                    var negative='';
+                    if (val_0.match(/^-/)){
+                        negative='-';
+                        mystring=val_0.substring(1,myelementcursor);
+                        $(this).val('-'+val_0.substring(myelementcursor));
+                    }
+                    
+                    var stringbeforecursor= val_0.substring(0,myelementcursor);
+                    var stringaftercursor= val_0.substring(myelementcursor);
+                    var nbofseparatorbeforearray1=stringbeforecursor.match(/\'/g);
+                    var nbofseparator1=0;
+                    if(nbofseparatorbeforearray1){
+                        nbofseparator1=nbofseparatorbeforearray1.length;
+                    }
+                    var firstchardigit='';
+                    val_0=val_0.split('\'');
+                    val_0=val_0.join('');
+                    var val=/^[-\d]\d*/.exec(val_0);
+                    if(val==null){val=['']};
+                    if (val[0]!=val_0){
+                        val[0]=val[0]+stringaftercursor;
+                        myelementcursor=myelementcursor-1;
+                    }
+                    if (val[0].match(/^-/)){
+                        negative='-';
+                        val[0]=val[0].substr(1);
+                    }
+                    var firstchardigit=val[0].charAt(0);
+                    var secondchar=val[0].charAt(1);
+                    if(firstchardigit=='0'){myelementcursor=myelementcursor-1};
+                    if(firstchardigit=='-' && secondchar=='-'){
+                        val[0]=val[0].substring(1);
+                    }
+                    if(val[0].match(/^0[^,\.]/)){
+                        var val=/^[-\d]\d*/.exec(val[0]);
+                    }
+                    if(val[0].match(/^-/)){
+                        var val=val[0].substr(1);
+                    }
+                    if(val=='' || val==null){
+                       if(/\d/.exec(secondchar)==null){
+                            $(this).val(myvalbeorenumberofchar.substr(0,1)+myvalbeorenumberofchar.substr(2));
+                            
+                        }else{
+                            $(this).val('');
+                        }
+                    }
+                    $(this).val(negative+val);
+                    var nb=$(this).val().split('\'');
+                    nb=nb.join('');
+                    if(nb==null||nb==undefined||isNaN(nb)||nb=='-'){
+                        $(this).val(negative);
+                    }else{
+                        nb=Math.abs(Number(nb));
+                        $(this).val(negative+parseInt(nb));
+                    }
+                    if(validationoptions.numberofchar){
+                        if($(this).val().length>=validationoptions.numberofchar){
+                            $(this).val($(this).val().substr(0,$(this).val().length-1))
+                        }
+                    }
+                    //if(validationoptions.milleseparator=='bonjour'){
+                    if(validationoptions.milleseparator==true){
+                        var nb=$(this).val().split('\'');
+                        nb=nb.join('');
+                        var val=/[-0-9']\d*/.exec(nb);
+                        if(val=='' || val==null){
+                           if(/\d/.exec(secondchar)==null){
+                                $(this).val(myvalbeorenumberofchar.substr(0,1)+myvalbeorenumberofchar.substr(2));
+                                
+                            }else{
+                                $(this).val('');
+                            }
+
+                        }else  if(val=='-'){
+                            $(this).val('-');
+
+                        }else if(val=='-0'){
+                            $(this).val('-');
+
+                        }else if(val=='00'){
+                           $(this).val('0');
+
+                        }else if(parseInt(val) != 0 && val[0].length==2){
+                           $(this).val(parseInt(val)); 
+
+                        }else{
+                            for (var i=val[0].length-1;i>=0;i-=3){
+                                if (val[0].charAt(i-3) && val[0].charAt(i-3)!='-'){
+                                    var avant=val[0].substring(0,i-2);
+                                    var apres=val[0].substring(i-2);
+                                    val[0]=avant+'\''+apres;
+                                    if(i<=myelementcursor){myelementcursor=myelementcursor+1};
+                                }
+                            }
+                            $(this).val(val[0]);
+                            var stringbeforecursor= $(this).val().substring(0,myelementcursor);
+                            var nbofseparatorbeforearray2=stringbeforecursor.match(/\'/g);
+                            var nbofseparator2=0;
+                            if(nbofseparatorbeforearray2){
+                                myelementcursor=myelementcursor-nbofseparator1;
+                            }
+                        }
+                    }else{
+                        var val=/[-0-9]\d*/.exec($(this).val());
+                        if(val=='' || val==null){
+                            $(this).val('');
+                        }else  if(val=='-'){
+                            $(this).val('-');
+                        }else if(val=='-0'){
+                            $(this).val('-');
+                        }else if(val=='00'){
+                           $(this).val('0');
+                        }else{
+                            $(this).val(parseInt(val));
+                        }
+                    }
+                }
+                else if(validationoptions.type=='posdecimal'){ 
+                   $(this).val($(this).val().replace(',','.'));
+                    if($(this).val().indexOf('-')==1){$(this).val($(this).val().substring(1))};
+                    var val_0=$(this).val();
+                    if(val_0.match(/\./g)!=null){
+                        if(val_0.match(/\./g).length>1){
+                            val_0=val_0.substring(0,myelementcursor).split('.').join('')+'.'+val_0.substring(myelementcursor).split('.').join('');
+                        }
+                    }
+                    var negative='';
+                    var stringbeforecursor= val_0.substring(0,myelementcursor);
+                    var stringaftercursor= val_0.substring(myelementcursor);
+                    var nbofseparatorbeforearray1=stringbeforecursor.match(/\'/g);
+                    var nbofseparator1=0;
+                    if(nbofseparatorbeforearray1){
+                        nbofseparator1=nbofseparatorbeforearray1.length;
+                    }
+                    var firstchardigit='';
+                    val_0=val_0.split('\'');
+                    val_0=val_0.join('');
+                    var val=/^[-.\d]\d*\.?\d*/.exec(val_0);
+                    if(val==null){val=['']};
+                    if (val[0]!=val_0){
+                        val[0]=val[0]+stringaftercursor;
+                        myelementcursor=myelementcursor-1;
+                    }
+                    if (val[0].match(/^-/)){
+                        negative='-';
+                        val[0]=val[0].substr(1);
+                        myelementcursor=myelementcursor-1;
+                    }
+                    firstchardigit=val[0].charAt(0);
+                    var secondchar=val[0].charAt(1);
+                    if(firstchardigit=='0'&& secondchar!='.'){myelementcursor=myelementcursor-1};
+                    if(val[0].match(/^0[^,\.]/)){
+                        var val=/^[-.\d]\d*.?\d*/.exec(val[0]);
+                    }
+                    if(val[0].match(/^-/)){
+                        var val=/[.\d]\d*.?\d*/.exec(val[0]);
+                    }
+                    if(val=='' || val==null){
+                       val='';
+                    }else if(val=='.'){
+                        val='0.';
+                        myelementcursor=myelementcursor+1;
+                    }
+                    $(this).val(negative+val);
+                    var point=$(this).val().match(/\./);
+                    var nbInteger=$(this).val().split('.');
+                    var nb=nbInteger[0].split('\'');
+                    nb=nb.join('');
+                    if(point==null||point==undefined){point=''};
+                    if(nbInteger[1]==null||nbInteger[1]==undefined){nbInteger[1]=''};
+                    if(nb==null||nb==undefined||isNaN(nb)||nb=='-'){
+                        nb='';
+                        $(this).val(nb+point+nbInteger[1]);
+                    }else{
+                        if(nb==''){myelementcursor=1};
+                        nb=Math.abs(Number(nb));
+                        $(this).val(parseInt(nb)+point+nbInteger[1]);
+                    }
+                    if(validationoptions.numberofchar){
+                        var leftpoint;
+                        var thepoint=false;
+                        if($(this).val().match(/\./)){
+                            leftpoint=$(this).val().split('.');
+                            thepoint=true;
+                        }
+                        if($(this).val().length>=validationoptions.numberofchar && $(this).val().charAt($(this).val().length-1)=='.'){
+                            $(this).val(myvalbeorenumberofchar.substr(0,myvalbeorenumberofchar.length-1))
+                        }
+                        else if($(this).val().length>=Number(validationoptions.numberofchar)-1 && $(this).val().charAt($(this).val().length-1)=='.'){
+                            $(this).val(myvalbeorenumberofchar.substr(0,myvalbeorenumberofchar.length-1))
+                        }
+                        else if ($(this).val().length<validationoptions.numberofchar){rpnsequence.log('on ne fait rien')}
+                        else if($(this).val().length>=validationoptions.numberofchar && thepoint==false){
+                            $(this).val($(this).val().substr(0,$(this).val().length-1));
+                        }else if($(this).val().length>=Number(validationoptions.numberofchar)+1 && thepoint==true && leftpoint[0].length>=4 && validationoptions.milleseparator==true){
+                            
+                            $(this).val($(this).val().substr(0,$(this).val().length-2));
+                            if($(this).val().charAt($(this).val().length-1)=='.'){$(this).val($(this).val().substr(0,$(this).val().length-1))};
+                            
+                        }else if($(this).val().length>=Number(validationoptions.numberofchar)+1 && thepoint==true && leftpoint[0].length>=4 && !validationoptions.milleseparator){
+                            $(this).val($(this).val().substr(0,$(this).val().length-1));
+                            if($(this).val().charAt($(this).val().length-1)=='.'){$(this).val($(this).val().substr(0,$(this).val().length-1))};
+                        }else if ($(this).val().length>validationoptions.numberofchar){
+                            $(this).val($(this).val().substr(0,$(this).val().length-1));
+                        }
+                        else{
+                            $(this).val($(this).val().substr(0,$(this).val().length));
+                        }
+                    }
+                    //if(validationoptions.milleseparator=='bonjour'){
+                    if(validationoptions.milleseparator==true){
+                        var point=$(this).val().match(/\./);
+                        var nbInteger=$(this).val().split('.');
+                        var nb=nbInteger[0].split('\'');
+                        nb=nb.join('');
+                        var val=/[0-9']\d*/.exec(nb);
+                        if(val=='' || val==null){
+                            $(this).val('');
+
+                        }else  if(val=='-'){
+                            $(this).val('-');
+
+                        }else if(val=='-0'){
+                            $(this).val('-');
+
+                        }else if(val=='00'){
+                           $(this).val('0');
+
+                        }else if(parseInt(val) != 0 && val[0].length==2){
+                            if(point=='' || point == null){
+                                $(this).val(parseInt(val));    
+                            }else{
+                                $(this).val(parseInt(val)+point+nbInteger[1]); 
+                            } 
+
+                        }else{
+                            for (var i=val[0].length-1;i>=0;i-=3){
+                                if (val[0].charAt(i-3) && val[0].charAt(i-3)!='-'){
+                                    var avant=val[0].substring(0,i-2);
+                                    var apres=val[0].substring(i-2);
+                                    val[0]=avant+'\''+apres;
+                                    if(i<=myelementcursor){myelementcursor=myelementcursor+1};
+                                }
+                            }
+                            if(point=='' || point == null){
+                                $(this).val(val[0]);
+                            }else{
+                                $(this).val(val[0]+point+nbInteger[1]); 
+                            }
+                            var stringbeforecursor= $(this).val().substring(0,myelementcursor);
+                            var nbofseparatorbeforearray2=stringbeforecursor.match(/\'/g);
+                            var nbofseparator2=0;
+                            if(nbofseparatorbeforearray2){
+                                myelementcursor=myelementcursor-nbofseparator1;
+                            }
+                        }
+                    }
+                	
                 }
                 else if(validationoptions.type=='decimal'){
-                  var val_0=$(this).val().replace(',','.');
-                   var val=/^[-.\d]\d*\.?\d*/.exec(val_0);
-                   if ($(this).val().match(/^-/)){
-                       if($(this).val().substring(1).match(/^0[^,\.]/)){
-                           var val_1=$(this).val().replace(',','.').substring(2);
-                           var val=/^[-.\d]\d*.?\d*/.exec(val_1);
-                       }else{
-                           var val_1=$(this).val().replace(',','.').substring(1);
-                           var val=/^[-.\d]\d*.?\d*/.exec(val_1);
-                       }
-                       var negative=true;
-                   }
-                   if($(this).val().match(/^0[^,\.]/)){
-                       var val_1=$(this).val().replace(',','.').substring(0,1);
-                       var val=/^[-.\d]\d*.?\d*/.exec(val_1);
-                   }
-				   if($(this).val().match(/^-/)){
-                       var val_1=$(this).val().replace(',','.');
-                       var val=/[.\d]\d*.?\d*/.exec(val_1);
-                   }
-				    if(val=='' || val==null){
-                        val='';
-                    }else  if(val=='.'){
-                        val='0.';
+                    $(this).val($(this).val().replace(',','.'));
+                    if($(this).val().indexOf('-')==1){$(this).val($(this).val().substring(1))};
+                    var val_0=$(this).val();
+                    if(val_0.match(/\./g)!=null){
+                        if(val_0.match(/\./g).length>1){
+                            if (val_0.match(/^-/)){
+                                mystring=val_0.substring(1,myelementcursor);
+                                if(mystring.length==1){
+                                    val_0='-0.'+val_0.substring(myelementcursor).split('.').join('');
+                                }else{
+                                  val_0=val_0.substring(0,myelementcursor).split('.').join('')+'.'+val_0.substring(myelementcursor).split('.').join('');   
+                                }
+                            }else{
+                               val_0=val_0.substring(0,myelementcursor).split('.').join('')+'.'+val_0.substring(myelementcursor).split('.').join(''); 
+                            }
+                            
+                        }
                     }
-                    if(negative){
-                        $(this).val('-'+val);
+                    var negative='';
+                    var stringbeforecursor= val_0.substring(0,myelementcursor);
+                    var stringaftercursor= val_0.substring(myelementcursor);
+                    var nbofseparatorbeforearray1=stringbeforecursor.match(/\'/g);
+                    var nbofseparator1=0;
+                    if(nbofseparatorbeforearray1){
+                        nbofseparator1=nbofseparatorbeforearray1.length;
+                    }
+                    var firstchardigit='';
+                    val_0=val_0.split('\'');
+                    val_0=val_0.join('');
+                    var val=/^[-.\d]\d*\.?\d*/.exec(val_0);
+                    if(val==null){val=['']};
+                    if (val[0]!=val_0){
+                        val[0]=val[0]+stringaftercursor;
+                        myelementcursor=myelementcursor-1;
+                    }
+                    if (val[0].match(/^-/)){
+                        negative='-';
+                        val[0]=val[0].substr(1);
+                    }
+                    var firstchardigit=val[0].charAt(0);
+                    var secondchar=val[0].charAt(1);
+                    if(firstchardigit=='0'&& secondchar!='.'){myelementcursor=myelementcursor-1;}
+                    if(val[0].match(/^0[^,\.]/)){
+                        var val=/^[-.\d]\d*.?\d*/.exec(val[0]);
+                    }
+                    if(val[0].match(/^-/)){
+                        var val=/[.\d]\d*.?\d*/.exec(val[0]);
+                    }
+                    if(val=='' || val==null){
+                       val='';
+                    }else if(val=='.'){
+                        val='0.';
+                        myelementcursor=myelementcursor+1;
+                    }
+                    $(this).val(negative+val);
+                    var point=$(this).val().match(/\./);
+                    var nbInteger=$(this).val().split('.');
+                    var nb=nbInteger[0].split('\'');
+                    nb=nb.join('');
+                    if(point==null||point==undefined){point=''};
+                    if(nbInteger[1]==null||nbInteger[1]==undefined){nbInteger[1]=''};
+                    if(nb==null||nb==undefined||isNaN(nb)||nb=='-'){
+                        nb='';
+                        $(this).val(negative+nb+point+nbInteger[1]);
                     }else{
-                        $(this).val(val);
+                        nb=Math.abs(Number(nb));
+                        $(this).val(negative+parseInt(nb)+point+nbInteger[1]);
+                    }
+                    if(validationoptions.numberofchar){
+                        var leftpoint;
+                        var thepoint=false;
+                        if($(this).val().match(/\./)){
+                            leftpoint=$(this).val().split('.');
+                            thepoint=true;
+                        }
+                        if($(this).val().length>=validationoptions.numberofchar && $(this).val().charAt($(this).val().length-1)=='.'){
+                            $(this).val(myvalbeorenumberofchar.substr(0,myvalbeorenumberofchar.length-1))
+                        }
+                        else if($(this).val().length>=Number(validationoptions.numberofchar)-1 && $(this).val().charAt($(this).val().length-1)=='.'){
+                            $(this).val(myvalbeorenumberofchar.substr(0,myvalbeorenumberofchar.length-1))
+                        }
+                        else if ($(this).val().length<validationoptions.numberofchar){rpnsequence.log('on ne fait rien')}
+                        else if($(this).val().length>=validationoptions.numberofchar && thepoint==false){
+                            $(this).val($(this).val().substr(0,$(this).val().length-1));
+                        }else if($(this).val().length>=Number(validationoptions.numberofchar)+1 && thepoint==true && leftpoint[0].length>=4 && validationoptions.milleseparator==true){
+                            $(this).val($(this).val().substr(0,$(this).val().length-2));
+                            if($(this).val().charAt($(this).val().length-1)=='.'){$(this).val($(this).val().substr(0,$(this).val().length-1))};
+                            
+                        }else if($(this).val().length>=Number(validationoptions.numberofchar)+1 && thepoint==true && leftpoint[0].length>=4 && !validationoptions.milleseparator){
+                            $(this).val($(this).val().substr(0,$(this).val().length-1));
+                            if($(this).val().charAt($(this).val().length-1)=='.'){$(this).val($(this).val().substr(0,$(this).val().length-1))};
+                        }else if ($(this).val().length>validationoptions.numberofchar){
+                            $(this).val($(this).val().substr(0,$(this).val().length-1));
+                        }
+                        else{
+                            $(this).val($(this).val().substr(0,$(this).val().length));
+                        }
+                    }
+                    if(validationoptions.milleseparator==true){
+                        var point=$(this).val().match(/\./);
+                        var nbInteger=$(this).val().split('.');
+                        var nb=nbInteger[0].split('\'');
+                        nb=nb.join('');
+                        var val=/[-0-9']\d*/.exec(nb);
+                        if(val=='' || val==null){
+                            $(this).val('');
+
+                        }else  if(val=='-'){
+                            $(this).val('-');
+                        }else if(val=='00'){
+                           $(this).val('0');
+
+                        }else if(parseInt(val) != 0 && val[0].length==2){
+                           if(point=='' || point == null){
+                                $(this).val(parseInt(val));    
+                            }else{
+                                $(this).val(parseInt(val)+point+nbInteger[1]); 
+                            }
+                        }else{
+                            for (var i=val[0].length-1;i>=0;i-=3){
+                                if (val[0].charAt(i-3) && val[0].charAt(i-3)!='-'){
+                                    var avant=val[0].substring(0,i-2);
+                                    var apres=val[0].substring(i-2);
+                                    val[0]=avant+'\''+apres;
+                                    if(i<=myelementcursor){
+                                        myelementcursor=myelementcursor+1;
+                                    }     
+                                }
+                            }
+                            if(point=='' || point == null){
+                                $(this).val(val[0]);    
+                            }else{
+                                $(this).val(val[0]+point+nbInteger[1]);  
+                            }
+                            var stringbeforecursor= $(this).val().substring(0,myelementcursor);
+                            var nbofseparatorbeforearray2=stringbeforecursor.match(/\'/g);
+                            var nbofseparator2=0;
+                            if(nbofseparatorbeforearray2){
+                                myelementcursor=myelementcursor-nbofseparator1;
+                            }
+                        }
                     }
                 }
                 else if(validationoptions.type=='lowercase'){
@@ -17921,14 +18906,16 @@ var rpnsequence = (function() {
                     }else{
                         $(this).val(val);
                     }
-                }else if(validationoptions.type=='familycase'){
+                }
+                else if(validationoptions.type=='familycase'){
                     var val=/^[A-ZÀÂÄÉÈÙÊËÎÏÔÖÑa-zâäàéèùêëîïôöçñ][a-zâäàéèùêëîïôöçñ]*/.exec($(this).val());
                     if(val=='' || val==null){
                         $(this).val('');
                     }else{
                         $(this).val(val);
                     }
-                }else if(validationoptions.type=='uppercase'){
+                }
+                else if(validationoptions.type=='uppercase'){
                     var val_0=$(this).val().toUpperCase()
                     var val=/[A-ZÀÂÄÉÈÙÊËÎÏÔÖÑ]*/.exec(val_0);
                     if(val=='' || val==null){
@@ -17936,7 +18923,8 @@ var rpnsequence = (function() {
                     }else{
                         $(this).val(val);
                     }
-                }else if(validationoptions.type=='letter'){
+                }
+                else if(validationoptions.type=='letter'){
                     var val=/[A-ZÀÂÄÉÈÙÊËÎÏÔÖÑa-zâäàéèùêëîïôöçñ]*/.exec($(this).val());
                     if(val=='' || val==null){
                         $(this).val('');
@@ -17952,9 +18940,36 @@ var rpnsequence = (function() {
                         $(this).val(val);
                     }
                 }
+                else if(validationoptions.type[0]=='list'){
+                    //window.alert('list');
+                    var tablength=validationoptions.type.length;
+                    var val0=$(this).val().split('^');
+                    val0=val0.join('');
+                    var myval=val0;
+                    var mychar=myval.charAt(myelementcursor-1);
+                    val0=val0.split(mychar).join('');
+                    var valinliste=myval+"+";
+                    var regvarinlist=new RegExp(valinliste);
+                    var val='';
+                    for(var i=1;i<tablength;i++){
+                        if(val==''||val==null){
+                            val=regvarinlist.exec(validationoptions.type[i]);
+                        }
+                    }
+                    if(val=='' || val==null){
+                        $(this).val(val0);
+                        myelementcursor=myelementcursor-1;
+                    }else{
+                        $(this).val(val);
+                    }
+                }
+                
+                myelement.setSelectionRange(myelementcursor, myelementcursor);
+                
             });
         }
     };
+    
     
     var computeMediaUrl= function(url){
         return mediapathHandler(url);
@@ -17967,7 +18982,8 @@ var rpnsequence = (function() {
         getLabels: getLabels,
         addvalidation: addvalidation,
         computeMediaUrl:computeMediaUrl,
-        getColor:getColor
+        getColor:getColor,
+        //modulesresponse: modulesresponse
     };
 })();
 //sorting
@@ -18004,7 +19020,8 @@ var rpnsortingmodule = function() {
         //build sentence with items to select
         var sentenceToSort=$('<ul class="list-unstyled'+(datas.vertical?'':' list-inline')+'"></ul>');
         _.each(state, function(item, idx) {
-            sentenceToSort.append($('<li>'+item+'</li>'));
+            var noElem = _.indexOf(datas.sentence, item);
+            sentenceToSort.append($('<li val="'+noElem+'">'+item+'</li>'));
         });
         domelem.append(sentenceToSort);
         sentenceToSort.sortable({
@@ -18020,7 +19037,9 @@ var rpnsortingmodule = function() {
     };
     
     var validate = function(){
-        state=_.map($('li',domelem),function(ele,idx){return $(ele).html()});
+        state=_.map($('li',domelem),function(ele,idx){
+            return ($(ele).children().is("img")) ? datas.sentence[$(ele).attr("val")] : $(ele).html();
+        });
         return state;
     };
     

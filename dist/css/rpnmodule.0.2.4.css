@@ -2,6 +2,9 @@
 .markable {
   cursor: default;
 }
+.markable b {
+  background-color: lightgray;
+}
 /*mqc*/
 /*gapsimple*/
 .gapsimpleddtoolbar span {
@@ -18,6 +21,31 @@
 }
 .gapsimpleddresponse-hover {
   background-color: #f0ad4e;
+}
+.gapsimple .fa-trash-o,
+.dragdropsorting .fa-trash-o {
+  font-size: 40px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.gapsimple .fa-trash-o:hover,
+.dragdropsorting .fa-trash-o:hover {
+  color: #f0ad4e;
+}
+.ddimage .gapsimple img,
+.ddimage .gapsimple .gapsimpleddresponse {
+  width: 100px;
+  height: 100px;
+}
+.ddimage .gapsimple .fa-trash-o {
+  font-size: 75px;
+  vertical-align: middle;
+}
+.divdraggable {
+  display: inline-block;
+}
+.gapsimpleddresponse span {
+  background-color: #5bc0de;
 }
 /*gapfull*/
 .gapfull #sentences p {
@@ -68,9 +96,27 @@
   text-align: center;
   cursor: pointer;
   height: auto;
+  margin-bottom: 2px;
 }
 .dragthis {
   min-height: 100px;
+}
+.dragthis.fromtext {
+  min-height: 20px;
+  display: inline;
+}
+.dragthis.dropped li {
+  background-color: turquoise;
+}
+span.todrag {
+  display: none;
+}
+.dragdropsorting .form-inline {
+  margin-bottom: 80px;
+}
+.dragdropsorting .form-inline .list-inline > li {
+  padding: 0px;
+  margin-left: 5px;
 }
 .droppable {
   text-align: center;
@@ -79,26 +125,39 @@
 }
 .droppable ul {
   text-align: center;
-  min-height: 100px;
+  min-height: 200px;
 }
 .droppable-placeholder {
   background-color: #eeeeee;
   border: 1px dashed #555555;
 }
 /*dropdown*/
-/*sorting*/
-.sorting li {
+.dropdown2 b {
+  font-weight: normal;
+}
+/*sorting & multiplelistssync*/
+.sorting li,
+.multiplelistssync li {
   line-height: 30px;
   height: 30px;
   cursor: pointer;
   background-color: #eeeeee;
-  margin-bottom: 3px;
+  margin-bottom: 5px;
 }
-.sorting .list-inline li {
+.item4 li,
+.item5 li {
+  height: 120px;
+}
+.item5 ul {
+  width: 400px;
+}
+.sorting .list-inline li,
+.multiplelistssync .list-inline li {
   margin-right: 3px;
   display: inline-block;
 }
-.sorting .sorting-highlight {
+.sorting .sorting-highlight,
+.multiplelistssync .sorting-highlight {
   height: 30px;
   line-height: 30px;
   vertical-align: bottom;
@@ -108,7 +167,39 @@
   width: 100%;
 }
 .sorting .list-inline .sorting-highlight {
-  width: 80px;
+  width: 30px;
+}
+.multiplelistssync ul {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: top;
+}
+.multiplelistssync ul .sorting-highlight {
+  height: 50px;
+}
+.multiplelistssync ul li {
+  text-align: center;
+  padding: 10px 40px 10px 40px;
+  height: auto;
+}
+.multiplelistssync ul li.title {
+  font-weight: bold;
+  background-color: #d9edf7;
+  height: auto;
+  cursor: default;
+}
+.multiplelistssync ul.unmovable {
+  background-color: #eee;
+  padding: 0px 5px 0px 5px;
+}
+.multiplelistssync ul.unmovable li:not(.title) {
+  background-color: #fff;
+  cursor: default;
+}
+.pictureSorting #sortable-0 li,
+.pictureSorting ul .sorting-highlight {
+  height: 140px;
+  line-height: 140px;
 }
 /*plumb*/
 .plumbsource li,
