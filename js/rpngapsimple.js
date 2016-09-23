@@ -71,7 +71,7 @@ var rpngapsimplemodule = function() {
                     accept:'.clone',
                     hoverClass: 'gapsimpleddresponse-hover',
                     drop: function(e,u) {
-                        $(u.draggable).remove();
+                        $(u.draggable, domelem).remove();
                     }
                 });
                 toolbar.append(trash);
@@ -113,10 +113,10 @@ var rpngapsimplemodule = function() {
                     
                     if(ev.target.className == "singledraggable"){
                         target = $(target).parent();
-                        $("#div"+valPlaced).append($(targetPlaced));
+                        $("#div"+valPlaced, domelem).append($(targetPlaced));
                     }
                     var data = ev.originalEvent.dataTransfer.getData("text");
-                    $(target).append($("#"+data));
+                    $(target).append($("#"+data, domelem));
                 });
                 t.replaceWith(drop);
                 
