@@ -38,7 +38,7 @@ var rpndragdropsortingmodule = function() {
                 var dragdropsortingtoolbar = $('<div class="dragdropsortingtoolbar"></div>');
                 var trash = $('<i class="fa fa-trash-o"></i>').droppable({
                     accept:'.sorted',
-                    hoverClass: 'dragdropsortingtoolbar-hover',
+                    hoverClass: 'gapsimpleddresponse-hover',
                     drop: function(e,u) {
                         $(u.draggable, domelem).remove();
                         handleToDragState();
