@@ -16751,7 +16751,7 @@ var rpndragdropsortingmodule = function() {
                 var dragdropsortingtoolbar = $('<div class="dragdropsortingtoolbar"></div>');
                 var trash = $('<i class="fa fa-trash-o"></i>').droppable({
                     accept:'.sorted',
-                    hoverClass: 'dragdropsortingtoolbar-hover',
+                    hoverClass: 'gapsimpleddresponse-hover',
                     drop: function(e,u) {
                         $(u.draggable, domelem).remove();
                         handleToDragState();
@@ -17211,7 +17211,7 @@ var rpngapsimplemodule = function() {
                     accept:'.clone',
                     hoverClass: 'gapsimpleddresponse-hover',
                     drop: function(e,u) {
-                        $(u.draggable).remove();
+                        $(u.draggable, domelem).remove();
                     }
                 });
                 toolbar.append(trash);
@@ -17253,10 +17253,10 @@ var rpngapsimplemodule = function() {
                     
                     if(ev.target.className == "singledraggable"){
                         target = $(target).parent();
-                        $("#div"+valPlaced).append($(targetPlaced));
+                        $("#div"+valPlaced, domelem).append($(targetPlaced));
                     }
                     var data = ev.originalEvent.dataTransfer.getData("text");
-                    $(target).append($("#"+data));
+                    $(target).append($("#"+data, domelem));
                 });
                 t.replaceWith(drop);
                 
