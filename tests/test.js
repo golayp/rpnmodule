@@ -58,9 +58,10 @@ require([
             onsequenceend:function(states,score){
                 window.location.href='../';
             },
-            mediapathformatter:function(url){
+      /*      mediapathformatter:function(url){
                 return '../../tests/medias/'+url;
             },
+      */      
             navigationEnabled:true
         });
     });    

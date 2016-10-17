@@ -12,7 +12,7 @@
             "title":"identifier",
             "context":"same answers for all questions",
             "questions":[
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit ?",
+                "<img src='../../tests/medias/logo.png' width=\"150\" height=\"150\" >Lorem ipsum dolor sit amet, consectetur adipiscing elit ?",
                 "Curabitur vitae purus vulputate, rutrum tortor eu, pulvinar justo ?",
                 "Donec et turpis ut risus ullamcorper accumsan ?",
                 "Praesent eleifend sem quis mauris consequat, sit amet rutrum elit interdum ?",
@@ -20,7 +20,7 @@
                 "Vivamus et metus imperdiet, facilisis nisl eget, semper ligula ?"
             ],
             "answers":[
-				{"choice":["answer 1","answer 2","answer 3","answer 4"]}
+				{"choice":["<img src='../../tests/medias/logo2.png' width=\"150\" height=\"150\" >answer 1","answer 2","answer 3","answer 4"]}
 			]
         },
         {

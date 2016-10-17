@@ -27,12 +27,22 @@
             "title":"title",
             "shuffle":true,
             "left":[
+                "<img src=\"../../tests/medias/sorting1.png\" >",
+                "<img src=\"../../tests/medias/sorting2.png\" >",
+                "<img src=\"../../tests/medias/sorting3.png\" >",
+                "<img src=\"../../tests/medias/sorting4.png\" >",
+                "<img src=\"../../tests/medias/sorting5.png\" >",
                 "item 1 1",
                 "item 1 2",
                 "item 1 3",
                 "item 1 4"
             ],
 			"right":[
+                "<img src=\"../../tests/medias/sorting1.png\" >",
+                "<img src=\"../../tests/medias/sorting2.png\" >",
+                "<img src=\"../../tests/medias/sorting3.png\" >",
+                "<img src=\"../../tests/medias/sorting4.png\" >",
+                "<img src=\"../../tests/medias/sorting5.png\" >",
                 "item 2 1",
                 "item 2 2",
                 "item 2 3",

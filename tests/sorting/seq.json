@@ -35,7 +35,7 @@
             "title":"a sorting module with pictures",
             "context":"Context",
             "directive":"Directive",
-            "sentence":["<img src=\"sorting1.png\">","<img src=\"sorting2.png\">","<img src=\"sorting3.png\">"],
+            "sentence":["<img src=\"../../tests/medias/sorting1.png\">","<img src=\"../../tests/medias/sorting2.png\">","<img src=\"../../tests/medias/sorting3.png\">"],
             "shuffle":false
         },
         {
@@ -44,7 +44,7 @@
             "title":"a sorting module with a grid",
             "context":"Context",
             "directive":"Directive",
-            "sentence":["<img src=\"sorting_grid1.png\">","<img src=\"sorting_grid2.png\">","<img src=\"sorting_grid3.png\">","<img src=\"sorting_grid4.png\">","<img src=\"sorting_grid5.png\">"],
+            "sentence":["<img src=\"../../tests/medias/sorting_grid1.png\">","<img src=\"../../tests/medias/sorting_grid2.png\">","<img src=\"../../tests/medias/sorting_grid3.png\">","<img src=\"../../tests/medias/sorting_grid4.png\">","<img src=\"../../tests/medias/sorting_grid5.png\">"],
             "shuffle":false
         }
     ]

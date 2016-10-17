@@ -79,9 +79,9 @@ var rpnsequence = (function() {
             onsequenceend: function(states, score) {},
             onmoduleend: function() {},
             onsequenceready:function(){},
-            mediapathformatter: function(val) {
-                return 'medias/' + val;
-            },
+      //      mediapathformatter: function(val) {
+      //          return 'medias/' + val;
+      //      },
             language: "en",
             debug: false,
             disablestateloading:false,
@@ -100,7 +100,8 @@ var rpnsequence = (function() {
         domelem = opts.domelem;
         sequenceendHandler = opts.onsequenceend;
         moduleendHandler = opts.onmoduleend;
-        mediapathHandler = opts.mediapathformatter;
+       // mediapathHandler = opts.mediapathformatter;
+        //mediapathHandler = '';
         readyHandler = opts.onsequenceready;
         
         bypassModule=opts.bypassModule;
@@ -378,7 +379,8 @@ var rpnsequence = (function() {
         }
         if(!_.isUndefined(datas.background) || !_.isUndefined(sequencedatas.background)){
             moduleLocation.css({
-                    'background-image':'url(' + mediapathHandler(_.isUndefined(datas.background)?sequencedatas.background:datas.background) + ')',
+                   // 'background-image':'url(' + mediapathHandler(_.isUndefined(datas.background)?sequencedatas.background:datas.background) + ')',
+                    'background-image':'url(' + _.isUndefined(datas.background)?sequencedatas.background:datas.background + ')',
                     'background-repeat': 'no-repeat',
                     'background-position': 'top center',
                     'background-size':'cover'
@@ -491,7 +493,8 @@ var rpnsequence = (function() {
         //Images paths
         _.each($('img:not(.rpnm-img, .rpnm-mediapath)',content), function(elem, idx) {
             var img = $(elem);
-            img.attr('src', mediapathHandler($(elem).attr('src'))).addClass('rpnm-mediapath');
+     //       img.attr('src', mediapathHandler($(elem).attr('src'))).addClass('rpnm-mediapath');
+            img.attr('src', $(elem).attr('src')).addClass('rpnm-mediapath');
             if (img.is('.modal-body img')) {
                 img.addClass('img-responsive img-rounded');
             }
@@ -1138,9 +1141,9 @@ var rpnsequence = (function() {
     };
     
     
-    var computeMediaUrl= function(url){
-        return mediapathHandler(url);
-    };
+//    var computeMediaUrl= function(url){
+//        return mediapathHandler(url);
+//    };
     
     return {
         init: init,
@@ -1148,7 +1151,7 @@ var rpnsequence = (function() {
         log: log,
         getLabels: getLabels,
         addvalidation: addvalidation,
-        computeMediaUrl:computeMediaUrl,
+        //computeMediaUrl:computeMediaUrl,
         getColor:getColor,
         //modulesresponse: modulesresponse
     };
