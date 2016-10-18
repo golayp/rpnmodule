@@ -100,7 +100,7 @@
             "cssClass":"ddimage",
             "title":"a gapsimple module with drag and drop images",
             "dragimage":true,
-            "fillers":["<img src='../../tests/medias/logo.png' width=\"150\" height=\"150\" >","<img src='../../tests/medias/logo2.png' width=\"150\" height=\"150\" >"],
+            "fillers":["<img src='/medias/logo.png' width=\"150\" height=\"150\" >","<img src='/medias/logo2.png' width=\"150\" height=\"150\" >"],
             "tofill":"<table><tr><td>JS purple</td><td>JS yellow</td></tr><tr><td><b></b></td><td><b></b></td></tr></table>"
         }
     ]

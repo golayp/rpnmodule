@@ -29,11 +29,11 @@
         },
         {
             "syncitems":[
-                ["tree","<img src=\"../../tests/medias/sorting1.png\" >"],
-                ["flowers","<img src=\"../../tests/medias/sorting3.png\" >"],
-                ["mouse","<img src=\"../../tests/medias/sorting5.png\" >"],
-                ["elephant","<img src=\"../../tests/medias/sorting4.png\" >"],
-                ["sun","<img src=\"../../tests/medias/sorting2.png\" >"]
+                ["tree","<img src=\"/medias/sorting1.png\" >"],
+                ["flowers","<img src=\"/medias/sorting3.png\" >"],
+                ["mouse","<img src=\"/medias/sorting5.png\" >"],
+                ["elephant","<img src=\"/medias/sorting4.png\" >"],
+                ["sun","<img src=\"/medias/sorting2.png\" >"]
 		    ]
         }
     ]

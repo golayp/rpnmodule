@@ -65,7 +65,7 @@
                 },
                 {
                     
-                    "items":["<img src=\"../../tests/medias/sorting1.png\" >","<img src=\"../../tests/medias/sorting2.png\" >","<img src=\"../../tests/medias/sorting3.png\" >","<img src=\"../../tests/medias/sorting4.png\" >","<img src=\"../../tests/medias/sorting5.png\" >"],
+                    "items":["<img src=\"/medias/sorting1.png\" >","<img src=\"/medias/sorting2.png\" >","<img src=\"/medias/sorting3.png\" >","<img src=\"/medias/sorting4.png\" >","<img src=\"/medias/sorting5.png\" >"],
                     "type":"picture",
                     "movable":true
                 }

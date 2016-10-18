@@ -59,7 +59,7 @@ require([
                 window.location.href='../';
             },
       /*      mediapathformatter:function(url){
-                return '../../tests/medias/'+url;
+                return '/medias/'+url;
             },
       */      
             navigationEnabled:true

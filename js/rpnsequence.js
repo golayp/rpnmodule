@@ -1,8 +1,8 @@
 /* global _*/
 /*!
- * rpnmodule 0.2.2 (https://github.com/golayp/rpnmodule)
+ * rpnmodule 0.2.5 (https://github.com/golayp/rpnmodule)
  * 
- * Dependencies: jquery 2.1.3, bootstrap 3.3.6, underscore 1.8.3
+ * Dependencies: jquery 2.1.3, bootstrap 3.3.7, underscore 1.8.3
  * 
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
@@ -31,7 +31,6 @@ var rpnsequence = (function() {
     var selectedLabels;
     var moduleLocation;
     var modules;
-   // var respmodulearray=new Array();
 
     var labels = {
         en: {
@@ -79,9 +78,6 @@ var rpnsequence = (function() {
             onsequenceend: function(states, score) {},
             onmoduleend: function() {},
             onsequenceready:function(){},
-      //      mediapathformatter: function(val) {
-      //          return 'medias/' + val;
-      //      },
             language: "en",
             debug: false,
             disablestateloading:false,
@@ -100,8 +96,6 @@ var rpnsequence = (function() {
         domelem = opts.domelem;
         sequenceendHandler = opts.onsequenceend;
         moduleendHandler = opts.onmoduleend;
-       // mediapathHandler = opts.mediapathformatter;
-        //mediapathHandler = '';
         readyHandler = opts.onsequenceready;
         
         bypassModule=opts.bypassModule;
@@ -379,11 +373,10 @@ var rpnsequence = (function() {
         }
         if(!_.isUndefined(datas.background) || !_.isUndefined(sequencedatas.background)){
             moduleLocation.css({
-                   // 'background-image':'url(' + mediapathHandler(_.isUndefined(datas.background)?sequencedatas.background:datas.background) + ')',
-                    'background-image':'url(' + _.isUndefined(datas.background)?sequencedatas.background:datas.background + ')',
-                    'background-repeat': 'no-repeat',
-                    'background-position': 'top center',
-                    'background-size':'cover'
+                'background-image':'url(' + _.isUndefined(datas.background)?sequencedatas.background:datas.background + ')',
+                'background-repeat': 'no-repeat',
+                'background-position': 'top center',
+                'background-size':'cover'
             });
         }else{
             moduleLocation.css({
@@ -420,29 +413,6 @@ var rpnsequence = (function() {
                 displayCurrentModule();
             }        
         });
-        
-       /* $.getJSON(solurl, function(ssol) {
-            var score = 0;
-            _.each(ssol.solutions, function(sol, idx) {
-                score +=modules[idx].score(sol); });
-                JSON.stringify({states:_.map(states,function(sta, idx){respmodulearray[idx]=(sta.state);return sta.state;})},null, '\t');
-                var mylength=respmodulearray.length;
-                for (var i=0;i<mylength;i++){
-                  log('reponses: '+respmodulearray[i]);  
-                }
-                log('SCORE: '+ score);
-                if (warnexit) {
-                    $(window).unbind('beforeunload');
-                }
-                if(testMode){
-                    displayAlert('Score :' + score + ' pt' + (score>1?'s':''),function(){
-                        sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score);
-                    });
-                }  
-            });
-    };
-    var modulesresponse = function(){
-        return respmodulearray;*/
     };
 
     var handleEndOfSequence = function() {
@@ -493,8 +463,7 @@ var rpnsequence = (function() {
         //Images paths
         _.each($('img:not(.rpnm-img, .rpnm-mediapath)',content), function(elem, idx) {
             var img = $(elem);
-     //       img.attr('src', mediapathHandler($(elem).attr('src'))).addClass('rpnm-mediapath');
-            img.attr('src', $(elem).attr('src')).addClass('rpnm-mediapath');
+            img.addClass('rpnm-mediapath');
             if (img.is('.modal-body img')) {
                 img.addClass('img-responsive img-rounded');
             }
@@ -513,6 +482,7 @@ var rpnsequence = (function() {
             mode:"lock",
             type:"natural"
         });
+        
         //prevent copy paste cut
         $(inputs).bind("cut copy paste",function(e) {
             e.preventDefault();
@@ -602,7 +572,6 @@ var rpnsequence = (function() {
                             val='';
                         }
                     }
-           //         alert('natural'+val)
                     $(this).val(negative+val);
                     var nb=$(this).val().split('\'');
                     
@@ -658,8 +627,6 @@ var rpnsequence = (function() {
                             $(this).val(parseInt(val));
                         } 
                     }
-                 
-            //    alert('dans natural fin')
                 }
                 else if(validationoptions.type=="integer"){
                     if($(this).val().indexOf('-')==1){$(this).val($(this).val().substring(1))};
@@ -725,7 +692,6 @@ var rpnsequence = (function() {
                             $(this).val($(this).val().substr(0,$(this).val().length-1))
                         }
                     }
-                    //if(validationoptions.milleseparator=='bonjour'){
                     if(validationoptions.milleseparator==true){
                         var nb=$(this).val().split('\'');
                         nb=nb.join('');
@@ -874,7 +840,6 @@ var rpnsequence = (function() {
                             $(this).val($(this).val().substr(0,$(this).val().length));
                         }
                     }
-                    //if(validationoptions.milleseparator=='bonjour'){
                     if(validationoptions.milleseparator==true){
                         var point=$(this).val().match(/\./);
                         var nbInteger=$(this).val().split('.');
@@ -1111,7 +1076,6 @@ var rpnsequence = (function() {
                     }
                 }
                 else if(validationoptions.type[0]=='list'){
-                    //window.alert('list');
                     var tablength=validationoptions.type.length;
                     var val0=$(this).val().split('^');
                     val0=val0.join('');
@@ -1141,18 +1105,12 @@ var rpnsequence = (function() {
     };
     
     
-//    var computeMediaUrl= function(url){
-//        return mediapathHandler(url);
-//    };
-    
     return {
         init: init,
         displayAlert: displayAlert,
         log: log,
         getLabels: getLabels,
         addvalidation: addvalidation,
-        //computeMediaUrl:computeMediaUrl,
-        getColor:getColor,
-        //modulesresponse: modulesresponse
+        getColor:getColor
     };
 })();
