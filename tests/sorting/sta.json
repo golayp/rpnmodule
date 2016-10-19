@@ -31,16 +31,16 @@
 			"Lorem"
 		],
         [
-            "<img src=\"sorting2.png\">",
-            "<img src=\"sorting3.png\">",
-            "<img src=\"sorting1.png\">"
+            "<img src=\"/medias/sorting2.png\">",
+            "<img src=\"/medias/sorting3.png\">",
+            "<img src=\"/medias/sorting1.png\">"
         ],
         [
-            "<img src=\"sorting_grid2.png\">",
-            "<img src=\"sorting_grid3.png\">",
-            "<img src=\"sorting_grid4.png\">",
-            "<img src=\"sorting_grid5.png\">",
-            "<img src=\"sorting_grid1.png\">"
+            "<img src=\"/medias/sorting_grid2.png\">",
+            "<img src=\"/medias/sorting_grid3.png\">",
+            "<img src=\"/medias/sorting_grid4.png\">",
+            "<img src=\"/medias/sorting_grid5.png\">",
+            "<img src=\"/medias/sorting_grid1.png\">"
         ]
 	]
 }
