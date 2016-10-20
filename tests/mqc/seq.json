@@ -5,22 +5,19 @@
     "sources":"source from sequence",
     "directive":"directive from sequence",
     "context":"context from sequence",
-    "background":"bg1.png",
+    "background":"/medias/bg1.png",
     "modules":[
         {
             "type":"mqc",
             "title":"identifier",
             "context":"same answers for all questions",
             "questions":[
-                "<img src='/medias/logo.png' width=\"150\" height=\"150\" >Lorem ipsum dolor sit amet, consectetur adipiscing elit ?",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit ?",
                 "Curabitur vitae purus vulputate, rutrum tortor eu, pulvinar justo ?",
-                "Donec et turpis ut risus ullamcorper accumsan ?",
-                "Praesent eleifend sem quis mauris consequat, sit amet rutrum elit interdum ?",
-                "Vestibulum ac pulvinar magna. Nullam efficitur luctus sapien eget sagittis ?",
-                "Vivamus et metus imperdiet, facilisis nisl eget, semper ligula ?"
+                "Donec et turpis ut risus ullamcorper accumsan ?"
             ],
             "answers":[
-				{"choice":["<img src='/medias/logo2.png' width=\"150\" height=\"150\" >answer 1","answer 2","answer 3","answer 4"]}
+				{"choice":["<img src='/medias/logo2.png' width=\"150\" height=\"150\" > answer 1","<img src='/medias/logo.png' width=\"150\" height=\"150\" > answer 2","<img src='/medias/logo2.png' width=\"150\" height=\"150\" ><br>answer 3","<img src='/medias/logo.png' width=\"150\" height=\"150\" ><br>answer 4"]}
 			]
         },
         {

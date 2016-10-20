@@ -2,12 +2,9 @@
 	"states": [
 		{
 			"responses": [
-				"answer 1",
-				"answer 1",
-				"answer 1",
-				"answer 1",
-				"answer 1",
-				"answer 1"
+				"<img src='/medias/logo2.png' width=\"150\" height=\"150\" > answer 1",
+				"<img src='/medias/logo2.png' width=\"150\" height=\"150\" > answer 1",
+				""
 			]
 		},
 		{

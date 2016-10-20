@@ -58,10 +58,6 @@ require([
             onsequenceend:function(states,score){
                 window.location.href='../';
             },
-      /*      mediapathformatter:function(url){
-                return '/medias/'+url;
-            },
-      */      
             navigationEnabled:true
         });
     });    
