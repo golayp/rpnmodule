@@ -2,6 +2,7 @@
     "title":"modulesequence",
     "context":"context",
     "directive":"directive",
+    "analcontinu":true,
     "modules":[
         {
             "type":"gapsimple",
@@ -105,33 +106,6 @@
         },
         {
             "type":"gapsimple",
-            "title":"a gapsimple module typed script ",
-            "validation":{
-                "mode":"lock",
-                "type":"natural",
-                "milleseparator":true,
-                "numberofchar":"6",
-                "width":"10em;",
-                "align":"text-center"
-            },
-            "tofill":"<script>var myvar1=Math.floor(Math.random()*100);var myvar2=Math.floor(Math.random()*100);document.getElementById('rep1').innerHTML =myvar1+'<br>'+myvar2+'<br>'+(myvar1+myvar2);</script><p id=rep1></p><p><b></b></p>"
-        },
-        {
-            "type":"gapsimple",
-            "title":"a gapsimple module value from module to next module ",
-            "validation":{
-                "mode":"lock",
-                "type":"natural",
-                "milleseparator":true,
-                "numberofchar":"6",
-                "width":"10em;",
-                "align":"text-center"
-            },
-            "tofill":"<script>document.getElementById('rep2').innerHTML ='myresponse: '+'<br>'+myvar1+'<br>'+myvar2+'<br>'+(myvar1+myvar2);</script><p id=rep2></p><p><b></b></p>"
-        },
-        {
-            "type":"gapsimple",
-            "analcontinu":true,
             "title":"a gapsimple module field content from module to next module ",
             "validation":{
                 "mode":"lock",
@@ -142,7 +116,7 @@
                 "align":"text-center",
                 "bindmodrep":"true"
             },
-            "tofill":"<p id=rep3>scripe remplace</p><p><b></b></p>"
+            "tofill":"<p id=rep3>script remplace</p><p><b></b></p>"
         },
         {
             "type":"gapsimple",
@@ -158,6 +132,21 @@
                 "rndval":[1,100, 4]
             },
             "tofill":"<pre>test1</pre><br><pre>test2</pre><br><pre>test3</pre><br><pre>test4</pre>"
+        },
+        {
+            "type":"gapsimple",
+            "title":"a gapsimple module value from module to next module ",
+            "validation":{
+                "mode":"lock",
+                "type":"natural",
+                "milleseparator":true,
+                "numberofchar":"6",
+                "width":"10em;",
+                "align":"text-center",
+                "thiselement":"pre",
+                "bindnomodnumarray":"12"
+            },
+            "tofill":"<pre>test1</pre><pre>test2</pre><p id=rep2></p><p><b></b></p>"
         }
     ]
 }

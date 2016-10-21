@@ -12,6 +12,7 @@ var rpngapsimplemodule = function() {
     var answerArray;
     var myrndval;
     var bindmodrepvar;
+    var bindnomodnumarrayvar=new Array();
 
     var init = function(_datas,_state, _domelem) {
         _.defaults(_datas, {
@@ -94,15 +95,29 @@ var rpngapsimplemodule = function() {
             maxwidth=maxwidth<draggable.width()?draggable.width():maxwidth;
         });
         if(datas.validation){
-            alert('datas'+datas.validation.bindmodrep)
             if(datas.validation.bindmodrep=="true"){
-                
+                alert('bindmodrep')
                 bindmodrepvar=datas.validation.bindmodrep;
             }
-            if(datas.validation.thiselement){
+            if(datas.validation.thiselement && datas.validation.bindnomodnumarray>-1){
+                alert('thiselement+bindnomodnumarray')
                 var newelement=datas.validation.thiselement;
                 if(datas.validation.rndval){
-                    //myrndval=rpnsequence.alea(datas.validation.rndval);
+                    alert('thiselement+bindnomodnumarray+rndval')
+                    myrndval=rpnconsigne.alea(datas.validation.rndval);
+                }
+               $.each($(newelement, domelem), function(idx, tofill) {
+                   alert('thiselement+bindnomodnumarray+each'+state[datas.validation.bindnomodnumarray])
+                   var t = $(tofill);
+                   t.replaceWith($('<span class="text-nowrap">' + state[datas.validation.bindnomodnumarray] +'<input type="text" class="rpnm_input gapsimple form-control"></span>'));
+                   
+                    $($('.rpnm_input',domelem)[idx]).val(state[idx]);
+                });
+            }
+            else if(datas.validation.thiselement){
+                alert('thiselement')
+                var newelement=datas.validation.thiselement;
+                if(datas.validation.rndval){
                     myrndval=rpnconsigne.alea(datas.validation.rndval);
                 }
                $.each($(newelement, domelem), function(idx, tofill) {
@@ -111,6 +126,10 @@ var rpngapsimplemodule = function() {
                    
                     $($('.rpnm_input',domelem)[idx]).val(state[idx]);
                 });
+            }
+            else if(datas.validation.bindnomodnumarray>-1){
+                alert('bindnomodnumarray')
+                bindnomodnumarrayvar=datas.validation.bindmodrep;
             }
         }
         
@@ -234,13 +253,14 @@ var rpngapsimplemodule = function() {
                 }
                 
             }
-            else if(sol[idx].indexOf('<script>')>-1){
+         /*   else if(sol[idx].indexOf('<script>')>-1){
                 var myval=sol[idx].substring(8);
                 myval=myval.substring(0,myval.length-9);
                 if (eval(myval)!='' && eval(myval)==state[idx]){
                     score++; 
                 }
-            }else if(sol[idx].indexOf('rndval')>-1){
+            }*/
+            else if(sol[idx].indexOf('rndval')>-1){
                 score=rpnanalyse.fouroperation(myrndval,state,sol, idx, score);
             }else if(bindmodrepvar){
                 rpnsequence.log('score'+score);

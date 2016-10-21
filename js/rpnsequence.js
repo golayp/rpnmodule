@@ -229,6 +229,11 @@ var rpnsequence = (function() {
             if(_.isNull(states[idx]).state){
                 _.isNull(states[idx]).state=undefined;
             }
+            
+            if(sequencedatas.analcontinu){
+                rpnconsigne.analyseeachmod();
+            }
+            
             if (modData.type == 'marker') {
                 modules[idx]=rpnmarkermodule();
                 modules[idx].init(modData,states[idx].state, divContent);
@@ -284,10 +289,11 @@ var rpnsequence = (function() {
             else if (modData.type == 'multiplelistssync') {
                 modules[idx]=rpnmultiplelistssyncmodule();
                 modules[idx].init(modData,states[idx].state, divContent);
+            }else if (modData.type == 'geogebra') {
+                modules[idx]=rpngeogebramodule();
+                modules[idx].init(modData,states[idx].state, divContent);
             }
-            if(modData.analcontinu){
-                rpnconsigne.analyseeachmod();
-            }
+            
             
             moduleLocation.append(rpnmInstance);
             //load plumb module after dom append in order to make connector available for paint
@@ -560,6 +566,8 @@ var rpnsequence = (function() {
                     if(val==null){
                         val=[myvalbeorenumberofchar.split('.').join('')];
                         myelementcursor=myelementcursor-1;
+                        val="";
+                        $(this).val(val);
                     }
                     else if (val[0]!=val_0){
                         val[0]=val[0]+stringaftercursor;

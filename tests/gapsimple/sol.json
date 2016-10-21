@@ -10,11 +10,10 @@
         ["dream","day"],
         ["day","dream"],
         ["<img src=\"logo2.png\" width=\"150\" height=\"150\" >","<img src=\"logo.png\" width=\"150\" height=\"150\" >"],
-        ["<script>myvar1+myvar2</script>"],
-        [
-            {"alternative":["<script>myvar1+myvar2</script>","<script>myvar1</script>","<script>myvar2</script>"]}
-        ],
         ["0"],
-        ["rndval[0]+rndval[1]", "rndval[1]-rndval[0]", "rndval[2]*rndval[3]", "rndval[3]/rndval[2]"]
+        ["rndval[0]+rndval[1]", "rndval[1]-rndval[0]", "rndval[2]*rndval[3]", "rndval[3]/rndval[2]"],
+        [
+            {"alternative":["myvar1","myvar2",">myvar3"]}
+        ]
     ]
 }
