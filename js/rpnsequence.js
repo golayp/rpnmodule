@@ -372,6 +372,7 @@ var rpnsequence = (function() {
             btnOrder.show();
         }
         if(!_.isUndefined(datas.background) || !_.isUndefined(sequencedatas.background)){
+            console.log("datas.backgroud ok")
             moduleLocation.css({
                 'background-image':'url(' + _.isUndefined(datas.background)?sequencedatas.background:datas.background + ')',
                 'background-repeat': 'no-repeat',
@@ -502,7 +503,8 @@ var rpnsequence = (function() {
                         var mylength=$(this).val().length+1;
                     }
                     if(mylength>validationoptions.numberofchar){
-                        $(this).val($(this).val().substr(0,mylength-1));
+                        mylength=validationoptions.numberofchar;
+                        $(this).val($(this).val().substr(0,mylength));
                     }
                 }
                 if(validationoptions.type=="natural"){
