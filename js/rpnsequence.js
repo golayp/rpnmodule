@@ -372,9 +372,9 @@ var rpnsequence = (function() {
             btnOrder.show();
         }
         if(!_.isUndefined(datas.background) || !_.isUndefined(sequencedatas.background)){
-            console.log("datas.backgroud ok")
+            var mytest= _.isUndefined(datas.background)?sequencedatas.background:datas.background;
             moduleLocation.css({
-                'background-image':'url(' + _.isUndefined(datas.background)?sequencedatas.background:datas.background + ')',
+                'background-image':'url(' +mytest + ')',
                 'background-repeat': 'no-repeat',
                 'background-position': 'top center',
                 'background-size':'cover'

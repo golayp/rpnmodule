@@ -17,7 +17,7 @@
                 "Donec et turpis ut risus ullamcorper accumsan ?"
             ],
             "answers":[
-				{"choice":["<img src='/medias/logo2.png' width=\"150\" height=\"150\" > answer 1","<img src='/medias/logo.png' width=\"150\" height=\"150\" > answer 2","<img src='/medias/logo2.png' width=\"150\" height=\"150\" ><br>answer 3","<img src='/medias/logo.png' width=\"150\" height=\"150\" ><br>answer 4"]}
+				{"choice":[" answer 1"," answer 2"," answer 3"," answer 4"]}
 			]
         },
         {
