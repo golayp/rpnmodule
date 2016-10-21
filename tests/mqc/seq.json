@@ -22,7 +22,7 @@
         },
         {
             "type":"mqc",
-            "background":"bg2.png",
+            "background":"/medias/bg2.png",
             "title":"identifier ",
             "context":"a unique set of answers for each questions",
             "questions":[
