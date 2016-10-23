@@ -155,6 +155,7 @@ span.todrag {
 .multiplelistssync .list-inline li {
   margin-right: 3px;
   display: inline-block;
+  height: auto;
 }
 .sorting .sorting-highlight,
 .multiplelistssync .sorting-highlight {
