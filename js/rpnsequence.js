@@ -132,7 +132,7 @@ var rpnsequence = (function() {
         return ["#8d61a4","#01a271","#5dc2e7","#ed656a","#f5a95e","#eee227","#7a5a14","#bbbbbb","#63b553","#e95c7b","#f5a95e"][idx];
     }
     var buildUi = function() {
-        moduleLocation=$('<div></div>')
+        moduleLocation=$('<div class="sequencebody"></div>')
         validationButton=$('<button class="btn btn-success" id="rpnm_validation"></button>');
         btnOrder=$('<button class="btn btn-default btn-sm" data-target="#rpnm_order_modal" data-toggle="modal"><span class="visible-xs visible-sm"><i class="glyphicon glyphicon-question-sign"></i></span><span class="visible-md visible-lg"><i class="glyphicon glyphicon-question-sign"></i> ' + selectedLabels.Order + '</span></button>');
         btnRecall=$('<button class="btn btn-default btn-sm" data-target="#rpnm_recall_modal" data-toggle="modal"><span class="visible-xs visible-sm"><i class="glyphicon glyphicon-bell"></i></span><span class="visible-md visible-lg"><i class="glyphicon glyphicon-bell"></i> ' + selectedLabels.Recall + '</span></button>');
@@ -371,7 +371,7 @@ var rpnsequence = (function() {
             $('#rpnm_order_modal .modal-body').html(sequencedatas.order);
             btnOrder.show();
         }
-        if(!_.isUndefined(datas.background) || !_.isUndefined(sequencedatas.background)){
+  /*      if(!_.isUndefined(datas.background) || !_.isUndefined(sequencedatas.background)){
             var mytest= _.isUndefined(datas.background)?sequencedatas.background:datas.background;
             moduleLocation.css({
                 'background-image':'url(' +mytest + ')',
@@ -384,7 +384,7 @@ var rpnsequence = (function() {
                 'background-image':'none'
             });
         }
-        
+*/        
         if(_.isUndefined(datas.recall)&&_.isUndefined(sequencedatas.recall)){
             btnRecall.hide();  
         }else{

@@ -5,7 +5,6 @@
     "sources":"source from sequence",
     "directive":"directive from sequence",
     "context":"context from sequence",
-    "background":"/medias/bg1.png",
     "modules":[
         {
             "type":"mqc",
@@ -22,7 +21,6 @@
         },
         {
             "type":"mqc",
-            "background":"/medias/bg2.png",
             "title":"identifier ",
             "context":"a unique set of answers for each questions",
             "questions":[
