@@ -371,20 +371,7 @@ var rpnsequence = (function() {
             $('#rpnm_order_modal .modal-body').html(sequencedatas.order);
             btnOrder.show();
         }
-  /*      if(!_.isUndefined(datas.background) || !_.isUndefined(sequencedatas.background)){
-            var mytest= _.isUndefined(datas.background)?sequencedatas.background:datas.background;
-            moduleLocation.css({
-                'background-image':'url(' +mytest + ')',
-                'background-repeat': 'no-repeat',
-                'background-position': 'top center',
-                'background-size':'cover'
-            });
-        }else{
-            moduleLocation.css({
-                'background-image':'none'
-            });
-        }
-*/        
+        
         if(_.isUndefined(datas.recall)&&_.isUndefined(sequencedatas.recall)){
             btnRecall.hide();  
         }else{
