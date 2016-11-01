@@ -1,3 +1,8 @@
+.sequencebody {
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+}
 /*marker*/
 .markable {
   cursor: default;
