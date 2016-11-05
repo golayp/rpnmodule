@@ -16,7 +16,7 @@
                 "Donec et turpis ut risus ullamcorper accumsan ?"
             ],
             "answers":[
-				{"choice":[" answer 1"," answer 2"," answer 3"," answer 4"]}
+				{"choice":["answer 1","answer 2","answer 3","answer 4"]}
 			]
         },
         {
