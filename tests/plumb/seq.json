@@ -2,6 +2,7 @@
     "title":"modulesequence",
     "context":"context",
     "directive":"directive",
+    "sources":"this is a test",
     "modules":[
         {
             "type":"plumb",

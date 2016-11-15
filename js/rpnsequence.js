@@ -28,6 +28,7 @@ var rpnsequence = (function() {
     var validationButton;
     var btnOrder;
     var btnRecall;
+    var btnSources;
     var bypassModule;
     var testMode;
     var exerciseMode;
@@ -50,6 +51,7 @@ var rpnsequence = (function() {
 
     var labels = {
         en: {
+            Sources:"Sources",
             Recall: "Recall",
             Order: "Order",
             Warning: "Warning",
@@ -77,6 +79,7 @@ var rpnsequence = (function() {
             Quit:"Quit"
         },
         fr: {
+            Sources:"sources",
             Recall: "Rappel",
             Order: "Consignes",
             Warning: "Attention",
@@ -192,7 +195,8 @@ var rpnsequence = (function() {
         validationButton=$('<button class="btn btn-success" id="rpnm_validation"></button>');
         btnOrder=$('<button class="btn btn-default btn-sm" data-target="#rpnm_order_modal" data-toggle="modal"><span class="visible-xs visible-sm"><i class="glyphicon glyphicon-question-sign"></i></span><span class="visible-md visible-lg"><i class="glyphicon glyphicon-question-sign"></i> ' + selectedLabels.Order + '</span></button>');
         btnRecall=$('<button class="btn btn-default btn-sm" data-target="#rpnm_recall_modal" data-toggle="modal"><span class="visible-xs visible-sm"><i class="glyphicon glyphicon-bell"></i></span><span class="visible-md visible-lg"><i class="glyphicon glyphicon-bell"></i> ' + selectedLabels.Recall + '</span></button>');
-        source=$('<div class="col-md-12"></div>');
+        btnSources=$('<button class="srcbtn btn btn-default btn-sm" data-target="#rpnm_sources_modal" data-toggle="modal"><span class="visible-xs visible-sm"><i class="glyphicon glyphicon-book"></i></span><span class="visible-md visible-lg"><i class="glyphicon glyphicon-book"></i> ' + selectedLabels.Sources + '</span></button>');
+        //source=$('<div class="col-md-12"></div>');
         cc=$('<div class="col-md-12" id="cc"></div>');
         var baseContainer=$('<div class="container"></div>');
         if(!_.isUndefined(sequencedatas.cssClass)){
@@ -213,11 +217,13 @@ var rpnsequence = (function() {
                     $('<div class="col-md-12" id="rpnm_toolbar"></div>').append(
                         validationButton
                     ),
-                    source,
+                    btnSources,
+                    //source,
                     cc
                 ])
             ])
         ]);
+        domelem.append($('<div id="rpnm_sources_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-footer"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-book"></i> ' + selectedLabels.Sources + '</h4></div><div class="modal-body"></div></div></div></div>'));
         domelem.append($('<div id="rpnm_recall_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-bell"></i> ' + selectedLabels.Recall + '</h4></div><div class="modal-body"></div></div></div></div>'));
         domelem.append($('<div id="rpnm_order_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-question-sign"></i> ' + selectedLabels.Order + '</h4></div><div class="modal-body"></div></div></div></div>'));
         domelem.append($('<div id="rpnm_alert_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-warning-sign"></i> ' + selectedLabels.Warning + '</h4></div><div class="modal-body"></div></div></div></div>'));
@@ -502,6 +508,13 @@ var rpnsequence = (function() {
     };
 
     var bindModuleSharedDatas = function(datas) {
+        if (!_.isUndefined(datas.Sources)){
+            $('#rpnm_sources_modal .modal-body').html(datas.sources);
+            btnRecall.show();
+        }else if(!_.isUndefined(sequencedatas.sources)){
+            $('#rpnm_sources_modal .modal-body').html(sequencedatas.sources);
+            btnRecall.show();
+        }
         if (!_.isUndefined(datas.recall)){
             $('#rpnm_recall_modal .modal-body').html(datas.recall);
             btnRecall.show();
@@ -516,7 +529,11 @@ var rpnsequence = (function() {
             $('#rpnm_order_modal .modal-body').html(sequencedatas.order);
             btnOrder.show();
         }
-        
+        if(_.isUndefined(datas.sources)&&_.isUndefined(sequencedatas.sources)){
+            btnSources.hide();  
+        }else{
+            handleMediaPath($('#rpnm_sources_modal .modal-body'));
+        }
         if(_.isUndefined(datas.recall)&&_.isUndefined(sequencedatas.recall)){
             btnRecall.hide();  
         }else{
@@ -527,7 +544,7 @@ var rpnsequence = (function() {
         }else{
             handleMediaPath($('#rpnm_order_modal .modal-body'));
         }
-        source.html(_.isUndefined(datas.sources) ? _.isUndefined(sequencedatas.sources)?"":sequencedatas.sources :  datas.sources);
+        //source.html(_.isUndefined(datas.sources) ? _.isUndefined(sequencedatas.sources)?"":sequencedatas.sources :  datas.sources);
         if (exerciseMode){
             cc.html(_.isUndefined(datas.licence) ? _.isUndefined(sequencedatas.licence) ? licence : sequencedatas.licence : datas.licence);
         }
