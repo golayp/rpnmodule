@@ -73,7 +73,7 @@ var rpnmarkermodule = function() {
             if(!_.isEmpty(state.responses[idx])){
                 t.css('background-color',_.findWhere(state.markers,{label:state.responses[idx]}).color);
                 if(datas.displayTooltip){
-                    t.attr('data-original-title', state.responses[idx])
+                    t.attr('data-html', true).attr('data-original-title', state.responses[idx])
                         .tooltip('fixTitle');
                 }
             }
@@ -86,7 +86,7 @@ var rpnmarkermodule = function() {
             t.click(function() {
                 t.css('background-color',state.selectedMarker.color);
                 if(datas.displayTooltip && state.selectedMarker.color!=''){
-                    t.attr('data-original-title', state.selectedMarker.label)
+                    t.attr('data-html', true).attr('data-original-title', state.selectedMarker.label)
                         .tooltip('fixTitle')
                         .tooltip('show');
                 }else{
