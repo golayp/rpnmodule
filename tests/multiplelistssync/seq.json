@@ -5,23 +5,7 @@
             "type":"multiplelistssync",
             "title":"a multiple lists synchronization module with column titles (two columns)",
             "directive":"Directive",
-            "lists":[
-                {
-                    "title":"English",
-                    "items":["tree","flower","mouse","elephant","sun"],
-                    "movable":true
-                },
-                {
-                    "title":"French",
-                    "items":["fleur","soleil","arbre","souris","éléphant"],
-                    "movable":true
-                }
-            ]
-        },
-        {
-            "type":"multiplelistssync",
-            "title":"a multiple lists synchronization module (the left column is fixed)",
-            "directive":"Directive",
+            "limitOfSufficiency":0.1,
             "lists":[
                 {
                     "title":"English",
@@ -32,7 +16,8 @@
                     "items":["fleur","soleil","arbre","souris","éléphant"],
                     "movable":true
                 }
-            ]
+            ],
+            "licence":"© Tous droits réservés RPN 2016"
         },
         {
             "type":"multiplelistssync",
@@ -40,8 +25,7 @@
             "directive":"Directive",
             "lists":[
                 {
-                    "items":["tree","flower","mouse","elephant","sun"],
-                    "movable":true
+                    "items":["tree","flower","mouse","elephant","sun"]
                 },
                 {
                     "items":["fleur","soleil","arbre","souris","éléphant"],
@@ -60,8 +44,7 @@
             "directive":"Directive",
             "lists":[
                 {
-                    "items":["tree","flowers","mouse","elephant","sun"],
-                    "movable":true
+                    "items":["tree","flowers","mouse","elephant","sun"]
                 },
                 {
                     

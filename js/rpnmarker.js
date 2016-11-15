@@ -4,6 +4,8 @@ var rpnmarkermodule = function() {
     var datas;
     var domelem;
     var state;
+    var successArray;
+    var responsesArray;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -75,9 +77,9 @@ var rpnmarkermodule = function() {
                         .tooltip('fixTitle');
                 }
             }
-            if(!datas.hidden){
+            if(!datas.hidden && rpnsequence.resultMode){
                 t.css('cursor', 'pointer');
-            }else{
+            }else if (!rpnsequence.resultMode){
                 t.css('font-weight','normal');
                 t.css('background-color','rgba(255, 255, 255, 0)');
             }
@@ -100,23 +102,51 @@ var rpnmarkermodule = function() {
     };
     
     var validate = function(){
+        responsesArray = new Array();
+        responsesArray = _.map($('b', domelem), function(elem){
+            return elem;
+        });
         return state;
     };
     
     var score =  function(sol) {
         var score = 0;
+        successArray = new Array();
+        var solution;
+        
         _.each(sol, function(val, idx) {
-            score += (val != "" && state.responses[idx] == val) ? 1 : 0;
-            score -= (val == "" && state.responses[idx] != val) ? 1 : 0;
+            var scoreIni = score;
+            score += (state.responses[idx] == val) ? 1 : 0;
+            solution = val;
+            successArray[idx] = new Array();
+            if (score > scoreIni || state.responses[idx] == val){
+                successArray[idx] = ["ok",solution];
+            }else{
+                successArray[idx] = [state.responses[idx],solution];
+            }
         });
-        score = score >= 0 ? score : 0;
         return score;
+    };
+    var pointmax = function(sol){
+        var pointmax = 0;
+        _.each(sol, function(val, idx) {
+            pointmax += (val != "") ? 1 : 0;
+        });
+        return pointmax;
+    };
+    var successState = function(){
+        return successArray;
+    };
+    var responsesState = function(){
+        return responsesArray;
     };
     
     return {
         init: init,
         validate: validate,
-        score: score
-
+        score: score,
+        pointmax: pointmax,
+        successState: successState,
+        responsesState: responsesState
     };
 };

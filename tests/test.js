@@ -46,18 +46,23 @@ require([
     ], function($) {
     $(document).ready(function(){
         rpnsequence.init({
+            language:'fr',
             debug:true,
             disablestateloading:true,
-            testMode:true,
-            warnonexit:false,
+            //testMode:true,
+            //exerciseMode:true,
+            //warnonexit:true,
             //bypassModule:true,
+            //watchResultMode:true,
+            testAndResultMode:true,
             onmoduleend:function(states,nextstep){
                 console.log('ok');
                 nextstep();
             },
             onsequenceend:function(states,score){
                 window.location.href='../';
-            },
+                //window.location.href='https://portail.rpn.ch/eleves/langues/Pages/l1-h10.aspx';
+            },      
             navigationEnabled:true
         });
     });    

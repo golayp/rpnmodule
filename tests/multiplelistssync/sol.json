@@ -11,15 +11,6 @@
         },
         {
             "syncitems":[
-                ["tree","arbre"],
-                ["flower","fleur"],
-                ["mouse","souris"],
-                ["elephant","éléphant"],
-                ["sun","soleil"]
-		    ]
-        },
-        {
-            "syncitems":[
                 ["tree","arbre","Baum"],
                 ["flower","fleur","Blume"],
                 ["mouse","souris","Maus"],

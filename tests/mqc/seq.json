@@ -10,6 +10,11 @@
             "type":"mqc",
             "title":"identifier",
             "context":"same answers for all questions",
+            "player":{
+                "type":"audio",
+                "source":"audio_1",
+                "controls":"play"
+            },
             "questions":[
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit ?",
                 "Curabitur vitae purus vulputate, rutrum tortor eu, pulvinar justo ?",

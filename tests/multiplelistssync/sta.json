@@ -50,46 +50,6 @@
 					"sun"
 				],
 				[
-					"soleil",
-					"fleur",
-					"souris",
-					"arbre",
-					"éléphant"
-				]
-			],
-			"responses": [
-				[
-					"tree",
-					"soleil"
-				],
-				[
-					"flower",
-					"fleur"
-				],
-				[
-					"mouse",
-					"souris"
-				],
-				[
-					"elephant",
-					"arbre"
-				],
-				[
-					"sun",
-					"éléphant"
-				]
-			]
-		},
-		{
-			"lists": [
-				[
-					"tree",
-					"flower",
-					"mouse",
-					"elephant",
-					"sun"
-				],
-				[
 					"fleur",
 					"soleil",
 					"souris",

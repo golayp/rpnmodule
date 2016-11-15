@@ -4,6 +4,8 @@ var rpnmqcmodule = function() {
     var datas;
     var domelem;
     var state;
+    var successArray;
+    var responsesArray;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -70,21 +72,54 @@ var rpnmqcmodule = function() {
     };
     
     var validate = function(){
+        responsesArray = new Array();
+        _.each($('.btn-group, .btn-group-vertical', domelem), function(elem, idx){
+            responsesArray[idx] = elem;
+        });
         return state;
     };
     
     var score= function(sol) {
         var score = 0;
+        successArray = new Array();
         _.each(sol, function(val, idx) {
+            var scoreIni = score;
+            var solution = "";
+            var nbSol = _.compact(val).length-1;
+            if (_.isArray(val)){
+                solution = _.compact(val).join(' / ')
+            }else{
+                solution = val;
+            }
             score += _.isEqual(state.responses[idx],val) ? 1 : 0;
+            successArray[idx] = new Array();
+            if (score > scoreIni){
+                successArray[idx] = ["ok",solution];
+            }else{
+                successArray[idx] = [state.responses[idx],solution];
+            }
         });
         return score;
     };
+    var pointmax = function(sol){
+        var pointmax = sol.length;
+
+        return pointmax;
+    };
+     var successState = function(){
+        return successArray;
+    };
+    var responsesState = function(){
+        return responsesArray;
+    }
     
     return {
         init: init,
         validate: validate,
-        score: score
+        score: score,
+        pointmax: pointmax,
+        successState: successState,
+        responsesState: responsesState
     };
 
 };

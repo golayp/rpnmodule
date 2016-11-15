@@ -176,6 +176,9 @@ span.todrag {
 .sorting .list-inline .sorting-highlight {
   width: 30px;
 }
+.sorting .ui-sortable {
+  display: inline-block;
+}
 .multiplelistssync ul {
   display: inline-block;
   margin-left: 10px;
@@ -209,7 +212,17 @@ span.todrag {
   line-height: 140px;
 }
 /*plumb*/
-.plumbsource li,
+.notif {
+  margin-top: -10px;
+  margin: 10px;
+  padding: 1px;
+  border: 0px solid #000;
+}
+.plumbsource li {
+  margin: 0px;
+  padding: 10px;
+  border: 1px solid #000;
+}
 .plumbtarget li {
   margin: 10px;
   padding: 10px;
@@ -301,4 +314,86 @@ span.todrag {
 .ui-sortable-handle {
   -ms-touch-action: none;
   touch-action: none;
+}
+/* Result Modal
+---------------------------------*/
+#rpnm_result_modal {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.modal-body {
+  font-size: 17px;
+  line-height: 2;
+  padding: 30px;
+}
+/* Exercise Mode
+---------------------------------*/
+#rpnm_modulestate {
+  margin-top: 30px;
+  padding: 0px;
+}
+#rpnm_modulestate h4 {
+  display: inline;
+}
+#rpnm_modulestate .label {
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  font-weight: normal;
+  font-size: 100%;
+}
+#rpnm_modulestate .label-default {
+  background-color: white;
+  color: #333;
+  border: 1px solid #ccc;
+}
+.tooltip {
+  max-width: 400px;
+}
+.tooltip .tooltip-inner {
+  background-color: #fff;
+  color: black;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  font-size: 16px;
+  line-height: 2;
+  max-width: 400px;
+  display: inline-block;
+}
+.tooltip.top .tooltip-arrow {
+  border-top: 5px solid #ccc;
+}
+#cc {
+  margin-bottom: 15px;
+}
+.error,
+.exact {
+  outline-width: 2px;
+}
+.error {
+  outline-style: dotted;
+  outline-color: red;
+}
+.exact {
+  outline-style: dashed;
+  outline-color: green;
+}
+.form-control[readonly] {
+  cursor: default;
+  background-color: #fff;
+}
+.btn-default.disabled,
+.btn-default:disabled,
+.btn-default[disabled] {
+  opacity: 1;
+}
+/* Player audio
+---------------------------------*/
+button.play {
+  font-size: 24px;
+}
+button.play :hover {
+  cursor: pointer;
+}
+button.play.clicked > .glyphicon {
+  opacity: 0.4;
 }

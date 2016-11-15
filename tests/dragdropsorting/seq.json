@@ -1,5 +1,6 @@
 {
     "title":"modulesequence",
+    "licence":"© Tous droits réservés RPN 2016",
     "modules":[
         {
             "type":"dragdropsorting",

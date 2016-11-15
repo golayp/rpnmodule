@@ -4,7 +4,8 @@ var rpndropdownmodule = function() {
     var datas;
     var domelem;
     var state;
-    
+    var successArray;
+    var responsesArray;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -57,27 +58,57 @@ var rpndropdownmodule = function() {
     };
     
     var validate = function(){
+        responsesArray = new Array();
+        _.each($('select', domelem), function(elem, idx){
+            responsesArray[idx] = elem;
+        });
         state=_.map($('select',domelem),function(ele,idx){return $(ele).val()});
         return state;
     };
     
     var score = function(sol){
         var score=0;
+        successArray = new Array();
+        var solution;
+        
         _.each(sol,function(s,idx){
+            var scoreIni = score;
+            
             if(s.alternative){
                 score += (_.contains(s.alternative,state[idx] ) ? 1 : 0);
+                solution = s.alternative[0];
             }else{
                 score += state[idx] == s ? 1 : 0;
+                solution = s;
+            }
+            successArray[idx] = new Array();
+            if (score > scoreIni || (s == "" && state[idx] == s)){
+                successArray[idx] = ["ok",solution];
+            }else{
+                successArray[idx] = [state[idx],solution];
             }
         });
         return score;
     };
-    
+    var pointmax = function(sol){
+        var pointmax = sol.length;
+        
+        return pointmax;
+    };
+    var successState = function(){
+        return successArray;
+    };
+    var responsesState = function(){
+        return responsesArray;
+    };
 
     return {
         init: init,
         validate: validate,
-        score:score
+        score: score,
+        pointmax: pointmax,
+        successState: successState,
+        responsesState: responsesState
     };
 
 };

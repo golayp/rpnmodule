@@ -8,6 +8,8 @@ var rpndragdropsortingmodule = function() {
     var singledd;
     var itemSortedState;
     var itemToSortArray;
+    var successArray;
+    var responsesArray;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -145,19 +147,20 @@ var rpndragdropsortingmodule = function() {
     };
     
     var validate = function(){
-        var itemSorted = new Array();
+        responsesArray = new Array();
+        var i = 0;
         _.each($('.droppable',domelem), function(elem, idx) {
-            var txts = [];
-            $.each($(elem).find('li'), function(idx, txt) {
-                txts.push($(txt).html());
-                itemSorted.push($(txt).html());
+            var list = [];
+            $.each($(elem).find('li'), function(id, txt) {
+                list.push($(txt).html());
+                responsesArray[i] = txt;
+                i++;
             });
-            state[$(elem).find('span').html()] = txts;
+            state[$(elem).find('span').html()] = list;
         });
         if (dragfromtext){
-            state.todrag = _.difference(itemToSortArray, _.uniq(itemSorted));
+            state.todrag = _.difference(itemToSortArray, _.uniq(responsesArray));
         }
-        console.log(state)
         return state;
     };
     
@@ -196,19 +199,54 @@ var rpndragdropsortingmodule = function() {
     
     var score = function(sols) {
         var score = 0;
+        successArray = new Array();
+        var solution = "x";
+        var i = 0;
+        
         _.map(sols, function(sol, drop) {
             score += _.intersection(state[drop], sol).length;
-            if (!singledd && dragfromtext){
-                score -= _.difference(state[drop], sol).length;
-            }
         });
-        score = score >= 0 ? score : 0;
+        
+        _.each($('.droppable',domelem), function(elem, idx) {
+            var list = [];
+            $.each($(elem).find('li'), function(id, txt) {
+                list.push($(txt).html());
+                var drop = $(elem).find('span').html();
+                if (_.contains(sols[drop], $(txt).html())){
+                    solution = drop;
+                    successArray[i] = ["ok",solution];
+                }else{
+                    solution = _.map(sols, function(sol, item){
+                        if(_.contains(sol, $(txt).html())){
+                            return item;
+                        }
+                    });
+                    successArray[i] = [drop,_.compact(solution)];
+                }
+                i++;
+            });
+            state[$(elem).find('span').html()] = list;
+        });
         return score;
+    };
+    var pointmax = function(sol){
+        var pointmax = _.flatten(_.toArray(sol)).length;
+        
+        return pointmax;
+    };
+    var successState = function(){
+        return successArray;
+    };
+    var responsesState = function(){
+        return responsesArray;
     };
     
     return {
         init: init,
         validate: validate,
-        score: score
+        score: score,
+        pointmax: pointmax,
+        successState: successState,
+        responsesState: responsesState
     };
 };

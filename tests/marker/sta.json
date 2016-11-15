@@ -55,12 +55,12 @@
 				"color": "#5dc2e7"
 			},
 			"responses": [
-				"",
+				"marker1",
 				"marker1",
 				"marker2",
-				"marker3",
+				"marker2",
 				"",
-				""
+				"marker3"
 			],
 			"markers": [
 				{

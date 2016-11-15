@@ -11,6 +11,8 @@ var rpngapsimplemodule = function() {
     var dragimage;
     var singledd;
     var answerArray;
+    var successArray;
+    var responsesArray;
 
     var init = function(_datas,_state, _domelem) {
         _.defaults(_datas, {
@@ -184,6 +186,7 @@ var rpngapsimplemodule = function() {
     
     
     var validate = function(){
+        responsesArray = new Array();
         if(dragdrop || dragfromtext){
             _.each($('.gapsimpleddresponse',domelem),function(elem,idx){
                 if(dragimage){
@@ -193,6 +196,7 @@ var rpngapsimplemodule = function() {
                 }else{
                     state[idx] = $('.draggable',$(elem)).html();
                 }
+                responsesArray[idx] = elem;
             });
         }else{
             $.each($('.gapsimple',domelem), function(idx, gap) {
@@ -201,6 +205,7 @@ var rpngapsimplemodule = function() {
                 }else{
                    state[idx] = $(gap).val().trim(); 
                 }
+                responsesArray[idx] = gap;
             });
         }
         return state;
@@ -208,31 +213,55 @@ var rpngapsimplemodule = function() {
     
    var score = function(sol) {
         var score = 0;
+        successArray = new Array();
+        var solution;
+       
         _.each(sol, function(val, idx) {
+            var scoreIni = score;
+            
             if(val.alternative){
                 score += (_.contains(val.alternative,state[idx] ) ? 1 : 0);
-                /*
-                var alternativelength=val.alternative.length;
-                for (var al=0;al<alternativelength;al++){
-                   if(val.alternative[al]==state[idx]){
-                        score ++;
-                    }
+                solution = val.alternative[0];
+            }else if(sol[idx].indexOf('<script>')>-1){
+                var myval=sol[idx].substring(8);
+                myval=myval.substring(0,myval.length-9);
+                if (eval(myval)==state[idx]){
+                    score++;
                 }
-                */
-           
             }else{
-                score += (val != "" && state[idx] == val) ? 1 : 0;
-                score -= (val == "" && state[idx] != val) ? 1 : 0;
+                score += (state[idx] == val) ? 1 : 0;
+                solution = val;
+            }
+            successArray[idx] = new Array();
+            if (score > scoreIni || state[idx] == val){
+                successArray[idx] = ["ok",solution];
+            }else{
+                successArray[idx] = [state[idx],solution];
             }
         });
-        score = score >= 0 ? score : 0;
         return score;
+    };
+    var pointmax = function(sol){
+        var pointmax = 0;
+        _.each(sol, function(val, idx) {
+            pointmax += (val != "") ? 1 : 0;
+        });
+        return pointmax;
+    };
+    var successState = function(){
+        return successArray;
+    };
+    var responsesState = function(){
+        return responsesArray;
     };
     
     return {
         init: init,
         validate: validate,
-        score: score
+        score: score,
+        pointmax: pointmax,
+        successState: successState,
+        responsesState: responsesState
     };
 
 };
