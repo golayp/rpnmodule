@@ -59,14 +59,10 @@ require([
                 console.log('ok');
                 nextstep();
             },
-            onsequenceend:function(states,score){
-                window.location.href='../';
-                //window.location.href='https://portail.rpn.ch/eleves/langues/Pages/l1-h10.aspx';
+            onsequenceend:function(states, score, returnPage){
+                    window.location.href = returnPage;
             },      
             navigationEnabled:true
         });
     });    
 });
-
-
-

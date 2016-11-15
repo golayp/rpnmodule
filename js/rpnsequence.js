@@ -48,6 +48,7 @@ var rpnsequence = (function() {
     var viewResultAfterTest;
     var clickEndBtn;
     var licence;
+    var returnPage;
 
     var labels = {
         en: {
@@ -135,7 +136,8 @@ var rpnsequence = (function() {
             finished:false,
             viewResultAfterTest:false,
             clickEndBtn:false,
-            licence:'<span><a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/2.0/fr/" rel="license"><img width="57" height="20" style="border-width: 0" alt="Creative Commons License" src="http://i.creativecommons.org/l/by-nc-sa/2.0/fr/88x31.png"></a></span>'
+            licence:'<span><a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/2.0/fr/" rel="license"><img width="57" height="20" style="border-width: 0" alt="Creative Commons License" src="http://i.creativecommons.org/l/by-nc-sa/2.0/fr/88x31.png"></a></span>',
+            returnPage:"../"
         });
         selectedLabels = labels[opts.language];
         states = [];
@@ -159,6 +161,7 @@ var rpnsequence = (function() {
         viewResultAfterTest=opts.viewResultAfterTest;
         clickEndBtn=opts.clickEndBtn;
         licence=opts.licence;
+        returnPage=opts.returnPage;
         
         $.getJSON(opts.sequrl, function(datas) {
             _.defaults(datas, {
@@ -548,6 +551,7 @@ var rpnsequence = (function() {
         if (exerciseMode){
             cc.html(_.isUndefined(datas.licence) ? _.isUndefined(sequencedatas.licence) ? licence : sequencedatas.licence : datas.licence);
         }
+        returnPage = _.isUndefined(sequencedatas.homepage) ? returnPage : sequencedatas.homepage;
     };
 
     var handleEndOfModule = function(state,nextmodtoshow) {
@@ -586,7 +590,7 @@ var rpnsequence = (function() {
                         limitOfSufficiency = _.isUndefined(sequencedatas.modules[previousmod].limitOfSufficiency) ? limitOfSufficiency : sequencedatas.modules[previousmod].limitOfSufficiency;
                         text = text.concat(score==pointmax ? selectedLabels.Congratulations : selectedLabels.Solution);
                         displayResult(text,function(){
-                            //sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score);
+                            //sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score, returnPage);
                         });
                         if(currentmod==sequencedatas.modules.length){
                             validationButton.html(selectedLabels.EndSequence+' <i class="glyphicon glyphicon-chevron-right"></i>').removeClass("btn-primary").addClass("btn-success").attr("id","rpnm_next");
@@ -631,7 +635,7 @@ var rpnsequence = (function() {
                             });
                         }
                         displayResult(text,function(){
-                            //sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score);
+                            //sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score, returnPage);
                         });
                         currentmod = previousmod;
                         testNumber++;
@@ -729,6 +733,8 @@ var rpnsequence = (function() {
 
     var handleEndOfSequence = function() {
         log('End of sequence');
+        returnPage = _.isUndefined(sequencedatas.homepage) ? returnPage : sequencedatas.homepage;
+        
         if(!testMode && !bypassModule){
             log(JSON.stringify({states:_.map(states,function(sta){return sta.state;})},null, '\t'));
         }
@@ -747,16 +753,16 @@ var rpnsequence = (function() {
             }
             if(testMode && !exerciseMode){
                 displayAlert('Score :' + score + ' pt' + (score>1?'s':''),function(){
-                    sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score);
+                    sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score, returnPage);
                 });
             }
             else if(exerciseMode){
                 displayResult(selectedLabels.Score + ' ' + score + ' point' + (score>1?'s':'') + " / " + pointmax + ' point' + (pointmax  >1?'s':''),function(){
-                    sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score);
+                    sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score, returnPage);
                 });
             }
             else{
-                sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score);
+                sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score, returnPage);
             }
           /*  if(history.back() === undefined){
                 console.log('close')
@@ -802,7 +808,7 @@ var rpnsequence = (function() {
             var text = "Tu as obtenu " + score + " point" + (score>1?"s":"") + " / " + pointmax + " point" + (pointmax  >1?"s":"") + "<br>" +selectedLabels.Solution+ ".";
             
             displayResult(text, function(){
-                //sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score);
+                //sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score, returnPage);
             });
             viewResultAfterTest = true;
         });
