@@ -128,10 +128,8 @@ var rpnmarkermodule = function() {
         return score;
     };
     var pointmax = function(sol){
-        var pointmax = 0;
-        _.each(sol, function(val, idx) {
-            pointmax += (val != "") ? 1 : 0;
-        });
+        var pointmax = sol.length;
+        
         return pointmax;
     };
     var successState = function(){
