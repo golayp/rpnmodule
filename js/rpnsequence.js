@@ -511,7 +511,7 @@ var rpnsequence = (function() {
     };
 
     var bindModuleSharedDatas = function(datas) {
-        if (!_.isUndefined(datas.Sources)){
+        if (!_.isUndefined(datas.sources)){
             $('#rpnm_sources_modal .modal-body').html(datas.sources);
             btnRecall.show();
         }else if(!_.isUndefined(sequencedatas.sources)){
@@ -764,13 +764,6 @@ var rpnsequence = (function() {
             else{
                 sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score, returnPage);
             }
-          /*  if(history.back() === undefined){
-                console.log('close')
-                window.close();
-            }else{
-                console.log('back')
-                  history.back();
-            }*/   
         });
     };
     
