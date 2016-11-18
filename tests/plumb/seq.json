@@ -50,27 +50,6 @@
                 "item 2 4",
                 "item 2 5"
             ]
-        },
-         {
-            "type":"plumb",
-            "title":"a plumb module with MathJax ",
-            "mathjax":true,
-            "sources":"http://docs.mathjax.org/en/latest/api/html.html",
-            "mathcontent":"$$x+1\\over (x-1)$$\\(x+1\\over x-1\\)",
-            "tofill":"<span>=<b></b></span>",
-             "left":[
-                "$$x+1\\over (x-1)$$",
-                "\\(x+1\\over x-1\\)",
-                "$$\\frac{\\partial}{\\partial t} \\frac{4}{5}$$",
-                "\\(-b\\pm\\sqrt{b^2-4ac}\\over 2a\\)"
-            ],
-			"right":[
-                "$$\\int x^2\\partial x$$",
-                "\\(\\Phi = \\frac{1+\\sqrt{5}}{2}\\)",
-                "$$f(n)=\\left\\{\\begin{array}{c1} n/2 & \\text{si$n$ est pair}\\\\ 3n+1 & \\text{sinon}\\end{array}\\right.$$",
-                "$$A \\cup B$$",
-                "\\((x+3)(x+4)\\)"
-            ]
         }
     ]
 }

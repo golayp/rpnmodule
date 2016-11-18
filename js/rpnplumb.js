@@ -37,41 +37,24 @@ var rpnplumbmodule = function() {
             state.left=datas.shuffle?_.shuffle(state.left):state.left;
             state.right=datas.shuffle?_.shuffle(state.right):state.right;
         }
-    /*    if (datas.mathjax==true){
-            withMathJax();
-        }else{
-            withoutMatJax();
-        } 
-    */
         buildUi();
     };
 
     var buildUi = function() {
         domelem.addClass('plumb');
+        
+        //build sentence with items to select
         var leftItems=$('<ul class="list-unstyled plumbsource"></ul>');
         var rightItems=$('<ul class="list-unstyled plumbtarget"></ul>');
-        if (datas.mathjax==true){
-            _.each(state.left, function(item, idx) {
-            var contentmat=MathJax.HTML.Element("span",{class:"form-inline"},[datas.left[item]]);
-            leftItems.append($('<div class="notif"></div>').append($('<li>').html(contentmat).data( 'idx', item )));
-            });
-            _.each(state.right, function(item, idx) {
-                var contentmat=MathJax.HTML.Element("span",{class:"form-inline"},[datas.right[item]]);
-                rightItems.append($('<li>').html(contentmat).data( 'idx', item ));
-            });
 
-            domelem.append([$('<div class="col-xs-5"></div>').append(leftItems),$('<div class="col-xs-2"></div>'),$('<div class="col-xs-5"></div>').append(rightItems)]);
-        }else{
-            _.each(state.left, function(item, idx) {
+        _.each(state.left, function(item, idx) {
             leftItems.append($('<div class="notif"></div>').append($('<li>').html(datas.left[item]).data( 'idx', item )));
-            });
-            _.each(state.right, function(item, idx) {
-                rightItems.append($('<li>').html(datas.right[item]).data( 'idx', item ));
-            });
+        });
+        _.each(state.right, function(item, idx) {
+            rightItems.append($('<li>').html(datas.right[item]).data( 'idx', item ));
+        });
 
-            domelem.append([$('<div class="col-xs-5"></div>').append(leftItems),$('<div class="col-xs-2"></div>'),$('<div class="col-xs-5"></div>').append(rightItems)]);
-        } 
- 
+        domelem.append([$('<div class="col-xs-5"></div>').append(leftItems),$('<div class="col-xs-2"></div>'),$('<div class="col-xs-5"></div>').append(rightItems)]);
         plumb=jsPlumb.getInstance();
         plumb.importDefaults({
             Connector : [ "Bezier", { curviness: 0 } ],
@@ -130,7 +113,7 @@ var rpnplumbmodule = function() {
                 }
             });
         });
-        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+        
         $(window).resize(function(){
             plumb.repaintEverything();
         });
