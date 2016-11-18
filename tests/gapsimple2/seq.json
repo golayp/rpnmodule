@@ -6,6 +6,7 @@
         {
             "type":"gapsimple",
             "title":"a gapsimple module typed natural'mille, nbofchar: 6,  milleseparator: true ",
+            "mathjax":true,
             "validation":{
                 "mode":"lock",
                 "type":"natural",
@@ -14,7 +15,8 @@
                 "width":"10em;",
                 "align":"text-center"
             },
-            "tofill":"<p>1300 + 7 = <b></b></p>"
+            "mathcontent":"$$x+1\\over (x-1)$$\\(x+1\\over x-1\\)",
+            "tofill":"<span>=<b></b></span>"
         },
         {
             "type":"gapsimple",

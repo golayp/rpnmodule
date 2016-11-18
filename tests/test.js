@@ -34,6 +34,8 @@ require([
     'rpndragdropsorting',
     'rpngapfull',
     'rpngapsimple',
+    'rpngapsimple2',
+    'rpngeogebra',
     'rpnmarker',
     //'rpnmap',
     'rpnmqc',
@@ -42,16 +44,14 @@ require([
     'rpndropdown2',
     'rpnsorting',
     'rpndoc',
-    'rpnmultiplelistssync',
-    'rpnanalyse',
-    'rpnconsigne'
+    'rpnmultiplelistssync'
     ], function($) {
     $(document).ready(function(){
         rpnsequence.init({
             debug:true,
             disablestateloading:true,
-            testMode:false,
-            warnonexit:true,
+            testMode:true,
+            warnonexit:false,
             //bypassModule:true,
             onmoduleend:function(states,nextstep){
                 console.log('ok');
@@ -59,9 +59,6 @@ require([
             },
             onsequenceend:function(states,score){
                 window.location.href='../';
-            },
-            mediapathformatter:function(url){
-                return '../../tests/medias/'+url;
             },
             navigationEnabled:true
         });

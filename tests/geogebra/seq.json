@@ -1,0 +1,30 @@
+{
+    "title":"modulesequence",
+    "context":"context",
+    "directive":"directive",
+    "modules":[
+        {
+            "type":"geogebra",
+            "title":"a module with an applet geogebra",
+            "context":"context",
+            "directive":"<p>tu dois faire passer la droite par A(0;0) et B(4;8)</p>",
+            "object":{
+                "type":"iframe",
+                "media":"../medias/deployggb.js",
+                "width":"848px",
+                "height":"636px",
+                "style":"border:0px;",
+                "buttons":[["Montre", "A"],["Montre", "B"], ["Cache", "A"], ["Cache", "B"], "reset"]
+            }
+        },
+        {
+            "type":"doc",
+            "title":"a doc module with a swf file",
+            "object":{
+                "type":"embed",
+                "url":"http://www.pragmasoft.be/carnets/geo/ecluse/Ecluse2015.swf",
+                "attribut":"fullscreen=yes"
+            }
+        }
+    ]
+}
