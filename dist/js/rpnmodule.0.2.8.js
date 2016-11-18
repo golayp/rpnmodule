@@ -16502,14 +16502,21 @@ var rpnblackboxmodule = function() {
         });
         return score;
     };
+    var pointmax = function(sol){
+        var pointmax = _.flatten(_.toArray(sol)).length;
+        
+        return pointmax;
+    };
     
     return {
         init: init,
-        validate:validate,
-        score:score
+        validate: validate,
+        score: score,
+        pointmax: pointmax
     };
 
 };
+
 //cardmaze
 var rpncardmazemodule = function() {
 
@@ -16640,13 +16647,20 @@ var rpncardmazemodule = function() {
         })
         return score;
     };
+    var pointmax = function(sol){
+        var pointmax = sol.length;
+        
+        return pointmax;
+    };
     
     return {
         init: init,
         validate: validate,
-        score:score
+        score: score,
+        pointmax: pointmax
     };
 };
+
 //doc
 var rpndocmodule = function() {
 
@@ -16721,6 +16735,8 @@ var rpndragdropsortingmodule = function() {
     var singledd;
     var itemSortedState;
     var itemToSortArray;
+    var successArray;
+    var responsesArray;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -16858,19 +16874,20 @@ var rpndragdropsortingmodule = function() {
     };
     
     var validate = function(){
-        var itemSorted = new Array();
+        responsesArray = new Array();
+        var i = 0;
         _.each($('.droppable',domelem), function(elem, idx) {
-            var txts = [];
-            $.each($(elem).find('li'), function(idx, txt) {
-                txts.push($(txt).html());
-                itemSorted.push($(txt).html());
+            var list = [];
+            $.each($(elem).find('li'), function(id, txt) {
+                list.push($(txt).html());
+                responsesArray[i] = txt;
+                i++;
             });
-            state[$(elem).find('span').html()] = txts;
+            state[$(elem).find('span').html()] = list;
         });
         if (dragfromtext){
-            state.todrag = _.difference(itemToSortArray, _.uniq(itemSorted));
+            state.todrag = _.difference(itemToSortArray, _.uniq(responsesArray));
         }
-        console.log(state)
         return state;
     };
     
@@ -16909,29 +16926,66 @@ var rpndragdropsortingmodule = function() {
     
     var score = function(sols) {
         var score = 0;
+        successArray = new Array();
+        var solution = "x";
+        var i = 0;
+        
         _.map(sols, function(sol, drop) {
             score += _.intersection(state[drop], sol).length;
-            if (!singledd && dragfromtext){
-                score -= _.difference(state[drop], sol).length;
-            }
         });
-        score = score >= 0 ? score : 0;
+        
+        _.each($('.droppable',domelem), function(elem, idx) {
+            var list = [];
+            $.each($(elem).find('li'), function(id, txt) {
+                list.push($(txt).html());
+                var drop = $(elem).find('span').html();
+                if (_.contains(sols[drop], $(txt).html())){
+                    solution = drop;
+                    successArray[i] = ["ok",solution];
+                }else{
+                    solution = _.map(sols, function(sol, item){
+                        if(_.contains(sol, $(txt).html())){
+                            return item;
+                        }
+                    });
+                    successArray[i] = [drop,_.compact(solution)];
+                }
+                i++;
+            });
+            state[$(elem).find('span').html()] = list;
+        });
         return score;
+    };
+    var pointmax = function(sol){
+        var pointmax = _.flatten(_.toArray(sol)).length;
+        
+        return pointmax;
+    };
+    var successState = function(){
+        return successArray;
+    };
+    var responsesState = function(){
+        return responsesArray;
     };
     
     return {
         init: init,
         validate: validate,
-        score: score
+        score: score,
+        pointmax: pointmax,
+        successState: successState,
+        responsesState: responsesState
     };
 };
+
 //dropdown
 var rpndropdownmodule = function() {
 
     var datas;
     var domelem;
     var state;
-    
+    var successArray;
+    var responsesArray;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -16984,37 +17038,69 @@ var rpndropdownmodule = function() {
     };
     
     var validate = function(){
+        responsesArray = new Array();
+        _.each($('select', domelem), function(elem, idx){
+            responsesArray[idx] = elem;
+        });
         state=_.map($('select',domelem),function(ele,idx){return $(ele).val()});
         return state;
     };
     
     var score = function(sol){
         var score=0;
+        successArray = new Array();
+        var solution;
+        
         _.each(sol,function(s,idx){
+            var scoreIni = score;
+            
             if(s.alternative){
                 score += (_.contains(s.alternative,state[idx] ) ? 1 : 0);
+                solution = s.alternative[0];
             }else{
                 score += state[idx] == s ? 1 : 0;
+                solution = s;
+            }
+            successArray[idx] = new Array();
+            if (score > scoreIni || (s == "" && state[idx] == s)){
+                successArray[idx] = ["ok",solution];
+            }else{
+                successArray[idx] = [state[idx],solution];
             }
         });
         return score;
     };
-    
+    var pointmax = function(sol){
+        var pointmax = sol.length;
+        
+        return pointmax;
+    };
+    var successState = function(){
+        return successArray;
+    };
+    var responsesState = function(){
+        return responsesArray;
+    };
 
     return {
         init: init,
         validate: validate,
-        score:score
+        score: score,
+        pointmax: pointmax,
+        successState: successState,
+        responsesState: responsesState
     };
 
 };
-//dropdown
+
+//dropdown2
 var rpndropdown2module = function() {
 
     var datas;
     var domelem;
     var state;
-    
+    var successArray;
+    var responsesArray;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -17054,30 +17140,61 @@ var rpndropdown2module = function() {
     };
     
     var validate = function(){
+        responsesArray = new Array();
+        _.each($('select', domelem), function(elem, idx){
+            responsesArray[idx] = elem;
+        });
+        
         state=_.map($('select',domelem),function(ele,idx){return $(ele).val()});
         return state;
     };
     
     var score = function(sol){
         var score=0;
+        successArray = new Array();
+        var solution;
+        
         _.each(sol,function(s,idx){
+            var scoreIni = score;
             if(s.alternative){
                 score += (_.contains(s.alternative,state[idx] ) ? 1 : 0);
+                solution = s.alternative[0];
             }else{
                 score += state[idx] == s ? 1 : 0;
+                solution = s;
+            }
+            successArray[idx] = new Array();
+            if (score > scoreIni || (s == "" && state[idx] == s)){
+                successArray[idx] = ["ok",solution];
+            }else{
+                successArray[idx] = [state[idx],solution];
             }
         });
         return score;
     };
-    
+    var pointmax = function(sol){
+        var pointmax = sol.length;
+        
+        return pointmax;
+    };
+    var successState = function(){
+        return successArray;
+    };
+    var responsesState = function(){
+        return responsesArray;
+    };
 
     return {
         init: init,
         validate: validate,
-        score:score
+        score: score,
+        pointmax: pointmax,
+        successState: successState,
+        responsesState: responsesState
     };
 
 };
+
 //gapfull
 var rpngapfullmodule = function() {
 
@@ -17130,14 +17247,21 @@ var rpngapfullmodule = function() {
         //Try to trim and do automatic corrections here.
         return state == sol ? 1 : 0;
     };
+    var pointmax = function(sol){
+        var pointmax = 1;
+
+        return pointmax;
+    };
     
     return {
         init: init,
         validate: validate,
-        score:score
+        score: score,
+        pointmax: pointmax
     };
 
 };
+
 //gapsimple
 var rpngapsimplemodule = function() {
 
@@ -17151,6 +17275,8 @@ var rpngapsimplemodule = function() {
     var dragimage;
     var singledd;
     var answerArray;
+    var successArray;
+    var responsesArray;
 
     var init = function(_datas,_state, _domelem) {
         _.defaults(_datas, {
@@ -17324,6 +17450,7 @@ var rpngapsimplemodule = function() {
     
     
     var validate = function(){
+        responsesArray = new Array();
         if(dragdrop || dragfromtext){
             _.each($('.gapsimpleddresponse',domelem),function(elem,idx){
                 if(dragimage){
@@ -17333,6 +17460,7 @@ var rpngapsimplemodule = function() {
                 }else{
                     state[idx] = $('.draggable',$(elem)).html();
                 }
+                responsesArray[idx] = elem;
             });
         }else{
             $.each($('.gapsimple',domelem), function(idx, gap) {
@@ -17341,6 +17469,7 @@ var rpngapsimplemodule = function() {
                 }else{
                    state[idx] = $(gap).val().trim(); 
                 }
+                responsesArray[idx] = gap;
             });
         }
         return state;
@@ -17348,31 +17477,53 @@ var rpngapsimplemodule = function() {
     
    var score = function(sol) {
         var score = 0;
+        successArray = new Array();
+        var solution;
+       
         _.each(sol, function(val, idx) {
+            var scoreIni = score;
+            
             if(val.alternative){
                 score += (_.contains(val.alternative,state[idx] ) ? 1 : 0);
-                /*
-                var alternativelength=val.alternative.length;
-                for (var al=0;al<alternativelength;al++){
-                   if(val.alternative[al]==state[idx]){
-                        score ++;
-                    }
+                solution = val.alternative[0];
+            }else if(sol[idx].indexOf('<script>')>-1){
+                var myval=sol[idx].substring(8);
+                myval=myval.substring(0,myval.length-9);
+                if (eval(myval)==state[idx]){
+                    score++;
                 }
-                */
-           
             }else{
-                score += (val != "" && state[idx] == val) ? 1 : 0;
-                score -= (val == "" && state[idx] != val) ? 1 : 0;
+                score += (state[idx] == val) ? 1 : 0;
+                solution = val;
+            }
+            successArray[idx] = new Array();
+            if (score > scoreIni || state[idx] == val){
+                successArray[idx] = ["ok",solution];
+            }else{
+                successArray[idx] = [state[idx],solution];
             }
         });
-        score = score >= 0 ? score : 0;
         return score;
+    };
+    var pointmax = function(sol){
+        var pointmax = sol.length;
+        
+        return pointmax;
+    };
+    var successState = function(){
+        return successArray;
+    };
+    var responsesState = function(){
+        return responsesArray;
     };
     
     return {
         init: init,
         validate: validate,
-        score: score
+        score: score,
+        pointmax: pointmax,
+        successState: successState,
+        responsesState: responsesState
     };
 
 };
@@ -17383,6 +17534,8 @@ var rpnmarkermodule = function() {
     var datas;
     var domelem;
     var state;
+    var successArray;
+    var responsesArray;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -17450,20 +17603,20 @@ var rpnmarkermodule = function() {
             if(!_.isEmpty(state.responses[idx])){
                 t.css('background-color',_.findWhere(state.markers,{label:state.responses[idx]}).color);
                 if(datas.displayTooltip){
-                    t.attr('data-original-title', state.responses[idx])
+                    t.attr('data-html', true).attr('data-original-title', state.responses[idx])
                         .tooltip('fixTitle');
                 }
             }
-            if(!datas.hidden){
+            if(!datas.hidden && rpnsequence.resultMode){
                 t.css('cursor', 'pointer');
-            }else{
+            }else if (!rpnsequence.resultMode){
                 t.css('font-weight','normal');
                 t.css('background-color','rgba(255, 255, 255, 0)');
             }
             t.click(function() {
                 t.css('background-color',state.selectedMarker.color);
                 if(datas.displayTooltip && state.selectedMarker.color!=''){
-                    t.attr('data-original-title', state.selectedMarker.label)
+                    t.attr('data-html', true).attr('data-original-title', state.selectedMarker.label)
                         .tooltip('fixTitle')
                         .tooltip('show');
                 }else{
@@ -17479,24 +17632,50 @@ var rpnmarkermodule = function() {
     };
     
     var validate = function(){
+        responsesArray = new Array();
+        responsesArray = _.map($('b', domelem), function(elem){
+            return elem;
+        });
         return state;
     };
     
     var score =  function(sol) {
         var score = 0;
+        successArray = new Array();
+        var solution;
+        
         _.each(sol, function(val, idx) {
-            score += (val != "" && state.responses[idx] == val) ? 1 : 0;
-            score -= (val == "" && state.responses[idx] != val) ? 1 : 0;
+            var scoreIni = score;
+            score += (state.responses[idx] == val) ? 1 : 0;
+            solution = val;
+            successArray[idx] = new Array();
+            if (score > scoreIni || state.responses[idx] == val){
+                successArray[idx] = ["ok",solution];
+            }else{
+                successArray[idx] = [state.responses[idx],solution];
+            }
         });
-        score = score >= 0 ? score : 0;
         return score;
+    };
+    var pointmax = function(sol){
+        var pointmax = sol.length;
+        
+        return pointmax;
+    };
+    var successState = function(){
+        return successArray;
+    };
+    var responsesState = function(){
+        return responsesArray;
     };
     
     return {
         init: init,
         validate: validate,
-        score: score
-
+        score: score,
+        pointmax: pointmax,
+        successState: successState,
+        responsesState: responsesState
     };
 };
 
@@ -17506,6 +17685,8 @@ var rpnmqcmodule = function() {
     var datas;
     var domelem;
     var state;
+    var successArray;
+    var responsesArray;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -17572,24 +17753,58 @@ var rpnmqcmodule = function() {
     };
     
     var validate = function(){
+        responsesArray = new Array();
+        _.each($('.btn-group, .btn-group-vertical', domelem), function(elem, idx){
+            responsesArray[idx] = elem;
+        });
         return state;
     };
     
     var score= function(sol) {
         var score = 0;
+        successArray = new Array();
         _.each(sol, function(val, idx) {
+            var scoreIni = score;
+            var solution = "";
+            var nbSol = _.compact(val).length-1;
+            if (_.isArray(val)){
+                solution = _.compact(val).join(' / ')
+            }else{
+                solution = val;
+            }
             score += _.isEqual(state.responses[idx],val) ? 1 : 0;
+            successArray[idx] = new Array();
+            if (score > scoreIni){
+                successArray[idx] = ["ok",solution];
+            }else{
+                successArray[idx] = [state.responses[idx],solution];
+            }
         });
         return score;
     };
+    var pointmax = function(sol){
+        var pointmax = sol.length;
+
+        return pointmax;
+    };
+     var successState = function(){
+        return successArray;
+    };
+    var responsesState = function(){
+        return responsesArray;
+    }
     
     return {
         init: init,
         validate: validate,
-        score: score
+        score: score,
+        pointmax: pointmax,
+        successState: successState,
+        responsesState: responsesState
     };
 
 };
+
 //multiplelistssync
 var rpnmultiplelistssyncmodule = function() {
 
@@ -17597,6 +17812,8 @@ var rpnmultiplelistssyncmodule = function() {
     var domelem;
     var state;
     var typeList;
+    var successArray;
+    var responsesArray;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -17663,6 +17880,12 @@ var rpnmultiplelistssyncmodule = function() {
     };
     
     var validate = function(){
+        responsesArray = new Array();
+        var colNum = $('ul.list-unstyled', domelem).length;
+        _.each($('ul[id="sortable-'+($('ul.list-unstyled', domelem).length-1)+'"] li:not(.title)', domelem),function(elem,idx){
+            responsesArray[idx] = elem;
+        });
+       
         var answerArray = new Array();
         _.each($('ul',domelem), function(ul,idx){
             answerArray.push(_.map($('ul[id="sortable-'+idx+'"] li:not(.title)',domelem),function(ele,id){
@@ -17676,21 +17899,51 @@ var rpnmultiplelistssyncmodule = function() {
     
    var score = function(sols){
         var score = 0;
-        _.map(sols.syncitems, function(sol) {
-            _.each(state.responses, function(resp, idx){
+        successArray = new Array();
+        var solution;
+       
+        _.each(state.responses, function(resp, idx) {
+            var scoreIni = score;
+            _.each(sols.syncitems, function(sol){
+                if(_.isEqual(resp[0], sol[0])){
+                    solution = sol.slice(1).toString();
+                }
+                successArray[idx] = new Array();
+                
                 score += _.isEqual(resp, sol) ? 1 : 0;
+                if (scoreIni==score){
+                    successArray[idx] = [resp.toString(), solution];
+                }else{
+                    successArray[idx] = ['ok', solution];
+                }
             });
         });
+        
         return score;
+    };
+    var pointmax = function(sol){
+        var pointmax = _.flatten(_.toArray(sol), true).length;
+       
+        return pointmax;
+    };
+    var successState = function(){
+        return successArray;
+    };
+    var responsesState = function(){
+        return responsesArray;
     };
     
     return {
         init: init,
         validate: validate,
-        score:score
+        score:score,
+        pointmax: pointmax,
+        successState: successState,
+        responsesState: responsesState
     };
 
 };
+
 /*global rpnsequence, jsPlumb, _*/
 //plumb
 var rpnplumbmodule = function() {
@@ -17699,7 +17952,8 @@ var rpnplumbmodule = function() {
     var domelem;
     var state;
     var plumb;
-    
+    var successArray;
+    var responsesArray;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -17738,12 +17992,14 @@ var rpnplumbmodule = function() {
         //build sentence with items to select
         var leftItems=$('<ul class="list-unstyled plumbsource"></ul>');
         var rightItems=$('<ul class="list-unstyled plumbtarget"></ul>');
+
         _.each(state.left, function(item, idx) {
-            leftItems.append($('<li>').html(datas.left[item]).data( 'idx', item ));
+            leftItems.append($('<div class="notif"></div>').append($('<li>').html(datas.left[item]).data( 'idx', item )));
         });
         _.each(state.right, function(item, idx) {
             rightItems.append($('<li>').html(datas.right[item]).data( 'idx', item ));
         });
+
         domelem.append([$('<div class="col-xs-5"></div>').append(leftItems),$('<div class="col-xs-2"></div>'),$('<div class="col-xs-5"></div>').append(rightItems)]);
         plumb=jsPlumb.getInstance();
         plumb.importDefaults({
@@ -17776,7 +18032,7 @@ var rpnplumbmodule = function() {
                 plumb.makeSource(li, {
                     maxConnections:1,
                     endpointStyle:{ fillStyle:rpnsequence.getColor(i)},
-                    connectorStyle:{ strokeStyle:rpnsequence.getColor(i), lineWidth:2 },
+                    connectorStyle:{ strokeStyle:rpnsequence.getColor(i), lineWidth:10},
                     anchor: "Right"
                 });
             });
@@ -17786,6 +18042,7 @@ var rpnplumbmodule = function() {
                     anchor:"Left"
                 });
             });
+            
             //try to remount sta given
             _.each(state.responses,function(target,source){
                 if(target !=null){
@@ -17808,18 +18065,54 @@ var rpnplumbmodule = function() {
         });
     };
     var validate = function(){
-        return state;
+        responsesArray = new Array();
+
+        _.each($('ul.list-unstyled.plumbsource div', domelem),function(elemL,idx){
+            responsesArray[idx] = elemL;
+        });
     };
     
    var score = function(sol){
         var score = 0;
+       successArray = new Array();
         _.each(sol,function(target,source){
-            if(state.responses[source]==target[1]){
-                score++;
-            }
+            var scoreIni = score;
+            var mylength=state.left.length;
+            solution = datas.right[target[1]];
+            
+                if(state.responses[source]==target[1]){
+                     score++;
+                    
+                    for(i=0;i<mylength;i++){
+                        if(source==state.left[i]){
+                            successArray[i] = new Array();
+                            successArray[i] = ["ok",solution];
+                        }
+                    }
+                }else{
+
+                    for(i=0;i<mylength;i++){
+                        if(source==state.left[i]){
+                            successArray[i] = new Array();
+                            successArray[i] = ["faux",solution];
+                        }
+                    }
+                }
         });
         return score;
     };
+    var pointmax = function(sol){
+        var pointmax = sol.length;
+        
+        return pointmax;
+    };
+    var successState = function(){
+        return successArray;
+    };
+    var responsesState = function(){
+        return responsesArray;
+    };
+    
     var displayed = function(){
          plumb.repaintEverything();
     }
@@ -17827,10 +18120,14 @@ var rpnplumbmodule = function() {
         displayed:displayed,
         init: init,
         validate: validate,
-        score:score
+        score:score,
+        pointmax: pointmax,
+        successState: successState,
+        responsesState: responsesState
     };
 
 };
+
 /* global _*/
 /*!
  * rpnmodule 0.2.5 (https://github.com/golayp/rpnmodule)
@@ -17843,36 +18140,67 @@ var rpnsequence = (function() {
 
     var sequencedatas;
     var currentmod;
+    var previousmod;
     var source;
+    var cc;
     var solurl;
     var states;
+    var successState;
+    var responsesState;
     var warnexit;
     var sequenceendHandler;
     var moduleendHandler;
     var mediapathHandler;
     var readyHandler;
     var alertModal;
+    var resultModal;
     var domelem;
     var validationButton;
     var btnOrder;
     var btnRecall;
+    var btnSources;
     var bypassModule;
     var testMode;
+    var exerciseMode;
+    var watchResultMode;
+    var testAndResultMode;
+    var testNumber;
     var navigationEnabled;
     var debug;
     var loadstate;
     var selectedLabels;
     var moduleLocation;
     var modules;
+    var tooltipPlacement;
+    var respmodulearray=new Array();
+    var limitOfSufficiency;
+    var finished;
+    var viewResultAfterTest;
+    var clickEndBtn;
+    var licence;
+    var returnPage;
 
     var labels = {
         en: {
+            Sources:"Sources",
             Recall: "Recall",
             Order: "Order",
             Warning: "Warning",
+            Result: "Result",
+            Score: "You have got",
+            FirstTest: "First test : ",
+            SecondTest: "Second test : ",
+            ThirdTest: "Third test : ",
+            Correct: "There are one or more errors , corrects them.",
+            Congratulations: "Congratulations, it's correct.",
+            Error: "Roll over the answers to discover your mistakes.",
+            Solution: "Roll over the answers to discover solutions.",
+            True: "TRUE",
+            False: "FALSE",
             BeforeUnloadMsg: "Module running!",
             Wait: "Please wait...",
-            Validate: "Next",
+            Next: "Next",
+            Validate: "Validate",
             EndSequence:"Continue",
             Eraser: "Eraser",
             DragDropNotEmpty: "There are still some items to sort!",
@@ -17882,12 +18210,25 @@ var rpnsequence = (function() {
             Quit:"Quit"
         },
         fr: {
+            Sources:"sources",
             Recall: "Rappel",
             Order: "Consignes",
             Warning: "Attention",
+            Result: "Résultat",
+            Score: "Tu as obtenu",
+            FirstTest: "Premier essai : ",
+            SecondTest: "Deuxième essai : ",
+            ThirdTest: "Troisième essai : ",
+            Correct: "Il y a une ou plusieurs erreurs, corrige-les.",
+            Congratulations: "Félicitations, c'est juste.",
+            Error: "Survole les réponses pour découvrir tes erreurs.",
+            Solution: "Survole les réponses pour découvrir les solutions.",
+            True: "JUSTE",
+            False: "FAUX",
             BeforeUnloadMsg: "Exercice en cours!",
             Wait: "Veuillez patienter...",
-            Validate: "Suite",
+            Next: "Suite",
+            Validate: "Valider",
             EndSequence:"Continuer",
             Eraser: "Effaceur",
             DragDropNotEmpty: "Il y a encore des éléments à trier!",
@@ -17917,7 +18258,16 @@ var rpnsequence = (function() {
             navigationEnabled: false,
             quitDisabled:false,
             bypassModule:false,
-            testMode:false
+            testMode:false,
+            exerciseMode: false,
+            watchResultMode: false,
+            testAndResultMode:false,
+            limitOfSufficiency: 0.6,
+            finished:false,
+            viewResultAfterTest:false,
+            clickEndBtn:false,
+            licence:'<span><a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/2.0/fr/" rel="license"><img width="57" height="20" style="border-width: 0" alt="Creative Commons License" src="http://i.creativecommons.org/l/by-nc-sa/2.0/fr/88x31.png"></a></span>',
+            returnPage:"../"
         });
         selectedLabels = labels[opts.language];
         states = [];
@@ -17930,9 +18280,18 @@ var rpnsequence = (function() {
         sequenceendHandler = opts.onsequenceend;
         moduleendHandler = opts.onmoduleend;
         readyHandler = opts.onsequenceready;
+        limitOfSufficiency = opts.limitOfSufficiency;
         
         bypassModule=opts.bypassModule;
         testMode=opts.testMode;
+        exerciseMode=opts.exerciseMode;
+        watchResultMode=opts.watchResultMode;
+        testAndResultMode=opts.testAndResultMode;
+        finished=opts.finished;
+        viewResultAfterTest=opts.viewResultAfterTest;
+        clickEndBtn=opts.clickEndBtn;
+        licence=opts.licence;
+        returnPage=opts.returnPage;
         
         $.getJSON(opts.sequrl, function(datas) {
             _.defaults(datas, {
@@ -17945,7 +18304,7 @@ var rpnsequence = (function() {
                 elem["status"] = "init";
             });
             currentmod = 0;
-            navigationEnabled = opts.navigationEnabled && sequencedatas.modules.length > 1;
+            navigationEnabled = opts.navigationEnabled && sequencedatas.modules.length > 1 && !opts.exerciseMode;
             if(loadstate){
                 $.getJSON(opts.stateurl,function(savedStates){
                     states=_.map(sequencedatas.modules,function(mod,idx){return { state:savedStates.states[idx]};});
@@ -17969,7 +18328,9 @@ var rpnsequence = (function() {
         validationButton=$('<button class="btn btn-success" id="rpnm_validation"></button>');
         btnOrder=$('<button class="btn btn-default btn-sm" data-target="#rpnm_order_modal" data-toggle="modal"><span class="visible-xs visible-sm"><i class="glyphicon glyphicon-question-sign"></i></span><span class="visible-md visible-lg"><i class="glyphicon glyphicon-question-sign"></i> ' + selectedLabels.Order + '</span></button>');
         btnRecall=$('<button class="btn btn-default btn-sm" data-target="#rpnm_recall_modal" data-toggle="modal"><span class="visible-xs visible-sm"><i class="glyphicon glyphicon-bell"></i></span><span class="visible-md visible-lg"><i class="glyphicon glyphicon-bell"></i> ' + selectedLabels.Recall + '</span></button>');
-        source=$('<div class="col-md-12"></div>');
+        btnSources=$('<button class="srcbtn btn btn-default btn-sm" data-target="#rpnm_sources_modal" data-toggle="modal"><span class="visible-xs visible-sm"><i class="glyphicon glyphicon-book"></i></span><span class="visible-md visible-lg"><i class="glyphicon glyphicon-book"></i> ' + selectedLabels.Sources + '</span></button>');
+        //source=$('<div class="col-md-12"></div>');
+        cc=$('<div class="col-md-12" id="cc"></div>');
         var baseContainer=$('<div class="container"></div>');
         if(!_.isUndefined(sequencedatas.cssClass)){
             baseContainer.addClass(sequencedatas.cssClass);
@@ -17977,9 +18338,9 @@ var rpnsequence = (function() {
         domelem.append([
             baseContainer.append([
                 $('<div class="row sequence-header"></div>').append([
-                    $('<div class="col-md-5"><h1>'+sequencedatas.title+'</h1></div>'),
-                    $('<div class="col-xs-4"><nav id="rpnm_modulenav"><ul class="pagination pagination-sm"></div>'),
-                    $('<div class="col-md-3"></div>').append([
+                    $((exerciseMode ? '<div class="col-md-7">' : '<div class="col-md-5">') + '<h1>'+sequencedatas.title+'</h1></div>'),
+                    $(exerciseMode ? '<div class="col-md-3"><nav id="rpnm_modulestate"></div>' : '<div class="col-xs-4"><nav id="rpnm_modulenav"><ul class="pagination pagination-sm"></div>'),
+                    $((exerciseMode ? '<div class="col-md-1">' : '<div class="col-md-3">') + '</div>').append([
                         btnOrder,
                         btnRecall
                     ]),
@@ -17989,15 +18350,20 @@ var rpnsequence = (function() {
                     $('<div class="col-md-12" id="rpnm_toolbar"></div>').append(
                         validationButton
                     ),
-                    source
+                    btnSources,
+                    //source,
+                    cc
                 ])
             ])
         ]);
+        domelem.append($('<div id="rpnm_sources_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-footer"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-book"></i> ' + selectedLabels.Sources + '</h4></div><div class="modal-body"></div></div></div></div>'));
         domelem.append($('<div id="rpnm_recall_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-bell"></i> ' + selectedLabels.Recall + '</h4></div><div class="modal-body"></div></div></div></div>'));
         domelem.append($('<div id="rpnm_order_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-question-sign"></i> ' + selectedLabels.Order + '</h4></div><div class="modal-body"></div></div></div></div>'));
         domelem.append($('<div id="rpnm_alert_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-warning-sign"></i> ' + selectedLabels.Warning + '</h4></div><div class="modal-body"></div></div></div></div>'));
+        domelem.append($('<div id="rpnm_result_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"> ' + selectedLabels.Result + '</h4></div><div class="modal-body"></div></div></div></div>'));
         domelem.append($('<div id="rpnm_wait_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">' + selectedLabels.Wait + '</h4></div><div class="modal-body"><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% completed</span></div></div></div></div></div></div>'));
         alertModal = $('#rpnm_alert_modal');
+        resultModal = $('#rpnm_result_modal');
         if (!navigationEnabled) {
             $('#rpnm_modulenav').remove();
         }
@@ -18014,38 +18380,51 @@ var rpnsequence = (function() {
             }
             var divContext=$('<div id="rpnm_context"></div>');
             var divDirective=$('<div id="rpnm_directive"></div>');
+            var divPlayer=$('<div id="player">')
             var divContent=$('<div>');
             
-           
-            
-            
+        
             var rpnmInstance = $('<div id="rpnm_inst_' + idx + '" class="row rpnm_instance">');
                 
             if(modData.disposition=='bottom'){
                 divContent.addClass('col-md-12');
                 rpnmInstance.append([
                     divContent,
-                    $('<div class="col-md-12"></div>').append([modTitle,divContext,divDirective])
+                    $('<div class="col-md-12"></div>').append([modTitle,divContext,divDirective,divPlayer])
                 ]);
             }else if(modData.disposition=='left'){
                 divContent.addClass('col-md-6');
                 rpnmInstance.append([
-                    $('<div class="col-md-6"></div>').append([modTitle,divContext,divDirective]),
+                    $('<div class="col-md-6"></div>').append([modTitle,divContext,divDirective,divPlayer]),
                     divContent
                 ]);
             }else if(modData.disposition=='right'){
                 divContent.addClass('col-md-6');
                 rpnmInstance.append([
                     divContent,
-                    $('<div class="col-md-6"></div>').append([modTitle,divContext,divDirective])
+                    $('<div class="col-md-6"></div>').append([modTitle,divContext,divDirective,divPlayer])
                 ]);
             }else{
                 //default top
                 divContent.addClass('col-md-12');
                 rpnmInstance.append([
-                    $('<div class="col-md-12"></div>').append([modTitle,divContext,divDirective]),
+                    $('<div class="col-md-12"></div>').append([modTitle,divContext,divDirective,divPlayer]),
                     divContent
                 ]);
+            }
+            
+            var player = _.isUndefined(modData.player)? (_.isUndefined(sequencedatas.player) || idx!=0) ? '' : sequencedatas.player : modData.player;
+            
+            if(player!=''){
+                var controlsVal = _.isUndefined(player.controls) ? 'controls' : player.controls;
+                var audioTag = $("<audio " + (controlsVal=='controls' ? 'controls' : '') + "><source src='/medias/" + player.source + ".ogg' type='audio/ogg'><source src='/medias/" + player.source + ".mp3' type='audio/mpeg'></audio>");
+                var playBtn = controlsVal=='play' ? $("<button class='play control'><span class='glyphicon glyphicon-play-circle' aria-hidden='true'></span></button>").click(function(){
+                    $('audio')[0].play();
+                    $(this).attr('disabled', 'disabled').addClass('clicked')
+                }) : '';
+                divPlayer.show().append([audioTag, playBtn]);
+            }else{
+                divPlayer.hide();
             }
             
             _.isUndefined(modData.context)? _.isUndefined(sequencedatas.context) ? divContext.hide():divContext.show().html(sequencedatas.context) :divContext.show().html(modData.context);
@@ -18113,6 +18492,8 @@ var rpnsequence = (function() {
                 modules[idx].init(modData,states[idx].state, divContent);
             }
             
+            tooltipPlacement = (modData.type=='dropdown' || modData.type=='dropdown2' || modData.type=='gapsimple' || modData.type=='marker') ? 'top' : 'right';
+            
             moduleLocation.append(rpnmInstance);
             //load plumb module after dom append in order to make connector available for paint
             if (modData.type == 'plumb') {
@@ -18128,6 +18509,7 @@ var rpnsequence = (function() {
             if(bypassModule && idx==sequencedatas.modules.length-1){
                 handleEndOfSequence();
             }
+            $('#rpnm_modulestate').append($('<h4><span class="label label-default">' + (idx + 1) + '</span></h4>'));
         });
         if (warnexit) {
             $(window).bind('beforeunload', function(e) {
@@ -18147,10 +18529,17 @@ var rpnsequence = (function() {
     var bindUiEvents = function() {
         //Validation
         validationButton.click(function(){
-            handleEndOfModule(modules[currentmod].validate(),currentmod+1);
+            clickEndBtn = true;
+            if (this.id=="rpnm_validation"){
+                handleEndOfModule(modules[currentmod].validate(),currentmod+1);
+            }else if(currentmod>sequencedatas.modules.length-1){
+                handleEndOfSequence();
+            }else{
+                displayCurrentModule();
+            }
         });
         //Navigation
-        if (navigationEnabled && sequencedatas.modules.length > 1) {
+        if (navigationEnabled && sequencedatas.modules.length > 1 && !exerciseMode) {
             _.each($('#rpnm_modulenav ul li'),function(nav,idx){
                 $(nav).click(function() {
                     modules[currentmod].validate();
@@ -18177,12 +18566,74 @@ var rpnsequence = (function() {
         if (navigationEnabled) {
             $('#rpnm_modulenav ul li').removeClass('active');
             $($('#rpnm_modulenav ul li')[currentmod]).addClass('active');
+            validationButton.attr("id","rpnm_validation");
         }
-        if(currentmod==sequencedatas.modules.length-1){
+        if(exerciseMode) {
+            $($('#rpnm_modulestate h4 span')[currentmod]).removeClass('label-default').addClass('label-primary');
+            testNumber = 1;
+        }
+        
+        if(currentmod==sequencedatas.modules.length-1 && !exerciseMode){
             validationButton.html(selectedLabels.EndSequence+' <i class="glyphicon glyphicon glyphicon-ok-circle"></i>').removeClass("btn-primary").addClass("btn-success");
+        }else if(exerciseMode){
+            validationButton.html(selectedLabels.Validate+' <i class="glyphicon glyphicon-ok-circle"></i>').removeClass("btn-success").addClass("btn-primary").attr("id","rpnm_validation");
         }else{
-            validationButton.html(selectedLabels.Validate+' <i class="glyphicon glyphicon-chevron-right"></i>').removeClass("btn-success").addClass("btn-primary");
+            validationButton.html(selectedLabels.Next+' <i class="glyphicon glyphicon-chevron-right"></i>').removeClass("btn-success").addClass("btn-primary");
         }
+        
+        if(watchResultMode){
+            $.getJSON(solurl, function(ssol) {
+                var score = 0;
+                var pointmax = 0;
+
+                score = modules[currentmod].score(ssol.solutions[currentmod]);
+                pointmax +=modules[currentmod].pointmax(ssol.solutions[currentmod]);
+                modules[currentmod].validate();
+
+                JSON.stringify({states:_.map(states,function(sta, idx){respmodulearray[idx]=(sta.state);return sta.state;})},null, '\t');
+                    
+                successState = modules[currentmod].successState();
+                responsesState = modules[currentmod].responsesState();
+                
+                var text = score==pointmax ? selectedLabels.Congratulations : selectedLabels.Solution;
+                
+                //validationButton.html(selectedLabels.Next+' <i class="glyphicon glyphicon-chevron-right"></i>').removeClass("btn-success").addClass("btn-primary").attr("id","rpnm_next");
+
+                $($('#rpnm_modulestate h4 span')[previousmod]).removeClass('label-default').addClass('label-success');
+                
+                _.each(responsesState, function(val, idx) {
+                    var checkText = (successState[idx][0] == 'ok') ? '' : ("<div style=\"color: green;\">" + successState[idx][1] + "</div>");
+                    $(val).attr('data-html', true).attr('data-placement', tooltipPlacement).attr('data-original-title', checkText).tooltip().on('mouseenter', function(){
+                    $(this).tooltip('show').on('mouseleave', function(){
+                        $(this).tooltip('hide');
+                    });
+                });
+                    successState[idx][0] == 'ok' ? $(val).removeClass("error").addClass("exact") : $(val).removeClass("exact").addClass("error");
+                    $(val).off("mousedown", handleErrorExact);
+                });
+                answersActionOff(currentmod);
+            });
+        }
+        if(viewResultAfterTest){
+            $.getJSON(solurl, function(ssol) {
+                modules[currentmod].validate();
+                successState = modules[currentmod].successState();
+                responsesState = modules[currentmod].responsesState();
+                
+                _.each(responsesState, function(val, idx) {
+                    var checkText = (successState[idx][0] == 'ok') ? '' : ("<div style=\"color: green;\">" + successState[idx][1] + "</div>");
+                    $(val).attr('data-html', true).attr('data-placement', tooltipPlacement).attr('data-original-title', checkText).tooltip().on('mouseenter', function(){
+                    $(this).tooltip('show').on('mouseleave', function(){
+                        $(this).tooltip('hide');
+                    });
+                });
+                    successState[idx][0] == 'ok' ? $(val).removeClass("error").addClass("exact") : $(val).removeClass("exact").addClass("error");
+                    $(val).off("mousedown", handleErrorExact);
+                });
+                answersActionOff(currentmod);
+            });
+        }
+        
         moduleDiv.show();
         if(!_.isUndefined( modules[currentmod].displayed)){
             modules[currentmod].displayed();
@@ -18190,6 +18641,13 @@ var rpnsequence = (function() {
     };
 
     var bindModuleSharedDatas = function(datas) {
+        if (!_.isUndefined(datas.sources)){
+            $('#rpnm_sources_modal .modal-body').html(datas.sources);
+            btnRecall.show();
+        }else if(!_.isUndefined(sequencedatas.sources)){
+            $('#rpnm_sources_modal .modal-body').html(sequencedatas.sources);
+            btnRecall.show();
+        }
         if (!_.isUndefined(datas.recall)){
             $('#rpnm_recall_modal .modal-body').html(datas.recall);
             btnRecall.show();
@@ -18204,7 +18662,11 @@ var rpnsequence = (function() {
             $('#rpnm_order_modal .modal-body').html(sequencedatas.order);
             btnOrder.show();
         }
-        
+        if(_.isUndefined(datas.sources)&&_.isUndefined(sequencedatas.sources)){
+            btnSources.hide();  
+        }else{
+            handleMediaPath($('#rpnm_sources_modal .modal-body'));
+        }
         if(_.isUndefined(datas.recall)&&_.isUndefined(sequencedatas.recall)){
             btnRecall.hide();  
         }else{
@@ -18215,7 +18677,11 @@ var rpnsequence = (function() {
         }else{
             handleMediaPath($('#rpnm_order_modal .modal-body'));
         }
-        source.html(_.isUndefined(datas.sources) ? _.isUndefined(sequencedatas.sources)?"":sequencedatas.sources :  datas.sources);
+        //source.html(_.isUndefined(datas.sources) ? _.isUndefined(sequencedatas.sources)?"":sequencedatas.sources :  datas.sources);
+        if (exerciseMode){
+            cc.html(_.isUndefined(datas.licence) ? _.isUndefined(sequencedatas.licence) ? licence : sequencedatas.licence : datas.licence);
+        }
+        returnPage = _.isUndefined(sequencedatas.homepage) ? returnPage : sequencedatas.homepage;
     };
 
     var handleEndOfModule = function(state,nextmodtoshow) {
@@ -18226,48 +18692,265 @@ var rpnsequence = (function() {
         
         moduleendHandler({states:_.map(states,function(sta){return sta.state;})},function(){
             //Save status of module
+            finished = currentmod==sequencedatas.modules.length-1;
             sequencedatas.modules[currentmod].status = 'ended';
-            currentmod=nextmodtoshow;
-            if(currentmod>sequencedatas.modules.length-1){
+            previousmod = currentmod;
+            currentmod = nextmodtoshow;
+            if (exerciseMode){
+                $.getJSON(solurl, function(ssol) {
+                    var score = 0;
+                    var score = 0;
+                    var pointmax = 0;
+
+                    score =modules[previousmod].score(ssol.solutions[previousmod]);
+                    pointmax +=modules[previousmod].pointmax(ssol.solutions[previousmod]);
+
+                    JSON.stringify({states:_.map(states,function(sta, idx){respmodulearray[idx]=(sta.state);return sta.state;})},null, '\t');
+                    
+                    log('SCORE: '+ score + ' / ' + pointmax);
+                    if (warnexit) {
+                        $(window).unbind('beforeunload');
+                    }
+                    
+                    text = testNumber==1 ? selectedLabels.FirstTest + '<br>' : (testNumber==2 ? selectedLabels.SecondTest + '<br>' : selectedLabels.ThirdTest + '<br>' + selectedLabels.Score + ' ' + score + ' point' + (score>1?'s':'') + " / " + pointmax + ' point' + (pointmax>1?'s.<br>':'.<br>'));
+                    successState = modules[previousmod].successState();
+                    responsesState = modules[previousmod].responsesState();
+                    
+                    if((score==pointmax && pointmax!=0) || testNumber>=3){
+                        limitOfSufficiency = _.isUndefined(sequencedatas.modules[previousmod].limitOfSufficiency) ? limitOfSufficiency : sequencedatas.modules[previousmod].limitOfSufficiency;
+                        text = text.concat(score==pointmax ? selectedLabels.Congratulations : selectedLabels.Solution);
+                        displayResult(text,function(){
+                            //sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score, returnPage);
+                        });
+                        if(currentmod==sequencedatas.modules.length){
+                            validationButton.html(selectedLabels.EndSequence+' <i class="glyphicon glyphicon-chevron-right"></i>').removeClass("btn-primary").addClass("btn-success").attr("id","rpnm_next");
+                        }else{
+                            validationButton.html(selectedLabels.Next+' <i class="glyphicon glyphicon-chevron-right"></i>').removeClass("btn-success").addClass("btn-primary").attr("id","rpnm_next");
+                        }
+                         $($('#rpnm_modulestate h4 span')[previousmod]).removeClass('label-default').addClass('label-success');
+                        if (testNumber>=3){
+                            _.each(responsesState, function(val, idx) {
+                                var checkText = (successState[idx][0] == 'ok') ? '' : ("<div style=\"color: green;\">" + successState[idx][1] + "</div>");
+                                $(val).attr('data-html', true).attr('data-placement', tooltipPlacement).attr('data-original-title', checkText).tooltip().on('mouseenter', function(){
+                                    $(this).tooltip('show').on('mouseleave', function(){
+                                        $(this).tooltip('hide');
+                                    });
+                                });
+                                successState[idx][0] == 'ok' ? $(val).removeClass("error").addClass("exact") : $(val).removeClass("exact").addClass("error");
+                                $(val).off("mousedown", handleErrorExact);
+                            });
+                            answersActionOff(previousmod);
+                            
+                            if (score/pointmax < limitOfSufficiency){
+                                $($('#rpnm_modulestate h4 span')[previousmod]).removeClass('label-default').addClass('label-danger');
+                            }else if(score==pointmax){
+                                $($('#rpnm_modulestate h4 span')[previousmod]).removeClass('label-default').addClass('label-success');
+                            }else{
+                                $($('#rpnm_modulestate h4 span')[previousmod]).removeClass('label-default').addClass('label-warning');
+                            }
+                        }
+                        testNumber=1;
+                    }else{
+                        var text;
+                        if (testNumber==1){
+                            text = text.concat(selectedLabels.Correct);
+                        }else{
+                            text = text.concat(selectedLabels.Score + ' ' + score + ' point' + (score>1?'s':'') + " / " + pointmax + ' point' + (pointmax>1?'s.':'.'));
+                            
+                            _.each(responsesState, function(val, idx) {
+                                /*var checkText = (successState[idx][0] == 'ok') ? ("<div style=\"color: green;\"><span class=\"glyphicon glyphicon-ok-sign\" ></span></div>") : ("<div style=\"color: red;\"><span class=\"glyphicon glyphicon-remove-sign\"></span></div>");
+                                $(val).attr('data-html', true).attr('data-placement', tooltipPlacement).attr('data-original-title', checkText).tooltip();*/
+                                successState[idx][0] == 'ok' ? $(val).removeClass("error").addClass("exact") : $(val).removeClass("exact").addClass("error");
+                                $(val).on("mousedown", handleErrorExact);
+                            });
+                        }
+                        displayResult(text,function(){
+                            //sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score, returnPage);
+                        });
+                        currentmod = previousmod;
+                        testNumber++;
+                    }
+                });
+            }else if (testAndResultMode && finished && !viewResultAfterTest && clickEndBtn){
+                handleGoToResult();
+            }else if(currentmod>sequencedatas.modules.length-1){
                 handleEndOfSequence();
             }else{
                 displayCurrentModule();
-            }        
+            }       
         });
     };
+    
+    var handleErrorExact = function(){
+        $(this).removeClass("error").removeClass("exact");
+    };
+    
+    var answersActionOff = function(modNum){
+        var domInst = '#rpnm_inst_'+modNum;
+        
+        //Disable sortable
+        _.each($('.ui-sortable', domInst), function(sort, id){
+            $(sort).sortable({
+              disabled: true
+            });
+        });
+        //Disable input text
+        _.each($('input[type="text"]', domInst), function(inp, id){
+            $(inp).attr('readonly', true);
+        });
+        //Disable mqc
+        if (sequencedatas.modules[modNum].type == 'mqc'){
+            _.each($('label', domInst), function(lab, id){
+                $(lab).attr('disabled', 'disabled');
+            });
+        };
+        //Disable marker
+        if (sequencedatas.modules[modNum].type == 'marker'){
+            _.each($('b', domInst), function(mar, id){
+                $(mar).unbind();
+                var checkText = (successState[id][0] == 'ok') ? '' : ("<div style=\"color: green;\">" + successState[id][1] + "</div>");
+                $(mar).attr('data-html', true).attr('data-placement', tooltipPlacement).attr('data-original-title', checkText).tooltip().on('mouseenter', function(){
+                    $(this).tooltip('show').on('mouseleave', function(){
+                        $(this).tooltip('hide');
+                    });
+                });
+            });
+        };
+        //Disable dropdown
+        _.each($('select', domInst), function(sel, id){
+            var opt = $(sel).val();
+            $(sel).on('change', function(){
+                $(this).val(opt);
+            });
+        });
+        //Disable draggable
+        _.each($('.ui-draggable', domInst), function(drag, id){
+            $(drag).draggable({
+              disabled: true
+            });
+        });
+        //Disable singledraggable
+        _.each($('.singledraggable', domInst), function(sin, id){
+            $(sin).attr('draggable', false);
+        });
+        //disable plumb
+        if (sequencedatas.modules[modNum].type == 'plumb'){
+            _.each($('svg', domInst), function(drag, id){
+                jsPlumb.draggable($("svg"), { snap: true});
+                drag.style.pointerEvents='none';
+
+             });
+            _.each($('.notif', domInst), function(drag, id){
+                drag.style.pointerEvents='auto';
+             });
+            _.each($('li', domInst), function(drag, id){
+                drag.style.pointerEvents='none';
+             });
+            var mynum='rpnm_inst_'+modNum;
+            //$('#'+mynum).style.pointerEvents='none';
+            document.getElementById(mynum).style.pointerEvents='none';
+        }
+           
+    };
+    
+    var modulesresponse = function(){
+        return respmodulearray;
+    };
+    
+    var resultMode = function(){
+        return watchResultMode;
+    }
 
     var handleEndOfSequence = function() {
         log('End of sequence');
+        returnPage = _.isUndefined(sequencedatas.homepage) ? returnPage : sequencedatas.homepage;
+        
         if(!testMode && !bypassModule){
             log(JSON.stringify({states:_.map(states,function(sta){return sta.state;})},null, '\t'));
         }
         //retrieve solutions and use correction function to make score
         $.getJSON(solurl, function(ssol) {
             var score = 0;
+            var pointmax = 0;
+                        
             _.each(ssol.solutions, function(sol, idx) {
                 score +=modules[idx].score(sol);
+                pointmax +=modules[idx].pointmax(sol);
             });
-            log('SCORE: '+ score);
+            log('SCORE: '+ score + ' / ' + pointmax);
             if (warnexit) {
                 $(window).unbind('beforeunload');
             }
-            if(testMode){
+            if(testMode && !exerciseMode){
                 displayAlert('Score :' + score + ' pt' + (score>1?'s':''),function(){
-                    sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score);
+                    sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score, returnPage);
                 });
             }
-            else
-            {
-                sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score);
+            else if(exerciseMode){
+                displayResult(selectedLabels.Score + ' ' + score + ' point' + (score>1?'s':'') + " / " + pointmax + ' point' + (pointmax  >1?'s':''),function(){
+                    sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score, returnPage);
+                });
             }
-            
+            else{
+                sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score, returnPage);
+            }
         });
     };
+    
+    var handleGoToResult = function(){
+        $.getJSON(solurl, function(ssol) {
+            var score = 0;
+            var pointmax = 0;
+
+            _.each(ssol.solutions, function(sol, idx) {
+                score +=modules[idx].score(sol);
+                pointmax +=modules[idx].pointmax(sol);
+            });
+            log('SCORE: '+ score + ' / ' + pointmax);
+            if (warnexit) {
+                $(window).unbind('beforeunload');
+            }
+            //Display first module with solutions
+            currentmod = 0;
+            successState = modules[currentmod].successState();
+            responsesState = modules[currentmod].responsesState();
+            displayCurrentModule();
+            
+            _.each(responsesState, function(val, idx) {
+                var checkText = (successState[idx][0] == 'ok') ? '' : ("<div style=\"color: green;\">" + successState[idx][1] + "</div>");
+                $(val).attr('data-html', true).attr('data-placement', tooltipPlacement).attr('data-original-title', checkText).tooltip().on('mouseenter', function(){
+                    $(this).tooltip('show').on('mouseleave', function(){
+                        $(this).tooltip('hide');
+                    });
+                });
+                successState[idx][0] == 'ok' ? $(val).removeClass("error").addClass("exact") : $(val).removeClass("exact").addClass("error");
+                $(val).off("mousedown", handleErrorExact);
+            });
+            answersActionOff(currentmod);
+
+            var text = "Tu as obtenu " + score + " point" + (score>1?"s":"") + " / " + pointmax + " point" + (pointmax  >1?"s":"") + "<br>" +selectedLabels.Solution+ ".";
+            
+            displayResult(text, function(){
+                //sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score, returnPage);
+            });
+            viewResultAfterTest = true;
+        });
+    }
 
     var displayAlert = function(text, onclose) {
         $('#rpnm_alert_modal .modal-body').text(text);
         alertModal.modal();
         alertModal.on('hidden.bs.modal', function() {
+            if (!_.isUndefined(onclose)) {
+                onclose();
+            }
+        });
+    };
+    
+    var displayResult = function(text, onclose) {
+        $('#rpnm_result_modal .modal-body').html(text);
+        resultModal.modal();
+        resultModal.on('hidden.bs.modal', function() {
             if (!_.isUndefined(onclose)) {
                 onclose();
             }
@@ -18930,19 +19613,24 @@ var rpnsequence = (function() {
     return {
         init: init,
         displayAlert: displayAlert,
+        displayResult: displayResult,
         log: log,
         getLabels: getLabels,
         addvalidation: addvalidation,
-        getColor:getColor
+        getColor:getColor,
+        modulesresponse: modulesresponse,
+        resultMode: resultMode
     };
 })();
+
 //sorting
 var rpnsortingmodule = function() {
 
     var datas;
     var domelem;
     var state;
-    
+    var successArray;
+    var responsesArray;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -18968,7 +19656,7 @@ var rpnsortingmodule = function() {
         domelem.addClass('sorting');
 
         //build sentence with items to select
-        var sentenceToSort=$('<ul class="list-unstyled'+(datas.vertical?'':' list-inline')+'"></ul>');
+        var sentenceToSort=$('<ul class="list-unstyled'+(datas.vertical?'" ':' list-inline" ')+(_.isUndefined(datas.grid)? '' : 'style="width:'+datas.grid+';"')+'></ul>');
         _.each(state, function(item, idx) {
             var noElem = _.indexOf(datas.sentence, item);
             sentenceToSort.append($('<li val="'+noElem+'">'+item+'</li>'));
@@ -18987,6 +19675,11 @@ var rpnsortingmodule = function() {
     };
     
     var validate = function(){
+        responsesArray = new Array();
+        _.each($('.ui-sortable', domelem),function(elem,idx){
+            responsesArray[idx] = elem;
+        });
+        
         state=_.map($('li',domelem),function(ele,idx){
             return ($(ele).children().is("img")) ? datas.sentence[$(ele).attr("val")] : $(ele).html();
         });
@@ -18995,20 +19688,46 @@ var rpnsortingmodule = function() {
     
    var score = function(sol){
         var score = 0;
+        successArray = new Array();
+        var solution; 
+       
         if(sol.alternative){
             _.each(sol.alternative, function(ssol, idx) {
                 score += (_.isEqual(state,ssol) ? 1 : 0);
+                solution = sol.alternative[0].toString();
             });
         }else{
             score = (_.isEqual(state,sol) ? 1 : 0);
+            solution = sol.toString();
+        }
+       
+        successArray[0] = new Array();
+        if (score > 0){
+            successArray[0] = ["ok", solution];
+        }else{
+            successArray[0] = [state.toString(), solution];
         }
         return score;
+    };
+    var pointmax = function(sol){
+        var pointmax = 1;
+        
+        return pointmax;
+    };
+    var successState = function(){
+        return successArray;
+    };
+    var responsesState = function(){
+        return responsesArray;
     };
     
     return {
         init: init,
         validate: validate,
-        score:score
+        score:score,
+        pointmax: pointmax,
+        successState: successState,
+        responsesState: responsesState
     };
 
 };
