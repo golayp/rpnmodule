@@ -120,7 +120,14 @@ var rpngapsimplemodule = function() {
                     var data = ev.originalEvent.dataTransfer.getData("text");
                     $(target).append($("#"+data, domelem));
                 });
-                t.replaceWith(drop);
+                if(t.text().substr(-1)=="_"){
+					txt = t.text().slice(0,-1);
+                    var sp = $('<span class="text-nowrap">' + txt + '</span>');
+					t.replaceWith(sp);
+                    drop.appendTo(sp);
+				}else{
+                    t.replaceWith(drop);
+                }
                 
                 var alreadyGivenResponse = (_.isEmpty(state[idx]) ? '' : $('<span class="singledraggable" draggable="true" id="drag'+_.indexOf(datas.fillers, state[idx])+'" val="'+_.indexOf(datas.fillers, state[idx])+'" >'+state[idx]+'</span>'));
                 $(alreadyGivenResponse).on('dragstart', function (ev) {
@@ -131,7 +138,14 @@ var rpngapsimplemodule = function() {
             else if(dragdrop || dragfromtext){
                 //add a drop area
                 var drop=$('<b class="gapsimpleddresponse">');
-                t.replaceWith(drop);
+                if(t.text().substr(-1)=="_"){
+					txt = t.text().slice(0,-1);
+                    var sp = $('<span class="text-nowrap">' + txt + '</span>');
+					t.replaceWith(sp);
+                    drop.appendTo(sp);
+				}else{
+                    t.replaceWith(drop);
+                }
 
                 drop.droppable({
                     accept:'.draggable',
