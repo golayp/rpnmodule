@@ -399,7 +399,7 @@ var rpnsequence = (function() {
     var bindUiEvents = function() {
         //Validation
         validationButton.click(function(){
-            clickEndBtn = true;
+            $(this).hasClass("btn-success") ? clickEndBtn = true : '';
             if (this.id=="rpnm_validation"){
                 handleEndOfModule(modules[currentmod].validate(),currentmod+1);
             }else if(currentmod>sequencedatas.modules.length-1){
