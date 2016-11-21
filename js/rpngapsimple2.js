@@ -38,6 +38,11 @@ var rpngapsimplemodule = function() {
     };
 	
     var buildUimath=function(){
+        MathJax.Hub.Config({
+          MathML: {
+            extensions: ["content-mathml.js"]
+          }
+        });
         var maindiv=$("<div id='mymaindiv'></div>");
         var mathdiv=MathJax.HTML.Element(
           "div",
