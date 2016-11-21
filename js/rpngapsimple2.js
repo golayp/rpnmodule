@@ -38,12 +38,8 @@ var rpngapsimplemodule = function() {
     };
 	
     var buildUimath=function(){
-        MathJax.Hub.Config({
-          MathML: {
-            extensions: ["content-mathml.js"]
-          }
-        });
-        var maindiv=$("<div id='mymaindiv'></div>");
+        
+   /*     var maindiv=$("<div id='mymaindiv'></div>");
         var mathdiv=MathJax.HTML.Element(
           "div",
           {id: "divmath", style:{border:"1px solid", padding:"5px"}},
@@ -55,7 +51,7 @@ var rpngapsimplemodule = function() {
         //MathJax.Hub.Typeset();
         //MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
         
-        
+    */    
         domelem.addClass('gapsimple');
         var maxwidth=0;
         answerArray = new Array();

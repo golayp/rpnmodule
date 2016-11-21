@@ -6,7 +6,8 @@ var rpnplumbmodule = function() {
     var domelem;
     var state;
     var plumb;
-    
+    var successArray;
+    var responsesArray;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -41,18 +42,30 @@ var rpnplumbmodule = function() {
 
     var buildUi = function() {
         domelem.addClass('plumb');
-        
-        //build sentence with items to select
         var leftItems=$('<ul class="list-unstyled plumbsource"></ul>');
         var rightItems=$('<ul class="list-unstyled plumbtarget"></ul>');
-        _.each(state.left, function(item, idx) {
-            leftItems.append($('<li>').html(datas.left[item]).data( 'idx', item ));
-        });
-        _.each(state.right, function(item, idx) {
-            rightItems.append($('<li>').html(datas.right[item]).data( 'idx', item ));
-        });
-        domelem.append([$('<div class="col-xs-5"></div>').append(leftItems),$('<div class="col-xs-2"></div>'),$('<div class="col-xs-5"></div>').append(rightItems)]);
-        plumb=jsPlumb.getInstance();
+        if (datas.mathjax==true){
+            _.each(state.left, function(item, idx) {
+                var contentmat=MathJax.HTML.Element("span",{class:"form-inline"},[datas.left[item]]);
+                leftItems.append($('<div class="notif"></div>').append($('<li>').html(contentmat).data( 'idx', item )));
+            });
+            _.each(state.right, function(item, idx) {
+                var contentmat=MathJax.HTML.Element("span",{class:"form-inline"},[datas.right[item]]);
+                rightItems.append($('<li>').html(contentmat).data( 'idx', item ));
+            });
+            domelem.append([$('<div class="col-xs-5"></div>').append(leftItems),$('<div class="col-xs-2"></div>'),$('<div class="col-xs-5"></div>').append(rightItems)]);   
+        }
+        else{
+            _.each(state.left, function(item, idx) {
+                leftItems.append($('<div class="notif"></div>').append($('<li>').html(datas.left[item]).data( 'idx', item )));
+            });
+            _.each(state.right, function(item, idx) {
+                rightItems.append($('<li>').html(datas.right[item]).data( 'idx', item ));
+            });
+
+            domelem.append([$('<div class="col-xs-5"></div>').append(leftItems),$('<div class="col-xs-2"></div>'),$('<div class="col-xs-5"></div>').append(rightItems)]);
+        }
+        plumb=jsPlumb.getInstance(); 
         plumb.importDefaults({
             Connector : [ "Bezier", { curviness: 0 } ],
             PaintStyle : {
@@ -83,7 +96,7 @@ var rpnplumbmodule = function() {
                 plumb.makeSource(li, {
                     maxConnections:1,
                     endpointStyle:{ fillStyle:rpnsequence.getColor(i)},
-                    connectorStyle:{ strokeStyle:rpnsequence.getColor(i), lineWidth:2 },
+                    connectorStyle:{ strokeStyle:rpnsequence.getColor(i), lineWidth:10},
                     anchor: "Right"
                 });
             });
@@ -93,6 +106,7 @@ var rpnplumbmodule = function() {
                     anchor:"Left"
                 });
             });
+            
             //try to remount sta given
             _.each(state.responses,function(target,source){
                 if(target !=null){
@@ -109,24 +123,61 @@ var rpnplumbmodule = function() {
                 }
             });
         });
-        
+                MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+
         $(window).resize(function(){
             plumb.repaintEverything();
         });
     };
     var validate = function(){
-        return state;
+        responsesArray = new Array();
+
+        _.each($('ul.list-unstyled.plumbsource div', domelem),function(elemL,idx){
+            responsesArray[idx] = elemL;
+        });
     };
     
    var score = function(sol){
         var score = 0;
+       successArray = new Array();
         _.each(sol,function(target,source){
-            if(state.responses[source]==target[1]){
-                score++;
-            }
+            var scoreIni = score;
+            var mylength=state.left.length;
+            solution = datas.right[target[1]];
+            
+                if(state.responses[source]==target[1]){
+                     score++;
+                    
+                    for(i=0;i<mylength;i++){
+                        if(source==state.left[i]){
+                            successArray[i] = new Array();
+                            successArray[i] = ["ok",solution];
+                        }
+                    }
+                }else{
+
+                    for(i=0;i<mylength;i++){
+                        if(source==state.left[i]){
+                            successArray[i] = new Array();
+                            successArray[i] = ["faux",solution];
+                        }
+                    }
+                }
         });
         return score;
     };
+    var pointmax = function(sol){
+        var pointmax = sol.length;
+        
+        return pointmax;
+    };
+    var successState = function(){
+        return successArray;
+    };
+    var responsesState = function(){
+        return responsesArray;
+    };
+    
     var displayed = function(){
          plumb.repaintEverything();
     }
@@ -134,7 +185,10 @@ var rpnplumbmodule = function() {
         displayed:displayed,
         init: init,
         validate: validate,
-        score:score
+        score:score,
+        pointmax: pointmax,
+        successState: successState,
+        responsesState: responsesState
     };
 
 };
