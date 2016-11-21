@@ -190,6 +190,7 @@ var rpngapsimplemodule = function() {
                 $($('.rpnm_input',domelem)[idx]).val(state[idx]);
             }
         });
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
         bindUiEvents();
     };
 

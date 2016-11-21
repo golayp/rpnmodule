@@ -3,6 +3,23 @@
     "context":"context",
     "directive":"directive",
     "modules":[
+         {
+            "type":"gapsimple",
+            "title":"a gapsimple module typed integer'mille, nbofchar: 6,  milleseparator: true and latex and MathML",
+            "mathjax":true,
+            "context":"asciimath notation:`x = (-b +- sqrt(b^2-4ac))/(2a)`",
+            "directive":"this is some latex formulas:$$with return: {x+1\\over(x-1)}$$this is a formula without return: \\(x+1\\over x-1\\)",
+            "validation":{
+                "mode":"lock",
+                "type":"integer",
+                "milleseparator":true,
+                "numberofchar":"6",
+                "width":"10em;",
+                "align":"text-center"
+            },
+            "mathcontent":"a variable 'mathcontent' before a <span>: \\(x+1\\over x-1\\)",
+            "tofill":"<span>BALISESPAN </span><p>`x = (-b +- sqrt(b^2-4ac))/(2a)` si `a=1`, `b=0` et `c=-9` que vaut <math xmlns='http://www.w3.org/1998/Math/MathML'><msub><mn>x</mn><mn>1</mn></msub></math>?`<b></b>`et <math xmlns='http://www.w3.org/1998/Math/MathML'><msub><mn>x</mn><mn>2</mn></msub></math>?`<b></b><math xmlns='http://www.w3.org/1998/Math/MathML' display='block'><mspace height='40px'/><mfrac linethickness='2px' numalign='left' denomalign='left'><mrow><mfrac bevelled='true'><mn>1</mn><mi>x</mi></mfrac><mo>+</mo><mfrac bevelled='true'><mn>2</mn><mi>x</mi></mfrac><mo>+</mo><mo>&hellip;</mo></mrow><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>x</mi><mn>4</mn></msup><mo>+</mo><mo>&hellip;</mo></mrow></mfrac></math></p>"
+        },
         {
             "type":"gapsimple",
             "title":"a gapsimple module typed natural'mille, nbofchar: 6,  milleseparator: true ",
