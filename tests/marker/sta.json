@@ -86,7 +86,7 @@
 				"",
 				"marker1",
 				"marker2",
-				"marker3",
+				"marker2",
 				"",
 				""
 			],
@@ -98,10 +98,6 @@
 				{
 					"label": "marker2",
 					"color": "#01a271"
-				},
-				{
-					"label": "marker3",
-					"color": "#5dc2e7"
 				}
 			]
 		}

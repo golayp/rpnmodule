@@ -13,6 +13,7 @@ var rpngapsimplemodule = function() {
     var answerArray;
     var successArray;
     var responsesArray;
+    var limitedChoice;
 
     var init = function(_datas,_state, _domelem) {
         _.defaults(_datas, {
@@ -40,6 +41,7 @@ var rpngapsimplemodule = function() {
         answerArray = new Array();
 
         if(dragdrop || dragfromtext){
+            limitedChoice = dragfromtext ? false : datas.fillers.length <= 2 ? true : false;
             var toolbar = $('<div class="gapsimpleddtoolbar">');
             if (singledd){
                 $.each(datas.fillers, function(idx, filler) {
@@ -54,18 +56,18 @@ var rpngapsimplemodule = function() {
                 });
             }
             else if(dragdrop){
-            $.each(datas.fillers, function(idx, filler) {
-                var draggable=$('<span class="draggable ori" val="'+idx+'" >'+filler+'</span> ').draggable({
-                    revert: "invalid",
-                    appendTo: domelem,
-                    helper: "clone",
-                    snap: true,
-                    snapMode: 'inner'
+                $.each(datas.fillers, function(idx, filler) {
+                    var draggable=$('<span class="draggable ori" val="'+idx+'" >'+filler+'</span> ').draggable({
+                        revert: "invalid",
+                        appendTo: domelem,
+                        helper: "clone",
+                        snap: true,
+                        snapMode: 'inner'
+                    });
+                    toolbar.append(draggable);
+                    maxwidth=maxwidth<draggable.width()?draggable.width():maxwidth;
                 });
-                toolbar.append(draggable);
-                maxwidth=maxwidth<draggable.width()?draggable.width():maxwidth;
-            });
-            maxfillength=_.max(datas.fillers, function(filler){ return filler.length; }).length;
+                maxfillength=_.max(datas.fillers, function(filler){ return filler.length; }).length;
             }
             //build trash
             if (!datas.singledd){
@@ -83,8 +85,8 @@ var rpngapsimplemodule = function() {
         
         //build panel with sentences
         domelem.append($('<div class="form-inline">' + datas.tofill + '</div>'));
-        
-         $.each($('b[class=drag]', domelem), function(idx, tofill) {
+        var dragNum = 0;
+        $.each($('b[class=drag]', domelem), function(idx, tofill) {
             var t = $(tofill);
             var draggable=$('<span class="draggable ori">'+t.html()+'</span> ').draggable({
                 revert: "invalid",
@@ -95,7 +97,11 @@ var rpngapsimplemodule = function() {
             });
             t.replaceWith(draggable);
             maxwidth=maxwidth<draggable.width()?draggable.width():maxwidth;
+            dragNum++;
         });
+        if (dragfromtext){
+            limitedChoice = dragNum == 2 ? true : false;
+        }
         
         $.each($('b', domelem), function(idx, tofill) {
             var t = $(tofill);
@@ -267,6 +273,9 @@ var rpngapsimplemodule = function() {
     var responsesState = function(){
         return responsesArray;
     };
+    var limitedChoiceState = function(){
+        return limitedChoice;
+    };
     
     return {
         init: init,
@@ -274,7 +283,8 @@ var rpngapsimplemodule = function() {
         score: score,
         pointmax: pointmax,
         successState: successState,
-        responsesState: responsesState
+        responsesState: responsesState,
+        limitedChoiceState: limitedChoiceState
     };
 
 };

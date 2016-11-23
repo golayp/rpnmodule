@@ -8,6 +8,7 @@ var rpnplumbmodule = function() {
     var plumb;
     var successArray;
     var responsesArray;
+    var limitedChoice;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -128,6 +129,7 @@ var rpnplumbmodule = function() {
         $(window).resize(function(){
             plumb.repaintEverything();
         });
+        limitedChoice = (state.left.length <= 2 && state.right.length <= 2) ? true : false;
     };
     var validate = function(){
         responsesArray = new Array();
@@ -177,6 +179,9 @@ var rpnplumbmodule = function() {
     var responsesState = function(){
         return responsesArray;
     };
+    var limitedChoiceState = function(){
+        return limitedChoice;
+    };
     
     var displayed = function(){
          plumb.repaintEverything();
@@ -188,7 +193,8 @@ var rpnplumbmodule = function() {
         score:score,
         pointmax: pointmax,
         successState: successState,
-        responsesState: responsesState
+        responsesState: responsesState,
+        limitedChoiceState: limitedChoiceState
     };
 
 };

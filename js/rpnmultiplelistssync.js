@@ -7,6 +7,7 @@ var rpnmultiplelistssyncmodule = function() {
     var typeList;
     var successArray;
     var responsesArray;
+    var limitedChoice;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -35,11 +36,13 @@ var rpnmultiplelistssyncmodule = function() {
         domelem.addClass('multiplelistssync');
         var listToSort;
         typeList = new Array();
+        var choiceLength = new Array();
         
         //build lists with items to sort
         _.each(datas.lists, function(li,idx){
             typeList[idx] = datas.lists[idx].type ? datas.lists[idx].type : '';
             if(datas.lists[idx].movable){
+                choiceLength.push(datas.lists[idx].items.length);
                 listToSort = $('<ul class="list-unstyled'+(datas.vertical?'':' list-inline')+'" id="sortable-'+idx+'" >'+(_.isEmpty(datas.lists[idx].title) ? '' : '<li class="title">'+datas.lists[idx].title)+'</li></ul>').sortable({
                     items: "li:not(.title)",
                     placeholder: "sorting-highlight",
@@ -63,6 +66,7 @@ var rpnmultiplelistssyncmodule = function() {
             };
             domelem.append(listToSort);
         });
+        limitedChoice = _.min(choiceLength) <= 2 ? true : false;
         $(domelem).disableSelection();
         
         bindUiEvents();
@@ -125,6 +129,9 @@ var rpnmultiplelistssyncmodule = function() {
     var responsesState = function(){
         return responsesArray;
     };
+    var limitedChoiceState = function(){
+        return limitedChoice;
+    };
     
     return {
         init: init,
@@ -132,7 +139,8 @@ var rpnmultiplelistssyncmodule = function() {
         score:score,
         pointmax: pointmax,
         successState: successState,
-        responsesState: responsesState
+        responsesState: responsesState,
+        limitedChoiceState: limitedChoiceState
     };
 
 };

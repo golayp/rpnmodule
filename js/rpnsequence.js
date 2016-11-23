@@ -17,6 +17,7 @@ var rpnsequence = (function() {
     var states;
     var successState;
     var responsesState;
+    var limitedChoiceState;
     var warnexit;
     var sequenceendHandler;
     var moduleendHandler;
@@ -585,6 +586,7 @@ var rpnsequence = (function() {
                     text = testNumber==1 ? selectedLabels.FirstTest + '<br>' : (testNumber==2 ? selectedLabels.SecondTest + '<br>' : selectedLabels.ThirdTest + '<br>' + selectedLabels.Score + ' ' + score + ' point' + (score>1?'s':'') + " / " + pointmax + ' point' + (pointmax>1?'s.<br>':'.<br>'));
                     successState = modules[previousmod].successState();
                     responsesState = modules[previousmod].responsesState();
+                    limitedChoiceState = modules[previousmod].limitedChoiceState();
                     
                     if((score==pointmax && pointmax!=0) || testNumber>=3){
                         limitOfSufficiency = _.isUndefined(sequencedatas.modules[previousmod].limitOfSufficiency) ? limitOfSufficiency : sequencedatas.modules[previousmod].limitOfSufficiency;
@@ -626,13 +628,14 @@ var rpnsequence = (function() {
                             text = text.concat(selectedLabels.Correct);
                         }else{
                             text = text.concat(selectedLabels.Score + ' ' + score + ' point' + (score>1?'s':'') + " / " + pointmax + ' point' + (pointmax>1?'s.':'.'));
-                            
-                            _.each(responsesState, function(val, idx) {
-                                /*var checkText = (successState[idx][0] == 'ok') ? ("<div style=\"color: green;\"><span class=\"glyphicon glyphicon-ok-sign\" ></span></div>") : ("<div style=\"color: red;\"><span class=\"glyphicon glyphicon-remove-sign\"></span></div>");
-                                $(val).attr('data-html', true).attr('data-placement', tooltipPlacement).attr('data-original-title', checkText).tooltip();*/
-                                successState[idx][0] == 'ok' ? $(val).removeClass("error").addClass("exact") : $(val).removeClass("exact").addClass("error");
-                                $(val).on("mousedown", handleErrorExact);
-                            });
+                            if (!limitedChoiceState){
+                                _.each(responsesState, function(val, idx) {
+                                    /*var checkText = (successState[idx][0] == 'ok') ? ("<div style=\"color: green;\"><span class=\"glyphicon glyphicon-ok-sign\" ></span></div>") : ("<div style=\"color: red;\"><span class=\"glyphicon glyphicon-remove-sign\"></span></div>");
+                                    $(val).attr('data-html', true).attr('data-placement', tooltipPlacement).attr('data-original-title', checkText).tooltip();*/
+                                    successState[idx][0] == 'ok' ? $(val).removeClass("error").addClass("exact") : $(val).removeClass("exact").addClass("error");
+                                    $(val).on("mousedown", handleErrorExact);
+                                });
+                            }
                         }
                         displayResult(text,function(){
                             //sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score, returnPage);

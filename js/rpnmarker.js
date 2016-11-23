@@ -6,6 +6,7 @@ var rpnmarkermodule = function() {
     var state;
     var successArray;
     var responsesArray;
+    var limitedChoice;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -13,7 +14,8 @@ var rpnmarkermodule = function() {
             tomark: ["fill tomark please!"],
             hidden:false,
             smallButtons:false,
-            displayTooltip:true
+            displayTooltip:true,
+            limitedChoice: false
         });
         datas = _datas;
         domelem = _domelem;
@@ -38,6 +40,7 @@ var rpnmarkermodule = function() {
             'class': 'btn-group',
             'data-toggle': 'buttons'
         });
+        limitedChoice = state.markers.length <= 2 ? true : false;
         
         toolbar.append($('<label class="btn btn-default '+(datas.smallButtons?'':'btn-lg ') + (state.selectedMarker.label==''?'active':'')+' eraser"><input type="radio" name="options" autocomplete="off" '+(state.selectedMarker==''?'checked':'')+'><span class="edicons-tool-eraser"></span> ' + rpnsequence.getLabels().Eraser + '</label>').click(function() {
             state.selectedMarker = {color:'',label:''};
@@ -138,6 +141,9 @@ var rpnmarkermodule = function() {
     var responsesState = function(){
         return responsesArray;
     };
+    var limitedChoiceState = function(){
+        return limitedChoice;
+    };
     
     return {
         init: init,
@@ -145,6 +151,7 @@ var rpnmarkermodule = function() {
         score: score,
         pointmax: pointmax,
         successState: successState,
-        responsesState: responsesState
+        responsesState: responsesState,
+        limitedChoiceState: limitedChoiceState
     };
 };

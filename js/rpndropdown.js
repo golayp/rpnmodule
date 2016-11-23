@@ -6,6 +6,7 @@ var rpndropdownmodule = function() {
     var state;
     var successArray;
     var responsesArray;
+    var limitedChoice;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -25,6 +26,7 @@ var rpndropdownmodule = function() {
 
     var buildUi = function() {
         domelem.addClass('dropdown');
+        var choiceLength = new Array();
 
         //build panel with sentence
         if(!_.isEmpty(datas.circumstance[0])) {domelem.append($('<hr style="border-top: 5px solid #ccc;"><p><b>' + datas.circumstance[0] + '</b></p>'));}
@@ -39,7 +41,7 @@ var rpndropdownmodule = function() {
                 sentenceToComplete.append(" " + item.choice[0] + " ");
             }else{
                 var opts=[];
-                
+                choiceLength.push(datas.items[idx].choice.length);
                 opts[0]=$('<option value="" '+(state[internalCounter]==''?'selected':'')+'> ?</option>');
                 $.each(datas.items[idx].choice, function(id, choice){
                     opts[id+1]=$('<option value="' + choice+ '" '+(state[internalCounter]==choice?'selected':'')+'>' + choice + '</option>');
@@ -48,6 +50,7 @@ var rpndropdownmodule = function() {
                 internalCounter++;
             }
         });
+        limitedChoice = _.min(choiceLength) <= 2 ? true : false;
         domelem.append(sentenceToComplete);
 
         bindUiEvents();
@@ -101,6 +104,9 @@ var rpndropdownmodule = function() {
     var responsesState = function(){
         return responsesArray;
     };
+    var limitedChoiceState = function(){
+        return limitedChoice;
+    };
 
     return {
         init: init,
@@ -108,7 +114,8 @@ var rpndropdownmodule = function() {
         score: score,
         pointmax: pointmax,
         successState: successState,
-        responsesState: responsesState
+        responsesState: responsesState,
+        limitedChoiceState: limitedChoiceState
     };
 
 };

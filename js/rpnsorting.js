@@ -6,6 +6,7 @@ var rpnsortingmodule = function() {
     var state;
     var successArray;
     var responsesArray;
+    var limitedChoice;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -29,6 +30,7 @@ var rpnsortingmodule = function() {
 
     var buildUi = function() {
         domelem.addClass('sorting');
+        limitedChoice = state.length <= 2 ? true : false;
 
         //build sentence with items to select
         var sentenceToSort=$('<ul class="list-unstyled'+(datas.vertical?'" ':' list-inline" ')+(_.isUndefined(datas.grid)? '' : 'style="width:'+datas.grid+';"')+'></ul>');
@@ -95,6 +97,9 @@ var rpnsortingmodule = function() {
     var responsesState = function(){
         return responsesArray;
     };
+    var limitedChoiceState = function(){
+        return limitedChoice;
+    };
     
     return {
         init: init,
@@ -102,7 +107,8 @@ var rpnsortingmodule = function() {
         score:score,
         pointmax: pointmax,
         successState: successState,
-        responsesState: responsesState
+        responsesState: responsesState,
+        limitedChoiceState: limitedChoiceState
     };
 
 };

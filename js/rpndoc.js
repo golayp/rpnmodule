@@ -5,6 +5,9 @@ var rpndocmodule = function() {
     var domelem;
     var state;
     var object;
+    var successArray;
+    var responsesArray;
+    var limitedChoice;
 
     var init = function(_datas,_state, _domelem) {
         /*_.defaults(_datas, {
@@ -49,16 +52,30 @@ var rpndocmodule = function() {
         state.seen = true;
         return state;
     };
-    
-   var score = function(sol) {
-        var score = 0;
-        return score;
+    var score = function(sol) {
+        return 0;
+    };
+    var pointmax = function(){
+        return 0;
+    };
+    var successState = function(){
+        return [];
+    };
+    var responsesState = function(){
+        return [];
+    }
+    var limitedChoiceState = function(){
+        return false;
     };
     
     return {
         init: init,
         validate: validate,
-        score: score
+        score: score,
+        pointmax: pointmax,
+        successState: successState,
+        responsesState: responsesState,
+        limitedChoiceState: limitedChoiceState
     };
 
 };

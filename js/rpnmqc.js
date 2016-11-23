@@ -6,13 +6,13 @@ var rpnmqcmodule = function() {
     var state;
     var successArray;
     var responsesArray;
+    var limitedChoice;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
             questions: ["No questions!"],
             answers: ["As no answers"],
-            vertical:false,
-            mqcmultiple:false
+            vertical:false
         });
 
         datas = _datas;
@@ -34,12 +34,15 @@ var rpnmqcmodule = function() {
         var uilist = $('<ul>', {
             'class': 'list-unstyled'
         });
+        var choiceLength = new Array();
         
         $.each(datas.questions, function(idq, question) {
             var li = $('<li>');
             li.append($('<p>' + question + '</p>'));
             var answerGroup = $('<div class="'+(datas.vertical?'btn-group-vertical':'btn-group')+'" role="group" data-toggle="buttons">');
             var idmqc = datas.answers.length==1?0:idq;
+            choiceLength.push(datas.answers[idmqc].choice.length);
+
             //multiple responses allowed
             if(datas.mqcmultiple){
                 var answerArray = new Array(datas.answers.length);
@@ -63,7 +66,7 @@ var rpnmqcmodule = function() {
             }
             uilist.append(li);
         });
-        
+        limitedChoice = _.min(choiceLength) <= 2 ? true : false;
         domelem.append(uilist);
         bindUiEvents();
     };
@@ -106,12 +109,15 @@ var rpnmqcmodule = function() {
 
         return pointmax;
     };
-     var successState = function(){
+    var successState = function(){
         return successArray;
     };
     var responsesState = function(){
         return responsesArray;
     }
+    var limitedChoiceState = function(){
+        return limitedChoice;
+    };
     
     return {
         init: init,
@@ -119,7 +125,8 @@ var rpnmqcmodule = function() {
         score: score,
         pointmax: pointmax,
         successState: successState,
-        responsesState: responsesState
+        responsesState: responsesState,
+        limitedChoiceState: limitedChoiceState
     };
 
 };

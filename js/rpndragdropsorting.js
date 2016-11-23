@@ -10,6 +10,7 @@ var rpndragdropsortingmodule = function() {
     var itemToSortArray;
     var successArray;
     var responsesArray;
+    var limitedChoice;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -86,6 +87,7 @@ var rpndragdropsortingmodule = function() {
         }
         //Build panel for dropzone
         var nbcol=datas.todrop.length
+        limitedChoice = nbcol <= 2 ? true : false;
         $.each(datas.todrop, function(idx, drop) {
             $('.dropzonecontainer',domelem).append($('<div class="col-xs-'+(nbcol<5?'3':'2')+(idx==0?(nbcol==2?' col-xs-offset-3':(nbcol==3||nbcol==5)?' col-xs-offset-1':''):'')+'"><div class="droppable"><span class="lead">' + drop + '</span><ul class="list-unstyled"></ul></div></div>'));
             if(!_.isUndefined(state[drop])){
@@ -240,6 +242,9 @@ var rpndragdropsortingmodule = function() {
     var responsesState = function(){
         return responsesArray;
     };
+    var limitedChoiceState = function(){
+        return limitedChoice;
+    };
     
     return {
         init: init,
@@ -247,6 +252,7 @@ var rpndragdropsortingmodule = function() {
         score: score,
         pointmax: pointmax,
         successState: successState,
-        responsesState: responsesState
+        responsesState: responsesState,
+        limitedChoiceState: limitedChoiceState
     };
 };

@@ -6,6 +6,7 @@ var rpndropdown2module = function() {
     var state;
     var successArray;
     var responsesArray;
+    var limitedChoice;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -25,18 +26,20 @@ var rpndropdown2module = function() {
 
     var buildUi = function() {
         domelem.addClass('dropdown2');
+        var choiceLength = new Array();
 
         //build sentence with items to select
         domelem.append($('<div class="form-inline">' + datas.toselect + '</div>'));
         $.each($('b', domelem), function(idx, toselect) {
             var t =$(toselect);
             var opts=[];
+            choiceLength.push(datas.items[idx].choice.length);
             $.each(datas.items[idx].choice, function(id, choice){
                 opts[id]=$('<option value="' + choice+ '" '+(state[idx]==choice?'selected':'')+'>' + choice + '</option>');
             });
             t.append($('<select class="rpnm-input dropdown form-control">').append(opts));
         });
-
+        limitedChoice = _.min(choiceLength) <= 3 ? true : false;
         bindUiEvents();
     };
 
@@ -88,6 +91,9 @@ var rpndropdown2module = function() {
     var responsesState = function(){
         return responsesArray;
     };
+    var limitedChoiceState = function(){
+        return limitedChoice;
+    };
 
     return {
         init: init,
@@ -95,7 +101,8 @@ var rpndropdown2module = function() {
         score: score,
         pointmax: pointmax,
         successState: successState,
-        responsesState: responsesState
+        responsesState: responsesState,
+        limitedChoiceState: limitedChoiceState
     };
 
 };
