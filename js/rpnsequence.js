@@ -50,6 +50,7 @@ var rpnsequence = (function() {
     var clickEndBtn;
     var licence;
     var returnPage;
+    var docModule;
 
     var labels = {
         en: {
@@ -138,7 +139,8 @@ var rpnsequence = (function() {
             viewResultAfterTest:false,
             clickEndBtn:false,
             licence:'<span><a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/2.0/fr/" rel="license"><img width="57" height="20" style="border-width: 0" alt="Creative Commons License" src="http://i.creativecommons.org/l/by-nc-sa/2.0/fr/88x31.png"></a></span>',
-            returnPage:"../"
+            returnPage:"../",
+            docModule:false
         });
         selectedLabels = labels[opts.language];
         states = [];
@@ -163,6 +165,7 @@ var rpnsequence = (function() {
         clickEndBtn=opts.clickEndBtn;
         licence=opts.licence;
         returnPage=opts.returnPage;
+        docModule=opts.docModule;
         
         $.getJSON(opts.sequrl, function(datas) {
             _.defaults(datas, {
@@ -239,6 +242,7 @@ var rpnsequence = (function() {
             $('#rpnm_modulenav').remove();
         }
         _.each(sequencedatas.modules, function(modData, idx) {
+            docModule = false;
             _.defaults(modData,{
                 disposition:'top'
             });
@@ -355,6 +359,7 @@ var rpnsequence = (function() {
                 modules[idx].init(modData,states[idx].state, divContent);
             }
             else if (modData.type == 'doc') {
+                docModule = true;
                 modules[idx]=rpndocmodule();
                 modules[idx].init(modData,states[idx].state, divContent);
             }
@@ -567,7 +572,7 @@ var rpnsequence = (function() {
             sequencedatas.modules[currentmod].status = 'ended';
             previousmod = currentmod;
             currentmod = nextmodtoshow;
-            if (exerciseMode){
+            if (exerciseMode && !docModule){
                 $.getJSON(solurl, function(ssol) {
                     var score = 0;
                     var score = 0;
@@ -644,7 +649,7 @@ var rpnsequence = (function() {
                         testNumber++;
                     }
                 });
-            }else if (testAndResultMode && finished && !viewResultAfterTest && clickEndBtn){
+            }else if (testAndResultMode && finished && !viewResultAfterTest && clickEndBtn && !docModule){
                 handleGoToResult();
             }else if(currentmod>sequencedatas.modules.length-1){
                 handleEndOfSequence();
@@ -754,12 +759,12 @@ var rpnsequence = (function() {
             if (warnexit) {
                 $(window).unbind('beforeunload');
             }
-            if(testMode && !exerciseMode){
+            if(testMode && !exerciseMode && !docModule){
                 displayAlert('Score :' + score + ' pt' + (score>1?'s':''),function(){
                     sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score, returnPage);
                 });
             }
-            else if(exerciseMode){
+            else if(exerciseMode && !docModule){
                 displayResult(selectedLabels.Score + ' ' + score + ' point' + (score>1?'s':'') + " / " + pointmax + ' point' + (pointmax  >1?'s':''),function(){
                     sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score, returnPage);
                 });
