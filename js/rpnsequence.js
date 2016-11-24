@@ -519,10 +519,10 @@ var rpnsequence = (function() {
     var bindModuleSharedDatas = function(datas) {
         if (!_.isUndefined(datas.sources)){
             $('#rpnm_sources_modal .modal-body').html(datas.sources);
-            btnRecall.show();
+            btnSources.show();
         }else if(!_.isUndefined(sequencedatas.sources)){
             $('#rpnm_sources_modal .modal-body').html(sequencedatas.sources);
-            btnRecall.show();
+            btnSources.show();
         }
         if (!_.isUndefined(datas.recall)){
             $('#rpnm_recall_modal .modal-body').html(datas.recall);
