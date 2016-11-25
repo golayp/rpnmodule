@@ -16668,6 +16668,9 @@ var rpndocmodule = function() {
     var domelem;
     var state;
     var object;
+    var successArray;
+    var responsesArray;
+    var limitedChoice;
 
     var init = function(_datas,_state, _domelem) {
         /*_.defaults(_datas, {
@@ -16712,16 +16715,30 @@ var rpndocmodule = function() {
         state.seen = true;
         return state;
     };
-    
-   var score = function(sol) {
-        var score = 0;
-        return score;
+    var score = function(sol) {
+        return 0;
+    };
+    var pointmax = function(){
+        return 0;
+    };
+    var successState = function(){
+        return [];
+    };
+    var responsesState = function(){
+        return [];
+    }
+    var limitedChoiceState = function(){
+        return false;
     };
     
     return {
         init: init,
         validate: validate,
-        score: score
+        score: score,
+        pointmax: pointmax,
+        successState: successState,
+        responsesState: responsesState,
+        limitedChoiceState: limitedChoiceState
     };
 
 };
@@ -16737,6 +16754,7 @@ var rpndragdropsortingmodule = function() {
     var itemToSortArray;
     var successArray;
     var responsesArray;
+    var limitedChoice;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -16813,6 +16831,7 @@ var rpndragdropsortingmodule = function() {
         }
         //Build panel for dropzone
         var nbcol=datas.todrop.length
+        limitedChoice = nbcol <= 2 ? true : false;
         $.each(datas.todrop, function(idx, drop) {
             $('.dropzonecontainer',domelem).append($('<div class="col-xs-'+(nbcol<5?'3':'2')+(idx==0?(nbcol==2?' col-xs-offset-3':(nbcol==3||nbcol==5)?' col-xs-offset-1':''):'')+'"><div class="droppable"><span class="lead">' + drop + '</span><ul class="list-unstyled"></ul></div></div>'));
             if(!_.isUndefined(state[drop])){
@@ -16967,6 +16986,9 @@ var rpndragdropsortingmodule = function() {
     var responsesState = function(){
         return responsesArray;
     };
+    var limitedChoiceState = function(){
+        return limitedChoice;
+    };
     
     return {
         init: init,
@@ -16974,7 +16996,8 @@ var rpndragdropsortingmodule = function() {
         score: score,
         pointmax: pointmax,
         successState: successState,
-        responsesState: responsesState
+        responsesState: responsesState,
+        limitedChoiceState: limitedChoiceState
     };
 };
 
@@ -16986,6 +17009,7 @@ var rpndropdownmodule = function() {
     var state;
     var successArray;
     var responsesArray;
+    var limitedChoice;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -17005,6 +17029,7 @@ var rpndropdownmodule = function() {
 
     var buildUi = function() {
         domelem.addClass('dropdown');
+        var choiceLength = new Array();
 
         //build panel with sentence
         if(!_.isEmpty(datas.circumstance[0])) {domelem.append($('<hr style="border-top: 5px solid #ccc;"><p><b>' + datas.circumstance[0] + '</b></p>'));}
@@ -17019,7 +17044,7 @@ var rpndropdownmodule = function() {
                 sentenceToComplete.append(" " + item.choice[0] + " ");
             }else{
                 var opts=[];
-                
+                choiceLength.push(datas.items[idx].choice.length);
                 opts[0]=$('<option value="" '+(state[internalCounter]==''?'selected':'')+'> ?</option>');
                 $.each(datas.items[idx].choice, function(id, choice){
                     opts[id+1]=$('<option value="' + choice+ '" '+(state[internalCounter]==choice?'selected':'')+'>' + choice + '</option>');
@@ -17028,6 +17053,7 @@ var rpndropdownmodule = function() {
                 internalCounter++;
             }
         });
+        limitedChoice = _.min(choiceLength) <= 2 ? true : false;
         domelem.append(sentenceToComplete);
 
         bindUiEvents();
@@ -17081,6 +17107,9 @@ var rpndropdownmodule = function() {
     var responsesState = function(){
         return responsesArray;
     };
+    var limitedChoiceState = function(){
+        return limitedChoice;
+    };
 
     return {
         init: init,
@@ -17088,7 +17117,8 @@ var rpndropdownmodule = function() {
         score: score,
         pointmax: pointmax,
         successState: successState,
-        responsesState: responsesState
+        responsesState: responsesState,
+        limitedChoiceState: limitedChoiceState
     };
 
 };
@@ -17101,6 +17131,7 @@ var rpndropdown2module = function() {
     var state;
     var successArray;
     var responsesArray;
+    var limitedChoice;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -17120,18 +17151,20 @@ var rpndropdown2module = function() {
 
     var buildUi = function() {
         domelem.addClass('dropdown2');
+        var choiceLength = new Array();
 
         //build sentence with items to select
         domelem.append($('<div class="form-inline">' + datas.toselect + '</div>'));
         $.each($('b', domelem), function(idx, toselect) {
             var t =$(toselect);
             var opts=[];
+            choiceLength.push(datas.items[idx].choice.length);
             $.each(datas.items[idx].choice, function(id, choice){
                 opts[id]=$('<option value="' + choice+ '" '+(state[idx]==choice?'selected':'')+'>' + choice + '</option>');
             });
             t.append($('<select class="rpnm-input dropdown form-control">').append(opts));
         });
-
+        limitedChoice = _.min(choiceLength) <= 3 ? true : false;
         bindUiEvents();
     };
 
@@ -17183,6 +17216,9 @@ var rpndropdown2module = function() {
     var responsesState = function(){
         return responsesArray;
     };
+    var limitedChoiceState = function(){
+        return limitedChoice;
+    };
 
     return {
         init: init,
@@ -17190,7 +17226,8 @@ var rpndropdown2module = function() {
         score: score,
         pointmax: pointmax,
         successState: successState,
-        responsesState: responsesState
+        responsesState: responsesState,
+        limitedChoiceState: limitedChoiceState
     };
 
 };
@@ -17277,6 +17314,7 @@ var rpngapsimplemodule = function() {
     var answerArray;
     var successArray;
     var responsesArray;
+    var limitedChoice;
 
     var init = function(_datas,_state, _domelem) {
         _.defaults(_datas, {
@@ -17304,6 +17342,7 @@ var rpngapsimplemodule = function() {
         answerArray = new Array();
 
         if(dragdrop || dragfromtext){
+            limitedChoice = dragfromtext ? false : datas.fillers.length <= 2 ? true : false;
             var toolbar = $('<div class="gapsimpleddtoolbar">');
             if (singledd){
                 $.each(datas.fillers, function(idx, filler) {
@@ -17318,18 +17357,18 @@ var rpngapsimplemodule = function() {
                 });
             }
             else if(dragdrop){
-            $.each(datas.fillers, function(idx, filler) {
-                var draggable=$('<span class="draggable ori" val="'+idx+'" >'+filler+'</span> ').draggable({
-                    revert: "invalid",
-                    appendTo: domelem,
-                    helper: "clone",
-                    snap: true,
-                    snapMode: 'inner'
+                $.each(datas.fillers, function(idx, filler) {
+                    var draggable=$('<span class="draggable ori" val="'+idx+'" >'+filler+'</span> ').draggable({
+                        revert: "invalid",
+                        appendTo: domelem,
+                        helper: "clone",
+                        snap: true,
+                        snapMode: 'inner'
+                    });
+                    toolbar.append(draggable);
+                    maxwidth=maxwidth<draggable.width()?draggable.width():maxwidth;
                 });
-                toolbar.append(draggable);
-                maxwidth=maxwidth<draggable.width()?draggable.width():maxwidth;
-            });
-            maxfillength=_.max(datas.fillers, function(filler){ return filler.length; }).length;
+                maxfillength=_.max(datas.fillers, function(filler){ return filler.length; }).length;
             }
             //build trash
             if (!datas.singledd){
@@ -17347,8 +17386,8 @@ var rpngapsimplemodule = function() {
         
         //build panel with sentences
         domelem.append($('<div class="form-inline">' + datas.tofill + '</div>'));
-        
-         $.each($('b[class=drag]', domelem), function(idx, tofill) {
+        var dragNum = 0;
+        $.each($('b[class=drag]', domelem), function(idx, tofill) {
             var t = $(tofill);
             var draggable=$('<span class="draggable ori">'+t.html()+'</span> ').draggable({
                 revert: "invalid",
@@ -17359,7 +17398,11 @@ var rpngapsimplemodule = function() {
             });
             t.replaceWith(draggable);
             maxwidth=maxwidth<draggable.width()?draggable.width():maxwidth;
+            dragNum++;
         });
+        if (dragfromtext){
+            limitedChoice = dragNum == 2 ? true : false;
+        }
         
         $.each($('b', domelem), function(idx, tofill) {
             var t = $(tofill);
@@ -17384,7 +17427,14 @@ var rpngapsimplemodule = function() {
                     var data = ev.originalEvent.dataTransfer.getData("text");
                     $(target).append($("#"+data, domelem));
                 });
-                t.replaceWith(drop);
+                if(t.text().substr(-1)=="_"){
+					txt = t.text().slice(0,-1);
+                    var sp = $('<span class="text-nowrap">' + txt + '</span>');
+					t.replaceWith(sp);
+                    drop.appendTo(sp);
+				}else{
+                    t.replaceWith(drop);
+                }
                 
                 var alreadyGivenResponse = (_.isEmpty(state[idx]) ? '' : $('<span class="singledraggable" draggable="true" id="drag'+_.indexOf(datas.fillers, state[idx])+'" val="'+_.indexOf(datas.fillers, state[idx])+'" >'+state[idx]+'</span>'));
                 $(alreadyGivenResponse).on('dragstart', function (ev) {
@@ -17395,7 +17445,14 @@ var rpngapsimplemodule = function() {
             else if(dragdrop || dragfromtext){
                 //add a drop area
                 var drop=$('<b class="gapsimpleddresponse">');
-                t.replaceWith(drop);
+                if(t.text().substr(-1)=="_"){
+					txt = t.text().slice(0,-1);
+                    var sp = $('<span class="text-nowrap">' + txt + '</span>');
+					t.replaceWith(sp);
+                    drop.appendTo(sp);
+				}else{
+                    t.replaceWith(drop);
+                }
 
                 drop.droppable({
                     accept:'.draggable',
@@ -17440,6 +17497,7 @@ var rpngapsimplemodule = function() {
                 $($('.rpnm_input',domelem)[idx]).val(state[idx]);
             }
         });
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
         bindUiEvents();
     };
 
@@ -17516,6 +17574,9 @@ var rpngapsimplemodule = function() {
     var responsesState = function(){
         return responsesArray;
     };
+    var limitedChoiceState = function(){
+        return limitedChoice;
+    };
     
     return {
         init: init,
@@ -17523,7 +17584,8 @@ var rpngapsimplemodule = function() {
         score: score,
         pointmax: pointmax,
         successState: successState,
-        responsesState: responsesState
+        responsesState: responsesState,
+        limitedChoiceState: limitedChoiceState
     };
 
 };
@@ -17536,6 +17598,7 @@ var rpnmarkermodule = function() {
     var state;
     var successArray;
     var responsesArray;
+    var limitedChoice;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -17543,7 +17606,8 @@ var rpnmarkermodule = function() {
             tomark: ["fill tomark please!"],
             hidden:false,
             smallButtons:false,
-            displayTooltip:true
+            displayTooltip:true,
+            limitedChoice: false
         });
         datas = _datas;
         domelem = _domelem;
@@ -17568,6 +17632,7 @@ var rpnmarkermodule = function() {
             'class': 'btn-group',
             'data-toggle': 'buttons'
         });
+        limitedChoice = state.markers.length <= 2 ? true : false;
         
         toolbar.append($('<label class="btn btn-default '+(datas.smallButtons?'':'btn-lg ') + (state.selectedMarker.label==''?'active':'')+' eraser"><input type="radio" name="options" autocomplete="off" '+(state.selectedMarker==''?'checked':'')+'><span class="edicons-tool-eraser"></span> ' + rpnsequence.getLabels().Eraser + '</label>').click(function() {
             state.selectedMarker = {color:'',label:''};
@@ -17668,6 +17733,9 @@ var rpnmarkermodule = function() {
     var responsesState = function(){
         return responsesArray;
     };
+    var limitedChoiceState = function(){
+        return limitedChoice;
+    };
     
     return {
         init: init,
@@ -17675,7 +17743,8 @@ var rpnmarkermodule = function() {
         score: score,
         pointmax: pointmax,
         successState: successState,
-        responsesState: responsesState
+        responsesState: responsesState,
+        limitedChoiceState: limitedChoiceState
     };
 };
 
@@ -17687,13 +17756,13 @@ var rpnmqcmodule = function() {
     var state;
     var successArray;
     var responsesArray;
+    var limitedChoice;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
             questions: ["No questions!"],
             answers: ["As no answers"],
-            vertical:false,
-            mqcmultiple:false
+            vertical:false
         });
 
         datas = _datas;
@@ -17715,12 +17784,15 @@ var rpnmqcmodule = function() {
         var uilist = $('<ul>', {
             'class': 'list-unstyled'
         });
-    
+        var choiceLength = new Array();
+        
         $.each(datas.questions, function(idq, question) {
             var li = $('<li>');
             li.append($('<p>' + question + '</p>'));
             var answerGroup = $('<div class="'+(datas.vertical?'btn-group-vertical':'btn-group')+'" role="group" data-toggle="buttons">');
             var idmqc = datas.answers.length==1?0:idq;
+            choiceLength.push(datas.answers[idmqc].choice.length);
+
             //multiple responses allowed
             if(datas.mqcmultiple){
                 var answerArray = new Array(datas.answers.length);
@@ -17744,7 +17816,7 @@ var rpnmqcmodule = function() {
             }
             uilist.append(li);
         });
-        
+        limitedChoice = _.min(choiceLength) <= 2 ? true : false;
         domelem.append(uilist);
         bindUiEvents();
     };
@@ -17787,12 +17859,15 @@ var rpnmqcmodule = function() {
 
         return pointmax;
     };
-     var successState = function(){
+    var successState = function(){
         return successArray;
     };
     var responsesState = function(){
         return responsesArray;
     }
+    var limitedChoiceState = function(){
+        return limitedChoice;
+    };
     
     return {
         init: init,
@@ -17800,7 +17875,8 @@ var rpnmqcmodule = function() {
         score: score,
         pointmax: pointmax,
         successState: successState,
-        responsesState: responsesState
+        responsesState: responsesState,
+        limitedChoiceState: limitedChoiceState
     };
 
 };
@@ -17814,6 +17890,7 @@ var rpnmultiplelistssyncmodule = function() {
     var typeList;
     var successArray;
     var responsesArray;
+    var limitedChoice;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -17842,11 +17919,13 @@ var rpnmultiplelistssyncmodule = function() {
         domelem.addClass('multiplelistssync');
         var listToSort;
         typeList = new Array();
+        var choiceLength = new Array();
         
         //build lists with items to sort
         _.each(datas.lists, function(li,idx){
             typeList[idx] = datas.lists[idx].type ? datas.lists[idx].type : '';
             if(datas.lists[idx].movable){
+                choiceLength.push(datas.lists[idx].items.length);
                 listToSort = $('<ul class="list-unstyled'+(datas.vertical?'':' list-inline')+'" id="sortable-'+idx+'" >'+(_.isEmpty(datas.lists[idx].title) ? '' : '<li class="title">'+datas.lists[idx].title)+'</li></ul>').sortable({
                     items: "li:not(.title)",
                     placeholder: "sorting-highlight",
@@ -17870,6 +17949,7 @@ var rpnmultiplelistssyncmodule = function() {
             };
             domelem.append(listToSort);
         });
+        limitedChoice = _.min(choiceLength) <= 2 ? true : false;
         $(domelem).disableSelection();
         
         bindUiEvents();
@@ -17932,6 +18012,9 @@ var rpnmultiplelistssyncmodule = function() {
     var responsesState = function(){
         return responsesArray;
     };
+    var limitedChoiceState = function(){
+        return limitedChoice;
+    };
     
     return {
         init: init,
@@ -17939,7 +18022,8 @@ var rpnmultiplelistssyncmodule = function() {
         score:score,
         pointmax: pointmax,
         successState: successState,
-        responsesState: responsesState
+        responsesState: responsesState,
+        limitedChoiceState: limitedChoiceState
     };
 
 };
@@ -17954,6 +18038,7 @@ var rpnplumbmodule = function() {
     var plumb;
     var successArray;
     var responsesArray;
+    var limitedChoice;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -17988,20 +18073,30 @@ var rpnplumbmodule = function() {
 
     var buildUi = function() {
         domelem.addClass('plumb');
-        
-        //build sentence with items to select
         var leftItems=$('<ul class="list-unstyled plumbsource"></ul>');
         var rightItems=$('<ul class="list-unstyled plumbtarget"></ul>');
+        if (datas.mathjax==true){
+            _.each(state.left, function(item, idx) {
+                var contentmat=MathJax.HTML.Element("span",{class:"form-inline"},[datas.left[item]]);
+                leftItems.append($('<div class="notif"></div>').append($('<li>').html(contentmat).data( 'idx', item )));
+            });
+            _.each(state.right, function(item, idx) {
+                var contentmat=MathJax.HTML.Element("span",{class:"form-inline"},[datas.right[item]]);
+                rightItems.append($('<li>').html(contentmat).data( 'idx', item ));
+            });
+            domelem.append([$('<div class="col-xs-5"></div>').append(leftItems),$('<div class="col-xs-2"></div>'),$('<div class="col-xs-5"></div>').append(rightItems)]);   
+        }
+        else{
+            _.each(state.left, function(item, idx) {
+                leftItems.append($('<div class="notif"></div>').append($('<li>').html(datas.left[item]).data( 'idx', item )));
+            });
+            _.each(state.right, function(item, idx) {
+                rightItems.append($('<li>').html(datas.right[item]).data( 'idx', item ));
+            });
 
-        _.each(state.left, function(item, idx) {
-            leftItems.append($('<div class="notif"></div>').append($('<li>').html(datas.left[item]).data( 'idx', item )));
-        });
-        _.each(state.right, function(item, idx) {
-            rightItems.append($('<li>').html(datas.right[item]).data( 'idx', item ));
-        });
-
-        domelem.append([$('<div class="col-xs-5"></div>').append(leftItems),$('<div class="col-xs-2"></div>'),$('<div class="col-xs-5"></div>').append(rightItems)]);
-        plumb=jsPlumb.getInstance();
+            domelem.append([$('<div class="col-xs-5"></div>').append(leftItems),$('<div class="col-xs-2"></div>'),$('<div class="col-xs-5"></div>').append(rightItems)]);
+        }
+        plumb=jsPlumb.getInstance(); 
         plumb.importDefaults({
             Connector : [ "Bezier", { curviness: 0 } ],
             PaintStyle : {
@@ -18059,10 +18154,12 @@ var rpnplumbmodule = function() {
                 }
             });
         });
-        
+                MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+
         $(window).resize(function(){
             plumb.repaintEverything();
         });
+        limitedChoice = (state.left.length <= 2 && state.right.length <= 2) ? true : false;
     };
     var validate = function(){
         responsesArray = new Array();
@@ -18112,6 +18209,9 @@ var rpnplumbmodule = function() {
     var responsesState = function(){
         return responsesArray;
     };
+    var limitedChoiceState = function(){
+        return limitedChoice;
+    };
     
     var displayed = function(){
          plumb.repaintEverything();
@@ -18123,7 +18223,8 @@ var rpnplumbmodule = function() {
         score:score,
         pointmax: pointmax,
         successState: successState,
-        responsesState: responsesState
+        responsesState: responsesState,
+        limitedChoiceState: limitedChoiceState
     };
 
 };
@@ -18147,6 +18248,7 @@ var rpnsequence = (function() {
     var states;
     var successState;
     var responsesState;
+    var limitedChoiceState;
     var warnexit;
     var sequenceendHandler;
     var moduleendHandler;
@@ -18179,6 +18281,7 @@ var rpnsequence = (function() {
     var clickEndBtn;
     var licence;
     var returnPage;
+    var docModule;
 
     var labels = {
         en: {
@@ -18267,7 +18370,8 @@ var rpnsequence = (function() {
             viewResultAfterTest:false,
             clickEndBtn:false,
             licence:'<span><a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/2.0/fr/" rel="license"><img width="57" height="20" style="border-width: 0" alt="Creative Commons License" src="http://i.creativecommons.org/l/by-nc-sa/2.0/fr/88x31.png"></a></span>',
-            returnPage:"../"
+            returnPage:"../",
+            docModule:false
         });
         selectedLabels = labels[opts.language];
         states = [];
@@ -18292,6 +18396,7 @@ var rpnsequence = (function() {
         clickEndBtn=opts.clickEndBtn;
         licence=opts.licence;
         returnPage=opts.returnPage;
+        docModule=opts.docModule;
         
         $.getJSON(opts.sequrl, function(datas) {
             _.defaults(datas, {
@@ -18356,7 +18461,7 @@ var rpnsequence = (function() {
                 ])
             ])
         ]);
-        domelem.append($('<div id="rpnm_sources_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-footer"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-book"></i> ' + selectedLabels.Sources + '</h4></div><div class="modal-body"></div></div></div></div>'));
+        domelem.append($('<div id="rpnm_sources_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-book"></i> ' + selectedLabels.Sources + '</h4></div><div class="modal-body"></div></div></div></div>'));
         domelem.append($('<div id="rpnm_recall_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-bell"></i> ' + selectedLabels.Recall + '</h4></div><div class="modal-body"></div></div></div></div>'));
         domelem.append($('<div id="rpnm_order_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-question-sign"></i> ' + selectedLabels.Order + '</h4></div><div class="modal-body"></div></div></div></div>'));
         domelem.append($('<div id="rpnm_alert_modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title"><i class="glyphicon glyphicon-warning-sign"></i> ' + selectedLabels.Warning + '</h4></div><div class="modal-body"></div></div></div></div>'));
@@ -18368,6 +18473,7 @@ var rpnsequence = (function() {
             $('#rpnm_modulenav').remove();
         }
         _.each(sequencedatas.modules, function(modData, idx) {
+            docModule = false;
             _.defaults(modData,{
                 disposition:'top'
             });
@@ -18484,6 +18590,7 @@ var rpnsequence = (function() {
                 modules[idx].init(modData,states[idx].state, divContent);
             }
             else if (modData.type == 'doc') {
+                docModule = true;
                 modules[idx]=rpndocmodule();
                 modules[idx].init(modData,states[idx].state, divContent);
             }
@@ -18529,7 +18636,7 @@ var rpnsequence = (function() {
     var bindUiEvents = function() {
         //Validation
         validationButton.click(function(){
-            clickEndBtn = true;
+            $(this).hasClass("btn-success") ? clickEndBtn = true : '';
             if (this.id=="rpnm_validation"){
                 handleEndOfModule(modules[currentmod].validate(),currentmod+1);
             }else if(currentmod>sequencedatas.modules.length-1){
@@ -18643,10 +18750,10 @@ var rpnsequence = (function() {
     var bindModuleSharedDatas = function(datas) {
         if (!_.isUndefined(datas.sources)){
             $('#rpnm_sources_modal .modal-body').html(datas.sources);
-            btnRecall.show();
+            btnSources.show();
         }else if(!_.isUndefined(sequencedatas.sources)){
             $('#rpnm_sources_modal .modal-body').html(sequencedatas.sources);
-            btnRecall.show();
+            btnSources.show();
         }
         if (!_.isUndefined(datas.recall)){
             $('#rpnm_recall_modal .modal-body').html(datas.recall);
@@ -18696,7 +18803,7 @@ var rpnsequence = (function() {
             sequencedatas.modules[currentmod].status = 'ended';
             previousmod = currentmod;
             currentmod = nextmodtoshow;
-            if (exerciseMode){
+            if (exerciseMode && !docModule){
                 $.getJSON(solurl, function(ssol) {
                     var score = 0;
                     var score = 0;
@@ -18715,6 +18822,7 @@ var rpnsequence = (function() {
                     text = testNumber==1 ? selectedLabels.FirstTest + '<br>' : (testNumber==2 ? selectedLabels.SecondTest + '<br>' : selectedLabels.ThirdTest + '<br>' + selectedLabels.Score + ' ' + score + ' point' + (score>1?'s':'') + " / " + pointmax + ' point' + (pointmax>1?'s.<br>':'.<br>'));
                     successState = modules[previousmod].successState();
                     responsesState = modules[previousmod].responsesState();
+                    limitedChoiceState = modules[previousmod].limitedChoiceState();
                     
                     if((score==pointmax && pointmax!=0) || testNumber>=3){
                         limitOfSufficiency = _.isUndefined(sequencedatas.modules[previousmod].limitOfSufficiency) ? limitOfSufficiency : sequencedatas.modules[previousmod].limitOfSufficiency;
@@ -18756,13 +18864,14 @@ var rpnsequence = (function() {
                             text = text.concat(selectedLabels.Correct);
                         }else{
                             text = text.concat(selectedLabels.Score + ' ' + score + ' point' + (score>1?'s':'') + " / " + pointmax + ' point' + (pointmax>1?'s.':'.'));
-                            
-                            _.each(responsesState, function(val, idx) {
-                                /*var checkText = (successState[idx][0] == 'ok') ? ("<div style=\"color: green;\"><span class=\"glyphicon glyphicon-ok-sign\" ></span></div>") : ("<div style=\"color: red;\"><span class=\"glyphicon glyphicon-remove-sign\"></span></div>");
-                                $(val).attr('data-html', true).attr('data-placement', tooltipPlacement).attr('data-original-title', checkText).tooltip();*/
-                                successState[idx][0] == 'ok' ? $(val).removeClass("error").addClass("exact") : $(val).removeClass("exact").addClass("error");
-                                $(val).on("mousedown", handleErrorExact);
-                            });
+                            if (!limitedChoiceState){
+                                _.each(responsesState, function(val, idx) {
+                                    /*var checkText = (successState[idx][0] == 'ok') ? ("<div style=\"color: green;\"><span class=\"glyphicon glyphicon-ok-sign\" ></span></div>") : ("<div style=\"color: red;\"><span class=\"glyphicon glyphicon-remove-sign\"></span></div>");
+                                    $(val).attr('data-html', true).attr('data-placement', tooltipPlacement).attr('data-original-title', checkText).tooltip();*/
+                                    successState[idx][0] == 'ok' ? $(val).removeClass("error").addClass("exact") : $(val).removeClass("exact").addClass("error");
+                                    $(val).on("mousedown", handleErrorExact);
+                                });
+                            }
                         }
                         displayResult(text,function(){
                             //sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score, returnPage);
@@ -18771,7 +18880,7 @@ var rpnsequence = (function() {
                         testNumber++;
                     }
                 });
-            }else if (testAndResultMode && finished && !viewResultAfterTest && clickEndBtn){
+            }else if (testAndResultMode && finished && !viewResultAfterTest && clickEndBtn && !docModule){
                 handleGoToResult();
             }else if(currentmod>sequencedatas.modules.length-1){
                 handleEndOfSequence();
@@ -18881,12 +18990,12 @@ var rpnsequence = (function() {
             if (warnexit) {
                 $(window).unbind('beforeunload');
             }
-            if(testMode && !exerciseMode){
+            if(testMode && !exerciseMode && !docModule){
                 displayAlert('Score :' + score + ' pt' + (score>1?'s':''),function(){
                     sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score, returnPage);
                 });
             }
-            else if(exerciseMode){
+            else if(exerciseMode && !docModule){
                 displayResult(selectedLabels.Score + ' ' + score + ' point' + (score>1?'s':'') + " / " + pointmax + ' point' + (pointmax  >1?'s':''),function(){
                     sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score, returnPage);
                 });
@@ -19631,6 +19740,7 @@ var rpnsortingmodule = function() {
     var state;
     var successArray;
     var responsesArray;
+    var limitedChoice;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -19654,6 +19764,7 @@ var rpnsortingmodule = function() {
 
     var buildUi = function() {
         domelem.addClass('sorting');
+        limitedChoice = state.length <= 2 ? true : false;
 
         //build sentence with items to select
         var sentenceToSort=$('<ul class="list-unstyled'+(datas.vertical?'" ':' list-inline" ')+(_.isUndefined(datas.grid)? '' : 'style="width:'+datas.grid+';"')+'></ul>');
@@ -19720,6 +19831,9 @@ var rpnsortingmodule = function() {
     var responsesState = function(){
         return responsesArray;
     };
+    var limitedChoiceState = function(){
+        return limitedChoice;
+    };
     
     return {
         init: init,
@@ -19727,7 +19841,8 @@ var rpnsortingmodule = function() {
         score:score,
         pointmax: pointmax,
         successState: successState,
-        responsesState: responsesState
+        responsesState: responsesState,
+        limitedChoiceState: limitedChoiceState
     };
 
 };
