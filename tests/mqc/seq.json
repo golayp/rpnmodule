@@ -56,9 +56,10 @@
             "title":"identifier ",
             "context":"multiple responses possible",
             "mqcmultiple":true,
-            "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
+            "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?","Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
             "answers":[
-				{"choice":["What","When","Where","Who"]}
+				{"choice":["What","When","Where","Who"]},
+                {"choice":["What","When","Where","Who"]}
             ]
         }
     ]

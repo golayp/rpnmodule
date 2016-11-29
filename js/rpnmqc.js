@@ -45,8 +45,9 @@ var rpnmqcmodule = function() {
 
             //multiple responses allowed
             if(datas.mqcmultiple){
-                var answerArray = new Array(datas.answers.length);
-                answerArray = _.map(answerArray,function(aa,idaa){return'';});
+                var answerArray = new Array();
+                //var answerArray = new Array(datas.answers.length);
+                //answerArray = _.map(answerArray,function(aa,idaa){return'';});
                 $.each(datas.answers[idmqc].choice, function(ida, answer) {
                     answerArray[ida] = (!_.isEmpty(state.responses[idq][ida])&&state.responses[idq][ida]==answer)? state.responses[idq][ida] : '';
                     answerGroup.append($('<label class="btn btn-default '+((!_.isEmpty(state.responses[idq][ida])&&state.responses[idq][ida]==answer)?'active':'')+'"><input type="checkbox" autocomplete="off" '+((!_.isEmpty(state.responses[idq][ida])&&state.responses[idq][ida]==answer)?'checked':'')+'>' + answer + '</label>').click(function(lab) {
