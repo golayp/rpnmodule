@@ -51,6 +51,7 @@ var rpnsequence = (function() {
     var licence;
     var returnPage;
     var docModule;
+    var disablestateloading;
 
     var labels = {
         en: {
@@ -736,7 +737,7 @@ var rpnsequence = (function() {
     };
     
     var resultMode = function(){
-        return watchResultMode;
+        return (!loadstate);
     }
 
     var handleEndOfSequence = function() {

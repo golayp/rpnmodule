@@ -80,11 +80,11 @@ var rpnmarkermodule = function() {
                         .tooltip('fixTitle');
                 }
             }
-            if(!datas.hidden && rpnsequence.resultMode){
-                t.css('cursor', 'pointer');
-            }else if (!rpnsequence.resultMode){
+            if(datas.hidden && rpnsequence.resultMode()){
                 t.css('font-weight','normal');
                 t.css('background-color','rgba(255, 255, 255, 0)');
+            }else{
+                t.css('cursor', 'pointer');
             }
             t.click(function() {
                 t.css('background-color',state.selectedMarker.color);
