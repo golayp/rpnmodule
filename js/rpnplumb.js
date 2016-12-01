@@ -66,6 +66,19 @@ var rpnplumbmodule = function() {
 
             domelem.append([$('<div class="col-xs-5"></div>').append(leftItems),$('<div class="col-xs-2"></div>'),$('<div class="col-xs-5"></div>').append(rightItems)]);
         }
+        _.each($('li>img'), function(item,idx){
+            var oldwidth;
+            function bigImg() {
+                oldwidth=this.style.width;
+                this.style.width = "400px";
+            }
+
+            function normalImg() {
+                this.style.width = oldwidth;
+            }
+            item.onmouseover=bigImg;
+            item.onmouseout=normalImg;
+        });
         plumb=jsPlumb.getInstance(); 
         plumb.importDefaults({
             Connector : [ "Bezier", { curviness: 0 } ],
