@@ -1,5 +1,5 @@
 <h1>rpnmodule</h1>
-<strong>v0.2.7</strong>
+<strong>v0.3.0</strong>
 <p>rpnmodule is a project aiming to provide a base library for running educational sequences of modules. It'll provide common features for modules that can be arranged in a sequence of work:</p>
 <p>As the project evolves the main module in the library is rpnsequence, but project name is still rpnmodule... Sorry for confusion!!!!</p>
 

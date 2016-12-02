@@ -17672,11 +17672,11 @@ var rpnmarkermodule = function() {
                         .tooltip('fixTitle');
                 }
             }
-            if(!datas.hidden && rpnsequence.resultMode){
-                t.css('cursor', 'pointer');
-            }else if (!rpnsequence.resultMode){
+            if(datas.hidden && rpnsequence.resultMode()){
                 t.css('font-weight','normal');
                 t.css('background-color','rgba(255, 255, 255, 0)');
+            }else{
+                t.css('cursor', 'pointer');
             }
             t.click(function() {
                 t.css('background-color',state.selectedMarker.color);
@@ -17795,8 +17795,9 @@ var rpnmqcmodule = function() {
 
             //multiple responses allowed
             if(datas.mqcmultiple){
-                var answerArray = new Array(datas.answers.length);
-                answerArray = _.map(answerArray,function(aa,idaa){return'';});
+                var answerArray = new Array();
+                //var answerArray = new Array(datas.answers.length);
+                //answerArray = _.map(answerArray,function(aa,idaa){return'';});
                 $.each(datas.answers[idmqc].choice, function(ida, answer) {
                     answerArray[ida] = (!_.isEmpty(state.responses[idq][ida])&&state.responses[idq][ida]==answer)? state.responses[idq][ida] : '';
                     answerGroup.append($('<label class="btn btn-default '+((!_.isEmpty(state.responses[idq][ida])&&state.responses[idq][ida]==answer)?'active':'')+'"><input type="checkbox" autocomplete="off" '+((!_.isEmpty(state.responses[idq][ida])&&state.responses[idq][ida]==answer)?'checked':'')+'>' + answer + '</label>').click(function(lab) {
@@ -18096,6 +18097,19 @@ var rpnplumbmodule = function() {
 
             domelem.append([$('<div class="col-xs-5"></div>').append(leftItems),$('<div class="col-xs-2"></div>'),$('<div class="col-xs-5"></div>').append(rightItems)]);
         }
+        _.each($('li>img'), function(item,idx){
+            var oldwidth;
+            function bigImg() {
+                oldwidth=this.style.width;
+                this.style.width = "400px";
+            }
+
+            function normalImg() {
+                this.style.width = oldwidth;
+            }
+            item.onmouseover=bigImg;
+            item.onmouseout=normalImg;
+        });
         plumb=jsPlumb.getInstance(); 
         plumb.importDefaults({
             Connector : [ "Bezier", { curviness: 0 } ],
@@ -18282,6 +18296,7 @@ var rpnsequence = (function() {
     var licence;
     var returnPage;
     var docModule;
+    var disablestateloading;
 
     var labels = {
         en: {
@@ -18967,7 +18982,7 @@ var rpnsequence = (function() {
     };
     
     var resultMode = function(){
-        return watchResultMode;
+        return (!loadstate);
     }
 
     var handleEndOfSequence = function() {
