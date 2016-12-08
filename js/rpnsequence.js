@@ -477,7 +477,6 @@ var rpnsequence = (function() {
                 //validationButton.html(selectedLabels.Next+' <i class="glyphicon glyphicon-chevron-right"></i>').removeClass("btn-success").addClass("btn-primary").attr("id","rpnm_next");
 
                 $($('#rpnm_modulestate h4 span')[previousmod]).removeClass('label-default').addClass('label-success');
-                
                 _.each(responsesState, function(val, idx) {
                     var checkText = (successState[idx][0] == 'ok') ? '' : ("<div style=\"color: green;\">" + successState[idx][1] + "</div>");
                     $(val).attr('data-html', true).attr('data-placement', tooltipPlacement).attr('data-original-title', checkText).tooltip().on('mouseenter', function(){
