@@ -1,0 +1,17 @@
+﻿&Titre=Dictée01
+&Sujet=Accord sujet-verbe.
+&Type=Phrases
+&Phrase3=Dans<AA la première<AB voiture |se trouvent<AC les mariés<AD.
+&VarAA1=dans
+&RetAA1=02
+&VarAB1=premier
+&RetAB1=C’est un adjectif féminin.
+&VarAC1=trouve
+&RetAC1=07
+&VarAC2=trouves
+&RetAC2=06
+&VarAD1=marié
+&RetAD1=09
+&VarAD2=marié.
+&RetAD2=09
+&Fin=fin

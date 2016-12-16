@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P1</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>triangle</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P2</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>triangle</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P3</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>quadrilatère</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P4</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>quadrilatère</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P5</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>pentagone</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P6</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>pentagone</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P7</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>hexagone</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P8</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>hexagone</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P9</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>octogone</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P10</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>octogone</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P11</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>décagone</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P12</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>décagone</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P13</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>non polygonale</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P14</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>non polygonale</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P15</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>décagone</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P16</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>décagone</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P17</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>non polygonale</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P18</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>non polygonale</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P19</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>octogone</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P20</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>octogone</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P21</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>hexagone</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P22</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>hexagone</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P23</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>pentagone</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P24</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>pentagone</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P25</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>quadrilatère</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P26</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>quadrilatère</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P27</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>triangle</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P28</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>triangle</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P29</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>non polygonale</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>P30</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>octogone</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+</exercice>

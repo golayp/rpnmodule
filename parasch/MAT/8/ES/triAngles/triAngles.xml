@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Aplein1</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>plein</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Aplein2</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>plein</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Aa1</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>aigu</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Aa2</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>aigu</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Aa3</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>aigu</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Aa4</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>aigu</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Aa5</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>aigu</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Aa6</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>aigu</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Ad1</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>droit</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Ad2</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>droit</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Ad3</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>droit</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Ad4</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>droit</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Ad5</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>droit</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Ad6</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>droit</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Ao1</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>obtu</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Ao2</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>obtu</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Ao3</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>obtu</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Ao4</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>obtu</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Ao5</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>obtu</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Ao6</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>obtu</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Aplat1</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>plat</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Aplat2</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>plat</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Aplat3</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>plat</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Anc1</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>non convexe</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Anc2</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>non convexe</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Anc3</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>non convexe</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Anc4</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>non convexe</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Anc5</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>non convexe</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Anc6</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>non convexe</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+</exercice>

@@ -28,6 +28,24 @@
             "sentence":["Lorem","ipsum","dolor","sit","amet,","consectetur","adipiscing","elit."],
             "shuffle":true,
             "sources":"Donec arcu lectus, porttitor sed vestibulum vitae."
+        },
+        {
+            "type":"sorting",
+            "cssClass":"item4",
+            "title":"a sorting module with pictures",
+            "context":"Context",
+            "directive":"Directive",
+            "sentence":["<img src=\"/medias/sorting1.png\">","<img src=\"/medias/sorting2.png\">","<img src=\"/medias/sorting3.png\">"],
+            "shuffle":false
+        },
+        {
+            "type":"sorting",
+            "cssClass":"item5",
+            "title":"a sorting module with a grid",
+            "context":"Context",
+            "directive":"Directive",
+            "sentence":["<img src=\"/medias/sorting_grid1.png\">","<img src=\"/medias/sorting_grid2.png\">","<img src=\"/medias/sorting_grid3.png\">","<img src=\"/medias/sorting_grid4.png\">","<img src=\"/medias/sorting_grid5.png\">"],
+            "shuffle":false
         }
     ]
 }

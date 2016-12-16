@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<unite>
+		<nom>vide</nom>
+		<nom2>vide</nom2>
+		<fichierImage>Mourir</fichierImage>
+		<fichierLogo></fichierLogo>
+		<categorie>-t</categorie>
+		<conversionSI></conversionSI>
+		<commentaire>vide</commentaire>
+		<symboleUnite></symboleUnite>
+		<exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Vendre</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>-d</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Resoudre</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>-t</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Vaincre</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>-c</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Plaindre</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>-t</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Essayer</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>-e</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Entendre</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>-d</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Convaincre</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>-c</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Conclure</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>-t</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Surprendre</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>-d</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Descendre</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>-d</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Prevenir</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>-t</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Installer</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>-e</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Rejoindre</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>-t</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Apprendre</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>-d</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Contraindre</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>-t</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Reparer</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>-e</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Pretendre</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>-d</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Apercevoir</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>-t</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>Mentir</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>-t</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+</exercice>

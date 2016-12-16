@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE1</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>prisme droit</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE2</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>prisme droit</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE3</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>prisme droit</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE4</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>cylindre</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE5</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>cylindre</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE6</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>pyramide</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE7</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>pyramide</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE8</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>pyramide</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE9</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>cône</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE10</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>cône</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE11</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>autre</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE12</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>autre</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE13</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>prisme droit</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE14</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>cylindre</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE15</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>cylindre</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE16</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>cylindre</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE17</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>cylindre</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE18</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>prisme droit</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE19</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>prisme droit</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE20</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>pyramide</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE21</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>pyramide</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE22</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>pyramide</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE23</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>cône</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE24</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>cône</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE25</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>cône</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE26</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>cône</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE27</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>autre</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE28</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>autre</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE29</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>autre</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>PE30</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>autre</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+</exercice>

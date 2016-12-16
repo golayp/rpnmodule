@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<activite>
+  <exercice>
+    <type>equation</type>
+    <donnee>La somme de trois nombres consécutifs pairs donne 180.
+Quel est le plus petit de ces nombres?</donnee>
+    <grandeurEgaliteVraie>une somme</grandeurEgaliteVraie>
+    <grandeurEgaliteFausse1>un nombre</grandeurEgaliteFausse1>
+    <grandeurEgaliteFausse2>le plus petit</grandeurEgaliteFausse2>
+    <grandeurEgaliteFausse3>le plus grand</grandeurEgaliteFausse3>
+    <grandeurEgaliteFausse4>le nombre du milieu</grandeurEgaliteFausse4>
+    <gaucheMotCle>La somme de trois nombres consécutifs</gaucheMotCle>
+    <gaucheValeur/>
+    <gaucheUnite/>
+    <droiteMotCle>180</droiteMotCle>
+    <droiteValeur>180</droiteValeur>
+    <droiteUnite/>
+    <egaliteMotCle>donne</egaliteMotCle>
+    <egaliteValeur>=</egaliteValeur>
+    <inconnueMotCle>le plus petit de ces nombres</inconnueMotCle>
+    <inconnueValeur>2x</inconnueValeur>
+    <droiteSolutionTxt>180</droiteSolutionTxt>
+    <gaucheSolutionTxt>2x+(2x+1)+(2x+2)</gaucheSolutionTxt>
+    <analyse0_111>Tu as bien reconnu les différents éléments de l'équation.
+    Les éléments gauche et droite peuvent s'intervertirent.
+    </analyse0_111>
+    <analyse1_110>L'égalité et le membre de gauche sont correctes.
+    Pour le membre de droite, trouve ce qui se trouve de l'autre côté de "donne".</analyse1_110>
+    <analyse2_101>L'égalité et le membre de droite sont correctes.
+    Pour le membre de gauche, trouve ce qui se trouve de l'autre côté de "donne".</analyse2_101>
+    <analyse3_100>Seule l'égalité est correcte.
+    Les membres de gauche et de droite se trouvent de chaque côté de "donne".</analyse3_100>
+    <analyse4_011>Les membres de gauche et de droite de l'équation sont justes.
+Il faut encore trouver le mot qui correspond à l'égalité.</analyse4_011>
+    <analyse5_010>Le membre de gauche est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+ (ça peut être un synonyme de "égal")
+Puis le membre de droite.</analyse5_010>
+    <analyse6_001>Le membre de droite est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+ (ça peut être un synonyme de "égal")
+Puis le membre de gauche. </analyse6_001>
+    <analyse7_000>Pour l'instant tu n'as rien trouvé.
+     Cherche quelque chose qui veut dire "égale" .</analyse7_000>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11_comboBox_Question>Quel élément commun (grandeur, opération...) peux-tu mettre de chaque côté de l'égalité?</analyse11_comboBox_Question>
+    <analyse12_comboBoxF>180 pourrait-être une...</analyse12_comboBoxF>
+    <analyse13_comboBoxJ>180 est bien la somme de trois nombres consécutifs.</analyse13_comboBoxJ>
+    <analyse14_inconnueF>Dans ce problème,
+    on trouve l'inconnue dans la question</analyse14_inconnueF>
+    <analyse15_inconnueJ>L'inconnue,
+    c'est bien un nombre pair (multiple de 2).
+    Ici, c'est aussi ce qu'on demande. </analyse15_inconnueJ>
+     <egaliteGa/>
+<egaliteDr/>
+<distracteurI1>yarien</distracteurI1>
+<distracteurI2>yarien</distracteurI2>
+<distracteurP3>yarien</distracteurP3>
+<distracteurP4>yarien</distracteurP4>
+<analyseDistracteurI1/>
+<analyseDistracteurI2/>
+<analyseDistracteurP3/>
+<analyseDistracteurP4/>
+<motCleEgaliteTerminaison> </motCleEgaliteTerminaison>
+  </exercice>
+  <exercice>
+    <type>equation</type>
+    <donnee>Un rectangle a une largeur qui est le quart de sa longueur. Son périmètre vaut 555m.
+Que vaut sa largeur?</donnee>
+    <grandeurEgaliteVraie>un périmètre</grandeurEgaliteVraie>
+    <grandeurEgaliteFausse1>une différence</grandeurEgaliteFausse1>
+    <grandeurEgaliteFausse2>une largeur</grandeurEgaliteFausse2>
+    <grandeurEgaliteFausse3>un rectangle</grandeurEgaliteFausse3>
+    <grandeurEgaliteFausse4>le triple</grandeurEgaliteFausse4>
+    <gaucheMotCle>périmètre</gaucheMotCle>
+    <gaucheValeur/>
+    <gaucheUnite>m</gaucheUnite>
+    <droiteMotCle>555</droiteMotCle>
+    <droiteValeur>555</droiteValeur>
+    <droiteUnite>m</droiteUnite>
+    <egaliteMotCle>vaut</egaliteMotCle>
+    <egaliteValeur>=</egaliteValeur>
+    <inconnueMotCle>largeur</inconnueMotCle>
+    <inconnueValeur>x</inconnueValeur>
+    <droiteSolutionTxt>555</droiteSolutionTxt>
+    <gaucheSolutionTxt>2(x+4x)</gaucheSolutionTxt>
+    <analyse0_111>Tu as bien reconnu les différents éléments de l'équation.
+    Les éléments gauche et droite peuvent s'intervertirent.
+    </analyse0_111>
+    <analyse1_110>L'égalité et le membre de gauche sont correctes.
+    Pour le membre de droite, trouve ce qui se trouve de l'autre côté de "vaut".</analyse1_110>
+    <analyse2_101>L'égalité et le membre de droite sont correctes.
+    Pour le membre de gauche, trouve ce qui se trouve de l'autre côté de "vaut".</analyse2_101>
+    <analyse3_100>Seule l'égalité est correcte.
+    Les membres de gauche et de droite se trouvent de chaque côté de "vaut".</analyse3_100>
+    <analyse4_011>Les membres de gauche et de droite de l'équation sont justes.
+Il faut encore trouver le mot qui correspond à l'égalité.</analyse4_011>
+    <analyse5_010>Le membre de gauche est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+ (ça peut être un synonyme de "égal")
+Puis le membre de droite.</analyse5_010>
+    <analyse6_001>Le membre de droite est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+ (ça peut être un synonyme de "égal")
+Puis le membre de gauche. </analyse6_001>
+    <analyse7_000>Pour l'instant tu n'as rien trouvé.
+     Cherche quelque chose qui veut dire "égal" ou "ça revient au même que...".</analyse7_000>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11_comboBox_Question>Quel élément commun (grandeur, opération...) peux-tu mettre de chaque côté de l'égalité?</analyse11_comboBox_Question>
+    <analyse12_comboBoxF>555m. pourrait-être un...</analyse12_comboBoxF>
+    <analyse13_comboBoxJ>555m  est bien le périmètre du rectangle.</analyse13_comboBoxJ>
+    <analyse14_inconnueF>Dans ce problème,
+    on trouve l'inconnue dans la première partie.</analyse14_inconnueF>
+    <analyse15_inconnueJ>L'inconnue,
+    c'est bien la largeur.
+    Ici, c'est ce qu'on demande. </analyse15_inconnueJ>
+     <egaliteGa/>
+<egaliteDr/>
+<distracteurI1>yarien</distracteurI1>
+<distracteurI2>yarien</distracteurI2>
+<distracteurP3>yarien</distracteurP3>
+<distracteurP4>yarien</distracteurP4>
+<analyseDistracteurI1/>
+<analyseDistracteurI2/>
+<analyseDistracteurP3/>
+<analyseDistracteurP4/>
+<motCleEgaliteTerminaison> </motCleEgaliteTerminaison>
+  </exercice><exercice>
+    <type>equation</type>
+    <donnee>La différence entre le tiers d'un nombre et son cinquième vaut 4.
+Quel est ce nombre?</donnee>
+    <grandeurEgaliteVraie>une différence</grandeurEgaliteVraie>
+    <grandeurEgaliteFausse1>un produit</grandeurEgaliteFausse1>
+    <grandeurEgaliteFausse2>une nombre</grandeurEgaliteFausse2>
+    <grandeurEgaliteFausse3>un quotient</grandeurEgaliteFausse3>
+    <grandeurEgaliteFausse4>une distance</grandeurEgaliteFausse4>
+    <gaucheMotCle>La différence entre le tiers d'un nombre et son cinquième</gaucheMotCle>
+    <gaucheValeur/>
+    <gaucheUnite/>
+    <droiteMotCle>4</droiteMotCle>
+    <droiteValeur>4</droiteValeur>
+    <droiteUnite/>
+    <egaliteMotCle>vaut</egaliteMotCle>
+    <egaliteValeur>=</egaliteValeur>
+    <inconnueMotCle>nombre</inconnueMotCle>
+    <inconnueValeur>y</inconnueValeur>
+    <droiteSolutionTxt>4</droiteSolutionTxt>
+    <gaucheSolutionTxt>y/3-y/5</gaucheSolutionTxt>
+    <analyse0_111>Tu as bien reconnu les différents éléments de l'équation.
+    Les éléments gauche et droite peuvent s'intervertirent.
+    </analyse0_111>
+    <analyse1_110>L'égalité et le membre de gauche sont correctes.
+    On a besoin de deux valeurs pour pouvoir calculer une différence...</analyse1_110>
+    <analyse2_101>L'égalité et le membre de droite sont correctes.
+     On a besoin de deux valeurs pour pouvoir calculer une différence...</analyse2_101>
+    <analyse3_100>Seule l'égalité est correcte.
+   De quoi avons-nous besoin pour calculer une différence?</analyse3_100>
+    <analyse4_011>Les membres de gauche et de droite de l'équation sont justes.
+Il faut encore trouver le mot qui correspond à l'égalité.</analyse4_011>
+    <analyse5_010>Le membre de gauche est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+Puis le membre de droite.</analyse5_010>
+    <analyse6_001>Le membre de droite est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+Puis le membre de gauche. </analyse6_001>
+    <analyse7_000>Pour l'instant tu n'as rien trouvé.
+     Cherche quelque chose qui veut dire "égal" ou "donne".</analyse7_000>
+    <analyse8>          </analyse8>
+    <analyse9/>
+    <analyse10/>
+    <analyse11_comboBox_Question>Quel élément commun (grandeur, opération...) peux-tu mettre de chaque côté de l'égalité?</analyse11_comboBox_Question>
+    <analyse12_comboBoxF>4 pourrait-être une...</analyse12_comboBoxF>
+    <analyse13_comboBoxJ>4 est bien différence entre le triple d'un nombre et son tiers.</analyse13_comboBoxJ>
+    <analyse14_inconnueF>Dans ce problème,
+    on trouve l'inconnue dans la question</analyse14_inconnueF>
+    <analyse15_inconnueJ>L'inconnue,
+    c'est bien un nombre.
+    Ici, c'est aussi ce qu'on demande. </analyse15_inconnueJ>
+     <egaliteGa/>
+<egaliteDr/>
+<distracteurI1>yarien</distracteurI1>
+<distracteurI2>yarien</distracteurI2>
+<distracteurP3>yarien</distracteurP3>
+<distracteurP4>yarien</distracteurP4>
+<analyseDistracteurI1/>
+<analyseDistracteurI2/>
+<analyseDistracteurP3/>
+<analyseDistracteurP4/>
+<motCleEgaliteTerminaison> </motCleEgaliteTerminaison>
+  </exercice></activite>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -119,11 +119,17 @@ var rpnblackboxmodule = function() {
         });
         return score;
     };
+    var pointmax = function(sol){
+        var pointmax = _.flatten(_.toArray(sol)).length;
+        
+        return pointmax;
+    };
     
     return {
         init: init,
-        validate:validate,
-        score:score
+        validate: validate,
+        score: score,
+        pointmax: pointmax
     };
 
 };

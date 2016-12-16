@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<sequence>11e année : Séquence 1 Fonction 4
+		<titre> 4. Faire correspondre une droite à une expression fonctionnelle
+			
+			<module>
+				<id>module1</id>
+				<donnee1>A l'aide des touches flèches du clavier, fais correspondre  la droite à l'expression fonctionnelle.</donnee1>
+				<donnee2>Aide-toi du quadrillage pour ajuster les coefficients.</donnee2>
+				<ressource>../fonctions/Sequ_11_Fonction_4_1.swf</ressource>
+				<validemax>4</validemax>
+				<sortiejuste>module2</sortiejuste>
+				<sortieFausse>module2</sortieFausse>
+				<aide>../fonctions/Sequ_11_Fonction_1_aideMemoire.swf</aide>
+				<indice>../fonctions/Sequ_11_Fonction_1_1_aideConsignes.swf</indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>oui</indiceDemarrage>
+				<tailleX>750</tailleX>
+				<tailleY>580</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module2</id>
+				<donnee1>A l'aide des touches flèches du clavier, fais correspondre la droite à l'expression fonctionnelle.</donnee1>
+				<donnee2>Aide-toi du quadrillage pour ajuster les coefficients.</donnee2>
+				<ressource>../fonctions/Sequ_11_Fonction_4_2.swf</ressource>
+				<validemax>4</validemax>
+				<sortiejuste>module3</sortiejuste>
+				<sortieFausse>module3</sortieFausse>
+				<aide>../fonctions/Sequ_11_Fonction_1_aideMemoire.swf</aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+				<tailleX>750</tailleX>
+				<tailleY>580</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module3</id>
+				<donnee1>A l'aide des touches flèches du clavier, fais correspondre la droite à l'expression fonctionnelle.</donnee1>
+				<donnee2>Aide-toi du quadrillage pour ajuster les coefficients.</donnee2>
+				<ressource>../fonctions/Sequ_11_Fonction_4_3.swf</ressource>
+				<validemax>3</validemax>
+				<sortiejuste>module4</sortiejuste>
+				<sortieFausse>module4</sortieFausse>
+				<aide>../fonctions/Sequ_11_Fonction_1_aideMemoire.swf</aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+				<tailleX>750</tailleX>
+				<tailleY>580</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module4</id>
+				<donnee1>A l'aide des touches flèches du clavier, fais correspondre la droite à l'expression fonctionnelle.</donnee1>
+				<donnee2>Aide-toi du quadrillage pour ajuster les coefficients.</donnee2>
+				<ressource>../fonctions/Sequ_11_Fonction_4_4.swf</ressource>
+				<validemax>3</validemax>
+				<sortiejuste>../fonctions/11_sequFonct_5.html</sortiejuste>
+				<sortieFausse>../fonctions/11_sequFonct_5.html</sortieFausse>
+				<aide>../fonctions/Sequ_11_Fonction_1_aideMemoire.swf</aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+				<tailleX>750</tailleX>
+				<tailleY>580</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+		</titre>
+	</sequence>
+	
+</exercice>

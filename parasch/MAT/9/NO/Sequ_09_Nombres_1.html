@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+	<head>
+		<title>>9e année : Séquence Nombres - Exercice 1</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script type="text/javascript" src="swfobject.js"></script>
+		<script type="text/javascript" src="json.js"></script>
+		<script type="text/javascript">
+			<!-- Adobe recommande aux développeurs d'utiliser SWFObject2 pour la détection de Flash Player. -->
+			<!-- Pour plus d'informations, consultez la page SWFObject du code Google (http://code.google.com/p/swfobject/). -->
+			<!-- Pour plus d'informations, voir Adobe Developer Connection, section "Detecting Flash Player versions and embedding SWF files with SWFObject 2" -->
+			<!-- Sélectionnez la version minimale requise de Flash Player ou 0 si vous ne souhaitez pas activer la détection de version -->
+			//Cette fonction ne sert à rien ici, juste à communique avec flash
+		function resetfield(){
+			window.onbeforeunload = null;
+			return "resetField()activée";
+		}
+		
+		// fonction activée depuis flash, qui affiche les résultats dans un popup résultats et qui renvois à flash des informations (avec return)
+		function recuperationSWF(resultats){
+			window.alert(JSON.stringify(resultats));
+			//window.alert("username: "+resultats["username"]+"\nresultat: "+resultats["rep_juste"]);
+			return "username: "+resultats["username"]+"\nresultat: "+resultats["rep_juste"];
+		}
+		//Fonction qui demande un confirmation de fermeture de fenêtre
+		window.onbeforeunload = confirmExit;
+		function confirmExit()
+		{
+			return "Attention! En quittant cette page, tous les résultats seront perdus.\n\nCliquez sur 'Ne pas actualiser' pour reprendre l'exercice s'il n'est pas terminé.";
+			 
+		}
+		//variables qui sont passées au flash: FlashVars, params et attributes qui ne contiennent rien pour l'instant
+		var flashVars = {};
+			flashVars.id_eleve = '1ba800d7-9d21-4ce4-aff2-33bc73a52434';
+			flashVars.level_eleve = '10';
+			flashVars.nom_eleve= "Jean-Michel Luthi";
+
+		var params = {};
+			params.quality = "high";
+			params.bgcolor = "#ffffff"; 
+			params.play = "true";
+			params.loop = "false";
+			params.wmode = "window";
+			params.scale = "showall";
+			params.menu = "true";
+			params.devicefont = "false";
+			params.align = "center";
+			params.allowscriptaccess = "sameDomain";
+			
+		var attributes = {};
+			attributes.id = "Sequ_09_Nombres_1";
+			attributes.name = "Sequ_09_Nombres_1";
+			attributes.align = "middle";
+			
+		//On charge de swf dans la page html et on lui passe des variables
+		swfobject.createCSS("html", "height:100%; background-color: #ffffff;");
+		swfobject.createCSS("body", "margin:0; padding:0; overflow:hidden; height:95%;");
+		
+		Nom = navigator.appName;
+		if (Nom == 'Microsoft Internet Explorer') {
+			
+			//document.write("Hauteur fenêtre.width = "+haut);
+			swfobject.embedSWF("Sequ_09_Nombres_1.swf", "flashContent", 1024, 768, "10.0.0", false, flashVars, attributes, params);
+		}
+		else
+		{
+			var larg = (window.innerWidth);
+			var haut = (window.innerHeight)-35;
+			swfobject.embedSWF("Sequ_09_Nombres_1.swf", "flashContent", larg, haut, "10.0.0", false, flashVars, attributes, params);
+		}
+		
+		//swfobject.embedSWF("Sequ_09_Nombres_1.swf", "flashContent", "1250", "746", "10.0.0", false, flashVars, attributes, params);
+
+		</script>
+        <link rel="shortcut icon" type="image/x-icon" href="../images/logo_iclasse.ico" />
+        <meta name="keywords" content="algèbre, Nombres entiers relatifs, position, opérations, iclasse, math, 9e année" />
+	</head>
+	<body>
+		<!-- La méthode d'incorporation dynamique de l'objet SWF remplace ce contenu HTML alternatif par le contenu Flash lorsque les plug-ins JavaScript et Flash sont suffisamment pris en charge. -->
+		<div id="flashContent">
+			<a href="http://www.adobe.com/go/getflash">
+				<img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Obtenir Adobe Flash Player" />
+			</a>
+			<p>Cette page requiert Flash Player version 6.0.79 ou ultérieure.</p>
+		</div>
+	</body>
+</html>

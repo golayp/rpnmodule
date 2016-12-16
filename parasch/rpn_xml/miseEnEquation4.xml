@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<sequence>10e année FA
+		<titre> Mettre une situation concrète en équation.
+			
+			<module>
+				<id>module1</id>
+				<donnee1>Suis les consignes de l'animation.</donnee1>
+				<donnee2>Valide lorsque tu as tout terminé</donnee2>
+				<ressource>miseEquBalance4.swf</ressource>
+				<validemax>3</validemax>
+				<sortiejuste/>
+				<sortieFausse/>
+				<aide/>
+				<indice/>
+				<aideDemarrage/>
+				<indiceDemarrage/>
+                                <tailleX/>
+				<tailleY/>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+		</titre>
+	</sequence>
+	
+</exercice>
+
+
+
+
+
+
+
+
+

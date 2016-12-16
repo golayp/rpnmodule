@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<activite>
+  <exercice>
+    <type>equation</type>
+    <donnee>La somme de trois nombres consécutifs donne 75.
+Quel est le plus petit de ces nombres?
+</donnee>
+    <grandeurEgaliteVraie>une somme</grandeurEgaliteVraie>
+    <grandeurEgaliteFausse1>un nombre</grandeurEgaliteFausse1>
+    <grandeurEgaliteFausse2>le plus petit</grandeurEgaliteFausse2>
+    <grandeurEgaliteFausse3>le plus grand</grandeurEgaliteFausse3>
+    <grandeurEgaliteFausse4>le nombre du milieu</grandeurEgaliteFausse4>
+    <gaucheMotCle>La somme de trois nombres consécutifs</gaucheMotCle>
+    <gaucheValeur/>
+    <gaucheUnite/>
+    <droiteMotCle>75</droiteMotCle>
+    <droiteValeur>75</droiteValeur>
+    <droiteUnite/>
+    <egaliteMotCle>donne</egaliteMotCle>
+    <egaliteValeur>=</egaliteValeur>
+    <inconnueMotCle>le plus petit de ces nombres</inconnueMotCle>
+    <inconnueValeur>x</inconnueValeur>
+    <droiteSolutionTxt>75</droiteSolutionTxt>
+    <gaucheSolutionTxt>x+(x+1)+(x+2)</gaucheSolutionTxt>
+    <analyse0_111>Tu as bien reconnu les différents éléments de l'équation.
+    Les éléments gauche et droite peuvent s'intervertirent.
+    </analyse0_111>
+    <analyse1_110>L'égalité et le membre de gauche sont correctes.
+    Pour le membre de droite, trouve ce qui se trouve de l'autre côté de "donne".</analyse1_110>
+    <analyse2_101>L'égalité et le membre de droite sont correctes.
+    Pour le membre de gauche, trouve ce qui se trouve de l'autre côté de "donne".</analyse2_101>
+    <analyse3_100>Seule l'égalité est correcte.
+    Les membres de gauche et de droite se trouvent de chaque côté de "donne".</analyse3_100>
+    <analyse4_011>Les membres de gauche et de droite de l'équation sont justes.
+Il faut encore trouver le mot qui correspond à l'égalité.</analyse4_011>
+    <analyse5_010>Le membre de gauche est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+ (ça peut être un synonyme de "égal")
+Puis le membre de droite.</analyse5_010>
+    <analyse6_001>Le membre de droite est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+ (ça peut être un synonyme de "égal")
+Puis le membre de gauche. </analyse6_001>
+    <analyse7_000>Pour l'instant tu n'as rien trouvé.
+     Cherche quelque chose qui veut dire "égale" .</analyse7_000>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11_comboBox_Question>Quel élément commun (grandeur, opération...) peux-tu mettre de chaque côté de l'égalité?</analyse11_comboBox_Question>
+    <analyse12_comboBoxF>75 pourrait-être une...</analyse12_comboBoxF>
+    <analyse13_comboBoxJ>75 est bien la somme de trois nombres consécutifs.</analyse13_comboBoxJ>
+    <analyse14_inconnueF>Dans ce problème,
+    on trouve l'inconnue dans la question</analyse14_inconnueF>
+    <analyse15_inconnueJ>L'inconnue,
+    c'est bien un nombre.
+    Ici, c'est aussi ce qu'on demande. </analyse15_inconnueJ>
+     <egaliteGa/>
+<egaliteDr/>
+<distracteurI1>yarien</distracteurI1>
+<distracteurI2>yarien</distracteurI2>
+<distracteurP3>yarien</distracteurP3>
+<distracteurP4>yarien</distracteurP4>
+<analyseDistracteurI1/>
+<analyseDistracteurI2/>
+<analyseDistracteurP3/>
+<analyseDistracteurP4/>
+<motCleEgaliteTerminaison> </motCleEgaliteTerminaison>
+  </exercice>
+  <exercice>
+    <type>equation</type>
+    <donnee>Un rectangle a une longueur triple de sa largeur. Son périmètre vaut 64m. Que vaut sa largeur?
+</donnee>
+    <grandeurEgaliteVraie>un périmètre</grandeurEgaliteVraie>
+    <grandeurEgaliteFausse1>une différence</grandeurEgaliteFausse1>
+    <grandeurEgaliteFausse2>une largeur</grandeurEgaliteFausse2>
+    <grandeurEgaliteFausse3>un rectangle</grandeurEgaliteFausse3>
+    <grandeurEgaliteFausse4>le triple</grandeurEgaliteFausse4>
+    <gaucheMotCle>périmètre</gaucheMotCle>
+    <gaucheValeur/>
+    <gaucheUnite>m</gaucheUnite>
+    <droiteMotCle>64</droiteMotCle>
+    <droiteValeur>64</droiteValeur>
+    <droiteUnite>m</droiteUnite>
+    <egaliteMotCle>vaut</egaliteMotCle>
+    <egaliteValeur>=</egaliteValeur>
+    <inconnueMotCle>largeur</inconnueMotCle>
+    <inconnueValeur>x</inconnueValeur>
+    <droiteSolutionTxt>64</droiteSolutionTxt>
+    <gaucheSolutionTxt>2(x+3x)</gaucheSolutionTxt>
+    <analyse0_111>Tu as bien reconnu les différents éléments de l'équation.
+    Les éléments gauche et droite peuvent s'intervertirent.
+    </analyse0_111>
+    <analyse1_110>L'égalité et le membre de gauche sont correctes.
+    Pour le membre de droite, trouve ce qui se trouve de l'autre côté de "vaut".</analyse1_110>
+    <analyse2_101>L'égalité et le membre de droite sont correctes.
+    Pour le membre de gauche, trouve ce qui se trouve de l'autre côté de "vaut".</analyse2_101>
+    <analyse3_100>Seule l'égalité est correcte.
+    Les membres de gauche et de droite se trouvent de chaque côté de "vaut".</analyse3_100>
+    <analyse4_011>Les membres de gauche et de droite de l'équation sont justes.
+Il faut encore trouver le mot qui correspond à l'égalité.</analyse4_011>
+    <analyse5_010>Le membre de gauche est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+ (ça peut être un synonyme de "égal")
+Puis le membre de droite.</analyse5_010>
+    <analyse6_001>Le membre de droite est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+ (ça peut être un synonyme de "égal")
+Puis le membre de gauche. </analyse6_001>
+    <analyse7_000>Pour l'instant tu n'as rien trouvé.
+     Cherche quelque chose qui veut dire "égal" ou "ça revient au même que...".</analyse7_000>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11_comboBox_Question>Quel élément commun (grandeur, opération...) peux-tu mettre de chaque côté de l'égalité?</analyse11_comboBox_Question>
+    <analyse12_comboBoxF>64m. pourrait-être un...</analyse12_comboBoxF>
+    <analyse13_comboBoxJ>64m  est bien le périmètre du rectangle.</analyse13_comboBoxJ>
+    <analyse14_inconnueF>Dans ce problème,
+    on trouve l'inconnue dans la question</analyse14_inconnueF>
+    <analyse15_inconnueJ>L'inconnue,
+    c'est bien la largeur.
+    Ici, c'est aussi ce qu'on demande. </analyse15_inconnueJ>
+     <egaliteGa/>
+<egaliteDr/>
+<distracteurI1>yarien</distracteurI1>
+<distracteurI2>yarien</distracteurI2>
+<distracteurP3>yarien</distracteurP3>
+<distracteurP4>yarien</distracteurP4>
+<analyseDistracteurI1/>
+<analyseDistracteurI2/>
+<analyseDistracteurP3/>
+<analyseDistracteurP4/>
+<motCleEgaliteTerminaison> </motCleEgaliteTerminaison>
+  </exercice><exercice>
+    <type>equation</type>
+    <donnee>Cléopâtre VII est née en -69 (av. J-C)  à Alexandrie. Après y avoir vécu quelques années, elle est devenue reine en -51.
+A quel âge est-elle devenue reine?
+</donnee>
+    <grandeurEgaliteVraie>une date</grandeurEgaliteVraie>
+    <grandeurEgaliteFausse1>un produit</grandeurEgaliteFausse1>
+    <grandeurEgaliteFausse2>une nombre</grandeurEgaliteFausse2>
+    <grandeurEgaliteFausse3>un nom</grandeurEgaliteFausse3>
+    <grandeurEgaliteFausse4>une distance</grandeurEgaliteFausse4>
+    <gaucheMotCle>est née en -69 (av. J-C)  à Alexandrie. Après y avoir vécu quelques années</gaucheMotCle>
+    <gaucheValeur/>
+    <gaucheUnite/>
+    <droiteMotCle>reine en -51</droiteMotCle>
+    <droiteValeur>-51</droiteValeur>
+    <droiteUnite/>
+    <egaliteMotCle>devenue</egaliteMotCle>
+    <egaliteValeur>=</egaliteValeur>
+    <inconnueMotCle>âge</inconnueMotCle>
+    <inconnueValeur>a</inconnueValeur>
+    <droiteSolutionTxt>-51</droiteSolutionTxt>
+    <gaucheSolutionTxt>-69+a</gaucheSolutionTxt>
+    <analyse0_111>Tu as bien reconnu les différents éléments de l'équation.
+    Les éléments gauche et droite peuvent s'intervertirent.
+    </analyse0_111>
+    <analyse1_110>L'égalité et le membre de gauche sont correctes.
+    On a besoin de deux dates pour pouvoir calculer un âge...</analyse1_110>
+    <analyse2_101>L'égalité et le membre de droite sont correctes.
+     On a besoin de deux dates pour pouvoir calculer un âge...</analyse2_101>
+    <analyse3_100>Seule l'égalité est correcte.
+   De quoi avons-nous besoin pour calculer un âge?</analyse3_100>
+    <analyse4_011>Les membres de gauche et de droite de l'équation sont justes.
+Il faut encore trouver le mot qui correspond à l'égalité.</analyse4_011>
+    <analyse5_010>Le membre de gauche est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+Puis le membre de droite.</analyse5_010>
+    <analyse6_001>Le membre de droite est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+Puis le membre de gauche. </analyse6_001>
+    <analyse7_000>Pour l'instant tu n'as rien trouvé.
+     Cherche quelque chose qui veut dire "égal" ou "être".</analyse7_000>
+    <analyse8>          </analyse8>
+    <analyse9/>
+    <analyse10/>
+    <analyse11_comboBox_Question>Quel élément commun (grandeur, opération...) peux-tu mettre de chaque côté de l'égalité?</analyse11_comboBox_Question>
+    <analyse12_comboBoxF>-69 pourrait-être une...</analyse12_comboBoxF>
+    <analyse13_comboBoxJ>-51 est bien différence entre la date de naissance et l'âge de cléopâtre lorsqu'elle est devenue reine.</analyse13_comboBoxJ>
+    <analyse14_inconnueF>Dans ce problème,
+    on trouve l'inconnue dans la question</analyse14_inconnueF>
+    <analyse15_inconnueJ>L'inconnue,
+    c'est bien un âge.
+    Ici, c'est aussi ce qu'on demande. </analyse15_inconnueJ>
+     <egaliteGa/>
+<egaliteDr/>
+<distracteurI1>yarien</distracteurI1>
+<distracteurI2>yarien</distracteurI2>
+<distracteurP3>yarien</distracteurP3>
+<distracteurP4>yarien</distracteurP4>
+<analyseDistracteurI1/>
+<analyseDistracteurI2/>
+<analyseDistracteurP3/>
+<analyseDistracteurP4/>
+<motCleEgaliteTerminaison> </motCleEgaliteTerminaison>
+  </exercice></activite>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

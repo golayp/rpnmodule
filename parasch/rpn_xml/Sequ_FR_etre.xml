@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<sequence>10e année : Séquence être
+		<titre>Labyrinthe des formes verbales "être". 
+			
+			<module>
+				<id>module1</id>
+				<donnee1>Relie l'ENTREE à la SORTIE.</donnee1>
+				<donnee2>Deux cases consécutives du chemin contiennent un temps et une forme verbale.</donnee2>
+				<ressource>../minotaureFrancais/minotaureFrancaisConjEtre6.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste></sortiejuste>
+				<sortieFausse>module1</sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage></aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+				<tailleX>640</tailleX>
+				<tailleY>350</tailleY>
+				<solutionBouton>oui</solutionBouton>
+				<dernierEssai>non</dernierEssai>
+			</module>
+		</titre>
+	</sequence>
+	
+</exercice>

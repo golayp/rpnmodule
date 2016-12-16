@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<sequence>8e année : Multiples de 6
+		<titre> Compléter la boite noire.
+			<module>
+				<id>module1</id>
+				<donnee1>Remplis les trous de la boîte noire</donnee1>
+				<donnee2>Attention, le temps compte!</donnee2>
+				<ressource>livrets1_6.swf</ressource>
+				<validemax>2</validemax>
+				<sortiejuste>module2</sortiejuste>
+				<sortieFausse>module1</sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage></aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+				<tailleX>1300</tailleX>
+				<tailleY>900</tailleY>
+				<solutionBouton>oui</solutionBouton>
+				<tempsMax>30</tempsMax>
+			</module>
+						<module>
+				<id>module1</id>
+				<donnee1>Remplis les trous de la boîte noire</donnee1>
+				<donnee2>Attention, le temps compte!</donnee2>
+				<ressource>livrets3_6.swf</ressource>
+				<validemax>2</validemax>
+				<sortiejuste>module3</sortiejuste>
+				<sortieFausse>module2</sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage></aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+				<tailleX>1300</tailleX>
+				<tailleY>900</tailleY>
+				<solutionBouton>oui</solutionBouton>
+				<tempsMax>30</tempsMax>
+			</module>
+			<module>
+				<id>module3</id>
+				<donnee1>Remplis les trous de la boîte noire</donnee1>
+				<donnee2>Attention, le temps compte!</donnee2>
+				<ressource>livrets_6.swf</ressource>
+				<validemax>2</validemax>
+				<sortiejuste></sortiejuste>
+				<sortieFausse>module3</sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage></aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+				<tailleX>1300</tailleX>
+				<tailleY>900</tailleY>
+				<solutionBouton>oui</solutionBouton>
+				<tempsMax>30</tempsMax>
+			</module>
+		</titre>
+	</sequence>
+	
+</exercice>

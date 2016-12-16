@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="utf-8"?>
+<activite>
+  <exercice>
+    <type>affine</type>
+    <donnee>Pour entrer au Parking souterrain du port, on paie une taxe d'entrée de 1,50.- On paie ensuite 2.- par heure. Combien cela va-t-il nous coûter si on reste 5h?</donnee>
+    <entree>5 heures</entree>
+    <entreeGraph>Nombre d'heures</entreeGraph>
+    <entreeMotCle>5h</entreeMotCle>
+    <entreeValeur>5</entreeValeur>
+    <entreeUnite/>
+    <sortie>Combien cela va-t-il coûter</sortie>
+    <sortieGraph>Prix</sortieGraph>
+    <sortieMotCle>Combien</sortieMotCle>
+    <sortieValeur>11.5</sortieValeur>
+    <sortieUnite>francs</sortieUnite>
+    <coefficient>2.-/h</coefficient>
+    <coefficientGraph>2.-/h</coefficientGraph>
+    <coefficientMotCle>2.- par heure</coefficientMotCle>
+    <coeficientValeur>2</coeficientValeur>
+    <coefficientUnite>.-/h</coefficientUnite>
+    <ordonneeOrigine>Taxe de 1,50.-</ordonneeOrigine>
+    <ordonneeOrigineGraph>1.50</ordonneeOrigineGraph>
+    <ordonneeOrigineMotCle>1,50.-</ordonneeOrigineMotCle>
+    <ordonneeOrigineValeur>1.5</ordonneeOrigineValeur>
+    <OrdonneeOrigineunite/>
+    <entree2>1</entree2>
+    <entree3>6</entree3>
+    <entree4>12</entree4>
+    <entreeSolutionTxt>heures</entreeSolutionTxt>
+    <sortieSolutionTxt>Le prix</sortieSolutionTxt>
+    <coefficientSolutionTxt/>
+    <ordonneeOrigineSolutionTxt/>
+    <graphx>15</graphx>
+    <graphy>10</graphy>
+    <analyse0>Bravo, tu as bien reconnu les différents éléments
+ </analyse0>
+    <analyse1>Le mot clé de la machinePlus est là où on ajoute quelque chose...</analyse1>
+    <analyse2>La machineFois a une unité composée
+    (francs par heure par exemple).</analyse2>
+    <analyse3>La machinePlus contient souvent une addition ou une soustraction. ou qu'on aie quelque chose au départ.
+    La machineFois contient une unité composée
+    (francs par heure par exemple).</analyse3>
+    <analyse4>Il faut rechercher la sortie dans la question.</analyse4>
+    <analyse5>Y a-t-il quelque chose que l'on ajoute?
+  Une taxe ou quelque chose qui ressemble?
+ On trouve souvent la sortie dans la question.</analyse5>
+    <analyse6> L'unité de la machineX contient l'unité de l'entrée plus une autre,
+c'est une unité composée.
+On trouve la sortie dans la question.</analyse6>
+    <analyse7>Essaie de repérer les éléments qui ont des unités.
+S'il y a une unité composée, c'est sûrement la machineX.</analyse7>
+    <analyse8>On trouve l'unité de l'entrée en comparant les unités de la sortie et de la machineX.    </analyse8>
+    <analyse9>On trouve  l'unité de l'entrée en comparant les unités de la sortie et de la machineX.
+ Pour trouver la machine+, regarde si il n'y a pas quelque chose que l'on ajoute!</analyse9>
+    <analyse10>Pour trouver la machineX on peut chercher s'il n'y a pas quelque part une unité composée,
+francs par heure, kg par m^3...</analyse10>
+    <analyse11>Pour trouver la machineX on peut chercher s'il n'y a pas quelque part une unité composée,
+francs par heure, kg par m^3...</analyse11>
+    <analyse12>Observe l'unité de la machinePlus C'est la même que celle de la sortie.</analyse12>
+    <analyse13>Observe les unités de la machineFois</analyse13>
+    <analyse14>Observe l'unité de la machinePlus C'est la même que celle de la sortie.</analyse14>
+    <analyse15>Tout est faux.
+Y a-t-il quelque chose qui a des unités?</analyse15>
+  </exercice>
+     <exercice>
+    <type>affine</type>
+    <donnee>Pour entrer à la piscine, on paie un abonnement à 45.-. On paie ensuite 2.- par fois. Combien cela va-t-il nous coûter si on y va 25 fois?</donnee>
+    <entree>25 fois</entree>
+    <entreeGraph>Nombre d'entrées</entreeGraph>
+    <entreeMotCle>25 fois</entreeMotCle>
+    <entreeValeur>25</entreeValeur>
+    <entreeUnite/>
+    <sortie>Combien cela va-t-il coûter</sortie>
+    <sortieGraph>Prix</sortieGraph>
+    <sortieMotCle>Combien</sortieMotCle>
+    <sortieValeur>95</sortieValeur>
+    <sortieUnite>francs</sortieUnite>
+    <coefficient>2.-/entrée</coefficient>
+    <coefficientGraph>2.-/entrée</coefficientGraph>
+    <coefficientMotCle>2.- par fois</coefficientMotCle>
+    <coeficientValeur>2</coeficientValeur>
+    <coefficientUnite>.-/fois</coefficientUnite>
+    <ordonneeOrigine>abonnement à de 45.-</ordonneeOrigine>
+    <ordonneeOrigineGraph>45</ordonneeOrigineGraph>
+    <ordonneeOrigineMotCle>45.-</ordonneeOrigineMotCle>
+    <ordonneeOrigineValeur>45</ordonneeOrigineValeur>
+    <OrdonneeOrigineunite/>
+    <entree2>1</entree2>
+    <entree3>6</entree3>
+    <entree4>12</entree4>
+    <entreeSolutionTxt>fois</entreeSolutionTxt>
+    <sortieSolutionTxt>Le prix</sortieSolutionTxt>
+    <coefficientSolutionTxt/>
+    <ordonneeOrigineSolutionTxt/>
+    <graphx>15</graphx>
+    <graphy>10</graphy>
+    <analyse0>Bravo, tu as bien reconnu les différents éléments
+ </analyse0>
+    <analyse1>Le mot clé de la machinePlus est là où on ajoute quelque chose...</analyse1>
+    <analyse2>La machineFois a une unité composée
+    (francs par heure par exemple).</analyse2>
+    <analyse3>La machinePlus contient souvent une addition ou une soustraction. ou qu'on aie quelque chose au départ.
+    La machineFois contient une unité composée
+    (francs par heure par exemple).</analyse3>
+    <analyse4>Il faut rechercher la sortie dans la question.</analyse4>
+    <analyse5>Y a-t-il quelque chose que l'on ajoute?
+  Une taxe ou quelque chose qui ressemble?
+ On trouve souvent la sortie dans la question.</analyse5>
+    <analyse6> L'unité de la machineX contient l'unité de l'entrée plus une autre,
+c'est une unité composée.
+On trouve la sortie dans la question.</analyse6>
+    <analyse7>Essaie de repérer les éléments qui ont des unités.
+S'il y a une unité composée, c'est sûrement la machineX.</analyse7>
+    <analyse8>On trouve l'unité de l'entrée en comparant les unités de la sortie et de la machineX.    </analyse8>
+    <analyse9>On trouve  l'unité de l'entrée en comparant les unités de la sortie et de la machineX.
+ Pour trouver la machine+, regarde si il n'y a pas quelque chose que l'on ajoute!</analyse9>
+    <analyse10>Pour trouver la machineX on peut chercher s'il n'y a pas quelque part une unité composée,
+francs par heure, kg par m^3...</analyse10>
+    <analyse11>Pour trouver la machineX on peut chercher s'il n'y a pas quelque part une unité composée,
+francs par heure, kg par m^3...</analyse11>
+    <analyse12>Observe l'unité de la machinePlus C'est la même que celle de la sortie.</analyse12>
+    <analyse13>Observe les unités de la machineFois</analyse13>
+    <analyse14>Observe l'unité de la machinePlus C'est la même que celle de la sortie.</analyse14>
+    <analyse15>Tout est faux.
+Y a-t-il quelque chose qui a des unités?</analyse15>
+  </exercice>
+     <exercice>
+    <type>affine</type>
+    <donnee>Pour prendre des cours de voile,  on doit d'abord s'acquiter de la cotisation au club 120.-. On paie ensuite 45.- par leçon. Combien cela va-t-il nous coûter si on prend 8 leçons?</donnee>
+    <entree>8 leçons</entree>
+    <entreeGraph>Nombre de leçons</entreeGraph>
+    <entreeMotCle>8 leçons</entreeMotCle>
+    <entreeValeur>8</entreeValeur>
+    <entreeUnite/>
+    <sortie>Combien cela va-t-il coûter</sortie>
+    <sortieGraph>Prix</sortieGraph>
+    <sortieMotCle>Combien</sortieMotCle>
+    <sortieValeur>480</sortieValeur>
+    <sortieUnite>francs</sortieUnite>
+    <coefficient>45.-/leçon</coefficient>
+    <coefficientGraph>45.-/leçon</coefficientGraph>
+    <coefficientMotCle>45.- par leçon</coefficientMotCle>
+    <coeficientValeur>45</coeficientValeur>
+    <coefficientUnite>.-/leçon</coefficientUnite>
+    <ordonneeOrigine>Cotisation de 120.-</ordonneeOrigine>
+    <ordonneeOrigineGraph>120</ordonneeOrigineGraph>
+    <ordonneeOrigineMotCle>120.-</ordonneeOrigineMotCle>
+    <ordonneeOrigineValeur>120</ordonneeOrigineValeur>
+    <OrdonneeOrigineunite/>
+    <entree2>1</entree2>
+    <entree3>6</entree3>
+    <entree4>12</entree4>
+    <entreeSolutionTxt>leçons</entreeSolutionTxt>
+    <sortieSolutionTxt>Le prix</sortieSolutionTxt>
+    <coefficientSolutionTxt/>
+    <ordonneeOrigineSolutionTxt/>
+    <graphx>15</graphx>
+    <graphy>10</graphy>
+    <analyse0>Bravo, tu as bien reconnu les différents éléments
+ </analyse0>
+    <analyse1>Le mot clé de la machinePlus est là où on ajoute quelque chose...</analyse1>
+    <analyse2>La machineFois a une unité composée
+    (francs par heure par exemple).</analyse2>
+    <analyse3>La machinePlus contient souvent une addition ou une soustraction. ou qu'on aie quelque chose au départ.
+    La machineFois contient une unité composée
+    (francs par heure par exemple).</analyse3>
+    <analyse4>Il faut rechercher la sortie dans la question.</analyse4>
+    <analyse5>Y a-t-il quelque chose que l'on ajoute?
+  Une taxe ou quelque chose qui ressemble?
+ On trouve souvent la sortie dans la question.</analyse5>
+    <analyse6> L'unité de la machineX contient l'unité de l'entrée plus une autre,
+c'est une unité composée.
+On trouve la sortie dans la question.</analyse6>
+    <analyse7>Essaie de repérer les éléments qui ont des unités.
+S'il y a une unité composée, c'est sûrement la machineX.</analyse7>
+    <analyse8>On trouve l'unité de l'entrée en comparant les unités de la sortie et de la machineX.    </analyse8>
+    <analyse9>On trouve  l'unité de l'entrée en comparant les unités de la sortie et de la machineX.
+ Pour trouver la machine+, regarde si il n'y a pas quelque chose que l'on ajoute!</analyse9>
+    <analyse10>Pour trouver la machineX on peut chercher s'il n'y a pas quelque part une unité composée,
+francs par heure, kg par m^3...</analyse10>
+    <analyse11>Pour trouver la machineX on peut chercher s'il n'y a pas quelque part une unité composée,
+francs par heure, kg par m^3...</analyse11>
+    <analyse12>Observe l'unité de la machinePlus C'est la même que celle de la sortie.</analyse12>
+    <analyse13>Observe les unités de la machineFois</analyse13>
+    <analyse14>Observe l'unité de la machinePlus C'est la même que celle de la sortie.</analyse14>
+    <analyse15>Tout est faux.
+Y a-t-il quelque chose qui a des unités?</analyse15>
+  </exercice>
+    <exercice>
+    <type>affine</type>
+    <donnee>Un matin pluvieux, on constate qu'il a déjà plu 15mm. Comme il continue de pleuvoir fort, on pense qu'il pleut 5mm chaque heure. Quelle hauteur d'eau va-t-il tomber en 5h?</donnee>
+    <entree>5 heures</entree>
+    <entreeGraph>Nombre d'heures</entreeGraph>
+    <entreeMotCle>5h</entreeMotCle>
+    <entreeValeur>5</entreeValeur>
+    <entreeUnite/>
+    <sortie>Quelle hauteur d'eau</sortie>
+    <sortieGraph>Hauteur</sortieGraph>
+    <sortieMotCle>Quelle hauteur</sortieMotCle>
+    <sortieValeur>40</sortieValeur>
+    <sortieUnite>mm</sortieUnite>
+    <coefficient>5mm/h</coefficient>
+    <coefficientGraph>5mm/h</coefficientGraph>
+    <coefficientMotCle>5mm chaque heure</coefficientMotCle>
+    <coeficientValeur>2</coeficientValeur>
+    <coefficientUnite>mm/h</coefficientUnite>
+    <ordonneeOrigine>Hauteur de 15mm-</ordonneeOrigine>
+    <ordonneeOrigineGraph>15</ordonneeOrigineGraph>
+    <ordonneeOrigineMotCle>15mm</ordonneeOrigineMotCle>
+    <ordonneeOrigineValeur>15</ordonneeOrigineValeur>
+    <OrdonneeOrigineunite/>
+    <entree2>1</entree2>
+    <entree3>6</entree3>
+    <entree4>12</entree4>
+    <entreeSolutionTxt>heures</entreeSolutionTxt>
+    <sortieSolutionTxt>Le prix</sortieSolutionTxt>
+    <coefficientSolutionTxt/>
+    <ordonneeOrigineSolutionTxt/>
+    <graphx>15</graphx>
+    <graphy>10</graphy>
+    <analyse0>Bravo, tu as bien reconnu les différents éléments
+ </analyse0>
+    <analyse1>Le mot clé de la machinePlus est là où on ajoute quelque chose...</analyse1>
+    <analyse2>La machineFois a une unité composée
+    (francs par heure par exemple).</analyse2>
+    <analyse3>La machinePlus contient souvent une addition ou une soustraction. ou qu'on aie quelque chose au départ.
+    La machineFois contient une unité composée
+    (francs par heure par exemple).</analyse3>
+    <analyse4>Il faut rechercher la sortie dans la question.</analyse4>
+    <analyse5>Y a-t-il quelque chose que l'on ajoute?
+  Une taxe ou quelque chose qui ressemble?
+ On trouve souvent la sortie dans la question.</analyse5>
+    <analyse6> L'unité de la machineX contient l'unité de l'entrée plus une autre,
+c'est une unité composée.
+On trouve la sortie dans la question.</analyse6>
+    <analyse7>Essaie de repérer les éléments qui ont des unités.
+S'il y a une unité composée, c'est sûrement la machineX.</analyse7>
+    <analyse8>On trouve l'unité de l'entrée en comparant les unités de la sortie et de la machineX.    </analyse8>
+    <analyse9>On trouve  l'unité de l'entrée en comparant les unités de la sortie et de la machineX.
+ Pour trouver la machine+, regarde si il n'y a pas quelque chose que l'on ajoute!</analyse9>
+    <analyse10>Pour trouver la machineX on peut chercher s'il n'y a pas quelque part une unité composée,
+francs par heure, kg par m^3...</analyse10>
+    <analyse11>Pour trouver la machineX on peut chercher s'il n'y a pas quelque part une unité composée,
+francs par heure, kg par m^3...</analyse11>
+    <analyse12>Observe l'unité de la machinePlus C'est la même que celle de la sortie.</analyse12>
+    <analyse13>Observe les unités de la machineFois</analyse13>
+    <analyse14>Observe l'unité de la machinePlus C'est la même que celle de la sortie.</analyse14>
+    <analyse15>Tout est faux.
+Y a-t-il quelque chose qui a des unités?</analyse15>
+  </exercice>
+    <exercice>
+    <type>affine</type>
+    <donnee>On possède déjà quelques CD dans une bibliothèque. Ils représentent une longueur de rayon de 35cm. L'épaisseur d'un Cd est de 1,1 cm. Quelle longueur de bibliothèque doit-on prévoir si on désire en stocker encore 50?</donnee>
+    <entree>50 CD</entree>
+    <entreeGraph>Nombre de CD</entreeGraph>
+    <entreeMotCle>50</entreeMotCle>
+    <entreeValeur>50</entreeValeur>
+    <entreeUnite/>
+    <sortie>Quelle est la longueur de a bibliothèque</sortie>
+    <sortieGraph>Longueur</sortieGraph>
+    <sortieMotCle>longueur</sortieMotCle>
+    <sortieValeur>90</sortieValeur>
+    <sortieUnite>cm</sortieUnite>
+    <coefficient>1.1cm/CD</coefficient>
+    <coefficientGraph>1.1cm/CD</coefficientGraph>
+    <coefficientMotCle>L'épaisseur d'un Cd est de 1,1 cm</coefficientMotCle>
+    <coeficientValeur>1.1</coeficientValeur>
+    <coefficientUnite>cm/CD</coefficientUnite>
+    <ordonneeOrigine>longueur de rayon de 35cm</ordonneeOrigine>
+    <ordonneeOrigineGraph>35</ordonneeOrigineGraph>
+    <ordonneeOrigineMotCle>35cm</ordonneeOrigineMotCle>
+    <ordonneeOrigineValeur>35</ordonneeOrigineValeur>
+    <OrdonneeOrigineunite/>
+    <entree2>1</entree2>
+    <entree3>6</entree3>
+    <entree4>12</entree4>
+    <entreeSolutionTxt>cm</entreeSolutionTxt>
+    <sortieSolutionTxt>La longueur de la bibliothèque</sortieSolutionTxt>
+    <coefficientSolutionTxt/>
+    <ordonneeOrigineSolutionTxt/>
+    <graphx>15</graphx>
+    <graphy>10</graphy>
+    <analyse0>Bravo, tu as bien reconnu les différents éléments
+ </analyse0>
+    <analyse1>Le mot clé de la machinePlus est là où on ajoute quelque chose...</analyse1>
+    <analyse2>La machineFois a une unité composée
+    (francs par heure par exemple).</analyse2>
+    <analyse3>La machinePlus contient souvent une addition ou une soustraction. ou qu'on aie quelque chose au départ.
+    La machineFois contient une unité composée
+    (francs par heure par exemple).</analyse3>
+    <analyse4>Il faut rechercher la sortie dans la question.</analyse4>
+    <analyse5>Y a-t-il quelque chose que l'on ajoute?
+  Une taxe ou quelque chose qui ressemble?
+ On trouve souvent la sortie dans la question.</analyse5>
+    <analyse6> L'unité de la machineX contient l'unité de l'entrée plus une autre,
+c'est une unité composée.
+On trouve la sortie dans la question.</analyse6>
+    <analyse7>Essaie de repérer les éléments qui ont des unités.
+S'il y a une unité composée, c'est sûrement la machineX.</analyse7>
+    <analyse8>On trouve l'unité de l'entrée en comparant les unités de la sortie et de la machineX.    </analyse8>
+    <analyse9>On trouve  l'unité de l'entrée en comparant les unités de la sortie et de la machineX.
+ Pour trouver la machine+, regarde si il n'y a pas quelque chose que l'on ajoute!</analyse9>
+    <analyse10>Pour trouver la machineX on peut chercher s'il n'y a pas quelque part une unité composée,
+francs par heure, kg par m^3...</analyse10>
+    <analyse11>Pour trouver la machineX on peut chercher s'il n'y a pas quelque part une unité composée,
+francs par heure, kg par m^3...</analyse11>
+    <analyse12>Observe l'unité de la machinePlus C'est la même que celle de la sortie.</analyse12>
+    <analyse13>Observe les unités de la machineFois</analyse13>
+    <analyse14>Observe l'unité de la machinePlus C'est la même que celle de la sortie.</analyse14>
+    <analyse15>Tout est faux.
+Y a-t-il quelque chose qui a des unités?</analyse15>
+  </exercice>
+    <exercice>
+    <type>affine</type>
+    <donnee>Pour entrer dans une discothèque, on paie une entrée de 10.- comprenant une boisson. On paie ensuite 5.- par jus d'orange. Combien va nous coûter la soirée si on bois 4 jus?</donnee>
+    <entree>4 jus</entree>
+    <entreeGraph>Nombre de jus</entreeGraph>
+    <entreeMotCle>4 jus</entreeMotCle>
+    <entreeValeur>4</entreeValeur>
+    <entreeUnite/>
+    <sortie>Combien va nous coûter la soirée</sortie>
+    <sortieGraph>Prix</sortieGraph>
+    <sortieMotCle>Combien</sortieMotCle>
+    <sortieValeur>30</sortieValeur>
+    <sortieUnite>francs</sortieUnite>
+    <coefficient>5.-/jus</coefficient>
+    <coefficientGraph>5.-/jus</coefficientGraph>
+    <coefficientMotCle>5.- par jus</coefficientMotCle>
+    <coeficientValeur>5</coeficientValeur>
+    <coefficientUnite>.-/jus</coefficientUnite>
+    <ordonneeOrigine>entrée de 10.-</ordonneeOrigine>
+    <ordonneeOrigineGraph>10</ordonneeOrigineGraph>
+    <ordonneeOrigineMotCle>10.-</ordonneeOrigineMotCle>
+    <ordonneeOrigineValeur>10</ordonneeOrigineValeur>
+    <OrdonneeOrigineunite/>
+    <entree2>1</entree2>
+    <entree3>6</entree3>
+    <entree4>12</entree4>
+    <entreeSolutionTxt>jus</entreeSolutionTxt>
+    <sortieSolutionTxt>Le prix</sortieSolutionTxt>
+    <coefficientSolutionTxt/>
+    <ordonneeOrigineSolutionTxt/>
+    <graphx>15</graphx>
+    <graphy>10</graphy>
+    <analyse0>Bravo, tu as bien reconnu les différents éléments
+ </analyse0>
+    <analyse1>Le mot clé de la machinePlus est là où on ajoute quelque chose...</analyse1>
+    <analyse2>La machineFois a une unité composée
+    (francs par heure par exemple).</analyse2>
+    <analyse3>La machinePlus contient souvent une addition ou une soustraction. ou qu'on aie quelque chose au départ.
+    La machineFois contient une unité composée
+    (francs par heure par exemple).</analyse3>
+    <analyse4>Il faut rechercher la sortie dans la question.</analyse4>
+    <analyse5>Y a-t-il quelque chose que l'on ajoute?
+  Une taxe ou quelque chose qui ressemble?
+ On trouve souvent la sortie dans la question.</analyse5>
+    <analyse6> L'unité de la machineX contient l'unité de l'entrée plus une autre,
+c'est une unité composée.
+On trouve la sortie dans la question.</analyse6>
+    <analyse7>Essaie de repérer les éléments qui ont des unités.
+S'il y a une unité composée, c'est sûrement la machineX.</analyse7>
+    <analyse8>On trouve l'unité de l'entrée en comparant les unités de la sortie et de la machineX.    </analyse8>
+    <analyse9>On trouve  l'unité de l'entrée en comparant les unités de la sortie et de la machineX.
+ Pour trouver la machine+, regarde si il n'y a pas quelque chose que l'on ajoute!</analyse9>
+    <analyse10>Pour trouver la machineX on peut chercher s'il n'y a pas quelque part une unité composée,
+francs par heure, kg par m^3...</analyse10>
+    <analyse11>Pour trouver la machineX on peut chercher s'il n'y a pas quelque part une unité composée,
+francs par heure, kg par m^3...</analyse11>
+    <analyse12>Observe l'unité de la machinePlus C'est la même que celle de la sortie.</analyse12>
+    <analyse13>Observe les unités de la machineFois</analyse13>
+    <analyse14>Observe l'unité de la machinePlus C'est la même que celle de la sortie.</analyse14>
+    <analyse15>Tout est faux.
+Y a-t-il quelque chose qui a des unités?</analyse15>
+  </exercice>
+    <exercice>
+    <type>affine</type>
+    <donnee>Pour entrer au Parking souterrain de la gare, on paie une taxe d'entrée de 3,50.-. On paie ensuite 2,50.- par heure. Combien cela va-t-il nous coûter si on reste 12h?</donnee>
+    <entree>12 heures</entree>
+    <entreeGraph>Nombre d'heures</entreeGraph>
+    <entreeMotCle>12h</entreeMotCle>
+    <entreeValeur>12</entreeValeur>
+    <entreeUnite/>
+    <sortie>Combien cela va-t-il coûter</sortie>
+    <sortieGraph>Prix</sortieGraph>
+    <sortieMotCle>Combien</sortieMotCle>
+    <sortieValeur>33.5</sortieValeur>
+    <sortieUnite>h</sortieUnite>
+    <coefficient>2,50.-/h</coefficient>
+    <coefficientGraph>2,5.-/h</coefficientGraph>
+    <coefficientMotCle>2,50.- par heure</coefficientMotCle>
+    <coeficientValeur>2.5</coeficientValeur>
+    <coefficientUnite>.-/h</coefficientUnite>
+    <ordonneeOrigine>Taxe de 3,50.-</ordonneeOrigine>
+    <ordonneeOrigineGraph>3.50</ordonneeOrigineGraph>
+    <ordonneeOrigineMotCle>3,50.-</ordonneeOrigineMotCle>
+    <ordonneeOrigineValeur>3.5</ordonneeOrigineValeur>
+    <OrdonneeOrigineunite/>
+    <entree2>1</entree2>
+    <entree3>6</entree3>
+    <entree4>12</entree4>
+    <entreeSolutionTxt>heures</entreeSolutionTxt>
+    <sortieSolutionTxt>Le prix</sortieSolutionTxt>
+    <coefficientSolutionTxt/>
+    <ordonneeOrigineSolutionTxt/>
+    <graphx>15</graphx>
+    <graphy>10</graphy>
+    <analyse0>Bravo, tu as bien reconnu les différents éléments
+ </analyse0>
+    <analyse1>Le mot clé de la machinePlus est là où on ajoute quelque chose...</analyse1>
+    <analyse2>La machineFois a une unité composée
+    (francs par heure par exemple).</analyse2>
+    <analyse3>La machinePlus contient souvent une addition ou une soustraction. ou qu'on aie quelque chose au départ.
+    La machineFois contient une unité composée
+    (francs par heure par exemple).</analyse3>
+    <analyse4>Il faut rechercher la sortie dans la question.</analyse4>
+    <analyse5>Y a-t-il quelque chose que l'on ajoute?
+  Une taxe ou quelque chose qui ressemble?
+ On trouve souvent la sortie dans la question.</analyse5>
+    <analyse6> L'unité de la machineX contient l'unité de l'entrée plus une autre,
+c'est une unité composée.
+On trouve la sortie dans la question.</analyse6>
+    <analyse7>Essaie de repérer les éléments qui ont des unités.
+S'il y a une unité composée, c'est sûrement la machineX.</analyse7>
+    <analyse8>On trouve l'unité de l'entrée en comparant les unités de la sortie et de la machineX.    </analyse8>
+    <analyse9>On trouve  l'unité de l'entrée en comparant les unités de la sortie et de la machineX.
+ Pour trouver la machine+, regarde si il n'y a pas quelque chose que l'on ajoute!</analyse9>
+    <analyse10>Pour trouver la machineX on peut chercher s'il n'y a pas quelque part une unité composée,
+francs par heure, kg par m^3...</analyse10>
+    <analyse11>Pour trouver la machineX on peut chercher s'il n'y a pas quelque part une unité composée,
+francs par heure, kg par m^3...</analyse11>
+    <analyse12>Observe l'unité de la machinePlus C'est la même que celle de la sortie.</analyse12>
+    <analyse13>Observe les unités de la machineFois</analyse13>
+    <analyse14>Observe l'unité de la machinePlus C'est la même que celle de la sortie.</analyse14>
+    <analyse15>Tout est faux.
+Y a-t-il quelque chose qui a des unités?</analyse15>
+  </exercice>
+  <exercice>
+    <type/>
+    <donnee/>
+    <entree/>
+    <entreeGraph/>
+    <entreeMotCle/>
+    <entreeValeur/>
+    <entreeUnite/>
+    <sortie/>
+    <sortieGraph/>
+    <sortieMotCle/>
+    <sortieValeur/>
+    <sortieUnite/>
+    <coefficient/>
+    <coefficientGraph/>
+    <coefficientMotCle/>
+    <coeficientValeur/>
+    <coefficientUnite/>
+    <ordonneeOrigine/>
+    <ordonneeOrigineGraph/>
+    <ordonneeOrigineMotCle/>
+    <ordonneeOrigineValeur/>
+    <OrdonneeOrigineunite/>
+    <entree2/>
+    <entree3/>
+    <entree4/>
+    <entreeSolutionTxt/>
+    <sortieSolutionTxt/>
+    <coefficientSolutionTxt/>
+    <ordonneeOrigineSolutionTxt/>
+    <graphx/>
+    <graphy/>
+    <analyse0>Bravo, tu as bien reconnu les différents éléments\nRépond maintenant à la question.</analyse0>
+    <analyse1>L'entrée et la sortie sont correctes.\nEssaie de trouver le mot clé de la machine\n(Là où il y a une unité composée, \noù on pourrait mettre le mot \"par\":\n  hauteur par cube, \ng par cm3\nfrancs par kg \n...)</analyse1>
+    <analyse2>L'entrée et la machine multiplicative sont juste.\nUne partie de l'unité de la machine  multiplicative peut T'aider à trouver la sortie.</analyse2>
+    <analyse3>Seule l'entrée est exacte.\nLa machine \"fois\" contient une unité composée et la sortie se trouve souvent dans la question.</analyse3>
+    <analyse4>Pour trouver l'entrée, il faut se demander qu'est-ce qu'il faut multiplier pour obtenir la réponse à la question.</analyse4>
+    <analyse5>La sortie est juste. Quel calcul ferais-tu pour la trouver?</analyse5>
+    <analyse6>L'unité de la machineX contient l'unité de l'entrée et de la sortie.</analyse6>
+    <analyse7>\nEssaie de repérer les éléments qui ont des unités.\nPar exemple dans la question.</analyse7>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11/>
+    <analyse12/>
+    <analyse13/>
+    <analyse14/>
+    <analyse15/>
+    </exercice>
+</activite>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

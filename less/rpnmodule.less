@@ -11,6 +11,16 @@
 @gray-light:   lighten(#000, 46.7%); // #777
 @gray-lighter: lighten(#000, 93.5%); // #eee
 @borderDashed: 1px dashed @gray;
+.srcbtn{
+    background:none;
+    border-style:none;
+}
+.sequencebody{
+   // background-image: url('/medias/bg.png');
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size:cover;
+}
 
 /*marker*/
 .markable{
@@ -39,9 +49,12 @@
 .gapsimpleddresponse-hover{
     background-color:@brand-warning;
 }
-.gapsimple{
+.gapsimple,
+.dragdropsorting{
     .fa-trash-o{
-        font-size: 20px;
+        font-size: 40px;
+        padding-left: 40px;
+        padding-right: 40px;
     }
     .fa-trash-o:hover{
         color: @brand-warning;
@@ -118,7 +131,24 @@
 }
 
 .dragthis{
-    min-height:300px;
+    min-height:100px;
+}
+.dragthis.fromtext{
+    min-height:20px;
+    display: inline;
+}
+.dragthis.dropped li{
+    background-color:turquoise;
+}
+span.todrag{
+    display:none;
+}
+.dragdropsorting .form-inline{
+    margin-bottom: 80px;
+    .list-inline>li{
+        padding: 0px;
+        margin-left: 5px;
+    }
 }
 
 .droppable{
@@ -129,7 +159,7 @@
 
 .droppable ul{
     text-align:center;
-    min-height:100px;
+    min-height:200px;
 }
 
 .droppable-placeholder{
@@ -153,10 +183,18 @@
     margin-bottom:5px;
     
 }
+.item4 li,
+.item5 li{
+    height: 120px;
+}
+.item5 ul{
+    width:400px;
+}
 .sorting .list-inline li,
 .multiplelistssync .list-inline li{
     margin-right:3px;
     display:inline-block;
+    height:auto;
 }
 .sorting .sorting-highlight,
 .multiplelistssync .sorting-highlight{
@@ -170,6 +208,9 @@
 }
 .sorting .list-inline .sorting-highlight{
     width:30px;
+}
+.sorting .ui-sortable{
+    display: inline-block;
 }
 .multiplelistssync ul{
     display:inline-block;
@@ -207,16 +248,24 @@
 }
 
 /*plumb*/
-.plumbsource li,.plumbtarget li{
-    margin: 10px;
+
+.notif{
+    margin-top: -10px;
+  margin:10px;
+   // margin-right: 10px;
+  //  margin-bottom: 0px;
+    padding: 1px;
+   border: 0px solid #000; 
+}
+.plumbsource li{
+    margin: 0px;
     padding: 10px;
     border: 1px solid #000;
 }
-
-/*geogebraint*/
-.geogebraint{
-    width:70%;
-    height:auto;
+.plumbtarget li{
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #000;
 }
 
 
@@ -314,4 +363,94 @@
 .ui-sortable-handle {
 	-ms-touch-action: none;
 	touch-action: none;
+}
+
+/* Result Modal
+---------------------------------*/
+#rpnm_result_modal{
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.modal-body{
+    font-size: 17px;
+    line-height: 2;
+    padding: 30px;
+}
+
+/* Exercise Mode
+---------------------------------*/
+#rpnm_modulestate{
+    margin-top: 30px;
+    padding: 0px;
+    h4{
+        display: inline;
+    }
+    .label{
+        height: 30px;
+        width: 30px;
+        border-radius: 15px;
+        font-weight: normal;
+        font-size: 100%;
+    }
+    .label-default{
+        background-color: white;
+        color: #333;
+        border: 1px solid #ccc;
+    }
+}
+
+.tooltip{
+    max-width: 400px;
+    .tooltip-inner{
+        background-color: #fff;
+        color: black;
+        border: 1px solid #ccc;
+        padding: 5px 10px;
+        font-size: 16px;
+        line-height: 2;
+        max-width: 400px;
+        display: inline-block;
+    }
+}
+.tooltip.top .tooltip-arrow{
+    border-top: 5px solid #ccc;
+}
+#cc{
+    margin-bottom: 15px;
+}
+.error,
+.exact{
+    outline-width: 2px;
+}
+.error{
+    outline-style: dotted;
+    outline-color: red;
+}
+.exact{
+    outline-style: dashed;
+    outline-color: green;
+}
+
+
+.form-control[readonly]{
+    cursor:default;
+    background-color: #fff;
+}
+.btn-default.disabled,
+.btn-default:disabled,
+.btn-default[disabled]{
+    opacity: 1;
+}
+
+/* Player audio
+---------------------------------*/
+
+button.play{
+    font-size: 24px;
+    :hover{
+       cursor:pointer; 
+    }
+}
+
+button.play.clicked > .glyphicon{
+    opacity: 0.4;
 }

@@ -1,0 +1,42 @@
+Les termes de la métrologie historique nous viennent bien souvent du grec. Dans l'Antiquité, le pied, pous en grec  – à ne pas confondre avec son faux-ami français –  tint seize doigts, dactyloi. La coudée classique grecque, nommée pechys, comprend toujours 24 doigts, soit 1½ pieds. Entre le pied et la coudée-pechys, il y a deux autres mesures relatives qui portent un nom propre grec. Le pygon mesure vingt doigts. Il est l'équivalent du terme égyptien remen, déjà rencontré plus haut.
+
+La seconde mesure portant un nom propre grec est le pygme qui est toujours de dix-huit doigts. Le mot signifie en fait l'os de l'avant-bras. Elle s'en veut équivalente, c'est-à-dire « jusqu'au poignée », sans la main avec ses doigts. Il s'agit donc d'une coudée miniature, cf. « les Pygmées ».
+
+Dans toutes les autres langues, sauf le grec, il n'y a pas de mot pour désigner précisément cette « coudée de dix-huit doigts ». Soit on la nomme par son nom grec pygme, soit on la désigne, improprement, par pied aussi, comme cela est souvent le cas.
+Certes, un pied peut devenir pygme et vice-versa. La bonne définition est la suivante :  Si la mesure est composée de dix-huit doigts, il s'agit d'un pygme. Si la mesure est divisée en seize doigts, il s'agit d'un pied. Après, la division digitale, peut être aussi convertie en division onciale.
+
+De nombreuses mesures entretiennent cette relation de huit à neuf :
+
+Le ratio entre le pied et son pygme est toujours de seize à dix-huit.
+Dix-huit doigts d'un pied peuvent engendrer un autre, à condition que la nouvelle mesure soit subdivisée en seize doigts elle-même.
+Si au contraire, un pied existant est pris pour un pygme, le nouveau pied en résultant est d'un neuvième plus court que son pygme.
+ ? Le pied italique?: 	    264,?6  mm
+	     ?     	
+   Le pied néo-romain?: 	    297,?675  mm
+ ? Le pied sumérien?: 	    276,?5952  mm
+	     ?     	
+   Le pied attique - olympique?: 	    311,?1696  mm
+   Le pied espagnol?: 	    278,?69184  mm
+	    ?      	
+ ? Le pied carolingien?: 	    313,?52832  mm
+ ? Le pied polonais?: 	    288,?12  mm
+	     ?     	
+   Le pied de Fribourg?: 	    324,?135  mm
+   Le pied d'Aschaffenbourg?: 	    290,?304  mm
+	    ?      	
+ ? Le pied ancien de roi?: 	    326,?592  mm
+ ? Le pied attique - solonique?: 	    293,?9328  mm
+	     ?     	
+   Le pied de Bourgogne?: 	    330,?6744  mm
+ ? Le pied romain?: 	    296,?352  mm
+	     ?     	
+   Le pied Drusien?: 	    333,?396  mm
+ ? Le pied néo - romain?: 	    297,?675  mm
+	     ?     	
+   Le pied tyrolien?: 	    334,?884375  mm
+   Le pied ionien?: 	    298,?5984  mm
+	     ?     	
+ ? Le pied - pygme ionien?: 	    335,?9232  mm
+
+Le pied néo-romain, qui est lui-même pygme du pied italique, engendra ultérieurement son propre pygme, devenant le pied tyrolien.
+Sources:http://fr.wikipedia.org/wiki/Pied_(unité)

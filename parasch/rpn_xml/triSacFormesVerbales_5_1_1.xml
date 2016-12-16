@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>je_suis</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>être</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>tu_es</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>être</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>il_est</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>être</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>nous_sommes</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>être</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>vous_etes</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>être</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>j_ai</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>avoir</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>tu_as</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>avoir</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>elle_a</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>avoir</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>ils_ont</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>avoir</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>je_vais</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>aller</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>il_va</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>aller</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>vide</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>elles_vont</fichierImage>
+	  <fichierLogo></fichierLogo>
+	  <categorie>aller</categorie>
+	  <conversionSI></conversionSI>
+	  <commentaire>vide</commentaire>
+	  <symboleUnite></symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+</exercice>

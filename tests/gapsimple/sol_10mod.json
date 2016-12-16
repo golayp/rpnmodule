@@ -1,0 +1,17 @@
+{
+    "solutions":[
+        [ 
+            {"alternative":["3","-3"]},{"alternative":["-3","3"]},"0","4","12"
+        ],
+        ["1307"],
+        ["-1807"],
+        ["-1492.63"],
+        ["14.82"],
+        ["ait"],
+        ["a","b","c","d","","f"],
+        ["dream","day","dream","day","dream","day","dream","day","dream","day"],
+        ["dream","day"],
+        ["day","dream"],
+        ["<img src='/medias/logo2.png' width=\"150\" height=\"150\" >","<img src='/medias/logo.png' width=\"150\" height=\"150\" >"]
+    ]
+}

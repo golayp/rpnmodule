@@ -4,6 +4,9 @@ var rpnmarkermodule = function() {
     var datas;
     var domelem;
     var state;
+    var successArray;
+    var responsesArray;
+    var limitedChoice;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -11,7 +14,8 @@ var rpnmarkermodule = function() {
             tomark: ["fill tomark please!"],
             hidden:false,
             smallButtons:false,
-            displayTooltip:true
+            displayTooltip:true,
+            limitedChoice: false
         });
         datas = _datas;
         domelem = _domelem;
@@ -36,6 +40,7 @@ var rpnmarkermodule = function() {
             'class': 'btn-group',
             'data-toggle': 'buttons'
         });
+        limitedChoice = state.markers.length <= 2 ? true : false;
         
         toolbar.append($('<label class="btn btn-default '+(datas.smallButtons?'':'btn-lg ') + (state.selectedMarker.label==''?'active':'')+' eraser"><input type="radio" name="options" autocomplete="off" '+(state.selectedMarker==''?'checked':'')+'><span class="edicons-tool-eraser"></span> ' + rpnsequence.getLabels().Eraser + '</label>').click(function() {
             state.selectedMarker = {color:'',label:''};
@@ -71,20 +76,20 @@ var rpnmarkermodule = function() {
             if(!_.isEmpty(state.responses[idx])){
                 t.css('background-color',_.findWhere(state.markers,{label:state.responses[idx]}).color);
                 if(datas.displayTooltip){
-                    t.attr('data-original-title', state.responses[idx])
+                    t.attr('data-html', true).attr('data-original-title', state.responses[idx])
                         .tooltip('fixTitle');
                 }
             }
-            if(!datas.hidden){
-                t.css('cursor', 'pointer');
-            }else{
+            if(datas.hidden && rpnsequence.resultMode()){
                 t.css('font-weight','normal');
                 t.css('background-color','rgba(255, 255, 255, 0)');
+            }else{
+                t.css('cursor', 'pointer');
             }
             t.click(function() {
                 t.css('background-color',state.selectedMarker.color);
                 if(datas.displayTooltip && state.selectedMarker.color!=''){
-                    t.attr('data-original-title', state.selectedMarker.label)
+                    t.attr('data-html', true).attr('data-original-title', state.selectedMarker.label)
                         .tooltip('fixTitle')
                         .tooltip('show');
                 }else{
@@ -100,23 +105,53 @@ var rpnmarkermodule = function() {
     };
     
     var validate = function(){
+        responsesArray = new Array();
+        responsesArray = _.map($('b', domelem), function(elem){
+            return elem;
+        });
         return state;
     };
     
     var score =  function(sol) {
         var score = 0;
+        successArray = new Array();
+        var solution;
+        
         _.each(sol, function(val, idx) {
-            score += (val != "" && state.responses[idx] == val) ? 1 : 0;
-            score -= (val == "" && state.responses[idx] != val) ? 1 : 0;
+            var scoreIni = score;
+            score += (state.responses[idx] == val) ? 1 : 0;
+            solution = val;
+            successArray[idx] = new Array();
+            if (score > scoreIni || state.responses[idx] == val){
+                successArray[idx] = ["ok",solution];
+            }else{
+                successArray[idx] = [state.responses[idx],solution];
+            }
         });
-        score = score >= 0 ? score : 0;
         return score;
+    };
+    var pointmax = function(sol){
+        var pointmax = sol.length;
+        
+        return pointmax;
+    };
+    var successState = function(){
+        return successArray;
+    };
+    var responsesState = function(){
+        return responsesArray;
+    };
+    var limitedChoiceState = function(){
+        return limitedChoice;
     };
     
     return {
         init: init,
         validate: validate,
-        score: score
-
+        score: score,
+        pointmax: pointmax,
+        successState: successState,
+        responsesState: responsesState,
+        limitedChoiceState: limitedChoiceState
     };
 };

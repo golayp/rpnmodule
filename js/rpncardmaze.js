@@ -128,10 +128,16 @@ var rpncardmazemodule = function() {
         })
         return score;
     };
+    var pointmax = function(sol){
+        var pointmax = sol.length;
+        
+        return pointmax;
+    };
     
     return {
         init: init,
         validate: validate,
-        score:score
+        score: score,
+        pointmax: pointmax
     };
 };

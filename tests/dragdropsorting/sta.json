@@ -94,6 +94,52 @@
 				"Z"
 			],
 			"colors": []
+		},
+		{
+			"todrag": [
+				"men",
+				"true",
+				"equal"
+			],
+            "todrop": [
+				"verbs",
+				"names",
+                "others"
+			],
+			"verbs": [
+				"have",
+                "hold"
+			],
+			"names": [
+                "dream",
+                "nation"
+            ],
+            "others":[
+                "live"
+            ]
+		},
+		{
+			"todrag": [
+				"men",
+				"true",
+				"equal"
+			],
+            "todrop": [
+				"4-letter words",
+				"words starting with h",
+                "verbs"
+			],
+			"4-letter words": [
+				"have",
+                "hold"
+			],
+			"words starting with h": [
+                "dream",
+                "nation"
+            ],
+            "verbs":[
+                "live"
+            ]
 		}
 	]
 }

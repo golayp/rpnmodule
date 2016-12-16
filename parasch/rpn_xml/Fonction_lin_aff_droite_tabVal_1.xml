@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<sequence>11e année : Séquence 1 Fonction 1
+		<titre> 1. Correspondance entre droite et expression fonctionnelle (Nombres entiers)
+			<module>
+				<id>module1</id>
+				<donnee1>A l'aide des touches flèches du clavier, fais correspondre  la droite à l'expression fonctionnelle.</donnee1>
+				<donnee2>L'expression obtenue apparaît dans la zone "Tableau de valeurs".</donnee2>
+				<ressource>Fonction_1_1.swf</ressource>
+				<validemax>4</validemax>
+				<sortiejuste>module2</sortiejuste>
+				<sortieFausse>module2</sortieFausse>
+				<aide>Fonction_1_aideMemoire.swf</aide>
+				<indice>Fonction_1_1_aideConsignes.swf</indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>oui</indiceDemarrage>
+				<tailleX>750</tailleX>
+				<tailleY>580</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module2</id>
+				<donnee1>Complète le tableau de valeurs.</donnee1>
+				<donnee2>Les entrées doivent être toutes différentes.</donnee2>
+				<ressource>Fonction_1_2.swf</ressource>
+				<validemax>4</validemax>
+				<sortiejuste>module3</sortiejuste>
+				<sortieFausse>module3</sortieFausse>
+				<aide>Fonction_1_aideMemoire.swf</aide>
+				<indice>Fonction_1_2_aideConsignes.swf</indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>oui</indiceDemarrage>
+				<tailleX>750</tailleX>
+				<tailleY>680</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module3</id>
+				<donnee1>A l'aide des touches flèches du clavier, fais correspondre la droite à l'expression fonctionnelle.</donnee1>
+				<donnee2>L'expression obtenue apparaît dans la zone "Tableau de valeurs".</donnee2>
+				<ressource>Fonction_1_3.swf</ressource>
+				<validemax>3</validemax>
+				<sortiejuste>module4</sortiejuste>
+				<sortieFausse>module4</sortieFausse>
+				<aide>Fonction_1_aideMemoire.swf</aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+				<tailleX>750</tailleX>
+				<tailleY>580</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module4</id>
+				<donnee1>Complète le tableau de valeurs.</donnee1>
+				<donnee2>Les entrées doivent être toutes différentes.</donnee2>
+				<ressource>Fonction_1_2.swf</ressource>
+				<validemax>3</validemax>
+				<sortiejuste>module5</sortiejuste>
+				<sortieFausse>module5</sortieFausse>
+				<aide>Fonction_1_aideMemoire.swf</aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+				<tailleX>750</tailleX>
+				<tailleY>680</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module5</id>
+				<donnee1>A l'aide des touches flèches du clavier, fais correspondre  la droite à l'expression fonctionnelle.</donnee1>
+				<donnee2>L'expression obtenue apparaît dans la zone "Tableau de valeurs".</donnee2>
+				<ressource>Fonction_1_5.swf</ressource>
+				<validemax>2</validemax>
+				<sortiejuste>module6</sortiejuste>
+				<sortieFausse>module6</sortieFausse>
+				<aide>Fonction_1_aideMemoire.swf</aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+				<tailleX>750</tailleX>
+				<tailleY>580</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module6</id>
+				<donnee1>Complète le tableau de valeurs.</donnee1>
+				<donnee2>Les entrées doivent être toutes différentes.</donnee2>
+				<ressource>Fonction_1_2.swf</ressource>
+				<validemax>2</validemax>
+				<sortiejuste></sortiejuste>
+				<sortieFausse></sortieFausse>
+				<aide>Fonction_1_aideMemoire.swf</aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+				<tailleX>750</tailleX>
+				<tailleY>680</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+		</titre>
+	</sequence>
+	
+</exercice>

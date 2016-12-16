@@ -1,0 +1,15 @@
+﻿&Titre=Dictee01
+&Sujet=Accord sujet–verbe.
+&Type=Phrases
+&Phrase5=Son<AA frère et sa sœur<AB |jouent<AC le samedi soir |au loto.
+&VarAA1=son
+&RetAA1=02
+&VarAA2=Sont
+&RetAA2=05
+&VarAB1=soeur
+&RetAB1=ok
+&VarAC1=joue
+&RetAC1=07
+&VarAC2=joues
+&RetAC2=06
+&Fin=fin

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<sequence>10e année : Séquence 1 Tri Unités
+		<titre> Tri d'unités diverses
+			
+			<module>
+				<id>module1</id>
+				<donnee1>Déplace l'unité dans le bon sac.</donnee1>
+				<donnee2></donnee2>
+				<ressource>../tri/triUnites/triUnites.swf</ressource>
+				<validemax>2</validemax>
+				<sortiejuste>module2</sortiejuste>
+				<sortieFausse>module1</sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage></aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+				<tailleX>500</tailleX>
+				<tailleY>280</tailleY>
+			</module>
+			<module>
+				<id>module2</id>
+				<donnee1>Choisi une unité.</donnee1>
+				<donnee2>Puis essaie de trouver l'équivalence (valeur arrondie).</donnee2>
+				<ressource>../unites/unites.swf</ressource>
+				<validemax>3</validemax>
+				<sortiejuste>module3</sortiejuste>
+				<sortieFausse>module2</sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage></aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+				<tailleX>580</tailleX>
+				<tailleY>175</tailleY>
+			</module>
+			
+		</titre>
+	</sequence>
+	
+</exercice>

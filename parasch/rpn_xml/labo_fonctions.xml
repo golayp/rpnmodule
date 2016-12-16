@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<sequence>Fonctions
+		<titre>Correspondance entre graphe et expression fonctionnelle
+			<module>
+				<id>module1</id>
+				<donnee1>Choisis des expression fonctionnelle et regarde le graphe obtenu.</donnee1>
+				<donnee2></donnee2>
+				<ressource>laboFonctions.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste></sortiejuste>
+				<sortieFausse></sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage></aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+				<tailleX>750</tailleX>
+				<tailleY>580</tailleY>
+				<solutionBouton>non</solutionBouton>
+			</module>
+		</titre>
+	</sequence>
+	
+</exercice>

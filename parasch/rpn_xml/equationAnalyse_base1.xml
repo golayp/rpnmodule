@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<activite>
+  <exercice>
+    <type>equation</type>
+    <donnee>Si on double un nombre, on obtient 16. 
+Quel est ce nombre?</donnee>
+    <grandeurEgaliteVraie>un multiple (x)</grandeurEgaliteVraie>
+    <grandeurEgaliteFausse1>une différence (-)</grandeurEgaliteFausse1>
+    <grandeurEgaliteFausse2>une somme (+)</grandeurEgaliteFausse2>
+    <grandeurEgaliteFausse3>un quotient (:)</grandeurEgaliteFausse3>
+    <grandeurEgaliteFausse4>un reste</grandeurEgaliteFausse4>
+    <gaucheMotCle>double un nombre</gaucheMotCle>
+    <gaucheValeur>2</gaucheValeur>
+    <gaucheUnite/>
+    <droiteMotCle>16</droiteMotCle>
+    <droiteValeur>16</droiteValeur>
+    <droiteUnite/>
+    <egaliteMotCle>obtient</egaliteMotCle>
+    <egaliteValeur>=</egaliteValeur>
+    <inconnueMotCle>nombre</inconnueMotCle>
+    <inconnueValeur>n</inconnueValeur>
+    <droiteSolutionTxt>16</droiteSolutionTxt>
+    <gaucheSolutionTxt>2n</gaucheSolutionTxt>
+    <analyse0_111>Bravo!
+  Les éléments gauche et droite peuvent s'intervertirent.   </analyse0_111>
+    <analyse1_110>L'égalité et le membre de gauche sont correctes.
+Pour le membre de droite, trouve ce qui se trouve de l'autre côté de "on obtient".</analyse1_110>
+    <analyse2_101>L'égalité et le membre de droite sont correctes.
+ Pour le membre de gauche, trouve ce qui se trouve de l'autre côté de "on obtient".</analyse2_101>
+    <analyse3_100>Seule l'égalité est correcte.
+Les membres de gauche et de droite se trouvent de chaque côté de "on obtient".</analyse3_100>
+    <analyse4_011>Les membres de gauche et de droite de l'équation sont justes.
+Il faut encore trouver le mot qui correspond à l'égalité.</analyse4_011>
+    <analyse5_010>Le membre de gauche est correct.
+L'égalité peut être un synonyme de "on trouve".</analyse5_010>
+    <analyse6_001>Le membre de droite est correct.
+L'égalité peut être un synonyme de "on trouve".</analyse6_001>
+    <analyse7_000>Pour l'instant tu n'as rien trouvé.
+Cherche quelque chose qui veut dire "égal" ou "on trouve".</analyse7_000>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11_comboBox_Question>
+Que pourrait contenir les plateaux de la balance?</analyse11_comboBox_Question>
+    <analyse12_comboBoxF>Le nombre pourrait-être le résultat d'une addition.</analyse12_comboBoxF>
+    <analyse13_comboBoxJ>16 est bien un multiple de deux</analyse13_comboBoxJ>
+    <analyse14_inconnueF>Dans ce problème,
+on trouve l'inconnue dans la question</analyse14_inconnueF>
+    <analyse15_inconnueJ>L'inconnue,
+c'est bien un nombre.
+Ici, c'est aussi ce qu'on demande. </analyse15_inconnueJ>
+<egaliteGa/>
+<egaliteDr/>
+<distracteurI1>yarien</distracteurI1>
+<distracteurI2>yarien</distracteurI2>
+<distracteurP3>yarien</distracteurP3>
+<distracteurP4>yarien</distracteurP4>
+<analyseDistracteurI1/>
+<analyseDistracteurI2/>
+<analyseDistracteurP3/>
+<analyseDistracteurP4/>
+<motCleEgaliteTerminaison> </motCleEgaliteTerminaison>
+  </exercice>
+  <exercice>
+    <type>equation</type>
+    <donnee>Si on additionne un nombre et 7, on obtient 16.
+ Quel est ce nombre?</donnee>
+    <grandeurEgaliteVraie>une somme (+)</grandeurEgaliteVraie>
+    <grandeurEgaliteFausse1>une différence (-)</grandeurEgaliteFausse1>
+    <grandeurEgaliteFausse2>un multiple (x)</grandeurEgaliteFausse2>
+    <grandeurEgaliteFausse3>un quotient (:)</grandeurEgaliteFausse3>
+    <grandeurEgaliteFausse4>un reste</grandeurEgaliteFausse4>
+    <gaucheMotCle>additionne un nombre et 7</gaucheMotCle>
+    <gaucheValeur>7</gaucheValeur>
+    <gaucheUnite/>
+    <droiteMotCle>16</droiteMotCle>
+    <droiteValeur>16</droiteValeur>
+    <droiteUnite/>
+    <egaliteMotCle>obtient</egaliteMotCle>
+    <egaliteValeur>=</egaliteValeur>
+    <inconnueMotCle>nombre</inconnueMotCle>
+    <inconnueValeur>n</inconnueValeur>
+    <droiteSolutionTxt>16</droiteSolutionTxt>
+    <gaucheSolutionTxt>n+7</gaucheSolutionTxt>
+    <analyse0_111>Bravo!
+    Tu as bien reconnu les différents éléments de l'équation.
+    Les éléments gauche et droite peuvent s'intervertirent.
+    </analyse0_111>
+    <analyse1_110>L'égalité et le membre de gauche sont correctes.
+    Pour le membre de droite, trouve ce qui se trouve de l'autre côté de "on obtient".</analyse1_110>
+    <analyse2_101>L'égalité et le membre de droite sont correctes.
+    Pour le membre de gauche, trouve ce qui se trouve de l'autre côté de "on obtient".</analyse2_101>
+    <analyse3_100>Seule l'égalité est correcte.
+    Les membres de gauche et de droite se trouvent de chaque côté de "on obtient".</analyse3_100>
+    <analyse4_011>Les membres de gauche et de droite de l'équation sont justes.
+Il faut encore trouver le mot qui correspond à l'égalité.</analyse4_011>
+    <analyse5_010>Le membre de gauche est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+ (ça peut être un synonyme de "on trouve")
+Puis le membre de droite.</analyse5_010>
+    <analyse6_001>Le membre de droite est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+ (ça peut être un synonyme de "on trouve")
+Puis le membre de gauche. </analyse6_001>
+    <analyse7_000>Pour l'instant tu n'as rien trouvé.
+     Cherche quelque chose qui veut dire "égal" ou "on trouve".</analyse7_000>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11_comboBox_Question>Quel élément commun (grandeur, opération...) peux-tu mettre de chaque côté de l'égalité?</analyse11_comboBox_Question>
+    <analyse12_comboBoxF>On a un nombre qui pourrait-être une...</analyse12_comboBoxF>
+    <analyse13_comboBoxJ>16 est bien la somme d'un nombre et de 7</analyse13_comboBoxJ>
+    <analyse14_inconnueF>Dans ce problème,
+    on trouve l'inconnue dans la question</analyse14_inconnueF>
+    <analyse15_inconnueJ>L'inconnue,
+    c'est bien un nombre.
+    Ici, c'est aussi ce qu'on demande. </analyse15_inconnueJ>
+    <egaliteGa/>
+<egaliteDr/>
+<distracteurI1>yarien</distracteurI1>
+<distracteurI2>yarien</distracteurI2>
+<distracteurP3>yarien</distracteurP3>
+<distracteurP4>yarien</distracteurP4>
+<analyseDistracteurI1/>
+<analyseDistracteurI2/>
+<analyseDistracteurP3/>
+<analyseDistracteurP4/>
+<motCleEgaliteTerminaison> </motCleEgaliteTerminaison>
+  </exercice><exercice>
+    <type>equation</type>
+    <donnee>Si on soustrait 5 d'un nombre, on obtient 16. 
+Quel est ce nombre?</donnee>
+    <grandeurEgaliteVraie>une différence (-)</grandeurEgaliteVraie>
+    <grandeurEgaliteFausse1>un multiple (x)</grandeurEgaliteFausse1>
+    <grandeurEgaliteFausse2>une somme (+)</grandeurEgaliteFausse2>
+    <grandeurEgaliteFausse3>un quotient (:)</grandeurEgaliteFausse3>
+    <grandeurEgaliteFausse4>un reste</grandeurEgaliteFausse4>
+    <gaucheMotCle>soustrait 5 d'un nombre</gaucheMotCle>
+    <gaucheValeur>5</gaucheValeur>
+    <gaucheUnite/>
+    <droiteMotCle>16</droiteMotCle>
+    <droiteValeur>16</droiteValeur>
+    <droiteUnite/>
+    <egaliteMotCle>obtient</egaliteMotCle>
+    <egaliteValeur>=</egaliteValeur>
+    <inconnueMotCle>nombre</inconnueMotCle>
+    <inconnueValeur>n</inconnueValeur>
+    <droiteSolutionTxt>16</droiteSolutionTxt>
+    <gaucheSolutionTxt>n-5</gaucheSolutionTxt>
+    <analyse0_111>Bravo!
+    Tu as bien reconnu les différents éléments de l'équation.
+    Les éléments gauche et droite peuvent s'intervertirent.
+    </analyse0_111>
+    <analyse1_110>L'égalité et le membre de gauche sont correctes.
+    Pour le membre de droite, trouve ce qui se trouve de l'autre côté de "on obtient".</analyse1_110>
+    <analyse2_101>L'égalité et le membre de droite sont correctes.
+    Pour le membre de gauche, trouve ce qui se trouve de l'autre côté de "on obtient".</analyse2_101>
+    <analyse3_100>Seule l'égalité est correcte.
+    Les membres de gauche et de droite se trouvent de chaque côté de "on obtient".</analyse3_100>
+    <analyse4_011>Les membres de gauche et de droite de l'équation sont justes.
+Il faut encore trouver le mot qui correspond à l'égalité.</analyse4_011>
+    <analyse5_010>Le membre de gauche est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+ (ça peut être un synonyme de "on trouve")
+Puis le membre de droite.</analyse5_010>
+    <analyse6_001>Le membre de droite est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+ (ça peut être un synonyme de "on trouve")
+Puis le membre de gauche. </analyse6_001>
+    <analyse7_000>Pour l'instant tu n'as rien trouvé.
+     Cherche quelque chose qui veut dire "égal" ou "on trouve".</analyse7_000>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11_comboBox_Question>Quel élément commun (grandeur, opération...) peux-tu mettre de chaque côté de l'égalité?</analyse11_comboBox_Question>
+    <analyse12_comboBoxF>On a un nombre qui pourrait-être une...</analyse12_comboBoxF>
+    <analyse13_comboBoxJ>16 est bien la différence entre un nombre et 5</analyse13_comboBoxJ>
+    <analyse14_inconnueF>Dans ce problème,
+    on trouve l'inconnue dans la question</analyse14_inconnueF>
+    <analyse15_inconnueJ>L'inconnue,
+    c'est bien un nombre.
+    Ici, c'est aussi ce qu'on demande. </analyse15_inconnueJ>
+    <egaliteGa/>
+<egaliteDr/>
+<distracteurI1>yarien</distracteurI1>
+<distracteurI2>yarien</distracteurI2>
+<distracteurP3>yarien</distracteurP3>
+<distracteurP4>yarien</distracteurP4>
+<analyseDistracteurI1/>
+<analyseDistracteurI2/>
+<analyseDistracteurP3/>
+<analyseDistracteurP4/>
+<motCleEgaliteTerminaison> </motCleEgaliteTerminaison>
+  </exercice></activite>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

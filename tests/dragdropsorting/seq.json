@@ -1,5 +1,6 @@
 {
     "title":"modulesequence",
+    "licence":"© Tous droits réservés RPN 2016",
     "modules":[
         {
             "type":"dragdropsorting",
@@ -32,6 +33,23 @@
             "directive":"do this",
             "todrag":["green","blue","A","C","Z"],
             "todrop":["letters","colors"]
+        },
+        {
+            "type":"dragdropsorting",
+            "title":"a dragdropsorting module with single item",
+            "directive":"Sort",
+            "dragfromtext":true,
+            "singledd":true,
+            "tosort":"<p>I <b>have</b> a <b>dream</b> that one day this <b>nation</b> will rise up and <b>live</b> out the <b>true</b> meaning of its creed - we <b>hold</b> these truths to be self-evident: that all <b>men</b> are created <b>equal</b>.</p>",
+            "todrop":["verbs","names","others"]
+        },
+        {
+            "type":"dragdropsorting",
+            "title":"a dragdropsorting module",
+            "directive":"Sort",
+            "dragfromtext":true,
+            "tosort":"<p>I <b>have</b> a <b>dream</b> that one day this <b>nation</b> will rise up and <b>live</b> out the <b>true</b> meaning of its creed - we <b>hold</b> these truths to be self-evident: that all <b>men</b> are created <b>equal</b>.</p>",
+            "todrop":["4-letter words","words starting with h","verbs"]
         }
     ]
 }

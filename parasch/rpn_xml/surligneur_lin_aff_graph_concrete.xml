@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<sequence>10e année :Fonctions linéaires
+		<titre> 1. Correspondance entre fonctions et situations concrètes.
+			<module>
+				<id>module1</id>
+				<donnee1>Dans la consigne, à l'aide des feutres, mets en évidence l'entrée, la machine multiplicative, la machine additive (s'il y en a une),  et la sortie.</donnee1>
+				<donnee2></donnee2>
+				<ressource>lineaire_affine_surligneur_graphe.swf</ressource>
+				<validemax>3</validemax>
+				<sortiejuste>module2</sortiejuste>
+				<sortieFausse>module2</sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>400</tailleX>
+				<tailleY>120</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module2</id>
+				<donnee1>Dans la consigne, à l'aide des feutres, mets en évidence l'entrée, la machine multiplicative, la machine additive (s'il y en a une),  et la sortie.</donnee1>
+				<donnee2></donnee2>
+				<ressource>lineaire_affine_surligneur_graphe.swf</ressource>
+				<validemax>3</validemax>
+				<sortiejuste>module3</sortiejuste>
+				<sortieFausse>module3</sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>540</tailleX>
+				<tailleY>320</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module3</id>
+				<donnee1>Dans la consigne, à l'aide des feutres, mets en évidence l'entrée, la machine multiplicative, la machine additive (s'il y en a une),  et la sortie.</donnee1>
+				<donnee2></donnee2>
+				<ressource>lineaire_affine_surligneur_graphe.swf</ressource>
+				<validemax>3</validemax>
+				<sortiejuste></sortiejuste>
+				<sortieFausse></sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>540</tailleX>
+				<tailleY>320</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+		</titre>
+	</sequence>
+	
+</exercice>

@@ -34,8 +34,6 @@ require([
     'rpndragdropsorting',
     'rpngapfull',
     'rpngapsimple',
-    'rpngapsimple2',
-    'rpngeogebra',
     'rpnmarker',
     //'rpnmap',
     'rpnmqc',
@@ -48,22 +46,23 @@ require([
     ], function($) {
     $(document).ready(function(){
         rpnsequence.init({
+            language:'fr',
             debug:true,
             disablestateloading:true,
-            testMode:true,
-            warnonexit:false,
+            //testMode:true,
+            //exerciseMode:true,
+            //warnonexit:true,
             //bypassModule:true,
+            //watchResultMode:true,
+            testAndResultMode:true,
             onmoduleend:function(states,nextstep){
                 console.log('ok');
                 nextstep();
             },
-            onsequenceend:function(states,score){
-                window.location.href='../';
-            },
+            onsequenceend:function(states, score, returnPage){
+                    window.location.href = returnPage;
+            },      
             navigationEnabled:true
         });
     });    
 });
-
-
-

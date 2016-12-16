@@ -232,7 +232,7 @@ $.fn.extend({
 	})( $.fn.focus ),
 
 	disableSelection: (function() {
-	/*	var eventType = "onselectstart" in document.createElement( "div" ) ?
+		/*var eventType = "onselectstart" in document.createElement( "div" ) ?
 			"selectstart" :
 			"mousedown";
 

@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<sequence>9e année :Multiplication de fractions
+		<titre> Part d'un carré et multiplication de fractions (1)
+			<module>
+				<id>module1</id>
+				<donnee1>Effectue le calcul en t'aidant de la représentation des fractions :</donnee1>
+				<donnee2>3 essais maximum</donnee2>
+				<ressource>ACT_16_7_01_mod1.swf</ressource>
+				<validemax>2</validemax>
+				<sortiejuste>module2</sortiejuste>
+				<sortieFausse>module2</sortieFausse>
+				<aide>act_16_7_01_aide.swf</aide>
+				<indice/>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>620</tailleX>
+				<tailleY>330</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module2</id>
+				<donnee1>Effectue le calcul en t'aidant de la représentation des fractions :</donnee1>
+				<donnee2>2 essais maximum</donnee2>
+				<ressource>ACT_16_7_01_mod2.swf</ressource>
+				<validemax>2</validemax>
+				<sortiejuste>module3</sortiejuste>
+				<sortieFausse>module3</sortieFausse>
+				<aide>act_16_7_01_aide.swf</aide>
+				<indice/>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>2200</tailleX>
+				<tailleY>890</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module3</id>
+				<donnee1>Effectue le calcul en t'aidant de la représentation des fractions :</donnee1>
+				<donnee2>1 essai maximum</donnee2>
+				<ressource>ACT_16_7_01_mod3.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>module4</sortiejuste>
+				<sortieFausse>module4</sortieFausse>
+				<aide>act_16_7_01_aide.swf</aide>
+				<indice/>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>2200</tailleX>
+				<tailleY>890</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module4</id>
+				<donnee1>Effectue le calcul en t'aidant de la représentation des fractions :</donnee1>
+				<donnee2>1 essai maximum</donnee2>
+				<ressource>ACT_16_7_01_mod4.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>module5</sortiejuste>
+				<sortieFausse>module5</sortieFausse>
+				<aide>act_16_7_01_aide.swf</aide>
+				<indice/>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>2200</tailleX>
+				<tailleY>890</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+		</titre>
+	</sequence>
+	
+</exercice>
+
+
+
+

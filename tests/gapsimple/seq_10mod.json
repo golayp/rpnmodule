@@ -1,0 +1,124 @@
+{
+    "title":"modulesequence",
+    "context":"context",
+    "directive":"directive",
+    "modules":[
+         {
+            "type":"gapsimple",
+            "title":"a gapsimple module typed integer'mille, nbofchar: 6,  milleseparator: true and latex and MathML",
+            "mathjaxinput":true,
+            "context":"asciimath notation:`x = (-b +- sqrt(b^2-4ac))/(2a)`",
+            "directive":"this is some latex formulas:$$with return:{x+1\\over(x-1)}$$this is a formula without return: \\(x^3+1\\over x-1\\)",
+            "validation":{
+                "mode":"lock",
+                "type":"integer",
+                "milleseparator":true,
+                "numberofchar":"6",
+                "width":"10em;",
+                "align":"text-center"
+            },
+            "tofill":"<p>`x = (-b +- sqrt(b^2-4ac))/(2a)` si `a=1`, `b=0` et `c=-9` que vaut <math><msub><mn>x</mn><mn>1</mn></msub></math>?`<b></b>`et <math><msub><mn>x</mn><mn>2</mn></msub></math>?`<b></b><math display='block'><mspace height='40px'/><mfrac linethickness='2px' numalign='left' denomalign='left'><mrow><mfrac bevelled='true'><mn>1</mn><mi>x</mi></mfrac><mo>+</mo><mfrac bevelled='true'><mn>2</mn><mi>x</mi></mfrac><mo>+</mo><mo>&hellip;</mo></mrow><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>x</mi><mn>4</mn></msup><mo>+</mo><mo>&hellip;</mo></mrow></mfrac></math></p><p><math display='block'><msup superscriptshift='15px'><mi>a</mi><mphantom></mphantom></msup><mo>=</mo><mn>1</mn></math></p><p><math display='block'><mstyle displaystyle='true'><msup superscriptshift='15px'><mi>a</mi><mphantom></mphantom></msup><mo>+</mo><mphantom></mphantom><mo>=</mo><msup superscriptshift='15px'><mi>a</mi><mn>4</mn></msup><mo>+</mo><mn>12</mn></mstyle></math></p>"
+        },
+        {
+            "type":"gapsimple",
+            "title":"a gapsimple module typed natural'mille, nbofchar: 6,  milleseparator: true ",
+            "validation":{
+                "mode":"lock",
+                "type":"natural",
+                "milleseparator":true,
+                "numberofchar":"6",
+                "width":"10em;",
+                "align":"text-center"
+            },
+            "tofill":"<p>1300 + 7 = <b></b></p>"
+        },
+        {
+            "type":"gapsimple",
+            "title":"a gapsimple module type integer'mille, nbofchar: 6, milleseparator: true ",
+            "validation":{
+                "mode":"lock",
+                "type":"integer",
+                "milleseparator":true,
+                "numberofchar":"6",
+                "width":"10em;",
+                "align":"text-center"
+            },
+            "tofill":"<p>-1800 - 7 = <b></b></p>"
+        },
+        {
+            "type":"gapsimple",
+            "title":"a gapsimple module type decimal, nbofchar: 12, milleseparator: true ",
+            "validation":{
+                "mode":"lock",
+                "type":"decimal",
+                "milleseparator":true,
+                "numberofchar":"12",
+                "width":"10em;",
+                "align":"text-center"
+            },
+            "tofill":"<p>-1500,03 + 7.4 = <b></b></p>"
+        },
+        {
+            "type":"gapsimple",
+            "title":"a gapsimple module type posdecimal, nbofchar: 12, milleseparator: false  ",
+            "validation":{
+                "mode":"lock",
+                "type":"posdecimal",
+                "milleseparator":false,
+                "numberofchar":"12",
+                "width":"10em;",
+                "align":"text-center"
+            },
+            "tofill":"<p>14,12 + 0,7 = <b></b></p>"
+        },
+        {
+            "type":"gapsimple",
+            "title":"a gapsimple module type list put a list [aim,ait,aie] in validation type",
+            "validation":{
+                "mode":"lock",
+                "type":["list","aim","ait","aie"],
+                "width":"4em;",
+                "align":"text-center"
+            },
+            "tofill":"<p>arriv<b></b></p>"
+        },
+        {
+            "type":"gapsimple",
+            "title":"a gapsimple module",
+            "validation":{
+                "mode":"lock",
+                "type":"letter",
+                "width":"7em;",
+                "numberofchar":"4"
+            },
+            "tofill":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <b>Etiam</b> rutrum convallis maximus. Nulla faucibus mi ante, sed efficitur mi <b>ultrices</b> vel.</p><p>Class aptent taciti sociosqu ad litora torquent per <b>conubia</b> nostra, per inceptos himenaeos. Maecenas sem sapien, dictum lobortis malesuada at, pulvinar ac tortor. Donec vitae quam massa. Mauris eu ante nibh. Donec eu dapibus est, id vestibulum urna. Suspendisse eu arcu neque. Mauris sed placerat orci, vel lobortis augue.</p><p>Suspendisse nisi tellus, finibus sit amet rutrum et, molestie quis dolor. Duis pretium ipsum eu sem <b>lobortis</b>, eget varius urna sagittis.</p><p><b>Etiam</b> et dolor sit amet quam finibus faucibus ac porttitor dui. Vestibulum et erat ac nulla cursus gravida et a dui. Nunc egestas purus dui, ac lobortis turpis rhoncus a. Sed ac accumsan eros. Vivamus eget vestibulum augue, vel lacinia orci. Duis vitae leo vel dolor lacinia volutpat fermentum et leo. Sed ac efficitur tellus. Quisque eget commodo ligula.</p><p>In mollis convallis turpis, sit amet luctus purus tempor a. Integer vel convallis arcu, porttitor laoreet mauris. Sed porttitor pharetra purus nec sagittis. Curabitur ac purus finibus, blandit lectus ac, laoreet est. Ut lobortis nisl sit amet <b>fringilla</b> gravida. Donec arcu lectus, porttitor sed vestibulum vitae, vestibulum ut justo. Duis maximus viverra risus, ac finibus enim pellentesque ac. Cras interdum posuere orci, ut ultricies elit ullamcorper ut.</p>"
+        },
+        {
+            "type":"gapsimple",
+            "title":"a gapsimple module with drag and drop (multiple)",
+            "fillers":["dream","day"],
+            "tofill":"<p>I have a <b></b> that one <b></b> this nation will rise up and live out the true meaning of its creed - we hold these truths to be self-evident: that all men are created equal.</p><p>I have a <b></b> that one <b></b> on the red hills of Georgia the sons of former slaves and the sons of former slave-owners will be able to sit down together at a table of brotherhood.</p><p>I have a <b></b> that one <b></b> even the state of Mississippi, a desert state, sweltering with the heat of injustice and oppression, will be transformed into an oasis of freedom and justice.</p><p>I have a <b></b> that my four little children will <b>one_</b> live in a nation where they will not be judged by the colour of their skin but by the content of their character.</p><p>I have a <b></b> to<b></b>!</p>"
+        },
+        {
+            "type":"gapsimple",
+            "title":"a gapsimple module with drag and drop (single)",
+            "fillers":["dream","day"],
+            "singledd": true,
+            "tofill":"<p>I have a <b></b> that <b>one_</b> this nation will rise up and live out the true meaning of its creed - we hold these truths to be self-evident: that all men are created equal.</p>"
+        },
+        {
+            "type":"gapsimple",
+            "title":"a gapsimple module with drag and drop (from a text)",
+            "dragfromtext":true,
+            "tofill":"<p>I have a <b class=\"drag\">dream</b> that one <b class=\"drag\">day</b> this nation will rise up and live out the true meaning of its creed - we hold these truths to be self-evident: that all men are created equal.</p><table><tr><td width=\"100\">jour</td><td width=\"100\">rêve</td></tr><tr><td><b></b></td><td><b></b></td></tr></table>"
+        },
+        {
+            "type":"gapsimple",
+            "cssClass":"ddimage",
+            "title":"a gapsimple module with drag and drop images",
+            "dragimage":true,
+            "fillers":["<img src='/medias/logo.png' width=\"150\" height=\"150\" >","<img src='/medias/logo2.png' width=\"150\" height=\"150\" >"],
+            "tofill":"<table><tr><td>JS purple</td><td>JS yellow</td></tr><tr><td><b></b></td><td><b></b></td></tr></table>"
+        }
+    ]
+}

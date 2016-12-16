@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<sequence>10e année : Séquence 1 Heures 1
+		<titre> Fuseaux horaires
+			
+			<module>
+				<id>module1</id>
+				<donnee1>Indique l'heure à l'endroit demandé.</donnee1>
+				<donnee2>Entre le moment où tu as regardé l'heure et celui où tu vas répondre, l'heure a peut-être changé.</donnee2>
+				<ressource>../heure/fuseauHoraire.swf</ressource>
+				<validemax>2</validemax>
+				<sortiejuste>module2</sortiejuste>
+				<sortieFausse>module1</sortieFausse>
+				<aide>../heure/FHAideMemoire.swf</aide>
+				<indice>../heure/FHAideConsigne.swf</indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>oui</indiceDemarrage>
+			</module>
+			<module>
+				<id>module2</id>
+				<donnee1>Indique l'heure à l'endroit demandé.</donnee1>
+				<donnee2>Entre le moment où tu as regardé l'heure et celui où tu vas répondre, l'heure a peut-être changé.</donnee2>
+				<ressource>../heure/fuseauHoraire.swf</ressource>
+				<validemax>3</validemax>
+				<sortiejuste>module3</sortiejuste>
+				<sortieFausse>module2</sortieFausse>
+				<aide>../heure/FHAideMemoire.swf</aide>
+				<indice>../heure/FHAideConsigne.swf</indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+			</module>
+			<module>
+				<id>module3</id>
+				<donnee1>Indique l'heure à l'endroit demandé.</donnee1>
+				<donnee2>Entre le moment où tu as regardé l'heure et celui où tu vas répondre, l'heure a peut-être changé.</donnee2>
+				<ressource>../heure/fuseauHoraire.swf</ressource>
+				<validemax>3</validemax>
+				<sortiejuste>module4</sortiejuste>
+				<sortieFausse>module3</sortieFausse>
+				<aide>../heure/FHAideMemoire.swf</aide>
+				<indice>../heure/FHAideConsigne.swf</indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+			</module>
+			<module>
+				<id>module4</id>
+				<donnee1>Indique l'heure à l'endroit demandé.</donnee1>
+				<donnee2>Entre le moment où tu as regardé l'heure et celui où tu vas répondre, l'heure a peut-être changé.</donnee2>
+				<ressource>../heure/fuseauHoraire.swf</ressource>
+				<validemax>3</validemax>
+				<sortiejuste>entrainementFuseau2.html</sortiejuste>
+				<sortieFausse>module4</sortieFausse>
+				<aide>../heure/FHAideMemoire.swf</aide>
+				<indice>../heure/FHAideConsigne.swf</indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+			</module>
+			
+		</titre>
+	</sequence>
+	
+</exercice>

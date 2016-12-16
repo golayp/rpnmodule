@@ -1,0 +1,5777 @@
+<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<pays>
+	  <nom>Afganistan</nom>
+	  <nomClip>afganistanMc</nomClip>
+	  <capitale>Kaboul</capitale>
+	  <decalageHoraire>4.5</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Asie à l'ouest de l'Inde.</indice>
+	</pays>
+	<pays>
+	  <nom>Afrique du Sud</nom>
+	  <nomClip>afriqueDuSudMc</nomClip>
+	  <capitale>Pretoria</capitale>
+	  <decalageHoraire>2</decalageHoraire>
+	  <ville1>Johanesburg</ville1>
+	  <decalageHoraire1>2</decalageHoraire1>
+	  <ville2>Le Cap</ville2>
+	  <decalageHoraire2>2</decalageHoraire2>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Afrique, à l'extrême sud.</indice>
+	</pays>
+	<pays>
+	  <nom>Alaska (USA)</nom>
+	  <nomClip>alaskaMc</nomClip>
+	  <capitale/>
+	  <decalageHoraire/>
+	  <ville1>Anchorage</ville1>
+	  <decalageHoraire1>-9</decalageHoraire1>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans une partie de l'Amérique, à l'ouest du Canada.</indice>
+	</pays>
+	<pays>
+	  <nom>Alaska (USA)</nom>
+	  <nomClip>alaska2Mc</nomClip>
+	  <capitale/>
+	  <decalageHoraire/>
+	  <ville1>Attu</ville1>
+	  <decalageHoraire1>-11</decalageHoraire1>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un partie de l'Amérique, à l'est de la Russie.</indice>
+	</pays>
+	<pays>
+	  <nom>Albanie</nom>
+	  <nomClip>albanieMc</nomClip>
+	  <capitale>Tirana</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville4/>
+	  <decalage4/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Europe, au bord de la mer Adriatique.</indice>
+	</pays>
+	<pays>
+	  <nom>Algérie</nom>
+	  <nomClip>algerieMc</nomClip>
+	  <capitale>Alger</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Afrique, au bord de la mer méditerranée.</indice>
+	</pays>
+	<pays>
+	  <nom>Allemagne</nom>
+	  <nomClip>allemagneMc</nomClip>
+	  <capitale>Berlin</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays du centre de l'Europe.</indice>
+	</pays>
+	<pays>
+	  <nom>Angola</nom>
+	  <nomClip>angolaMc</nomClip>
+	  <capitale>Luanda</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Afrique, au bord de l'Atlantique et au sud de l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Anguilla</nom>
+	  <nomClip>anguillaMc</nomClip>
+	  <capitale>The Valley</capitale>
+	  <decalageHoraire>-4</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Pays d'Amérique Centrale situé dans la mer des Caraïbes.</indice>
+	</pays>
+	<pays>
+	  <nom>Antigua</nom>
+	  <nomClip>antiguaMc</nomClip>
+	  <capitale>Saint John's</capitale>
+	  <decalageHoraire>-4</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Amérique Centrale, dans la mer des Caraïbes.</indice>
+	</pays>
+	<pays>
+	  <nom>Arabie Saoudite</nom>
+	  <nomClip>arabieSaouditeMc</nomClip>
+	  <capitale>Riyad</capitale>
+	  <decalageHoraire>3</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Afrique, au bord de la mer Rouge.</indice>
+	</pays>
+	<pays>
+	  <nom>Argentine</nom>
+	  <nomClip>argentineMc</nomClip>
+	  <capitale>Buenos Aires</capitale>
+	  <decalageHoraire>-3</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Amérique du Sud, au bord de l'Atlantique.</indice>
+	</pays>
+	<pays>
+	  <nom>Arménie</nom>
+	  <nomClip>armenieMc</nomClip>
+	  <capitale>Erevan</capitale>
+	  <decalageHoraire>4</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Asie Centrale, à l'est de la Turquie.</indice>
+	</pays>
+	<pays>
+	  <nom>Aruba</nom>
+	  <nomClip>arubaMc</nomClip>
+	  <capitale>Oranjestad</capitale>
+	  <decalageHoraire>-4</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Amérique Centrale, dans la mer des Caraïbes, proche des côtes du vénézuela.</indice>
+	</pays>
+	<pays>
+	  <nom>Australie</nom>
+	  <nomClip>australieMc</nomClip>
+	  <capitale>Canberra</capitale>
+	  <decalageHoraire>10</decalageHoraire>
+	  <ville1>Sydney</ville1>
+	  <decalageHoraire1>10</decalageHoraire1>
+	  <ville2>Melbourne</ville2>
+	  <decalageHoraire2>10</decalageHoraire2>
+	  <ville3>Perth</ville3>
+	  <decalageHoraire3>8</decalageHoraire3>
+	  <ville4>Darwin</ville4>
+	  <decalage4>9.5</decalage4>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un très grand pays d'Océanie.</indice>
+	</pays>
+	<pays>
+	  <nom>Autriche</nom>
+	  <nomClip>autricheMc</nomClip>
+	  <capitale>Vienne</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Europe centrale.</indice>
+	</pays>
+	<pays>
+	  <nom>Azerbaijan</nom>
+	  <nomClip>azerbaijanMc</nomClip>
+	  <capitale>Bakou</capitale>
+	  <decalageHoraire>4</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays à l'ouest de l'Asie, au bord de la mer Caspienne.</indice>
+	</pays>
+	<pays>
+	  <nom>Bahamas</nom>
+	  <nomClip>bahamasMc</nomClip>
+	  <capitale>Nassau</capitale>
+	  <decalageHoraire>-5</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Amérique Centrale, dans la mer des Caraïbes, proche des côtes des Etats-Unis.</indice>
+	</pays>
+	<pays>
+	  <nom>Bangladesh</nom>
+	  <nomClip>bangladeshMc</nomClip>
+	  <capitale>Dacca</capitale>
+	  <decalageHoraire>6</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Asie, à l'est de l'Inde.</indice>
+	</pays>
+	<pays>
+	  <nom>La Barbade</nom>
+	  <nomClip>barbadeMc</nomClip>
+	  <capitale>Bridgetown</capitale>
+	  <decalageHoraire>-4</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Amérique Centrale, à l'est de la mer des Caraïbes.</indice>
+	</pays>
+	<pays>
+	  <nom>Belgique</nom>
+	  <nomClip>belgiqueMc</nomClip>
+	  <capitale>Bruxelles</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Europe Centrale.</indice>
+	</pays>
+	<pays>
+	  <nom>Bélize</nom>
+	  <nomClip>belizeMc</nomClip>
+	  <capitale>Belmopan</capitale>
+	  <decalageHoraire>-6</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Amérique Centrale, au bord de la mer des Caraïbes, au sud du mexique.</indice>
+	</pays>
+	<pays>
+	  <nom>Bénin</nom>
+	  <nomClip>beninMc</nomClip>
+	  <capitale>Porto-Novo</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	<indice>Ville située dans un pays d'Afrique de l'ouest, au bord de l'océan et au dessus de l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Bhoutan</nom>
+	  <nomClip>bhoutanMc</nomClip>
+	  <capitale>Thimphou</capitale>
+	  <decalageHoraire>6</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Asie, à l'est de l'Inde, au sud de la Chine, et au nord du Bangladesh.</indice>
+	</pays>
+	<pays>
+	  <nom>Bielorussie</nom>
+	  <nomClip>bielorussieMc</nomClip>
+	  <capitale>Minsk</capitale>
+	  <decalageHoraire>3</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Europe, entre la Pologne et la Russie.</indice>
+	</pays>
+	<pays>
+	  <nom>République de l'Union du Myanmar</nom>
+	  <nomClip>birmanieMc</nomClip>
+	  <capitale>Naypyidaw</capitale>
+	  <decalageHoraire>6.5</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Asie, au nord-ouest de la Thaïlande et au sud de la Chine.</indice>
+	</pays>
+	<pays>
+	  <nom>Bolivie</nom>
+	  <nomClip>bolivieMc</nomClip>
+	  <capitale>Sucre</capitale>
+	  <decalageHoraire>-5</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Amérique du Sud, sous l'équateur, à l'ouest du Brézil, sans accès à l'océan Pacifique.</indice>
+	</pays>
+	<pays>
+	  <nom>Bosnie-Herzegovine</nom>
+	  <nomClip>bosnieHerzegovineMc</nomClip>
+	  <capitale>Sarajevo</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Europe, au bord de l'Adriatique.</indice>
+	</pays>
+	<pays>
+	  <nom>Botswana</nom>
+	  <nomClip>botswanaMc</nomClip>
+	  <capitale>Gaborone</capitale>
+	  <decalageHoraire>2</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Afrique, au nord de l'Afrique du Sud.</indice>
+	</pays>
+	<pays>
+	  <nom>Brézil</nom>
+	  <nomClip>brezilMc</nomClip>
+	  <capitale>Brazilia</capitale>
+	  <decalageHoraire>-3</decalageHoraire>
+	  <ville1>Rio de Janeiro</ville1>
+	  <decalageHoraire1>-3</decalageHoraire1>
+	  <ville2>São Paulo</ville2>
+	  <decalageHoraire2>-3</decalageHoraire2>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un grand pays d'Amérique du Sud qui touche l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Brunei</nom>
+	  <nomClip>bruneiMc</nomClip>
+	  <capitale>Bandar Seri Begawan</capitale>
+	  <decalageHoraire>8</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un petit pays d'Asie, au nord de la malaisie et de l'indonésie, au dessus de l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Bulgarie</nom>
+	  <nomClip>bulgarieMc</nomClip>
+	  <capitale>Sofia</capitale>
+	  <decalageHoraire>2</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Europe, au nord de la Grèce, au bord de la mer noire.</indice>
+	</pays>
+	<pays>
+	  <nom>Burkina Faso</nom>
+	  <nomClip>burkinaFasoMc</nomClip>
+	  <capitale>Ouagadougou</capitale>
+	  <decalageHoraire>0</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Afrique de l'ouest, au sud du Mali.</indice>
+	</pays>
+	<pays>
+	  <nom>Burundi</nom>
+	  <nomClip>burundiMc</nomClip>
+	  <capitale>Bujumbura</capitale>
+	  <decalageHoraire>2</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Afrique centrale, sous l'équateur et à l'est de la République Démocratique du Congo.</indice>
+	</pays>
+	<pays>
+	  <nom>Cambodge</nom>
+	  <nomClip>cambodgeMc</nomClip>
+	  <capitale>Phnom Penh</capitale>
+	  <decalageHoraire>7</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Asie, à l'est de la Thaïlande et au sud de la Chine.</indice>
+	</pays>
+	<pays>
+	  <nom>Cameroun</nom>
+	  <nomClip>camerounMc</nomClip>
+	  <capitale>Yaoundé</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Afrique de l'ouest, au bord de l'océan, au dessus de l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Canada</nom>
+	  <nomClip>canadaMc</nomClip>
+	  <capitale>Ottawa</capitale>
+	  <decalageHoraire>-5</decalageHoraire>
+	  <ville1>Montréal</ville1>
+	  <decalageHoraire1>-5</decalageHoraire1>
+	  <ville2>Québec</ville2>
+	  <decalageHoraire2>-5</decalageHoraire2>
+	  <ville3>Totonto</ville3>
+	  <decalageHoraire3>-5</decalageHoraire3>
+	  <ville4>Vancouver</ville4>
+	  <decalage4>-8</decalage4>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un grand pays d'Amérique du Nord.</indice>
+	</pays>
+	<pays>
+	  <nom>Iles du Cap Vert</nom>
+	  <nomClip>capVertMc</nomClip>
+	  <capitale>Praia</capitale>
+	  <decalageHoraire>-1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un groupe d'îles, à l'ouest de l'Afrique au dessus de l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Chili</nom>
+	  <nomClip>chiliMc</nomClip>
+	  <capitale>Santiago</capitale>
+	  <decalageHoraire>-4</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un très long et étroit pays d'Amérique du Sud.</indice>
+	</pays>
+	<pays>
+	  <nom>Chine</nom>
+	  <nomClip>chineMc</nomClip>
+	  <capitale>Pékin</capitale>
+	  <decalageHoraire>8</decalageHoraire>
+	  <ville1>Hong kong</ville1>
+	  <decalageHoraire1>8</decalageHoraire1>
+	  <ville2>Shanghai</ville2>
+	  <decalageHoraire2>8</decalageHoraire2>
+	  <ville3>Lhassa</ville3>
+	  <decalageHoraire3>8</decalageHoraire3>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1>Lhassa est la capitale de la région autonome du Tibet.</rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un grand pays d'Asie.</indice>
+	</pays>
+	<pays>
+	  <nom>Chypre</nom>
+	  <nomClip>chypreMc</nomClip>
+	  <capitale>Nicosie</capitale>
+	  <decalageHoraire>2</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située sur un île à l'est de la mer Méditerranée.</indice>
+	</pays>
+	<pays>
+	  <nom>Colombie</nom>
+	  <nomClip>colombieMc</nomClip>
+	  <capitale>Bogota</capitale>
+	  <decalageHoraire>-5</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Amérique du Sud, à cheval sur l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Congo</nom>
+	  <nomClip>congoMc</nomClip>
+	  <capitale>Brazzaville</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Afrique, à cheval sur l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Corée du Nord</nom>
+	  <nomClip>coreeNordMc</nomClip>
+	  <capitale>Pyongyang</capitale>
+	  <decalageHoraire>9</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Asie, entre le Japon et la Chine.</indice>
+	</pays>
+	<pays>
+	  <nom>Corée du Sud</nom>
+	  <nomClip>coreeSudMc</nomClip>
+	  <capitale>Séoul</capitale>
+	  <decalageHoraire>9</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Asie, entre le Japon et la Chine.</indice>
+	</pays>
+	<pays>
+	  <nom>Costa Rica</nom>
+	  <nomClip>costaRicaMc</nomClip>
+	  <capitale>San José</capitale>
+	  <decalageHoraire>-6</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Amérique centrale, à côté de Panama.</indice>
+	</pays>
+	<pays>
+	  <nom>Côte d'Ivoire</nom>
+	  <nomClip>coteDIvoireMc</nomClip>
+	  <capitale>Abidjan</capitale>
+	  <decalageHoraire>0</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Afrique de l'ouest, avec l'océan Atlantique au sud.</indice>
+	</pays>
+	<pays>
+	  <nom>Croatie</nom>
+	  <nomClip>croatieMc</nomClip>
+	  <capitale>Zagreb</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Europe, au bord de la mer Adriatique.</indice>
+	</pays>
+	<pays>
+	  <nom>Cuba</nom>
+	  <nomClip>cubaMc</nomClip>
+	  <capitale>La Havane</capitale>
+	  <decalageHoraire>-5</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans une grande île des Caraïbes en Amérique centrale, au sud de la Floride.</indice>
+	</pays>
+	<pays>
+	  <nom>Danemark</nom>
+	  <nomClip>danemarkMc</nomClip>
+	  <capitale>Copenhague</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Europe, bordant la mer du Nord.</indice>
+	</pays>
+	<pays>
+	  <nom>Djibouti</nom>
+	  <nomClip>djiboutiMc</nomClip>
+	  <capitale>Djibouti</capitale>
+	  <decalageHoraire>3</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un petit pays d'Afrique, à l'extrémité sud de la mer Rouge.</indice>
+	</pays>
+	<pays>
+	  <nom>La Dominique</nom>
+	  <nomClip>dominiqueMc</nomClip>
+	  <capitale>Roseau</capitale>
+	  <decalageHoraire>-4</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans une petite île d'Amérique Cemtrale, à l'est des Caraïbes.</indice>
+	</pays>
+	<pays>
+	  <nom>Egypte</nom>
+	  <nomClip>egypteMc</nomClip>
+	  <capitale>Le Caire</capitale>
+	  <decalageHoraire>2</decalageHoraire>
+	  <ville1>Assouan</ville1>
+	  <decalageHoraire1>2</decalageHoraire1>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays du nord de l'Afrique, bordant la mer Méditerranée.</indice>
+	</pays>
+	<pays>
+	  <nom>El Salvador</nom>
+	  <nomClip>elSalvadorMc</nomClip>
+	  <capitale>San Salvador</capitale>
+	  <decalageHoraire>-6</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un petit pays d'Amérique centrale, bordant l'océan Pacifique.</indice>
+	</pays>
+	<pays>
+	  <nom>Emirats Arabes Unis</nom>
+	  <nomClip>emiratsArabesUnisMc</nomClip>
+	  <capitale>Abou Dabi</capitale>
+	  <decalageHoraire>4</decalageHoraire>
+	  <ville1>Dubaï</ville1>
+	  <decalageHoraire1>4</decalageHoraire1>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1>Les Emirats comptent parmi les plus grands producteurs de Pétrole</rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un petit pays du Moyen-Orient, entre le golfe Persique et le golfe d'Oman.</indice>
+	</pays>
+	<pays>
+	  <nom>Equateur</nom>
+	  <nomClip>equateurMc</nomClip>
+	  <capitale>Quito</capitale>
+	  <decalageHoraire>-5</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un petit pays d'Amérique du Sud, au bord de l'océan Pacifique, au nieau de... l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Erythrée</nom>
+	  <nomClip>erythreeMc</nomClip>
+	  <capitale>Asmara</capitale>
+	  <decalageHoraire>3</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un petit pays d'Afrique, en bordure de la mer Rouge.</indice>
+	</pays>
+	<pays>
+	  <nom>Espagne</nom>
+	  <nomClip>espagneMc</nomClip>
+	  <capitale>Madrid</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays du sud de l'Europe.</indice>
+	</pays>
+	<pays>
+	  <nom>Estonie</nom>
+	  <nomClip>estonieMc</nomClip>
+	  <capitale>Tallinn</capitale>
+	  <decalageHoraire>2</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Europe, au bord de la mer Baltique.</indice>
+	</pays>
+	<pays>
+	  <nom>Ethiopie</nom>
+	  <nomClip>ethiopieMc</nomClip>
+	  <capitale>Addis-Abeba</capitale>
+	  <decalageHoraire>3</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Afrique de l'est, en desssus de l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Iles Fidji</nom>
+	  <nomClip>fidjiMc</nomClip>
+	  <capitale>Suva</capitale>
+	  <decalageHoraire>12</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays formé d'îles tropicales, dans l'océan Pacifique, au nord de la Nouvelle-Zélande et au sud de l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Finlande</nom>
+	  <nomClip>finlandeMc</nomClip>
+	  <capitale>Helsinki</capitale>
+	  <decalageHoraire>2</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays du nord de l'Europe.</indice>
+	</pays>
+	<pays>
+	  <nom>France</nom>
+	  <nomClip>franceMc</nomClip>
+	  <capitale>Paris</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Europe qui voisine la Suisse.</indice>
+	</pays>
+	<pays>
+	  <nom>Gabon</nom>
+	  <nomClip>gabonMc</nomClip>
+	  <capitale>Libreville</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Afrique centrale, sur l'équateur, au bord de l'océan Atlantique.</indice>
+	</pays>
+	<pays>
+	  <nom>Gambie</nom>
+	  <nomClip>gambieMc</nomClip>
+	  <capitale>Banjul</capitale>
+	  <decalageHoraire>0</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un petit pays alongé d'Afrique de l'ouest.</indice>
+	</pays>
+	<pays>
+	  <nom>Géorgie</nom>
+	  <nomClip>georgieMc</nomClip>
+	  <capitale>Tbilissi</capitale>
+	  <decalageHoraire>4</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays à l'est de la mer noire, sur la limite entre l'Europe et l'Asie.</indice>
+	</pays>
+	<pays>
+	  <nom>Géorgie du Sud (GB)</nom>
+	  <nomClip>georgieDuSudMc</nomClip>
+	  <capitale/>
+	  <decalageHoraire/>
+	  <ville1>Grytviken</ville1>
+	  <decalageHoraire1>-2</decalageHoraire1>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans une île du sud de l'océan Atlantique.</indice>
+	</pays>
+	<pays>
+	  <nom>Ghana</nom>
+	  <nomClip>ghanaMc</nomClip>
+	  <capitale>Accra</capitale>
+	  <decalageHoraire>0</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Afrique de l'ouest, au dessus de l'équateur, au bord de l'océan Atlantique.</indice>
+	</pays>
+	<pays>
+	  <nom>Grèce</nom>
+	  <nomClip>greceMc</nomClip>
+	  <capitale>Athène</capitale>
+	  <decalageHoraire>2</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays du sud-est de l'Europe, au bord de la mer Méditerranée.</indice>
+	</pays>
+	<pays>
+	  <nom>Groenland</nom>
+	  <nomClip>groenlandMc</nomClip>
+	  <capitale>Nuuk</capitale>
+	  <decalageHoraire>-3</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un grand pays du nord de l'océan Atlantique, dans les limites de la banquise.</indice>
+	</pays>
+	<pays>
+	  <nom>Guadeloupe (fr)</nom>
+	  <nomClip>guadeloupeMc</nomClip>
+	  <capitale/>
+	  <decalageHoraire/>
+	  <ville1>Pointe-à-Pitre</ville1>
+	  <decalageHoraire1>-5</decalageHoraire1>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située sur une île française d'Amérique Centrale, à l'est des Caraïbes.</indice>
+	</pays>
+	<pays>
+	  <nom>Guatemala</nom>
+	  <nomClip>guatemalaMc</nomClip>
+	  <capitale>Guatemala</capitale>
+	  <decalageHoraire>-6</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Amérique Centrale.</indice>
+	</pays>
+	<pays>
+	  <nom>Guinée</nom>
+	  <nomClip>guineeMc</nomClip>
+	  <capitale>Conakry</capitale>
+	  <decalageHoraire>0</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Afrique de l'ouest, au bord de l'océan Atlantique.</indice>
+	</pays>
+	<pays>
+	  <nom>Guinée-Bissau</nom>
+	  <nomClip>guineeBissauMc</nomClip>
+	  <capitale>Bissau</capitale>
+	  <decalageHoraire>0</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Afrique de l'ouest, au bord de l'océan Atlantique.</indice>
+	</pays>
+	<pays>
+	  <nom>Guinée-Equatoriale</nom>
+	  <nomClip>guineeEquatorialeMc</nomClip>
+	  <capitale>Malabo</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Afrique centrale, au bord de l'océan Atlantique, sur l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Guyana</nom>
+	  <nomClip>guyaneMc</nomClip>
+	  <capitale>Georgetown</capitale>
+	  <decalageHoraire>-4</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays du nord de l'Amérique du Sud, au bord de l'océan Atlantique.</indice>
+	</pays>
+	<pays>
+	  <nom>Guyane Française</nom>
+	  <nomClip>guyaneFrancaiseMc</nomClip>
+	  <capitale/>
+	  <decalageHoraire/>
+	  <ville1>Cayenne</ville1>
+	  <decalageHoraire1>-3</decalageHoraire1>
+	  <ville2>Kourou</ville2>
+	  <decalageHoraire2>-3</decalageHoraire2>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays du nord de l'Amérique du Sud, au bord de l'océan Atlantique.</indice>
+	</pays>
+	<pays>
+	  <nom>Haïti</nom>
+	  <nomClip>haitiMc</nomClip>
+	  <capitale>Port-au-Prince</capitale>
+	  <decalageHoraire>-5</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays de la mer des Caraïbes en Amérique Centrale, sur une grande île, voisin de Saint-Domingue.</indice>
+	</pays>
+	<pays>
+	  <nom>Hawaii (US)</nom>
+	  <nomClip>hawaiiMc</nomClip>
+	  <capitale/>
+	  <decalageHoraire/>
+	  <ville1>Honolulu</ville1>
+	  <decalageHoraire1>-10</decalageHoraire1>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située sur une île au milieu de l'océan Pacifique, du nord de l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Honduras</nom>
+	  <nomClip>hondurasMc</nomClip>
+	  <capitale>Tegucigalpa</capitale>
+	  <decalageHoraire>-6</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays de l'Amérique centrale.</indice>
+	</pays>
+	<pays>
+	  <nom>Hongrie</nom>
+	  <nomClip>hongrieMc</nomClip>
+	  <capitale>Budapest</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays de l'est de l'Europe, pas très loin de la Suisse.</indice>
+	</pays>
+	<pays>
+	  <nom>Ile de la Réunion (Fr)</nom>
+	  <nomClip>ileDeLaReunionMc</nomClip>
+	  <capitale/>
+	  <decalageHoraire/>
+	  <ville1>Saint-Denis</ville1>
+	  <decalageHoraire1>4</decalageHoraire1>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située sur une petite île de l'océan Indien, proche du sud de l'Afrique.</indice>
+	</pays>
+	<pays>
+	  <nom>Ile Maurice</nom>
+	  <nomClip>ileMauriceMc</nomClip>
+	  <capitale>Port-Louis</capitale>
+	  <decalageHoraire>4</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située sur une petite île de l'océan Indien, proche du sud de l'Afrique.</indice>
+	</pays>
+	<pays>
+	  <nom>Iles Canaries (esp)</nom>
+	  <nomClip>ilesCanariesMc</nomClip>
+	  <capitale/>
+	  <decalageHoraire/>
+	  <ville1>Santa Cruz de Ténérife</ville1>
+	  <decalageHoraire1>0</decalageHoraire1>
+	  <ville2>Las Palmas de Gran Canaria</ville2>
+	  <decalageHoraire2>0</decalageHoraire2>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située sur une île de l'océan Atlantique, proche de l'ouest de l'Afrique.</indice>
+	</pays>
+	<pays>
+	  <nom>Iles Cook</nom>
+	  <nomClip>ilesCookMc</nomClip>
+	  <capitale>Avarua</capitale>
+	  <decalageHoraire>-10</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située sur une petite île de l'océan Pacifique, proche de la ligne de changement de date et au sud de l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Archipel des Kiribati</nom>
+	  <nomClip>ilesKiribatiMc</nomClip>
+	  <capitale>Tarawa-Sud</capitale>
+	  <decalageHoraire>13</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	    <rubrique1>Le décalage +13 donne la même heure que le décalage -11. La différence est au niveau de la date: Ils ont la même date que l'Australie, pays avec lequel ces pays ont beucoup d'échanges commerciaux.</rubrique1>
+	  <rubrique2>Par exemple si le décalage est de -11 un 15 avril, avec un décalage de +13 on sera le 16 avril.</rubrique2>
+	  <rubrique3>Ce changement est intervenu en 1994 car les échanges commerciaux se réalisent surtout avec l'Australie et la Nouvelle-Zélande alors qu'avant les échanges commerciaux s'effectuaient avec la californie.</rubrique3>
+	  <rubrique4>Si la date a 1 jour de différence, le commerce ne peut avoir lieu que trois jours par semaine.</rubrique4>
+	  <rubrique5>Le lundi en Austrlie correspond au dimanche, férié, dans la zone -11 et le vendredi dans cette zone correspond au samedi, férié en Australie.</rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située sur une petite île au milieu l'océan Pacifique et presque sur l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Iles Salomon</nom>
+	  <nomClip>ilesSalomonMc</nomClip>
+	  <capitale>Honiara</capitale>
+	  <decalageHoraire>11</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située sur une petite île au nord-est de l'Australie, au sud de l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Iles Samoa</nom>
+	  <nomClip>ilesSamoaMc</nomClip>
+	  <capitale>Apia</capitale>
+	  <decalageHoraire>13</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1>Le décalage +13 donne la même heure que le décalage -11. La différence est au niveau de la date: Ils ont la même date que l'Australie, pays avec lequel ces pays ont beucoup d'échanges commerciaux.</rubrique1>
+	  <rubrique2>Par exemple si le décalage est de -11 un 15 avril, avec un décalage de +13 on sera le 16 avril.</rubrique2>
+	  <rubrique3>Ce changement est intervenu en 2011 car les échanges commerciaux se réalisent surtout avec l'Australie et la Nouvelle-Zélande alors qu'avant les échanges commerciaux s'effectuaient avec la californie.</rubrique3>
+	  <rubrique4>Si la date a 1 jour de différence, le commerce ne peut avoir lieu que trois jours par semaine.</rubrique4>
+	  <rubrique5>Le lundi en Austrlie correspond au dimanche, férié, dans la zone -11 et le vendredi dans cette zone correspond au samedi, férié en Australie.</rubrique5>
+	  <rubrique6/>
+	  <rubrique7/>
+	  <indice>Ville située sur une petite île de l'océan Pacifique, proche de la ligne de changement de date et au sud de l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Inde</nom>
+	  <nomClip>indeMc</nomClip>
+	  <capitale>New Dehli</capitale>
+	  <decalageHoraire>5.5</decalageHoraire>
+	  <ville1>Bombay</ville1>
+	  <decalageHoraire1>5.5</decalageHoraire1>
+	  <ville2>Madras</ville2>
+	  <decalageHoraire2>5.5</decalageHoraire2>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un grand pays de l'Asie, bordant l'océan Indien.</indice>
+	</pays>
+	<pays>
+	  <nom>Indonésie</nom>
+	  <nomClip>indonesieMc</nomClip>
+	  <capitale>Jakarta</capitale>
+	  <decalageHoraire>7</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située sur une île située dans un groupe d'îles entre l'Australie et l'Asie.</indice>
+	</pays>
+	<pays>
+	  <nom>Irak</nom>
+	  <nomClip>irakMc</nomClip>
+	  <capitale>Bagdad</capitale>
+	  <decalageHoraire>3</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays du Moyen-Orient, ayant un tout petit accès à la mer, sur le golfe Persique.</indice>
+	</pays>
+	<pays>
+	  <nom>Iran</nom>
+	  <nomClip>iranMc</nomClip>
+	  <capitale>Téhéran</capitale>
+	  <decalageHoraire>3.5</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays du Moyen-Orient, ayant un accès à la mer Caspienne et au golfe Persique.</indice>
+	</pays>
+	<pays>
+	  <nom>Irlande</nom>
+	  <nomClip>irlandeMc</nomClip>
+	  <capitale>Dublin</capitale>
+	  <decalageHoraire>0</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays du nord-ouest de l'Europe.</indice>
+	</pays>
+	<pays>
+	  <nom>Islande</nom>
+	  <nomClip>islandeMc</nomClip>
+	  <capitale>Reykjavik</capitale>
+	  <decalageHoraire>0</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située sur une île entre l'Europe et le Groenland.</indice>
+	</pays>
+	<pays>
+	  <nom>Israël</nom>
+	  <nomClip>israelMc</nomClip>
+	  <capitale/>
+	  <decalageHoraire/>
+	  <ville1>Jérusalem</ville1>
+	  <decalageHoraire1>2</decalageHoraire1>
+	  <ville2>Tel Aviv</ville2>
+	  <decalageHoraire2>2</decalageHoraire2>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1>Des divergences entre Israël et la communauté internationale existent sur le choix de la capitale.</rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays du Proche-Orient, au bord de la mer Méditerranée.</indice>
+	</pays>
+	<pays>
+	  <nom>Italie</nom>
+	  <nomClip>italieMc</nomClip>
+	  <capitale>Rome</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays du sud de l'Europe, au bord de la mer Méditerranée.</indice>
+	</pays>
+	<pays>
+	  <nom>Jamaïque</nom>
+	  <nomClip>jamaiqueMc</nomClip>
+	  <capitale>Kingston</capitale>
+	  <decalageHoraire>-5</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située sur une île d'Amérique Centrale, au centre des Caraïbes.</indice>
+	</pays>
+	<pays>
+	  <nom>Japon</nom>
+	  <nomClip>japonMc</nomClip>
+	  <capitale>Tokyo</capitale>
+	  <decalageHoraire>9</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Extrème-Orient, dans l'océan Pacifique.</indice>
+	</pays>
+	<pays>
+	  <nom>Jordanie</nom>
+	  <nomClip>jordanieMc</nomClip>
+	  <capitale>Amman</capitale>
+	  <decalageHoraire>2</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays du Moyen-Orient, ayant un tout petit accès à la mer, sur le golfe d'Aqaba en mer Rouge.</indice>
+	</pays>
+	<pays>
+	  <nom>Kazakhstan</nom>
+	  <nomClip>kazakhstanMc</nomClip>
+	  <capitale>Astana</capitale>
+	  <decalageHoraire>6</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Asie au bord de la mer Caspienne.</indice>
+	</pays>
+	<pays>
+	  <nom>Kenya</nom>
+	  <nomClip>kenyaMc</nomClip>
+	  <capitale>Nairobi</capitale>
+	  <decalageHoraire>3</decalageHoraire>
+	  <ville1>Mombasa</ville1>
+	  <decalageHoraire1>3</decalageHoraire1>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1>Mombasa sert de port maritime pour toute l'Afrique centrale</rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Afrique de l'est, sur l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Kerguelen (Fr)</nom>
+	  <nomClip>kerguelenMc</nomClip>
+	  <capitale/>
+	  <decalageHoraire/>
+	  <ville1>Port-aux-Français</ville1>
+	  <decalageHoraire1>5</decalageHoraire1>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située sur une île de l'océan Indien à la latitude des "50èmes hurlants".</indice>
+	</pays>
+	<pays>
+	  <nom>Kirghizistan</nom>
+	  <nomClip>kirghizistanMc</nomClip>
+	  <capitale>Bichkek</capitale>
+	  <decalageHoraire>6</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Asie, au nord de l'Inde mais sans le toucher".</indice>
+	</pays>
+	<pays>
+	  <nom>Koweit</nom>
+	  <nomClip>koweitMc</nomClip>
+	  <capitale>Koweit City</capitale>
+	  <decalageHoraire>3</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1>Important producteur de pétrole et son port constitue le seul bon port du nord du golfe Persique. Il est profond et facile d'accès.</rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays au bord du golfe Persique.</indice>
+	</pays>
+	<pays>
+	  <nom>Laos</nom>
+	  <nomClip>laosMc</nomClip>
+	  <capitale>Vientiane</capitale>
+	  <decalageHoraire>7</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'asie, en Extrème-Orient, au sud de la Chine.</indice>
+	</pays>
+	<pays>
+	  <nom>Lesotho</nom>
+	  <nomClip>lesothoMc</nomClip>
+	  <capitale>Maseru</capitale>
+	  <decalageHoraire>2</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un petit pays au sud de l'Afrique.</indice>
+	</pays>
+	<pays>
+	  <nom>Lettonie</nom>
+	  <nomClip>lettonieMc</nomClip>
+	  <capitale>Riga</capitale>
+	  <decalageHoraire>2</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays au nord de l'Europe, au bord de la mer Baltique.</indice>
+	</pays>
+	<pays>
+	  <nom>Liban</nom>
+	  <nomClip>libanMc</nomClip>
+	  <capitale>Beyrouth</capitale>
+	  <decalageHoraire>2</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays du Proche-Orient, au bord de la mer Méditerranée.</indice>
+	</pays>
+	<pays>
+	  <nom>Libéria</nom>
+	  <nomClip>liberiaMc</nomClip>
+	  <capitale>Monrovia</capitale>
+	  <decalageHoraire>0</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un petit pays à l'ouest de l'Afrique, au bord de l'océan Atlantique.</indice>
+	</pays>
+	<pays>
+	  <nom>Libye</nom>
+	  <nomClip>libyeMc</nomClip>
+	  <capitale>Tripoli</capitale>
+	  <decalageHoraire>2</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays au nord de l'Afrique, au bord de la méditerranée.</indice>
+	</pays>
+	<pays>
+	  <nom>Lituanie</nom>
+	  <nomClip>lituanieMc</nomClip>
+	  <capitale>Vilnius</capitale>
+	  <decalageHoraire>2</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays au nord de l'Europe, touchant la mer Baltique.</indice>
+	</pays>
+	<pays>
+	  <nom>Luxembourg</nom>
+	  <nomClip>luxembourgMc</nomClip>
+	  <capitale>Luxembourg</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un petit pays d'Europe touchant la France.</indice>
+	</pays>
+	<pays>
+	  <nom>Macédoine</nom>
+	  <nomClip>macedoineMc</nomClip>
+	  <capitale>Skopje</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un petit pays au sud-est de l'Europe.</indice>
+	</pays>
+	<pays>
+	  <nom>Madagascar</nom>
+	  <nomClip>madagascarMc</nomClip>
+	  <capitale>Antananarivo</capitale>
+	  <decalageHoraire>3</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située sur une grande île au sud-est de l'Afrique.</indice>
+	</pays>
+	<pays>
+	  <nom>Malaisie</nom>
+	  <nomClip>malaisieMc</nomClip>
+	  <capitale>Kuala Lumpur</capitale>
+	  <decalageHoraire>8</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays entre l'australie et la Chine et à la pointe de la Thaïlande.</indice>
+	</pays>
+	<pays>
+	  <nom>Malawi</nom>
+	  <nomClip>malawiMc</nomClip>
+	  <capitale>Lilongwe</capitale>
+	  <decalageHoraire>2</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un petit pays de l'Afrique centrale, au bord d'un lac.</indice>
+	</pays>
+	<pays>
+	  <nom>Mali</nom>
+	  <nomClip>maliMc</nomClip>
+	  <capitale>Bamako</capitale>
+	  <decalageHoraire>0</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays à l'ouest de l'Afrique.</indice>
+	</pays>
+	<pays>
+	  <nom>Malouines (GB)</nom>
+	  <nomClip>malouinesMc</nomClip>
+	  <capitale/>
+	  <decalageHoraire/>
+	  <ville1>Port Stanley</ville1>
+	  <decalageHoraire1>-3</decalageHoraire1>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située sur une île en Amérique du Sud, à l'est de l'Argentine.</indice>
+	</pays>
+	<pays>
+	  <nom>Maroc</nom>
+	  <nomClip>marocMc</nomClip>
+	  <capitale>Rabat</capitale>
+	  <decalageHoraire>0</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays de l'Afrique de l'ouest, au bord de l'océan Atlantique.</indice>
+	</pays>
+	<pays>
+	  <nom>Martinique (fr)</nom>
+	  <nomClip>martiniqueMc</nomClip>
+	  <capitale/>
+	  <decalageHoraire/>
+	  <ville1>Fort-de-France</ville1>
+	  <decalageHoraire1>-4</decalageHoraire1>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située sur une île d'Amérique Centrale, à l'est des Caraïbes.</indice>
+	</pays>
+	<pays>
+	  <nom>Mauritanie</nom>
+	  <nomClip>mauritanieMc</nomClip>
+	  <capitale>Nouakchott</capitale>
+	  <decalageHoraire>0</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays à l'ouest de l'Afrique, au bord de l'océan Atlantique.</indice>
+	</pays>
+	<pays>
+	  <nom>Mexique</nom>
+	  <nomClip>mexiqueMc</nomClip>
+	  <capitale>Mexico</capitale>
+	  <decalageHoraire>-6</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays au sud de l'Amérique du Nord.</indice>
+	</pays>
+	<pays>
+	  <nom>Moldavie</nom>
+	  <nomClip>moldavieMc</nomClip>
+	  <capitale>Chisinau</capitale>
+	  <decalageHoraire>2</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays à l'est de l'Europe.</indice>
+	</pays>
+	<pays>
+	  <nom>Mongolie</nom>
+	  <nomClip>mongolieMc</nomClip>
+	  <capitale>Oulan-Bator</capitale>
+	  <decalageHoraire>8</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Asie, au nord de la Chine.</indice>
+	</pays>
+	<pays>
+	  <nom>Montenegro</nom>
+	  <nomClip>montenegroMc</nomClip>
+	  <capitale>Podgorica</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un petit pays au sud de l'Europe, au bord de la mer Méditerranée.</indice>
+	</pays>
+	<pays>
+	  <nom>Montserrat (GB)</nom>
+	  <nomClip>montserratMc</nomClip>
+	  <capitale/>
+	  <decalageHoraire/>
+	  <ville1>Plymouth</ville1>
+	  <decalageHoraire1>-4</decalageHoraire1>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située sur une île d'Amérique Cenrale, à l'est des Caraïbes.</indice>
+	</pays>
+	<pays>
+	  <nom>Mozambique</nom>
+	  <nomClip>mozambiqueMc</nomClip>
+	  <capitale>Maputo</capitale>
+	  <decalageHoraire>2</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays à l'est de l'Afrique, en dessous de l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Namibie</nom>
+	  <nomClip>namibieMc</nomClip>
+	  <capitale>Windhoek</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un petit pays au sud-ouest de l'Afrique, au bord de l'océan Atlantique.</indice>
+	</pays>
+	<pays>
+	  <nom>Népal</nom>
+	  <nomClip>nepalMc</nomClip>
+	  <capitale>Katmandou</capitale>
+	  <decalageHoraire>5.75</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'asie au nord-est de l'Inde.</indice>
+	</pays>
+	<pays>
+	  <nom>Nicaragua</nom>
+	  <nomClip>nicaraguaMc</nomClip>
+	  <capitale>Managua</capitale>
+	  <decalageHoraire>-6</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Amérique Centrale.</indice>
+	</pays>
+	<pays>
+	  <nom>Niger</nom>
+	  <nomClip>nigerMc</nomClip>
+	  <capitale>Niamey</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un petit pays de l'Afrique, touchant le lac Tchad.</indice>
+	</pays>
+	<pays>
+	  <nom>Nigeria</nom>
+	  <nomClip>nigeriaMc</nomClip>
+	  <capitale>Abuja</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un  pays de l'Afrique centale, au bord de l'océan Atlantique et au nord de l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Norvège</nom>
+	  <nomClip>norvegeMc</nomClip>
+	  <capitale>Oslo</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays à l'ouest de la péninsule scandinave, au nord de l'Europe.</indice>
+	</pays>
+	<pays>
+	  <nom>Nouvelle Calédonie (fr)</nom>
+	  <nomClip>nouvelleCaledonieMc</nomClip>
+	  <capitale/>
+	  <decalageHoraire/>
+	  <ville1>Nouméa</ville1>
+	  <decalageHoraire1>11</decalageHoraire1>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située sur une île de l'océanie, à l'est de l'Australie.</indice>
+	</pays>
+	<pays>
+	  <nom>Nouvelle Zélande</nom>
+	  <nomClip>nouvelleZelandeMc</nomClip>
+	  <capitale>Wellington</capitale>
+	  <decalageHoraire>12</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays insulaire, dans l'océan Pacifique, à l'est de l'Australie.</indice>
+	</pays>
+	<pays>
+	  <nom> Oman </nom>
+	  <nomClip>omanMc</nomClip>
+	  <capitale>Mascate</capitale>
+	  <decalageHoraire>4</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays du Moyen-Orient, situé au bord de l'océan Indien, à l'entrée du golfe d'Oman.</indice>
+	</pays>
+	<pays>
+	  <nom>Ouganda</nom>
+	  <nomClip>ougandaMc</nomClip>
+	  <capitale>Kampala</capitale>
+	  <decalageHoraire>3</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays au centre de l'Afrique, à cheval sur l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Ouzbékistan</nom>
+	  <nomClip>ouzbekistanMc</nomClip>
+	  <capitale>Tachkent</capitale>
+	  <decalageHoraire>5</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1>La mer d'Aral est une mer intérieure qui s'assèche lentement, le fleuve qui l'alimentait ayant été détourné par l'homme pour irriguer des champs de coton.</rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Asie, touchant la mer d'Aral.</indice>
+	</pays>
+	<pays>
+	  <nom>Pakistan</nom>
+	  <nomClip>pakistanMc</nomClip>
+	  <capitale>Islamabad</capitale>
+	  <decalageHoraire>5</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Asie, au bord de l'océan Indien.</indice>
+	</pays>
+	<pays>
+	  <nom>Panama</nom>
+	  <nomClip>panamaMc</nomClip>
+	  <capitale>Panama City</capitale>
+	  <decalageHoraire>-5</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1>Le pays est traversé par un canal reliant l'océan Pacifique à l'océan Atlantique. Ce canal est jonché d'écluses qui déterminent la taille maximum de navires pourvant l'emprunter. (Actuellement 294,1m de long, 32,3m de large, 12m de tirant d'eau et 57,91m de tirant d'air.</rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Amérique centrale.</indice>
+	</pays>
+	<pays>
+	  <nom>Papouasie-Nouvelle-Guinee</nom>
+	  <nomClip>papouasieNouvelleGuineeMc</nomClip>
+	  <capitale>Port-Moresby</capitale>
+	  <decalageHoraire>10</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays qui partage une île avec l'Indonésie,  au nord de l'Australie.</indice>
+	</pays>
+	<pays>
+	  <nom>Paraguay</nom>
+	  <nomClip>paraguayMc</nomClip>
+	  <capitale>Asuncion</capitale>
+	  <decalageHoraire>-4</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays situé au centre de l'Amérique du sud.</indice>
+	</pays>
+	<pays>
+	  <nom>Pays-Bas</nom>
+	  <nomClip>paysBasMc</nomClip>
+	  <capitale>Amsterdam</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Europe dans lequel se jette le Rhin.</indice>
+	</pays>
+	<pays>
+	  <nom>Pérou</nom>
+	  <nomClip>perouMc</nomClip>
+	  <capitale>Lima</capitale>
+	  <decalageHoraire>-5</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Amérique du Sud, au bord de l'océan Pacifique.</indice>
+	</pays>
+	<pays>
+	  <nom>Philippines</nom>
+	  <nomClip>philippinesMc</nomClip>
+	  <capitale>Manille</capitale>
+	  <decalageHoraire>8</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays insulaire d'Asie, au sud-est de la Chine.</indice>
+	</pays>
+	<pays>
+	  <nom>Pologne</nom>
+	  <nomClip>pologneMc</nomClip>
+	  <capitale>Varsovie</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays au nord de l'Europe.</indice>
+	</pays>
+	<pays>
+	  <nom>Polynésie (fr)</nom>
+	  <nomClip>polynesieMc</nomClip>
+	  <capitale/>
+	  <decalageHoraire/>
+	  <ville1>Papeete</ville1>
+	  <decalageHoraire1>-10</decalageHoraire1>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un groupe d'îles de l'océan Pacifique au sud de l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Portugal</nom>
+	  <nomClip>portugalMc</nomClip>
+	  <capitale>Lisbonne</capitale>
+	  <decalageHoraire>0</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Europe, au bord de l'océan Atlantique.</indice>
+	</pays>
+	<pays>
+	  <nom>Puerto Rico (USA)</nom>
+	  <nomClip>puertoRicoMc</nomClip>
+	  <capitale>San Juan</capitale>
+	  <decalageHoraire>-4</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays insulaire d'Amérique Cenrale, à l'est de Saint-Domingue.</indice>
+	</pays>
+	<pays>
+	  <nom>Quatar</nom>
+	  <nomClip>quatarMc</nomClip>
+	  <capitale>Doha</capitale>
+	  <decalageHoraire>3</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays du Moyen-Orient, au bord du golfe Persique.</indice>
+	</pays>
+	<pays>
+	  <nom>République Centre Africaine</nom>
+	  <nomClip>republiqueCentreAfricaineMc</nomClip>
+	  <capitale>Bangui</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays du centre de l'Afrique, au dessus de l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>République Démocratique du Congo</nom>
+	  <nomClip>republiqueDemocratiqueDuCongoMc</nomClip>
+	  <capitale>Kinshasa</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays du centre de l'Afrique, au dessous de l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>République Tchèque</nom>
+	  <nomClip>republiqueTchequeMc</nomClip>
+	  <capitale>Prague</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays du centre de l'Europe.</indice>
+	</pays>
+	<pays>
+	  <nom>Roumanie</nom>
+	  <nomClip>roumanieMc</nomClip>
+	  <capitale>Sofia</capitale>
+	  <decalageHoraire>2</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays à l'est de l'Europe, au bord de la mer noire.</indice>
+	</pays>
+	<pays>
+	  <nom>Royaume Uni</nom>
+	  <nomClip>royaumeUniMc</nomClip>
+	  <capitale>Londres</capitale>
+	  <decalageHoraire>0</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays insulaire de l'ouest de l'Europe.</indice>
+	</pays>
+	<pays>
+	  <nom>Russie</nom>
+	  <nomClip>russieMc</nomClip>
+	  <capitale>Moscou</capitale>
+	  <decalageHoraire>4</decalageHoraire>
+	  <ville1>Saint-Petersbourg</ville1>
+	  <decalageHoraire1>4</decalageHoraire1>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1>Les Fuseaux horaires de la Russie sont en réorganisation. Des différences sont donc possibles.</rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays à cheval entre l'Asie et l'Europe.</indice>
+	</pays>
+	<pays>
+	  <nom>Rwanda</nom>
+	  <nomClip>rwandaMc</nomClip>
+	  <capitale>Kigali</capitale>
+	  <decalageHoraire>2</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un petit pays du centre de l'Afrique, juste sous l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Sahara Occidental</nom>
+	  <nomClip>saharaOccidentalMc</nomClip>
+	  <capitale>Laâyoune</capitale>
+	  <decalageHoraire>0</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1>Le territoire du Sahara occidental est revendiqué par la République sahraouie, qui en contrôle 20 %, le reste est sous le contrôle du Maroc.</rubrique1>
+	  <rubrique2>Pour l'ONU, le Sahara occidental est un territoire non autonome, dont la décolonisation n'est pas terminée : l'ONU ne reconnaît ni la République sahraouie ni la souveraineté du Maroc sur le Sahara occidental.</rubrique2>
+	  <rubrique3>Pour l'Union africaine, la République sahraouie est un État africain : elle est membre à part entière de cette organisation depuis 1982.</rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays à l'ouest de l'Afrique, au bord de l'océan Atlantique.</indice>
+	</pays>
+	<pays>
+	  <nom>Sénégal</nom>
+	  <nomClip>senegalMc</nomClip>
+	  <capitale>Dakar</capitale>
+	  <decalageHoraire>0</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays à l'ouest de l'Afrique, au bord de l'océan Atlantique.</indice>
+	</pays>
+	<pays>
+	  <nom>Serbie</nom>
+	  <nomClip>serbieMc</nomClip>
+	  <capitale>Belgrade</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Europe, dans les Balkans.</indice>
+	</pays>
+	<pays>
+	  <nom>Sierra Leone</nom>
+	  <nomClip>sierraLeoneMc</nomClip>
+	  <capitale>Freetown</capitale>
+	  <decalageHoraire>0</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays à l'ouest de l'Afrique, au bord de l'océan Atlantique.</indice>
+	</pays>
+	<pays>
+	  <nom>Singapour</nom>
+	  <nomClip>singapourMc</nomClip>
+	  <capitale>Singapour</capitale>
+	  <decalageHoraire>8</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un tout petit pays d'Asie, pratiquement sur l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Slovaquie</nom>
+	  <nomClip>slovaquieMc</nomClip>
+	  <capitale>Bratislava</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays à l'est de l'Europe, à côte de l'Autriche.</indice>
+	</pays>
+	<pays>
+	  <nom>Slovénie</nom>
+	  <nomClip>slovenieMc</nomClip>
+	  <capitale>Ljubljana</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Europe, ayant des frontières commune avec l'Autriche et l'Italie.</indice>
+	</pays>
+	<pays>
+	  <nom>Somalie</nom>
+	  <nomClip>somalieMc</nomClip>
+	  <capitale>Mogadiscio</capitale>
+	  <decalageHoraire>3</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays formant la pointe est de l'Afrique.</indice>
+	</pays>
+	<pays>
+	  <nom>Soudan</nom>
+	  <nomClip>soudanMc</nomClip>
+	  <capitale>Khartoum</capitale>
+	  <decalageHoraire>3</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1>3</decalageHoraire1>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1>Le tracé de la frontière avec le Soudan Sud n'est pas encore définitif.</rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays au nord-est de l'Afrique.</indice>
+	</pays>
+	<pays>
+	  <nom>Soudan Sud</nom>
+	  <nomClip>soudanSMc</nomClip>
+	  <capitale>Djouba</capitale>
+	  <decalageHoraire>3</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1>3</decalageHoraire1>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1>Le tracé de la frontière avec le Soudan n'est pas encore définitif.</rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays à l'est de l'Afrique, au dessus de l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Sri Lanka</nom>
+	  <nomClip>sriLankaMc</nomClip>
+	  <capitale>Sri Jayawardenapura</capitale>
+	  <decalageHoraire>5.5</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Asie, au sud de l'Inde.</indice>
+	</pays>
+	<pays>
+	  <nom>Saint-Domingue</nom>
+	  <nomClip>stDomingueMc</nomClip>
+	  <capitale>Saint-Domingue</capitale>
+	  <decalageHoraire>-4</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans une grande île d'Amérique Cenrale, dans les Caraïbes, partagée avec Haïti.</indice>
+	</pays>
+	<pays>
+	  <nom>Saint-Kits et Nevis</nom>
+	  <nomClip>stKitsEtNevisMc</nomClip>
+	  <capitale>Basseterre</capitale>
+	  <decalageHoraire>-4</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans une île d'Amérique Cenrale, dans l'est des Caraïbes.</indice>
+	</pays>
+	<pays>
+	  <nom>Saint-Tome et Principe</nom>
+	  <nomClip>stTomeEtPrincipeMc</nomClip>
+	  <capitale>São Tomé</capitale>
+	  <decalageHoraire>0</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans une île d'Afrique Cenrale, pratiquement sur l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Suède</nom>
+	  <nomClip>suedeMc</nomClip>
+	  <capitale>Stockholm</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays du nord de l'Europe.</indice>
+	</pays>
+	<pays>
+	  <nom>Suisse</nom>
+	  <nomClip>suisseMc</nomClip>
+	  <capitale>Berne</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays au centre de l'Europe.</indice>
+	</pays>
+	<pays>
+	  <nom>Suriname</nom>
+	  <nomClip>surinameMc</nomClip>
+	  <capitale>Paramaribo</capitale>
+	  <decalageHoraire>-3</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays du nord de l'Amérique du sud.</indice>
+	</pays>
+	<pays>
+	  <nom>Svalbard (Nor)</nom>
+	  <nomClip>svalbardNorvegeMc</nomClip>
+	  <capitale/>
+	  <decalageHoraire/>
+	  <ville1>Longyearbyen</ville1>
+	  <decalageHoraire1>1</decalageHoraire1>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans une grande île du nord de l'Europe.</indice>
+	</pays>
+	<pays>
+	  <nom>Swaziland</nom>
+	  <nomClip>swazilandMc</nomClip>
+	  <capitale>Mbabane</capitale>
+	  <decalageHoraire>2</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un petit pays du sud de l'Afrique, enclavé dans l'Afrique du Sud.</indice>
+	</pays>
+	<pays>
+	  <nom>Syrie</nom>
+	  <nomClip>syrieMc</nomClip>
+	  <capitale>Damas</capitale>
+	  <decalageHoraire>2</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays du Proche-Orient, au bord de la mer Méditerranée.</indice>
+	</pays>
+	<pays>
+	  <nom>Tadjikistan</nom>
+	  <nomClip>tadjikistanMc</nomClip>
+	  <capitale>Douchanbé</capitale>
+	  <decalageHoraire>5</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Asie, au nord-ouest de l'Inde, voisin de la Chine.</indice>
+	</pays>
+	<pays>
+	  <nom>Taiwan</nom>
+	  <nomClip>taiwanMc</nomClip>
+	  <capitale>Taipei</capitale>
+	  <decalageHoraire>8</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays insulaire d'Asie, à l'est de la Chine.</indice>
+	</pays>
+	<pays>
+	  <nom>Tanzanie</nom>
+	  <nomClip>tanzanieMc</nomClip>
+	  <capitale>Dodoma</capitale>
+	  <decalageHoraire>3</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Afrique centrale, au bord de l'océan Indien, sous l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Tchad</nom>
+	  <nomClip>tchadMc</nomClip>
+	  <capitale>N'Djamena</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Afrique, au bord du la Tchad, au nord de l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Thailande</nom>
+	  <nomClip>thailandeMc</nomClip>
+	  <capitale>Bangkok</capitale>
+	  <decalageHoraire>7</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Extrème-Orient, au bord de l'océan Indien.</indice>
+	</pays>
+	<pays>
+	  <nom>Timor</nom>
+	  <nomClip>timorMc</nomClip>
+	  <capitale>Dili</capitale>
+	  <decalageHoraire>9</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays insulaire d'Océanie, au nord-ouest de Darwin en Australie.</indice>
+	</pays>
+	<pays>
+	  <nom>Togo</nom>
+	  <nomClip>togoMc</nomClip>
+	  <capitale>Lomé</capitale>
+	  <decalageHoraire>0</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Afrique de l'ouest, au bord de l'océan Atlantique, en dessus de l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Tonga</nom>
+	  <nomClip>tongaMc</nomClip>
+	  <capitale>Nukuʻalofa</capitale>
+	  <decalageHoraire>13</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1>Le décalage +13 donne la même heure que le décalage -11. La différence est au niveau de la date: Ils ont la même date que l'Australie, pays avec lequel ces pays ont beucoup d'échanges commerciaux.</rubrique1>
+	  <rubrique2>Par exemple si le décalage est de -11 un 15 avril, avec un décalage de +13 on sera le 16 avril.</rubrique2>
+	  <rubrique3>Ce changement est intervenu en 2011 car les échanges commerciaux se réalisent surtout avec l'Australie et la Nouvelle-Zélande alors qu'avant les échanges commerciaux s'effectuaient avec la californie.</rubrique3>
+	  <rubrique4>Si la date a 1 jour de différence, le commerce ne peut avoir lieu que trois jours par semaine.</rubrique4>
+	  <rubrique5>Le lundi en Austrlie correspond au dimanche, férié, dans la zone -11 et le vendredi dans cette zone correspond au samedi, férié en Australie.</rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays insulaire dans l'océan Pacifique, au nord-est de la Nouvelle-Zélande, à la limite de la ligne de changement de date.</indice>
+	</pays>
+	<pays>
+	  <nom>Trinidad et Tobago (GB)</nom>
+	  <nomClip>trinidadEtTobagoMc</nomClip>
+	  <capitale>Port-d'Espagne</capitale>
+	  <decalageHoraire>-4</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays insulaire d'Amérique Centrale, au sud-est des Caraïbes, proche du Venezuela.</indice>
+	</pays>
+	<pays>
+	  <nom>Tunisie</nom>
+	  <nomClip>tunisieMc</nomClip>
+	  <capitale>Tunis</capitale>
+	  <decalageHoraire>1</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Afrique, au bord de la mer Méditerranée.</indice>
+	</pays>
+	<pays>
+	  <nom>Turkménistant</nom>
+	  <nomClip>turkmenistanMc</nomClip>
+	  <capitale>Achgabat</capitale>
+	  <decalageHoraire>5</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays du Moyen-Orient, au bord de la mer Caspienne.</indice>
+	</pays>
+	<pays>
+	  <nom>Turks et Caicos</nom>
+	  <nomClip>turksCaicosMc</nomClip>
+	  <capitale>Cockburn Town</capitale>
+	  <decalageHoraire>-5</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays insulaire d'Amérique Centrale, au nord-est de Cuba, dans les Caraïbes.</indice>
+	</pays>
+	<pays>
+	  <nom>Turquie</nom>
+	  <nomClip>turquieMc</nomClip>
+	  <capitale>Ankara</capitale>
+	  <decalageHoraire>2</decalageHoraire>
+	  <ville1>Istanbul</ville1>
+	  <decalageHoraire1>2</decalageHoraire1>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1>Le Bosphore est un bras de mer séparant la ville d'Istanbul. séparant aussi l'Europe de l'Asie.</rubrique1>
+	  <rubrique2>C'est un passage obligé des navires passant de la mer Méditerranée à la mer Noire. Le trafic maritime y est un des plus important du monde, non seulement par les navires changeant de mer mais aussi par les bateaux reliant les deux côtés d'Istanbul et le trafic local.</rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Europe, au bord de la mer Méditerranée, de la mer Egée et de la mer Noire.</indice>
+	</pays>
+	<pays>
+	  <nom>Ukraine</nom>
+	  <nomClip>ukraineMc</nomClip>
+	  <capitale>Kiev</capitale>
+	  <decalageHoraire>2</decalageHoraire>
+	  <ville1>Tchernobyl</ville1>
+	  <decalageHoraire1>2</decalageHoraire1>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Europe, au bord de la mer Noire.</indice>
+	</pays>
+	<pays>
+	  <nom>Uruguay</nom>
+	  <nomClip>uruguayMc</nomClip>
+	  <capitale>Montevideo</capitale>
+	  <decalageHoraire>-3</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Amérique du sud, au bord de l'océan Atlantique.</indice>
+	</pays>
+	<pays>
+	  <nom>Etats unis d'Amérique</nom>
+	  <nomClip>usaMc</nomClip>
+	  <capitale>Washington</capitale>
+	  <decalageHoraire>-5</decalageHoraire>
+	  <ville1>New York</ville1>
+	  <decalageHoraire1>-5</decalageHoraire1>
+	  <ville2>Los Angeles</ville2>
+	  <decalageHoraire2>-8</decalageHoraire2>
+	  <ville3>San Fransisco</ville3>
+	  <decalageHoraire3>-8</decalageHoraire3>
+	  <ville4>Chicago</ville4>
+	  <decalage1>-6</decalage1>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Amérique du Nord, au bord de l'océan Atlantique et de l'océan Pacifique.</indice>
+	</pays>
+	<pays>
+	  <nom>Vanuatu</nom>
+	  <nomClip>vanatuMc</nomClip>
+	  <capitale>Port-Vila</capitale>
+	  <decalageHoraire>11</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays insulaire de l'océan Pacifique, à l'est de l'Australie.</indice>
+	</pays>
+	<pays>
+	  <nom>Venezuela</nom>
+	  <nomClip>venezuelaMc</nomClip>
+	  <capitale>Caracas</capitale>
+	  <decalageHoraire>-4.5</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'amérique du Sud, au bord de l'océan Atlantique.</indice>
+	</pays>
+	<pays>
+	  <nom>Vietnam</nom>
+	  <nomClip>vietnamMc</nomClip>
+	  <capitale>Hanoï</capitale>
+	  <decalageHoraire>7</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Extrème-Orient, au bord de la mer de Chine.</indice>
+	</pays>
+	<pays>
+	  <nom> Yémen </nom>
+	  <nomClip>yemenMc</nomClip>
+	  <capitale>Sanaa</capitale>
+	  <decalageHoraire>3</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Asie, à la limite de l'Afrique, au bord de la mer Rouge et du golfe d'Aden.</indice>
+	</pays>
+	<pays>
+	  <nom>Zambie</nom>
+	  <nomClip>zambieMc</nomClip>
+	  <capitale>Lusaka</capitale>
+	  <decalageHoraire>2</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Afrique, au sud de l'équateur.</indice>
+	</pays>
+	<pays>
+	  <nom>Zimbabwe</nom>
+	  <nomClip>zimbabweMc</nomClip>
+	  <capitale>Harare</capitale>
+	  <decalageHoraire>2</decalageHoraire>
+	  <ville1/>
+	  <decalageHoraire1/>
+	  <ville2/>
+	  <decalageHoraire2/>
+	  <ville3/>
+	  <decalageHoraire3/>
+	  <ville1/>
+	  <decalage1/>
+	  <superficie/>
+	  <nbHabitants/>
+	  <langue1/>
+	  <langue2/>
+	  <langue3/>
+	  <langue4/>
+	  <langue5/>
+	  <rubrique1> </rubrique1>
+	  <rubrique2> </rubrique2>
+	  <rubrique3> </rubrique3>
+	  <rubrique4> </rubrique4>
+	  <rubrique5> </rubrique5>
+	  <rubrique6> </rubrique6>
+	  <rubrique7> </rubrique7>
+	  <indice>Ville située dans un pays d'Afrique, au nord de l'Afrique du Sud.</indice>
+	</pays>
+</exercice>
+
+
+

@@ -4,7 +4,9 @@ var rpndropdownmodule = function() {
     var datas;
     var domelem;
     var state;
-    
+    var successArray;
+    var responsesArray;
+    var limitedChoice;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -24,6 +26,7 @@ var rpndropdownmodule = function() {
 
     var buildUi = function() {
         domelem.addClass('dropdown');
+        var choiceLength = new Array();
 
         //build panel with sentence
         if(!_.isEmpty(datas.circumstance[0])) {domelem.append($('<hr style="border-top: 5px solid #ccc;"><p><b>' + datas.circumstance[0] + '</b></p>'));}
@@ -38,7 +41,7 @@ var rpndropdownmodule = function() {
                 sentenceToComplete.append(" " + item.choice[0] + " ");
             }else{
                 var opts=[];
-                
+                choiceLength.push(datas.items[idx].choice.length);
                 opts[0]=$('<option value="" '+(state[internalCounter]==''?'selected':'')+'> ?</option>');
                 $.each(datas.items[idx].choice, function(id, choice){
                     opts[id+1]=$('<option value="' + choice+ '" '+(state[internalCounter]==choice?'selected':'')+'>' + choice + '</option>');
@@ -47,6 +50,7 @@ var rpndropdownmodule = function() {
                 internalCounter++;
             }
         });
+        limitedChoice = _.min(choiceLength) <= 2 ? true : false;
         domelem.append(sentenceToComplete);
 
         bindUiEvents();
@@ -57,27 +61,61 @@ var rpndropdownmodule = function() {
     };
     
     var validate = function(){
+        responsesArray = new Array();
+        _.each($('select', domelem), function(elem, idx){
+            responsesArray[idx] = elem;
+        });
         state=_.map($('select',domelem),function(ele,idx){return $(ele).val()});
         return state;
     };
     
     var score = function(sol){
         var score=0;
+        successArray = new Array();
+        var solution;
+        
         _.each(sol,function(s,idx){
+            var scoreIni = score;
+            
             if(s.alternative){
                 score += (_.contains(s.alternative,state[idx] ) ? 1 : 0);
+                solution = s.alternative[0];
             }else{
                 score += state[idx] == s ? 1 : 0;
+                solution = s;
+            }
+            successArray[idx] = new Array();
+            if (score > scoreIni || (s == "" && state[idx] == s)){
+                successArray[idx] = ["ok",solution];
+            }else{
+                successArray[idx] = [state[idx],solution];
             }
         });
         return score;
     };
-    
+    var pointmax = function(sol){
+        var pointmax = sol.length;
+        
+        return pointmax;
+    };
+    var successState = function(){
+        return successArray;
+    };
+    var responsesState = function(){
+        return responsesArray;
+    };
+    var limitedChoiceState = function(){
+        return limitedChoice;
+    };
 
     return {
         init: init,
         validate: validate,
-        score:score
+        score: score,
+        pointmax: pointmax,
+        successState: successState,
+        responsesState: responsesState,
+        limitedChoiceState: limitedChoiceState
     };
 
 };

@@ -1,0 +1,17 @@
+﻿&Titre=Dictée01
+&Sujet=Accord sujet-verbe.
+&Type=Phrases
+&Phrase2=Mes<AA amis<AB, |depuis une semaine, |ne regardent<AC plus la télévision.
+&VarAA1=Mais
+&RetAA1=C’est un déterminant, pas une conjonction de coordination.
+&VarAA2=mes
+&RetAA2=02
+&VarAB1=ami
+&RetAB1=Accorde avec le déterminant.
+&VarAB2=ami,
+&RetAB2=Accorde avec le déterminant.
+&VarAC1=regarde
+&RetAC1=07
+&VarAC2=regardes
+&RetAC2=06
+&Fin=fin

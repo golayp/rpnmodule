@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<activite>
+  <exercice>
+    <type>lineaire</type>
+    <donnee>Quel sera le prix de 6 pains à la vanille à 1,50.- pièce?</donnee>
+    <entree>Nombre de pains à la vanille</entree>
+    <entreeGraph>Nombre de pains à la vanille</entreeGraph>
+    <entreeMotCle>6</entreeMotCle>
+    <entreeValeur>6</entreeValeur>
+    <entreeUnite> pains</entreeUnite>
+    <sortie>le prix</sortie>
+    <sortieGraph>Prix</sortieGraph>
+    <sortieMotCle>prix</sortieMotCle>
+    <sortieValeur>9</sortieValeur>
+    <sortieUnite>francs</sortieUnite>
+    <coefficient>1,50.- pièce</coefficient>
+    <coefficientGraph>1,50</coefficientGraph>
+    <coefficientMotCle>1,50</coefficientMotCle>
+    <coeficientValeur>1.5</coeficientValeur>
+    <coefficientUnite>.- pièce</coefficientUnite>
+    <ordonneeOrigine/>
+    <ordonneeOrigineGraph/>
+    <ordonneeOrigineMotCle/>
+    <ordonneeOrigineValeur/>
+    <OrdonneeOrigineunite/>
+    <entree2>1</entree2>
+    <entree3>2</entree3>
+    <entree4>4</entree4>
+    <entreeSolutionTxt>pains à la vanille</entreeSolutionTxt>
+    <sortieSolutionTxt>le prix</sortieSolutionTxt>
+    <coefficientSolutionTxt/>
+    <ordonneeOrigineSolutionTxt/>
+    <graphx>15</graphx>
+    <graphy>30</graphy>
+    <analyse0>Bravo, tu as bien reconnu les différents éléments.
+Observe bien toutes les unités.</analyse0>
+    <analyse1>Le mot clé correspondant à "la machineFois" est là où il y a une unité composée,
+(Par exemple: francs par petit pain ou une expression synonyme)</analyse1>
+    <analyse2>Une partie de l'unité de la "machineFois" peut t'aider à trouver la sortie.</analyse2>
+    <analyse3>La machineFois contient une unité composée et la sortie se trouve souvent dans la question. (Quel sera le prix... )</analyse3>
+    <analyse4>Pour trouver l'entrée, il faut se demander ce qu'il faut multiplier par "1.50.- pièce" pour obtenir le prix.</analyse4>
+    <analyse5>Quel calcul ferais-tu pour trouver le prix des pains?</analyse5>
+    <analyse6>De "1.50.- pièce" tu devrais trouver ce que sont l'entrée et la sortie</analyse6>
+    <analyse7>Pour l'instant tu n'as rien trouvé.
+Essaie de repérer les éléments qui ont des unités.</analyse7>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11/>
+    <analyse12/>
+    <analyse13/>
+    <analyse14/>
+    <analyse15/>
+  </exercice>
+  <exercice>
+    <type>lineaire</type>
+    <donnee>Quel sera le prix de 6 kg de pommes à 3,50.- le kg?</donnee>
+    <entree>Nombre de kg de pommes</entree>
+    <entreeGraph>Nombre de kg de pommes</entreeGraph>
+    <entreeMotCle>6</entreeMotCle>
+    <entreeValeur>6</entreeValeur>
+    <entreeUnite>  kg</entreeUnite>
+    <sortie>le prix</sortie>
+    <sortieGraph>Prix</sortieGraph>
+    <sortieMotCle>prix</sortieMotCle>
+    <sortieValeur>21</sortieValeur>
+    <sortieUnite>francs</sortieUnite>
+    <coefficient>3,50.- le kg</coefficient>
+    <coefficientGraph>3,50</coefficientGraph>
+    <coefficientMotCle>3,50</coefficientMotCle>
+    <coeficientValeur>3.5</coeficientValeur>
+    <coefficientUnite>.- le kg</coefficientUnite>
+    <ordonneeOrigine/>
+    <ordonneeOrigineGraph/>
+    <ordonneeOrigineMotCle/>
+    <ordonneeOrigineValeur/>
+    <OrdonneeOrigineunite/>
+    <entree2>1</entree2>
+    <entree3>2</entree3>
+    <entree4>4</entree4>
+    <entreeSolutionTxt>kg de pommes</entreeSolutionTxt>
+    <sortieSolutionTxt>le prix</sortieSolutionTxt>
+    <coefficientSolutionTxt/>
+    <ordonneeOrigineSolutionTxt/>
+    <graphx>15</graphx>
+    <graphy>30</graphy>
+    <analyse0>Bravo, tu as bien reconnu les différents éléments.
+Observe bien toutes les unités.</analyse0>
+    <analyse1>Essaie de trouver le mot clé correspondant à "la machineFois"
+    Là où il y a une unité composée,
+(Par exemple: francs par kg de pommes ou une expression synonyme)</analyse1>
+    <analyse2>Une partie de l'unité de la "machineFois" peut t'aider à trouver la sortie.</analyse2>
+    <analyse3>"La machineFois" contient une unité composée et la sortie se trouve souvent dans la question. (Quel sera le prix... )</analyse3>
+    <analyse4>Pour trouver l'entrée, il faut se demander ce qu'il faut multiplier par "3.50.- le kg" pour obtenir le prix.</analyse4>
+    <analyse5>Quel calcul ferais-tu pour trouver le prix des pommes?</analyse5>
+    <analyse6>De "3.50.- le kg"tu devrais trouver ce que sont l'entrée et la sortie</analyse6>
+    <analyse7>Pour l'instant tu n'as rien trouvé.
+Essaie de repérer les éléments qui ont des unités.</analyse7>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11/>
+    <analyse12/>
+    <analyse13/>
+    <analyse14/>
+    <analyse15/>
+  </exercice>
+  <exercice>
+    <type>lineaire</type>
+    <donnee>Quel sera le prix de 12 litres de peinture à 22.- le litre?</donnee>
+    <entree>Nombre de litres de peinture</entree>
+    <entreeGraph>Nombre de litres de peinture</entreeGraph>
+    <entreeMotCle>12</entreeMotCle>
+    <entreeValeur>12</entreeValeur>
+    <entreeUnite> litres</entreeUnite>
+    <sortie>le prix</sortie>
+    <sortieGraph>Prix</sortieGraph>
+    <sortieMotCle>prix</sortieMotCle>
+    <sortieValeur>264</sortieValeur>
+    <sortieUnite>francs</sortieUnite>
+    <coefficient>22.- le litre</coefficient>
+    <coefficientGraph>22</coefficientGraph>
+    <coefficientMotCle>22</coefficientMotCle>
+    <coeficientValeur>22</coeficientValeur>
+    <coefficientUnite>.- le litre</coefficientUnite>
+    <ordonneeOrigine/>
+    <ordonneeOrigineGraph/>
+    <ordonneeOrigineMotCle/>
+    <ordonneeOrigineValeur/>
+    <OrdonneeOrigineunite/>
+    <entree2>1</entree2>
+    <entree3>2</entree3>
+    <entree4>4</entree4>
+    <entreeSolutionTxt>litres de peinture</entreeSolutionTxt>
+    <sortieSolutionTxt>le prix</sortieSolutionTxt>
+    <coefficientSolutionTxt/>
+    <ordonneeOrigineSolutionTxt/>
+    <graphx>15</graphx>
+    <graphy>30</graphy>
+    <analyse0>Bravo, tu as bien reconnu les différents éléments.
+Observe bien toutes les unités.</analyse0>
+    <analyse1>Le mot clé correspondant à "la machineX" est là où il y a une unité composée,
+(Par exemple: francs par litre de peinture ou une expression synonyme)</analyse1>
+    <analyse2>Une partie de l'unité de la "machineFois" peut t'aider à trouver la sortie.</analyse2>
+    <analyse3>"La machineFois" contient une unité composée et la sortie se trouve souvent dans la question. (Quel sera le prix... )</analyse3>
+    <analyse4>Pour trouver l'entrée, il faut se demander ce qu'il faut multiplier par"22.- le litre" pour obtenir le prix.</analyse4>
+    <analyse5>Quel calcul ferais-tu pour trouver le prix de la peinture?</analyse5>
+    <analyse6>De "22.- le litre" tu devrais trouver ce que sont l'entrée et la sortie</analyse6>
+    <analyse7>Pour l'instant tu n'as rien trouvé.
+Essaie de repérer les éléments qui ont des unités.</analyse7>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11/>
+    <analyse12/>
+    <analyse13/>
+    <analyse14/>
+    <analyse15/>
+  </exercice>
+  <exercice>
+    <type>lineaire</type>
+    <donnee>Quel sera le poids de 8 camions européens pleins, de 40 tonnes chacun?</donnee>
+    <entree>Nombre de camions européens pleins</entree>
+    <entreeGraph>Nombre de camions européens pleins</entreeGraph>
+    <entreeMotCle>8</entreeMotCle>
+    <entreeValeur>8</entreeValeur>
+    <entreeUnite> camions</entreeUnite>
+    <sortie>le poids</sortie>
+    <sortieGraph>Poids</sortieGraph>
+    <sortieMotCle>poids</sortieMotCle>
+    <sortieValeur>320</sortieValeur>
+    <sortieUnite>tonnes</sortieUnite>
+    <coefficient>40 tonnes chacun</coefficient>
+    <coefficientGraph>40</coefficientGraph>
+    <coefficientMotCle>40</coefficientMotCle>
+    <coeficientValeur>40</coeficientValeur>
+    <coefficientUnite> tonnes chacun</coefficientUnite>
+    <ordonneeOrigine/>
+    <ordonneeOrigineGraph/>
+    <ordonneeOrigineMotCle/>
+    <ordonneeOrigineValeur/>
+    <OrdonneeOrigineunite/>
+    <entree2>1</entree2>
+    <entree3>2</entree3>
+    <entree4>4</entree4>
+    <entreeSolutionTxt>camions</entreeSolutionTxt>
+    <sortieSolutionTxt>le poids</sortieSolutionTxt>
+    <coefficientSolutionTxt/>
+    <ordonneeOrigineSolutionTxt/>
+    <graphx>15</graphx>
+    <graphy>30</graphy>
+    <analyse0>Bravo, tu as bien reconnu les différents éléments.
+Observe bien toutes les unités.</analyse0>
+    <analyse1>Le mot clé correspondant à "la machineFois" est là où il y a une unité composée,
+(Par exemple: tonnes par camions pleins ou une expression synonyme)</analyse1>
+    <analyse2>Une partie de l'unité de la "machineFois" peut t'aider à trouver la sortie.</analyse2>
+    <analyse3>"La machineFois" contient une unité composée et la sortie se trouve souvent dans la question. (Quel sera le prix... )</analyse3>
+    <analyse4>Pour trouver l'entrée, il faut se demander ce qu'il faut multiplier par "40 tonnes par camion" pour obtenir le poids.</analyse4>
+    <analyse5>Quel calcul ferais-tu pour trouver le poids des camions?</analyse5>
+    <analyse6>De "40 tonnes chacun" tu devrais trouver ce que sont l'entrée et la sortie</analyse6>
+    <analyse7>Pour l'instant tu n'as rien trouvé.
+Essaie de repérer les éléments qui ont des unités.</analyse7>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11/>
+    <analyse12/>
+    <analyse13/>
+    <analyse14/>
+    <analyse15/>
+  </exercice>
+  <exercice>
+    <type>lineaire</type>
+    <donnee>Quel sera le nombre de canetons de 5 familles de canards si chaque cane pond 6 oeufs?</donnee>
+    <entree>Nombre de familles de canards</entree>
+    <entreeGraph>Nombre de familles de canards</entreeGraph>
+    <entreeMotCle>5</entreeMotCle>
+    <entreeValeur>5</entreeValeur>
+    <entreeUnite> familles</entreeUnite>
+    <sortie>le nombre</sortie>
+    <sortieGraph>Nombre</sortieGraph>
+    <sortieMotCle>nombre</sortieMotCle>
+    <sortieValeur>30</sortieValeur>
+    <sortieUnite>canetons</sortieUnite>
+    <coefficient>chaque cane pond 6 oeufs</coefficient>
+    <coefficientGraph>6</coefficientGraph>
+    <coefficientMotCle>6</coefficientMotCle>
+    <coeficientValeur>6</coeficientValeur>
+    <coefficientUnite> oeufs par cane</coefficientUnite>
+    <ordonneeOrigine/>
+    <ordonneeOrigineGraph/>
+    <ordonneeOrigineMotCle/>
+    <ordonneeOrigineValeur/>
+    <OrdonneeOrigineunite/>
+    <entree2>1</entree2>
+    <entree3>2</entree3>
+    <entree4>4</entree4>
+    <entreeSolutionTxt>le nombre de familles de canards</entreeSolutionTxt>
+    <sortieSolutionTxt>le nombre de canetons</sortieSolutionTxt>
+    <coefficientSolutionTxt/>
+    <ordonneeOrigineSolutionTxt/>
+    <graphx>15</graphx>
+    <graphy>30</graphy>
+    <analyse0>Bravo, tu as bien reconnu les différents éléments.
+Observe bien toutes les unités.</analyse0>
+    <analyse1>Le mot clé correspondant à "la machineFois" est là où il y a une unité composée,
+(Par exemple: le nombre de canetons par cane ou une expression synonyme)</analyse1>
+    <analyse2>Une partie de l'unité de la "machineFois" peut t'aider à trouver la sortie.</analyse2>
+    <analyse3>"La machineFois" contient une unité composée et la sortie se trouve souvent dans la question. (Quel sera le nombre... )</analyse3>
+    <analyse4>Pour trouver l'entrée, il faut se demander ce qu'il faut multiplier par "chaque cane pond 6 oeufs" pour obtenir le nombre de canetons.</analyse4>
+    <analyse5>Quel calcul ferais-tu pour trouver le nombre de canetons?</analyse5>
+    <analyse6>De "chaque cane pond 6 oeufs" tu devrais trouver ce que sont l'entrée et la sortie (Dans chaque oeuf il y a un caneton!)</analyse6>
+    <analyse7>Pour l'instant tu n'as rien trouvé.
+Essaie de repérer les éléments qui ont des unités.</analyse7>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11/>
+    <analyse12/>
+    <analyse13/>
+    <analyse14/>
+    <analyse15/>
+  </exercice>
+  <exercice>
+    <type>lineaire</type>
+    <donnee>Quel sera le prix de 10 kg de miel à 19.- le kilo?</donnee>
+    <entree>Nombre de kg de miel</entree>
+    <entreeGraph>Nombre de kg de miel</entreeGraph>
+    <entreeMotCle>10</entreeMotCle>
+    <entreeValeur>10</entreeValeur>
+    <entreeUnite> kg</entreeUnite>
+    <sortie>le prix</sortie>
+    <sortieGraph>Prix</sortieGraph>
+    <sortieMotCle>prix</sortieMotCle>
+    <sortieValeur>190</sortieValeur>
+    <sortieUnite>francs</sortieUnite>
+    <coefficient>19.- le kilo</coefficient>
+    <coefficientGraph>19</coefficientGraph>
+    <coefficientMotCle>19</coefficientMotCle>
+    <coeficientValeur>19</coeficientValeur>
+    <coefficientUnite>.- le kilo</coefficientUnite>
+    <ordonneeOrigine/>
+    <ordonneeOrigineGraph/>
+    <ordonneeOrigineMotCle/>
+    <ordonneeOrigineValeur/>
+    <OrdonneeOrigineunite/>
+    <entree2>1</entree2>
+    <entree3>2</entree3>
+    <entree4>4</entree4>
+    <entreeSolutionTxt>kg de miel</entreeSolutionTxt>
+    <sortieSolutionTxt>le prix</sortieSolutionTxt>
+    <coefficientSolutionTxt/>
+    <ordonneeOrigineSolutionTxt/>
+    <graphx>15</graphx>
+    <graphy>30</graphy>
+    <analyse0>Bravo, tu as bien reconnu les différents éléments.
+Observe bien toutes les unités.</analyse0>
+    <analyse1>Le mot clé correspondant à "la machineFois" est là où il y a une unité composée,
+(Par exemple: francs par kg de miel ou une expression synonyme)</analyse1>
+    <analyse2>Une partie de l'unité de la "machineFois" peut t'aider à trouver la sortie.</analyse2>
+    <analyse3>"La machineFois" contient une unité composée et la sortie se trouve souvent dans la question. (Quel sera le prix... )</analyse3>
+    <analyse4>Pour trouver l'entrée, il faut se demander ce qu'il faut multiplier par "19.- le kilo" pour obtenir le prix.</analyse4>
+    <analyse5>Quel calcul ferais-tu pour trouver le prix du miel?</analyse5>
+    <analyse6>De "19.- le kilo"tu devrais trouver ce que sont l'entrée et la sortie</analyse6>
+    <analyse7>Pour l'instant tu n'as rien trouvé.
+Essaie de repérer les éléments qui ont des unités.</analyse7>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11/>
+    <analyse12/>
+    <analyse13/>
+    <analyse14/>
+    <analyse15/>
+  </exercice>
+  <exercice>
+    <type>lineaire</type>
+    <donnee>Quel sera le nombre de respirations qu'effectue une personne en 60 minutes sachant qu'elle respire 16 fois par minute?</donnee>
+    <entree>Nombre de minutes</entree>
+    <entreeGraph>Nombre de minutes</entreeGraph>
+    <entreeMotCle>60</entreeMotCle>
+    <entreeValeur>60</entreeValeur>
+    <entreeUnite> minutes</entreeUnite>
+    <sortie>le nombre de respirations</sortie>
+    <sortieGraph>Nombre de respirations</sortieGraph>
+    <sortieMotCle>nombre</sortieMotCle>
+    <sortieValeur>960</sortieValeur>
+    <sortieUnite>respirations</sortieUnite>
+    <coefficient> 16 respirations par minute</coefficient>
+    <coefficientGraph>16</coefficientGraph>
+    <coefficientMotCle>16</coefficientMotCle>
+    <coeficientValeur>16</coeficientValeur>
+    <coefficientUnite> respirations par minute</coefficientUnite>
+    <ordonneeOrigine/>
+    <ordonneeOrigineGraph/>
+    <ordonneeOrigineMotCle/>
+    <ordonneeOrigineValeur/>
+    <OrdonneeOrigineunite/>
+    <entree2>1</entree2>
+    <entree3>2</entree3>
+    <entree4>4</entree4>
+    <entreeSolutionTxt>respirations</entreeSolutionTxt>
+    <sortieSolutionTxt>le nombre</sortieSolutionTxt>
+    <coefficientSolutionTxt/>
+    <ordonneeOrigineSolutionTxt/>
+    <graphx>15</graphx>
+    <graphy>30</graphy>
+    <analyse0>Bravo, tu as bien reconnu les différents éléments.
+Observe bien toutes les unités.</analyse0>
+    <analyse1>Le mot clé correspondant à "la machineFois" est là où il y a une unité composée,
+(Par exemple: respiration par minutes ou une expression synonyme)</analyse1>
+    <analyse2>Une partie de l'unité de la "machineFois" peut t'aider à trouver la sortie.</analyse2>
+    <analyse3>"La machineFois" contient une unité composée et la sortie se trouve souvent dans la question. (Quel sera le nombre de... )</analyse3>
+    <analyse4>Pour trouver l'entrée, il faut se demander ce qu'il faut multiplier par "16 fois par minute" pour obtenir le nombre de respirations.</analyse4>
+    <analyse5>Quel calcul ferais-tu pour trouver le nombre de respirations?</analyse5>
+    <analyse6>De "16 fois par minute" tu devrais trouver ce que sont l'entrée et la sortie</analyse6>
+    <analyse7>Pour l'instant tu n'as rien trouvé.
+Essaie de repérer les éléments qui ont des unités.</analyse7>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11/>
+    <analyse12/>
+    <analyse13/>
+    <analyse14/>
+    <analyse15/>
+  </exercice>
+  <exercice>
+    <type/>
+    <donnee/>
+    <entree/>
+    <entreeGraph/>
+    <entreeMotCle/>
+    <entreeValeur/>
+    <entreeUnite/>
+    <sortie/>
+    <sortieGraph/>
+    <sortieMotCle/>
+    <sortieValeur/>
+    <sortieUnite/>
+    <coefficient/>
+    <coefficientGraph/>
+    <coefficientMotCle/>
+    <coeficientValeur/>
+    <coefficientUnite/>
+    <ordonneeOrigine/>
+    <ordonneeOrigineGraph/>
+    <ordonneeOrigineMotCle/>
+    <ordonneeOrigineValeur/>
+    <OrdonneeOrigineunite/>
+    <entree2/>
+    <entree3/>
+    <entree4/>
+    <entreeSolutionTxt/>
+    <sortieSolutionTxt/>
+    <coefficientSolutionTxt/>
+    <ordonneeOrigineSolutionTxt/>
+    <graphx/>
+    <graphy/>
+    <analyse0>Bravo, tu as bien reconnu les différents éléments\nRépond maintenant à la question.</analyse0>
+    <analyse1>L'entrée et la sortie sont correctes.\nEssaie de trouver le mot clé de la machine\n(Là où il y a une unité composée, \noù on pourrait mettre le mot \"par\":\n  hauteur par cube, \ng par cm3\nfrancs par kg \n...)</analyse1>
+    <analyse2>L'entrée et la machine multiplicative sont juste.\nUne partie de l'unité de la machine  multiplicative peut T'aider à trouver la sortie.</analyse2>
+    <analyse3>Seule l'entrée est exacte.\nLa machine \"fois\" contient une unité composée et la sortie se trouve souvent dans la question.</analyse3>
+    <analyse4>Pour trouver l'entrée, il faut se demander qu'est-ce qu'il faut multiplier pour obtenir la réponse à la question.</analyse4>
+    <analyse5>La sortie est juste. Quel calcul ferais-tu pour la trouver?</analyse5>
+    <analyse6>L'unité de la machineX contient l'unité de l'entrée et de la sortie.</analyse6>
+    <analyse7>\nEssaie de repérer les éléments qui ont des unités.\nPar exemple dans la question.</analyse7>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11/>
+    <analyse12/>
+    <analyse13/>
+    <analyse14/>
+    <analyse15/>
+  </exercice></activite>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

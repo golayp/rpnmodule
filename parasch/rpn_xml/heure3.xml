@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<sequence>10e année : Séquence 1 Heures 1
+		<titre> Fuseaux horaires
+			
+			<module>
+				<id>module1</id>
+				<donnee1>On doit faire un vol en avion.</donnee1>
+				<donnee2>Les montres sont réglées sur les heures locales au moment du départ.</donnee2>
+				<ressource>../heure/heuresTxtDateAvion2.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>module2</sortiejuste>
+				<sortieFausse>module1</sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage></aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+			</module>
+			<module>
+				<id>module2</id>
+				<donnee1>On doit faire un vol en avion.</donnee1>
+				<donnee2>Les montres sont réglées sur les heures locales au moment du départ.</donnee2>
+				<ressource>../heure/heuresTxtDateAvion2.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>module3</sortiejuste>
+				<sortieFausse>module2</sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage></aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+			</module>
+			<module>
+				<id>module3</id>
+				<donnee1>On doit faire un vol en avion.</donnee1>
+				<donnee2>Les montres sont réglées sur les heures locales au moment du départ.</donnee2>
+				<ressource>../heure/heuresTxtDateAvion2.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>module4</sortiejuste>
+				<sortieFausse>module3</sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage></aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+			</module>
+			<module>
+				<id>module4</id>
+				<donnee1>On doit faire un vol en avion.</donnee1>
+				<donnee2>Les montres sont réglées sur les heures locales au moment du départ.</donnee2>
+				<ressource>../heure/heuresTxtDateAvion2.swf</ressource>
+				<validemax>3</validemax>
+				<sortiejuste>http://www.rpn.ch</sortiejuste>
+				<sortieFausse>module4</sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage></aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+			</module>
+			
+		</titre>
+	</sequence>
+	
+</exercice>

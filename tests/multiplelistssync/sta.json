@@ -50,46 +50,6 @@
 					"sun"
 				],
 				[
-					"soleil",
-					"fleur",
-					"souris",
-					"arbre",
-					"éléphant"
-				]
-			],
-			"responses": [
-				[
-					"tree",
-					"soleil"
-				],
-				[
-					"flower",
-					"fleur"
-				],
-				[
-					"mouse",
-					"souris"
-				],
-				[
-					"elephant",
-					"arbre"
-				],
-				[
-					"sun",
-					"éléphant"
-				]
-			]
-		},
-		{
-			"lists": [
-				[
-					"tree",
-					"flower",
-					"mouse",
-					"elephant",
-					"sun"
-				],
-				[
 					"fleur",
 					"soleil",
 					"souris",
@@ -142,33 +102,33 @@
 					"mouse"
 				],
 				[
-					"<img src=\"sorting2.png\" >",
-					"<img src=\"sorting3.png\" >",
-					"<img src=\"sorting1.png\" >",
-					"<img src=\"sorting4.png\" >",
-					"<img src=\"sorting5.png\" >"
+					"<img src=\"/medias/sorting2.png\" >",
+					"<img src=\"/medias/sorting3.png\" >",
+					"<img src=\"/medias/sorting1.png\" >",
+					"<img src=\"/medias/sorting4.png\" >",
+					"<img src=\"/medias/sorting5.png\" >"
 				]
 			],
 			"responses": [
 				[
 					"tree",
-					"<img src=\"sorting2.png\" >"
+					"<img src=\"/medias/sorting2.png\" >"
 				],
 				[
 					"flowers",
-					"<img src=\"sorting3.png\" >"
+					"<img src=\"/medias/sorting3.png\" >"
 				],
 				[
 					"elephant",
-					"<img src=\"sorting1.png\" >"
+					"<img src=\"/medias/sorting1.png\" >"
 				],
 				[
 					"sun",
-					"<img src=\"sorting4.png\" >"
+					"<img src=\"/medias/sorting4.png\" >"
 				],
 				[
 					"mouse",
-					"<img src=\"sorting5.png\" >"
+					"<img src=\"/medias/sorting5.png\" >"
 				]
 			]
 		}

@@ -1,8 +1,11 @@
 {
     "solutions":[
-        ["answer 1","answer 1","answer 1","answer 1","answer 1","answer 1"],
+        ["answer 1","answer 1","answer 1"],
         ["answer 1","answer 5","answer 9","answer 13"],
         ["What"],
-        ["What"]
+        [
+            ["What","","Where",""],
+            ["What","When","Where",""]
+        ]
     ]
 }

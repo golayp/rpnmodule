@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<sequence>9e année : Tri des terminaisons indicatif présent 1
+		<titre>Tri des terminaisons indicatif présent 1. 
+			<module>
+				<id>module1</id>
+				<donnee1>Glisse les verbes dans le bon sac.</donnee1>
+				<donnee2></donnee2>
+				<ressource>triTerminaisonsIndicatifPres1/triTerminaisonsIndicatifPres1.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste></sortiejuste>
+				<sortieFausse>module1</sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage></aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+				<tailleX>510</tailleX>
+				<tailleY>270</tailleY>
+				<solutionBouton>oui</solutionBouton>
+				<dernierEssai>non</dernierEssai>
+			</module>
+		</titre>
+	</sequence>
+	
+</exercice>

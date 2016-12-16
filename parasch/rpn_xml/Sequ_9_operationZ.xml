@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<sequence>11e année : Séquence 1 Opérations dans Z
+		<titre> 1. Sortir du labyrinthe
+		 (Nombres relatifs)
+			
+			<module>
+				<id>module1</id>
+				<donnee1>Relie l'ENTREE à la SORTIE..</donnee1>
+				<donnee2>Deux cases consécutives du chemin contiennent un calcul et son résultat.</donnee2>
+				<ressource>../minotaureOperationsNbsRelatifs/FacileZ/minotaureAdditionZD6.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>module3</sortiejuste>
+				<sortieFausse>module2</sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>660</tailleX>
+				<tailleY>360</tailleY>
+			</module>
+			<module>
+				<id>module2</id>
+				<donnee1>Relie l'ENTREE à la SORTIE..</donnee1>
+				<donnee2>Deux cases consécutives du chemin contiennent un calcul et son résultat.</donnee2>
+				<ressource>../minotaureOperationsNbsRelatifs/FacileZ/minotaureAdditionZF6.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>module3</sortiejuste>
+				<sortieFausse>module2</sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>660</tailleX>
+				<tailleY>360</tailleY>
+			</module>
+			<module>
+				<id>module3</id>
+				<donnee1>Relie l'ENTREE à la SORTIE..</donnee1>
+				<donnee2>Deux cases consécutives du chemin contiennent un calcul et son résultat.</donnee2>
+				<ressource>../minotaureOperationsNbsRelatifs/FacileZ/minotaureSoustractionZD6.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>module5</sortiejuste>
+				<sortieFausse>module4</sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>660</tailleX>
+				<tailleY>360</tailleY>
+			</module>
+			<module>
+				<id>module4</id>
+				<donnee1>Relie l'ENTREE à la SORTIE..</donnee1>
+				<donnee2>Deux cases consécutives du chemin contiennent un calcul et son résultat.</donnee2>
+				<ressource>../minotaureOperationsNbsRelatifs/FacileZ/minotaureSoustractionZF6.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>module5</sortiejuste>
+				<sortieFausse>module4</sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>660</tailleX>
+				<tailleY>360</tailleY>
+			</module>
+			<module>
+				<id>module5</id>
+				<donnee1>Relie l'ENTREE à la SORTIE..</donnee1>
+				<donnee2>Deux cases consécutives du chemin contiennent un calcul et son résultat.</donnee2>
+				<ressource>../minotaureOperationsNbsRelatifs/FacileZ/minotaureMultiplicationZD6.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>module7</sortiejuste>
+				<sortieFausse>module6</sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>660</tailleX>
+				<tailleY>360</tailleY>
+			</module>
+			<module>
+				<id>module6</id>
+				<donnee1>Relie l'ENTREE à la SORTIE..</donnee1>
+				<donnee2>Deux cases consécutives du chemin contiennent un calcul et son résultat.</donnee2>
+				<ressource>../minotaureOperationsNbsRelatifs/FacileZ/minotaureMultiplicationZF6.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>module7</sortiejuste>
+				<sortieFausse>module6</sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>660</tailleX>
+				<tailleY>360</tailleY>
+			</module>
+			<module>
+				<id>module7</id>
+				<donnee1>Relie l'ENTREE à la SORTIE..</donnee1>
+				<donnee2>Deux cases consécutives du chemin contiennent un calcul et son résultat.</donnee2>
+				<ressource>../minotaureOperationsNbsRelatifs/FacileZ/minotaureDivisionZD6.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>module9</sortiejuste>
+				<sortieFausse>module8</sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>660</tailleX>
+				<tailleY>360</tailleY>
+			</module>
+			<module>
+				<id>module8</id>
+				<donnee1>Relie l'ENTREE à la SORTIE..</donnee1>
+				<donnee2>Deux cases consécutives du chemin contiennent un calcul et son résultat.</donnee2>
+				<ressource>../minotaureOperationsNbsRelatifs/FacileZ/minotaureDivisionZF6.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>module9</sortiejuste>
+				<sortieFausse>module8</sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>660</tailleX>
+				<tailleY>360</tailleY>
+			</module>
+			<module>
+				<id>module9</id>
+				<donnee1>Relie l'ENTREE à la SORTIE..</donnee1>
+				<donnee2>Deux cases consécutives du chemin contiennent un calcul et son résultat.</donnee2>
+				<ressource>../minotaureOperationsNbsRelatifs/FacileZ/minotaureOperationZD6.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>termine</sortiejuste>
+				<sortieFausse>module6</sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>660</tailleX>
+				<tailleY>360</tailleY>
+			</module>
+			<module>
+				<id>module10</id>
+				<donnee1>Relie l'ENTREE à la SORTIE..</donnee1>
+				<donnee2>Deux cases consécutives du chemin contiennent un calcul et son résultat.</donnee2>
+				<ressource>../minotaureOperationsNbsRelatifs/FacileZ/minotaureOperationZF6.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>termine</sortiejuste>
+				<sortieFausse>termine</sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>660</tailleX>
+				<tailleY>360</tailleY>
+			</module>
+		</titre>
+	</sequence>
+	
+</exercice>

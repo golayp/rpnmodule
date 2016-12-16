@@ -1,11 +1,13 @@
 {
     "solutions":[
-		["Lorem","ipsum","dolor","sit","amet,","consectetur","adipiscing","elit."],
+        ["Lorem","ipsum","dolor","sit","amet,","consectetur","adipiscing","elit."],
 		{"alternative":[
 		    ["Lorem","ipsum","dolor","sit","amet,","consectetur","adipiscing","elit."],
 		    ["ipsum","Lorem","dolor","sit","amet,","consectetur","adipiscing","elit."]
 		    ]
         },
-        ["Lorem","ipsum","dolor","sit","amet,","consectetur","adipiscing","elit."]
+        ["Lorem","ipsum","dolor","sit","amet,","consectetur","adipiscing","elit."],
+        ["<img src=\"/medias/sorting3.png\">","<img src=\"/medias/sorting2.png\">","<img src=\"/medias/sorting1.png\">"],
+        ["<img src=\"/medias/sorting_grid4.png\">","<img src=\"/medias/sorting_grid5.png\">","<img src=\"/medias/sorting_grid2.png\">","<img src=\"/medias/sorting_grid3.png\">","<img src=\"/medias/sorting_grid1.png\">"]
     ]
 }

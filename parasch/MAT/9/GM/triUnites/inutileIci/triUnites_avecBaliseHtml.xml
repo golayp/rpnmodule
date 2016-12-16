@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<unite>
+	  <nom>Mètre</nom>
+	  <nom2></nom2>
+	  <fichierImage>metre</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>longueur</categorie>
+	  <conversionSI>1</conversionSI>
+	  <commentaire><![CDATA[ <p>Unité de base du système métrique et du système internationnal d'unité.</p>
+<p><b>Unité de longueur.</b></p>
+<p>le 7 avril 17<b>95</b>, le système métrique décimal est institué pour toute la République française à partir d'un étalon en platine conservé précieusement.</p>
+<p>Actuellement, il est définit à partir de vitesse de la lumière et de la seconde.(distance parcourue par la lumière dans le vide pendant une durée 1/299792458e de seconde)</p>]]> </commentaire>
+	  <symboleUnite>m</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+</exercice>

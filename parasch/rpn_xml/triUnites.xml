@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<unite>
+	  <nom>doigt</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>doigt</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>longueur</categorie>
+	  <conversionSI>0.0189</conversionSI>
+	  <commentaire>Unité antique utilisée chez les Egyptiens, les Grecs et le Romains.
+Correspondance au mètre:
+	1 doigt ~ 0.0189m (16e de pied antique)</commentaire>
+	  <symboleUnite>doigt</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>paume</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>paume</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>longueur</categorie>
+	  <conversionSI>0.0756</conversionSI>
+	  <commentaire>Ancienne unité de l'Egypte antique.
+Correspondance au mètre:
+	1 paume ~ 0.0756m (largeur de la main sans le pouce)</commentaire>
+	  <symboleUnite>paume</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>coudée</nom>
+	  <nom2>royale</nom2>
+	  <fichierImage>coudeeroyale</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>longueur</categorie>
+	  <conversionSI>0.529</conversionSI>
+	  <commentaire>Unité de base de l'Egypte antique.
+Correspondance au mètre:
+	1 coudée ~ 0.529m (28 doigts)</commentaire>
+	  <symboleUnite>coudée</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>khèt</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>khet</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>longueur</categorie>
+	  <conversionSI>52.9</conversionSI>
+	  <commentaire>Ancienne unité de l'Egypte antique.
+Correspondance au mètre:
+	1 khèt ~ 52,9m (100 coudées)</commentaire>
+	  <symboleUnite>khèt</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>empan</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>empan</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>longueur</categorie>
+	  <conversionSI>0.22</conversionSI>
+	  <commentaire>Ancienne unité de la Grèce antique.
+Correspondance au mètre:
+	1 empan ~ 0.22m (largeur du pouce à l'extrémité du petit doigt tendu)</commentaire>
+	  <symboleUnite>empan</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>pied</nom>
+	  <nom2>romain</nom2>
+	  <fichierImage>piedromain</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>longueur</categorie>
+	  <conversionSI>0.2964</conversionSI>
+	  <commentaire>Ancienne unité romaine.
+Correspondance au mètre:
+	1 pied romain ~ 0.296m
+ici 2 demi-pieds articulés. En les dépliant, on obtient un pied
+C'était le double mètre de l'époque.</commentaire>
+	  <symboleUnite>doigt</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>arpent</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>arpent</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>longueur</categorie>
+	  <conversionSI>71</conversionSI>
+	  <commentaire>Ancienne unité.
+Correspondance au mètre:
+	1 arpent romain ~ 71m
+Corresopnd à la portée d'une flèche.</commentaire>
+	  <symboleUnite>arpent</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>pouce</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>pouce</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>longueur</categorie>
+	  <conversionSI>0.0254</conversionSI>
+	  <commentaire>Système d'unités anglo-saxon.
+Inche en anglais.
+Correspond environ à la longueur de la dernière phalange d'un pouce.
+Encore utilisée, entre autre, aux USA</commentaire>
+	  <symboleUnite>pouce</symboleUnite>
+	  <exposantUnite></exposantUnite>
+	</unite>
+	<unite>
+	  <nom>pas</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>pas</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>longueur</categorie>
+	  <conversionSI>0.741</conversionSI>
+	  <commentaire>Ancienne unité romaine.
+1 pas correspond environ à 0,741m.
+Les Romains lui préféraient le double pas (=1,482m)</commentaire>
+	  <symboleUnite>pas</symboleUnite>
+	  <exposantUnite></exposantUnite>
+	</unite>
+	<unite>
+	  <nom>pied</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>pied</fichierImage>
+	  <fichierLogo>piedlogo</fichierLogo>
+	  <categorie>longueur</categorie>
+	  <conversionSI>0.3048</conversionSI>
+	  <commentaire>Système de mesures anglo-saxon.
+Foot en anglais.
+Correspondance au mètre:
+	1ft=0,3048m 
+	(~la longueur d'un très grand pied adulte, taille au moins 48).
+Encore utilisée, entre autre, aux USA</commentaire>
+	  <symboleUnite>pied</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>micron</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>micrometre</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>longueur</categorie>
+	  <conversionSI>0.000001</conversionSI>
+	  <commentaire>Système métrique.
+Correspondance au mètre: 
+	1mum = 0,000001m</commentaire>
+	  <symboleUnite>mum</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>millimètre</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>millimetre</fichierImage>
+	  <fichierLogo>piedlogo</fichierLogo>
+	  <categorie>longueur</categorie>
+	  <conversionSI>0.001</conversionSI>
+	  <commentaire>Système métrique.
+Correspondance au mètre: 
+	1mm = 0,001m</commentaire>
+	  <symboleUnite>mm</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>centimètre</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>centimetre</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>longueur</categorie>
+	  <conversionSI>0.01</conversionSI>
+	  <commentaire>Système métrique.
+Correspondance au mètre: 
+	1cm = 0,01m</commentaire>
+	  <symboleUnite>cm</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>décimètre</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>decimetre</fichierImage>
+	  <fichierLogo>piedlogo</fichierLogo>
+	  <categorie>longueur</categorie>
+	  <conversionSI>0.1</conversionSI>
+	  <commentaire>Système métrique.
+Correspondance au mètre: 
+	1dm = 0,1m</commentaire>
+	  <symboleUnite>dm</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>mètre</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>metre</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>longueur</categorie>
+	  <conversionSI>1</conversionSI>
+	  <commentaire>Unité de base du système métrique et du système internationnal d'unité.
+le 7 avril 1795, le système métrique décimal est institué pour toute la République française à partir d'un étalon en platine conservé précieusement.
+Actuellement, il est définit à partir de vitesse de la lumière et de la seconde.(distance parcourue par la lumière dans le vide pendant une durée 1/299792458e de seconde) </commentaire>
+	  <symboleUnite>m</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>décamètre</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>decametre</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>longueur</categorie>
+	  <conversionSI>10</conversionSI>
+	  <commentaire>Système métrique.
+Correspondance au mètre:
+	1dam = 10m</commentaire>
+	  <symboleUnite>dam</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>hectomètre</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>hectometre</fichierImage>
+	  <fichierLogo>piedlogo</fichierLogo>
+	  <categorie>longueur</categorie>
+	  <conversionSI>100</conversionSI>
+	  <commentaire>Système métrique.
+Correspondance au mètre:
+	1hm = 100m</commentaire>
+	  <symboleUnite>hm</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>kilomètre</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>kilometre</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>longueur</categorie>
+	  <conversionSI>1000</conversionSI>
+	  <commentaire>Système métrique.
+Correspondance au mètre:
+	1km = 1000m</commentaire>
+	  <symboleUnite>km</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>mille</nom>
+	  <nom2>marin</nom2>
+	  <fichierImage>millemarin</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>longueur</categorie>
+	  <conversionSI>1852</conversionSI>
+	  <commentaire>Unité utilisée par les navigateurs.
+Correspondance au mètre:
+	1mille marin = 1852m</commentaire>
+	  <symboleUnite>mille marin</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>année</nom>
+	  <nom2>lumière</nom2>
+	  <fichierImage>anneelumiere</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>longueur</categorie>
+	  <conversionSI>1000</conversionSI>
+	  <commentaire>Unité utilisée pour la mesure des distances astronomiques.
+Elle correspond à la distance parcourue par la lumière en une année à la vitesse de 300'000km/s.
+Correspondance au mètre:
+	1al ~ 10e16m</commentaire>
+	  <symboleUnite>al</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>perche</nom>
+	  <nom2>carrée</nom2>
+	  <fichierImage>percheCarree</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>aire</categorie>
+	  <conversionSI>2.964</conversionSI>
+	  <commentaire>Ancienne unité romaine.
+1 perche carrée correspond à ~8.75m2.</commentaire>
+	  <symboleUnite>perche</symboleUnite>
+	  <exposantUnite>2</exposantUnite>
+	</unite>
+	<unite>
+	  <nom>arpent</nom>
+	  <nom2>carré</nom2>
+	  <fichierImage>arpent2</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>aire</categorie>
+	  <conversionSI>35.568</conversionSI>
+	  <commentaire>Ancienne unité.
+1 arpent carré varie entre ~1200m2 et ~5000m2 suivant les époques.</commentaire>
+	  <symboleUnite>arpent</symboleUnite>
+	  <exposantUnite>2</exposantUnite>
+	</unite>
+	<unite>
+	  <nom>pouce</nom>
+	  <nom2>carré</nom2>
+	  <fichierImage>pouce2</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>aire</categorie>
+	  <conversionSI>0.0254</conversionSI>
+	  <commentaire>Système d'unités anlo-saxon.
+Square inche en anglais.
+Correspond environ à la surface de la dernière phalange d'un pouce.
+Encore utilisée, entre autre, aux USA</commentaire>
+	  <symboleUnite>pouce</symboleUnite>
+	  <exposantUnite>2</exposantUnite>
+	</unite>
+	<unite>
+	  <nom>pied</nom>
+	  <nom2>carré</nom2>
+	  <fichierImage>pied2</fichierImage>
+	  <fichierLogo>piedlogo</fichierLogo>
+	  <categorie>aire</categorie>
+	  <conversionSI>0.3048</conversionSI>
+	  <commentaire>Système d'unités anlo-saxon.
+Square foot en anglais.
+Correspond environ à la surface d'un carré de 30cm x 30cm.
+Encore utilisée, entre autre, aux USA</commentaire>
+	  <symboleUnite>sft</symboleUnite>
+	  <exposantUnite>2</exposantUnite>
+	</unite>
+	<unite>
+	  <nom>millimètre</nom>
+	  <nom2>carré</nom2>
+	  <fichierImage>millimetre2</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>aire</categorie>
+	  <conversionSI>0.001</conversionSI>
+	  <commentaire>Système métrique.
+Correspondance au mètre2: 
+	1mm2 = 10e-6m2</commentaire>
+	  <symboleUnite>mm</symboleUnite>
+	  <exposantUnite>2</exposantUnite>
+	</unite>
+	<unite>
+	  <nom>centimètre</nom>
+	  <nom2>carré</nom2>
+	  <fichierImage>centimetre2</fichierImage>
+	  <fichierLogo>piedlogo</fichierLogo>
+	  <categorie>aire</categorie>
+	  <conversionSI>0.01</conversionSI>
+	  <commentaire>Système métrique.
+Correspondance au mètre2: 
+	1cm2 = 10e-4m2</commentaire>
+	  <symboleUnite>cm</symboleUnite>
+	  <exposantUnite>2</exposantUnite>
+	</unite>
+	<unite>
+	  <nom>décimètre</nom>
+	  <nom2>carré</nom2>
+	  <fichierImage>decimetre2</fichierImage>
+	  <fichierLogo>piedlogo</fichierLogo>
+	  <categorie>aire</categorie>
+	  <conversionSI>0.1</conversionSI>
+	  <commentaire>Système métrique.
+Correspondance au mètre2: 
+	1dm2 = 0,01m2</commentaire>
+	  <symboleUnite>dm</symboleUnite>
+	  <exposantUnite>2</exposantUnite>
+	</unite>
+	<unite>
+	  <nom>mètre</nom>
+	  <nom2>carré</nom2>
+	  <fichierImage>metre2</fichierImage>
+	  <fichierLogo>piedlogo</fichierLogo>
+	  <categorie>aire</categorie>
+	  <conversionSI>1</conversionSI>
+	  <commentaire>Système métrique.
+1 m2 correspond environ à la surface de la moité d'une porte</commentaire>
+	  <symboleUnite>m</symboleUnite>
+	  <exposantUnite>2</exposantUnite>
+	</unite>
+	<unite>
+	  <nom>décamètre</nom>
+	  <nom2>carré</nom2>
+	  <fichierImage>decametre2</fichierImage>
+	  <fichierLogo>piedlogo</fichierLogo>
+	  <categorie>aire</categorie>
+	  <conversionSI>10</conversionSI>
+	  <commentaire>Système métrique.
+Correspondance au mètre2: 
+	1dam2 = 100m2
+Unité peu utilisée. Synonyme: are.</commentaire>
+	  <symboleUnite>dam</symboleUnite>
+	  <exposantUnite>2</exposantUnite>
+	</unite>
+	<unite>
+	  <nom>hectomètre</nom>
+	  <nom2>carré</nom2>
+	  <fichierImage>hectare</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>aire</categorie>
+	  <conversionSI>100</conversionSI>
+	  <commentaire>Système métrique.
+Correspondance au mètre2: 
+	1hm2 = 10000m2
+Unité peu utilisée. Synonyme: hectare.</commentaire>
+	  <symboleUnite>hm</symboleUnite>
+	  <exposantUnite>2</exposantUnite>
+	</unite>
+	<unite>
+	  <nom>kilomètre</nom>
+	  <nom2>carré</nom2>
+	  <fichierImage>kilometre2</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>aire</categorie>
+	  <conversionSI>1000</conversionSI>
+	  <commentaire>Système métrique.
+Correspondance au mètre2: 
+	1km2 = 10e6m2
+Utilisée pour la surface de pays.</commentaire>
+	  <symboleUnite>km</symboleUnite>
+	  <exposantUnite>2</exposantUnite>
+	</unite>
+	<unite>
+	  <nom>are</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>are</fichierImage>
+	  <fichierLogo>piedlogo</fichierLogo>
+	  <categorie>aire</categorie>
+	  <conversionSI>10</conversionSI>
+	  <commentaire>Ancienne unité utilisée pour la surface d'un jardin.
+Correspondance au mètre2: 
+	1a = 100m2
+De moins en moins utilisée. Synonyme: décamètre carré.</commentaire>
+	  <symboleUnite>a</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>hectare</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>hectare</fichierImage>
+	  <fichierLogo>piedlogo</fichierLogo>
+	  <categorie>aire</categorie>
+	  <conversionSI>100</conversionSI>
+	  <commentaire> Ancienne unité utilisée pour la surface d'un champ.
+Correspondance au mètre2: 
+	1ha = 10e4m2.
+1 Hectare correspond environ à un grand terrain de football.
+Essentiellement utilisée pour la surface de terres agricoles.
+synonyme: hectomètre carré.</commentaire>
+	  <symboleUnite>ha</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+		<unite>
+	  <nom>millimètre</nom>
+	  <nom2>cube</nom2>
+	  <fichierImage>millimetre3</fichierImage>
+	  <fichierLogo>piedlogo</fichierLogo>
+	  <categorie>volume</categorie>
+	  <conversionSI>0.001</conversionSI>
+	  <commentaire>Système métrique.
+Correspondance au mètre3: 
+	1mm3 = 10e-9m3</commentaire>
+	  <symboleUnite>mm</symboleUnite>
+	  <exposantUnite>3</exposantUnite>
+	</unite>
+	<unite>
+	  <nom>centimètre</nom>
+	  <nom2>cube</nom2>
+	  <fichierImage>millilitre</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>volume</categorie>
+	  <conversionSI>0.01</conversionSI>
+	  <commentaire>Système métrique.
+Correspondance au mètre3: 
+	1cm3 = 10e-6m3</commentaire>
+	  <symboleUnite>cm</symboleUnite>
+	  <exposantUnite>3</exposantUnite>
+	</unite>
+	<unite>
+	  <nom>décimètre</nom>
+	  <nom2>cube</nom2>
+	  <fichierImage>litre</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>volume</categorie>
+	  <conversionSI>0.1</conversionSI>
+	  <commentaire>Système métrique.
+Correspondance au mètre3: 
+	1dm3 = 10e-3m3.
+1dm3 = 1 litre</commentaire>
+	  <symboleUnite>dm</symboleUnite>
+	  <exposantUnite>3</exposantUnite>
+	</unite>
+	<unite>
+	  <nom>mètre</nom>
+	  <nom2>cube</nom2>
+	  <fichierImage>metre3</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>volume</categorie>
+	  <conversionSI>1</conversionSI>
+	  <commentaire>Système métrique.
+1m3 correspond environ à l'eau que tu bois durant 2 ans.</commentaire>
+	  <symboleUnite>m</symboleUnite>
+	  <exposantUnite>3</exposantUnite>
+	</unite>
+	<unite>
+	  <nom>hectolitre</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>hectolitre</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>volume</categorie>
+	  <conversionSI>100</conversionSI>
+	  <commentaire>Unité de capacité (pour les liquides ou l'intérieur de récipients).  
+Utilisée chez nous pour les récoltes de vin et de lait.
+Correspondance au mètre3: 
+	1hl = 0,1m3 (=100l).</commentaire>
+	  <symboleUnite>hl</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>litre</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>litre</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>volume</categorie>
+	  <conversionSI>1</conversionSI>
+	  <commentaire>Unité de capacité (pour les liquides ou l'intérieur de récipients).
+Correspondance au mètre3: 
+	1l = 0,001m3.(=1dm3)
+	  </commentaire>
+	  <symboleUnite>l</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>décilitre</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>decilitre</fichierImage>
+	  <fichierLogo>piedlogo</fichierLogo>
+	  <categorie>volume</categorie>
+	  <conversionSI>0.1</conversionSI>
+	  <commentaire>Unité de capacité (pour les liquides ou l'intérieur de récipients).
+Correspondance au mètre3: 
+	1dl = 0,0001m3.(=0,1 l)</commentaire>
+	  <symboleUnite>dl</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>centilitre</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>centilitre</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>volume</categorie>
+	  <conversionSI>0.01</conversionSI>
+	  <commentaire>Unité de capacité (pour les liquides ou l'intérieur de récipients).
+Correspondance au mètre3: 
+	1cl = 0,00001m3.(=0,01 l).</commentaire>
+	  <symboleUnite>cl</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>millilitre</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>millilitre</fichierImage>
+	  <fichierLogo>piedlogo</fichierLogo>
+	  <categorie>volume</categorie>
+	  <conversionSI>0.001</conversionSI>
+	  <commentaire>Unité de capacité (pour les liquides ou l'intérieur de récipients).
+Correspondance au mètre3: 
+	1ml = 0,000001m3.(=0,001 l).
+Les millilitres sont beaucoup utilisés dans les produits pharmaceutiques.</commentaire>
+	  <symboleUnite>ml</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>baril</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>baril</fichierImage>
+	  <fichierLogo>piedlogo</fichierLogo>
+	  <categorie>volume</categorie>
+	  <conversionSI>159</conversionSI>
+	  <commentaire>Unité utilisée pour le pétrole.
+Correspondance au mètre3: 
+	1baril ~ 0,159m3.(~159 l).</commentaire>
+	  <symboleUnite>ml</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>tonneau</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>tonneau</fichierImage>
+	  <fichierLogo>piedlogo</fichierLogo>
+	  <categorie>volume</categorie>
+	  <conversionSI>2.83</conversionSI>
+	  <commentaire>Unité utilisée pour le jaugeage (en rapport avec la grosseur)des navires.
+Correspondance au mètre3: 
+	1tonneau ~ 2,83m3.</commentaire>
+	  <symboleUnite>tonneau</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>kilogramme</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>kilogramme</fichierImage>
+	  <fichierLogo>piedlogo</fichierLogo>
+	  <categorie>masse</categorie>
+	  <conversionSI>1000</conversionSI>
+	  <commentaire>Unité de base du système internationnal d'unité.
+En 1795, le kilogramme était la masse du décimètre cube(1l)d'eau pure à 4°C.
+Maintenant, le kilogramme est défini comme la masse d'un cylindre de platine de hauteur égale au diamètre soit 39 mm.</commentaire>
+	  <symboleUnite>kg</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>gramme</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>gramme</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>masse</categorie>
+	  <conversionSI>1</conversionSI>
+	  <commentaire>Unité utilisée pour mesurer la quantité de matière.
+Correspondance au kg:
+	1g = 0,001kg.
+1g correspond environ à la masse d'une abeille</commentaire>
+	  <symboleUnite>g</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>tonne</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>tonne</fichierImage>
+	  <fichierLogo>piedlogo</fichierLogo>
+	  <categorie>masse</categorie>
+	  <conversionSI>1000000</conversionSI>
+	  <commentaire>Unité utilisée pour mesurer la quantité de matière.
+Correspondance au kg: 
+	1t = 1000kg.
+Une tonne correspond à la masse d'une petite voiture.</commentaire>
+	  <symboleUnite>t</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>quintal</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>quintal</fichierImage>
+	  <fichierLogo>piedlogo</fichierLogo>
+	  <categorie>masse</categorie>
+	  <conversionSI>100000</conversionSI>
+	  <commentaire>Unité utilisée pour mesurer la quantité de matière.
+Correspondance au kg: 
+	1q = 100kg.
+Un quintal correspond à la masse d'un boxeur poids lourd.</commentaire>
+	  <symboleUnite>q</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>milligramme</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>milligramme</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>masse</categorie>
+	  <conversionSI>0.001</conversionSI>
+	  <commentaire>Unité utilisée pour mesurer la quantité de matière.
+Correspondance au kg: 
+	1mg = 10e-6kg.
+le mg est très utilisé dans les produits pharmaceutiques</commentaire>
+	  <symboleUnite>mg</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>once</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>once</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>masse</categorie>
+	  <conversionSI>28</conversionSI>
+	  <commentaire>Unité Anglo-Saxone utilisée pour mesurer la quantité de matière.
+Correspondance au kg: 
+	1once ~0,028kg.</commentaire>
+	  <symboleUnite>once</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>livre</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>livre</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>masse</categorie>
+	  <conversionSI>454</conversionSI>
+	  <commentaire>Unité Anglo-Saxone utilisée pour mesurer la quantité de matière.
+Correspondance au kg: 
+	1livre ~0,454kg.</commentaire>
+	  <symboleUnite>livre</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>seconde</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>seconde</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>temps</categorie>
+	  <conversionSI>1</conversionSI>
+	  <commentaire>Unité de base du système internationnal d'unité.
+Définie une première fois en 1790 par rapport aux oscilllations d'un pendule.
+Définie à partir de la vibration d'un atome de césium.</commentaire>
+	  <symboleUnite>s</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>minute</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>minute</fichierImage>
+	  <fichierLogo>piedlogo</fichierLogo>
+	  <categorie>temps</categorie>
+	  <conversionSI>60</conversionSI>
+	  <commentaire>Correspondance avec la seconde: 
+	1min = 60s.</commentaire>
+	  <symboleUnite>min</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+	<unite>
+	  <nom>heure</nom>
+	  <nom2>vide</nom2>
+	  <fichierImage>heure</fichierImage>
+	  <fichierLogo>piedlogo</fichierLogo>
+	  <categorie>temps</categorie>
+	  <conversionSI>60</conversionSI>
+	  <commentaire>Correspondance avec la seconde: 
+	1h = 3600s.</commentaire>
+	  <symboleUnite>min</symboleUnite>
+	  <exposantUnite> </exposantUnite>
+	</unite>
+</exercice>

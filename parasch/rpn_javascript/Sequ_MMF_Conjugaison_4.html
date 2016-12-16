@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+	<head>
+		<title>MMF : Séquence Conjugaison - Exercice 4 (test)</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script type="text/javascript" src="swfobject.js"></script>
+        <script type="text/javascript" src="json.js"></script>
+		<script type="text/javascript">
+			function resetfield(){
+				window.onbeforeunload = null;
+				return "resetField()activée";
+			}
+			<!-- Adobe recommande aux développeurs d'utiliser SWFObject2 pour la détection de Flash Player. -->
+			<!-- Pour plus d'informations, consultez la page SWFObject du code Google (http://code.google.com/p/swfobject/). -->
+			<!-- Pour plus d'informations, voir Adobe Developer Connection, section "Detecting Flash Player versions and embedding SWF files with SWFObject 2" -->
+			<!-- Sélectionnez la version minimale requise de Flash Player ou 0 si vous ne souhaitez pas activer la détection de version -->
+			var swfVersionStr = "10.0.0";
+			<!-- xiSwfUrlStr peut être utilisé pour définir un fichier SWF d'installation expresse. -->
+			var flashvars = {};
+			//Ces variables sont adaptables aux besoin de l'exerice. maintenant ce sont les variables dont a besoin l'exercice des épreuves
+			flashvars.id_eleve = 'dbfe9144-7f26-45da-88e2-4f5facf2be20';
+			flashvars.level_eleve = '8';
+			flashvars.nom_eleve= "Prénom Eleve";
+			var params = {};
+			params.quality = "high";
+			params.bgcolor = "#ffffff"; 
+			params.play = "true";
+			params.loop = "false";
+			params.wmode = "window";
+			params.scale = "showall";
+			params.menu = "true";
+			params.devicefont = "false";
+			params.align = "center";
+			params.allowscriptaccess = "sameDomain";
+			var attributes = {};
+			attributes.id = "Sequ_MMF_Conjugaison_4";
+			attributes.name = "Sequ_MMF_Conjugaison_4";
+			attributes.align = "middle";
+			swfobject.createCSS("html", "height:100%; background-color: #ffffff;");
+			swfobject.createCSS("body", "margin:0; padding:0; overflow:hidden; height:95%;");
+			swfobject.embedSWF("Sequ_MMF_Conjugaison_4.swf", "flashContent","1250", "746", swfVersionStr, false, flashvars, params, attributes);
+				function recuperationSWF(resultats)
+				{
+					//On reçoit le résultat sour la forme d'un objet JS
+					//window.alert("username: "+resultats["username"]+"\nresultat: "+resultats["rep_juste"]);
+					//window.alert(JSON.stringify(resultats));
+					return "nom_eleve: "+resultats["nom_eleve"]+"\nresultats: "+resultats["resultat_total"];
+				}
+				//Fonction qui demande un confirmation de fermeture de fenêtre
+		  window.onbeforeunload = confirmExit;
+		  function confirmExit()
+		  {
+			return "Attention! En quittant cette page, tous les résultats de l'épreuve seront perdus.\n\nCliquez sur 'Annuler' pour reprendre l'exercice s'il n'est pas terminé.";
+			 
+		  }
+		</script>
+        <link rel="shortcut icon" type="image/ico" href="../images/logo_iclasse2.ico" />
+        <meta name="keywords" content="MMF, conjugaison, verbe en -er, deux bases, indicatif présent, français, cycle 2" />
+	</head>
+	<body>
+		<!-- La méthode d'incorporation dynamique de l'objet SWF remplace ce contenu HTML alternatif par le contenu Flash lorsque les plug-ins JavaScript et Flash sont suffisamment pris en charge. -->
+		<div style="width:100%;text-align:center;margin-top:30px;">
+            <div id="flashContent">
+                <a href="http://www.adobe.com/go/getflash">
+                    <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Obtenir Adobe Flash Player" />
+                </a>
+                <p>Cette page requiert Flash Player version 10.0.0 ou ultérieure.</p>
+            </div>
+        </div>
+	</body>
+</html>

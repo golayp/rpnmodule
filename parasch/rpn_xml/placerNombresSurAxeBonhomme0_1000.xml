@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<sequence>9e année : Nombres 4
+		<titre> 1. Placer des points |-1000 à 1000| sur un axe
+			
+			<module>
+				<id>module1</id>
+				<donnee1>Lâche le bonhomme au bon endroit.</donnee1>
+				<donnee2>Tu peux modifier l'échelle à l'aide du curseur et déplacer l'origine de l'axe.</donnee2>
+				<ressource>bonhomme0_1000.swf</ressource>
+				<validemax>2</validemax>
+				<sortiejuste>module2</sortiejuste>
+				<sortieFausse>module2</sortieFausse>
+				<aide/>
+				<indice/>
+				<aideDemarrage/>
+				<indiceDemarrage/>
+				<tailleX>1580</tailleX>
+				<tailleY>330</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module2</id>
+				<donnee1>Lâche le bonhomme au bon endroit.</donnee1>
+				<donnee2>Tu peux modifier l'échelle à l'aide du curseur et déplacer l'origine de l'axe.</donnee2>
+				<ressource>bonhomme0_1000.swf</ressource>
+				<validemax>2</validemax>
+				<sortiejuste>module3</sortiejuste>
+				<sortieFausse>module3</sortieFausse>
+				<aide/>
+				<indice/>
+				<aideDemarrage/>
+				<indiceDemarrage/>
+				<tailleX>1580</tailleX>
+				<tailleY>330</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module3</id>
+				<donnee1>Lâche le bonhomme au bon endroit.</donnee1>
+				<donnee2>Tu peux modifier l'échelle à l'aide du curseur et déplacer l'origine de l'axe.</donnee2>
+				<ressource>bonhomme0_1000.swf</ressource>
+				<validemax>2</validemax>
+				<sortiejuste>module4</sortiejuste>
+				<sortieFausse>module4</sortieFausse>
+				<aide/>
+				<indice/>
+				<aideDemarrage/>
+				<indiceDemarrage/>
+				<tailleX>1580</tailleX>
+				<tailleY>330</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module4</id>
+				<donnee1>Lâche le bonhomme au bon endroit.</donnee1>
+				<donnee2>Tu peux modifier l'échelle à l'aide du curseur et déplacer l'origine de l'axe.</donnee2>
+				<ressource>bonhomme0_1000.swf</ressource>
+				<validemax>2</validemax>
+				<sortiejuste/>
+				<sortieFausse>module4</sortieFausse>
+				<aide/>
+				<indice/>
+				<aideDemarrage/>
+				<indiceDemarrage/>
+				<tailleX>1580</tailleX>
+				<tailleY>330</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+		</titre>
+	</sequence>
+	
+</exercice>
+
+

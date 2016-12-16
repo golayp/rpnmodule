@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<unite>
+	  <nom>Doigt</nom>
+	  <fichierImage>doigt</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>longueur</categorie>
+	  <conversionSI>0,0183</conversionSI>
+	  <commentaire>doigt.txt</commentaire>
+	</unite>
+	<unite>
+	  <nom>Pied</nom>
+	  <fichierImage>pied</fichierImage>
+	  <fichierLogo>piedlogo</fichierLogo>
+	  <categorie>longueur</categorie>
+	  <conversionSI>0,2928</conversionSI>
+	  <commentaire>pied.txt</commentaire>
+	</unite>
+	<unite>
+	  <nom>Pied</nom>
+	  <fichierImage>main</fichierImage>
+	  <fichierLogo>piedlogo</fichierLogo>
+	  <categorie>longueur</categorie>
+	  <conversionSI>0,2928</conversionSI>
+	  <commentaire>pied.txt</commentaire>
+	</unite>
+	<unite>
+	  <nom>Doigt</nom>
+	  <fichierImage>sac</fichierImage>
+	  <fichierLogo>doigtlogo</fichierLogo>
+	  <categorie>longueur</categorie>
+	  <conversionSI>0,0183</conversionSI>
+	  <commentaire>doigt.txt</commentaire>
+	</unite>	
+</exercice>

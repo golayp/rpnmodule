@@ -4,13 +4,15 @@ var rpnmqcmodule = function() {
     var datas;
     var domelem;
     var state;
+    var successArray;
+    var responsesArray;
+    var limitedChoice;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
             questions: ["No questions!"],
             answers: ["As no answers"],
-            vertical:false,
-            mqcmultiple:false
+            vertical:false
         });
 
         datas = _datas;
@@ -32,16 +34,20 @@ var rpnmqcmodule = function() {
         var uilist = $('<ul>', {
             'class': 'list-unstyled'
         });
-    
+        var choiceLength = new Array();
+        
         $.each(datas.questions, function(idq, question) {
             var li = $('<li>');
             li.append($('<p>' + question + '</p>'));
             var answerGroup = $('<div class="'+(datas.vertical?'btn-group-vertical':'btn-group')+'" role="group" data-toggle="buttons">');
             var idmqc = datas.answers.length==1?0:idq;
+            choiceLength.push(datas.answers[idmqc].choice.length);
+
             //multiple responses allowed
             if(datas.mqcmultiple){
-                var answerArray = new Array(datas.answers.length);
-                answerArray = _.map(answerArray,function(aa,idaa){return'';});
+                var answerArray = new Array();
+                //var answerArray = new Array(datas.answers.length);
+                //answerArray = _.map(answerArray,function(aa,idaa){return'';});
                 $.each(datas.answers[idmqc].choice, function(ida, answer) {
                     answerArray[ida] = (!_.isEmpty(state.responses[idq][ida])&&state.responses[idq][ida]==answer)? state.responses[idq][ida] : '';
                     answerGroup.append($('<label class="btn btn-default '+((!_.isEmpty(state.responses[idq][ida])&&state.responses[idq][ida]==answer)?'active':'')+'"><input type="checkbox" autocomplete="off" '+((!_.isEmpty(state.responses[idq][ida])&&state.responses[idq][ida]==answer)?'checked':'')+'>' + answer + '</label>').click(function(lab) {
@@ -61,7 +67,7 @@ var rpnmqcmodule = function() {
             }
             uilist.append(li);
         });
-        
+        limitedChoice = _.min(choiceLength) <= 2 ? true : false;
         domelem.append(uilist);
         bindUiEvents();
     };
@@ -70,21 +76,58 @@ var rpnmqcmodule = function() {
     };
     
     var validate = function(){
+        responsesArray = new Array();
+        _.each($('.btn-group, .btn-group-vertical', domelem), function(elem, idx){
+            responsesArray[idx] = elem;
+        });
         return state;
     };
     
     var score= function(sol) {
         var score = 0;
+        successArray = new Array();
         _.each(sol, function(val, idx) {
+            var scoreIni = score;
+            var solution = "";
+            var nbSol = _.compact(val).length-1;
+            if (_.isArray(val)){
+                solution = _.compact(val).join(' / ')
+            }else{
+                solution = val;
+            }
             score += _.isEqual(state.responses[idx],val) ? 1 : 0;
+            successArray[idx] = new Array();
+            if (score > scoreIni){
+                successArray[idx] = ["ok",solution];
+            }else{
+                successArray[idx] = [state.responses[idx],solution];
+            }
         });
         return score;
+    };
+    var pointmax = function(sol){
+        var pointmax = sol.length;
+
+        return pointmax;
+    };
+    var successState = function(){
+        return successArray;
+    };
+    var responsesState = function(){
+        return responsesArray;
+    }
+    var limitedChoiceState = function(){
+        return limitedChoice;
     };
     
     return {
         init: init,
         validate: validate,
-        score: score
+        score: score,
+        pointmax: pointmax,
+        successState: successState,
+        responsesState: responsesState,
+        limitedChoiceState: limitedChoiceState
     };
 
 };

@@ -5,6 +5,9 @@ var rpnmultiplelistssyncmodule = function() {
     var domelem;
     var state;
     var typeList;
+    var successArray;
+    var responsesArray;
+    var limitedChoice;
 
     var init = function(_datas, _state, _domelem) {
         _.defaults(_datas, {
@@ -33,11 +36,13 @@ var rpnmultiplelistssyncmodule = function() {
         domelem.addClass('multiplelistssync');
         var listToSort;
         typeList = new Array();
+        var choiceLength = new Array();
         
         //build lists with items to sort
         _.each(datas.lists, function(li,idx){
             typeList[idx] = datas.lists[idx].type ? datas.lists[idx].type : '';
             if(datas.lists[idx].movable){
+                choiceLength.push(datas.lists[idx].items.length);
                 listToSort = $('<ul class="list-unstyled'+(datas.vertical?'':' list-inline')+'" id="sortable-'+idx+'" >'+(_.isEmpty(datas.lists[idx].title) ? '' : '<li class="title">'+datas.lists[idx].title)+'</li></ul>').sortable({
                     items: "li:not(.title)",
                     placeholder: "sorting-highlight",
@@ -50,7 +55,8 @@ var rpnmultiplelistssyncmodule = function() {
             //and fill if there is already a response
             if(!_.isEmpty(state.lists[idx])){
                 _.each(state.lists[idx], function(item,id) {
-                    listToSort.append($('<li val=\"'+id+'\">'+item+'</li>'));
+                    var noElem = _.indexOf(datas.lists[idx].items, item);
+                    listToSort.append($('<li val=\"'+noElem+'\">'+item+'</li>'));
                 });
             }
             else{
@@ -60,6 +66,7 @@ var rpnmultiplelistssyncmodule = function() {
             };
             domelem.append(listToSort);
         });
+        limitedChoice = _.min(choiceLength) <= 2 ? true : false;
         $(domelem).disableSelection();
         
         bindUiEvents();
@@ -70,6 +77,12 @@ var rpnmultiplelistssyncmodule = function() {
     };
     
     var validate = function(){
+        responsesArray = new Array();
+        var colNum = $('ul.list-unstyled', domelem).length;
+        _.each($('ul[id="sortable-'+($('ul.list-unstyled', domelem).length-1)+'"] li:not(.title)', domelem),function(elem,idx){
+            responsesArray[idx] = elem;
+        });
+       
         var answerArray = new Array();
         _.each($('ul',domelem), function(ul,idx){
             answerArray.push(_.map($('ul[id="sortable-'+idx+'"] li:not(.title)',domelem),function(ele,id){
@@ -83,18 +96,51 @@ var rpnmultiplelistssyncmodule = function() {
     
    var score = function(sols){
         var score = 0;
-        _.map(sols.syncitems, function(sol) {
-            _.each(state.responses, function(resp, idx){
+        successArray = new Array();
+        var solution;
+       
+        _.each(state.responses, function(resp, idx) {
+            var scoreIni = score;
+            _.each(sols.syncitems, function(sol){
+                if(_.isEqual(resp[0], sol[0])){
+                    solution = sol.slice(1).toString();
+                }
+                successArray[idx] = new Array();
+                
                 score += _.isEqual(resp, sol) ? 1 : 0;
+                if (scoreIni==score){
+                    successArray[idx] = [resp.toString(), solution];
+                }else{
+                    successArray[idx] = ['ok', solution];
+                }
             });
         });
+        
         return score;
+    };
+    var pointmax = function(sol){
+        var pointmax = _.flatten(_.toArray(sol), true).length;
+       
+        return pointmax;
+    };
+    var successState = function(){
+        return successArray;
+    };
+    var responsesState = function(){
+        return responsesArray;
+    };
+    var limitedChoiceState = function(){
+        return limitedChoice;
     };
     
     return {
         init: init,
         validate: validate,
-        score:score
+        score:score,
+        pointmax: pointmax,
+        successState: successState,
+        responsesState: responsesState,
+        limitedChoiceState: limitedChoiceState
     };
 
 };

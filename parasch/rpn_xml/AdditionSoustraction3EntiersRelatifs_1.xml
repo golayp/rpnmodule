@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<sequence>10e année :Addition  d'entiers relatifs
+		<titre> 1. Correspondance entre droite et expression fonctionnelle (Nombres entiers)
+			<module>
+				<id>module1</id>
+				<donnee1>Visualise les opérations et inscris le résultat.</donnee1>
+				<donnee2>3 essais maximum</donnee2>
+				<ressource>add3EntierRel_1_mod1.swf</ressource>
+				<validemax>3</validemax>
+				<sortiejuste>module2</sortiejuste>
+				<sortieFausse>module2</sortieFausse>
+				<aide>act_14_8_03_r.swf</aide>
+				<indice/>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>2200</tailleX>
+				<tailleY>890</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module1</id>
+				<donnee1>Visualise les opérations et inscris le résultat.</donnee1>
+				<donnee2>3 essais maximum</donnee2>
+				<ressource>add3EntierRel_1_mod1.swf</ressource>
+				<validemax>3</validemax>
+				<sortiejuste>module2</sortiejuste>
+				<sortieFausse>module2</sortieFausse>
+				<aide>act_14_8_03_r.swf</aide>
+				<indice/>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>2200</tailleX>
+				<tailleY>890</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module1</id>
+				<donnee1>Visualise les opérations et inscris le résultat.</donnee1>
+				<donnee2>3 essais maximum</donnee2>
+				<ressource>add3EntierRel_1_mod1.swf</ressource>
+				<validemax>3</validemax>
+				<sortiejuste>module2</sortiejuste>
+				<sortieFausse>module2</sortieFausse>
+				<aide>act_14_8_03_r.swf</aide>
+				<indice/>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>2200</tailleX>
+				<tailleY>890</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module1</id>
+				<donnee1>Visualise les opérations et inscris le résultat.</donnee1>
+				<donnee2>3 essais maximum</donnee2>
+				<ressource>add3EntierRel_1_mod1.swf</ressource>
+				<validemax>3</validemax>
+				<sortiejuste>module2</sortiejuste>
+				<sortieFausse>module2</sortieFausse>
+				<aide>act_14_8_03_r.swf</aide>
+				<indice/>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>2200</tailleX>
+				<tailleY>890</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module1</id>
+				<donnee1>Visualise les opérations et inscris le résultat.</donnee1>
+				<donnee2>3 essais maximum</donnee2>
+				<ressource>add3EntierRel_1_mod1.swf</ressource>
+				<validemax>3</validemax>
+				<sortiejuste>module2</sortiejuste>
+				<sortieFausse>module2</sortieFausse>
+				<aide>act_14_8_03_r.swf</aide>
+				<indice/>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>2200</tailleX>
+				<tailleY>890</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module1</id>
+				<donnee1>Visualise les opérations et inscris le résultat.</donnee1>
+				<donnee2>3 essais maximum</donnee2>
+				<ressource>add3EntierRel_1_mod1.swf</ressource>
+				<validemax>3</validemax>
+				<sortiejuste>module2</sortiejuste>
+				<sortieFausse>module2</sortieFausse>
+				<aide>act_14_8_03_r.swf</aide>
+				<indice/>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>2200</tailleX>
+				<tailleY>890</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module1</id>
+				<donnee1>Visualise les opérations et inscris le résultat.</donnee1>
+				<donnee2>3 essais maximum</donnee2>
+				<ressource>add3EntierRel_1_mod1.swf</ressource>
+				<validemax>3</validemax>
+				<sortiejuste>module2</sortiejuste>
+				<sortieFausse>module2</sortieFausse>
+				<aide>act_14_8_03_r.swf</aide>
+				<indice/>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>2200</tailleX>
+				<tailleY>890</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module1</id>
+				<donnee1>Visualise les opérations et inscris le résultat.</donnee1>
+				<donnee2>3 essais maximum</donnee2>
+				<ressource>add3EntierRel_1_mod1.swf</ressource>
+				<validemax>3</validemax>
+				<sortiejuste>module2</sortiejuste>
+				<sortieFausse>module2</sortieFausse>
+				<aide>act_14_8_03_r.swf</aide>
+				<indice/>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>2200</tailleX>
+				<tailleY>890</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+		</titre>
+	</sequence>
+	
+</exercice>

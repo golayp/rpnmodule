@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<sequence>9e année : Séquence 1 Horloge 1
+		<titre> 1. Correspondance entre la montre et l'heure
+			<module>
+				<id>module1</id>
+				<donnee1>Déplace les aiguilles de la montre pour afficher l'heure proposée.</donnee1>
+				<donnee2>(il fait nuit de 18h à 6h)</donnee2>
+				<ressource>heuresDecimale2.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>module2</sortiejuste>
+				<sortieFausse>module2</sortieFausse>
+				<aide/>
+				<indice>heureDecimaleIndice2.swf</indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>600</tailleX>
+				<tailleY>324</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module2</id>
+				<donnee1>Déplace les aiguilles de la montre pour afficher l'heure proposée.</donnee1>
+				<donnee2>(il fait nuit de 18h à 6h)</donnee2>
+				<ressource>heuresDecimale2.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>module3</sortiejuste>
+				<sortieFausse>module3</sortieFausse>
+				<aide/>
+				<indice>heureDecimaleIndice2.swf</indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>600</tailleX>
+				<tailleY>324</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module3</id>
+				<donnee1>Déplace les aiguilles de la montre pour afficher l'heure proposée.</donnee1>
+				<donnee2>(il fait nuit de 18h à 6h)</donnee2>
+				<ressource>heuresDecimale2.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>module4</sortiejuste>
+				<sortieFausse>module4</sortieFausse>
+				<aide/>
+				<indice>heureDecimaleIndice2.swf</indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>600</tailleX>
+				<tailleY>324</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module4</id>
+				<donnee1>Déplace les aiguilles de la montre pour afficher l'heure proposée.</donnee1>
+				<donnee2>(il fait nuit de 18h à 6h)</donnee2>
+				<ressource>heuresDecimale2.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>module5</sortiejuste>
+				<sortieFausse>module5</sortieFausse>
+				<aide/>
+				<indice>heureDecimaleIndice2.swf</indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>600</tailleX>
+				<tailleY>324</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module5</id>
+				<donnee1>Déplace les aiguilles de la montre pour afficher l'heure proposée.</donnee1>
+				<donnee2>(il fait nuit de 18h à 6h)</donnee2>
+				<ressource>heuresDecimale2.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>module6</sortiejuste>
+				<sortieFausse>module6</sortieFausse>
+				<aide/>
+				<indice>heureDecimaleIndice2.swf</indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>600</tailleX>
+				<tailleY>324</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module6</id>
+				<donnee1>Déplace les aiguilles de la montre pour afficher l'heure proposée.</donnee1>
+				<donnee2>(il fait nuit de 18h à 6h)</donnee2>
+				<ressource>heuresDecimale2.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>module7</sortiejuste>
+				<sortieFausse>module7</sortieFausse>
+				<aide/>
+				<indice>heureDecimaleIndice2.swf</indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>600</tailleX>
+				<tailleY>324</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module7</id>
+				<donnee1>Déplace les aiguilles de la montre pour afficher l'heure proposée.</donnee1>
+				<donnee2>(il fait nuit de 18h à 6h)</donnee2>
+				<ressource>heuresDecimale2.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>module8</sortiejuste>
+				<sortieFausse>module8</sortieFausse>
+				<aide/>
+				<indice>heureDecimaleIndice2.swf</indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>600</tailleX>
+				<tailleY>324</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module8</id>
+				<donnee1>Déplace les aiguilles de la montre pour afficher l'heure proposée.</donnee1>
+				<donnee2>(il fait nuit de 18h à 6h)</donnee2>
+				<ressource>heuresDecimale2.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>module9</sortiejuste>
+				<sortieFausse>module9</sortieFausse>
+				<aide/>
+				<indice>heureDecimaleIndice2.swf</indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>600</tailleX>
+				<tailleY>324</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module9</id>
+				<donnee1>Déplace les aiguilles de la montre pour afficher l'heure proposée.</donnee1>
+				<donnee2>(il fait nuit de 18h à 6h)</donnee2>
+				<ressource>heuresDecimale2.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>module10</sortiejuste>
+				<sortieFausse>module10</sortieFausse>
+				<aide/>
+				<indice>heureDecimaleIndice2.swf</indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>600</tailleX>
+				<tailleY>324</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module10</id>
+				<donnee1>Déplace les aiguilles de la montre pour afficher l'heure proposée.</donnee1>
+				<donnee2>(il fait nuit de 18h à 6h)</donnee2>
+				<ressource>heuresDecimale2.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste></sortiejuste>
+				<sortieFausse>module10</sortieFausse>
+				<aide/>
+				<indice>heureDecimaleIndice2.swf</indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>non</indiceDemarrage>
+				<tailleX>600</tailleX>
+				<tailleY>324</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			
+		</titre>
+	</sequence>
+	
+</exercice>

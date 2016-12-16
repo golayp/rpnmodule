@@ -1,0 +1,21 @@
+<projectDescription>
+  <id>1318407538772</id>
+  <name>unites</name>
+  <asVersion>1</asVersion>
+  <boundTemplate>file:///C|/Users/luthi/AppData/Local/Adobe/Flash CS5/fr_FR/Configuration/ActionScript 3.0/Templates/boundClass_as2.as</boundTemplate>
+  <classTemplate>file:///C|/Users/luthi/AppData/Local/Adobe/Flash CS5/fr_FR/Configuration/ActionScript 3.0/Templates/standardClass_as2.as</classTemplate>
+  <classPath>.</classPath>
+  <defaultApp/>
+  <rootURI>file://DISKSTATION/public/JeanMichel/paraschool/flash/unites/</rootURI>
+  <flexSDK/>
+  <sources editable="false"/>
+  <libraries editable="false"/>
+  <externalLibraries editable="false"/>
+  <compileList editable="false"/>
+  <recentFiles editable="false">
+    <uri label="unitesLectureXML.as">file://DISKSTATION/public/JeanMichel/paraschool/flash/unites/unitesLectureXML.as</uri>
+    <uri label="unitesIni.as">file://DISKSTATION/public/JeanMichel/paraschool/flash/unites/unitesIni.as</uri>
+    <uri label="unite.as">file://DISKSTATION/public/JeanMichel/paraschool/flash/unites/unite.as</uri>
+  </recentFiles>
+  <locations editable="false"/>
+</projectDescription>

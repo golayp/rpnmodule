@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<sequence>8e année : Tri des unites
+		<titre>Tri des unités. 
+			<module>
+				<id>module1</id>
+				<donnee1>Glisse les unités dans le bon sac.</donnee1>
+				<donnee2></donnee2>
+				<ressource>triUnites/triUnites.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>module2</sortiejuste>
+				<sortieFausse>module1</sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage></aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+				<tailleX>510</tailleX>
+				<tailleY>270</tailleY>
+				<solutionBouton>oui</solutionBouton>
+				<dernierEssai>non</dernierEssai>
+			</module>
+			<module>
+				<id>module2</id>
+				<donnee1>Sélectionne une unité puis utilise-la pour faire la transformation (environ).</donnee1>
+				<donnee2>Lorsque c'est juste, un bouton suite apparaît.</donnee2>
+				<ressource>unites/unites.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste></sortiejuste>
+				<sortieFausse></sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage></aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+				<tailleX>510</tailleX>
+				<tailleY>270</tailleY>
+				<solutionBouton>oui</solutionBouton>
+				<dernierEssai>non</dernierEssai>
+			</module>
+		</titre>
+	</sequence>
+	
+</exercice>

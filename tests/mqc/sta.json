@@ -4,10 +4,7 @@
 			"responses": [
 				"answer 1",
 				"answer 1",
-				"answer 1",
-				"answer 1",
-				"answer 1",
-				"answer 1"
+				""
 			]
 		},
 		{
@@ -25,7 +22,8 @@
 		},
 		{
 			"responses": [
-				"What"
+				["What","","Where",""],
+                ["What","","Where",""]
 			]
 		}
 	]

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<sequence>10e année : Labyrinthe des homophones en "e"2
+		<titre> Labyrinthe des homophones en "e" 2.
+			
+			<module>
+				<id>module1</id>
+				<donnee1>Relie l'ENTREE à la SORTIE.</donnee1>
+				<donnee2>Deux cases consécutives du chemin contiennent un temps et une forme verbale.</donnee2>
+				<ressource>minotaurefrancaisHomophonesE_2/minotaurefrancaisHomophonesE_2.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste/>
+				<sortieFausse>module1</sortieFausse>
+				<aide/>
+				<indice/>
+				<aideDemarrage/>
+				<indiceDemarrage/>
+				<tailleX>630</tailleX>
+				<tailleY>350</tailleY>
+				<solutionBouton>oui</solutionBouton>
+				<dernierEssai>non</dernierEssai>
+			</module>
+		</titre>
+	</sequence>
+	
+</exercice>
+

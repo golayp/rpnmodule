@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<sequence>9e année : Tri des Genres et des sujets
+		<titre>Tri des genres et des sujets.
+			<module>
+				<id>module1</id>
+				<donnee1>Glisse les phrases dans le bon sac.</donnee1>
+				<donnee2/>
+				<ressource>triSujetsGenreNombre2/triSujetsGenreNombre2.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste/>
+				<sortieFausse>module1</sortieFausse>
+				<aide/>
+				<indice/>
+				<aideDemarrage/>
+				<indiceDemarrage/>
+				<tailleX>490</tailleX>
+				<tailleY>300</tailleY>
+				<solutionBouton>oui</solutionBouton>
+				<dernierEssai>non</dernierEssai>
+			</module>
+		</titre>
+	</sequence>
+
+</exercice>
+
+

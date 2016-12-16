@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<sequence>10e année :Fonctions linéaires 1
+		<titre> 1. Correspondance entre droite, points et tableau de valeurs
+			<module>
+				<id>module1</id>
+				<donnee1>4 points sont stockés en (0;0). Déplace-les afin de les faire correspondre à la fonction donnée.</donnee1>
+				<donnee2>En cas de besoin, affiche le quadrillage et utilise le zoom.</donnee2>
+				<ressource>Fonction_lineaire_placerPoints.swf</ressource>
+				<validemax>4</validemax>
+				<sortiejuste>module2</sortiejuste>
+				<sortieFausse>module2</sortieFausse>
+				<aide>Fonction_1_aideMemoire.swf</aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>oui</indiceDemarrage>
+				<tailleX>750</tailleX>
+				<tailleY>580</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module2</id>
+				<donnee1>4 points sont stockés en (0;0). Déplace-les afin de les faire correspondre à la fonction donnée.</donnee1>
+				<donnee2>En cas de besoin, affiche le quadrillage et utilise le zoom.</donnee2>
+				<ressource>Fonction_lineaire_placerPoints.swf</ressource>
+				<validemax>3</validemax>
+				<sortiejuste>module3</sortiejuste>
+				<sortieFausse>module3</sortieFausse>
+				<aide>Fonction_1_aideMemoire.swf</aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>oui</indiceDemarrage>
+				<tailleX>750</tailleX>
+				<tailleY>580</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module3</id>
+				<donnee1>4 points sont stockés en (0;0). Déplace-les afin de les faire correspondre à la fonction donnée.</donnee1>
+				<donnee2>En cas de besoin, affiche le quadrillage et utilise le zoom.</donnee2>
+				<ressource>Fonction_lineaire_placerPoints.swf</ressource>
+				<validemax>2</validemax>
+				<sortiejuste></sortiejuste>
+				<sortieFausse></sortieFausse>
+				<aide>Fonction_1_aideMemoire.swf</aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage>oui</indiceDemarrage>
+				<tailleX>750</tailleX>
+				<tailleY>580</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+		</titre>
+	</sequence>
+	
+</exercice>

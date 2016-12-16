@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<activite>
+  <exercice>
+    <type>equation</type>
+    <donnee>Si on achète 10 stylos, on paie le même prix que pour 4 stylos et un set à 9fr comprenant une équerre, un rapporteur et une règle.
+Quelle est le prix d'un stylo?</donnee>
+    <grandeurEgaliteVraie>Le prix d'un achat</grandeurEgaliteVraie>
+    <grandeurEgaliteFausse1>un stylo</grandeurEgaliteFausse1>
+    <grandeurEgaliteFausse2>une équerre</grandeurEgaliteFausse2>
+    <grandeurEgaliteFausse3>un rapporteur</grandeurEgaliteFausse3>
+    <grandeurEgaliteFausse4>une règle</grandeurEgaliteFausse4>
+    <gaucheMotCle>10 stylos</gaucheMotCle>
+    <gaucheValeur>10</gaucheValeur>
+    <gaucheUnite>fr.</gaucheUnite>
+    <droiteMotCle>4 stylos et un set à 9fr</droiteMotCle>
+    <droiteValeur>15</droiteValeur>
+    <droiteUnite>fr.</droiteUnite>
+    <egaliteMotCle>même</egaliteMotCle>
+    <egaliteValeur>=</egaliteValeur>
+    <inconnueMotCle>prix d'un stylo</inconnueMotCle>
+    <inconnueValeur>p</inconnueValeur>
+    <droiteSolutionTxt>4p+9</droiteSolutionTxt>
+    <gaucheSolutionTxt>10p</gaucheSolutionTxt>
+    <analyse0_111>Les éléments gauche et droite peuvent s'intervertirent.
+Prix des achats 1: 10*(prix d'un stylo) = Prix des achats 2: 4  stylos + le set.</analyse0_111>
+    <analyse1_110>L'égalité et le membre de gauche sont correctes.
+Pour le membre de droite, trouve ce qui pourrait correspondre au prix du 2e achat.</analyse1_110>
+    <analyse2_101>L'égalité et le membre de droite sont correctes.
+Pour le membre de gauche, trouve ce qui pourrait correspondre au prix du 1er achat.</analyse2_101>
+    <analyse3_100>Seule l'égalité est correcte.
+Les membres de gauche et de droite correspondent aux prix du premier et du 2e achat.</analyse3_100>
+    <analyse4_011>Les membres de gauche et de droite de l'équation sont justes.
+Il faut encore trouver le mot qui correspond à l'égalité
+ (ça peut être un synonyme de "égal")</analyse4_011>
+    <analyse5_010>Le membre de gauche est correct.
+Le mot qui correspond à l'égalité peut être un synonyme de "égal"
+L membre de droite, c'est ce qui correspond au prix du 2e achat.</analyse5_010>
+    <analyse6_001>Le membre de droite est correct.
+Le mot qui correspond à l'égalité peut être un synonyme de "égal"
+Le membre de gauche, c'est ce qui correspond au prix du 1er achat.</analyse6_001>
+    <analyse7_000>
+Pour l'instant tu n'as rien trouvé.
+ Essaie de repérer les prix des achats et un mot qui veut dire "égal".</analyse7_000>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11_comboBox_Question>
+Que pourrait contenir les plateaux de la balance?</analyse11_comboBox_Question>
+    <analyse12_comboBoxF>On a le nombre de stylos
+on a aussi l'inconnue qui est le prix d'un stylo
+On a le prix du set...</analyse12_comboBoxF>
+    <analyse13_comboBoxJ>C'est bien un prix
+prix d'un stylo* nombre de stylos = prix du premier achat</analyse13_comboBoxJ>
+    <analyse14_inconnueF>
+Dans ce problème, on trouve l'inconnue dans la question</analyse14_inconnueF>
+    <analyse15_inconnueJ>L'inconnue,
+c'est bien le prix d'un stylo.
+Ici, c'est aussi ce qu'on demande. </analyse15_inconnueJ>
+<egaliteGa>Prix du 1er achat</egaliteGa>
+<egaliteDr>Prix du 2e achat</egaliteDr>
+<distracteurI1>prix</distracteurI1>
+<distracteurI2>stylo</distracteurI2>
+<distracteurP3>yarien</distracteurP3>
+<distracteurP4>yarien</distracteurP4>
+<analyseDistracteurI1>Le prix, oui mais de quoi? 
+Surligne TOUS les mots utiles.</analyseDistracteurI1>
+<analyseDistracteurI2>Qu'est-ce qu'on cherche pour le stylo?
+Surligne TOUS les mots utiles.</analyseDistracteurI2>
+<analyseDistracteurP3/>
+<analyseDistracteurP4/>
+<motCleEgaliteTerminaison> </motCleEgaliteTerminaison>
+  </exercice>
+  <exercice>
+    <type>equation</type>
+    <donnee>Un bus part faire sa tournée. Il a une vitesse moyenne de 35 km/h.
+Paul, l'a râté.
+1/2h plus tard, il prend un taxi, qui  roule à 40km/h de moyenne, pour rattraper son bus.
+Après combien de temps le taxi aura-t-il rattrapé le bus?
+</donnee>
+    <grandeurEgaliteVraie>une distance</grandeurEgaliteVraie>
+    <grandeurEgaliteFausse1>un véhicule</grandeurEgaliteFausse1>
+    <grandeurEgaliteFausse2>40km/h</grandeurEgaliteFausse2>
+    <grandeurEgaliteFausse3>une vitesse</grandeurEgaliteFausse3>
+    <grandeurEgaliteFausse4>un temps</grandeurEgaliteFausse4>
+    <gaucheMotCle>1/2h plus tard, il prend un taxi, qui  roule à 40km/h </gaucheMotCle>
+    <gaucheValeur>40</gaucheValeur>
+    <gaucheUnite>km/h</gaucheUnite>
+    <droiteMotCle>vitesse moyenne de 35 km/h</droiteMotCle>
+    <droiteValeur>35</droiteValeur>
+    <droiteUnite>km/h</droiteUnite>
+    <egaliteMotCle>rattrap</egaliteMotCle>
+    <egaliteValeur>=</egaliteValeur>
+    <inconnueMotCle>temps</inconnueMotCle>
+    <inconnueValeur>t</inconnueValeur>
+    <droiteSolutionTxt>35*t</droiteSolutionTxt>
+    <gaucheSolutionTxt>40*(t-0.5)</gaucheSolutionTxt>
+    <analyse0_111>Les éléments gauche et droite peuvent s'intervertirent.
+Distance bus: 35*temps = Distance taxi: 40*(temps du taxi, t-1/2h = t-0.5</analyse0_111>
+    <analyse1_110>L'égalité et le membre de gauche sont correctes.
+Pour le membre de droite, trouve une autre phrase qui corresponde à une distance (où on parle de temps...)</analyse1_110>
+    <analyse2_101>L'égalité et le membre de droite sont correctes.
+Pour le membre de gauche, trouve une autre phrase qui corresponde à une distance (où on parle de temps...)</analyse2_101>
+    <analyse3_100>Seule l'égalité est exacte.
+Pour les membres de gauche et de droite, 
+trouve des phrases qui correspondent à une distance (où on parle de vitesse et de temps...)</analyse3_100>
+    <analyse4_011>Indice pour le signe = : que s'est-t-il  passé lorsque les deux véhicules se retrouvent à la même distance?</analyse4_011>
+    <analyse5_010>La partie gauche est juste.
+La partie droite doit aussi correspondre à une distance.
+Indice pour l'égalité :Llorsque les deux véhicules se retrouvent à la même distance, C'est que le taxi a .......le bus.</analyse5_010>
+    <analyse6_001>La partie droite est juste.
+La partie gauche doit aussi correspondre à une distance.
+Indice pour le signe = : que s'est-t-il  passé lorsque les deux véhicules se retrouvent à la même distance?</analyse6_001>
+    <analyse7_000>Pour l'instant tu n'as rien trouvé.
+Essaie de repérer les éléments qui correspondent à des distances.
+Rappel:vitesse &lt;fois&gt; temps = distance.</analyse7_000>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11_comboBox_Question>Que pourrait contenir les plateaux de la balance?</analyse11_comboBox_Question>
+    <analyse12_comboBoxF>On a la vitesse du bus et du taxi,
+on a aussi l'inconnue qui est le temps
+vitesse * temps ...</analyse12_comboBoxF>
+    <analyse13_comboBoxJ>C'est bien une distance:
+ vitesse * temps = distance</analyse13_comboBoxJ>
+    <analyse14_inconnueF>Dans ce problème,
+on trouve l'inconnue dans la question</analyse14_inconnueF>
+    <analyse15_inconnueJ>L'inconnue, c'est bien le temps écoulé depuis le départ du bus.
+Ici, c'est aussi ce qu'on demande. </analyse15_inconnueJ>
+<egaliteGa>Distance parcourue par le bus</egaliteGa>
+<egaliteDr>Distance parcouru par le taxi</egaliteDr>
+<distracteurI1>yarien</distracteurI1>
+<distracteurI2>yarien</distracteurI2>
+<distracteurP3>yarien</distracteurP3>
+<distracteurP4>yarien</distracteurP4>
+<analyseDistracteurI1/>
+<analyseDistracteurI2/>
+<analyseDistracteurP3/>
+<analyseDistracteurP4/>
+<motCleEgaliteTerminaison>er</motCleEgaliteTerminaison>
+  </exercice><exercice>
+    <type>equation</type>
+    <donnee>Dans le NetShop "CD'n'DVD en gros", pour télécharger 10 CD, Paul met le même temps que pour télécharger 2 DVD.
+Il faut 180min de plus pour télécharger un DVD qu'un CD.
+Combien de temps faut-il pour télécharger un CD?
+</donnee>
+    <grandeurEgaliteVraie>une durée de téléchargement</grandeurEgaliteVraie>
+    <grandeurEgaliteFausse1>un nombre de CD</grandeurEgaliteFausse1>
+    <grandeurEgaliteFausse2>un nombre de DVD</grandeurEgaliteFausse2>
+    <grandeurEgaliteFausse3>le nom d'un magasin</grandeurEgaliteFausse3>
+    <grandeurEgaliteFausse4>un prix</grandeurEgaliteFausse4>
+    <gaucheMotCle>télécharger 10 CD</gaucheMotCle>
+    <gaucheValeur>10</gaucheValeur>
+    <gaucheUnite>CD</gaucheUnite>
+    <droiteMotCle>télécharger 2 DVD</droiteMotCle>
+    <droiteValeur>2</droiteValeur>
+    <droiteUnite>DVD</droiteUnite>
+    <egaliteMotCle>même</egaliteMotCle>
+    <egaliteValeur>=</egaliteValeur>
+    <inconnueMotCle>temps</inconnueMotCle>
+    <inconnueValeur>t</inconnueValeur>
+    <droiteSolutionTxt>2*(t+180)</droiteSolutionTxt>
+    <gaucheSolutionTxt>10*t</gaucheSolutionTxt>
+    <analyse0_111>Les éléments gauche et droite peuvent s'intervertirent.
+Temps de téléchargement des CD: 10*temps = Temps de téléchargement des DVD: 2*(temps d'un CD t+180 )  </analyse0_111>
+    <analyse1_110>L'égalité et le membre de gauche sont correctes.
+Le membre de droite est une autre phrase qui correspond à un temps de téléchargement.</analyse1_110>
+    <analyse2_101>L'égalité et le membre de droite sont correctes.
+Le membre de gauche est une autre phrase qui correspond à un temps de téléchargement.</analyse2_101>
+    <analyse3_100>Seule l'égalité est exacte.
+Pour les membres de gauche et de droite, 
+trouve deux phrases qui correspondent à un temps de téléchargement.</analyse3_100>
+    <analyse4_011>Les membres de gauche et de droite de l'équation sont justes.
+Ils correspondent bien à un temps de téléchargement.
+Il faut encore trouver le mot qui dit que ces deux temps sont les mêmes.</analyse4_011>
+    <analyse5_010>La partie gauche est juste.
+La partie droite doit aussi correspondre à un temps de téléchargement.
+Pour l'égalité, c'est un synonyme de "pareil" ou "égal".</analyse5_010>
+    <analyse6_001>La partie droite est juste.
+La partie gauche doit aussi correspondre à un temps de téléchargement.
+Pour l'égalité, c'est un synonyme de "pareil" ou "égal".</analyse6_001>
+    <analyse7_000>Pour l'instant tu n'as rien trouvé.
+Essaie de repérer les éléments qui correspondent à des temps de téléchagement.</analyse7_000>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11_comboBox_Question>Que pourrait contenir les plateaux de la balance?</analyse11_comboBox_Question>
+    <analyse12_comboBoxF>On parle du temps de téléchargement des CD... et des DVD.</analyse12_comboBoxF>
+    <analyse13_comboBoxJ>C'est bien le temps de téléchargement</analyse13_comboBoxJ>
+    <analyse14_inconnueF>Dans ce problème, on trouve l'inconnue dans la question.</analyse14_inconnueF>
+    <analyse15_inconnueJ>L'inconnue, c'est bien le temps de téléchargement d'un CD.
+ Ici, c'est aussi ce qu'on demande. </analyse15_inconnueJ>
+ <egaliteGa>Durée pour télécharger 10 CD</egaliteGa>
+<egaliteDr>Durée pour télécharger 2 DVD</egaliteDr>
+<distracteurI1>yarien</distracteurI1>
+<distracteurI2>yarien</distracteurI2>
+<distracteurP3>180min</distracteurP3>
+<distracteurP4>yarien</distracteurP4>
+<analyseDistracteurI1/>
+<analyseDistracteurI2/>
+<analyseDistracteurP3>C'est bien un temps, mais pas la durée de téléchargement TOTALE.
+C'est 180min DE PLUS pour un DVD que pour un CD.</analyseDistracteurP3>
+<analyseDistracteurP4/>
+<motCleEgaliteTerminaison> </motCleEgaliteTerminaison>
+  </exercice></activite>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

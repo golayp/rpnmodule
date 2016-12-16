@@ -5,27 +5,27 @@
     "sources":"source from sequence",
     "directive":"directive from sequence",
     "context":"context from sequence",
-    "background":"bg1.png",
     "modules":[
         {
             "type":"mqc",
             "title":"identifier",
             "context":"same answers for all questions",
+            "player":{
+                "type":"audio",
+                "source":"audio_1",
+                "controls":"play"
+            },
             "questions":[
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit ?",
                 "Curabitur vitae purus vulputate, rutrum tortor eu, pulvinar justo ?",
-                "Donec et turpis ut risus ullamcorper accumsan ?",
-                "Praesent eleifend sem quis mauris consequat, sit amet rutrum elit interdum ?",
-                "Vestibulum ac pulvinar magna. Nullam efficitur luctus sapien eget sagittis ?",
-                "Vivamus et metus imperdiet, facilisis nisl eget, semper ligula ?"
+                "Donec et turpis ut risus ullamcorper accumsan ?"
             ],
             "answers":[
-				{"choice":["answer 1","answer 2","answer 3","answer 4"]}
+				{"choice":["answer 1","answer 2"]}
 			]
         },
         {
             "type":"mqc",
-            "background":"bg2.png",
             "title":"identifier ",
             "context":"a unique set of answers for each questions",
             "questions":[
@@ -54,9 +54,12 @@
 		{
             "type":"mqc",
             "title":"identifier ",
-            "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
+            "context":"multiple responses possible",
+            "mqcmultiple":true,
+            "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?","Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
             "answers":[
-				{"choice":["What","When","Where","Who"]}
+				{"choice":["What","When","Where","Who"]},
+                {"choice":["What","When","Where","Who"]}
             ]
         }
     ]

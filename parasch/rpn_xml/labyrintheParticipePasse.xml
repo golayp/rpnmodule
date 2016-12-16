@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<sequence>10e année : Séquence participe passé
+		<titre> Labyrinthe des participes passés. 
+			
+			<module>
+				<id>module1</id>
+				<donnee1>Relie l'ENTREE à la SORTIE.</donnee1>
+				<donnee2>Deux cases consécutives du chemin contiennent un temps et une forme verbale.</donnee2>
+				<ressource>indicatifParticipePasse1.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>module2</sortiejuste>
+				<sortieFausse>module1</sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage></aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+				<tailleX>640</tailleX>
+				<tailleY>350</tailleY>
+				<solutionBouton>oui</solutionBouton>
+				<dernierEssai>non</dernierEssai>
+			</module>
+			<module>
+				<id>module2</id>
+				<donnee1>Relie l'ENTREE à la SORTIE.</donnee1>
+				<donnee2>Deux cases consécutives du chemin contiennent un temps et une forme verbale.</donnee2>
+				<ressource>indicatifParticipePasse2.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste></sortiejuste>
+				<sortieFausse>module2</sortieFausse>
+				<aide></aide>
+				<indice></indice>
+				<aideDemarrage></aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+				<tailleX>640</tailleX>
+				<tailleY>350</tailleY>
+				<solutionBouton>oui</solutionBouton>
+				<dernierEssai>non</dernierEssai>
+			</module>
+		</titre>
+	</sequence>
+	
+</exercice>

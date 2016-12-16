@@ -9,10 +9,11 @@ var rpngapsimplemodule = function() {
     var state;
     var dragfromtext;
     var dragimage;
+    var singledd;
     var answerArray;
-    var myrndval;
-    var bindmodrepvar;
-    var bindnomodnumarrayvar=new Array();
+    var successArray;
+    var responsesArray;
+    var limitedChoice;
 
     var init = function(_datas,_state, _domelem) {
         _.defaults(_datas, {
@@ -32,38 +33,42 @@ var rpngapsimplemodule = function() {
         }
         buildUi();
         
-        
     };
 
     var buildUi = function() {
+     
         domelem.addClass('gapsimple');
         var maxwidth=0;
         answerArray = new Array();
+
         if(dragdrop || dragfromtext){
+            limitedChoice = dragfromtext ? false : datas.fillers.length <= 2 ? true : false;
             var toolbar = $('<div class="gapsimpleddtoolbar">');
             if (singledd){
                 $.each(datas.fillers, function(idx, filler) {
                     var divDrag = $('<div class="divdraggable" id="div'+idx+'" ></div>');
-                    var drag = $('<span class="singledraggable" draggable="true" id="drag'+idx+'" val="'+idx+'" >'+filler+'</span>').on('dragstart', function (ev) {
-                        ev.originalEvent.dataTransfer.setData("text", ev.target.id);
-                    });
-                    divDrag.append(drag);
+                    if(!(_.contains(state, filler))){
+                        var drag = $('<span class="singledraggable" draggable="true" id="drag'+_.indexOf(datas.fillers, filler)+'" val="'+_.indexOf(datas.fillers, filler)+'" >'+filler+'</span>').on('dragstart', function (ev) {
+                            ev.originalEvent.dataTransfer.setData("text", ev.target.id);
+                        });
+                        divDrag.append(drag);
+                    }
                     toolbar.append(divDrag);
                 });
             }
             else if(dragdrop){
-            $.each(datas.fillers, function(idx, filler) {
-                var draggable=$('<span class="draggable ori" val="'+idx+'" >'+filler+'</span> ').draggable({
-                    revert: "invalid",
-                    appendTo: domelem,
-                    helper: "clone",
-                    snap: true,
-                    snapMode: 'inner'
+                $.each(datas.fillers, function(idx, filler) {
+                    var draggable=$('<span class="draggable ori" val="'+idx+'" >'+filler+'</span> ').draggable({
+                        revert: "invalid",
+                        appendTo: domelem,
+                        helper: "clone",
+                        snap: true,
+                        snapMode: 'inner'
+                    });
+                    toolbar.append(draggable);
+                    maxwidth=maxwidth<draggable.width()?draggable.width():maxwidth;
                 });
-                toolbar.append(draggable);
-                maxwidth=maxwidth<draggable.width()?draggable.width():maxwidth;
-            });
-            maxfillength=_.max(datas.fillers, function(filler){ return filler.length; }).length;
+                maxfillength=_.max(datas.fillers, function(filler){ return filler.length; }).length;
             }
             //build trash
             if (!datas.singledd){
@@ -71,7 +76,7 @@ var rpngapsimplemodule = function() {
                     accept:'.clone',
                     hoverClass: 'gapsimpleddresponse-hover',
                     drop: function(e,u) {
-                        $(u.draggable).remove();
+                        $(u.draggable, domelem).remove();
                     }
                 });
                 toolbar.append(trash);
@@ -81,8 +86,8 @@ var rpngapsimplemodule = function() {
         
         //build panel with sentences
         domelem.append($('<div class="form-inline">' + datas.tofill + '</div>'));
-        
-         $.each($('b[class=drag]', domelem), function(idx, tofill) {
+        var dragNum = 0;
+        $.each($('b[class=drag]', domelem), function(idx, tofill) {
             var t = $(tofill);
             var draggable=$('<span class="draggable ori">'+t.html()+'</span> ').draggable({
                 revert: "invalid",
@@ -93,54 +98,25 @@ var rpngapsimplemodule = function() {
             });
             t.replaceWith(draggable);
             maxwidth=maxwidth<draggable.width()?draggable.width():maxwidth;
+            dragNum++;
         });
-        if(datas.validation){
-            if(datas.validation.bindmodrep=="true"){
-                alert('bindmodrep')
-                bindmodrepvar=datas.validation.bindmodrep;
-            }
-            if(datas.validation.thiselement && datas.validation.bindnomodnumarray>-1){
-                alert('thiselement+bindnomodnumarray')
-                var newelement=datas.validation.thiselement;
-                if(datas.validation.rndval){
-                    alert('thiselement+bindnomodnumarray+rndval')
-                    myrndval=rpnconsigne.alea(datas.validation.rndval);
-                }
-               $.each($(newelement, domelem), function(idx, tofill) {
-                   alert('thiselement+bindnomodnumarray+each'+state[datas.validation.bindnomodnumarray])
-                   var t = $(tofill);
-                   t.replaceWith($('<span class="text-nowrap">' + state[datas.validation.bindnomodnumarray] +'<input type="text" class="rpnm_input gapsimple form-control"></span>'));
-                   
-                    $($('.rpnm_input',domelem)[idx]).val(state[idx]);
-                });
-            }
-            else if(datas.validation.thiselement){
-                alert('thiselement')
-                var newelement=datas.validation.thiselement;
-                if(datas.validation.rndval){
-                    myrndval=rpnconsigne.alea(datas.validation.rndval);
-                }
-               $.each($(newelement, domelem), function(idx, tofill) {
-                   var t = $(tofill);
-                   t.replaceWith($('<span class="text-nowrap">' + myrndval[idx] +'<input type="text" class="rpnm_input gapsimple form-control"></span>'));
-                   
-                    $($('.rpnm_input',domelem)[idx]).val(state[idx]);
-                });
-            }
-            else if(datas.validation.bindnomodnumarray>-1){
-                alert('bindnomodnumarray')
-                bindnomodnumarrayvar=datas.validation.bindmodrep;
-            }
+        if (dragfromtext){
+            limitedChoice = dragNum == 2 ? true : false;
         }
+///////////////////////////////////////////////////////////////////////////////////////////
         
-        
+/////////////////////////////////////////////////////////////////////
         $.each($('b', domelem), function(idx, tofill) {
             var t = $(tofill);
             var txt = "";
             //var txt = _.isEmpty(t.text())?"":"<strong>(" + t.text() + ")</strong>";
             if(singledd){
-                var drop = $('<b class="gapsimpleddresponse" >').on('dragover', function(ev){
-                     ev.preventDefault();
+                console.log('singledd')
+                var drop = $('<b class="gapsimpleddresponse">').on('dragenter', function(ev){
+                    ev.stopPropagation(); 
+                    ev.preventDefault();
+                }).on('dragover', function(ev){
+                    ev.preventDefault();
                 }).on('drop', function(ev) {
                     ev.preventDefault();
                     var target = ev.target;
@@ -149,17 +125,37 @@ var rpngapsimplemodule = function() {
                     
                     if(ev.target.className == "singledraggable"){
                         target = $(target).parent();
-                        $("#div"+valPlaced).append($(targetPlaced));
+                        $("#div"+valPlaced, domelem).append($(targetPlaced));
                     }
                     var data = ev.originalEvent.dataTransfer.getData("text");
-                    $(target).append($("#"+data));
+                    $(target).append($("#"+data, domelem));
                 });
-                t.replaceWith(drop);
+                if(t.text().substr(-1)=="_"){
+					txt = t.text().slice(0,-1);
+                    var sp = $('<span class="text-nowrap">' + txt + '</span>');
+					t.replaceWith(sp);
+                    drop.appendTo(sp);
+				}else{
+                    t.replaceWith(drop);
+                }
+                
+                var alreadyGivenResponse = (_.isEmpty(state[idx]) ? '' : $('<span class="singledraggable" draggable="true" id="drag'+_.indexOf(datas.fillers, state[idx])+'" val="'+_.indexOf(datas.fillers, state[idx])+'" >'+state[idx]+'</span>'));
+                $(alreadyGivenResponse).on('dragstart', function (ev) {
+                    ev.originalEvent.dataTransfer.setData("text", ev.target.id);
+                });
+                drop.append(alreadyGivenResponse);
             }
             else if(dragdrop || dragfromtext){
                 //add a drop area
                 var drop=$('<b class="gapsimpleddresponse">');
-                t.replaceWith(drop);
+                if(t.text().substr(-1)=="_"){
+					txt = t.text().slice(0,-1);
+                    var sp = $('<span class="text-nowrap">' + txt + '</span>');
+					t.replaceWith(sp);
+                    drop.appendTo(sp);
+				}else{
+                    t.replaceWith(drop);
+                }
 
                 drop.droppable({
                     accept:'.draggable',
@@ -188,96 +184,158 @@ var rpngapsimplemodule = function() {
                         appendTo: domelem,
                         helper: "clone"
                     }));
+                    
                     answerArray[idx] = state[idx];
                 }
             }else{
                 var textAlign = (_.isUndefined(datas.validation)||_.isUndefined(datas.validation.align))?"":" " + datas.validation.align;
-				var textWidth = (_.isUndefined(datas.validation)||_.isUndefined(datas.validation.width))?"":" style='width:" + datas.validation.width + "'";
-				if(t.text().substr(-1)!="_"){
-					txt = _.isEmpty(t.text())?"":"<strong>(" + t.text() + ")</strong>";
-					t.replaceWith($('<span class="text-nowrap"><input type="text" class="rpnm_input gapsimple form-control' + textAlign + '"' + textWidth + '>' + txt + '</span>'));
+                var textWidth = (_.isUndefined(datas.validation)||_.isUndefined(datas.validation.width))?"":" style='width:" + datas.validation.width + "'";
+                if(t.text().substr(-1)!="_"){
+                    txt = _.isEmpty(t.text())?"":"<strong>(" + t.text() + ")</strong>";
+                    t.replaceWith($('<span class="text-nowrap"><input type="text" class="rpnm_input gapsimple form-control' + textAlign + '"' + textWidth + '>' + txt + '</span>'));
                 }else{
-					txt = t.text().slice(0,-1);
-					t.replaceWith($('<span class="text-nowrap">' + txt +'<input type="text" class="rpnm_input gapsimple form-control' + textAlign + '"' + textWidth + '></span>'));
-				}
+                    txt = t.text().slice(0,-1);
+                    t.replaceWith($('<span class="text-nowrap">' + txt +'<input type="text" class="rpnm_input gapsimple form-control' + textAlign + '"' + textWidth + '></span>'));
+                }
                 $($('.rpnm_input',domelem)[idx]).val(state[idx]);
             }
         });
+        
+
+        $.each($('mphantom', domelem), function(idx, tofill) {
+           var t = $(tofill);
+            t.replaceWith($("<semantics ng-app='test' ng-controller='MainCtrl'><annotation-xml encoding='application/xhtml+xml'><input xmlns='http://www.w3.org/1999/xhtml' class='rpnm_input gapsimple form-control' style='text-align:center' type='text' size='2' name='n"+idx+"'ng-app='test"+idx+"' ng-controller='MainCtrl'  ng-model='equation' math-jax-bind='equation'/></input></annotation-xml></semantics>"));
+            $($('.rpnm_input',domelem)[idx]).val(state[idx]);
+        });
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
         bindUiEvents();
     };
 
     var bindUiEvents = function() {
         //Input validation
+        _.each($('.rpnm_input',domelem),function(elem,idx){
+            $('.rpnm_input',domelem).bind('input propertychange', function(){
+              alert('inputs'+elem.name);
+            });
+            
+            
+        });
         rpnsequence.addvalidation($('.rpnm_input',domelem),datas.validation);
     };
     
     
     var validate = function(){
+        console.log('validate')
+        responsesArray = new Array();
         if(dragdrop || dragfromtext){
             _.each($('.gapsimpleddresponse',domelem),function(elem,idx){
                 if(dragimage){
                     state[idx] = !_.isUndefined($('.draggable',$(elem)).html()) ? ($('.draggable',$(elem)).html().length==0?'':answerArray[idx]):'';
+                }else if(datas.singledd){
+                    state[idx] = $('.singledraggable',$(elem)).html();
                 }else{
                     state[idx] = $('.draggable',$(elem)).html();
                 }
+                responsesArray[idx] = elem;
+                console.log('1 responsesArray[idx]'+responsesArray.length)
             });
         }else{
+            var namearray=new Array();
+            var compteur=0;
             $.each($('.gapsimple',domelem), function(idx, gap) {
-                if(isNaN($(gap).val().trim().split("'").join(""))==false){
-                    state[idx] = $(gap).val().trim().split("'").join("");
+                if(datas.mathjaxinput){
+                    var exist=false;
+                   
+                        for (i=0;i<=idx;i++){
+                            if(namearray[i] && gap.name && namearray[i] == gap.name){
+                                exist=true;
+                            }
+                            
+                        }
+                        if(exist==false && gap.name){
+                            namearray.push(gap.name);
+                            responsesArray[compteur] = gap;
+                            state[compteur] = $(gap).val().trim();
+                            compteur+=1;
+                        }else if(!gap.name){
+                            if(isNaN($(gap).val().trim().split("'").join(""))==false){
+                                state[compteur] = $(gap).val().trim().split("'").join(""); 
+                                responsesArray[compteur] = gap;
+                                compteur+=1;
+                            }else{
+                                state[compteur] = $(gap).val().trim();
+                                responsesArray[compteur] = gap;
+                                compteur+=1;
+                            }
+                        }
+                    
                 }else{
-                   state[idx] = $(gap).val().trim(); 
+                    if(isNaN($(gap).val().trim().split("'").join(""))==false){
+                        state[idx] = $(gap).val().trim().split("'").join(""); 
+                        responsesArray[idx] = gap;
+                    }else{
+                        state[idx] = $(gap).val().trim();
+                        responsesArray[idx] = gap;
+                    }  
                 }
             });
         }
         return state;
     };
-     
+    
    var score = function(sol) {
-       
         var score = 0;
+        successArray = new Array();
+        var solution;
+       
         _.each(sol, function(val, idx) {
+            var scoreIni = score;
+            
             if(val.alternative){
-                var alternativelength=val.alternative.length;
-                for (var al=0;al<alternativelength;al++){
-                   if(val.alternative[al].indexOf('<script>')>-1){
-                        var myval=val.alternative[al].substring(8);
-                        myval=myval.substring(0,myval.length-9);
-                        if (eval(myval)==state[idx]){
-                            score++; 
-                        } 
-                    }
-                    else if(val.alternative[al]==state[idx]){
-                        score ++;
-                    }
-                }
-                
-            }
-         /*   else if(sol[idx].indexOf('<script>')>-1){
+                score += (_.contains(val.alternative,state[idx] ) ? 1 : 0);
+                solution = val.alternative[0];
+            }else if(sol[idx].indexOf('<script>')>-1){
                 var myval=sol[idx].substring(8);
                 myval=myval.substring(0,myval.length-9);
-                if (eval(myval)!='' && eval(myval)==state[idx]){
-                    score++; 
+                if (eval(myval)==state[idx]){
+                    score++;
                 }
-            }*/
-            else if(sol[idx].indexOf('rndval')>-1){
-                score=rpnanalyse.fouroperation(myrndval,state,sol, idx, score);
-            }else if(bindmodrepvar){
-                rpnsequence.log('score'+score);
-                score=rpnanalyse.numbermodrep(state,sol, idx, score);
             }else{
-                score += (val != "" && state[idx] == val) ? 1 : 0;
-                score -= (val == "" && state[idx] != val) ? 1 : 0;
+                score += (state[idx] == val) ? 1 : 0;
+                solution = val;
+            }
+            successArray[idx] = new Array();
+            if (score > scoreIni || state[idx] == val){
+                successArray[idx] = ["ok",solution];
+            }else{
+                successArray[idx] = [state[idx],solution];
             }
         });
-        score = score >= 0 ? score : 0;
+       console.log('score'+score)
         return score;
+    };
+    var pointmax = function(sol){
+        var pointmax = sol.length;
+        return pointmax;
+    };
+    var successState = function(){
+        return successArray;
+    };
+    var responsesState = function(){
+        return responsesArray;
+    };
+    var limitedChoiceState = function(){
+        return limitedChoice;
     };
     
     return {
         init: init,
         validate: validate,
-        score: score
+        score: score,
+        pointmax: pointmax,
+        successState: successState,
+        responsesState: responsesState,
+        limitedChoiceState: limitedChoiceState
     };
 
 };

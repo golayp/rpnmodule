@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<activite>
+  <exercice>
+    <type>lineaire</type>
+    <donnee>Quel temps mettra un voilier pour parcourir un tour du monde de 33000 milles (~49500km) s'il parcourt 400 milles en 1 jour?</donnee>
+    <entree>Temps</entree>
+    <entreeGraph>Temps écoulé</entreeGraph>
+    <entreeMotCle>temps</entreeMotCle>
+    <entreeValeur>82.5</entreeValeur>
+    <entreeUnite>jours</entreeUnite>
+    <sortie>Distance</sortie>
+    <sortieGraph>Distance</sortieGraph>
+    <sortieMotCle>33000 milles</sortieMotCle>
+    <sortieValeur>33000</sortieValeur>
+    <sortieUnite>milles</sortieUnite>
+    <coefficient>400 milles en 1 jour?</coefficient>
+    <coefficientGraph>400</coefficientGraph>
+    <coefficientMotCle>400 milles en 1 jour</coefficientMotCle>
+    <coeficientValeur>400</coeficientValeur>
+    <coefficientUnite/>
+    <ordonneeOrigine/>
+    <ordonneeOrigineGraph/>
+    <ordonneeOrigineMotCle/>
+    <ordonneeOrigineValeur/>
+    <OrdonneeOrigineunite/>
+    <entree2>1</entree2>
+    <entree3>2</entree3>
+    <entree4>4</entree4>
+    <entreeSolutionTxt>La distance</entreeSolutionTxt>
+    <sortieSolutionTxt>Le temps</sortieSolutionTxt>
+    <coefficientSolutionTxt>400</coefficientSolutionTxt>
+    <ordonneeOrigineSolutionTxt/>
+    <graphx>15</graphx>
+    <graphy>30</graphy>
+    <analyse0>Bravo.
+Observe la MachineFois. En fait on divise par 400 pour retrouver l'entrée.</analyse0>
+    <analyse1>Essaie de trouver les mots clés correspondant à "la machineFois"
+ Là où il y a une unité composée,
+    (Par exemple: km par jour ou une expression synonyme)</analyse1>
+    <analyse2>Une partie de l'unité de la machine  multiplicative peut t'aider à trouver la sortie.</analyse2>
+    <analyse3>"La machineFois" contient une unité composée cela peut-être une machine qui divise.</analyse3>
+    <analyse4>L'entrée se trouve dans la question</analyse4>
+    <analyse5>La sortie, c'est le temps pour faire le tour du monde?</analyse5>
+    <analyse6>De "400 milles par jour" tu devrais trouver ce que sont l'entrée et la sortie</analyse6>
+    <analyse7>Pour l'instant tu n'as rien trouvé.
+    Essaie de repérer les éléments qui ont des unités.</analyse7>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11/>
+    <analyse12/>
+    <analyse13/>
+    <analyse14/>
+    <analyse15/>
+  </exercice>
+  <exercice>
+    <type>lineaire</type>
+    <donnee>Quel sera le prix à payer pour un pantalon à 120.- si on l'achète un jour où le magasin fait 10% de rabais sur toute la marchandise?</donnee>
+    <entree>Prix de départ du pantalon</entree>
+    <entreeGraph>Prix de départ du pantalon</entreeGraph>
+    <entreeMotCle>pantalon à 120.-</entreeMotCle>
+    <entreeValeur>120</entreeValeur>
+    <entreeUnite/>
+    <sortie>le prix à payer</sortie>
+    <sortieGraph>Prix à payer</sortieGraph>
+    <sortieMotCle>prix à payer</sortieMotCle>
+    <sortieValeur>108</sortieValeur>
+    <sortieUnite>francs</sortieUnite>
+    <coefficient>10% de rabais</coefficient>
+    <coefficientGraph>0.9</coefficientGraph>
+    <coefficientMotCle>10% de rabais</coefficientMotCle>
+    <coeficientValeur>0.9</coeficientValeur>
+    <coefficientUnite/>
+    <ordonneeOrigine/>
+    <ordonneeOrigineGraph/>
+    <ordonneeOrigineMotCle/>
+    <ordonneeOrigineValeur/>
+    <OrdonneeOrigineunite/>
+    <entree2>1</entree2>
+    <entree3>2</entree3>
+    <entree4>4</entree4>
+    <entreeSolutionTxt>Le prix de départ</entreeSolutionTxt>
+    <sortieSolutionTxt>Le prix à payer</sortieSolutionTxt>
+    <coefficientSolutionTxt/>
+    <ordonneeOrigineSolutionTxt/>
+    <graphx>15</graphx>
+    <graphy>30</graphy>
+    <analyse0>Bravo.
+10% de rabais correspond à un reste à payer de 90%(=0,9).</analyse0>
+    <analyse1>Essaie de trouver le mot clé correspondant à "la machineFois"
+    une valeur qui a à voir avec le prix...</analyse1>
+    <analyse2>Qu'obtient-on si on multiplie le prix du pantalon par 90% ?</analyse2>
+    <analyse3>"La machineFois" contient une valeur en rapport avec le prix et la sortie se trouve souvent dans la question. (Quel sera le prix... )</analyse3>
+    <analyse4>Pour trouver l'entrée, il faut se demander qu'est-ce qu'il faut multiplier par "100%-10%=90%" pour obtenir le prix à payer.</analyse4>
+    <analyse5>Quel calcul ferais-tu pour trouver le prix à payer pour le pantalon?</analyse5>
+    <analyse6>Que doit-on faire avec 10%?
+ Il faut savoir que 100%-10%=90%.
+ En méditant sur cette soustraction et en répondant à cette question, tu devrais trouver ce que sont l'entrée et la sortie</analyse6>
+    <analyse7>Pour l'instant tu n'as rien trouvé.
+    Essaie de repérer les éléments qui ont des unités.</analyse7>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11/>
+    <analyse12/>
+    <analyse13/>
+    <analyse14/>
+    <analyse15/>
+  </exercice>
+  <exercice>
+    <type>lineaire</type>
+    <donnee>Chaque heure, une pendule avance de 1min et 30 s. Quelle sera son avance après un jour?</donnee>
+    <entree>La durée</entree>
+    <entreeGraph>Durée</entreeGraph>
+    <entreeMotCle>un jour</entreeMotCle>
+    <entreeValeur>24</entreeValeur>
+    <entreeUnite/>
+    <sortie>Son avance</sortie>
+    <sortieGraph>Avance</sortieGraph>
+    <sortieMotCle>son avance</sortieMotCle>
+    <sortieValeur>36</sortieValeur>
+    <sortieUnite>min</sortieUnite>
+    <coefficient>1min et 30 s</coefficient>
+    <coefficientGraph>1,5</coefficientGraph>
+    <coefficientMotCle>Chaque heure, une pendule avance de 1min et 30 s</coefficientMotCle>
+    <coeficientValeur>1.5</coeficientValeur>
+    <coefficientUnite/>
+    <ordonneeOrigine/>
+    <ordonneeOrigineGraph/>
+    <ordonneeOrigineMotCle/>
+    <ordonneeOrigineValeur/>
+    <OrdonneeOrigineunite/>
+    <entree2>1</entree2>
+    <entree3>2</entree3>
+    <entree4>4</entree4>
+    <entreeSolutionTxt>Nombre d'heures</entreeSolutionTxt>
+    <sortieSolutionTxt>d'avance</sortieSolutionTxt>
+    <coefficientSolutionTxt/>
+    <ordonneeOrigineSolutionTxt/>
+    <graphx>15</graphx>
+    <graphy>30</graphy>
+    <analyse0>Bravo.
+1min 30s = 1,5min</analyse0>
+    <analyse1>Essaie de trouver le mot clé correspondant à "la machineFois"
+    Là où il y a une unité composée,
+    (Par exemple: min par h ou une expression synonyme)</analyse1>
+    <analyse2>Une partie de l'unité de la machine  multiplicative peut t'aider à trouver la sortie.</analyse2>
+    <analyse3> "La machineFois" contient une unité composée et la sortie se trouve souvent dans la question. (Quel sera... )</analyse3>
+    <analyse4>Pour trouver l'entrée, il faut se demander qu'est-ce qu'il faut multiplier par"1,5min par heure" pour obtenir l'avance.</analyse4>
+    <analyse5>Quel calcul ferais-tu pour trouver l'avance de la pendule?
+ Atention aux unités!</analyse5>
+    <analyse6>De "chaque heure ... 1 min et 30s = 1,5min " tu devrais trouver ce que sont l'entrée et la sortie</analyse6>
+    <analyse7>Pour l'instant tu n'as rien trouvé.
+    Essaie de repérer les éléments qui ont des unités.</analyse7>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11/>
+    <analyse12/>
+    <analyse13/>
+    <analyse14/>
+    <analyse15/>
+  </exercice>
+  <exercice>
+    <type>lineaire</type>
+    <donnee>Quelle sera la longueur réelle d'une maison si sur un plan au 1:100, elle mesure 22cm?</donnee>
+    <entree>Mesure sur le plan</entree>
+    <entreeGraph>Mesure sur le plan [cm]</entreeGraph>
+    <entreeMotCle>22cm</entreeMotCle>
+    <entreeValeur>22</entreeValeur>
+    <entreeUnite/>
+    <sortie>La longueur réelle</sortie>
+    <sortieGraph>Longueur réelle</sortieGraph>
+    <sortieMotCle>longueur réelle</sortieMotCle>
+    <sortieValeur>2200</sortieValeur>
+    <sortieUnite>cm</sortieUnite>
+    <coefficient>100</coefficient>
+    <coefficientGraph>10</coefficientGraph>
+    <coefficientMotCle>1:100</coefficientMotCle>
+    <coeficientValeur>100</coeficientValeur>
+    <coefficientUnite/>
+    <ordonneeOrigine/>
+    <ordonneeOrigineGraph/>
+    <ordonneeOrigineMotCle/>
+    <ordonneeOrigineValeur/>
+    <OrdonneeOrigineunite/>
+    <entree2>1</entree2>
+    <entree3>2</entree3>
+    <entree4>4</entree4>
+    <entreeSolutionTxt>cm</entreeSolutionTxt>
+    <sortieSolutionTxt>cm</sortieSolutionTxt>
+    <coefficientSolutionTxt/>
+    <ordonneeOrigineSolutionTxt/>
+    <graphx>15</graphx>
+    <graphy>30</graphy>
+    <analyse0>Bravo.
+2200cm =&gt;22m</analyse0>
+    <analyse1>Essaie de trouver le mot clé correspondant à "la machineFois"
+    Là où il y a une opération</analyse1>
+    <analyse2>Une partie de l'unité de la machine  multiplicative peut t'aider à trouver la sortie.</analyse2>
+    <analyse3>"La machineFois" contient une opération et la sortie se trouve souvent dans la question. (Quel sera la... )</analyse3>
+    <analyse4>Pour trouver l'entrée, il faut se demander qu'est-ce qu'il faut multiplier par "100" pour obtenir la longueur réelle.</analyse4>
+    <analyse5>Quel calcul ferais-tu pour trouver la longueur réelle?</analyse5>
+    <analyse6>Le "1:100" sans unité signifie que l'entrée et la sortie ont la même unité.</analyse6>
+    <analyse7>Pour l'instant tu n'as rien trouvé.
+    Essaie de repérer les éléments qui ont des unités.</analyse7>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11/>
+    <analyse12/>
+    <analyse13/>
+    <analyse14/>
+    <analyse15/>
+  </exercice>
+  <exercice>
+    <type>lineaire</type>
+    <donnee>Quelle serait la masse d'un cube en fer de 4 m d'arête? la masse volumique du fer est de 8000 kg par m^3.</donnee>
+    <entree>Volume d'un cube</entree>
+    <entreeGraph>Volume d'un cube</entreeGraph>
+    <entreeMotCle>cube en fer de 4 m d'arête</entreeMotCle>
+    <entreeValeur>64</entreeValeur>
+    <entreeUnite/>
+    <sortie>la masse</sortie>
+    <sortieGraph>Masse</sortieGraph>
+    <sortieMotCle>la masse</sortieMotCle>
+    <sortieValeur>512000</sortieValeur>
+    <sortieUnite>m^3</sortieUnite>
+    <coefficient>8000 kg par m^3</coefficient>
+    <coefficientGraph>8000</coefficientGraph>
+    <coefficientMotCle>8000 kg par m^3</coefficientMotCle>
+    <coeficientValeur>8000</coeficientValeur>
+    <coefficientUnite/>
+    <ordonneeOrigine/>
+    <ordonneeOrigineGraph/>
+    <ordonneeOrigineMotCle/>
+    <ordonneeOrigineValeur/>
+    <OrdonneeOrigineunite/>
+    <entree2>1</entree2>
+    <entree3>2</entree3>
+    <entree4>4</entree4>
+    <entreeSolutionTxt>m^3</entreeSolutionTxt>
+    <sortieSolutionTxt>la masse du cube</sortieSolutionTxt>
+    <coefficientSolutionTxt/>
+    <ordonneeOrigineSolutionTxt/>
+    <graphx>1500</graphx>
+    <graphy>3000</graphy>
+    <analyse0>Bravo.
+4md'arête corrspond à un volume de 64m^3</analyse0>
+    <analyse1>Essaie de trouver le mot clé correspondant à "la machineFois"
+    Là où il y a une unité composée,
+    (Par exemple: le nombre de kg par m^3 ou une expression synonyme)</analyse1>
+    <analyse2>Une partie de l'unité de la machineFois peut t'aider à trouver la sortie.</analyse2>
+    <analyse3>"La machineFois" contient une unité composée et la sortie se trouve souvent dans la question. (Quel sera la masse... )</analyse3>
+    <analyse4>Pour trouver l'entrée, il faut se demander qu'est-ce qu'il faut multiplier par "8000 kg par m^3" pour obtenir la masse du cube.</analyse4>
+    <analyse5>Quel calcul ferais-tu pour trouver la masse, si on sait que le volume en m^3 vaut 64m^3?</analyse5>
+    <analyse6>De "8000kg par m^3" tu devrais trouver ce que sont l'entrée et la sortie .</analyse6>
+    <analyse7>Pour l'instant tu n'as rien trouvé.
+    Essaie de repérer les éléments qui ont des unités.</analyse7>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11/>
+    <analyse12/>
+    <analyse13/>
+    <analyse14/>
+    <analyse15/>
+  </exercice>
+  <exercice>
+    <type>lineaire</type>
+    <donnee>En vélo, après dix tours de pédale, on a effectué 30m. Quelle distance a-t-on effectué après 250 tours de pédale?</donnee>
+    <entree>Nombre de tours de pédale</entree>
+    <entreeGraph>Nombre de tours de pédale</entreeGraph>
+    <entreeMotCle>250 tours de pédale</entreeMotCle>
+    <entreeValeur>250</entreeValeur>
+    <entreeUnite/>
+    <sortie>la distance</sortie>
+    <sortieGraph>Distance parcourue</sortieGraph>
+    <sortieMotCle>distance</sortieMotCle>
+    <sortieValeur>7500</sortieValeur>
+    <sortieUnite>m</sortieUnite>
+    <coefficient>dix tours de pédale, on a effectué 30m</coefficient>
+    <coefficientGraph>10/30</coefficientGraph>
+    <coefficientMotCle>dix tours de pédale, on a effectué 30m</coefficientMotCle>
+    <coeficientValeur>3</coeficientValeur>
+    <coefficientUnite/>
+    <ordonneeOrigine/>
+    <ordonneeOrigineGraph/>
+    <ordonneeOrigineMotCle/>
+    <ordonneeOrigineValeur/>
+    <OrdonneeOrigineunite/>
+    <entree2>1</entree2>
+    <entree3>2</entree3>
+    <entree4>4</entree4>
+    <entreeSolutionTxt>tours de pédale</entreeSolutionTxt>
+    <sortieSolutionTxt>Distance parcourue</sortieSolutionTxt>
+    <coefficientSolutionTxt/>
+    <ordonneeOrigineSolutionTxt/>
+    <graphx>15</graphx>
+    <graphy>30</graphy>
+    <analyse0>Bravo.
+30m pour 10 tours de pédale correspond à 3m pour 1 tour.</analyse0>
+    <analyse1>Essaie de trouver le mot clé correspondant à "la machineFois"
+    Là où il y a une unité composée.</analyse1>
+    <analyse2>Une partie de l'unité de la machine  multiplicative peut t'aider à trouver la sortie.</analyse2>
+    <analyse3>"La machineFois" contient une unité composée et la sortie se trouve souvent dans la question. (Quelle sera ... )</analyse3>
+    <analyse4>Pour trouver l'entrée, il faut se demander qu'est-ce qu'il faut multiplier par "30/10" pour obtenir la distance parcourue.</analyse4>
+    <analyse5>Quel calcul ferais-tu pour trouver cette distance?</analyse5>
+    <analyse6>De "dix tours de pédale, on a effectué 30m" tu devrais trouver ce que sont l'entrée et la sortie</analyse6>
+    <analyse7>Pour l'instant tu n'as rien trouvé.
+    Essaie de repérer les éléments qui ont des unités.</analyse7>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11/>
+    <analyse12/>
+    <analyse13/>
+    <analyse14/>
+    <analyse15/>
+  </exercice>
+  <exercice>
+    <type>lineaire</type>
+    <donnee>Quel sera le nombre de respirations qu'effectue une personne en 60 minutes sachant qu'elle respire toutes les 4 s?
+ Attention aux unités!</donnee>
+    <entree>Nombre de minutes</entree>
+    <entreeGraph>Nombre de minutes</entreeGraph>
+    <entreeMotCle>60 minutes</entreeMotCle>
+    <entreeValeur>60</entreeValeur>
+    <entreeUnite/>
+    <sortie>le nombre de respirations</sortie>
+    <sortieGraph>Nombre de respirations</sortieGraph>
+    <sortieMotCle>nombre de respirations</sortieMotCle>
+    <sortieValeur>900</sortieValeur>
+    <sortieUnite>respirations</sortieUnite>
+    <coefficient> 15 respirations par minute</coefficient>
+    <coefficientGraph>15</coefficientGraph>
+    <coefficientMotCle>respire toutes les 4 s</coefficientMotCle>
+    <coeficientValeur>15</coeficientValeur>
+    <coefficientUnite/>
+    <ordonneeOrigine/>
+    <ordonneeOrigineGraph/>
+    <ordonneeOrigineMotCle/>
+    <ordonneeOrigineValeur/>
+    <OrdonneeOrigineunite/>
+    <entree2>1</entree2>
+    <entree3>2</entree3>
+    <entree4>4</entree4>
+    <entreeSolutionTxt>respirations</entreeSolutionTxt>
+    <sortieSolutionTxt>le nombre</sortieSolutionTxt>
+    <coefficientSolutionTxt/>
+    <ordonneeOrigineSolutionTxt/>
+    <graphx>15</graphx>
+    <graphy>30</graphy>
+    <analyse0>Bravo.
+ Si elle respire toutes les 4s, elle en fait 15 par min.</analyse0>
+    <analyse1>Essaie de trouver le mot clé correspondant à "la machineFois"
+    Là où il y a une unité composée,
+    (Par exemple: respiration par minutes ou une expression synonyme)</analyse1>
+    <analyse2>Une partie de l'unité de la machine  multiplicative peut t'aider à trouver la sortie.</analyse2>
+    <analyse3>"La machineFois" contient une unité composée et la sortie se trouve souvent dans la question. (Quel sera le nombre de... )</analyse3>
+    <analyse4>Pour trouver l'entrée, il faut se demander qu'est-ce qu'il faut multiplier par "toutes les 4s =&gt; 15 fois par minute" pour obtenir le nombre de respirations.</analyse4>
+    <analyse5>Quel calcul ferais-tu pour trouver ce nombre de respirations?</analyse5>
+    <analyse6>De "toutes les 4s = 15 fois par minute" tu devrais trouver ce que sont l'entrée et la sortie</analyse6>
+    <analyse7>Pour l'instant tu n'as rien trouvé.
+    Essaie de repérer les éléments qui ont des unités.</analyse7>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11/>
+    <analyse12/>
+    <analyse13/>
+    <analyse14/>
+    <analyse15/>
+  </exercice>
+  <exercice>
+    <type/>
+    <donnee/>
+    <entree/>
+    <entreeGraph/>
+    <entreeMotCle/>
+    <entreeValeur/>
+    <entreeUnite/>
+    <sortie/>
+    <sortieGraph/>
+    <sortieMotCle/>
+    <sortieValeur/>
+    <sortieUnite/>
+    <coefficient/>
+    <coefficientGraph/>
+    <coefficientMotCle/>
+    <coeficientValeur/>
+    <coefficientUnite/>
+    <ordonneeOrigine/>
+    <ordonneeOrigineGraph/>
+    <ordonneeOrigineMotCle/>
+    <ordonneeOrigineValeur/>
+    <OrdonneeOrigineunite/>
+    <entree2/>
+    <entree3/>
+    <entree4/>
+    <entreeSolutionTxt/>
+    <sortieSolutionTxt/>
+    <coefficientSolutionTxt/>
+    <ordonneeOrigineSolutionTxt/>
+    <graphx/>
+    <graphy/>
+    <analyse0>Bravo, tu as bien reconnu les différents éléments\nRépond maintenant à la question.</analyse0>
+    <analyse1>L'entrée et la sortie sont correctes.\nEssaie de trouver le mot clé de la machine\n(Là où il y a une unité composée, \noù on pourrait mettre le mot \"par\":\n  hauteur par cube, \ng par cm3\nfrancs par kg \n...)</analyse1>
+    <analyse2>L'entrée et la machine multiplicative sont juste.\nUne partie de l'unité de la machine  multiplicative peut T'aider à trouver la sortie.</analyse2>
+    <analyse3>Seule l'entrée est exacte.\nLa machine \"fois\" contient une unité composée et la sortie se trouve souvent dans la question.</analyse3>
+    <analyse4>Pour trouver l'entrée, il faut se demander qu'est-ce qu'il faut multiplier pour obtenir la réponse à la question.</analyse4>
+    <analyse5>La sortie est juste. Quel calcul ferais-tu pour la trouver?</analyse5>
+    <analyse6>L'unité de la machineX contient l'unité de l'entrée et de la sortie.</analyse6>
+    <analyse7>\nEssaie de repérer les éléments qui ont des unités.\nPar exemple dans la question.</analyse7>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11/>
+    <analyse12/>
+    <analyse13/>
+    <analyse14/>
+    <analyse15/>
+  </exercice></activite>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

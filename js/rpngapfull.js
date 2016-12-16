@@ -50,11 +50,17 @@ var rpngapfullmodule = function() {
         //Try to trim and do automatic corrections here.
         return state == sol ? 1 : 0;
     };
+    var pointmax = function(sol){
+        var pointmax = 1;
+
+        return pointmax;
+    };
     
     return {
         init: init,
         validate: validate,
-        score:score
+        score: score,
+        pointmax: pointmax
     };
 
 };

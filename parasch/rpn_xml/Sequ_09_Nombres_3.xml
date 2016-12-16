@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<exercice>
+	<sequence>10e année : Séquence 1 Nombres 5
+		<titre> 5. Additions et soustractions de 3 entiers relatifs (déplacements sur un axe). 
+			
+			<module>
+				<id>module1</id>
+				<donnee1>Oriente correctement le bonhomme et déplace-le afin d'illustrer le calcul. Inscris ensuite le résultat.</donnee1>
+				<donnee2>2 essais maximum (avec aide)</donnee2>
+				<ressource>../nombres/Sequ_09_Nombres_3_1.swf</ressource>
+				<validemax>2</validemax>
+				<sortiejuste>module2</sortiejuste>
+				<sortieFausse>module2</sortieFausse>
+				<aide>../nombres/Sequ_09_Nombres_Regles_1.swf</aide>
+				<indice></indice>
+				<aideDemarrage>oui</aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+				<tailleX>4500</tailleX>
+				<tailleY>330</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module2</id>
+				<donnee1>Oriente correctement le bonhomme et déplace-le afin d'illustrer le calcul. Inscris ensuite le résultat.</donnee1>
+				<donnee2>3 essais maximum.</donnee2>
+				<ressource>../nombres/Sequ_09_Nombres_3_2.swf</ressource>
+				<validemax>3</validemax>
+				<sortiejuste>module3</sortiejuste>
+				<sortieFausse>module3</sortieFausse>
+				<aide>../nombres/Sequ_09_Nombres_Regles_2.swf</aide>
+				<indice></indice>
+				<aideDemarrage>oui</aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+				<tailleX>4500</tailleX>
+				<tailleY>330</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module3</id>
+				<donnee1>Oriente correctement le bonhomme et déplace-le afin d'illustrer le calcul. Inscris ensuite le résultat.</donnee1>
+				<donnee2>3 essais maximum.</donnee2>
+				<ressource>../nombres/Sequ_09_Nombres_3_3.swf</ressource>
+				<validemax>3</validemax>
+				<sortiejuste>module4</sortiejuste>
+				<sortieFausse>module4</sortieFausse>
+				<aide>../nombres/Sequ_09_Nombres_Regles_1.swf</aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+				<tailleX>4500</tailleX>
+				<tailleY>330</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module4</id>
+				<donnee1>Oriente correctement le bonhomme et déplace-le afin d'illustrer le calcul. Inscris ensuite le résultat.</donnee1>
+				<donnee2>3 essais maximum.</donnee2>
+				<ressource>../nombres/Sequ_09_Nombres_3_4.swf</ressource>
+				<validemax>3</validemax>
+				<sortiejuste>module5</sortiejuste>
+				<sortieFausse>module5</sortieFausse>
+				<aide>../nombres/Sequ_09_Nombres_Regles_1.swf</aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+				<tailleX>4500</tailleX>
+				<tailleY>330</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module5</id>
+				<donnee1>Oriente correctement le bonhomme et déplace-le afin d'illustrer le calcul. Inscris ensuite le résultat.</donnee1>
+				<donnee2>2 essais maximum.</donnee2>
+				<ressource>../nombres/Sequ_09_Nombres_3_5.swf</ressource>
+				<validemax>2</validemax>
+				<sortiejuste>module6</sortiejuste>
+				<sortieFausse>module6</sortieFausse>
+				<aide>../nombres/Sequ_09_Nombres_Regles_1.swf</aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+				<tailleX>4500</tailleX>
+				<tailleY>330</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module6</id>
+				<donnee1>Oriente correctement le bonhomme et déplace-le afin d'illustrer le calcul. Inscris ensuite le résultat.</donnee1>
+				<donnee2>2 essais maximum.</donnee2>
+				<ressource>../nombres/Sequ_09_Nombres_3_6.swf</ressource>
+				<validemax>2</validemax>
+				<sortiejuste>module7</sortiejuste>
+				<sortieFausse>module7</sortieFausse>
+				<aide>../nombres/Sequ_09_Nombres_Regles_1.swf</aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+				<tailleX>4500</tailleX>
+				<tailleY>330</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module7</id>
+				<donnee1>Oriente correctement le bonhomme et déplace-le afin d'illustrer le calcul. Inscris ensuite le résultat.</donnee1>
+				<donnee2>1 essai maximum.</donnee2>
+				<ressource>../nombres/Sequ_09_Nombres_3_7.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>module8</sortiejuste>
+				<sortieFausse>module8</sortieFausse>
+				<aide>../nombres/Sequ_09_Nombres_Regles_1.swf</aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+				<tailleX>4500</tailleX>
+				<tailleY>330</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+			<module>
+				<id>module8</id>
+				<donnee1>Oriente correctement le bonhomme et déplace-le afin d'illustrer le calcul. Inscris ensuite le résultat.</donnee1>
+				<donnee2>1 essai maximum.</donnee2>
+				<ressource>../nombres/Sequ_09_Nombres_3_8.swf</ressource>
+				<validemax>1</validemax>
+				<sortiejuste>../nombres/9_sequNb_6.html</sortiejuste>
+				<sortieFausse>../nombres/9_sequNb_4.html</sortieFausse>
+				<aide>../nombres/Sequ_09_Nombres_Regles_1.swf</aide>
+				<indice></indice>
+				<aideDemarrage>non</aideDemarrage>
+				<indiceDemarrage></indiceDemarrage>
+				<tailleX>4500</tailleX>
+				<tailleY>330</tailleY>
+				<solutionBouton>oui</solutionBouton>
+			</module>
+		</titre>
+	</sequence>
+	
+</exercice>

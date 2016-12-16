@@ -1,0 +1,68 @@
+﻿<!docType html>
+<html>
+	<head>
+	
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width" />
+		<link href="../../../rpn_css/aideEval.css" rel="stylesheet" />
+		<link href="../../../rpn_css/math.css" rel="stylesheet" />
+		<link rel="shortcut icon" type="image/ico" href="../../../rpn_images/logo_iclasse2.ico" />
+		<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+		<script type="text/javascript" src="../../../rpn_javascript/json.js"></script>
+		<script type="text/javascript" src="../../../rpn_javascript/swfobject.js"></script>
+		<script type="text/javascript" src="../../../rpn_javascript/outilsListes.js"></script>
+		<script type="text/javascript" src="../../../rpn_javascript/attentionExit.js"></script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+		
+		<title>labyrintheFaire</title>
+		<meta name="keywords" content="lineaire, fonction, math, 10ème année, 10ème année, 11e année, 11ème année" />
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<!-- on charge un fichier js externe qui est une fonction swfobject.js externe qui sert Ã Â  charger notre swf et qu'on tÃ©lÃ©charge sur le net>
+		<script type="text/javascript" src="swfobject.js"></script>
+		<script type="text/javascript" src="json.js"></script-->
+		<script type="text/javascript">
+			var nomEx=document.getElementsByTagName('title')[0].firstChild.nodeValue;
+			var nomSWF=nomEx+'.swf';
+			var nomXML='../../../rpn_xml/'+nomEx+'.xml';
+		</script>
+		<link rel="shortcut icon" type="image/ico" href="../../../rpn_images/logo_iclasse2.ico" />
+        
+	</head>
+	<body>
+		<div id="general" class="global">
+			<header>
+				<span></span>
+				<h1></h1>
+			</header>
+				
+			<section>
+				<h2></h2>
+				<h3></h3>
+				<h4></h4>
+				<article id="contenuFlash" class="swf">
+					<p>Cette page requiert Flash Player version 10.0.0 ou ultérieure.</p>
+					<a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a>
+				</article>
+			</section>
+			<footer>
+				<span></span>
+			</footer>
+		</div>
+		
+		<script type="text/javascript" src="../../../rpn_javascript/recuperationXML.js"></script>
+		<script type="text/javascript" src="../../../rpn_javascript/gestionSWF.js"></script>
+		<script type="text/javascript" src="../../../rpn_javascript/gestionModules.js"></script>
+		<script type="text/javascript" src="../../../rpn_javascript/entetePiedExe.js"></script>
+		<script type="text/javascript" src="../../../rpn_javascript/descriptionMathExe.js"></script>
+		<script type="text/javascript" src="../../../rpn_javascript/boutonsModules.js"></script>
+		<script type="text/javascript" src="../../../rpn_javascript/btnValider.js"></script>
+	
+
+		<script>
+			//********************* INITIALISATION CONTENU ******************************
+			recuperationXML(nomXML);
+		</script>
+
+	</body>
+</html> 

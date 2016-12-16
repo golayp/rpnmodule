@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<activite>
+  <exercice>
+    <type>equation</type>
+    <donnee>Si on place 7 boules blanches sur un plateau de balance, on doit équilibrer avec 630g sur l'autre plateau. Quelle est la masse d'une boule?</donnee>
+    <grandeurEgaliteVraie>une masse</grandeurEgaliteVraie>
+    <grandeurEgaliteFausse1>une boule</grandeurEgaliteFausse1>
+    <grandeurEgaliteFausse2>7 fois plus</grandeurEgaliteFausse2>
+    <grandeurEgaliteFausse3>un plateau</grandeurEgaliteFausse3>
+    <grandeurEgaliteFausse4>un nombre</grandeurEgaliteFausse4>
+    <gaucheMotCle>7 boules blanches</gaucheMotCle>
+    <gaucheValeur>7</gaucheValeur>
+    <gaucheUnite>g</gaucheUnite>
+    <droiteMotCle>630</droiteMotCle>
+    <droiteValeur>630</droiteValeur>
+    <droiteUnite>g</droiteUnite>
+    <egaliteMotCle>équilibrer</egaliteMotCle>
+    <egaliteValeur>=</egaliteValeur>
+    <inconnueMotCle>masse</inconnueMotCle>
+    <inconnueValeur>m</inconnueValeur>
+    <droiteSolutionTxt>630</droiteSolutionTxt>
+    <gaucheSolutionTxt>7m</gaucheSolutionTxt>
+    <analyse0_111>Tu as bien reconnu les différents éléments de l'équation.
+    Les éléments gauche et droite peuvent s'intervertirent.
+    </analyse0_111>
+    <analyse1_110>L'égalité et le membre de gauche sont correctes.
+    Pour le membre de droite, trouve ce qui se trouve de l'autre côté de "équilibrer".</analyse1_110>
+    <analyse2_101>L'égalité et le membre de droite sont correctes.
+    Pour le membre de gauche, trouve ce qui se trouve de l'autre côté de "équilibrer".</analyse2_101>
+    <analyse3_100>Seule l'égalité est correcte.
+    Les membres de gauche et de droite se trouvent de chaque côté de "équilibrer".</analyse3_100>
+    <analyse4_011>Les membres de gauche et de droite de l'équation sont justes.
+Il faut encore trouver le mot qui correspond à l'égalité.</analyse4_011>
+    <analyse5_010>Le membre de gauche est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+ (ça peut être un synonyme de "à l'équilibre")
+Puis le membre de droite.</analyse5_010>
+    <analyse6_001>Le membre de droite est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+ (ça peut être un synonyme de "à l'équilibre")
+Puis le membre de gauche. </analyse6_001>
+    <analyse7_000>Pour l'instant tu n'as rien trouvé.
+     Cherche quelque chose qui veut dire "égaler" ou "à l'équilibre".</analyse7_000>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11_comboBox_Question>Quel élément commun (grandeur, opération...) peux-tu mettre de chaque côté de l'égalité?</analyse11_comboBox_Question>
+    <analyse12_comboBoxF>630g pourrait-être une...</analyse12_comboBoxF>
+    <analyse13_comboBoxJ>630g est bien la masse des bouoles blanches.</analyse13_comboBoxJ>
+    <analyse14_inconnueF>Dans ce problème,
+    on trouve l'inconnue dans la question</analyse14_inconnueF>
+    <analyse15_inconnueJ>L'inconnue,
+    c'est bien une masse.
+    Ici, c'est aussi ce qu'on demande. </analyse15_inconnueJ>
+     <egaliteGa/>
+<egaliteDr/>
+<distracteurI1>yarien</distracteurI1>
+<distracteurI2>yarien</distracteurI2>
+<distracteurP3>yarien</distracteurP3>
+<distracteurP4>yarien</distracteurP4>
+<analyseDistracteurI1/>
+<analyseDistracteurI2/>
+<analyseDistracteurP3/>
+<analyseDistracteurP4/>
+<motCleEgaliteTerminaison> </motCleEgaliteTerminaison>
+  </exercice>
+  <exercice>
+    <type>equation</type>
+    <donnee>Si on porte une paire de skis avec des bâtons "super léger" à 200g, on porte 6kg.
+Quel est la masse des skis?</donnee>
+    <grandeurEgaliteVraie>une masse</grandeurEgaliteVraie>
+    <grandeurEgaliteFausse1>une différence</grandeurEgaliteFausse1>
+    <grandeurEgaliteFausse2>un nombre d'articles</grandeurEgaliteFausse2>
+    <grandeurEgaliteFausse3>des skis</grandeurEgaliteFausse3>
+    <grandeurEgaliteFausse4>un bâton</grandeurEgaliteFausse4>
+    <gaucheMotCle>paire de skis avec des bâtons "super léger" à 200g</gaucheMotCle>
+    <gaucheValeur>0.2</gaucheValeur>
+    <gaucheUnite>kg</gaucheUnite>
+    <droiteMotCle>6</droiteMotCle>
+    <droiteValeur>6</droiteValeur>
+    <droiteUnite>kg</droiteUnite>
+    <egaliteMotCle>porte</egaliteMotCle>
+    <egaliteValeur>=</egaliteValeur>
+    <inconnueMotCle>masse</inconnueMotCle>
+    <inconnueValeur>m</inconnueValeur>
+    <droiteSolutionTxt>6</droiteSolutionTxt>
+    <gaucheSolutionTxt>m+0,2</gaucheSolutionTxt>
+    <analyse0_111>Tu as bien reconnu les différents éléments de l'équation.
+    Les éléments gauche et droite peuvent s'intervertirent.
+    </analyse0_111>
+    <analyse1_110>L'égalité et le membre de gauche sont correctes.
+    Pour le membre de droite, trouve ce qui se trouve de l'autre côté de "on porte".</analyse1_110>
+    <analyse2_101>L'égalité et le membre de droite sont correctes.
+    Pour le membre de gauche, trouve ce qui se trouve de l'autre côté de "on porte".</analyse2_101>
+    <analyse3_100>Seule l'égalité est correcte.
+    Les membres de gauche et de droite se trouvent de chaque côté de "on porte".</analyse3_100>
+    <analyse4_011>Les membres de gauche et de droite de l'équation sont justes.
+Il faut encore trouver le mot qui correspond à l'égalité.</analyse4_011>
+    <analyse5_010>Le membre de gauche est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+ (ça peut être un synonyme de "ça pèse")
+Puis le membre de droite.</analyse5_010>
+    <analyse6_001>Le membre de droite est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+ (ça peut être un synonyme de "ça pèse")
+Puis le membre de gauche. </analyse6_001>
+    <analyse7_000>Pour l'instant tu n'as rien trouvé.
+     Cherche quelque chose qui veut dire "égal" ou "ça revient au même que...".</analyse7_000>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11_comboBox_Question>Quel élément commun (grandeur, opération...) peux-tu mettre de chaque côté de l'égalité?</analyse11_comboBox_Question>
+    <analyse12_comboBoxF>6kg. pourrait-être une...</analyse12_comboBoxF>
+    <analyse13_comboBoxJ>6kg  est bien la masse des skis et des bâtons.</analyse13_comboBoxJ>
+    <analyse14_inconnueF>Dans ce problème,
+    on trouve l'inconnue dans la question</analyse14_inconnueF>
+    <analyse15_inconnueJ>L'inconnue,
+    c'est bien une masse.
+    Ici, c'est aussi ce qu'on demande. </analyse15_inconnueJ>
+     <egaliteGa/>
+<egaliteDr/>
+<distracteurI1>yarien</distracteurI1>
+<distracteurI2>yarien</distracteurI2>
+<distracteurP3>yarien</distracteurP3>
+<distracteurP4>yarien</distracteurP4>
+<analyseDistracteurI1/>
+<analyseDistracteurI2/>
+<analyseDistracteurP3/>
+<analyseDistracteurP4/>
+<motCleEgaliteTerminaison> </motCleEgaliteTerminaison>
+  </exercice><exercice>
+    <type>equation</type>
+    <donnee>On a retourné un sablier de 15min. Après un certain temps, il ne reste plus qu'un tiers.
+Combien de temps s'est-il déjà écoulé?</donnee>
+    <grandeurEgaliteVraie>un temps</grandeurEgaliteVraie>
+    <grandeurEgaliteFausse1>le sable</grandeurEgaliteFausse1>
+    <grandeurEgaliteFausse2>une nombre</grandeurEgaliteFausse2>
+    <grandeurEgaliteFausse3>un produit</grandeurEgaliteFausse3>
+    <grandeurEgaliteFausse4>une montre</grandeurEgaliteFausse4>
+    <gaucheMotCle>sablier de 15min. Après un certain temps</gaucheMotCle>
+    <gaucheValeur>15</gaucheValeur>
+    <gaucheUnite>min</gaucheUnite>
+    <droiteMotCle>un tiers</droiteMotCle>
+    <droiteValeur/>
+    <droiteUnite>min</droiteUnite>
+    <egaliteMotCle>reste</egaliteMotCle>
+    <egaliteValeur>=</egaliteValeur>
+    <inconnueMotCle>temps</inconnueMotCle>
+    <inconnueValeur>t</inconnueValeur>
+    <droiteSolutionTxt>5</droiteSolutionTxt>
+    <gaucheSolutionTxt>15-t</gaucheSolutionTxt>
+    <analyse0_111>Tu as bien reconnu les différents éléments de l'équation.
+    Les éléments gauche et droite peuvent s'intervertirent.
+    </analyse0_111>
+    <analyse1_110>L'égalité et le membre de gauche sont correctes.
+    Le sable s'écoule d'un côté, il en reste de l'autre...</analyse1_110>
+    <analyse2_101>L'égalité et le membre de droite sont correctes.
+    Le sable s'écoule d'un côté, il en reste de l'autre...</analyse2_101>
+    <analyse3_100>Seule l'égalité est correcte.
+    Qu'est-ce qui s'écoule?</analyse3_100>
+    <analyse4_011>Les membres de gauche et de droite de l'équation sont justes.
+Il faut encore trouver le mot qui correspond à l'égalité.</analyse4_011>
+    <analyse5_010>Le membre de gauche est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+Puis le membre de droite.</analyse5_010>
+    <analyse6_001>Le membre de droite est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+Puis le membre de gauche. </analyse6_001>
+    <analyse7_000>Pour l'instant tu n'as rien trouvé.
+     Cherche quelque chose qui veut dire "égal" ou "ça a coulé".</analyse7_000>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11_comboBox_Question>Quel élément commun (grandeur, opération...) peux-tu mettre de chaque côté de l'égalité?</analyse11_comboBox_Question>
+    <analyse12_comboBoxF>15min pourrait-être un...</analyse12_comboBoxF>
+    <analyse13_comboBoxJ>5min est bien la différence de temps entre 15min et le temps écoulé</analyse13_comboBoxJ>
+    <analyse14_inconnueF>Dans ce problème,
+    on trouve l'inconnue dans la question</analyse14_inconnueF>
+    <analyse15_inconnueJ>L'inconnue,
+    c'est bien un temps.
+    Ici, c'est aussi ce qu'on demande. </analyse15_inconnueJ>
+     <egaliteGa/>
+<egaliteDr/>
+<distracteurI1>yarien</distracteurI1>
+<distracteurI2>yarien</distracteurI2>
+<distracteurP3>yarien</distracteurP3>
+<distracteurP4>yarien</distracteurP4>
+<analyseDistracteurI1/>
+<analyseDistracteurI2/>
+<analyseDistracteurP3/>
+<analyseDistracteurP4/>
+<motCleEgaliteTerminaison> </motCleEgaliteTerminaison>
+  </exercice></activite>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<activite>
+  <exercice>
+    <type>equation</type>
+    <donnee>Si on achète deux petits pains, on paye 4fr.
+Quel est le prix d'un petit pain?</donnee>
+    <grandeurEgaliteVraie>un prix</grandeurEgaliteVraie>
+    <grandeurEgaliteFausse1>une différence</grandeurEgaliteFausse1>
+    <grandeurEgaliteFausse2>une moitié</grandeurEgaliteFausse2>
+    <grandeurEgaliteFausse3>un quotient</grandeurEgaliteFausse3>
+    <grandeurEgaliteFausse4>un nombre</grandeurEgaliteFausse4>
+    <gaucheMotCle>deux petits pains</gaucheMotCle>
+    <gaucheValeur>2</gaucheValeur>
+    <gaucheUnite>francs</gaucheUnite>
+    <droiteMotCle>4</droiteMotCle>
+    <droiteValeur>4</droiteValeur>
+    <droiteUnite>francs</droiteUnite>
+    <egaliteMotCle>paye</egaliteMotCle>
+    <egaliteValeur>=</egaliteValeur>
+    <inconnueMotCle>prix</inconnueMotCle>
+    <inconnueValeur>p</inconnueValeur>
+    <droiteSolutionTxt>4</droiteSolutionTxt>
+    <gaucheSolutionTxt>2p</gaucheSolutionTxt>
+    <analyse0_111>Tu as bien reconnu les différents éléments de l'équation.
+    Les éléments gauche et droite peuvent s'intervertirent.
+    </analyse0_111>
+    <analyse1_110>L'égalité et le membre de gauche sont correctes.
+    Pour le membre de droite, trouve ce qui se trouve de l'autre côté de "on paye".</analyse1_110>
+    <analyse2_101>L'égalité et le membre de droite sont correctes.
+    Pour le membre de gauche, trouve ce qui se trouve de l'autre côté de "on paye".</analyse2_101>
+    <analyse3_100>Seule l'égalité est correcte.
+    Les membres de gauche et de droite se trouvent de chaque côté de "on paye".</analyse3_100>
+    <analyse4_011>Les membres de gauche et de droite de l'équation sont justes.
+Il faut encore trouver le mot qui correspond à l'égalité.</analyse4_011>
+    <analyse5_010>Le membre de gauche est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+ (ça peut être un synonyme de "ça coûte")
+Puis le membre de droite.</analyse5_010>
+    <analyse6_001>Le membre de droite est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+ (ça peut être un synonyme de "ça coûte")
+Puis le membre de gauche. </analyse6_001>
+    <analyse7_000>Pour l'instant tu n'as rien trouvé.
+     Cherche quelque chose qui veut dire "égal" ou "ça côute".</analyse7_000>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11_comboBox_Question>Quel élément commun (grandeur, opération...) peux-tu mettre de chaque côté de l'égalité?</analyse11_comboBox_Question>
+    <analyse12_comboBoxF>4fr qui pourrait-être un...</analyse12_comboBoxF>
+    <analyse13_comboBoxJ>4fr est bien le prix des petits pains</analyse13_comboBoxJ>
+    <analyse14_inconnueF>Dans ce problème,
+    on trouve l'inconnue dans la question</analyse14_inconnueF>
+    <analyse15_inconnueJ>L'inconnue,
+    c'est bien un prix.
+    Ici, c'est aussi ce qu'on demande. </analyse15_inconnueJ>
+     <egaliteGa/>
+<egaliteDr/>
+<distracteurI1>yarien</distracteurI1>
+<distracteurI2>yarien</distracteurI2>
+<distracteurP3>yarien</distracteurP3>
+<distracteurP4>yarien</distracteurP4>
+<analyseDistracteurI1/>
+<analyseDistracteurI2/>
+<analyseDistracteurP3/>
+<analyseDistracteurP4/>
+<motCleEgaliteTerminaison> </motCleEgaliteTerminaison>
+  </exercice>
+  <exercice>
+    <type>equation</type>
+    <donnee>Si on achète un stylo et une gomme à 1fr, ça coûte 8fr.
+Quel est le prix du stylo?</donnee>
+    <grandeurEgaliteVraie>un prix</grandeurEgaliteVraie>
+    <grandeurEgaliteFausse1>une différence</grandeurEgaliteFausse1>
+    <grandeurEgaliteFausse2>un nombre d'articles</grandeurEgaliteFausse2>
+    <grandeurEgaliteFausse3>un stylo</grandeurEgaliteFausse3>
+    <grandeurEgaliteFausse4>un reste</grandeurEgaliteFausse4>
+    <gaucheMotCle>achète un stylo et une gomme à 1fr</gaucheMotCle>
+    <gaucheValeur>1</gaucheValeur>
+    <gaucheUnite>fr</gaucheUnite>
+    <droiteMotCle>8</droiteMotCle>
+    <droiteValeur>8</droiteValeur>
+    <droiteUnite>fr</droiteUnite>
+    <egaliteMotCle>coûte</egaliteMotCle>
+    <egaliteValeur>=</egaliteValeur>
+    <inconnueMotCle>prix</inconnueMotCle>
+    <inconnueValeur>p</inconnueValeur>
+    <droiteSolutionTxt>8</droiteSolutionTxt>
+    <gaucheSolutionTxt>p+1</gaucheSolutionTxt>
+    <analyse0_111>Tu as bien reconnu les différents éléments de l'équation.
+    Les éléments gauche et droite peuvent s'intervertirent.
+    </analyse0_111>
+    <analyse1_110>L'égalité et le membre de gauche sont correctes.
+    Pour le membre de droite, trouve ce qui se trouve de l'autre côté de "ça coûte".</analyse1_110>
+    <analyse2_101>L'égalité et le membre de droite sont correctes.
+    Pour le membre de gauche, trouve ce qui se trouve de l'autre côté de "ça coûte".</analyse2_101>
+    <analyse3_100>Seule l'égalité est correcte.
+    Les membres de gauche et de droite se trouvent de chaque côté de "ça coûte".</analyse3_100>
+    <analyse4_011>Les membres de gauche et de droite de l'équation sont justes.
+Il faut encore trouver le mot qui correspond à l'égalité.</analyse4_011>
+    <analyse5_010>Le membre de gauche est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+ (ça peut être un synonyme de "on paye")
+Puis le membre de droite.</analyse5_010>
+    <analyse6_001>Le membre de droite est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+ (ça peut être un synonyme de "on paye")
+Puis le membre de gauche. </analyse6_001>
+    <analyse7_000>Pour l'instant tu n'as rien trouvé.
+     Cherche quelque chose qui veut dire "égal" ou "on paye".</analyse7_000>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11_comboBox_Question>Quel élément commun (grandeur, opération...) peux-tu mettre de chaque côté de l'égalité?</analyse11_comboBox_Question>
+    <analyse12_comboBoxF>8fr. pourrait-être un...</analyse12_comboBoxF>
+    <analyse13_comboBoxJ>8 est bien le prix d'un stylo et d'une gomme.</analyse13_comboBoxJ>
+    <analyse14_inconnueF>Dans ce problème,
+    on trouve l'inconnue dans la question</analyse14_inconnueF>
+    <analyse15_inconnueJ>L'inconnue,
+    c'est bien un nombre.
+    Ici, c'est aussi ce qu'on demande. </analyse15_inconnueJ>
+     <egaliteGa/>
+<egaliteDr/>
+<distracteurI1>yarien</distracteurI1>
+<distracteurI2>yarien</distracteurI2>
+<distracteurP3>yarien</distracteurP3>
+<distracteurP4>yarien</distracteurP4>
+<analyseDistracteurI1/>
+<analyseDistracteurI2/>
+<analyseDistracteurP3/>
+<analyseDistracteurP4/>
+<motCleEgaliteTerminaison> </motCleEgaliteTerminaison>
+  </exercice><exercice>
+    <type>equation</type>
+    <donnee>Si je paye mon achat avec un billet de 10fr. on me rembourse 3fr. Quel est le montant de mon achat?</donnee>
+    <grandeurEgaliteVraie>une différence de prix</grandeurEgaliteVraie>
+    <grandeurEgaliteFausse1>un billet</grandeurEgaliteFausse1>
+    <grandeurEgaliteFausse2>une nombre</grandeurEgaliteFausse2>
+    <grandeurEgaliteFausse3>un quotient</grandeurEgaliteFausse3>
+    <grandeurEgaliteFausse4>un montant</grandeurEgaliteFausse4>
+    <gaucheMotCle>mon achat avec un billet de 10fr</gaucheMotCle>
+    <gaucheValeur>10</gaucheValeur>
+    <gaucheUnite>fr</gaucheUnite>
+    <droiteMotCle>3</droiteMotCle>
+    <droiteValeur>3</droiteValeur>
+    <droiteUnite>fr</droiteUnite>
+    <egaliteMotCle>rembourse</egaliteMotCle>
+    <egaliteValeur>=</egaliteValeur>
+    <inconnueMotCle>montant</inconnueMotCle>
+    <inconnueValeur>x</inconnueValeur>
+    <droiteSolutionTxt>3</droiteSolutionTxt>
+    <gaucheSolutionTxt>10-x</gaucheSolutionTxt>
+    <analyse0_111>Tu as bien reconnu les différents éléments de l'équation.
+    Les éléments gauche et droite peuvent s'intervertirent.
+    </analyse0_111>
+    <analyse1_110>L'égalité et le membre de gauche sont correctes.
+    On paye d'un côté, on rembourse de l'autre...</analyse1_110>
+    <analyse2_101>L'égalité et le membre de droite sont correctes.
+    On paye d'un côté, on rembourse de l'autre...</analyse2_101>
+    <analyse3_100>Seule l'égalité est correcte.
+    Qu'est-ce qu'on paye?</analyse3_100>
+    <analyse4_011>Les membres de gauche et de droite de l'équation sont justes.
+Il faut encore trouver le mot qui correspond à l'égalité.</analyse4_011>
+    <analyse5_010>Le membre de gauche est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+ (ça peut être un synonyme de "ça coûte")
+Puis le membre de droite.</analyse5_010>
+    <analyse6_001>Le membre de droite est correct.
+Il faut encore trouver ce qui correspond à l'égalité
+ (ça peut être un synonyme de "ça coûte")
+Puis le membre de gauche. </analyse6_001>
+    <analyse7_000>Pour l'instant tu n'as rien trouvé.
+     Cherche quelque chose qui veut dire "égal" ou "ça coûte".</analyse7_000>
+    <analyse8/>
+    <analyse9/>
+    <analyse10/>
+    <analyse11_comboBox_Question>Quel élément commun (grandeur, opération...) peux-tu mettre de chaque côté de l'égalité?</analyse11_comboBox_Question>
+    <analyse12_comboBoxF>3fr. pourrait-être une...</analyse12_comboBoxF>
+    <analyse13_comboBoxJ>3 est bien la différence de prix entre 10fr. et le montant de mon achat.</analyse13_comboBoxJ>
+    <analyse14_inconnueF>Dans ce problème,
+    on trouve l'inconnue dans la question</analyse14_inconnueF>
+    <analyse15_inconnueJ>L'inconnue,
+    c'est bien un montant (un prix).
+    Ici, c'est aussi ce qu'on demande. </analyse15_inconnueJ>
+     <egaliteGa/>
+<egaliteDr/>
+<distracteurI1>yarien</distracteurI1>
+<distracteurI2>yarien</distracteurI2>
+<distracteurP3>yarien</distracteurP3>
+<distracteurP4>yarien</distracteurP4>
+<analyseDistracteurI1/>
+<analyseDistracteurI2/>
+<analyseDistracteurP3/>
+<analyseDistracteurP4/>
+<motCleEgaliteTerminaison> </motCleEgaliteTerminaison>
+  </exercice></activite>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
