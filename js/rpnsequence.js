@@ -364,6 +364,10 @@ var rpnsequence = (function() {
                 modules[idx]=rpndocmodule();
                 modules[idx].init(modData,states[idx].state, divContent);
             }
+            else if (modData.type == 'parasch') {
+                modules[idx]=rpndocmodule();
+                modules[idx].init(modData,states[idx].state, divContent);
+            }
             else if (modData.type == 'multiplelistssync') {
                 modules[idx]=rpnmultiplelistssyncmodule();
                 modules[idx].init(modData,states[idx].state, divContent);

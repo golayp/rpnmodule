@@ -38,6 +38,7 @@ require([
     //'rpnmap',
     'rpnmqc',
     'rpnplumb',
+    'rpnparasch',
     'rpndropdown',
     'rpndropdown2',
     'rpnsorting',

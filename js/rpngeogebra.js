@@ -29,11 +29,12 @@ var rpngeogebramodule = function() {
         domelem.addClass('geogebraint');
         var geogebraint = $('<div class="geogebraint">');
         var objectType = (_.isUndefined(datas.object)||_.isUndefined(datas.object.type))?"":datas.object.type;
-        var objectWidth = (_.isUndefined(datas.object)||_.isUndefined(datas.object.width))?"":"width=" + datas.object.width;
-        var objectHeight = (_.isUndefined(datas.object)||_.isUndefined(datas.object.height))?"":"height=" + datas.object.height;
-        var objectStyle = (_.isUndefined(datas.object)||_.isUndefined(datas.object.style))?"":"style=" + datas.object.style;
+        var objectWidth = (_.isUndefined(datas.object)||_.isUndefined(datas.object.width))?"":"width=100%";
+        var objectHeight = (_.isUndefined(datas.object)||_.isUndefined(datas.object.height))?"":"height=100%";
+     /*   var objectStyle = (_.isUndefined(datas.object)||_.isUndefined(datas.object.style))?"":"style=" + datas.object.style;
         var objectAttribut = (_.isUndefined(datas.object)||_.isUndefined(datas.object.attribut))?"":datas.object.attribut;
         //var object = $('<'+objectType+' src="'+datas.object.url+'" '+objectWidth+' '+objectHeight+' '+objectStyle+' '+objectAttribut+' ></'+objectType+'>');
+        */
         var object = $('<script src="'+datas.object.media+' ></script>');
         var applet_container=$("DIV id='applet_container1'></DIV>");
         var buttons=$('<p>'+datas.object.question+'</p>');
