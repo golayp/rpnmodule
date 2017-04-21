@@ -5,6 +5,12 @@ var rpngeogebramodule = function() {
     var domelem;
     var state;
     var object;
+    var myApplets=new Array();
+    var containerid;
+    var a=new Array();
+    var b=new Array();
+    var pente=new Array();
+    var ordOri=new Array();
 
     var init = function(_datas,_state, _domelem) {
         /*_.defaults(_datas, {
@@ -18,86 +24,189 @@ var rpngeogebramodule = function() {
             state=_state;
         }
         else{
-            state={
-                seen : ''
-            };
+            state="";
         }
         buildUi();
     };
 
     var buildUi = function() {
         domelem.addClass('geogebraint');
-        var geogebraint = $('<div class="geogebraint">');
-        var objectType = (_.isUndefined(datas.object)||_.isUndefined(datas.object.type))?"":datas.object.type;
-        var objectWidth = (_.isUndefined(datas.object)||_.isUndefined(datas.object.width))?"":"width=100%";
-        var objectHeight = (_.isUndefined(datas.object)||_.isUndefined(datas.object.height))?"":"height=100%";
-     /*   var objectStyle = (_.isUndefined(datas.object)||_.isUndefined(datas.object.style))?"":"style=" + datas.object.style;
-        var objectAttribut = (_.isUndefined(datas.object)||_.isUndefined(datas.object.attribut))?"":datas.object.attribut;
-        //var object = $('<'+objectType+' src="'+datas.object.url+'" '+objectWidth+' '+objectHeight+' '+objectStyle+' '+objectAttribut+' ></'+objectType+'>');
-        */
-        var object = $('<script src="'+datas.object.media+' ></script>');
-        var applet_container=$("DIV id='applet_container1'></DIV>");
-        var buttons=$('<p>'+datas.object.question+'</p>');
-         $.each(datas.buttons, function(idx, buttons) {
-             if(buttons[0]=="Montre"){
-                //on mettra setVisible true
-             }else if(buttons[0]=="Cache"){
-                 //on mettra setVisible false
-             }
-             var point=buttons[1];
-                var input=$('<span class="draggable ori" val="'+idx+'" >'+filler+'</span> ').draggable({
-                    revert: "invalid",
-                    appendTo: domelem,
-                    helper: "clone",
-                    snap: true,
-                    snapMode: 'inner'
-                });
-                toolbar.append(draggable);
-                maxwidth=maxwidth<draggable.width()?draggable.width():maxwidth;
-            });
-   /*   <FORM><INPUT onclick="document.ggbApplet.setVisible('A', false);" type="button" value="Hide A"> 
-      <INPUT onclick="document.ggbApplet.setVisible('A', true);" type="button" value="Show A"> 
-      <INPUT onclick="document.ggbApplet.setColor('A', 255, 0, 0);" type="button" value="A red"> 
-      <INPUT onclick="document.ggbApplet.setColor('A', 0, 0, 255);" type="button" value="A blue"> 
-      <INPUT onclick="document.ggbApplet.deleteObject('A');" type="button" value="Delete A"> 
-      <INPUT onclick="document.ggbApplet.reset();" type="button" value="Reset"> 
-      </FORM>
-    */    
-        geogebraint.append(object);
-        domelem.append(geogebraint);
-        geogebraint.append(applet_container);
-        
-        var applet1 = new GGBApplet({material_id: "122728", width:500, height:500}, true);
-        window.onload = function() {
-                applet1.inject('applet_container1', 'preferHTML5');
+        var signe=function(){
+            var S=Math.round(Math.random());
+            if(S==0){
+                S=1;
             }
-
-        function getCoords(objName) {
-          var applet = document.ggbApplet;
-          var x = applet.getXcoord(objName);    
-          var y = applet.getYcoord(objName);    
-
-          document.coordForm.getXfield.value = x;
-          document.coordForm.getYfield.value = y;
+            else {
+                S=-1;
+            }
+            return S;
+          }
+        var containerid="applet_container"+datas.object.idggb;
+        var geogebraint = $('<div id="geogebraint'+datas.object.idggb+'" class="geogebraint">');
+        var geogebrabuttons = $('<form></form>');
+        var geogebracontainer=$("<div id="+containerid+"></div>");
+       if(datas.object.kind=="ExpFonctAff"){
+          
+            a[datas.object.idggb]=signe()*Math.ceil(Math.random()*5);
+            b[datas.object.idggb]=signe()*Math.ceil(Math.random()*5);
+            if(b[datas.object.idggb]<0){
+                var geogebradonnee=$('<p class="expression">$$f: x\\rightarrow y='+a[datas.object.idggb]+'x'+b[datas.object.idggb]+'$$</p>'); 
+            }else{
+                var geogebradonnee=$('<p class="expression">$$f: x\\rightarrow y='+a[datas.object.idggb]+'x+'+b[datas.object.idggb]+'$$</p>');
+            }
+            
+            //ptA="A";
+            //ptB="B";
+            geogebraint.append(geogebradonnee);
+            geogebraint.append(geogebracontainer);
+            //geogebraint.append(myinfos);
+            
+           var appletid="applet"+datas.object.idggb;
+           
+           //createGGB(geogebracontainer,geogebraint,datas.object.idggb, datas.object.appliquette, ptB);
+            
+            var parameters = {"id":containerid, 
+                           "prerelease":false,
+                           "width":1000,
+                           "height":450,
+                           "showToolBar":false,
+                           "borderColor":null,
+                           "showMenuBar":false,
+                           "showAlgebraInput":false,
+                           "showResetIcon":true,
+                           "filename":datas.object.appliquette
+                          };
+        
+        
+            myApplets[datas.object.idggb] = new GGBApplet('5.0', parameters);
+            myApplets[datas.object.idggb].setJavaCodebase('GeoGebra/Java/5.0');
+           var readyStateCheckInterval = setInterval(function() {
+                if (document.readyState === "complete") {
+                    clearInterval(readyStateCheckInterval);
+                    myApplets[datas.object.idggb].inject(geogebracontainer, 'preferHTML5');
+                    console.log( "complete!" );
+                }
+            }, 2000);
+          /* $( document ).ready(function() {
+                console.log( "ready!" );
+               var mylength=document.getElementsByTagName("div");
+               for(i=0;i<mylength.length;i++){
+                   console.log('div id= '+mylength[i].id)
+                   
+               }
+               console.log("avant"+document.getElementsByTagName("div"));
+           });
+           
+           
+           //myApplets[datas.object.idggb].inject(geogebracontainer, 'preferJava');
+           
+           if (parameters && typeof parameters.appletOnLoad === "function" && typeof renderGGBElement === "function") {
+                myApplets[datas.object.idggb].renderGGBElement(article, parameters.appletOnLoad);
+               console.log('parmaeters render')
+            }else{
+               console.log('not render'+typeof parameters.appletOnLoad) 
+               console.log('not render 2'+typeof renderGGBElement) 
+            }*/
+          //var test=myApplets[datas.object.idggb];
+          
+          
+            //geogebrabuttons.append($('</br><form> <input type="button" value="Réinitialiser" onclick="'+containerid+'.reset()"></form>'));
+            //geogebrabuttons.append($('<form> <input type="button" value="Afficher les coordonnées de B" onclick="getCoords(ptB,'+containerid+', '+datas.object.idggb+')"><input type="button" value="Cacher A" onclick="'+containerid+'.setVisible(ptA, false)"></form>'));
+            
+           createbuttons(datas.object.buttons,containerid, datas.object.idggb, geogebrabuttons);
+           geogebraint.append(geogebrabuttons);
+           geogebraint.append($('<span id="myinfos'+datas.object.idggb+'">'+datas.object.idggb+'</span>'));
+           geogebraint.append($('<input type="button" value="setValue(a,4)" onclick="'+containerid+'.setValue(\'a\',4)">'));
+            domelem.append(geogebraint);
+           
         }
         
-        
-        
-        bindUiEvents();
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+        //bindUiEvents();
     };
 
     var bindUiEvents = function() {
-
+        window.alert('bindUiEvents')
+    };
+    var createbuttons=function(buttonsarray, appletname, id , container){
+        var nbbuttons=buttonsarray.length;
+        for(i=0;i<nbbuttons;i++){
+            if(buttonsarray[i][0]=="getCoords"){
+                container.append($('</br><input type="button" value="'+buttonsarray[i][1]+'" onclick="'+buttonsarray[i][0]+'('+buttonsarray[i][2]+','+appletname+','+id+')">'));
+            }
+            else{
+               container.append($('</br><input type="button" value="'+buttonsarray[i][1]+'" onclick="'+appletname+'.'+buttonsarray[i][0]+'('+buttonsarray[i][2]+')">')); 
+            }
+        }
+        
+    };
+    var createGGB=function(myappletcontainer,mygeogebraint, myid, appletfile, myptB){
+        var parameters = {"id":"applet", 
+                           "prerelease":false,
+                           "width":1000,
+                           "height":450,
+                           "showToolBar":false,
+                           "borderColor":null,
+                           "showMenuBar":false,
+                           "showAlgebraInput":false,
+                           "showResetIcon":true,
+                           "filename":appletfile
+                          };
+        
+        //myApplets[myid] = new GGBApplet('5.0', parameters);
+        //myApplets[myid].setJavaCodebase('GeoGebra/Java/5.0');
+        var applet = new GGBApplet('5.0', parameters);
+        applet.setJavaCodebase('GeoGebra/Java/5.0');
+            
+        var myform=$('<form> <input type="button" value="Réinitialiser" onclick="applet.reset()"></form><form> <input type="button" value="Afficher les coordonnées de B" onclick="getCoords('+myptB+',applet,'+myid+')"><input type="button" value="Cacher A" onclick="applet.setVisible(ptA, false)"></form>');
+        mygeogebraint.append(myform);
+        applet.inject(myappletcontainer, 'preferHTML5');
     };
     
-    var validate = function(){
-        state.seen = true;
+    getCoords=function(objName, applet, id) { 
+        var x = applet.getXcoord(objName);    
+        var y = applet.getYcoord(objName);
+        var val='('+x+';'+y+')';
+        var mytext=$('#myinfos'+id);
+        mytext.html(val);
+        pente[id]=((applet.getYcoord("A")-applet.getYcoord("B"))/(applet.getXcoord("A")-applet.getXcoord("B")));
+            console.log('pente: '+pente[id])
+        ordOri[id]=applet.getYcoord("A")-pente[id]*applet.getXcoord("A");
+            console.log('ordonnée à l\'Origine: '+ordOri[id])
+    }
+   var validate = function(){
+      /*  $.each($('.rpnm_input', domelem), function(idx, gap) {
+            if(isNaN(state[idx].response = $(gap).val().split("'").join(""))==false){
+                state[idx].response = $(gap).val().split("'").join("");
+            }else{
+               state[idx].response = $(gap).val(); 
+            }
+        });*/
         return state;
     };
     
-   var score = function(sol) {
+    var score = function(sol) {
         var score = 0;
+        console.log("sol:"+sol)
+      /*  _.each(sol, function(val, idx) {
+            if(val=="ExpFonctAff_points"){
+                if (pente[idx]==a[idx] {
+                    score+=1;
+                }
+                if (OrdOri[idx]==b[idx]){
+                    score+=1;
+                }
+            }else if(val=="ExpFonctAff_cursor"){
+                
+            }
+        });*/
+        console.log("score:"+score)
         return score;
+    };
+    var pointmax = function(sol){
+        var pointmax = _.flatten(_.toArray(sol)).length;
+        
+        return pointmax;
     };
     
     return {

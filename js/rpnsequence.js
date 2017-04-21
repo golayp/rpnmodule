@@ -52,6 +52,7 @@ var rpnsequence = (function() {
     var returnPage;
     var docModule;
     var disablestateloading;
+    
 
     var labels = {
         en: {
@@ -366,6 +367,10 @@ var rpnsequence = (function() {
             }
             else if (modData.type == 'parasch') {
                 modules[idx]=rpndocmodule();
+                modules[idx].init(modData,states[idx].state, divContent);
+            }
+            else if (modData.type == 'geogebra') {
+                modules[idx]=rpngeogebramodule();
                 modules[idx].init(modData,states[idx].state, divContent);
             }
             else if (modData.type == 'multiplelistssync') {

@@ -1,10 +1,6 @@
 {
     "solutions":[
-        {
-			"seen" : true
-		},
-		{
-			"seen" : true
-		}
-    ]
+        "ExpFonctAff_cursor",
+        "ExpFonctAff_points"
+        ]
 }

@@ -1,30 +1,30 @@
 {
     "title":"modulesequence",
-    "context":"context",
+    "context":"",
     "directive":"directive",
     "modules":[
         {
             "type":"geogebra",
-            "title":"a module with an applet geogebra",
-            "context":"context",
-            "directive":"<p>tu dois faire passer la droite par A(0;0) et B(4;8)</p>",
+            "title":"a module with geogebra",
+            "directive":"<p>Déplace les points A et B ou la droite pour la faire coincider avec l'expression fonctionnelle ci-dessous:</p>",
             "object":{
-                "type":"iframe",
-                "media":"../medias/deployggb.js",
-                "width":"848px",
-                "height":"636px",
-                "style":"border:0px;",
-                "buttons":[["Montre", "A"],["Montre", "B"], ["Cache", "A"], ["Cache", "B"], "reset"]
+                "idggb":"0",
+                "kind":"ExpFonctAff",
+                "appliquette":"../../medias/test3.ggb",
+                "buttons":[["reset", "réinitialiser",""]]
             }
         },
         {
-            "type":"doc",
-            "title":"a doc module with a swf file",
+            "type":"geogebra",
+            "title":"a second module with geogebra",
+            "directive":"<p>Déplace les points A et B ou la droite pour la faire coincider avec l'expression fonctionnelle ci-dessous:</p>",
             "object":{
-                "type":"embed",
-                "url":"http://www.pragmasoft.be/carnets/geo/ecluse/Ecluse2015.swf",
-                "attribut":"fullscreen=yes"
+                "idggb":"1",
+                "kind":"ExpFonctAff",
+                "appliquette":"../../medias/base_rpngeogebra.ggb",
+                "buttons":[["reset", "réinitialiser",[]],["setVisible","Effacer A",["'A'",false]],["setVisible", "Afficher A",["'A'", true]], ["getCoords","Afficher les Coordonnées de B", ["'B'"]]]
             }
         }
+        
     ]
 }

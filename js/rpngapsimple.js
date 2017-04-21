@@ -215,7 +215,7 @@ var rpngapsimplemodule = function() {
         //Input validation
         _.each($('.rpnm_input',domelem),function(elem,idx){
             $('.rpnm_input',domelem).bind('input propertychange', function(){
-              alert('inputs'+elem.name);
+              //alert('inputs'+elem.name);
             });
             
             
