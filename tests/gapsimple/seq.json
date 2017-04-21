@@ -47,12 +47,13 @@
         },
         {
             "type":"gapsimple",
-            "title":"a gapsimple module type decimal, nbofchar: 12, milleseparator: true ",
+            "title":"a gapsimple module type decimal, numberofdecimals:2, nbofchar: 12, milleseparator: true ",
             "validation":{
                 "mode":"lock",
                 "type":"decimal",
                 "milleseparator":true,
                 "numberofchar":"12",
+                "numberofdecimals":"2",
                 "width":"10em;",
                 "align":"text-center"
             },

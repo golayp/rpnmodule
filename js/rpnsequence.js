@@ -873,10 +873,22 @@ var rpnsequence = (function() {
         
             $(inputs).bind('input propertychange',function(){
                 var mylength=$(this).val().length;
+                var mydecimals=0;
+                if($(this).val().split(".")[1]){
+                   mydecimals=$(this).val().split(".")[1].length;
+                }
+                console.log($(this).val())
                 var myelement=document.activeElement;
                 myelement.focus();
                 var myelementcursor=myelement.selectionStart;
                 var myvalbeorenumberofchar=$(this).val();
+                if(validationoptions.numberofdecimals && validationoptions.numberofchar){
+                   if(mydecimals>validationoptions.numberofdecimals && mylength+1<validationoptions.numberofchar){
+                        $(this).val($(this).val().substr(0,mylength-1));
+                      }
+                } else if(validationoptions.numberofdecimals){
+                         $(this).val($(this).val().substr(0,mylength-1)); 
+                }
                 if(validationoptions.numberofchar){
                     if(validationoptions.type=="natural"){
                         var mylength=$(this).val().length;
@@ -884,8 +896,13 @@ var rpnsequence = (function() {
                         var mylength=$(this).val().length+1;
                     }
                     if(mylength>validationoptions.numberofchar){
-                        mylength=validationoptions.numberofchar;
-                        $(this).val($(this).val().substr(0,mylength));
+                        if($(this).val().charAt(validationoptions.numberofchar-1)=="."){
+                           $(this).val($(this).val().substr(0,mylength-2));
+                        }else{
+                           mylength=validationoptions.numberofchar;
+                           $(this).val($(this).val().substr(0,mylength)); 
+                        }
+                        
                     }
                 }
                 if(validationoptions.type=="natural"){
