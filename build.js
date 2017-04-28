@@ -1,4 +1,4 @@
-var version='0.3.0';
+var version='0.3.1';
 
 var uglifyjs = require("uglify-js");
 var fs = require('fs');
@@ -12,9 +12,9 @@ function copyFile(source, target) {
 //Copy and js with no compression
 
 new compressor.minify({
-    type: 'no-compress',
-    fileIn:'js/**/*.js',
-    fileOut: 'dist/js/rpnmodule.'+version+'.js',
+    compressor: 'no-compress',
+    input:'js/**/*.js',
+    output: 'dist/js/rpnmodule.'+version+'.js',
     callback: function(err, min){
         console.log(err);
 //        console.log(min);
@@ -47,7 +47,7 @@ function jsHanling(){
     compress:false,
     outSourceMap: "rpnmodule."+version+".min.js.map"
   });
-  
+
   fs.writeFile("dist/js/rpnmodule."+version+".min.js", jsmap.code, function(err) {
     if(err) {
       console.log(err);

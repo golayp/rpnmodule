@@ -1,0 +1,29 @@
+{
+  "name": "rpnmodule",
+  "version": "0.3.1",
+  "description": "first npm draft of rpnmodule",
+  "main": "build.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "less": "^2.7.2",
+    "node-minify": "^2.0.4",
+    "uglify-js": "^2.8.22"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/golayp/rpnmodule.git"
+  },
+  "author": "golayp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/golayp/rpnmodule/issues"
+  },
+  "homepage": "https://github.com/golayp/rpnmodule#readme"
+}

@@ -17403,12 +17403,15 @@ var rpngapsimplemodule = function() {
         if (dragfromtext){
             limitedChoice = dragNum == 2 ? true : false;
         }
+///////////////////////////////////////////////////////////////////////////////////////////
         
+/////////////////////////////////////////////////////////////////////
         $.each($('b', domelem), function(idx, tofill) {
             var t = $(tofill);
             var txt = "";
             //var txt = _.isEmpty(t.text())?"":"<strong>(" + t.text() + ")</strong>";
             if(singledd){
+                console.log('singledd')
                 var drop = $('<b class="gapsimpleddresponse">').on('dragenter', function(ev){
                     ev.stopPropagation(); 
                     ev.preventDefault();
@@ -17486,16 +17489,21 @@ var rpngapsimplemodule = function() {
                 }
             }else{
                 var textAlign = (_.isUndefined(datas.validation)||_.isUndefined(datas.validation.align))?"":" " + datas.validation.align;
-				var textWidth = (_.isUndefined(datas.validation)||_.isUndefined(datas.validation.width))?"":" style='width:" + datas.validation.width + "'";
-				if(t.text().substr(-1)!="_"){
-					txt = _.isEmpty(t.text())?"":"<strong>(" + t.text() + ")</strong>";
+                var textWidth = (_.isUndefined(datas.validation)||_.isUndefined(datas.validation.width))?"":" style='width:" + datas.validation.width + "'";
+                if(t.text().substr(-1)!="_"){
+                    txt = _.isEmpty(t.text())?"":"<strong>(" + t.text() + ")</strong>";
                     t.replaceWith($('<span class="text-nowrap"><input type="text" class="rpnm_input gapsimple form-control' + textAlign + '"' + textWidth + '>' + txt + '</span>'));
                 }else{
-					txt = t.text().slice(0,-1);
-					t.replaceWith($('<span class="text-nowrap">' + txt +'<input type="text" class="rpnm_input gapsimple form-control' + textAlign + '"' + textWidth + '></span>'));
-				}
+                    txt = t.text().slice(0,-1);
+                    t.replaceWith($('<span class="text-nowrap">' + txt +'<input type="text" class="rpnm_input gapsimple form-control' + textAlign + '"' + textWidth + '></span>'));
+                }
                 $($('.rpnm_input',domelem)[idx]).val(state[idx]);
             }
+        });
+        $.each($('mphantom', domelem), function(idx, tofill) {
+           var t = $(tofill);
+            t.replaceWith($("<semantics><annotation-xml encoding='application/xhtml+xml'><input xmlns='http://www.w3.org/1999/xhtml' class='rpnm_input gapsimple form-control' style='text-align:center' type='text' size='2' name='n"+idx+"' /></input></annotation-xml></semantics>"));
+            $($('.rpnm_input',domelem)[idx]).val(state[idx]);
         });
         MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
         bindUiEvents();
@@ -17508,6 +17516,7 @@ var rpngapsimplemodule = function() {
     
     
     var validate = function(){
+        console.log('validate')
         responsesArray = new Array();
         if(dragdrop || dragfromtext){
             _.each($('.gapsimpleddresponse',domelem),function(elem,idx){
@@ -17519,15 +17528,47 @@ var rpngapsimplemodule = function() {
                     state[idx] = $('.draggable',$(elem)).html();
                 }
                 responsesArray[idx] = elem;
+                console.log('1 responsesArray[idx]'+responsesArray.length)
             });
         }else{
+            var namearray=new Array();
+            var compteur=0;
             $.each($('.gapsimple',domelem), function(idx, gap) {
-                if(isNaN($(gap).val().trim().split("'").join(""))==false){
-                    state[idx] = $(gap).val().trim().split("'").join("");
+                if(datas.mathjaxinput){
+                    var exist=false;
+                   
+                        for (i=0;i<=idx;i++){
+                            if(namearray[i] && gap.name && namearray[i] == gap.name){
+                                exist=true;
+                            }
+                            
+                        }
+                        if(exist==false && gap.name){
+                            namearray.push(gap.name);
+                            responsesArray[compteur] = gap;
+                            state[compteur] = $(gap).val().trim();
+                            compteur+=1;
+                        }else if(!gap.name){
+                            if(isNaN($(gap).val().trim().split("'").join(""))==false){
+                                state[compteur] = $(gap).val().trim().split("'").join(""); 
+                                responsesArray[compteur] = gap;
+                                compteur+=1;
+                            }else{
+                                state[compteur] = $(gap).val().trim();
+                                responsesArray[compteur] = gap;
+                                compteur+=1;
+                            }
+                        }
+                    
                 }else{
-                   state[idx] = $(gap).val().trim(); 
+                    if(isNaN($(gap).val().trim().split("'").join(""))==false){
+                        state[idx] = $(gap).val().trim().split("'").join(""); 
+                        responsesArray[idx] = gap;
+                    }else{
+                        state[idx] = $(gap).val().trim();
+                        responsesArray[idx] = gap;
+                    }  
                 }
-                responsesArray[idx] = gap;
             });
         }
         return state;
@@ -17561,11 +17602,11 @@ var rpngapsimplemodule = function() {
                 successArray[idx] = [state[idx],solution];
             }
         });
+       console.log('score'+score)
         return score;
     };
     var pointmax = function(sol){
         var pointmax = sol.length;
-        
         return pointmax;
     };
     var successState = function(){
@@ -18722,7 +18763,6 @@ var rpnsequence = (function() {
                 //validationButton.html(selectedLabels.Next+' <i class="glyphicon glyphicon-chevron-right"></i>').removeClass("btn-success").addClass("btn-primary").attr("id","rpnm_next");
 
                 $($('#rpnm_modulestate h4 span')[previousmod]).removeClass('label-default').addClass('label-success');
-                
                 _.each(responsesState, function(val, idx) {
                     var checkText = (successState[idx][0] == 'ok') ? '' : ("<div style=\"color: green;\">" + successState[idx][1] + "</div>");
                     $(val).attr('data-html', true).attr('data-placement', tooltipPlacement).attr('data-original-title', checkText).tooltip().on('mouseenter', function(){
@@ -19119,10 +19159,22 @@ var rpnsequence = (function() {
         
             $(inputs).bind('input propertychange',function(){
                 var mylength=$(this).val().length;
+                var mydecimals=0;
+                if($(this).val().split(".")[1]){
+                   mydecimals=$(this).val().split(".")[1].length;
+                }
+                console.log($(this).val())
                 var myelement=document.activeElement;
                 myelement.focus();
                 var myelementcursor=myelement.selectionStart;
                 var myvalbeorenumberofchar=$(this).val();
+                if(validationoptions.numberofdecimals && validationoptions.numberofchar){
+                   if(mydecimals>validationoptions.numberofdecimals && mylength+1<validationoptions.numberofchar){
+                        $(this).val($(this).val().substr(0,mylength-1));
+                      }
+                } else if(validationoptions.numberofdecimals){
+                         $(this).val($(this).val().substr(0,mylength-1)); 
+                }
                 if(validationoptions.numberofchar){
                     if(validationoptions.type=="natural"){
                         var mylength=$(this).val().length;
@@ -19130,8 +19182,13 @@ var rpnsequence = (function() {
                         var mylength=$(this).val().length+1;
                     }
                     if(mylength>validationoptions.numberofchar){
-                        mylength=validationoptions.numberofchar;
-                        $(this).val($(this).val().substr(0,mylength));
+                        if($(this).val().charAt(validationoptions.numberofchar-1)=="."){
+                           $(this).val($(this).val().substr(0,mylength-2));
+                        }else{
+                           mylength=validationoptions.numberofchar;
+                           $(this).val($(this).val().substr(0,mylength)); 
+                        }
+                        
                     }
                 }
                 if(validationoptions.type=="natural"){
