@@ -50,11 +50,12 @@ require([
             debug:true,
             disablestateloading:true,
             //testMode:true,
-            //exerciseMode:true,
+            exerciseMode:true,
             //warnonexit:true,
             //bypassModule:true,
             //watchResultMode:true,
-            testAndResultMode:true,
+            //testAndResultMode:true,
+            hostingMode:true,
             onmoduleend:function(states,nextstep){
                 console.log('ok');
                 nextstep();
