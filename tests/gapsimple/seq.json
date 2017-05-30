@@ -47,12 +47,11 @@
         },
         {
             "type":"gapsimple",
-            "title":"a gapsimple module type decimal, numberofdecimals:2, nbofchar: 12, milleseparator: true ",
+            "title":"a gapsimple module type decimal, numberofdecimals:2, milleseparator: true ",
             "validation":{
                 "mode":"lock",
                 "type":"decimal",
                 "milleseparator":true,
-                "numberofchar":"12",
                 "numberofdecimals":"2",
                 "width":"10em;",
                 "align":"text-center"
@@ -61,12 +60,26 @@
         },
         {
             "type":"gapsimple",
-            "title":"a gapsimple module type posdecimal, nbofchar: 12, milleseparator: false  ",
+            "title":"a gapsimple module type decimal, numberofdecimals:2, nbofchar: 6, milleseparator: true ",
+            "validation":{
+                "mode":"lock",
+                "type":"decimal",
+                "milleseparator":true,
+                "numberofchar":"6",
+                "numberofdecimals":"2",
+                "width":"10em;",
+                "align":"text-center"
+            },
+            "tofill":"<p>-13,06 - 7.4 = <b></b></p>"
+        },
+        {
+            "type":"gapsimple",
+            "title":"a gapsimple module type posdecimal, nbofchar: 8, milleseparator: false  ",
             "validation":{
                 "mode":"lock",
                 "type":"posdecimal",
                 "milleseparator":false,
-                "numberofchar":"12",
+                "numberofchar":"8",
                 "width":"10em;",
                 "align":"text-center"
             },

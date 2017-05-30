@@ -885,7 +885,6 @@ var rpnsequence = (function() {
                 if($(this).val().split(".")[1]){
                    mydecimals=$(this).val().split(".")[1].length;
                 }
-                console.log($(this).val())
                 var myelement=document.activeElement;
                 myelement.focus();
                 var myelementcursor=myelement.selectionStart;
@@ -893,9 +892,23 @@ var rpnsequence = (function() {
                 if(validationoptions.numberofdecimals && validationoptions.numberofchar){
                    if(mydecimals>validationoptions.numberofdecimals && mylength+1<validationoptions.numberofchar){
                         $(this).val($(this).val().substr(0,mylength-1));
-                      }
+                    }
+                    else if(mydecimals>validationoptions.numberofdecimals){
+                          $(this).val($(this).val().substr(0,mylength-1));
+                    }
+                    else if(mylength>validationoptions.numberofchar){
+                        if($(this).val().charAt(validationoptions.numberofchar-1)=="."){
+                           $(this).val($(this).val().substr(0,mylength-2));
+                        }else{
+                           mylength=validationoptions.numberofchar;
+                           $(this).val($(this).val().substr(0,mylength));
+                        }
+                             
+                    }
                 } else if(validationoptions.numberofdecimals){
-                         $(this).val($(this).val().substr(0,mylength-1)); 
+                    if(mydecimals>validationoptions.numberofdecimals){
+                         $(this).val($(this).val().substr(0,mylength-1));
+                    }
                 }
                 if(validationoptions.numberofchar){
                     if(validationoptions.type=="natural"){
@@ -908,9 +921,8 @@ var rpnsequence = (function() {
                            $(this).val($(this).val().substr(0,mylength-2));
                         }else{
                            mylength=validationoptions.numberofchar;
-                           $(this).val($(this).val().substr(0,mylength)); 
-                        }
-                        
+                           $(this).val($(this).val().substr(0,mylength));
+                        } 
                     }
                 }
                 if(validationoptions.type=="natural"){
@@ -1156,7 +1168,7 @@ var rpnsequence = (function() {
                         }
                     }
                 }
-                else if(validationoptions.type=='posdecimal'){ 
+                else if(validationoptions.type=='posdecimal'){
                    $(this).val($(this).val().replace(',','.'));
                     if($(this).val().indexOf('-')==1){$(this).val($(this).val().substring(1))};
                     var val_0=$(this).val();
@@ -1230,8 +1242,9 @@ var rpnsequence = (function() {
                         else if($(this).val().length>=Number(validationoptions.numberofchar)-1 && $(this).val().charAt($(this).val().length-1)=='.'){
                             $(this).val(myvalbeorenumberofchar.substr(0,myvalbeorenumberofchar.length-1))
                         }
-                        else if ($(this).val().length<validationoptions.numberofchar){rpnsequence.log('on ne fait rien')}
-                        else if($(this).val().length>=validationoptions.numberofchar && thepoint==false){
+                        else if ($(this).val().length<validationoptions.numberofchar){rpnsequence.log('on ne fait rien <')}
+                        else if ($(this).val().length=validationoptions.numberofchar){rpnsequence.log('on ne fait rien =')}
+                        else if($(this).val().length>validationoptions.numberofchar && thepoint==false){
                             $(this).val($(this).val().substr(0,$(this).val().length-1));
                         }else if($(this).val().length>=Number(validationoptions.numberofchar)+1 && thepoint==true && leftpoint[0].length>=4 && validationoptions.milleseparator==true){
                             
