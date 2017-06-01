@@ -1201,7 +1201,7 @@ var rpnsequence = (function() {
                     }
                     firstchardigit=val[0].charAt(0);
                     var secondchar=val[0].charAt(1);
-                    if(firstchardigit=='0'&& secondchar!='.'){myelementcursor=myelementcursor-1};
+                   // if(firstchardigit=='0'&& secondchar!='.'){myelementcursor=myelementcursor-1};
                     if(val[0].match(/^0[^,\.]/)){
                         var val=/^[-.\d]\d*.?\d*/.exec(val[0]);
                     }
@@ -1352,7 +1352,7 @@ var rpnsequence = (function() {
                     }
                     var firstchardigit=val[0].charAt(0);
                     var secondchar=val[0].charAt(1);
-                    if(firstchardigit=='0'&& secondchar!='.'){myelementcursor=myelementcursor-1;}
+                    //if(firstchardigit=='0'&& secondchar!='.'){myelementcursor=myelementcursor-1;}
                     if(val[0].match(/^0[^,\.]/)){
                         var val=/^[-.\d]\d*.?\d*/.exec(val[0]);
                     }
