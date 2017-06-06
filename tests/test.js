@@ -15,6 +15,7 @@ require.config({
         "bootstrap":"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min",
         "underscore":"//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore",
         "jsplumb":"ext/jsPlumb-2.0.4",
+        "swfobject":"ext/swfobject",
         "less":"//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min"
     }
 });
@@ -27,6 +28,7 @@ require([
     'less',
     'ext/jquery-disableSelection',
     'ext/jquery-ui',
+    'ext/swfobject',
     //'ext/jquery.maphilight',
     'rpnsequence',
     'rpnblackbox',
@@ -42,7 +44,8 @@ require([
     'rpndropdown2',
     'rpnsorting',
     'rpndoc',
-    'rpnmultiplelistssync'
+    'rpnmultiplelistssync',
+    'rpnegga'
     ], function($) {
     $(document).ready(function(){
         rpnsequence.init({
@@ -51,10 +54,10 @@ require([
             disablestateloading:true,
             //testMode:true,
             //exerciseMode:true,
-            //warnonexit:true,
+            warnonexit:true,
             //bypassModule:true,
             //watchResultMode:true,
-            testAndResultMode:true,
+            //testAndResultMode:true,
             onmoduleend:function(states,nextstep){
                 console.log('ok');
                 nextstep();

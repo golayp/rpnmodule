@@ -1,0 +1,13 @@
+{
+    "title":"modulesequence",
+    "modules":[
+        {
+            "type":"egga",
+            "title":"egga module",
+            "context":"Context",
+            "directive":"Directive",
+            "swf":"egga.swf",
+            "sources":"Donec arcu lectus, porttitor sed vestibulum vitae."
+        }
+    ]
+}
