@@ -18338,6 +18338,7 @@ var rpnsequence = (function() {
     var returnPage;
     var docModule;
     var disablestateloading;
+    var hostingMode;
 
     var labels = {
         en: {
@@ -18361,6 +18362,7 @@ var rpnsequence = (function() {
             Next: "Next",
             Validate: "Validate",
             EndSequence:"Continue",
+            EndSequenceHostingMode:"Exercise ended",
             Eraser: "Eraser",
             DragDropNotEmpty: "There are still some items to sort!",
             CardMazeNotEnded: "You have not finished the maze!",
@@ -18389,6 +18391,7 @@ var rpnsequence = (function() {
             Next: "Suite",
             Validate: "Valider",
             EndSequence:"Continuer",
+            EndSequenceHostingMode:"Exercice terminé",
             Eraser: "Effaceur",
             DragDropNotEmpty: "Il y a encore des éléments à trier!",
             CardMazeNotEnded: "Vous n'avez pas terminé le labyrinthe!",
@@ -18427,7 +18430,8 @@ var rpnsequence = (function() {
             clickEndBtn:false,
             licence:'<span><a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/2.0/fr/" rel="license"><img width="57" height="20" style="border-width: 0" alt="Creative Commons License" src="http://i.creativecommons.org/l/by-nc-sa/2.0/fr/88x31.png"></a></span>',
             returnPage:"../",
-            docModule:false
+            docModule:false,
+            hostingMode:false,
         });
         selectedLabels = labels[opts.language];
         states = [];
@@ -18453,6 +18457,7 @@ var rpnsequence = (function() {
         licence=opts.licence;
         returnPage=opts.returnPage;
         docModule=opts.docModule;
+        hostingMode=opts.hostingMode;
         
         $.getJSON(opts.sequrl, function(datas) {
             _.defaults(datas, {
@@ -18482,7 +18487,7 @@ var rpnsequence = (function() {
         });
     };
     var getColor = function(idx){
-        return ["#8d61a4","#01a271","#5dc2e7","#ed656a","#f5a95e","#eee227","#7a5a14","#bbbbbb","#63b553","#e95c7b","#f5a95e"][idx];
+        return ["#8d61a4","#01a271","#5dc2e7","#ed656a","#f5a95e","#eee227","#7a5a14","#bbbbbb","#63b553","#e95c7b","#9966ff","#777777","#3366cc","#bb0000","#00bb00","#0000bb","#cccc00","#ee5500","#77aaaa","#222222"][idx];
     }
     var buildUi = function() {
         moduleLocation=$('<div class="sequencebody"></div>')
@@ -18579,7 +18584,8 @@ var rpnsequence = (function() {
             
             if(player!=''){
                 var controlsVal = _.isUndefined(player.controls) ? 'controls' : player.controls;
-                var audioTag = $("<audio " + (controlsVal=='controls' ? 'controls' : '') + "><source src='/medias/" + player.source + ".ogg' type='audio/ogg'><source src='/medias/" + player.source + ".mp3' type='audio/mpeg'></audio>");
+                var sourceAudioLink = hostingMode ? "../../../../medias/" : "/medias/";
+                var audioTag = $("<audio " + (controlsVal=='controls' ? 'controls' : '') + "><source src='" + sourceAudioLink + player.source + ".ogg' type='audio/ogg'><source src='" + sourceAudioLink + player.source + ".mp3' type='audio/mpeg'></audio>");
                 var playBtn = controlsVal=='play' ? $("<button class='play control'><span class='glyphicon glyphicon-play-circle' aria-hidden='true'></span></button>").click(function(){
                     $('audio')[0].play();
                     $(this).attr('disabled', 'disabled').addClass('clicked')
@@ -18737,7 +18743,8 @@ var rpnsequence = (function() {
         }
         
         if(currentmod==sequencedatas.modules.length-1 && !exerciseMode){
-            validationButton.html(selectedLabels.EndSequence+' <i class="glyphicon glyphicon glyphicon-ok-circle"></i>').removeClass("btn-primary").addClass("btn-success");
+            var endButtonLabel = hostingMode ? selectedLabels.EndSequenceHostingMode : selectedLabels.EndSequence;
+            validationButton.html(endButtonLabel+' <i class="glyphicon glyphicon glyphicon-ok-circle"></i>').removeClass("btn-primary").addClass("btn-success");
         }else if(exerciseMode){
             validationButton.html(selectedLabels.Validate+' <i class="glyphicon glyphicon-ok-circle"></i>').removeClass("btn-success").addClass("btn-primary").attr("id","rpnm_validation");
         }else{
@@ -18886,7 +18893,8 @@ var rpnsequence = (function() {
                             //sequenceendHandler({states:_.map(states,function(sta){return sta.state;})},score, returnPage);
                         });
                         if(currentmod==sequencedatas.modules.length){
-                            validationButton.html(selectedLabels.EndSequence+' <i class="glyphicon glyphicon-chevron-right"></i>').removeClass("btn-primary").addClass("btn-success").attr("id","rpnm_next");
+                            var endButtonLabel = hostingMode ? selectedLabels.EndSequenceHostingMode : selectedLabels.EndSequence;
+                            validationButton.html(endButtonLabel+' <i class="glyphicon glyphicon-chevron-right"></i>').removeClass("btn-primary").addClass("btn-success").attr("id","rpnm_next");
                         }else{
                             validationButton.html(selectedLabels.Next+' <i class="glyphicon glyphicon-chevron-right"></i>').removeClass("btn-success").addClass("btn-primary").attr("id","rpnm_next");
                         }
@@ -19163,7 +19171,6 @@ var rpnsequence = (function() {
                 if($(this).val().split(".")[1]){
                    mydecimals=$(this).val().split(".")[1].length;
                 }
-                console.log($(this).val())
                 var myelement=document.activeElement;
                 myelement.focus();
                 var myelementcursor=myelement.selectionStart;
@@ -19171,9 +19178,23 @@ var rpnsequence = (function() {
                 if(validationoptions.numberofdecimals && validationoptions.numberofchar){
                    if(mydecimals>validationoptions.numberofdecimals && mylength+1<validationoptions.numberofchar){
                         $(this).val($(this).val().substr(0,mylength-1));
-                      }
+                    }
+                    else if(mydecimals>validationoptions.numberofdecimals){
+                          $(this).val($(this).val().substr(0,mylength-1));
+                    }
+                    else if(mylength>validationoptions.numberofchar){
+                        if($(this).val().charAt(validationoptions.numberofchar-1)=="."){
+                           $(this).val($(this).val().substr(0,mylength-2));
+                        }else{
+                           mylength=validationoptions.numberofchar;
+                           $(this).val($(this).val().substr(0,mylength));
+                        }
+                             
+                    }
                 } else if(validationoptions.numberofdecimals){
-                         $(this).val($(this).val().substr(0,mylength-1)); 
+                    if(mydecimals>validationoptions.numberofdecimals){
+                         $(this).val($(this).val().substr(0,mylength-1));
+                    }
                 }
                 if(validationoptions.numberofchar){
                     if(validationoptions.type=="natural"){
@@ -19186,9 +19207,8 @@ var rpnsequence = (function() {
                            $(this).val($(this).val().substr(0,mylength-2));
                         }else{
                            mylength=validationoptions.numberofchar;
-                           $(this).val($(this).val().substr(0,mylength)); 
-                        }
-                        
+                           $(this).val($(this).val().substr(0,mylength));
+                        } 
                     }
                 }
                 if(validationoptions.type=="natural"){
@@ -19434,7 +19454,7 @@ var rpnsequence = (function() {
                         }
                     }
                 }
-                else if(validationoptions.type=='posdecimal'){ 
+                else if(validationoptions.type=='posdecimal'){
                    $(this).val($(this).val().replace(',','.'));
                     if($(this).val().indexOf('-')==1){$(this).val($(this).val().substring(1))};
                     var val_0=$(this).val();
@@ -19467,7 +19487,7 @@ var rpnsequence = (function() {
                     }
                     firstchardigit=val[0].charAt(0);
                     var secondchar=val[0].charAt(1);
-                    if(firstchardigit=='0'&& secondchar!='.'){myelementcursor=myelementcursor-1};
+                   // if(firstchardigit=='0'&& secondchar!='.'){myelementcursor=myelementcursor-1};
                     if(val[0].match(/^0[^,\.]/)){
                         var val=/^[-.\d]\d*.?\d*/.exec(val[0]);
                     }
@@ -19508,8 +19528,9 @@ var rpnsequence = (function() {
                         else if($(this).val().length>=Number(validationoptions.numberofchar)-1 && $(this).val().charAt($(this).val().length-1)=='.'){
                             $(this).val(myvalbeorenumberofchar.substr(0,myvalbeorenumberofchar.length-1))
                         }
-                        else if ($(this).val().length<validationoptions.numberofchar){rpnsequence.log('on ne fait rien')}
-                        else if($(this).val().length>=validationoptions.numberofchar && thepoint==false){
+                        else if ($(this).val().length<validationoptions.numberofchar){rpnsequence.log('on ne fait rien <')}
+                        else if ($(this).val().length=validationoptions.numberofchar){rpnsequence.log('on ne fait rien =')}
+                        else if($(this).val().length>validationoptions.numberofchar && thepoint==false){
                             $(this).val($(this).val().substr(0,$(this).val().length-1));
                         }else if($(this).val().length>=Number(validationoptions.numberofchar)+1 && thepoint==true && leftpoint[0].length>=4 && validationoptions.milleseparator==true){
                             
@@ -19617,7 +19638,7 @@ var rpnsequence = (function() {
                     }
                     var firstchardigit=val[0].charAt(0);
                     var secondchar=val[0].charAt(1);
-                    if(firstchardigit=='0'&& secondchar!='.'){myelementcursor=myelementcursor-1;}
+                    //if(firstchardigit=='0'&& secondchar!='.'){myelementcursor=myelementcursor-1;}
                     if(val[0].match(/^0[^,\.]/)){
                         var val=/^[-.\d]\d*.?\d*/.exec(val[0]);
                     }
@@ -19721,7 +19742,7 @@ var rpnsequence = (function() {
                 }
                 else if(validationoptions.type=='lowercase'){
                     var val_0=$(this).val().toLowerCase();
-                    var val=/[a-zâäàéèùêëîïôöçñ]*/.exec(val_0);
+                    var val=/[a-zâäàéèùüêëîïôöçñ]*/.exec(val_0);
                     if(val=='' || val==null){
                         $(this).val('');
                     }else{
@@ -19729,7 +19750,7 @@ var rpnsequence = (function() {
                     }
                 }
                 else if(validationoptions.type=='familycase'){
-                    var val=/^[A-ZÀÂÄÉÈÙÊËÎÏÔÖÑa-zâäàéèùêëîïôöçñ][a-zâäàéèùêëîïôöçñ]*/.exec($(this).val());
+                    var val=/^[A-ZÀÂÄÉÈÙÜÊËÎÏÔÖÑa-zâäàéèùêëîïôöçñ][a-zâäàéèùüêëîïôöçñ]*/.exec($(this).val());
                     if(val=='' || val==null){
                         $(this).val('');
                     }else{
@@ -19738,7 +19759,7 @@ var rpnsequence = (function() {
                 }
                 else if(validationoptions.type=='uppercase'){
                     var val_0=$(this).val().toUpperCase()
-                    var val=/[A-ZÀÂÄÉÈÙÊËÎÏÔÖÑ]*/.exec(val_0);
+                    var val=/[A-ZÀÂÄÉÈÙÜÊËÎÏÔÖÑ]*/.exec(val_0);
                     if(val=='' || val==null){
                         $(this).val('');
                     }else{
@@ -19746,7 +19767,7 @@ var rpnsequence = (function() {
                     }
                 }
                 else if(validationoptions.type=='letter'){
-                    var val=/[A-ZÀÂÄÉÈÙÊËÎÏÔÖÑa-zâäàéèùêëîïôöçñ]*/.exec($(this).val());
+                    var val=/[A-ZÀÂÄÉÈÙÜÊËÎÏÔÖÑa-zâäàéèùüêëîïôöçñ]*/.exec($(this).val());
                     if(val=='' || val==null){
                         $(this).val('');
                     }else{
@@ -19754,7 +19775,7 @@ var rpnsequence = (function() {
                     }
                 }
                 else if(validationoptions.type=='words'){
-                    var val=/[A-ZÀÂÄÉÈÙÊËÎÏÔÖÑa-zâäàéèùêëîïôöçñ' ]*/.exec($(this).val().replace(/\s{2,}/g,' '));
+                    var val=/[A-ZÀÂÄÉÈÙÜÊËÎÏÔÖÑa-zâäàéèùüêëîïôöçñ' ]*/.exec($(this).val().replace(/\s{2,}/g,' '));
                     if(val=='' || val==null){
                         $(this).val('');
                     }else{
