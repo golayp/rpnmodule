@@ -145,7 +145,7 @@ var rpnsequence = (function() {
             licence:'<span><a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/2.0/fr/" rel="license"><img width="57" height="20" style="border-width: 0" alt="Creative Commons License" src="http://i.creativecommons.org/l/by-nc-sa/2.0/fr/88x31.png"></a></span>',
             returnPage:"../",
             docModule:false,
-            hostingMode:false,
+            hostingMode:false
         });
         selectedLabels = labels[opts.language];
         states = [];
@@ -368,6 +368,10 @@ var rpnsequence = (function() {
             else if (modData.type == 'doc') {
                 docModule = true;
                 modules[idx]=rpndocmodule();
+                modules[idx].init(modData,states[idx].state, divContent);
+            }
+            else if (modData.type == 'geogebra') {
+                modules[idx]=rpngeogebramodule();
                 modules[idx].init(modData,states[idx].state, divContent);
             }
             else if (modData.type == 'multiplelistssync') {

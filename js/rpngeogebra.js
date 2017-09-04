@@ -1,4 +1,3 @@
-//doc
 var rpngeogebramodule = function() {
 
     var datas;
@@ -11,6 +10,7 @@ var rpngeogebramodule = function() {
     var b=new Array();
     var pente=new Array();
     var ordOri=new Array();
+    
 
     var init = function(_datas,_state, _domelem) {
         /*_.defaults(_datas, {
@@ -115,8 +115,9 @@ var rpngeogebramodule = function() {
             
            createbuttons(datas.object.buttons,containerid, datas.object.idggb, geogebrabuttons);
            geogebraint.append(geogebrabuttons);
-           geogebraint.append($('<span id="myinfos'+datas.object.idggb+'">'+datas.object.idggb+'</span>'));
-           geogebraint.append($('<input type="button" value="setValue(Pente,4)" onclick="'+containerid+'.setValue(\'Pente\',4)">'));
+           geogebraint.append($('<span id="myinfos'+datas.object.idggb+'"></span>'));
+           //geogebraint.append($('<span id="myinfos'+datas.object.idggb+'">'+datas.object.idggb+'</span>'));
+           //geogebraint.append($('<input type="button" value="setValue(Pente,4)" onclick="'+containerid+'.setValue(\'Pente\',4)">'));
             domelem.append(geogebraint);
            
         }
@@ -158,7 +159,7 @@ var rpngeogebramodule = function() {
         var applet = new GGBApplet('5.0', parameters);
         applet.setJavaCodebase('GeoGebra/Java/5.0');
             
-        var myform=$('<form> <input type="button" value="Réinitialiser" onclick="applet.reset()"></form><form> <input type="button" value="Afficher les coordonnées de B" onclick="getCoords('+myptB+',applet,'+myid+')"><input type="button" value="Cacher A" onclick="applet.setVisible(ptA, false)"></form>');
+       var myform=$('<form> <input type="button" value="Réinitialiser" onclick="applet.reset()"></form><form> <input type="button" value="Afficher les coordonnées de B" onclick="getCoords('+myptB+',applet,'+myid+')"><input type="button" value="Cacher A" onclick="applet.setVisible(ptA, false)"></form>');
         mygeogebraint.append(myform);
         applet.inject(myappletcontainer, 'preferHTML5');
     };
@@ -189,17 +190,23 @@ var rpngeogebramodule = function() {
         var score = 0;
         
         _.each(sol, function(val, idx) {
-            console.log("sol:"+val)
+            alert("sol:"+val)
             if(val=="ExpFonctAff_points"){
-             /*   if (pente[idx]==a[idx] {
+                if (pente[idx]==a[idx]) {
+                    score+=1;
+                }
+                if (OrdOri[idx]==b[idx]){///OrdOri not defined
+                    score+=1;
+                }
+                alert('score ExpFonctAff_points: '+a[idx]+'x+'+b[idx])
+            }else if(val=="ExpFonctAff_cursor"){
+                if (pente[idx]==a[idx]) {
                     score+=1;
                 }
                 if (OrdOri[idx]==b[idx]){
                     score+=1;
-                }*/
-            console.log('score ExpFonctAff_points')
-            }else if(val=="ExpFonctAff_cursor"){
-               console.log('score ExpFonctAff_cursor') 
+                }
+               alert('score ExpFonctAff_cursor: '+a[idx]+'x+'+b[idx]) 
             }
         });
         console.log("score:"+score)

@@ -1,0 +1,30 @@
+{
+    "title":"GeoGebra modulesequence",
+    "context":"",
+    "directive":"directive",
+    "modules":[
+        {
+            "type":"geogebra",
+            "title":"first module with geogebra",
+            "directive":"<p>Déplace les curseurs pour faire coincider la droite avec l'expression fonctionnelle ci-dessous:</p>",
+            "object":{
+                "idggb":"0",
+                "kind":"ExpFonctAff",
+                "appliquette":"../../medias/test3.ggb",
+                "buttons":[["reset", "réinitialiser",""]]
+            }
+        },
+        {
+            "type":"geogebra",
+            "title":"a second module with geogebra",
+            "directive":"<p>Déplace les points A et B ou la droite pour la faire coincider avec l'expression fonctionnelle ci-dessous:</p>",
+            "object":{
+                "idggb":"1",
+                "kind":"ExpFonctAff",
+                "appliquette":"../../medias/base_rpngeogebra.ggb",
+                "buttons":[["reset", "réinitialiser",[]],["setVisible","Effacer A",["'A'",false]],["setVisible", "Afficher A",["'A'", true]], ["getCoords","Afficher les Coordonnées de B", ["'B'"]]]
+            }
+        }
+        
+    ]
+}
