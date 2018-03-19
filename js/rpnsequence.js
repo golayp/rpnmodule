@@ -29,10 +29,12 @@ var rpnsequence = (function() {
     var validationButton;
     var btnOrder;
     var btnRecall;
+    var spanRef;
     var btnSources;
     var bypassModule;
     var testMode;
     var exerciseMode;
+    var onlyForwardMode;
     var watchResultMode;
     var testAndResultMode;
     var testNumber;
@@ -136,6 +138,7 @@ var rpnsequence = (function() {
             bypassModule:false,
             testMode:false,
             exerciseMode: false,
+            onlyForwardMode:false,
             watchResultMode: false,
             testAndResultMode:false,
             limitOfSufficiency: 0.6,
@@ -163,6 +166,7 @@ var rpnsequence = (function() {
         bypassModule=opts.bypassModule;
         testMode=opts.testMode;
         exerciseMode=opts.exerciseMode;
+        onlyForwardMode=opts.onlyForwardMode;
         watchResultMode=opts.watchResultMode;
         testAndResultMode=opts.testAndResultMode;
         finished=opts.finished;
@@ -176,7 +180,8 @@ var rpnsequence = (function() {
         $.getJSON(opts.sequrl, function(datas) {
             _.defaults(datas, {
                 title: "sequencetitle",
-                modules: []
+                modules: [],
+                itemRef:""
             });
             sequencedatas = datas;
             //add dynamically status of module to each modules to handle the status (init->started->ended)
@@ -209,6 +214,7 @@ var rpnsequence = (function() {
         btnOrder=$('<button class="btn btn-default btn-sm" data-target="#rpnm_order_modal" data-toggle="modal"><span class="visible-xs visible-sm"><i class="glyphicon glyphicon-question-sign"></i></span><span class="visible-md visible-lg"><i class="glyphicon glyphicon-question-sign"></i> ' + selectedLabels.Order + '</span></button>');
         btnRecall=$('<button class="btn btn-default btn-sm" data-target="#rpnm_recall_modal" data-toggle="modal"><span class="visible-xs visible-sm"><i class="glyphicon glyphicon-bell"></i></span><span class="visible-md visible-lg"><i class="glyphicon glyphicon-bell"></i> ' + selectedLabels.Recall + '</span></button>');
         btnSources=$('<button class="srcbtn btn btn-default btn-sm" data-target="#rpnm_sources_modal" data-toggle="modal"><span class="visible-xs visible-sm"><i class="glyphicon glyphicon-book"></i></span><span class="visible-md visible-lg"><i class="glyphicon glyphicon-book"></i> ' + selectedLabels.Sources + '</span></button>');
+        spanRef=$('<span class="itemRef"><h4>'+sequencedatas.itemRef+'</h4></span>');
         //source=$('<div class="col-md-12"></div>');
         cc=$('<div class="col-md-12" id="cc"></div>');
         var baseContainer=$('<div class="container"></div>');
@@ -222,7 +228,8 @@ var rpnsequence = (function() {
                     $(exerciseMode ? '<div class="col-md-3"><nav id="rpnm_modulestate"></div>' : '<div class="col-xs-4"><nav id="rpnm_modulenav"><ul class="pagination pagination-sm"></div>'),
                     $((exerciseMode ? '<div class="col-md-1">' : '<div class="col-md-3">') + '</div>').append([
                         btnOrder,
-                        btnRecall
+                        btnRecall,
+                        spanRef
                     ]),
                 ]),
                 moduleLocation,
@@ -392,7 +399,7 @@ var rpnsequence = (function() {
             if(modData.type!='gapfull'){
                 divContent.disableSelection();
             }
-            $('#rpnm_modulenav ul').append($('<li><a href="#">' + (idx + 1) + '</a></li>'));
+            $('#rpnm_modulenav ul').append($('<li><a href="#">' + (onlyForwardMode?'&nbsp;&nbsp;':(idx + 1)) + '</a></li>'));
             if(bypassModule && idx==sequencedatas.modules.length-1){
                 handleEndOfSequence();
             }
@@ -426,7 +433,7 @@ var rpnsequence = (function() {
             }
         });
         //Navigation
-        if (navigationEnabled && sequencedatas.modules.length > 1 && !exerciseMode) {
+        if (navigationEnabled && sequencedatas.modules.length > 1 && !exerciseMode && !onlyForwardMode) {
             _.each($('#rpnm_modulenav ul li'),function(nav,idx){
                 $(nav).click(function() {
                     modules[currentmod].validate();
@@ -576,6 +583,38 @@ var rpnsequence = (function() {
         states[currentmod] = {
             state:state
         };
+        
+        //check if the exercise is finished in onlyForwardMode
+        if (onlyForwardMode){
+            var modType = sequencedatas.modules[currentmod].type;
+            var modFinished = false;
+            if (modType=="gapsimple" || modType=="dropdown" || modType=="dropdown2"){
+                modFinished = !_.contains(states[currentmod].state,"");
+            }
+            else if (modType=="mqc" || modType=="marker"){
+                modFinished = !_.contains(states[currentmod].state.responses,"");
+            }
+            else if (modType=="dragdropsorting"){
+                var dragfromtext = states[currentmod].state.dragfromtext;
+                if(dragfromtext){
+                    var stateList = _.pairs(states[currentmod].state);
+                    var todropListLength = 0;
+                    _.each(stateList, function(val, idx) {
+                        idx>2?todropListLength = todropListLength + val[1].length:todropListLength;
+                    });
+                    modFinished = states[currentmod].state.todrag.length <= todropListLength;
+                }
+                else{
+                    modFinished = !states[currentmod].state.todrag.length;
+                }
+            }
+            else{
+                modFinished = true;
+            }
+            if(!modFinished){
+                displayNotFinished("Tu n'as pas terminé l'exercice.",nextmodtoshow = nextmodtoshow-1);
+            };
+        }
         
         moduleendHandler({states:_.map(states,function(sta){return sta.state;})},function(){
             //Save status of module
@@ -828,6 +867,16 @@ var rpnsequence = (function() {
     }
 
     var displayAlert = function(text, onclose) {
+        $('#rpnm_alert_modal .modal-body').text(text);
+        alertModal.modal();
+        alertModal.on('hidden.bs.modal', function() {
+            if (!_.isUndefined(onclose)) {
+                onclose();
+            }
+        });
+    };
+    
+    var displayNotFinished = function(text, onclose) {
         $('#rpnm_alert_modal .modal-body').text(text);
         alertModal.modal();
         alertModal.on('hidden.bs.modal', function() {

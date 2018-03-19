@@ -23,7 +23,7 @@ var rpnmarkermodule = function() {
         if(!_.isUndefined(_state) && !_.isNull(_state) && !_.isEmpty(_state)){
             state=_state;
         }else{
-            var availableColors = ["#8d61a4","#01a271","#5dc2e7","#ed656a","#f5a95e","#eee227","#7a5a14","#63b553","#e95c7b","#f5a95e"];
+            var availableColors = ["#01a271","#ed656a","#8d61a4","#5dc2e7","#f5a95e","#eee227","#7a5a14","#63b553","#e95c7b","#f5a95e"];
             state={
                 selectedMarker : '',
                 responses:_.map($('b',datas.tomark),function(b,idx){return '';}),
@@ -42,9 +42,12 @@ var rpnmarkermodule = function() {
         });
         limitedChoice = state.markers.length <= 2 ? true : false;
         
-        toolbar.append($('<label class="btn btn-default '+(datas.smallButtons?'':'btn-lg ') + (state.selectedMarker.label==''?'active':'')+' eraser"><input type="radio" name="options" autocomplete="off" '+(state.selectedMarker==''?'checked':'')+'><span class="edicons-tool-eraser"></span> ' + rpnsequence.getLabels().Eraser + '</label>').click(function() {
+        if(!datas.eraser){
+            toolbar.append($('<label class="btn btn-default '+(datas.smallButtons?'':'btn-lg ') + (state.selectedMarker.label==''?'active':'')+' eraser"><input type="radio" name="options" autocomplete="off" '+(state.selectedMarker==''?'checked':'')+'><span class="edicons-tool-eraser"></span> ' + rpnsequence.getLabels().Eraser + '</label>').click(function() {
             state.selectedMarker = {color:'',label:''};
-        }));
+           }));
+        }
+        
         $.each(state.markers, function(idx, marker) {
             toolbar.append($('<label class="btn btn-default '+(datas.smallButtons?'':'btn-lg ') + (state.selectedMarker.label==marker.label?'active':'')+' stab"><input type="radio" name="options" autocomplete="off" '+(state.selectedMarker==marker.label?'checked':'')+'><span class="edicons-tool-stab" style="color:'+marker.color+'"></span> ' + marker.label + '</label>').click(function() {
                 state.selectedMarker = marker;
