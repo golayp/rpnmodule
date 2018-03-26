@@ -591,7 +591,7 @@ var rpnsequence = (function() {
             if (modType=="gapsimple" || modType=="dropdown" || modType=="dropdown2"){
                 modFinished = !_.contains(states[currentmod].state,"");
             }
-            else if (modType=="mqc" || modType=="marker"){
+            else if (modType=="mqc" || modType=="marker" || modType=="plumb"){
                 modFinished = !_.contains(states[currentmod].state.responses,"");
             }
             else if (modType=="dragdropsorting"){

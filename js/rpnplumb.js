@@ -159,7 +159,6 @@ var rpnplumbmodule = function() {
             var scoreIni = score;
             var mylength=state.left.length;
             solution = datas.right[target[1]];
-            
                 if(state.responses[source]==target[1]){
                      score++;
                     
