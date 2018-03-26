@@ -57,6 +57,7 @@
             "mathjax":true,
             "sources":"http://docs.mathjax.org/en/latest/api/html.html",
             "mathcontent":"$$x+1\\over (x-1)$$\\(x+1\\over x-1\\)",
+            "multipleTarget":true,
             "tofill":"<span>=<b></b></span>",
              "left":[
                 "$$x+1\\over (x-1)$$",
