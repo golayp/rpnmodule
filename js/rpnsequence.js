@@ -591,10 +591,14 @@ var rpnsequence = (function() {
             if (modType=="gapsimple" || modType=="dropdown" || modType=="dropdown2"){
                 modFinished = !_.contains(states[currentmod].state,"");
             }
-            else if (modType=="mqc" || modType=="marker" || modType=="plumb"){
+            else if (modType=="mqc" || modType=="marker"){
                 modFinished = !_.contains(states[currentmod].state.responses,"");
-            }
-            else if (modType=="dragdropsorting"){
+            }else if(modType=="plumb"){
+                if(states[currentmod].state.responses[currentmod]){
+                    rpnsequence.log('states[currentmod].state.responses[currentmod]'+states[currentmod].state.responses[currentmod])
+                 modFinished = !_.contains(states[currentmod].state.responses[currentmod],"");
+                }
+            }else if (modType=="dragdropsorting"){
                 var dragfromtext = states[currentmod].state.dragfromtext;
                 if(dragfromtext){
                     var stateList = _.pairs(states[currentmod].state);

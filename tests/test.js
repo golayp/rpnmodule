@@ -49,8 +49,8 @@ require([
         rpnsequence.init({
             language:'fr',
             debug:true,
+            //disablestateloading:false,
             disablestateloading:true,
-            //testMode:true,
             onlyForwardMode:true,
             //exerciseMode:true,
             //warnonexit:true,

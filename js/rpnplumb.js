@@ -150,6 +150,8 @@ var rpnplumbmodule = function() {
         _.each($('ul.list-unstyled.plumbsource div', domelem),function(elemL,idx){
             responsesArray[idx] = elemL;
         });
+        //rpnsequence.log('responsesArray'+responsesArray)
+        return state;
     };
     
    var score = function(sol){

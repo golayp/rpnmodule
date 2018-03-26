@@ -16772,7 +16772,7 @@ var rpndragdropsortingmodule = function() {
             state = {
                 todrag:datas.todrag,
                 todrop:datas.todrop,
-                dragfromtext:!_.isUndefined(_datas.dragfromtext),
+                dragfromtext:!_.isUndefined(_datas.dragfromtext)
             };
         }
         buildUi();
@@ -18225,6 +18225,8 @@ var rpnplumbmodule = function() {
         _.each($('ul.list-unstyled.plumbsource div', domelem),function(elemL,idx){
             responsesArray[idx] = elemL;
         });
+        //rpnsequence.log('responsesArray'+responsesArray)
+        return state;
     };
     
    var score = function(sol){
@@ -18437,7 +18439,7 @@ var rpnsequence = (function() {
             licence:'<span><a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/2.0/fr/" rel="license"><img width="57" height="20" style="border-width: 0" alt="Creative Commons License" src="http://i.creativecommons.org/l/by-nc-sa/2.0/fr/88x31.png"></a></span>',
             returnPage:"../",
             docModule:false,
-            hostingMode:false,
+            hostingMode:false
         });
         selectedLabels = labels[opts.language];
         states = [];
@@ -18876,10 +18878,14 @@ var rpnsequence = (function() {
             if (modType=="gapsimple" || modType=="dropdown" || modType=="dropdown2"){
                 modFinished = !_.contains(states[currentmod].state,"");
             }
-            else if (modType=="mqc" || modType=="marker" || modType=="plumb"){
+            else if (modType=="mqc" || modType=="marker"){
                 modFinished = !_.contains(states[currentmod].state.responses,"");
-            }
-            else if (modType=="dragdropsorting"){
+            }else if(modType=="plumb"){
+                if(states[currentmod].state.responses[currentmod]){
+                    rpnsequence.log('states[currentmod].state.responses[currentmod]'+states[currentmod].state.responses[currentmod])
+                 modFinished = !_.contains(states[currentmod].state.responses[currentmod],"");
+                }
+            }else if (modType=="dragdropsorting"){
                 var dragfromtext = states[currentmod].state.dragfromtext;
                 if(dragfromtext){
                     var stateList = _.pairs(states[currentmod].state);
