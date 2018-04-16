@@ -935,10 +935,10 @@ var rpnsequence = (function() {
             e.preventDefault();
         });
         if(validationoptions.mode=='lock'){
-        
+            
             $(inputs).bind('input propertychange',function(){
                 if ($(this).val()==""){
-                   $(this).val()=""; 
+                   $(this).val(''); 
                 }else{
                     var mylength=$(this).val().length;
                     var mydecimals=0;
