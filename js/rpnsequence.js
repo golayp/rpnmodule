@@ -307,9 +307,9 @@ var rpnsequence = (function() {
                 var controlsVal = _.isUndefined(player.controls) ? 'controls' : player.controls;
                 var sourceAudioLink = hostingMode ? "../../../../medias/" : "/medias/";
                 var audioTag = $("<audio " + (controlsVal=='controls' ? 'controls' : '') + "><source src='" + sourceAudioLink + player.source + ".ogg' type='audio/ogg'><source src='" + sourceAudioLink + player.source + ".mp3' type='audio/mpeg'></audio>");
-                var playBtn = controlsVal=='play' ? $("<button class='play control'><span class='glyphicon glyphicon-play-circle' aria-hidden='true'></span></button>").click(function(){
+                var playBtn = (controlsVal=='play' || controlsVal=='play_x') ? $("<button class='play control'><span class='glyphicon glyphicon-play-circle' aria-hidden='true'></span></button>").click(function(){
                     $('audio')[idx].play();
-                    $(this).attr('disabled', 'disabled').addClass('clicked')
+                    controlsVal=='play' ? $(this).attr('disabled', 'disabled').addClass('clicked') : '';
                 }) : '';
                 divPlayer.show().append([audioTag, playBtn]);
             }else{

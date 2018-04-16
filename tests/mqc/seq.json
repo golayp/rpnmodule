@@ -13,7 +13,7 @@
             "player":{
                 "type":"audio",
                 "source":"audio_1",
-                "controls":"play"
+                "controls":"play_x"
             },
             "questions":[
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit ?",
@@ -28,6 +28,11 @@
             "type":"mqc",
             "title":"identifier ",
             "context":"a unique set of answers for each questions",
+            "player":{
+                "type":"audio",
+                "source":"audio_1",
+                "controls":"play"
+            },
             "questions":[
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit ?",
                 "Curabitur vitae purus vulputate, rutrum tortor eu, pulvinar justo ?",
@@ -45,6 +50,10 @@
             "type":"mqc",
             "title":"identifier ",
             "context":"answers disposed vertically",
+            "player":{
+                "type":"audio",
+                "source":"audio_1"
+            },
             "vertical":true,
             "questions":["Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"],
             "answers":[
