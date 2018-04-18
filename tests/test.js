@@ -35,7 +35,7 @@ require([
     'rpngapfull',
     'rpngapsimple',
     'rpnmarker',
-    'rpngeogebra',
+    //'rpngeogebra',
     //'rpnmap',
     'rpnmqc',
     'rpnplumb',
