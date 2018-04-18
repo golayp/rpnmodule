@@ -28,7 +28,7 @@ var rpndragdropsortingmodule = function() {
             state = {
                 todrag:datas.todrag,
                 todrop:datas.todrop,
-                dragfromtext:!_.isUndefined(_datas.dragfromtext),
+                dragfromtext:!_.isUndefined(_datas.dragfromtext)
             };
         }
         buildUi();

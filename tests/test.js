@@ -57,7 +57,7 @@ require([
             //bypassModule:true,
             //watchResultMode:true,
             //testAndResultMode:true,
-            hostingMode:true,
+            hostingMode:false,
             onmoduleend:function(states,nextstep){
                 console.log('ok');
                 nextstep();
