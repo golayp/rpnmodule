@@ -1,4 +1,4 @@
-var version='0.3.2';
+var version='0.3.3';
 
 var uglifyjs = require("uglify-js");
 var fs = require('fs');
