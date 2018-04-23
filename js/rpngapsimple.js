@@ -199,12 +199,12 @@ var rpngapsimplemodule = function() {
                 $($('.rpnm_input',domelem)[idx]).val(state[idx]);
             }
         });
-        $.each($('mphantom', domelem), function(idx, tofill) {
+   /*     $.each($('mphantom', domelem), function(idx, tofill) {
            var t = $(tofill);
             t.replaceWith($("<semantics><annotation-xml encoding='application/xhtml+xml'><input xmlns='http://www.w3.org/1999/xhtml' class='rpnm_input gapsimple form-control' style='text-align:center' type='text' size='2' name='n"+idx+"' /></input></annotation-xml></semantics>"));
             $($('.rpnm_input',domelem)[idx]).val(state[idx]);
         });
- //       MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);*/
         bindUiEvents();
     };
 
