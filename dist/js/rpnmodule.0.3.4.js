@@ -17506,7 +17506,7 @@ var rpngapsimplemodule = function() {
             t.replaceWith($("<semantics><annotation-xml encoding='application/xhtml+xml'><input xmlns='http://www.w3.org/1999/xhtml' class='rpnm_input gapsimple form-control' style='text-align:center' type='text' size='2' name='n"+idx+"' /></input></annotation-xml></semantics>"));
             $($('.rpnm_input',domelem)[idx]).val(state[idx]);
         });
-        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+ //       MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
         bindUiEvents();
     };
 
@@ -18122,7 +18122,7 @@ var rpnplumbmodule = function() {
         var leftItems=$('<ul class="list-unstyled plumbsource"></ul>');
         var rightItems=$('<ul class="list-unstyled plumbtarget"></ul>');
         if (datas.mathjax==true){
-            _.each(state.left, function(item, idx) {
+          /*  _.each(state.left, function(item, idx) {
                 var contentmat=MathJax.HTML.Element("span",{class:"form-inline"},[datas.left[item]]);
                 leftItems.append($('<div class="notif"></div>').append($('<li>').html(contentmat).data( 'idx', item )));
             });
@@ -18130,7 +18130,8 @@ var rpnplumbmodule = function() {
                 var contentmat=MathJax.HTML.Element("span",{class:"form-inline"},[datas.right[item]]);
                 rightItems.append($('<li>').html(contentmat).data( 'idx', item ));
             });
-            domelem.append([$('<div class="col-xs-5"></div>').append(leftItems),$('<div class="col-xs-2"></div>'),$('<div class="col-xs-5"></div>').append(rightItems)]);   
+            domelem.append([$('<div class="col-xs-5"></div>').append(leftItems),$('<div class="col-xs-2"></div>'),$('<div class="col-xs-5"></div>').append(rightItems)]); 
+        */
         }
         else{
             _.each(state.left, function(item, idx) {
@@ -18213,7 +18214,7 @@ var rpnplumbmodule = function() {
                 }
             });
         });
-                MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+  //              MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 
         $(window).resize(function(){
             plumb.repaintEverything();
