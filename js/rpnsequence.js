@@ -612,7 +612,8 @@ var rpnsequence = (function() {
                 modFinished = true;
             }
             if(!modFinished){
-                displayNotFinished("Tu n'as pas terminé l'exercice.",nextmodtoshow = nextmodtoshow-1);
+                nextmodtoshow = nextmodtoshow-1;
+                displayNotFinished("Tu n'as pas terminé l'exercice.", function(){return});
             };
         }
         

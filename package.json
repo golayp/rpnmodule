@@ -1,6 +1,6 @@
 {
   "name": "rpnmodule",
-  "version": "0.3.1",
+  "version": "0.3.5",
   "description": "first npm draft of rpnmodule",
   "main": "build.js",
   "directories": {
