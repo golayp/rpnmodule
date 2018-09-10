@@ -51,7 +51,7 @@ require([
             debug:true,
             //disablestateloading:false,
             disablestateloading:true,
-            onlyForwardMode:true,
+            onlyForwardMode:false,
             //exerciseMode:true,
             //warnonexit:true,
             //bypassModule:true,
